@@ -26,7 +26,7 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
+import seedu.nuke.command.filtercommand.listcommand.ListModuleTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.misc.ClearCommand;
@@ -177,8 +177,8 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-            case ListModuleTask.COMMAND_WORD:
-                return new ListModuleTask(parameters.trim());
+            case ListModuleTaskCommand.COMMAND_WORD:
+                return new ListModuleTaskCommand(parameters.trim());
             case ListTaskSortedCommand.COMMAND_WORD:
                 return prepareListTaskSortedCommand(parameters);
             case DueCommand.COMMAND_WORD:

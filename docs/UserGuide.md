@@ -346,7 +346,7 @@ addc Project -m cs2113t -p 3
 - `priority` -- A number indicating the  _priority_ of the _category_   
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br>The <code>deadline</code> provided consists of both a <i>date</i> and a <i>time</i>. The <code>deadline</code> provided must adhere to the set of accepted <a href = '#date-time-formats'>Date Time formats</a>
+The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br>The <code>deadline</code> provided consists of both a <i>date</i> and a <i>time</i>. The <code>deadline</code> provided must adhere to the set of accepted <b><a href = '#date-time-formats'>Date Time formats</a></b>.
 </div>
 <div class="alert alert-info">
 <i class="fa fa-info"></i> <b>Tip</b> <br> 
@@ -605,11 +605,9 @@ However, you must choose between sorting by <i>deadline</i> <i><u>or</u></i> by 
 </div>   
 
 ##### **Example Usage**
-
 ```
 lsts
 ```
-
 ```
 lsts -p
 ```
@@ -711,7 +709,7 @@ lsf
 [Back To Top](#table-of-contents)
 <br>
 
-#### g. List Tags in your Task
+#### g. List your Task's Tags
 <big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>  
 
 `lsg` shows *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
@@ -764,7 +762,7 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 `delm` deletes <i>module(s)</i> from your <b>Module Lists</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.
 
 ##### **Format**
-`delm <module keyword> [ -e -a ]`  
+`delm [ <module keyword> -e -a ]`  
 
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by    
 
@@ -799,7 +797,7 @@ delm cs
 `delc` deletes <i>category(s)</i> from your <b>Category Lists</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.   
 
 ##### **Format**  
-`delc <category name> -m <module code> [ -e -a ]`  
+`delc [ <category name> -m <module code> -e -a ]`  
 
 - `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by 
@@ -832,7 +830,7 @@ delc lec -a
 `delt` deletes <i>task(s)</i> from your <b>Task Lists</b>. The <b>Task List</b> contains all your added <i>tasks</i> of a <i>category</i> and can be viewed via the [<b>List Task</b>](#c-list-your-tasks) command.   
 
 ##### **Format**  
-`delt <task keyword> -m <module keyword> -c <category keyword> [ -e -a ]`  
+`delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`  
 
 - `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
@@ -867,7 +865,7 @@ delt urgent assignment
 `delf` deletes a _file_ from your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
 
 ##### **Format**  
-`delf <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> [ -e -a ]`  
+`delf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]`  
 
 - `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
@@ -1018,7 +1016,7 @@ edc Lab -m cs2113t -c Project -p 8
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  
-As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <a href="#date-time-formats">Date Time Formats</a>.<br>  
+As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <b><a href="#date-time-formats">Date Time Formats</a></b>.<br>  
 In addition, the <code>new priority</code> should also be between 0 and 20 inclusive.
 </div>
 
@@ -1089,7 +1087,12 @@ If the <i>task</i> was <b>already done</b>, and you execute the command, you wil
 - `module code` -- The <i>module code</i> of the <i>module</i> containing the <i>task</i>   
 - `category name` -- The <i>name</i> of the   <i>category</i> containing the <i>task</i>   
   
-##### **Example Usage and Expected Outcome**   
+##### **Example Usage**  
+```
+done do lab 4 -m cs2106 -c Lab
+```
+
+##### **Expected Outcome**   
 <small><u><b>Done at Root Level</b></u></small>  
 ![done command root level](images/done_root_level.png)   
 <br>     
@@ -1119,7 +1122,16 @@ There will <b>not</b> be any message shown for successful traversal &#128528;. I
 However, attempting to traverse ahead of the <b>Root</b> Directory (first directory) <i>or</i> beyond the <b>File</b> Directory <i>(last directory)</i> will result in an error message being shown &#128552;.
 </div>
 
-##### **Example Usage and Expected Outcome**    
+##### **Example Usage**  
+```
+cd cs2113t
+```  
+```
+cd
+```  
+
+
+##### **Expected Outcome**    
 <small><u><b>Correct Traversal</b></u></small>
 ![cd down command correct](images/cd_down_correct.png)   <br>
  ![cd up command correct](images/cd_up_correct.png)    
@@ -1149,7 +1161,15 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, if you want to open <b>all</b> the <i>files</i> in the list, leave the <code>file name</code> blank.
 </div>
 
-##### **Example Usage and Expected Outcome**    
+##### **Example Usage**  
+```
+open lab_4 -m cs2106 -c Lab -t do lab 4
+```  
+```
+open lab 4
+```  
+
+##### **Expected Outcome**      
 <small><u><b>Opening at Root Level</b></u></small>  
 ![open file command root level](images/open_root_level.png)    
 <br>     
@@ -1168,7 +1188,12 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 
 `info`   
 
-##### **Example Usage and Expected Outcome**    
+##### **Example Usage**  
+```
+info
+```  
+
+##### **Expected Outcome**    
 ![info command](images/info.png)
 
 [Back To Top](#table-of-contents)
@@ -1193,7 +1218,12 @@ On successful undo, you will be moved back to the <b>Root</b> Directory &#128550
 Also, do note that attempting to undo when no changes were made will result in an error message being shown &#128552;.
 </div>
 
-##### **Example Usage and Expected Outcome**    
+##### **Example Usage**  
+```
+undo
+```  
+
+##### **Expected Outcome**    
 <small><b><u>Correct Undo</u></b></small>
 ![undo command correct](images/undo_correct.png)  
 <br>  
@@ -1217,7 +1247,12 @@ On successful redo, you will be moved back to the <b>Root</b> Directory &#128550
 Also, do note that attempting to redo when you are at the newest state <i>(i.e. the most recent change was not due to an <a href="#8-undo"><b>Undo</b></a> command)</i> will result in an error message being shown &#128552;.
 </div>
 
-##### **Example Usage and Expected Outcome**    
+##### **Example Usage**  
+```
+redo
+```  
+
+##### **Expected Outcome**    
 <small><u><b>Correct Redo</b></u></small>
 ![redo command correct](images/redo_correct.png)  
 <br>  
@@ -1258,8 +1293,8 @@ Saving is done upon executing each of your commands in the **Nuke** program. You
 <br>  
 
 ### **Date Time Formats**  
-Any *date time* data that you provide has to adhere to certain formats pre-defined by the **Nuke** program. Failure to do so will likely result in the program to be unable to recognise your input command, and a warning will be shown.    
-Instances when you may need to enter a *date time* will be when adding a _deadline_ to your _tasks_.
+Any *date time* data that you provide has to adhere to certain formats pre-defined by the **Nuke** program. Failure to do so will likely result in the program to be unable to recognise your input command, and a warning will be shown &#128550;.    
+Instances when you may need to enter a *date time* will be when adding a _deadline_ to your _tasks_, or when specifying the <i>date</i> in the <b>[Due](#e-list-your-tasks-at-specified-time-period)</b> command.
     
 Here are the following *date time* formats:  
     
@@ -1271,25 +1306,38 @@ You may enter **only** the following *date* words.
 - `today` or `tdy` -- represents the <u>current</u> date  
 - `tomorrow` or `tmr` -- represents the <u>next</u> date  
 - `yesterday` or `yst` -- represents the <u>previous</u> date  
+- `monday` or `mon` -- represents the next <b>Monday</b> from the current date  
+- `tuesday` or `tue` -- represents the next <b>Tuesday</b> from the current date  
+- `wednesday` or `wed` -- represents the next <b>Wednesday</b> from the current date  
+- `thursday` or `thu` -- represents the next <b>Thursday</b> from the current date  
+- `friday` or `fri` -- represents the next <b>Friday</b> from the current date  
+- `saturday` or `sat` -- represents the next <b>Saturday</b> from the current date  
+- `sunday` or `sun` -- represents the next <b>Sunday</b> from the current date  
   
-> **Note**: All dates are taken with reference to the current date on your device.  
+ <div class="alert alert-info">
+ <i class="fa fa-info"></i> <b>Info</b> <br> 
+All dates are taken with reference to the current date on your device.  <br>  
+  
+If you specify the <i>date</i> using the day of the week <i>(i.e. <code>monday</code> ... <code>sunday</code>)</i>, and the current day is the day itself, the <i>date</i> will be referred to the current date. For example, if you enter <code>wednesday</code> and it is <b>Wednesday</b> today, the <i>date</i> will be the current date.
+</div>
 
 ##### **2. Standard Date Format**  
 This refers to the typical dates that are represented with **numbers** and **delimiter symbols**.    
 
 In this **Nuke** program, *dates* should be in the order of **day**, **month**, then an <u>optional</u> **year**. If the **year** is not provided, the program will automatically assume it to be the **current year**.  Also, the **day**, **month** and **year** should only be entered as **numbers** and not words *(e.g. January is not accepted for the **month** attribute)*.  
     
-Regarding **delimiters**, the program will **only** consider `/` and `-` as valid delimiters for *dates*.  Delimiters are <u>optional</u> and may be omitted provided you include the **year** of the *date* *(e.g. 1/1/20, 1/1 and 010120 are accepted, but not 0101).*  
+Regarding **delimiters**, the program will **only** consider `/` and `-` as valid delimiters for *dates*.  Delimiters are <u>optional</u> and may be omitted provided you include the **year** of the *date* <i>(e.g. 1/1/20, 1/1 and 010120 are accepted, but not 0101</i> &#128559;<i>)</i>.  
 
 An **exhaustive** list of the standard *date* formats is given below for your reference.  
 ```
- dd/MM/yyyy, d/MM/yyyy, dd/M/yyyy, d/M/yyyy,   
- dd/MM/yy, d/MM/yy, dd/M/yy, d/M/yy,  
- dd/MM, d/MM, dd/M, d/M, dd-MM-yyyy, d-MM-yyyy, dd-M-yyyy, d-M-yyyy,   
- dd-MM-yy, d-MM-yy, dd-M-yy, d-M-yy,  
- dd-MM, d-MM, dd-M, d-M, ddMMyyyy, ddMMyy
+01/01/2020, 1/01/2020, 01/1/2020, 1/1/2020,   
+01/01/20, 1/01/20, 01/1/20, 1/1/20,   
+01/01, 1/01, 01/1, 1/1, 
+01-01-2020, 1-01-2020, 01-1-2020, 1-1-2020,     
+01-01-20, 1-01-20, 01-1-20, 1-1-20,     
+01-01, 1-01, 01-1, 1-1,
+01012020, 010120
 ```
-> **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
 
 [Back To Top](#table-of-contents)
 <br>
@@ -1305,17 +1353,17 @@ Lastly, the **am-pm marker** is an <u>optional</u> attribute, and should it be o
 
 An **exhaustive** list of the *time* formats is given below for your reference.  
 ```  
- h:mma, H:mma, H:mm, h.mma, 
- H.mma, H.mm, hmma, Hmma, Hmm, 
- ha, Ha, H
-```
- > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.  
- > 
+6:00pm, 18:00pm, 18:00, 
+6.00am, 6.00am, 6.00, 
+1130pm, 2330pm, 2330,  
+3pm, 15pm, 15  
+```  
+
 [Back To Top](#table-of-contents)
 <br>
 
 #### **Time Specifier Formats**
-The <i>time specifier</i> is used in conjunction with a <i>date</i> to define the <i>time period</i> for the <b>[Due](#e-list-your-tasks-at-specified-time-period)</b> command. The following words are considered valid <i>time specifiers</i> in the <b>LumiChat</b> program.  
+The <i>time specifier</i> is used in conjunction with a <i>date</i> to define the <i>time period</i> for the <b>[Due](#e-list-your-tasks-at-specified-time-period)</b> command. The following words are considered valid <i>time specifiers</i> in the <b>Nuke</b> program.  
 - `on` -- <u>on</u> the specified  <i>date</i>  
 - `after` or `a` -- <u>after</u> the specified  <i>date</i>  
 - `before` or `b` -- <u>before</u> the specified  <i>date</i>
@@ -1326,11 +1374,48 @@ The <i>time specifier</i> is <u>optional</u> and if omitted, is set to `on`.
 <br><br>
 <hr>
 
-## **Command Summary**
+## **Command Summary**  
+A simple summary of the various commands are shown below:
 
+<div style="text-align: center"><span style="color: green"><small>Table <b>Command Summary</b></small></span></div>
 
+| Command<br>Word   | What and How?                                                                    |  
+|:---------------:|---------------------------------------------------------------------------------|  
+| [`mkdir`](#1-add)| Adds a new <i>child directory</i><br><b>Format</b>: `mkdir <directory name>`<br><b>Example</b>: `mkdir cs2113t` |  
+| [`addm`](#a-add-a-module-into-your-module-list)     | Adds a new <i>module</i><br><b>Format</b>: `addm <module code>`<br><b>Example</b>: `addm cs2113t` |  
+| [`addc`](#b-add-a--into-your-module-list)     | Adds a new <i>category</i><br><b>Format</b>: `addc <category name> -m <module code> [ -p <priority> ]`<br><b>Example</b>: `addc Project -m cs2113t -p 3` |  
+| [`addt`](#a-add-a-module-into-your-module-list)     | Adds a new <i>task</i><br><b>Format</b>: `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`<br><b>Example</b>: `addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15` |   
+| [`addf`](#a-add-a-module-into-your-module-list)     | Adds a new <i>file</i><br><b>Format</b>: `addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`<br><b>Example</b>: `addm cs2113t` |  
+| [`addg`](#a-add-a-module-into-your-module-list)     | Adds a new <i>tag</i><br><b>Format</b>: `addg <tag name> -m <module code> -c <category name> -t <task description>` <br><b>Example</b>: `addg urgent -m CS2113t -c Lab -t tp` |  
+| [`ls`](#2-list)| Shows the <i>child directories</i>; include <i>child directory name</i> to show it <i>child directories</i> instead<br><b>Format</b>: `ls [ <child directory name> ]`<br><b>Example</b>: `ls` &nbsp; &nbsp; `ls cs2113t` |  
+| [`lsm`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>modules</i><br><b>Format</b>: `lsm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
+| [`lsc`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |  
+| [`lst`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |  
+| [`lsts`](#a-add-a-module-into-your-module-list)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |  
+| [`due`](#a-add-a-module-into-your-module-list) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |  
+| [`lsf`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |  
+| [`lsg`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
+| [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |  
+| [`delm`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>modules</i><br><b>Format</b>: `delm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
+| [`delc`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>categories</i><br><b>Format</b>: `delc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `delc lec -a` |  
+| [`delt`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>tasks</i><br><b>Format</b>: `delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `delt assignment -c Assign` |  
+| [`delf`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>files</i><br><b>Format</b>: `delf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]` <br><b>Example</b>: `delf -m cs2113 -t tp` | 
+| [`delg`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
+| [`edm`](#a-add-a-module-into-your-module-list)  | Edits a <i>module</i><br><b>Format</b>: `edm <module code> -m <new module code>`<br><b>Example</b>: `edm cs2102 -m cs2101` |  
+| [`edc`](#b-add-a--into-your-module-list)  | Edits a <i>category</i><br><b>Format</b>: `edc <category name> -m <module code> { -c <new category name> -p <new priority> }`<br><b>Example</b>: `edc Lab -m cs2113t -c Project -p 8` |  
+| [`edt`](#a-add-a-module-into-your-module-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |   
+| [`edf`](#a-add-a-module-into-your-module-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description> -f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |  
+| [`done`](#a-add-a-module-into-your-module-list)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |  
+| [`cd`](#a-add-a-module-into-your-module-list)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |  
+| [`open`](#b-add-a--into-your-module-list)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name> -t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |  
+| [`info`](#a-add-a-module-into-your-module-list)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |   
+| [`undo`](#a-add-a-module-into-your-module-list)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |  
+| [`redo`](#a-add-a-module-into-your-module-list)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |  
+| [`help`](#a-add-a-module-into-your-module-list)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |  
+| [`bye`](#a-add-a-module-into-your-module-list)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |  
 
 <br>
+
 <hr>
 
 ## **FAQ**
