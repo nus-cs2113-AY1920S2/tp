@@ -29,7 +29,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 3. Copy the downloaded .jar file to an empty folder.
 4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder_path>```.
 5. Run the .jar file using ```java -jar <file_name.jar>```.
-
+[NOTE] Please resize the terminal to full screen mode to make full use of our CLI ASCII art.
 You will see this welcome message if you have done the above steps correctly.
 
 TODO: change image
