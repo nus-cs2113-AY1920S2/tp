@@ -21,8 +21,23 @@ public class SearchCommandTest {
     private static TaskList emptyTaskList;
     private static Ui ui;
     private StringBuilder searchString;
-    private String stringDate1;
+    private static String stringDate;
+    private static String stringDateTime1;
+    private static String stringDateTime2;
+    private static String stringDateTime3;
+    private static String stringDateTime4;
     private static LocalDate testDate1;
+    private static LocalDateTime testDateTime1;
+    private static LocalDateTime testDateTime2;
+    private static LocalDateTime testDateTime3;
+    private static LocalDateTime testDateTime4;
+    private static Assignment testCaseOne;
+    private static Assignment testCaseTwo;
+    private static Assignment testCaseThree;
+    private static Assignment testCaseSeven;
+    private static Event testCaseFour;
+    private static Event testCaseFive;
+    private static Event testCaseSix;
 
     /**
      * Set up variables for tests.
@@ -33,24 +48,24 @@ public class SearchCommandTest {
         filledTaskList = new TaskList();
         ui = new Ui();
         searchString = new StringBuilder();
-        stringDate1 = "13/03/20";
-        String stringDateTime1 = "13/03/2020 18:00";
-        String stringDateTime2 = "13/03/2020 20:30";
-        String stringDateTime3 = "01/01/2020 00:00";
-        String stringDateTime4 = "01/01/2020 02:59";
-        testDate1 = LocalDate.parse(stringDate1,INPUT_DATE_ONLY_FORMAT);
-        LocalDateTime testDateTime1 = LocalDateTime.parse(stringDateTime1, dateTimeFormatter);
-        LocalDateTime testDateTime2 = LocalDateTime.parse(stringDateTime2, dateTimeFormatter);
-        LocalDateTime testDateTime3 = LocalDateTime.parse(stringDateTime3, dateTimeFormatter);
-        LocalDateTime testDateTime4 = LocalDateTime.parse(stringDateTime4, dateTimeFormatter);
+        stringDate = "13/03/20";
+        stringDateTime1 = "13/03/2020 18:00";
+        stringDateTime2 = "13/03/2020 20:30";
+        stringDateTime3 = "01/01/2020 00:00";
+        stringDateTime4 = "01/01/2020 02:59";
+        testDate1 = LocalDate.parse(stringDate,INPUT_DATE_ONLY_FORMAT);
+        testDateTime1 = LocalDateTime.parse(stringDateTime1, dateTimeFormatter);
+        testDateTime2 = LocalDateTime.parse(stringDateTime2, dateTimeFormatter);
+        testDateTime3 = LocalDateTime.parse(stringDateTime3, dateTimeFormatter);
+        testDateTime4 = LocalDateTime.parse(stringDateTime4, dateTimeFormatter);
 
-        Assignment testCaseOne = new Assignment("Test 3", "CS2102", testDateTime1, "-");
-        Assignment testCaseTwo = new Assignment("Assignment 5", "CS2102", testDateTime1, "-");
-        Assignment testCaseThree = new Assignment("OP1", "CS2101", testDateTime3, "15%");
-        Event testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, "-");
-        Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
-        Event testCaseSix = new Event("mid", "MPSH1A", testDateTime1, testDateTime2, "-");
-        Assignment testCaseSeven = new Assignment("Test 5", "CS2102", testDateTime1, "-");
+        testCaseOne = new Assignment("Test 3", "CS2102", testDateTime1, "-");
+        testCaseTwo = new Assignment("Assignment 5", "CS2102", testDateTime1, "-");
+        testCaseThree = new Assignment("OP1", "CS2101", testDateTime3, "15%");
+        testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, "-");
+        testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
+        testCaseSix = new Event("mid", "MPSH1A", testDateTime1, testDateTime2, "-");
+        testCaseSeven = new Assignment("Test 5", "CS2102", testDateTime1, "-");
         filledTaskList.addTask(testCaseOne);
         filledTaskList.addTask(testCaseTwo);
         filledTaskList.addTask(testCaseThree);

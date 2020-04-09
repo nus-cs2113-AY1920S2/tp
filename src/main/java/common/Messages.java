@@ -33,7 +33,7 @@ public class Messages {
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
     public static final String START_END_DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm - HHmm";
-
+    public static final String SEARCHD_DATE_FORMAT_HELP = "Date Format: dd/MM/YY";
     // Command Success Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
             + "%s" + System.lineSeparator() + "Now you have %d task%s in the list!";
@@ -59,6 +59,8 @@ public class Messages {
     public static final String DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + DATE_FORMAT_HELP;
     public static final String CALENDAR_DATE_INVALID = "Invalid date provided"
+            + System.lineSeparator() + "%s";
+    public static final String SEARCHD_DATE_INVALID = "Invalid date provided"
             + System.lineSeparator() + "%s";
     public static final String START_END_DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + START_END_DATE_FORMAT_HELP;
