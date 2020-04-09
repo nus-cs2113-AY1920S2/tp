@@ -52,7 +52,7 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 - Words in `[XXX]` are the parameters to be supplied by the user.
 - `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113`
 - `[module name]` is to be entered in alpha-numeric characters i.e.`Software Engineering & Object-Oriented Programming`
-- `[semester]` is to be entered in numeric characters between 1-8 i.e.`5`
+- `[semester]` is to be entered in numeric characters between 1-10 i.e.`5`
 - `[credit]` is to be entered in numeric characters i.e. `4`
 - `[grade]` is to be entered in alpha **uppercase** characters i.e. `A+`
 
@@ -102,7 +102,7 @@ Example of expected output:
 `ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S1`
 
 #### 3.2.5 Adds a specific module to available module list. 
-Format: `add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+Format: `add id/[module code] n/[module name] mc/[module credit] pre/[pre requisites]`
 
 Example: `add id/IS4241 n/Social Media Network Analysis mc/4 pre/CS1010 IS1103`
 
@@ -318,7 +318,7 @@ or
 
 Command:
 
-`add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+`add id/[module code] n/[module name] mc/[module credit] pre/[pre requisites]`
 
 ### 5.3 Delete a specific module from a semester in module plan
 

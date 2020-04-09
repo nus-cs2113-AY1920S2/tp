@@ -153,7 +153,12 @@ in an ordered fashion. This class is called `SemesterList`, which represents the
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
 * can save the available module list in csv format and read it back
-* can save the semester list in csv format and read it back 
+* can save the semester list in csv format and read it back
+
+Given below are Class Diagram of StoragePersonInfo, StorageAvailableModulesList and StorageSemesterList
+![PI](https://github.com/RenzoTsai/tp/blob/UpdateDG_UG/docs/UML%20img%20folder/StoragePerson.png?raw=true)
+![AML](https://raw.githubusercontent.com/RenzoTsai/tp/UpdateDG_UG/docs/UML%20img%20folder/StorageAML.png)
+![SML](https://github.com/RenzoTsai/tp/blob/UpdateDG_UG/docs/UML%20img%20folder/StorageSML.png?raw=true)
 
 
 # 4. Implementation

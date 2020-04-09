@@ -29,9 +29,16 @@ public class AddToSemCommand extends AddCommand {
     private void addModule(SemesterList semesterList) throws RuntimeException {
         boolean isModuleExist = checkModuleExist(semesterList);
         if (isModuleExist) {
-            String moduleIdentifier = selectedModule.isIdValid() ? selectedModule.getId() : selectedModule.getName();
-            throw new RuntimeException(String.format("The module <%s> is already exist in your semester list!",
-                    moduleIdentifier));
+            if (selectedModule.isIdValid() && selectedModule.isNameValid()) {
+                throw new RuntimeException(String.format("ID <%s> or name <%s> is already exist in your semester list!",
+                        selectedModule.getId(), selectedModule.getName()));
+            } else if (selectedModule.isIdValid()) {
+                throw new RuntimeException(String.format("ID <%s> is already exist in your semester list!",
+                        selectedModule.getId()));
+            } else if (selectedModule.isNameValid()) {
+                throw new RuntimeException(String.format("Name <%s> is already exist in your semester list!",
+                        selectedModule.getName()));
+            }
         }
 
         if (selectedModule.getModuleCredit() <= 0) {
