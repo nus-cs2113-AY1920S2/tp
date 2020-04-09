@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.DeleteDishCommandTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:27:05" hostname="Ganeshs-MacBook-Pro.local" time="0.003">
+<testsuite name="commands.DeleteDishCommandTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:32:09" hostname="Ganeshs-MacBook-Pro.local" time="0.003">
   <properties/>
   <testcase name="deleteDishTestA()" classname="commands.DeleteDishCommandTest" time="0.002"/>
   <testcase name="deleteDishTestB()" classname="commands.DeleteDishCommandTest" time="0.001"/>
