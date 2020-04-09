@@ -77,11 +77,15 @@ public class Help extends UI {
         display("All attendance list should exist under an existing event."
                 + "Follow step-by-step commands after the following commands are input.");
         display("To add students' attendance, input:\n\t"
-                + "Attendance add\n");
-        display("To delete a student's attendance, input:\n\t"
-                + "Attendance delete\n");
+                + "attendance add\n");
+        display("To clear a student's attendance list, input:\n\t"
+                + "attendance clear\n");
         display("To sort a student's attendance list, input:\n\t"
-                + "Attendance sort\n");
+                + "attendance sort\n");
+        display("To find a student's attendance, input:\n\t"
+                + "attendance find\n");
+        display("To edit a student's attendance, input:\n\t"
+                + "attendance edit\n");
         display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
@@ -89,7 +93,7 @@ public class Help extends UI {
         display("To create a new studentList for future events, input:\n\t"
                 + "studentlist add\n");
         display("To delete an existing studentList, input:\n\t"
-                + "studentlist delete (index)\n");
+                + "studentlist delete\n");
         display("To clear all existing studentList, input:\n\t"
                 + "studentlist clear\n");
         display("To find an existing studentList, input:\n\t"

@@ -23,7 +23,7 @@ public class SortStudentListByName extends Command {
      */
     private void sort() {
         Pac.studentListCollection.sort(listNameComparator);
-        UI.display("Student List is sorted by name within the Student List Collection");
+        UI.display("Student List is sosrted by name within the Student List Collection");
     }
 
     @Override

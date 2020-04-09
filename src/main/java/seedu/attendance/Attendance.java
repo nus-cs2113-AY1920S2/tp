@@ -16,8 +16,16 @@ public class Attendance {
      * @param isPresent  A string input by user, sets the attendance status of the student.
      */
     public Attendance(String studentName, String isPresent) {
-        this.studentName = studentName;
-        this.isPresent = setStatus(isPresent);
+        setName(studentName);
+        setStatus(isPresent);
+    }
+
+    /**
+     * Set the name of the student base on the input.
+     * @param input input provided by the user.
+     */
+    public void setName(String input) {
+        this.studentName = input.trim();
     }
 
     /**
@@ -26,14 +34,13 @@ public class Attendance {
      * the status will be set to Present.
      * Else it is set to Absent by default.
      * @param input input provided by the user.
-     * @return the status of the student.
      */
-    public String setStatus(String input) {
-        String userInput = input.toUpperCase().trim();
-        if (userInput.equals("Y")) {
-            return "Present";
+    public void setStatus(String input) {
+        if (input.toLowerCase().trim().equals("y")) {
+            this.isPresent = "Present";
+        } else {
+            this.isPresent = "Absent";
         }
-        return "Absent";
     }
 
     /**
