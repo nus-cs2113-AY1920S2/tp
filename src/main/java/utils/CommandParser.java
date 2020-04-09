@@ -156,13 +156,11 @@ public class CommandParser {
      * Displays an error message to the user.
      */
     public static void printErrorMessage(String message) {
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
 
         System.out.println(message);
 
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
     }
 
     public static void successfulCommand() {
