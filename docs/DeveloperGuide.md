@@ -278,7 +278,7 @@ The schedule of the `Contact` is edited and saved in the application.
 
 The implementation described above would allow the overwrite of any time blocks in the ```Contact```'s schedule. This  
 would be problematic when editing the main user's schedule, which contains ```Meeting```s' time slots. A possible problematic 
-scenario is if we edit over a ```Meeting```' time slot and set the time slot to "free", we would subsequently be able to schedule 
+scenario is if we edit over a ```Meeting```'s time slot and set the time slot to "free", we would subsequently be able to schedule 
 another meeting at the same time slot. This results in multiple ```Meeting```s occupying the same time slot.
 
 * Alternative 1(current choice): Disallow the overwrite of ```Meeting```'s time slot. If ```EditContact```'s time slot 
