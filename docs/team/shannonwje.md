@@ -145,11 +145,11 @@ class, <code>WriteData</code> class, <code>FileUtil</code> class and
   
  Diagram 1:
  
-![alt text](../images/MarkFinal.png)
+![alt text](../images/Mark_v1.png)
   
 Diagram 2:
 
-![alt text](../images/UnmarkFinal.png)
+![alt text](../images/Unmark_v1.png)
 
   
 ##### 3.5.2 Design Considerations
@@ -194,7 +194,7 @@ which makes another call to the <code>resetBudget</code> function of the <code>B
 The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/ResetBudgetFinal.png)
+![alt text](../images/Res_v1.png)
 
 
 ##### 3.8.2 Design considerations
