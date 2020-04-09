@@ -141,6 +141,7 @@ TODO: update image
 
 **Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
 each of the selected contacts.
+[NOTE] You can select as many contacts as you wish
    
 Format: 
    
