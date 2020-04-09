@@ -1,6 +1,11 @@
 # Developer Guide
+<!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
+
 Since: `Feb 2020`
+
+Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+<!-- @@author -->
 
 <!-- @@author trishaangelica -->
 ### Table of Contents
@@ -101,11 +106,11 @@ This section will describe how the main features of the application are implemen
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
  3. The <code>Duke</code> class calls the <code>AddCommand#execute()</code> method of the <code>AddCommand</code> object.
- 4. In the <code>AddCommand#execute()</code> function, the <code>item</code> to be added is stored in the <code>ShoppingList</code> 
-    object, using items.add().
- 5. In the sequence diagram, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
+ 4. In the <code>AddCommand#execute()</code> function, the <code>Item</code> to be added is stored in the <code>ShoppingList</code> 
+    object, using <code>Item.add()</code>.
+ 5. In the sequence diagram, the AddCommand will add <code>Item</code> if the description is provided and one / both price and 
     quantity is provided. 
- 6. The <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
+ 6. The <code>Item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of adding item's values
  are shown in a separate sequence diagram below:
@@ -321,13 +326,16 @@ also be able to trace functionality bugs more easily if each command class deals
  which extends the main <code>Command</code> class with an index representing that of the item to be marked or
  unmarked as bought in the list.
  
- The process of object creation:
+ The process is as follows:
  1. The <code>Duke</code> class first receives user input from the <code>Ui</code>
- 2. The <code>Duke</code> class then creates a <code>Parser</code> object and calls its <code>parseCommand</code> method
- to instantiate a <code>MarkCommand</code> or <code>UnmarkCommand</code> object based on the user input
- 3. The <code>Duke</code> class then calls the <code>execute</code> method of the <code>MarkCommand</code> or 
- <code>UnmarkCommand</code> command object. This calls the <code>markAsBought</code> or <code>unmarkAsBought</code>
- method of the <code>shoppingList</code> object with the specified index.
+ 2. The <code>Duke</code> class then creates a <code>Parser</code> object and calls its
+ <code>Parser#parseCommand()</code> method to instantiate a <code>MarkCommand</code> / <code>UnmarkCommand</code>
+ object based on the user input
+ 3. The <code>Duke</code> class then calls the <code>MarkCommand#execute()</code> /
+ <code>UnmarkCommand#execute()</code> method. 
+ 4. The <code>MarkCommand#execute()</code> / <code>UnmarkCommand#execute()</code> calls the
+ <code>ShoppingList#markAsBought()</code> / <code>ShoppingList#unmarkAsBought()</code> method with the
+ specified index.
 
  The following sequence diagram below shows how the Mark feature (Diagram 1) and Unmark feature (Diagram 2) works.
  Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
@@ -480,12 +488,13 @@ work in parallel.
 The reset budget feature is implemented using a <code>ResetBudgetCommand</code> class which extends the main
 <code>Command</code> class with a variable representing the budget amount.
 
-The <code>Duke</code> class first receives user input from the <code>Ui</code> class before it creates a 
-<code>Parser</code> object and calls its <code>parseCommand</code> function to instantiate a 
-<code>ResetBudgetCommand</code> object based on that user input.
-
-The <code>Duke</code> class then calls the <code>execute</code> method of the <code>ResetBudgetCommand</code> object
-which makes another call to the <code>resetBudget</code> function of the <code>Budget</code> object.
+The process is as follows:
+1. <code>Duke</code> first receives user input from the <code>Ui</code> class.
+2. <code>Duke</code> creates a <code>Parser</code> object and calls <code>Parser#parseCommand()</code> method to
+instantiate a <code>ResetBudgetCommand</code> object based on that user input.
+3. <code>Duke</code> then calls the <code>ResetBudget#execute()</code> method.
+4. <code>ResetBudget#execute()</code> makes a call to the <code>Budget#resetBudget()</code> method to set the
+existing budget to $0.00.
 
 The following sequence diagram below shows how the reset budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
@@ -497,20 +506,20 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ##### Aspect: Data structure to support the reset budget feature
 
-- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ResetBudgetCommand</code>
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ResetBudgetCommand</code>.
  
   - Pros: Easy to add the reset budget feature without having to change the logic of the code much as each command
-  object is treated as a black box
+  object is treated as a black box.
   
-  - Cons: Might significantly increase the code base with another class being added
+  - Cons: Might significantly increase the code base with another class being added.
 
 
-- Alternative 2: Implement reset budget feature in the <code>Duke</code> or <code>Parser</code> class
+- Alternative 2: Implement reset budget feature in the <code>Duke</code> or <code>Parser</code> class.
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class.
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
-  simply executes those commands as black boxes, without worrying about their internal details
+  simply executes those commands as black boxes, without worrying about their internal details.
   
   
 - Reason for choosing alternative 1: By implementing each command type in a separate class, any bugs associated with a 
@@ -685,6 +694,7 @@ This section contains the user stories for the different versions of our product
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|organised home cook|be able to add items to the list|manage the list better|
 |v1.0|organised home cook|be able to edit my budget|change my budget when I need to|
 |v1.0|organised home cook|delete items from the list|manage my list|
 |v1.0|organised home cook|have a useful "help" list that I can refer to|find instructions for various commands|
@@ -870,9 +880,10 @@ This section contains the user stories for the different versions of our product
 ### D.4. Mark and Un-mark an item
 
 1. Marking an item
-      
+
+    *Assumption: there are more than 5 but less than a hundred items in the list.*
+          
    i. Test case: <code>MARK 5</code>    
-      *Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'.*
 
         Expected: The fifth item in the list is mark as bought, denoted as [B].
     
@@ -898,23 +909,23 @@ This section contains the user stories for the different versions of our product
      
 2. Un-marking an item
 
-   *Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'*
+   *Assumption: there are more than 5 and less than a hundred items in the list.*
        
    i. Test case: <code>UNMARK 5</code> 
 
-         Expected: The fifth item in the list is unmarked as bought, denoted as [0].
+         Expected: The fifth item in the list is un-marked as bought, denoted as [X].
     
     &nbsp;
 
    ii. Test case: <code>UNMARK -10</code> 
 
-       Expected: Oh No! This item does not exist in the list
+       Expected: An error message stating that the item does not exist in the list is shown.
     
      &nbsp;
 
    iii. Test case: <code>UNMARK 100</code> 
 
-       Expected: Oh No! This item does not exist in the list
+       Expected: An error message stating that the item does not exist in the list is shown.
     
      &nbsp;
      

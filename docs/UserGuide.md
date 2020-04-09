@@ -93,7 +93,7 @@ Adds an item to the shopping list.
 Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
 * The `DESCRIPTION` must exist.
-* The `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `[QUANTITY]` must be a **positive whole number**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
   respective values or omit them. The system will set the price and quantity to 
@@ -128,7 +128,10 @@ Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
 shown in the displayed shopping list. 
 * You can view an item's `INDEX` number by using the `DISPLAY` command. More info [here](#displaying-list-and-budget-details-display).
-* The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `INDEX` and `[QUANTITY]` must be a **positive whole number**. *e.g 1, 2, 3 ..*
+* The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * **At least one** of the three parameters (description/price/quantity) must be present in the command.
 > :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
@@ -157,8 +160,10 @@ Removes an item from the list at the specified index.
 
 Format: `DEL INDEX`
 
-* The `INDEX` should be an integer.
-* The `INDEX` should not be out of bounds of the shopping list.  
+* The `INDEX` should be a **positive whole number**.
+* The `INDEX` should not be out of bounds of the shopping list.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 
 Example of usage: 
 
@@ -190,13 +195,13 @@ Example of usage:
 <!-- @@author Shannonwje -->
 ### Marking an item as bought: `MARK`
 Marks an item from the list at the specified index as bought.
-When first added initially, the item will have the status `[0]` 
-to indicate that it is unmarked. After marking the item as bought, 
+When first added initially, the item will have the status `[X]` 
+to indicate that it is un-marked. After marking the item as bought, 
 the status of item becomes `[B]`.
 
 Format: `MARK INDEX`
 
-* The `INDEX` should be a number.
+* The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
   * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
 * Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
@@ -217,22 +222,22 @@ Example of the usage:
 ### Un-marking a marked item: `UNMARK`
 Un-marks a marked-as-bought item from the list at the specified index.
 After being marked as bought, the item will have the status `[B]`
-to indicate that it is marked as bought. After unmarking the marked-as-bought
-item, the status of the item becomes `[0]`.
+to indicate that it is marked as bought. After un-marking the marked-as-bought
+item, the status of the item becomes `[X]`.
 
 Format: `UNMARK INDEX`
 
-* The `INDEX` should be an number.
+* The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
-  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
-* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
-* Unmarking an item whose status was previously `[0]` will be successful, assuring the success of the unmark command executed.
+  * Out of bounds Indices include negative Indices & Indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+* Un-marking an item whose status was previously `[X]` will be successful, assuring the success of the un-mark command executed.
 
 Example of the usage:
 
 1. `UNMARK 3`
-   * This unmarks the 3rd item in your list as unbought.
-   * The status of the 3rd item is now `[0]`
+   * This un-marks the 3rd item in your list as unbought.
+   * The status of the 3rd item is now `[X]`
 <!-- @@author -->
 &nbsp;
 
