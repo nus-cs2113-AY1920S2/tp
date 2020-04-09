@@ -742,7 +742,7 @@ This section contains the user stories for the different versions of our product
       
       v.    If the font size of the command window is too big, you can make it smaller by <code>CTRL + scroll down</code> on your mouse.
             
-        Expected behaviour: Shows a welcome message from SHOCO.
+        Expected: Shows a welcome message from SHOCO.
 
 
    &nbsp;
@@ -753,7 +753,7 @@ This section contains the user stories for the different versions of our product
                 
       ii.   Close the command terminal.
         
-        Expected behaviour: Data is stored to shoppinglist.json and budget.json, the program is terminated.
+        Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
   
 
    &nbsp;
@@ -770,25 +770,25 @@ This section contains the user stories for the different versions of our product
        
     i. Test case: <code>SET b/500.00</code>
 
-       Expected behaviour: Budget is set to $500.00
+       Expected: Budget is set to $500.00
     
      &nbsp;
 
     ii. Test case: <code>SET b/10000</code>
        
-        Expected behaviour: Budget is set to $5000.00, which is the maximum budget SHOCO allows.
+        Expected: Budget is set to $5000.00, which is the maximum budget SHOCO allows.
      
      &nbsp;
 
     iii. Test case: <code>SET b/-100</code>
      
-        Expected behaviour: Budget is reset to $0.00, which is the minimum budget SHOCO allows.
+        Expected: Budget is reset to $0.00, which is the minimum budget SHOCO allows.
         
      &nbsp;
 
     iv. Other incorrect set budget commands to try: <code>SET b/xxx</code> (where xxx is not a number).
             
-        Expected behaviour: An error message and the correct usage of the SET command is shown.
+        Expected: An error message and the correct usage of the SET command is shown.
      
      &nbsp;
      
@@ -796,13 +796,13 @@ This section contains the user stories for the different versions of our product
        
     i. Test case: <code>RES</code> 
 
-        Expected behaviour: Budget has been reset to $0.00
+        Expected: Budget has been reset to $0.00
     
      &nbsp;
      
     ii. Other incorrect reset budget commands to try: <code>RES xxx</code> (where xxx is not a number).
                      
-        Expected behaviour: An error message and the correct usage of the RES command is shown.
+        Expected: An error message and the correct usage of the RES command is shown.
      
      &nbsp;
      
@@ -814,11 +814,11 @@ This section contains the user stories for the different versions of our product
 
 1. Add an item 
         
-    *:bulb:  Before adding an item, you can run the <code> DISPLAY </code> command to prevent entering a duplicate description*
+    >:bulb: Tip: Before adding an item, you can run the <code> DISPLAY </code> command to prevent entering a duplicate description
        
     i. Test case: <code> ADD i/apple p/3.00 q/2 </code>
        
-       Expected behaviour: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
+       Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
          
      > :bulb: You can run the <code>DISPLAY</code> command to check the newly added item.
                                                            
@@ -826,13 +826,13 @@ This section contains the user stories for the different versions of our product
 
     ii. Test case: <code>ADD p/3.00</code>
      
-        Expected behaviour: No item is added. Error message and a correct usage of the ADD command is shown.
+        Expected: No item is added. Error message and a correct usage of the ADD command is shown.
          
      &nbsp;
        
     iii. Other incorrect ADD commands to try: <code>ADD</code>, <code>ADD p/xxx</code>, <code>ADD q/xxx</code> (where xxx is not a number).
         
-        Expected behaviour: Similar to previous. 
+        Expected: Similar to previous. 
     
     &nbsp;
 
@@ -844,25 +844,25 @@ This section contains the user stories for the different versions of our product
            
     i. Test case: <code>EDIT 1 i/banana</code>
     
-        Expected behaviour: The description of the first item is updated to "banana". 
+        Expected: The description of the first item is updated to "banana". 
         
      &nbsp;
     
     ii. Test case: <code>EDIT 1 p/5.60</code>
            
-        Expected behaviour: The price of the first item is updated to "$5.60". 
+        Expected: The price of the first item is updated to "$5.60". 
          
      &nbsp;
     
     iii. Test case: <code>EDIT 1 q/3</code>
          
-        Expected behaviour: The quantity of the first item is updated to "3". 
+        Expected: The quantity of the first item is updated to "3". 
             
      &nbsp;
     
     iv. Other incorrect edit commands to try: <code>EDIT p/xxx</code> , <code>EDIT q/xxx</code>. (where xxx is not a number).
                 
-        Expected behaviour: An error message and the correct usage of the EDIT command is shown.
+        Expected: An error message and the correct usage of the EDIT command is shown.
          
      &nbsp;
     
@@ -879,25 +879,25 @@ This section contains the user stories for the different versions of our product
    i. Test case: <code>MARK 5</code>    
       *Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'.*
 
-        Expected behaviour: The fifth item in the list is mark as bought, denoted as [B].
+        Expected: The fifth item in the list is mark as bought, denoted as [B].
     
     &nbsp;
 
    ii. Test case: <code>MARK -10</code> 
         
-        Expected behaviour: An error message stating that the item does not exist in the list is shown.
+        Expected: An error message stating that the item does not exist in the list is shown.
     
     &nbsp;
 
    iii. Test case: <code>MARK 100</code> 
 
-        Expected behaviour: An error message stating that the item does not exist in the list is shown.
+        Expected: An error message stating that the item does not exist in the list is shown.
     
    &nbsp;
      
    iv. Other incorrect MARK commands to try: <code>MARK xxx</code> (where xxx is not a number).
      
-         Expected behaviour: An error message stating to provide a single numerical index number is shown.
+         Expected: An error message stating to provide a single numerical index number is shown.
      
    &nbsp;
      
@@ -907,25 +907,25 @@ This section contains the user stories for the different versions of our product
        
    i. Test case: <code>UNMARK 5</code> 
 
-         Expected behaviour: The fifth item in the list is unmarked as bought, denoted as [0].
+         Expected: The fifth item in the list is unmarked as bought, denoted as [0].
     
     &nbsp;
 
    ii. Test case: <code>UNMARK -10</code> 
 
-       Expected behaviour: Oh No! This item does not exist in the list
+       Expected: Oh No! This item does not exist in the list
     
      &nbsp;
 
    iii. Test case: <code>UNMARK 100</code> 
 
-       Expected behaviour: Oh No! This item does not exist in the list
+       Expected: Oh No! This item does not exist in the list
     
      &nbsp;
      
    iv. Other incorrect UNMARK commands to try: <code>UNMARK xxx</code> (where xxx is not a number).
      
-        Expected behaviour: An error message stating to provide a single numerical index number is shown.
+        Expected: An error message stating to provide a single numerical index number is shown.
          
      &nbsp;
      
@@ -943,29 +943,29 @@ This section contains the user stories for the different versions of our product
        
     i. Test case: <code>FIND apple</code> 
 
-       Expected behaviour: A list of items that contains "apple" in their description is displayed.
+       Expected: A list of items that contains "apple" in their description is displayed.
     
      &nbsp;
 
     ii. Test case: <code>FIND xxx</code> (where xxx is a keyword that is unmatched)
        
-        Expected behaviour: An error message and the correct usage of the FIND command is shown.
+        Expected: An error message and the correct usage of the FIND command is shown.
      
      &nbsp;
  
 2. Delete an item
 
-     > :bulb: You can run the <code>DISPLAY</code> command to check the index of an item.
+     > :bulb: Tip: You can run the <code>DISPLAY</code> command to check the index of an item.
          
     i. Test case: <code>DEL 1</code> 
 
-       Expected behaviour: The first item (if it exists), is deleted.
+       Expected: The first item (if it exists), is deleted.
     
      &nbsp;
 
     ii. Test case: <code>DEL xxx</code> (where xxx is a not a number / the item does not exist yet)
        
-        Expected behaviour: An error message and the correct usage of the DEL command is shown.
+        Expected: An error message and the correct usage of the DEL command is shown.
      
      &nbsp;
 
@@ -980,7 +980,7 @@ This section contains the user stories for the different versions of our product
             
      i. Test case: <code>DISPLAY</code>
            
-        Expected behaviour: A list of all the items is displayed.The current budget amount is also shown.
+        Expected: A list of all the items and the current budget amount is displayed.
                                                                             
       &nbsp;
 
@@ -988,7 +988,7 @@ This section contains the user stories for the different versions of our product
             
      i. Test case: <code>CLEAR</code>
            
-        Expected behaviour: The shopping list is cleared.
+        Expected: The shopping list is cleared.
                                                                             
       &nbsp;
   
