@@ -342,8 +342,8 @@ attribute, and the `isDone` attribute of the module will be updated to be `true`
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
 
-## Product Scope
-### Target user profile
+## 5. Product Scope
+### 5.1 Target user profile
 
 * A computer science undergraduate of NUS with a need to manage modules
 * Prefer desktop apps over other types
@@ -351,11 +351,11 @@ If the module does not exist in the list, a `RuntimeExcption` will be thrown to 
 * Prefers to control apps with typing rather than a mouse
 * Comfortable using Command Line Input apps
 
-### Value proposition
+### 5.2 Value proposition
 
 Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app 
 
-## User Stories
+## 6. User Stories
 
 |Priority| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -370,7 +370,7 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 modules|
 
 
-## Non-Functional Requirements
+## 7. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules in the available module list without a noticeable sluggishness in
@@ -379,13 +379,13 @@ modules|
   should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 
-## Glossary
+## 8. Glossary
 
 **Mainstream OS** - Windows, Linux, Unix, OS-X
 
 
 
-## Instructions for Manual Testing
+## 9. Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 

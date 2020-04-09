@@ -1,0 +1,230 @@
+# Mok Kai Sheng Daryl - Project Portfolio Page
+
+## Overview
+Personal Module Manager is a software that tracks the number of modular credits, modules taken and modules required 
+for its user to graduate. The software is for NUS Students who want to plan their modules per semester in an easy way 
+and it is optimized for those who want to type fast with CLI. It is written in Java.
+
+### Summary of Contributions
+
+#### Code contributed
+The given link is my [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).
+
+#### Enhancements implemented
+In this project, I design the part of Controller, Parser, Person's grade and cap, changed user's year and semester display/format
+ JUnit test, logging and some commands.
+enhanced delete class (fixed its bugs)
+
+##### Controller
+
+
+
+##### Parser
+
+##### Person
+
+
+##### Commands
+- Mark as Done Command
+
+- Helping Command
+
+- Clear Command
+
+#### Enhancements improved
+In this project, I added on to parts of Delete command and 
+
+### Contributions to documentation (Which sections did u contribute to the UG?)
+The user guide is updated with relevant instructions and their correct format. I was responsible for the 
+Command Format, Mark as Done feature, Deleting features, FAQ, Command summary.
+
+Below is a small portion from the User Guide, showing my documentation for the Deleting feature.
+
+A grey highlight as `such` indicates a command which can be typed into the command line and executed by Module Manager.
+Words in [square brackets] denotes parameters that have to be specified by the user.
+
+## Project Feature
+### Deleting module: delete
+You can delete a module from a semester of your module plan or from the list of available modules.
+
+#### Delete a specific module from a semester in module plan
+You can do so by using the module code or the module name.
+The module to be deleted must be in your module plan.
+ 
+#### Based on module code
+Format: `delete id/[module code] s/[semester]`
+
+Example:​ `delete id/IS4241 s/4`
+
+Expected output: 
+
+`Okay, this module has been deleted from the corresponding semester`
+
+`Module IS4241 has been deleted from semester Y2S2`
+
+
+#### Based on module name
+Format: `delete n/[module name] s/[semester]`
+
+Example:​ `delete n/Discrete Structure s/4`
+
+Expected output: 
+
+`Okay, this module has been deleted from the corresponding semester`
+
+`Module Discrete Structure has been deleted from semester Y2S2`
+
+#### Delete a specific module from available module list
+
+#### Based on module name
+Format: `delete id/[module code]`
+
+Example:​ `delete id/IS4241`
+
+Expected output: 
+
+`Okay, this module has been deleted from the list of available modules`
+
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
+
+#### Based on module code
+Format: `delete n/[module name]`
+
+Example:​ `delete n/Social Media Network Analysis`
+
+Expected output: 
+
+`Okay, this module has been deleted from the list of available modules`
+
+`ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
+
+
+### Contributions to the Developer Guide (Which sections did you contribute to the DH? Which UML Diagrams did u add/update)
+This section describes my contributions to the Developer Guide of Module Manager. I implemented the Table of Contents, 
+Introduction section and Setting up section. In addition, I implemented the Design section excluding Storage. 
+I designed the entire Architecture Design for Module Manager and wrote the implementation document for Addition  
+(Add to Semester and Add to available) and Marking as Done. Lastly, I implemented Product Scope section, User Stories
+section, Non-Functional Requirements section, Glossary section and Instructions for Manual Testing section.
+
+Below contains an excerpt of my documentation regarding the Architecture Design of Module Manager.
+
+# 2. Setting up
+## 2.1 Prerequisites
+1. JDK `11`.
+2. IntelliJ IDE.
+
+## 2.2 Setting up the project in your computer
+1. Fork this repository, and clone the fork repository to your computer
+2. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project 
+dialog first)
+3. Set up the correct JDK version for Gradle
+    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
+    * If `JDK 11` is listed in the drop down, select it. Otherwise, click `New…` and select the directory where you 
+    installed `JDK 11`
+    * Click `OK`
+4. Click `Import Project`
+5. Locate the `build.gradle` file and select it. Click `OK`
+6. Click `Open as Project`
+7. Click `OK` to accept the default settings if prompted
+
+## 2.3 Verifying the setup
+1. Run Module Manager to verify and try a few commands. Do refer to the user guide for a list of commands to try out.
+2. Run the JUnit Tests/gradlew test command to ensure that all test case passes.
+
+## 2.4 Configurations to do before writing code
+**Configuring the coding style**
+* Module Manager uses CheckStyle to check for code quality violations.
+* To configure your project to use CheckStyle, add `id 'checkstyle'` under plugins for your `build.gradle` file.
+* Ensure that your CheckStyle toolVersion is 8.23 by adding `toolVersion = '8.23'` into your `build.gradle` file.
+Refer to Module Manager's `build.gradlew` file as a reference to set up CheckStyle correctly.
+
+**Getting started with coding**
+When you are ready to start coding, we recommend that you get a sense of the overall design by reading about 
+Module Manager's architecture in the next section.
+
+# 3. Design
+This section provides a high level overview of our application, Module Manager.
+## Design & Implementation
+
+
+### 3.1 Architecture
+
+![Architecture Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Architecture.png)
+
+The Architecture Diagram given above explains the high-level design of the Module Manager Application.
+
+Module Manager consists of a main class called Duke responsible for
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other
+* At shut down: Shuts down the components and invokes cleanup method where necessary
+
+The other components involved are:
+
+`UI`: The user interface of the application
+
+`Parser`: This class mainly handles the parsing and handling of user commands
+
+`Command`: This class handles the type of command
+
+`Person`: This class manages the data of the user in memory
+
+`Controller`: This class determines what to do with the parsed input of the user 
+
+`Storage`: Reads data from, and writes data to, the hard disk
+
+
+#### 3.2 UI component
+![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
+
+The `UI` component consists of a `Ui` class that stores all user interaction output data. 
+It displays all user interactions to the user based on the command line inputs received.
+
+The `UI` component,
+
+*   Executes user commands using the `Logic` component
+
+#### 3.3 Logic component
+
+![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
+
+The `Logic` component 
+1. `Logic` uses the `Parser` class to parse the user command.
+2. The parsed command is passed to `Controller` which then returns a specific command class 
+e.g. `AddCommand`, `FindCommand` etc. which is executed by the main class `Duke`.
+All these command classes inherits from the abstract `Command` class.
+3. The command execution can affect the Model (e.g. adding a module in ModuleList)
+4. The result of the command execution is passed back to the Ui.
+5. In addition, the command execution can also instruct the `Ui` to perform certain actions, 
+such as displaying help to the user.
+
+#### 3.4 Model component
+
+![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
+
+The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
+component. 
+
+The responsibilities of the `Model` component includes
+* Storing the data in-memory during programme runtime. It stores all `SelectedModule` objects in an 
+`ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
+* All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
+in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
+
+### Contributions to team-based tasks
+
+- Maintaining the issue tracker.
+
+- Ensuring group meetings and consolidation of group discussions
+
+
+### Review/mentoring contributions:
+- Review over 80% code enhancement's PRs and give code revise suggestion by making a PR to their branch. 
+e.g [#42 PR in our team repo](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/42) and 
+[Revise suggestion PR to teammate's repo](https://github.com/chengTzeNing/tp/pull/3).
+
+- Help teammates understanding some data structures in our code by making some slides to explain. 
+[Google Slides: Available Modules List's data structure](https://docs.google.com/presentation/d/1UeuonNaPafGD5bX36J_iroB_umS6lvyD37ECp8OfvSI/edit)
+
+### Contributions beyond the project team
+- responses posted in forum: [a possible answer to #89](https://github.com/nus-cs2113-AY1920S2/forum/issues/89#issuecomment-605184683)
+(why Java CI build failure only for windows)
+- bugs reported in other team's products: [bugs reports to CS2113T-T12-4](https://github.com/RenzoTsai/ped/issues)
