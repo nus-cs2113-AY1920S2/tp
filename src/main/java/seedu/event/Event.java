@@ -171,7 +171,7 @@ public class Event {
         for (Attendance attendance : attendanceList.getAttendanceList()) {
             output.append(attendance.toString());
             output.append('|');
-        }
+        }        
         // add a space to prevent NoSuchElementException, in case no AttendanceList
         output.append(",");
 
@@ -198,8 +198,17 @@ public class Event {
         String[] tokens = representation.split(",");
 
         Event newEvent = parseEvent(tokens[0]);
-        newEvent.setAttendanceList(parseAttendanceList(tokens[1]));
-        newEvent.setPerformanceList(parsePerformanceList(tokens[2]));
+        try {
+            newEvent.setAttendanceList(parseAttendanceList(tokens[1]));
+        } catch (ArrayIndexOutOfBoundsException m) {
+            // Do nothing, as intended
+        }
+
+        try {
+            newEvent.setPerformanceList(parsePerformanceList(tokens[2]));
+        } catch (ArrayIndexOutOfBoundsException m) {
+            // Do nothing, as intended
+        }
 
         return newEvent;
     }
