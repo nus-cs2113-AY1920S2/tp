@@ -14,19 +14,14 @@ The given link is my [code contribution](https://nus-cs2113-ay1920s2.github.io/t
 In this project, I design the part of Storage, Exception and some commands.
 
 ##### Storage
-Storage in our software include three parts: 
-- `Storage Available Modules List`
-- `Storage Semester List` 
-- `Storage Person Info`. 
+Storage in our software include three parts: `Storage Available Modules List`, `Storage Semester List` and 
+`Storage Person Info`. 
 
 `Available Modules List`, `Semester List` and `Person Info` are stored in CSV file and Person Info is 
 stored in TXT file. And each time the user runs the software, these three file will be loaded.
 
 ##### Exception
-Exception in our software include three parts: 
-- `Input Exception`
-- `Runtime Exception`
-- `Storage Exception`
+Exception in our software include three parts: `Input Exception`, `Runtime Exception` and `Storage Exception`.
 
 All of them extend from `ModuleManagerException`.
 
