@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-08T16:35:25.599008100Z</date>
-  <millis>1586363725599</millis>
-  <nanos>8100</nanos>
+  <date>2020-04-08T17:20:33.817275300Z</date>
+  <millis>1586366433817</millis>
+  <nanos>275300</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-08T16:35:25.666200900Z</date>
-  <millis>1586363725666</millis>
-  <nanos>200900</nanos>
+  <date>2020-04-08T17:20:33.918715400Z</date>
+  <millis>1586366433918</millis>
+  <nanos>715400</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-08T16:35:25.674928800Z</date>
-  <millis>1586363725674</millis>
-  <nanos>928800</nanos>
+  <date>2020-04-08T17:20:33.932104500Z</date>
+  <millis>1586366433932</millis>
+  <nanos>104500</nanos>
   <sequence>2</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Profile Information Invalid, Profile cleared.</message>
 </record>
 <record>
-  <date>2020-04-08T16:35:25.676937200Z</date>
-  <millis>1586363725676</millis>
-  <nanos>937200</nanos>
+  <date>2020-04-08T17:20:33.935245800Z</date>
+  <millis>1586366433935</millis>
+  <nanos>245800</nanos>
   <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>Existing Food Nutrition Record found: food-nutrition-record.txt</message>
 </record>
 <record>
-  <date>2020-04-08T16:35:25.682432Z</date>
-  <millis>1586363725682</millis>
-  <nanos>432000</nanos>
+  <date>2020-04-08T17:20:33.943613600Z</date>
+  <millis>1586366433943</millis>
+  <nanos>613600</nanos>
   <sequence>4</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -61,15 +61,3 @@
   <thread>1</thread>
   <message>Starting Diet Manager</message>
 </record>
-<record>
-  <date>2020-04-08T16:35:51.388Z</date>
-  <millis>1586363751388</millis>
-  <sequence>5</sequence>
-  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
-  <level>INFO</level>
-  <class>seedu.dietmanager.commons.core.LogsCentre</class>
-  <method>logExitProgramme</method>
-  <thread>1</thread>
-  <message>Exiting Diet Manager</message>
-</record>
-</log>

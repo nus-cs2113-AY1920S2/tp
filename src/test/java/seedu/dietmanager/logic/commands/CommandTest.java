@@ -9,7 +9,6 @@ import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class CommandTest {
 
@@ -17,8 +16,8 @@ class CommandTest {
     void setWeightCommand() {
         Profile profile = new Profile();
         UI ui = new UI();
-        profile.setProfile("John",20, "Male", 180, 80, 75);
-        Command command = new SetWeightCommand("set-weight","50");
+        profile.setProfile("John", 20, "Male", 180, 80, 75);
+        Command command = new SetWeightCommand("set-weight", "50");
         command.execute(profile, ui);
         assertEquals("Your weight has been changed to 50.00.", command.resultString);
     }
@@ -27,8 +26,8 @@ class CommandTest {
     void deleteWeightCommand() throws InvalidFormatException {
         Profile profile = new Profile();
         UI ui = new UI();
-        profile.setProfile("John",20, "Male", 180, 80, 75);
-        Command command = new DeleteWeightCommand("delete-weight","1");
+        profile.setProfile("John", 20, "Male", 180, 80, 75);
+        Command command = new DeleteWeightCommand("delete-weight", "1");
         command.execute(profile, ui);
         assertEquals("Weight Record: 80.0kg  has been removed successfully!", command.resultString);
     }
@@ -37,7 +36,7 @@ class CommandTest {
     void checkWeightRecordCommand() throws InvalidFormatException {
         Profile profile = new Profile();
         UI ui = new UI();
-        profile.setProfile("John",20, "Male", 180, 80, 75);
+        profile.setProfile("John", 20, "Male", 180, 80, 75);
         Command command = new CheckWeightRecordCommand("check-weight-progress", "John");
         command.execute(profile, ui);
         assertEquals("\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n"
