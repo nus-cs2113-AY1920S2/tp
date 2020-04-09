@@ -71,7 +71,7 @@ public class LoadDishTest {
         ingredients.add("sauce");
         HashMap dishMapA = new HashMap<String, Dish>();
         dishMapA.put("pizza", new Dish(name, ingredients, price));
-        String fp = "sampleReportA.txt";
+        String fp = "/Users/ganeshmuthu/Documents/cs2113/tp/sampleReportA.txt";
         LoadDish ld = LoadDish.getInstance(fp);
         Menu m = new Menu();
         m.setDishMap(dishMapA);
