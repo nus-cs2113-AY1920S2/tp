@@ -333,7 +333,10 @@ Example output:
 **Q**: How do I transfer my data to another computer? 
 
 &ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
-   
+**Q**: How do I prevent file corruption? 
+
+&ensp;&ensp;&ensp;&ensp;**A**: Ensure that you do not abruptly exit the application and do not delete the data file while application is still running
+
 [&#8593; Return to the top](#whenfree---user-guide)
 
 <br/><br/>
