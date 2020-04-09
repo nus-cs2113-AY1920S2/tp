@@ -18,7 +18,7 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 - Words in `[XXX]` are the parameters to be supplied by the user.
 - `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113`
 - `[module name]` is to be entered in alpha-numeric characters i.e.`Software Engineering & Object-Oriented Programming`
-- `[semester]` is to be entered in numeric characters between 1-8 i.e.`5`
+- `[semester]` is to be entered in numeric characters between 1-10 i.e.`5`
 - `[credit]` is to be entered in numeric characters i.e. `4`
 - `[grade]` is to be entered in alpha **uppercase** characters i.e. `A+`
 
