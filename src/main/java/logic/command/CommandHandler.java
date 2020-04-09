@@ -23,11 +23,11 @@ public class CommandHandler {
 
 
     public static Contact addContact(ContactList myContactList, String[] userInputWords,
-                                     Integer startDay, Integer endDay) throws MoException {
+                                     Integer startDay, Integer endDay) throws MoException, InvalidUrlException {
         Contact member;
         int checkerForRepeatedName;
         checkerForRepeatedName = myContactList.getContactList().stream()
-                .mapToInt(person -> check(person, userInputWords[0])).sum();
+            .mapToInt(person -> check(person, userInputWords[0])).sum();
         if (checkerForRepeatedName == 1) {
             TextUI.showRepeatedPerson(userInputWords[0]);
             throw new MoException("Repeated user");
@@ -38,41 +38,37 @@ public class CommandHandler {
         String url = userInputWords[1];
 
         LessonsGenerator myLessonGenerator;
-        try {
-            myLessonGenerator = new LessonsGenerator(url);
-            myLessonGenerator.generate();
-            ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+        myLessonGenerator = new LessonsGenerator(url);
+        myLessonGenerator.generate();
+        ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
 
-            for (int k = 0; k < myLessonDetails.size(); k++) {
-                String startTimeString = null;
-                String endTimeString = null;
-                String[] weeks = new String[0];
-                for (int j = 0; j < myLessonDetails.get(k).length; j++) {
-                    switch (j) {
-                    case 0:
-                        startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                        break;
-                    case 1:
-                        endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                        break;
-                    case 2:
-                        startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
-                        endDay = startDay;
-                        break;
-                    case 3:
-                        weeks = myLessonDetails.get(k)[j].split(":");
-                        break;
-                    default:
-                        //data only has four sections from api
-                        throw new AssertionError(j);
-                    }
+        for (String[] myLessonDetail : myLessonDetails) {
+            String startTimeString = null;
+            String endTimeString = null;
+            String[] weeks = new String[0];
+            for (int j = 0; j < myLessonDetail.length; j++) {
+                switch (j) {
+                case 0:
+                    startTimeString = myLessonDetail[j].substring(0, 2) + ":" + myLessonDetail[j].substring(2);
+                    break;
+                case 1:
+                    endTimeString = myLessonDetail[j].substring(0, 2) + ":" + myLessonDetail[j].substring(2);
+                    break;
+                case 2:
+                    startDay = getNumberFromDay(myLessonDetail[j]);
+                    endDay = startDay;
+                    break;
+                case 3:
+                    weeks = myLessonDetail[j].split(":");
+                    break;
+                default:
+                    //data only has four sections from api
+                    throw new AssertionError(j);
                 }
-                member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
             }
-            TextUI.showAddedMember(member.getName());
-        } catch (InvalidUrlException e) {
-            System.out.println(e.getMessage());
+            member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
         }
+        TextUI.showAddedMember(member.getName());
         return member;
     }
 
