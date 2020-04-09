@@ -96,7 +96,7 @@ public class EditCommandTest {
             System.setOut(new PrintStream(testOutput));
 
             Ui ui = new Ui();
-            feedback = new EditCommand(0).execute(filledTaskList, ui).feedbackToUser;
+            feedback = new EditCommand(1).execute(filledTaskList, ui).feedbackToUser;
         } finally {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
@@ -105,6 +105,7 @@ public class EditCommandTest {
                 + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
         assertEquals(Messages.SAME_TASK_ERROR, feedback);
     }
+
 
     @Test
     public void testEditTask_erroneousInput() {
