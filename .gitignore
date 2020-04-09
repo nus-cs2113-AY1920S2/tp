@@ -20,3 +20,4 @@ bin/
 
 # data files
 /data/
+text-ui-test/data/patient.txt
