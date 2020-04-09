@@ -78,7 +78,6 @@ public class Parser {
         System.out.println(TextUi.DIVIDER);
         Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
-//        System.out.println(TextUi.DIVIDER);
         return reInput;
     }
 

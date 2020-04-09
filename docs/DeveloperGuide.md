@@ -327,30 +327,45 @@ or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the p
 The user is able to add appointments into the program to manage the appointment schedule. 
 The command: 
 
-    add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup 
+    add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
     
 will add an appointment with `NRIC` as S7777777Z with the following attributes: 
-* appointment date: `01/04/2020`
-* appointment time: `12:00:00`
+* appointment date: `04/04/2020`
+* appointment time: `10:30`
 * reason for appointment: `Checkup`
 
 An `appointmentId` will also be given when an appointment is successfully added. 
 
 **Implementation** 
 
-![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.jpg)
+The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric`, `date`, `time`, and `reason` in its constructor. 
 
-The following steps explains the sequence of events: 
+The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
-1. The user enters `add appt /ic S7777777Z /d 01/04/2020 /t 12:00:00 /r Checkup` .
+1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
+class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
+`Parser` then calls the `AppointmentParser#parse()` method. 
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`. 
+2. `AppointmentParser#parse()` will then call the `parseAddCommand` in the same class to parse all the arguments of the user input. 
 
-3. `AppointmentParser#parse()` will create an object `AddAppointmentCommand`.
+3. A new instance of `AddAppointmentCommand` with the given arguments initialised will be created. `HappyPills` will 
+subsequently call the `AddAppointmentCommand#execute()` method. 
 
-5. `HappyPills` then calls `AddAppointmentCommand.execute()` to execute the method. 
+4. The `AddAppointmentCommand#execute()` method will do 2 things: 
 
-6. In `AddAppointmentCommand.execute()`, an appointment is added and the display message is returned.
+	+ If there is no patients in the `PatientMap` with the given nric, the method returns a string to notify the user 
+	that the patient does not exist. 
+	
+	+ If the patient with the given nric exists in `PatientMap`, a new Appointment object with the given arguments 
+	(nric, date, time and reason) are created and added into the `AppointmentMap` and into the ArrayList of Appointment 
+	objects in the Patient object mapped with the nric given. The `Appointment` object is stored in the storage by calling `Storage#writeAllToFile()`. 
+	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
+	and displays the `AppointmentID` associated to the `Appointment` object created. 
+
+The following sequence diagram summarises how the `AddAppointmentCommand` operation works: 
+
+![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
 
 #### 4.3.2. Edit Appointment 
 
@@ -381,47 +396,69 @@ a display message is obtained by calling `AppointmentTextUi#editAppointmentSucce
 
 The user can delete an appointment from the list of appointments currently in the program. The command: 
 
-    delete appt S9999999z 1 
+    delete appt S1234567Z 1 
     
 will delete the appointment with appointment ID `1`, if found. 
 
 **Implementation** 
 
-The following steps explains the sequence of events: 
+The `DeleteAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises 
+the `nric` and `apptId` in its constructor. 
 
-1. The user enters `delete appt 1`. 
+The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+1. The user enters `delete appt S1234567Z 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the 
+`AppointmentParser#parse()` method. 
 
-3. `AppointmentParser#parse()` will then create an object `DeleteAppointmentCommand`. 
+2. `AppointmentParser#parse()` will then split the user input and calls the `DeleteAppointmentCommand` class. 
 
-4. `HappyPills` then calls `DeleteAppointmentCommand.execute()` to execute the command. 
 
-5. In `DeleteAppointmentCommand.execute()`, the respective patient is deleted and the display message is returned. 
+	Warning: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+	
+3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method. 
+
+4. In `DeleteAppointmentCommand#execute()`, if the patient and/or appointment does not exist, the `HappyPillsException()` 
+will be thrown. Otherwise, `DeleteAppointmentCommand#execute()` will call `Storage#writeAllToFile()` and remove the 
+appointment from the program. A display message will be shown to the user to indicate that the deletion have been successful. 
+
+The following sequence diagram summarises how the `DeleteAppointmentCommand` operation works: 
+
+![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
 
 #### 4.3.4. Mark Appointment as Done 
 The user can mark an appointment as done from the list of appointments currently in the program. The command: 
 
-    done appt S9999999z 1 
+    done appt S1234567Z 1
     
 will mark the appointment with appointment ID `1` as done, if found. 
 
 **Implementation** 
 
-The following steps explains the sequence of events: 
+The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric` and `apptId` in its constructor. 
 
-1. The user enters `done appt S9999999z 1`. 
+The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+1. The user enters `done appt S1234567Z 1` into the application. The `HappyPills` class then calls `Parser#parse()` to 
+parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
+method. 
 
-3. `AppointmentParser#parse()` will then create an object `DoneAppointmentCommand`. 
+2. `AppointmentParser#parse()` will then split the user input and calls the `DoneAppointmentCommand` class. 
 
-4. `HappyPills` then calls `DoneAppointmentCommand.execute()` to execute the command. 
 
-5. In `DoneAppointmentCommand.execute()`, the respective appointment is marked as done and 
-a display message is obtained by calling `AppointmentTextUi#doneAppointmentSuccessMessage()`.
+    Warning: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+    
+3. A new instance of `DoneAppointmentCommand` with the given arguments will be created. `HappyPills` will subsequently call 
+the `DoneAppointmentCommand#execute()` method.
 
-6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
+4. The `DoneAppointmentCommand#execute()` method will then check that the nric given is valid and that a patient with that 
+nric and appointment exists. If all the checks are successful, it calls `Storage#writeAllToFile()` and displays a success 
+message to the user. Otherwise the `HappyPillsException()` will be thrown according to what is invalid. 
+
+The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
+
+![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
 
 #### 4.3.5. List Appointments 
 
@@ -434,20 +471,25 @@ will list all the appointments in the `AppointmentMap`.
 
 **Implementation** 
 
-![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.jpg)
+The `ListAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class.
 
-The following steps explains the sequence of events: 
+The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
 
-1. The user enters `list appt`.
+1. The user enters `list appt` into the application. The `HappyPills` class then calls the `Parser#parse()` to parse the 
+user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` method. 
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+2. `AppointmentParser#parse()` will then split the user input and calls the `ListAppointmentCommand` class. 
 
-3. `AppointmentParser#parse()` will create an object `ListAppointmentCommand`.
+3. `HappyPills` will then call the `ListAppointmentCommand#execute()` method. 
 
-4. `HappyPills` then calls `ListAppointmentCommand.execute()` to execute the method. 
+4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. If there are 
+appointments in the program, a message will be displayed to the user with information about all the appointments, which 
+includes the `apptId`, `date`, `time` and `nric` of the appointments. Otherwise, the user will receive a message saying 
+that the there is no appointments in the list. 
 
-5. In `ListAppointmentCommand.execute()`, it calls `TextUi.getAppointmentList()` which is 
-then returned as the display message. 
+The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
+
+![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png)
 
 #### 4.3.6. Find Appointments of Patient
 
