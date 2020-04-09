@@ -23,69 +23,60 @@ public class CommandHandler {
 
 
     public static Contact addContact(ContactList myContactList, String[] userInputWords,
-                                     Integer startDay, Integer endDay) throws MoException {
-        Contact member;
+                                     Integer startDay, Integer endDay) throws MoException, InvalidUrlException {
         int checkerForRepeatedName;
         checkerForRepeatedName = myContactList.getContactList().stream()
-                .mapToInt(person -> check(person, userInputWords[0])).sum();
+            .mapToInt(person -> check(person, userInputWords[0])).sum();
         if (checkerForRepeatedName == 1) {
             TextUI.showRepeatedPerson(userInputWords[0]);
             throw new MoException("Repeated user");
         }
 
+        if (userInputWords[0].length() >= 260) {
+            throw new MoException("Maximum characters for a given name is 260");
+        }
+        Contact member;
         member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
 
         LessonsGenerator myLessonGenerator;
-        try {
-            myLessonGenerator = new LessonsGenerator(url);
-            myLessonGenerator.generate();
-            ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
+        myLessonGenerator = new LessonsGenerator(url);
+        myLessonGenerator.generate();
+        ArrayList<String[]> myLessonDetails = myLessonGenerator.getLessonDetails();
 
-            for (int k = 0; k < myLessonDetails.size(); k++) {
-                String startTimeString = null;
-                String endTimeString = null;
-                String[] weeks = new String[0];
-                for (int j = 0; j < myLessonDetails.get(k).length; j++) {
-                    switch (j) {
-                    case 0:
-                        startTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                        break;
-                    case 1:
-                        endTimeString = myLessonDetails.get(k)[j].substring(0, 2) + ":" + myLessonDetails.get(k)[j].substring(2);
-                        break;
-                    case 2:
-                        startDay = getNumberFromDay(myLessonDetails.get(k)[j]);
-                        endDay = startDay;
-                        break;
-                    case 3:
-                        weeks = myLessonDetails.get(k)[j].split(":");
-                        //future improvement: since myLessonDetails.get(k)[3] contains data on the
-                        // week number that this class occurs on, add capability of schedule to reflect
-                        // schedule of the current week.
-                        //
-                        //0900 1200 Friday 5:7:9:11
-                        //1600 1800 Thursday 1:2:3:4:5:6:7:8:9:10:11:12:13
-                        //1600 1800 Tuesday 1:2:3:4:5:6:7:8:9:10:11:12:13
-                        //0900 1200 Tuesday 1:2:3:4:5:6
-                        break;
-                    default:
-                        //data only has four sections from api
-                        throw new AssertionError(j);
-                    }
+        for (String[] myLessonDetail : myLessonDetails) {
+            String startTimeString = null;
+            String endTimeString = null;
+            String[] weeks = new String[0];
+            for (int j = 0; j < myLessonDetail.length; j++) {
+                switch (j) {
+                case 0:
+                    startTimeString = myLessonDetail[j].substring(0, 2) + ":" + myLessonDetail[j].substring(2);
+                    break;
+                case 1:
+                    endTimeString = myLessonDetail[j].substring(0, 2) + ":" + myLessonDetail[j].substring(2);
+                    break;
+                case 2:
+                    startDay = getNumberFromDay(myLessonDetail[j]);
+                    endDay = startDay;
+                    break;
+                case 3:
+                    weeks = myLessonDetail[j].split(":");
+                    break;
+                default:
+                    //data only has four sections from api
+                    throw new AssertionError(j);
                 }
-                member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
             }
-            TextUI.showAddedMember(member.getName());
-        } catch (InvalidUrlException e) {
-            System.out.println(e.getMessage());
+            member.addBusyBlocks(name, startDay, startTimeString, endDay, endTimeString, weeks);
         }
+        TextUI.showAddedMember(member.getName());
         return member;
     }
 
     public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList,
-                                   int currentWeekNumber) throws MoException {
+                                   int currentWeekNumber) {
 
         try {
             if (userInputWords.length != 7) {
@@ -101,8 +92,6 @@ public class CommandHandler {
             int startOfWeekDate = getStartOfWeekDate();
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
-
-            String meetingName = userInputWords[2];
 
             int memberIndex = Integer.parseInt(userInputWords[2]);
             Contact member = contactList.getContactList().get(memberIndex);
@@ -214,6 +203,9 @@ public class CommandHandler {
             Integer startDay;
             Integer endDay;
             int startOfWeekDate = getStartOfWeekDate();
+            if (userInputWords[1].length() >= 260) {
+                throw new MoException("Maximum characters for meeting name is 260");
+            }
             String meetingName = userInputWords[1];
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);

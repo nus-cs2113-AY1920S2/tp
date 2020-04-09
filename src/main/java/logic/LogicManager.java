@@ -3,6 +3,7 @@ package logic;
 import static common.Messages.MESSAGE_WRONG_COMMAND_DELETE;
 
 
+import common.exception.InvalidUrlException;
 import common.exception.MoException;
 import java.util.ArrayList;
 import logic.command.CommandHandler;
@@ -30,12 +31,16 @@ public class LogicManager {
     public void addContact(String[] userInputWords) throws MoException {
         Contact newMember;
 
-        newMember = CommandHandler.addContact(myContactList, userInputWords, null, null);
-        if (checkMainUserDoesNotExists()) {
-            mainUser = newMember;
-            newMember.setMainUser();
+        try {
+            newMember = CommandHandler.addContact(myContactList, userInputWords, null, null);
+            if (checkMainUserDoesNotExists()) {
+                mainUser = newMember;
+                newMember.setMainUser();
+            }
+            myContactList.add(newMember);
+        } catch (InvalidUrlException e) {
+            System.out.println(e.getMessage());
         }
-        myContactList.add(newMember);
     }
 
     public void viewTimetable(String[] userInputWords, int currentWeekNumber) throws MoException {
