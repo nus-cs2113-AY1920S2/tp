@@ -258,7 +258,7 @@ Given below is an example usage and how the ```EditContact``` command behaves.
     <br>```edit busy <contact index> <start day> <start time> <end day> <end time>``` and 
     <br>```edit free <contact index> <start day> <start time> <end day> <end time>```, 
     <br>for editing the ```Contact```'s schedule to "busy" and "free" at the given time slot respectively. 
-    We generalise ```edit busy``` and ```edit free``` as ```edit``` in the sequence diagram as their execution is similar. 
+    We generalise ```edit busy``` and ```edit free``` as ```edit``` in the sequence diagram as their execution are similar. 
     We also represent ```<start day> <start time> <end day> <end time>``` as ```<time slot>``` in the sequence diagram to
     keep it concise.
     
