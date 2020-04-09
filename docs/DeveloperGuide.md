@@ -168,8 +168,7 @@ This section describes some noteworthy details of how the main features of our a
 There are 6 main features: add new contact, list all contacts, display combined timetable of selected contacts, schedule a new meeting, delete a scheduled meeting, list all scheduled meetings.
 ### 3.1 Add new contact
 ![Add Contact](images/AddContact.png)<br>
-
-The above figure show the sequence diagram for how the add contact mechanism works.
+The figure above shows the sequence diagram of the ```addContact``` command.
 
 Given below is an example usage scenario and how the ```add contact``` command behaves.
 
@@ -208,9 +207,10 @@ Alternative 1. Furthermore, users are required to download the blacklisted file 
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
 
-The figure above shows the sequence diagram of listing all contacts the user has. It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
+The figure above shows the sequence diagram of listing all contacts saved in the application. 
+It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
 
-Given below is an example usage and how ```ListContact``` command behaves.
+Given below is an example usage and how the```ListContact``` command behaves.
 
 1. The user invokes the LogicManager by typing ```contacts```, followed by kbd:[enter] key.
 2. The ```LogicManager``` would then request to list all contacts via ```CommandHandler```.
@@ -220,11 +220,97 @@ Given below is an example usage and how ```ListContact``` command behaves.
 
 ### 3.3 Display timetable of selected contacts
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
+
+The figure above shows the sequence diagram of displaying a combined timetable of selected contacts. 
+It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
+
+Given below is an example usage and how the ```DisplayTimetable``` command behaves.
+
+1. The user invokes the LogicManager by entering ```timetable <contact index A> <contact index B>```.
+
+    NOTE: ```<contact index A>``` and ```<contact index B>``` represent the ```Contact```s whose combined timetable is 
+    to be displayed.
+2. The ```LogicManager``` requests to display the combined timetable via ```CommandHandler```.
+3. The ```CommandHandler``` retrieves ```Contact```s from ```ContactList``` using the contacts' index passed into the 
+command, to generate ```arrayList<Contact>```.
+
+    NOTE: This step is omitted in the sequence diagram to keep it concise.
+3. The ```CommandHandler``` calls the ScheduleHandler constructor ```ScheduleHandler(ArrayList<Contacts>)```.
+4. For each ```Contact```, ```ScheduleHandler``` retrieves its schedule by calling ```getSchedule()```. ```ScheduleHandler``` 
+then uses the retrieved schedule to fill a combined schedule, adding all "busy" time blocks of the retrieved schedule into the
+combined schedule.
+5. ```CommandHandler``` retrieves the final combined schedule and calls ```TextUI``` to print the combined schedule.
+6. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
+
 ### 3.4 Schedule a new meeting
 
 ### 3.5 Edit a contact's timetable
 ![EditContact](images/EditContact.png)<br>
 
+The figure above shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
+It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
+
+Given below is an example usage and how the ```EditContact``` command behaves.
+
+1. The user invokes the LogicManager by entering ```edit <contact index> <time slot>```.
+
+    NOTE: The original user input formats for ```EditCommand``` are: 
+    <br>```edit busy <contact index> <start day> <start time> <end day> <end time>``` and 
+    <br>```edit free <contact index> <start day> <start time> <end day> <end time>```, 
+    <br>for editing the ```Contact```'s schedule to "busy" and "free" at the given time slot respectively. 
+    We generalise ```edit busy``` and ```edit free``` as ```edit``` in the sequence diagram as their execution is similar. 
+    We also represent ```<start day> <start time> <end day> <end time>``` as ```<time slot>``` in the sequence diagram to
+    keep it concise.
+    
+2. The ```LogicManager``` requests to edit a contact's schedule via ```CommandHandler```.
+3. The ```CommandHandler``` retrieves ```Contact``` from ```ContactList``` using the contact's index passed into the 
+command.
+
+    NOTE: This step is omitted in the sequence diagram to keep it concise.
+4. The ```CommandHandler``` calls ```editSchedule(time slot)``` of ```Contact```.
+If ```edit busy```, the schedule of `Contact` will be marked as "busy" for the given time slot. If ```edit free```, the 
+schedule of `Contact` will be marked as "free" for the given time slot.
+
+The schedule of the `Contact` is edited and saved in the application.
+
+### 3.5.1 Design Considerations
+**Aspect 1: Clash of ```Meeting```'s time slot and ```EditContact```'s time slot when editing main user's schedule**
+
+The implementation described above would allow the overwrite of any time blocks in the ```Contact```'s schedule. This  
+would be problematic when editing the main user's schedule, which contains ```Meeting```s' time slots. A possible problematic 
+scenario is if we edit over a ```Meeting```' time slot and set the time slot to "free", we would subsequently be able to schedule 
+another meeting at the same time slot. This results in multiple ```Meeting```s occupying the same time slot.
+
+* Alternative 1(current choice): Disallow the overwrite of ```Meeting```'s time slot. If ```EditContact```'s time slot 
+clashes with any ```Meeting```'s time slot, throw error to discontinue edit of that time slot.
+* Alternative 2: Allow the overwrite of ```Meeting```'s time slot. If ```EditContact```'s time slot clashes with any 
+```Meeting```'s time slot, remove the ```Meeting``` from ```MeetingList```. 
+
+We choose Alternative 1 for these reasons:
+1. The intended purpose of the edit function is to make amendments to schedules pulled
+ from NUSMODS so that additional "busy" slots or "free" slots can be visualized in the timetable, not to edit over meetings. 
+2. Editing of a ```Meeting```'s time slot to be "free" will be equivalent to deleting the ```Meeting```, for 
+which there is a dedicated feature implemented. This causes unnecessary overhead in functionality.
+3. Alternative 1 is easier to implement. When a clash is detected, Alternative 1 requires only the throwing of exception, 
+whereas Alternative 2 would require the removal of ```Meeting``` from ```MeetingList```.<br><br>
+
+![EditContact](images/EditContact_checkvalid.png)<br>
+
+The figure above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
+edit is done before editSchedule() of `Contact` is called. (Fig. 1)
+1. This path is optional, and is only implemented if `Contact` the main user.
+2. `CommandHandler` calls isValidEdit(time slot) of the `Contact` class.
+
+3. isValidEdit(time slot) uses the `Contact`'s schedule to check any of the time blocks within the time slot is a
+    "meeting" time block. 
+4. If no  "meeting" time block is detected within the time slot, the edit is valid. The program continues running and 
+    editSchedule() will be called.
+5. If a  "meeting" time block is detected within the time slot, the edit is invalid. An invalid exception is thrown by 
+    `Contact`, and the user will be informed that the edit is invalid.
+    
+    NOTE: `TextUI` and `Exception` classes which are used in generating the exception, and displaying the exception message
+    to the user are omitted to keep the sequence diagram concise.
+    
 ### 3.6 Delete a scheduled meeting
 
 ### 3.7 Delete a member
