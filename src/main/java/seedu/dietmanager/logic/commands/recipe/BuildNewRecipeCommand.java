@@ -89,8 +89,8 @@ public class BuildNewRecipeCommand extends Command {
                     + "Second parameter is activity level, choose from -- low/moderate/high.";
         } else {
             if (maxNumOverflow) {
-                this.resultString = "We support at most 4 kinds of food in a meal, "
-                        + "otherwise it's not good for your health!\n\n";
+                this.resultString = "We support at most 3 kinds of food in a meal, "
+                        + "otherwise it's easy to overtake calories and not good for your health!\n\n";
             }
             this.resultString += RecipeManager.getInstance().getRecipe();
         }

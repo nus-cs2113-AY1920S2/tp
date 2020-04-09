@@ -34,6 +34,26 @@ public class StorageParser {
     }
 
     /**
+     * Validates the recipe storage data and parsing it into a valid description array.
+     *
+     * @param recipeDataLine the recipe data description.
+     * @return description in standard form.
+     * @throws InvalidFormatException if storage data has the wrong description format.
+     * @throws NullPointerException if storage data generates a null value.
+     */
+
+    public static String[] parseRecipeDataLine(String recipeDataLine)
+            throws InvalidFormatException, NullPointerException {
+        int argumentsRequired = 4;
+        String[] descriptionArray = recipeDataLine.trim().split("\\s+",argumentsRequired);
+        if (descriptionArray.length != argumentsRequired) {
+            throw new InvalidFormatException();
+        }
+        testAssertions(descriptionArray, argumentsRequired);
+        return descriptionArray;
+    }
+
+    /**
      * Validates the weightList storage data and parsing it into a valid weight list.
      *
      * @param weightListDataLine the weightList data description.

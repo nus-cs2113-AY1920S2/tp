@@ -264,13 +264,13 @@ public class DailyFoodRecord {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-70s", message);
+        message = String.format("%1$-90s", message);
 
         for (Food food : afternoon) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-130s", message);
+        message = String.format("%1$-170s", message);
 
         for (Food food : night) {
             message = message + food.getPair();
