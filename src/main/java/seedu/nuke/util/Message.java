@@ -76,7 +76,7 @@ public class Message {
 
     public static final String MESSAGE_HELP = "Here are valid commands and corresponding format:\n";
 
-    public static final String MESSAGE_TAG_ADDED = "Tag added!";
+    public static final String MESSAGE_TAG_ADDED = "Tag added!\n";
 
     public static final String MESSAGE_CATEGORY_EXCEED_LIMIT =
             "Sorry, the category name cannot exceed 15 characters.\n";

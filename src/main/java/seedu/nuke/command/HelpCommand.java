@@ -14,6 +14,7 @@ import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.DueCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
@@ -43,12 +44,13 @@ public class HelpCommand extends Command {
             AddTaskCommand.MESSAGE_USAGE,
             AddFileCommand.MESSAGE_USAGE,
             AddTagCommand.MESSAGE_USAGE,
-
+            "\n",
 
             DeleteModuleCommand.MESSAGE_USAGE,
             DeleteCategoryCommand.MESSAGE_USAGE,
             DeleteTaskCommand.MESSAGE_USAGE,
             DeleteFileCommand.MESSAGE_USAGE,
+            "\n",
 
             ListModuleCommand.MESSAGE_USAGE,
             ListCategoryCommand.MESSAGE_USAGE,
@@ -56,12 +58,15 @@ public class HelpCommand extends Command {
             ListFileCommand.MESSAGE_USAGE,
             // ListModuleTask.MESSAGE_USAGE,
             ListTaskSortedCommand.MESSAGE_USAGE,
+            DueCommand.MESSAGE_USAGE,
+            "\n",
 
             EditModuleCommand.MESSAGE_USAGE,
             EditCategoryCommand.MESSAGE_USAGE,
             EditTaskCommand.MESSAGE_USAGE,
             EditFileCommand.MESSAGE_USAGE,
             MarkAsDoneCommand.MESSAGE_USAGE,
+            "\n",
 
             ChangeDirectoryCommand.MESSAGE_USAGE,
             OpenFileCommand.MESSAGE_USAGE,
