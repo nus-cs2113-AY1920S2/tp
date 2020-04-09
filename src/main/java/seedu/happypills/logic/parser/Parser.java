@@ -1,5 +1,6 @@
 package seedu.happypills.logic.parser;
 
+import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.Command;
 import seedu.happypills.logic.commands.ExitCommand;
@@ -74,6 +75,7 @@ public class Parser {
         System.out.println(TextUi.DIVIDER);
         Scanner in = HappyPills.scanner;
         String reInput = in.nextLine();
+//        System.out.println(TextUi.DIVIDER);
         return reInput;
     }
 

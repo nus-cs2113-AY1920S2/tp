@@ -143,6 +143,7 @@ public class PatientParser extends Parser {
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = promptUser().trim();
+            System.out.println(TextUi.DIVIDER);
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
@@ -180,29 +181,6 @@ public class PatientParser extends Parser {
             }
         }
         return parseInput;
-    }
-
-    private static void updateInput(String[] parseInput, String[] updates) {
-        for (String update : updates) {
-            if (update.trim().startsWith("n") && parseInput[0].equalsIgnoreCase("")) {
-                parseInput[0] = update.substring(1).trim();
-            } else if (update.trim().startsWith("ic") && ((parseInput[1].equalsIgnoreCase(""))
-                    || !Checker.isValidNric(parseInput[1].trim()))) {
-                parseInput[1] = update.trim().substring(2).toUpperCase().trim();
-            } else if (update.trim().startsWith("p") && ((parseInput[2].equalsIgnoreCase("")
-                    || !Checker.isPositiveInteger(parseInput[2].trim())
-                    || !Checker.isValidPhoneNum(parseInput[2].trim())))) {
-                parseInput[2] = update.substring(1).trim();
-            } else if (update.trim().startsWith("dob") && (parseInput[3].equalsIgnoreCase("")
-                    || !Checker.isValidDate(parseInput[3].trim()))) {
-                parseInput[3] = update.trim().substring(3).trim();
-            } else if (update.trim().startsWith("b") && (parseInput[4].equalsIgnoreCase(""))
-                    || !Checker.isValidBloodType(parseInput[4].trim())) {
-                parseInput[4] = update.trim().substring(1).trim();
-            } else {
-                System.out.println(update);
-            }
-        }
     }
 
     /**

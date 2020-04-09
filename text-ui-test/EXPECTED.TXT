@@ -30,6 +30,7 @@ What can I do for you today, doctor?
     /n NAME
     To abort, enter "clear"
     =====================================================
+    =====================================================
         Are you sure all the listed details are correct?
         Name : Alice
         NRIC : S9876543G
@@ -81,6 +82,7 @@ What can I do for you today, doctor?
     /d DATE  (Format: DD/MM/YYYY)
     /t TIME (Format: HH:mm)
     To abort, enter "clear"
+    =====================================================
     =====================================================
     Please input your missing/incorrect detail listed below
     /sym SYMPTOMS
