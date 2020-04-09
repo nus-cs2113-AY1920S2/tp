@@ -319,6 +319,62 @@ to-do: add the sequence diagram
 
 ### 2. List Command  
 
+#### Overview  
+
+The **List** feature lists out *modules*, *categories* and *tasks* from the Module, Category and Task List respectively.   
+When the user first requests to execute the **list** command to list out directory by providing its name, the application will first filter for directories with matching names. From here, there are **three** possible outcomes:  
+
+1. There are **no** matches --  Nothing is listed out.
+2. There are matches -- The list of matches will be shown to the user.
+
+#### Feature Implementation  
+
+![Delete Command Class Diagram](images/List_Command_Class_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
+
+The `ListModuleCommand`, `ListCategoryCommand`, `ListTaskCommand`, `ListFileCommand`, `DueCommand`, `ListModuleTaskCommand`, `ListTaskSortedCommand` classes in the application facilitates this **list** feature. They are in charge of listing out *modules*, *categories*, *tasks*, *file*s, all *task*s at the specified time period, *task*s of *module* in ascending order of deadline and all undone *task*s sorted by deadline or priority respectively. <br>  
+
+As shown in the figure above, those seven classes each extends from the abstract `ListCommand` class.  They also [override](#) the ancestor `Command` class's `execute()` method, which role is to list out desired entries to the user. <br>
+
+
+
+The `ListCommand` class in turn extends the `FilterCommand` abstract class. The `FilterCommandClass` contains the following vital methods for filtering:  
+
+- `createFilteredModuleList()` -- Creates an `ArrayList` of the filtered *modules*.  
+- `createFilteredCategoryist()` -- Creates an `ArrayList` of the filtered *categories*.  
+- `createFilteredTaskList()` -- Creates an `ArrayList`of the filtered *tasks*.  
+
+Lastly, the `FilterCommand` class extends the abstract `Command` class that contains the `execute()` method to execute the actual **list** command.  
+
+#### Example Usage  
+
+The listing process for *modules*, *categories*, *tasks*, *file*s, all *task*s at the specified time period, *task*s of *module* in ascending order of deadline and all undone *task*s sorted by deadline or priority are similar. In this example, the listing process for *modules* will be illustrated as a series of steps.  <br>
+James is a user and wants to list out all of his *modules* with *moduleCode* begin with "CS". Assume that he has the current Module List: 
+
+```
++--------------------------------------------------------------------------------------------------+
+ NO |  MODULE CODE   |                                 MODULE TITLE                                 
++--------------------------------------------------------------------------------------------------+
+ 1  |     CS2101     |             Effective Communication for Computing Professionals              
+ 2  |    CS2113T     |              Software Engineering & Object-Oriented Programming              
+ 3  |     CS3230     |                      Design and Analysis of Algorithms                       
+ 4  |     CS3235     |                              Computer Security                               
+ 5  |    GEH1036     |                           Living with Mathematics                            
+ 6  |    IFS4103     |                         Penetration Testing Practice                         
++--------------------------------------------------------------------------------------------------+
+Total modules: 6
++--------------------------------------------------------------------------------------------------+
+```
+
+<br>
+James will first enter the command to list out *modules* with *moduleCode* begin with "CS":  
+	`lsm CS`  
+After the input is parsed as a **list module** command and executed, the `ListModuleCommand#execute()` will call `FilterCommand#createFilteredModuleList()` to create the filtered list of *modules* containing the *Modules* with *moduleCode* begin with "CS". `ListModuleCommand#execute()` will then call its parent class's method `FilterCommand#sortModuleList(filteredModuleList)` to sort the *modules* by their respective moduleCode. And finally the sorted Arraylist of *Module*s is used to instantiate a CommandResult object and returned, and `ui#showResult(commandResult)` will be called to show the result to the user. And Listing process ends.
+
+Below is a *sequence diagram* to illustrate the above example scenario.  
+
+![Delete Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
 
 <br><br>
 
@@ -482,7 +538,7 @@ Shown below is the <i>sequence diagram</i> when a user executes the <b>change di
 <div>  
 The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specified by the user. User can choose whether to open a single <i>file</i> in the <i>task</i>, or <b>all</b> the <i>files</i> in the <i>task</i>.  
 </div>   
-  
+
 #### **Implementation**     
 <div>
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
@@ -519,7 +575,7 @@ Below is a<i>sequence</i> diagram of how the <b>open file</b> command operates:<
 <div>  
 The <b>info</b> command shows the information of the <i>current directory</i> that the user is in. For example, when in the <b>Module</b> directory, the <b>info</b> command will show the <i>module code</i>, <i>module title</i> and the <i>module</i>'s <i>category list</i> to the user.  
 </div>  
-  
+
 <br>
 
 #### **Implementation**     
