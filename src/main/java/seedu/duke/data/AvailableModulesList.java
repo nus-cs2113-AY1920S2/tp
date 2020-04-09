@@ -21,8 +21,6 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("ES1103", "English for Academic Purposes", 4, "ES1000"));
         availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals", 4));
         availableModulesList.add(new NewModule("CS2102", "Database Systems",4,"CS2030", "CS1231"));
-        //availableModulesList.add(new NewModule("CS2101", "Effective Communication for Computing Professionals", 4));
-        //availableModulesList.add(new NewModule("CS2102", "Database Systems",4, "CS2030", "CS1231"));
         availableModulesList.add(new NewModule("GEH1001", "Globalisation and New Media",4));
         availableModulesList.add(new NewModule("GEH1002", "Economic Issues in Dev World",4));
         availableModulesList.add(new NewModule("GEH1004", "Chinese Heritage: Hist & Lit",4));
@@ -33,7 +31,7 @@ public class AvailableModulesList extends ModuleList {
         availableModulesList.add(new NewModule("GET1003", "Home", 4));
         availableModulesList.add(new NewModule("GES1000", "Singapore Employment Law", 4));
         availableModulesList.add(new NewModule("GES1002", "Global EC Dimensions of S'pore", 4));
-        availableModulesList.add((new NewModule("GES1003", "Changing Landscapes of Singapore", 4)));
+        availableModulesList.add(new NewModule("GES1003", "Changing Landscapes of Singapore", 4));
 
 
         for (Module module: availableModulesList) {

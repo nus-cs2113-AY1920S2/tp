@@ -30,6 +30,16 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
         super.execute(selectedModulesList, availableModulesList);
     }
 
+    /**
+     * This method deletes the module from the list of available modules after chcecking that it exists in the list
+     * and that it is not a prerequisite of any modules.
+     * It also deletes the module from the module plan, if applicable.
+     * @param selectedModulesList The module plan of the user.
+     * @param availableModulesList The list of available modules to choose from.
+     * @throws RuntimeException Throws exception when the module does not exist or if the module is a prerequisite
+     *     of other modules.
+     */
+
     private void deleteModule(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
             throws RuntimeException {
         boolean isModuleAvailable = checkIfModuleAvailable(availableModulesList);

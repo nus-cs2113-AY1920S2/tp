@@ -207,9 +207,9 @@ It allows `ModuleManager` to delete a module from a `SemModulesList`.
 By doing so, the following operations are carried out:
 
 ##### Step 1:
-When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Parser`.
-`Parser` then returns a `DeleteFromSemCommand`, which calls 
-`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Controller`.
+`Controller` then returns a `DeleteFromSemCommand`, which calls 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
 `DeleteFromSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
 
 ##### Step 2:
@@ -229,7 +229,8 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram.png)
+![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/edit-DG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
+
 
 ### 4.2.1 `Delete from Available` feature
 
@@ -239,8 +240,40 @@ It allows `ModuleManager` to delete a module from a `AvailableModulesList`.
 By doing so, the following operations are carried out:
 
 ##### Step 1:
+When a user first inputs a `delete` command, eg. `delete id/CS1010`, this command is being parsed in `Controller`.
+`Controller` then returns a `DeleteFromAvailableCommand`, which follows to call 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`DeleteFromAvailableCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+##### Step 2:
+`DeleteFromAvailableCommand` then proceeds to call its own method `deleteModule(SemesterList selectedModulesList, 
+AvailableModulesList availableModulesList)`.
+In this method, it first calls another method `checkIfModuleAvailable(AvailableModulesList availableModulesList)`,
+which returns a `boolean` value about whether the module inputted is in the list of available modules to choose from.
+If the module is not found in the list of the available modules, it proceeds to throw a `RunTimeException`.
+
+##### Step 3:
+Or else, another method in `DeleleFromAvailableCommand`,
+`checkIfIsPreReq(Module moduleToCheck, AvailableModulesList availableModulesList)` is called.
+If the module selected is a prerequisite to other modules, it will throw a `RuntimeException`.
+
+##### Step 4:
+Or else, `DeleteFromAvailableCommand` then proceeds to call the method `Ui.showDeleteFromAvailableMessage(String module)`.
+This tells the user that the module has been deleted from the list of available modules.
+
+##### Step 5:
+It will call another method `checkIfInModulePlan(String moduleId, SemesterList selectedModulesList)`
+This checks if the module is in the user's module plan.
+If the module is in the user's module plan, the module will be deleted from the module plan.
+`DeleteFromAvailableCommand` will then proceed to call the 
+`Ui.showDeleteFromAvailableFollowUpMessage(String module)` method.
+This show the user that on top of deleting the module from the list of available modules,
+it has also been deleted from the user's module plan.
 
 
+The sequence diagram below shows the mechanics of `DeleteFromAvailableCommand`:
+
+![SequenceDiagram_DeleteFromAvailableCommand](https://github.com/chengTzeNing/tp/blob/edit-DG/docs/images/SequenceDiagram_DeleteFromAvailableCommand.png)
 
 
 ## 4.3 Searching
