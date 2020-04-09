@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="UTF-8">
     <title>Nuke User Guide v2.1</title>
@@ -64,8 +65,9 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. List your Modules [&#10149;](#a-list-your-modules)     
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. List your Categories [&#10149;](#b-list-your-categories)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. List your Tasks [&#10149;](#c-list-your-tasks)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted[&#10149;](#d-list-your-tasks-sorted)    
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Files[&#10149;](#e-list-your-files)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted by Deadline or Priority [&#10149;](#d-list-your-tasks-sorted-by-deadline-or-priority)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Tasks at Specified Time Period [&#10149;](#e-list-your-tasks-at-specified-time-period)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f. List your Files [&#10149;](#f-list-your-files)    
 &nbsp; &nbsp; &nbsp; &nbsp; **3. Delete** [&#10149;](#3-delete)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module Lists [&#10149;](#a-delete-modules-from-your-module-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category Lists [&#10149;](#b-delete-categories-from-your-category-lists)    
@@ -475,44 +477,52 @@ TODO: attach the screenshot here
 <br><br>
 
 ### **2. List**  
-Lists the _modules_, _categories_ or _tasks_ in their respective lists.<br>
+Lists filtered <i>modules</i>, <i>categories</i>, <i>tasks</i> or <i>files</i>. <br>
 
-Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for listing a directory: `ls`
+Similar to a Linux shell, <b>Nuke</b> has a generic command word for listing <i>child directories</i>: `ls`  
+<br>
+In the table below, you can find what `ls` does at each level of the Directory.
 
-Below sums up what `ls` does at each level of the Directory.
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic List Command</b></small></span></div>
 
-<div style="text-align: center"><span style="color: green"><small>Table <b>Generic List</b></small></span></div>
+| Current Level   | What Happens?                                                           |  
+|:---------------:|-------------------------------------------------------------------------|  
+| <b>Root</b>     | `ls` shows all your <i>modules</i> in your <b>Module List</b><br>`ls <module code>` shows all the <i>categories</i> in the <b>Category List</b> of that <i>module</i>           |  
+| <b>Module</b>   | `ls` shows all your <i>categories</i> in the <i>module</i>'s <b>Category List</b><br>`ls <category name>` shows all the <i>tasks</i> in the <b>Task List</b> of that <i>category</i> |  
+| <b>Category</b> | `ls` shows all your <i>tasks</i> in the <i>category</i>'s <b>Task List</b><br>`ls <task description>` shows all the <i>files</i> in the <b>File List</b> of that <i>task</i>        |  
+| <b>Task</b>     | `ls` shows all your <i>files</i> in the <i>task</i>'s <b>File List</b>  |  
+| <b>File</b>     | You cannot `ls` here! :frowning:                                        |  
 
-|  Current Level  | What Happens?                                                |
-| :-------------: | ------------------------------------------------------------ |
-|   <b>Root</b>   | `ls` list out all *module*s in your **Module List**<br>`ls <module code>` list out all *catetory*s in the **Category List** in the *module* |
-|  <b>Module</b>  | `ls` list out all the *category*s in your **Category List** in the current *module*.<br>`ls <category name>` list out all *task*s in the **Task List** in the *category* |
-| <b>Category</b> | `ls` list out all *task*s in the **Task List** in the current *category*<br>`ls <task description>` list out all files in the *task* |
-|   <b>Task</b>   | `ls` list out all files in the current *task*                |
-|   <b>File</b>   | You cannot `ls` here! :pensive:                              |
-
-The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
-
-#### a. List your Modules
-
-List all *module*s in your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the List Module command.
-
-##### Format  
-
-`lsm [keyword]` 
+The above commands have to be done in their corresponding directories. On the other hand, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-If keyword is provided, <code>lsm</code> will list out all modules with module code containing the keyword, otherwise, <code>lsm</code> will list out all modules.
-</div>
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+Both <b>List</b> commands <i>(with the exception of <b><a href="#d-list-your-tasks-sorted-by-deadline-or-priority">List your Tasks Sorted by Deadline or Priority</a></b> and <b><a href="#e-list-your-tasks-at-specified-time-period">List your Tasks at Specified Time Period</a></b>)</i> and <b><a href="#3-delete">Delete</a></b> commands function by first filtering the relevant items from the <i>keywords</i> that you provide. You can further choose to enter <code>-e</code> to filter using the <b><i>exact</i></b> <i>keyword</i>, and <code>-a</code> to filter across <b><i>all</i></b> the directories. <br>  
+For more information on how filtering is done, see <a href="#how-does-the-filtering-process-works">here</a>.
+</div>   
 
-##### Example Usage    
+[Back To Top](#table-of-contents)
+<br>  
 
+#### **a. List your Modules**
+`lsm` will show your filtered <i>module(s)</i> in your <b>Module List</b>.
+
+##### **Format**  
+`lsm [ <module keyword> -e -a ]`   
+
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+If the <code>module keyword</code> is provided, <code>lsm</code> will list out all <i>modules</i> with <i>module code</i> containing the  <code>module keyword</code>. Otherwise, it will show <b>all</b> your <i>modules</i>.
+</div>   
+
+##### **Example Usage**    
 ```
 lsm
 ```
 
-##### Expected Outcome 
+##### **Expected Outcome** 
 
 ![image-20200401011642619](images/ug_lsm.png)
 
@@ -520,32 +530,26 @@ lsm
 
 <br>
 
-#### b. List your Categories
-
-List all *category*s in your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the List Category command.
+#### **b. List your Categories**
+`lsc` will show your filtered <i>category(s)</i>.
 
 ##### Format  
+`lsc [ <category keyword> -m <module code> -e -a ]`  
 
-`lsc [ -m <module code> ]`  
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by    
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
 
-- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
 
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
-
-##### Example Usage
+##### **Example Usage**
 
 ```
 lsc -m cs2113t
 ```
-
 ```
 lsc
 ```
 
-##### Expected Outcome
+##### **Expected Outcome**
 
 ![image-20200401012031973](images/ug_lsc.png)
 
@@ -553,23 +557,18 @@ lsc
 
 <br>
 
-#### c. List your Tasks  
+#### **c. List your Tasks**  
+`lst` will show your filtered <i>task(s)</i>.
 
-List all the *task*s in your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the List Task command.
+##### **Format**  
+`lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]` 
 
-##### Format  
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by     
 
-```
-lst [ -m <module code> -c <category name>]
-```
-
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
-
-##### Example Usage 
-
+##### **Example Usage** 
 ```
 lst -m cs2113t -c Assignment
 ```
@@ -580,44 +579,127 @@ lst -c Assignment
 
 ```
 lst
+```  
+
+   
+##### **Expected Outcome**    
+![image-20200401012942212](images/ug_lst.png)
+
+[Back To Top](#table-of-contents)
+<br>
+
+
+#### **d. List your Tasks Sorted by Deadline or Priority**  
+
+`lsts` shows your <b>undone</b> <i>tasks</i>. By default, the <i>tasks</i> will be sorted by <i>deadline</i>, from the earliest to the latest <i>deadline</i>.  You may also specify in the command to sort your <i>tasks</i> by <i>priority</i> instead, in descending order of <i>priority</i>, by including the `-p` prefix. <br>
+Also, you can further choose to view the sorted <i>tasks</i> of a specific <i>module</i>. By default, this command will show you the sorted list of <b>all</b> your <i>tasks</i>. You can enter the `module code` to view the sorted list of the <i>tasks</i> in that <i>module</i> instead.
+
+##### **Format**  
+`lsts [ <module code> -d -p (choose at most one; default -d) ]`   
+- `module code` -- The <i>module code</i> of the <i>module</i> for which its sorted list of <i>tasks</i> is to be shown
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Since the command sorts by <i>deadline</i> by default, you need <b>not</b> include the <code>-d</code> prefix if you want to sort your <i>tasks</i> by <i>deadline</i> &#128521;. <br>
+However, you must choose between sorting by <i>deadline</i> <i><u>or</u></i> by <i>priority</i>. Entering both <code>-d</code> <i><u>and</u></i> <code>-p</code> will cause an error message to be shown &#128552;. 
+</div>   
+
+##### **Example Usage**
+
+```
+lsts
 ```
 
-##### Expected Outcome    
-![image-20200401012942212](images/ug_lst.png)
+```
+lsts -p
+```
+```
+lsts cs2113 -p
+```
+
+##### Expected Outcome
+<small><u><b>Sort by Deadline</b></u></small>  
+![image-20200401012942212](images/ug_lsts_1.png)  
+<br>
+<small><u><b>Sort by Priority</b></u></small>   
+![image-20200401012942212](images/ug_lsts_2.png)  
+<br>  
+<small><u><b>Sort with Specified Module</b></u></small>   
+![lsts command sort by priority](images/lsts_priority.png)    
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-#### d. List your Files
+#### **e. List your Tasks at Specified Time Period**
+`due` filters through <b>all</b> your tasks according to a specified <i>time period</i>. <br>
 
-List all the *file*s in your **File List**. The **File List** contains all your added *file*s in the _task_ and can be viewed via the List File command.
+A <i>time period</i> is defined by an <u>optional</u> <i>time specifier (e.g. on, before, after)</i> and a <i>date</i>. If the <i>time specifier</i> is left out, the <i>time period</i> is set to be <b>on</b> the <i>date</i> itself.  <br>
 
-##### Format
-
-```
-lsf [ <file keyword> -m <module code> -c <category name> -e -a]
-```
+The filtered <i>tasks</i> are then shown as a list.
 
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-By default, <code>lsf</code> will list out <b>all</b> the matching files in the current directory and sub-directories. You need to include the <b>module code</b> if you wish to list out only the files in that <i>module</i>'s directory. Also, you need to include both <b>module code</b> and <b>category name</b> if you wish to list out only the files in that <i>category</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command. 
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+By default, only <b>undone</b> <i>tasks</i> will be shown. You can choose to include the <b>done</b> <i>tasks</i> as well by appending <code>-a</code> at the end of the command. <br>
+As a bonus, you can also filter for <b>overdue</b> <i>tasks</i>. Simply enter <code>due over</code> to do so! &#128521;
 </div>
 
-##### Example Usage 
+##### **Format**  
+`due <time specifier> <date> [ -a ]`  
+- `time specifier` -- The  <u>optional</u> <i>time specifier</i> to define the <i>time period</i> to filter the <i>tasks</i>   
+- `date` -- The <i>date</i> to define the <i>time period</i> to filter the <i>tasks</i>   
 
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>time specifier</code> and <code>date</code> that you provide must adhere to the set of <b>Nuke</b>'s accepted <b><a href="#date-formats">Date formats</a></b>.
+</div>
+
+##### **Example Usage**
+```
+due after sun -a
+```
+```
+due tdy
+```
+```
+due over
+```
+
+##### **Expected Outcome**  
+<small><u><b>With Time Specifier</b></u></small>  
+![due command with time specifier](images/due_timespec.png)    
+<br>  
+<small><u><b>Without Time Specifier</b></u></small>   
+![due command without time specifier](images/due_no_timespec.png)   
+<br>  
+<small><u><b>Overdue</b></u></small>   
+![due command overdue](images/due_over.png)   
+
+[Back To Top](#table-of-contents)   
+<br>  
+
+#### f. List your Files
+`lsf` will show your filtered <i>files(s)</i>.
+
+##### Format
+##### **Format**  
+`lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]`
+
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
+
+##### Example Usage 
 ```
 lsf -m cs2113t -c Assignment -t urgent assignment
 ```
-
 ```
-lsf -c Assignment -t urgent assignment
+lsf -c Assignment
 ```
-
 ```
 lsf -t urgent assignment
 ```
-
 ```
 lsf
 ```
@@ -627,118 +709,49 @@ lsf
 ![image-20200401012942212](images/ug_lsf_outcome.png)
 
 [Back To Top](#table-of-contents)
-
 <br>
 
 #### g. List Tags in your Task
+<big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>  
 
-Lists *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
+`lsg` shows *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
 
-```
-TODO: add the details and screenshots
-```
-
-
-
-#### f. List your undo tasks in sorted order  
-
-List all the undo *task*s in your **Task List**. The *task*s will be sorted in ascending order of `deadline` by default. User can also specify in the command to sort *task*s in descending order of `priority` by adding `-p` prefix.
-
-##### Format  
-
-```
-lsts [ -d -p (choose 1; default -d) ]
-```
-
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <code>-d</code> if you want to sort tasks in terms of <b>deadline</b>. You are supposed to choose only one prefix between <code>-d</code> and <code>-p</code>. 
-</div>
-
-##### Example Usage
-
-```
-lsts
-```
-
-```
-lsts -p
-```
-
-##### Expected Outcome
-
-![image-20200401012942212](images/ug_lsts_1.png)
-
-![image-20200401012942212](images/ug_lsts_2.png)
 
 [Back To Top](#table-of-contents)
 
-<br>
-
-#### g. List your tasks under specific module in sorted order 
-
-List all the *task*s in one of added *module*s. The *task*s will be sorted in ascending order of `deadline` by default.
-
-##### Format
-
-```
-lsmtd <module code>
-```
-
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> if you are currently in that <i>module</i>'s directory. Sepcifying a <b>module code</b> will make the command to list tasks in that <i>module</i>.
-</div>
-
-> **Note**: You need **not** include the `module code` if you are currently in that *module*'s directory. Sepcifying a `module code` will make the command to list tasks in that *module*.
-
-##### Example Usage
-
-```
-lsmtd
-```
-
-```
-lsmtd CS3235
-```
-
-##### Expected Outcome
-
-![image-20200401012942212](images/ug_lsmtd.png)
-
-[Back To Top](#table-of-contents)
 
 <br><br>
 
+
 ### **3. Delete**  
+
 Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i> or <i>files</i> from their respective lists.   
 You will be prompted to either enter `yes`  to confirm the deletion <i>or</i> `no` to abort the deletion after entering the <b>Delete</b> command.   
 <br>
 Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm`
 <br>
-Below sums up what `rm` does at each level of the Directory.   
+The table below shows you `rm` does at each level of the Directory.
 
-<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete</b></small></span></div>
+<div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete Command</b></small></span></div>
 
-| Current Level   | What Happens?                                                        |
-|:---------------:|----------------------------------------------------------------------|
-| <b>Root</b>     | `rm <module code>` deletes a *module* from the current directory     |
-| <b>Module</b>   | `rm <category name>` deletes a *category* from the current directory |
-| <b>Category</b> | `rm <task description>` deletes a *task* from the current directory  |
-| <b>Task</b>     | `rm <file name>` deletes a *file* from the current directory         |
-| <b>File</b>     | You cannot `rm` here! :grimacing:                                    |
-For Delete command, user will be prompted to confirm by entering `y` or `yes`  or to abort by entering `n` or `no` after entering the Delete command.
+| Current Level   | What Happens?                                                        |  
+|:---------------:|----------------------------------------------------------------------|  
+| <b>Root</b>     | `rm <module code>` deletes a *module* from the current directory     |  
+| <b>Module</b>   | `rm <category name>` deletes a *category* from the current directory |  
+| <b>Category</b> | `rm <task description>` deletes a *task* from the current directory  |  
+| <b>Task</b>     | `rm <file name>` deletes a *file* from the current directory         |  
+| <b>File</b>     | You cannot `rm` here! :grimacing:                                    |  
 
 The above commands have to be done in their corresponding directories. However, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
+<i class="fa fa-info"></i> <b>Info</b> <br> 
 Just like the <b><a href="#2-list">List</a></b> commands, the <b>Delete</b> command works by first filtering the relevant items from the <i>keywords</i> that you provide. You can further choose to enter <code>-e</code> to filter to the <b><i>exact</i></b> <i>keyword</i>, and <code>-a</code> to filter across <b><i>all</i></b> the directories. <br>  
 For more information on how filtering is done, see <a href="#how-does-the-filtering-process-works">here</a>.  <br>
 <br>
 If there are <b>multiple</b> matches after filtering, you will receive a further prompt to let you choose which items you want to delete.
 </div>   
-
+  
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of your current <i>directory</i>'s <i>parent directories</i>. Doing so will result in an error message to be shown &#128543;. 
@@ -751,46 +764,37 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 `delm` deletes <i>module(s)</i> from your <b>Module Lists</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.
 
 ##### **Format**
-`delm <module keyword> [ -e -a ]` 
-
-![image-20200401015356560](images/ug_delm_outcome.png)
+`delm <module keyword> [ -e -a ]`  
 
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by    
 
-##### **Example Usage and Expected Outcome**
-<small><u><b>Single Deletion</b></u></small>  
-
+##### **Example Usage**
 ```
 delm cs2113t
 ```
+```
+delm cs
+```
 
-###### **Expected Outcome**
-
+##### **Expected Outcome**
+<small><u><b>Single Deletion</b></u></small>   
 ![delm command single delete](images/ug_delm_outcome.png)
 
-###### **Before**:
-
+<small><b>Before</b></small>   
 ![image-20200401015356560](images/ug_delm_before.png)
 
-###### **After**:
-
+<small><b>After</b></small>   
 ![image-20200401015411123](images/ug_delm_after.png)
 
 <br>  
 <small><u><b>Multiple Deletion</b></u></small>   
 
-```
-delm cs
-```
+![delm command multiple delete](images/delm_many.png)   
 
-![delm command multiple delete](images/delm_many.png)  
 
 [Back To Top](#table-of-contents)
-
-
-
 <br>
-=======
+
 #### **b. Delete Categories from your Category Lists**   
 `delc` deletes <i>category(s)</i> from your <b>Category Lists</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.   
 
@@ -800,137 +804,99 @@ delm cs
 - `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
 - `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by 
 
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
-
-##### **Example Usage and Expected Outcome**    
-<small><u><b>Single Deletion</b></u></small>  
-
+##### **Example Usage**    
 ```
 delc Tutorial
 ```
+```
+delc lec -a
+```
 
 ###### Expected Outcome
+<small><u><b>Single Deletion</b></u></small>  
+![delc command single delete](images/ug_delc_outcome.png)   
 
-![delc command single delete](images/ug_delc_outcome.png)
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_delc_before.png)   
 
-###### Before:
-
-![delc command single delete](images/ug_delc_before.png)
-
-###### After:
-
-![delc command single delete](images/ug_delc_after.png)
-
+<small><b>After</b></small>   
+![delc command single delete](images/ug_delc_after.png)  
 <br>  
 <small><u><b>Multiple Deletion</b></u></small>   
-![delc command multiple delete](images/delc_many.png)  
+![delc command multiple delete](images/delc_many.png)   
 
 [Back To Top](#table-of-contents)
-
 <br>
 
 #### **c. Delete Tasks from your Task Lists**     
 `delt` deletes <i>task(s)</i> from your <b>Task Lists</b>. The <b>Task List</b> contains all your added <i>tasks</i> of a <i>category</i> and can be viewed via the [<b>List Task</b>](#c-list-your-tasks) command.   
 
-- `task description` -- The _description_ of the _task_
-- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added
-- `category name` -- The _name_ of the _category_
+##### **Format**  
+`delt <task keyword> -m <module keyword> -c <category keyword> [ -e -a ]`  
 
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
 
-> **Note**: You need **not** include the `module code` if you are currently in that _module_'s directory. Also, you need **not** include both `module code` and `category name`  if you are currently in that _category_'s directory. You can move to the  the respective directories via the [Change Directory](#6-change-directory) Command. 
 
-##### Example Usage    
-
+##### **Example Usage**    
 ```
 delt urgent assignment -m cs2113t -c Assignment
 ```
 ```
-delt urgent assignment -c Assignment
+delt assignment -c Assign
 ```
 ```
 delt urgent assignment
 ```
 
-##### Expected Outcome
-
+##### **Expected Outcome**  
 ![image-20200401020857605](images/ug_delt_outcome.png)
 
-##### Before:
-
+<small><b>Before</b></small>  
 ![image-20200401020857605](images/ug_delt_before.png)
 
-##### After:
-
+<small><b>After</b></small>  
 ![image-20200401021025877](images/ug_delt_after.png)
 
 [Back To Top](#table-of-contents)
-
 <br>
 
-#### d. Delete Files from your Task File List  
+#### **d. Delete Files from your Task File List**  
 
 `delf` deletes a _file_ from your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
 
-##### Format  
+##### **Format**  
+`delf <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> [ -e -a ]`  
 
-`delf <file name> -m <module code> -c <category name> -t <task description> [ -e -a ]`  
+- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
 
-- `file name` -- The _name_ of the _file_  
-- `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
-- `category name` -- The _name_ of the   _category_  
-- `task decription` -- The _description_ of the _task_  
-- `-e` to filter for exact keywords
-- `-a` to filter across ALL your files
-
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
-
-##### Example Usage
-
+##### **Example Usage**
 ```
-delf textbook.pdf -m CS2113t -c Assignment -t urgent assignment
+delf -m cs2113 -t tp
+```
+```
+delf diag -a
 ```
 
-```
-delf textbook.pdf -c Assignment -t urgent assignment
-```
+##### **Expected Outcome**   
+<small><u><b>Have Matches</b></u></small>  
+![delf command match](images/delf_many.png)    
+<br>  
+<small><u><b>No Matches</b></u></small>   
+![delf command no match](images/delf_none.png)    
 
-```
-delf textbook.pdf -t urgent assignment
-```
-
-```
-delf textbook.pdf
-```
-
-##### Expected Outcome
-
-![image-20200331000315462](images/ug_delf_outcome.png)
-
-##### Before:
-
-![image-20200331000315462](images/ug_delf_before.png)
-
-#### After:
-
-![image-20200331000315462](images/ug_delf_after.png)
 
 [Back To Top](#table-of-contents)
-
 <br>
 
-#### e. Delete Tags from your Task
+#### **e. Delete Tags from your Task**
+<big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>  
 
-Deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command, which will be implemented in the future).
+`delg` deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command).
 
 ##### Format  
 
@@ -941,80 +907,21 @@ Deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all y
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
 
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
-
 ##### Example Usage
-
 ```
 delg urgent -m CS2113t -c Lab -t tp
 ```
-
 ```
 delg urgent -c Lab -t tp
 ```
-
 ```
 delg urgent -t tp
 ```
-
 ```
 delg urgent
 ```
 
-##### Expected Outcome
-
-```
-TODO: screenshot to be attached here
-```
-
 [Back To Top](#table-of-contents)
-
-<br><br>
-=======
-##### **Format**  
-`delt <task keyword> -m <module keyword> -c <category keyword> [ -e -a ]`  
-
-- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
-- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
-- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by   
-
-##### **Example Usage and Expected Outcome**    
-<small><u><b>Single Deletion</b></u></small>  
-![delt command single delete](images/delt_one.png)    
-<br>  
-<small><u><b>Multiple Deletion</b></u></small>   
-![delt command multiple delete](images/delt_many.png)  
-
-##### before:
-
-![image-20200401020857605](images/ug_delt_before.png)
-
-##### after:
-
-![image-20200401021025877](images/ug_delt_after.png)  
-
-
-#### **c. Delete Files from your File Lists**     
-`delf` deletes <i>files(s)</i> from your <b>File Lists</b>. The <b>File List</b> contains all your added <i>files</i> of a <i>task</i> and can be viewed via the [<b>List File</b>](#d-list-your-files) command.   
-
-##### **Format**  
-`delf <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> [ -e -a ]`  
-
-- `file keyword` -- The <i>keyword</i> to filter the <i>files'</i> <i>name</i> by       
-- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by     
-- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
-- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
->>>>>>> d2afbe939bbe14aec1b067b481f43c787ed2df87
-
-##### **Example Usage and Expected Outcome**    
-<small><u><b>Have Matches</b></u></small>  
-![delf command match](images/delf_many.png)    
-<br>  
-<small><u><b>No Matches</b></u></small>   
-![delf command no match](images/delf_none.png)    
 
 <br><br>  
 
@@ -1037,7 +944,12 @@ Similar to the <a href="#a-add-a-module-into-your-module-list"><b>Add Module</b>
 Also, ensure that you do not enter the same <code>new module code</code> as an existing <i>module</i> in the <b>Module List</b> &#128558;.
 </div>
 
-##### **Example Usage and Expected Outcome**     
+##### **Example Usage**   
+```
+edm cs2102 -m cs2101  
+```  
+  
+##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edm command correct](images/edm_correct.png)   
 <br>     
@@ -1047,7 +959,8 @@ Also, ensure that you do not enter the same <code>new module code</code> as an e
 <small><u><b>Invalid Module Code (Incorrect)</b></u></small>  
 ![edm command invalid module code](images/edm_invalid.png)   
 
-<br>  
+[Back To Top](#table-of-contents)
+<br>
 
 #### **b. Edit a Category in your Category List**  
 `edc` edits a <i>category</i> in your <b>Category List</b>. The <b>Category List</b> contains all your added <i>categories</i> of a <i>module</i> and can be viewed via the [<b>List Category</b>](#b-list-your-categories) command.
@@ -1066,7 +979,12 @@ You need to enter at least one of <code>new category name</code> and <code>new p
 In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, the <code>new priority</code> must be between 0 and 20 inclusive.
 </div>
 
-##### **Example Usage and Expected Outcome**     
+##### **Example Usage**   
+```
+edc Lab -m cs2113t -c Project -p 8 
+```  
+  
+##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edc command correct](images/edc_correct.png)  
 <br>     
@@ -1079,7 +997,8 @@ In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, 
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
 ![edc command nothing to edit](images/edc_empty.png)
 
-<br>  
+[Back To Top](#table-of-contents)
+<br> 
 
 #### **c. Edit a Task in your Task List**  
 
@@ -1103,7 +1022,12 @@ As with all <code>deadline</code> attribute, the <code>new deadline</code> must 
 In addition, the <code>new priority</code> should also be between 0 and 20 inclusive.
 </div>
 
-##### **Example Usage and Expected Outcome**     
+##### **Example Usage**   
+```
+edt tp -d sat 2359 -p 20
+```  
+  
+##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edt command correct](images/edt_correct.png)    
 <br>     
@@ -1119,6 +1043,9 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
 ![edt command nothing to edit](images/edt_empty.png)
 
+[Back To Top](#table-of-contents)
+<br>
+
 #### **d. Edit a File in your File List**  
 
 `edf` edits a <i>file</i> in your <b>File List</b>. The <b>File List</b> contains all your added <i>files</i> of a <i>task</i> and can be viewed via the [<b>List File</b>](#d-list-your-files) command.
@@ -1132,14 +1059,20 @@ In addition, the <code>new priority</code> should also be between 0 and 20 inclu
 - `task description` -- The <i>description</i> of the <i>task</i> containing the <i>file</i> to be edited      
 - `new file name` -- The <u>new</u> <i>name</i> of the <i>file</i>      
 
-##### **Example Usage and Expected Outcome**     
+##### **Example Usage**    
+```
+edf math report -f math report draft
+```
+
+##### **Expected Outcome**      
 <small><u><b>Correct Edit</b></u></small>  
 ![edf command correct](images/edf_correct.png)   
 <br>     
 <small><u><b>Duplicate File (Incorrect)</b></u></small>  
 ![edf command duplicate file](images/edf_exist.png)  
 
-<br><br>  
+[Back To Top](#table-of-contents)
+<br>
 
 #### **e. Mark a Task as Done**  
 
@@ -1165,6 +1098,8 @@ If the <i>task</i> was <b>already done</b>, and you execute the command, you wil
 <br>     
 <small><u><b>Done an Already Done Task</b></u></small>  
 ![done command already](images/done_already.png)
+
+[Back To Top](#table-of-contents)
 
 <br><br>  
 
@@ -1192,6 +1127,8 @@ However, attempting to traverse ahead of the <b>Root</b> Directory (first direct
 <small><u><b>Incorrect Traversal</b></u></small>
 ![cd down command incorrect](images/cd_down_incorrect.png)    <br>
  ![cd up command incorrect](images/cd_up_incorrect.png)   
+ 
+[Back To Top](#table-of-contents)
 
 <br><br>
 
@@ -1219,6 +1156,8 @@ To open a single <i>file</i>, enter its <code>file name</code>. <bR>Otherwise, i
 <small><u><b>Opening at Task Level</b></u></small>  
  ![open file command task level](images/open_task_level.png) 
 
+[Back To Top](#table-of-contents)
+
 <br><br>
 
 ### **7. Info**  
@@ -1232,7 +1171,9 @@ For example, on the <b>Module</b> directory, the <b>Info</b> command will displa
 ##### **Example Usage and Expected Outcome**    
 ![info command](images/info.png)
 
-<br><br>
+[Back To Top](#table-of-contents)
+
+<br><br>  
 
 ### **8. Undo** 
 `undo` undoes a <i>change</i> made to the application.  
@@ -1259,7 +1200,9 @@ Also, do note that attempting to undo when no changes were made will result in a
 <small><b><u>Incorrect Undo</u></b></small>
 ![undo command incorrect](images/undo_incorrect.png)  
 
-<br><br>
+[Back To Top](#table-of-contents)
+
+<br><br>  
 
 ### **9.Redo** 
 `redo` redoes the change made by an earlier <b>[Undo](#8-undo)</b> command.
@@ -1281,7 +1224,9 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 <small><u><b>Incorrect Redo</b></u></small>
 ![redo command incorrect](images/redo_incorrect.png)  
 
-<br>
+[Back To Top](#table-of-contents)
+
+<br><br>  
 
 <hr>
 
@@ -1290,12 +1235,14 @@ Also, do note that attempting to redo when you are at the newest state <i>(i.e. 
 ### **Help**  
 In the event that you ever forget the usage of a command, you can look it up within the **Nuke** application itself. All you need to do is to enter the *keyword* `help` to show a command summary of all the available commands in <b>Nuke</b>.     
 
+[Back To Top](#table-of-contents)
 <br>  
 
 ### **Exiting the Nuke Program**  
 Exiting the **Nuke** program is simple. Simply enter `bye` to exit.  
 Upon exiting, the program will [save](#saving) your entire Directory List into a file in your device.  
 
+[Back To Top](#table-of-contents)
 <br>  
 
 ### **Loading and Saving**  
@@ -1307,6 +1254,7 @@ Loading is done once you start up the **Nuke** program. The data from the saved 
 #### **Saving**  
 Saving is done upon executing each of your commands in the **Nuke** program. Your Directory List will be saved into a *directory list file* in your device.    
 
+[Back To Top](#table-of-contents)
 <br>  
 
 ### **Date Time Formats**  
@@ -1343,6 +1291,9 @@ An **exhaustive** list of the standard *date* formats is given below for your re
 ```
 > **Info**: `d` represents the **day** of the date. `M` represents the **month** of the date. `y` represents the **year** of the date.  
 
+[Back To Top](#table-of-contents)
+<br>
+
 #### **Time Formats**  
 The **Nuke** program accepts most time formats that are represented with **numbers**, **delimiter symbols** and <u>optional</u> **am-pm markers**.    
     
@@ -1359,11 +1310,25 @@ An **exhaustive** list of the *time* formats is given below for your reference.
  ha, Ha, H
 ```
  > **Info**: `H` and `h` represents the **hour** for the 24-h and 12-h time format respectively. `m` represents the **minute**. `a` represents the **am-pm markers**.  
-
+ > 
+[Back To Top](#table-of-contents)
 <br>
+
+#### **Time Specifier Formats**
+The <i>time specifier</i> is used in conjunction with a <i>date</i> to define the <i>time period</i> for the <b>[Due](#e-list-your-tasks-at-specified-time-period)</b> command. The following words are considered valid <i>time specifiers</i> in the <b>LumiChat</b> program.  
+- `on` -- <u>on</u> the specified  <i>date</i>  
+- `after` or `a` -- <u>after</u> the specified  <i>date</i>  
+- `before` or `b` -- <u>before</u> the specified  <i>date</i>
+
+The <i>time specifier</i> is <u>optional</u> and if omitted, is set to `on`.    
+  
+[Back To Top](#table-of-contents)   
+<br><br>
 <hr>
 
 ## **Command Summary**
+
+
 
 <br>
 <hr>

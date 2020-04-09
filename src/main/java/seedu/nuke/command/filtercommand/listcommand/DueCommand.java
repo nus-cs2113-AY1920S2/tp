@@ -26,6 +26,12 @@ import static seedu.nuke.util.Message.MESSAGE_SHOW_LIST;
 public class DueCommand extends ListCommand {
     public static final String COMMAND_WORD = "due";
     public static final String FORMAT = "due [ on/before/after ] <date> [ -a ]  OR  due over [ -a ]";
+    public static final String MESSAGE_USAGE = String.format(
+            "%s - List all tasks at the specified time period; or overdue tasks\n"
+            + "Note: -a to include all tasks (default only undone tasks)\n"
+            + "Format: %s\n"
+            + "Example: due after monday\tdue over\n",
+            COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)+)"
             + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
