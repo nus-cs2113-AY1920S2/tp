@@ -267,7 +267,7 @@ Ingredient pepper successfully added!
 
 Input next command:
 
-============================================================================================================================
+
 Please note that there are other similar ingredient names in the stock.
 
 You are currently adding: 'PePPer'
@@ -276,12 +276,12 @@ Here are the ingredients in the stock with similar names:
 pepper
 
 You may want to remove the unwanted ingredient names if it is a duplicate.
-============================================================================================================================
+
 Ingredient PePPer successfully added!
 
 Input next command:
 
-============================================================================================================================
+
 Please note that there are other similar ingredient names in the stock.
 
 You are currently adding: 'PEPPER'
@@ -291,7 +291,7 @@ pepper
 PePPer
 
 You may want to remove the unwanted ingredient names if it is a duplicate.
-============================================================================================================================
+
 Ingredient PEPPER successfully added!
 
 Input next command:
@@ -472,16 +472,16 @@ There is no ingredient that matches the keyword given.
 Input next command:
 
 Here are the ingredients in the stock that matches the keyword:
-============================================================================================================================
+
 1. [0][$0.40] greenie
-============================================================================================================================
+
 
 Input next command:
 
 Here are the ingredients in the stock that matches the keyword:
-============================================================================================================================
+
 1. [1][$0.40] toxic greens
-============================================================================================================================
+
 
 Input next command:
 

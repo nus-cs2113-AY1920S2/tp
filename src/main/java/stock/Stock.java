@@ -1,5 +1,9 @@
 package stock;
 
+import exceptions.IngredientNotFoundException;
+import ingredient.Ingredient;
+import utils.Pair;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,10 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import ingredient.Ingredient;
-import exceptions.IngredientNotFoundException;
-import utils.Pair;
 
 /**
  * This class encapsulates all information of the ingredient
@@ -113,13 +113,11 @@ public class Stock {
             System.out.println("There is nothing in the stock currently.");
         } else {
             System.out.println("Here are the ingredients in the stock currently:");
-            System.out.println("============================================================"
-                    + "================================================================");
+            System.out.println("");
             
             printStock();
             
-            System.out.println("============================================================"
-                    + "================================================================");
+            System.out.println("");
             System.out.println("All ingredients listed successfully!"); 
         }
     }
@@ -144,8 +142,7 @@ public class Stock {
      */
     private void printSearchResult(String keyword) {
         System.out.println("Here are the ingredients in the stock that matches the keyword:");
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
     
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
         
@@ -175,8 +172,7 @@ public class Stock {
             } 
         }
 
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
     }
     
     /**
@@ -212,9 +208,7 @@ public class Stock {
         if (tempList.size() <= 1) {
             return;
         } else if (checkIngredientInStock(ingredientNameToCheck)) {
-            String outputMessage = "============================================================" 
-                    + "================================================================"
-                    + ls;
+            String outputMessage = ls;
             
             outputMessage += ("Please note that there are other similar ingredient names in the stock."
                     + ls
@@ -241,9 +235,7 @@ public class Stock {
             outputMessage += (ls
                     + "You may want to remove the unwanted ingredient names if it is a duplicate.");
             
-            outputMessage += (ls
-                    + "============================================================"
-                    + "================================================================");
+            outputMessage += (ls);
             
             System.out.println(outputMessage);
         }
