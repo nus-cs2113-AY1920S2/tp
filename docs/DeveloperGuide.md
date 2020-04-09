@@ -460,11 +460,11 @@ Deletion process ends.
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
 ![Delete Command Sequence Diagram](images/Delete_Command_Sequence_Diagram.png)
-<span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram</b></i></small></span>
+<span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram</b></i></small></span>    
 
 <br><br>
 
-### 3. ...
+### 4. Edit Command
 ```
 	// To do implementaitons for other features
 ```
