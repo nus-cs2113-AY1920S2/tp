@@ -49,9 +49,9 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 ## **Table of Contents**  
 
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>   
-<br> <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>
+<br> <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>   
 <br> <big style="color: green"> **General Usage** [&#10149;](#general-usage)  </big>   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Nuke Structure** [&#10149;](#user-stories)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Nuke Structure** [&#10149;](#nuke-structure)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Command Format** [&#10149;](#command-format)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Command Prefixes** [&#10149;](#command-prefixes)   
 <br> <big style="color: green">**Features** [&#10149;](#features)  </big>      
@@ -60,6 +60,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Add a Category into your Category List [&#10149;](#b-add-a-category-into-your-category-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Add a Task into your Task List [&#10149;](#c-add-a-task-into-your-task-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Add a File into your File List [&#10149;](#d-add-a-file-into-your-file-list)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. Add a Tag to your Task  [&#10149;](#e-add-a-tag-to-your-task)    
 &nbsp; &nbsp; &nbsp; &nbsp; **2. List** [&#10149;](#2-list)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. List your Modules [&#10149;](#a-list-your-modules)     
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. List your Categories [&#10149;](#b-list-your-categories)    
@@ -67,11 +68,13 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. List your Tasks Sorted by Deadline or Priority [&#10149;](#d-list-your-tasks-sorted-by-deadline-or-priority)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. List your Tasks at Specified Time Period [&#10149;](#e-list-your-tasks-at-specified-time-period)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f. List your Files [&#10149;](#f-list-your-files)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; g. List your Task's Tags [&#10149;](#g-list-your-tasks-tags)    
 &nbsp; &nbsp; &nbsp; &nbsp; **3. Delete** [&#10149;](#3-delete)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Delete Modules from your Module Lists [&#10149;](#a-delete-modules-from-your-module-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Delete Categories from your Category Lists [&#10149;](#b-delete-categories-from-your-category-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Delete Tasks from your Task Lists [&#10149;](#c-delete-tasks-from-your-task-lists)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Delete Files from your File Lists [&#10149;](#d-delete-files-from-your-file-lists)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. Delete Tags from your Task [&#10149;](#e-delete-tags-from-your-task)    
 &nbsp; &nbsp; &nbsp; &nbsp; **4. Edit** [&#10149;](#4-edit)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Edit a Module in your Module List [&#10149;](#a-edit-a-module-in-your-module-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Edit a Category in your Category List [&#10149;](#b-edit-a-category-in-your-category-list)    
@@ -92,6 +95,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Date Time Formats** [&#10149;](#date-time-formats)  
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -- Date Formats [&#10149;](#date-formats)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -- Time Formats [&#10149;](#time-formats)    
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -- Time Specifier Formats [&#10149;](#time-specifier-formats)    
 <br>  <big style="color: green"> **Command Summary** [&#10149;](#command-summary) </big>   
 <br>  <big style="color: green"> **FAQ** [&#10149;](#faq) </big>   
 
@@ -258,10 +262,10 @@ The above commands have to be done in their corresponding directories. Conversel
 <br>
 
 
-#### a. Add a Module into your Module List  
-`addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the [List Module command](#a-list-your-modules).
+#### **a. Add a Module into your Module List**  
+`addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the <b>[List Module command](#a-list-your-modules)</b>.
 
-##### Format  
+##### **Format**  
 `addm <module code>`  
 - `module code` -- The _module code_ of the   _module_  
 
@@ -269,33 +273,30 @@ The above commands have to be done in their corresponding directories. Conversel
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
 </div>
+
 ##### Example Usage
 
 ```
 addm cs2113t
 ```
 
-##### Expected Outcome
+##### **Expected Outcome**
+![addm command](images/addm.png)  
 
-![addm command](images/addm.png)
+<small><b>Before</b></small>   
+![image-20200330234001037](images/ug_addm_before.png)  
 
-
-##### Before:
-
-![image-20200330234001037](images/ug_addm_before.png)
-
-##### After:
-
-![image-20200330233926681](images/ug_addm_after.png)
+<small><b>After</b></small>   
+![image-20200330233926681](images/ug_addm_after.png)   
 
 [Back To Top](#table-of-contents)   
 
 <br>
 
-#### b. Add a Category into your Category List  
-`addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the [List Category](#b-list-your-categories) command.
+#### **b. Add a Category into your Category List**  
+`addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the <b>[List Category](#b-list-your-categories)</b> command.
 
-##### Format  
+##### **Format**  
 `addc <category name> -m <module code> [ -p <priority> ]`  
 
 - `category name` -- The _name_ of the   _category_
@@ -304,39 +305,33 @@ addm cs2113t
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>category name</code> <b>cannot </b> exceed <b>15</b> characters. &#128534; <br>
+
 The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to <b>0</b>.  
 </div>
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the  <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
-</div>
 
-##### Example Usage
+##### **Example Usage**
 ```
 addc Project -m cs2113t -p 3
 ```
 
 ##### Expected Outcome
+![addm command](images/ug_addc_outcome.png)   
 
-![addm command](images/ug_addc_outcome.png)
+<small><b>Before</b></small>   
+![image-20200331000048607](images/ug_addc_before.png)   
 
-
-##### Before:
-
-![image-20200331000048607](images/ug_addc_before.png)
-
-##### After:
-
-![image-20200331000110946](images/ug_addc_after.png)
+<small><b>After</b></small>   
+![image-20200331000110946](images/ug_addc_after.png)   
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-#### c. Add a Task into your Task List
-`addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the [List Task](#c-list-your-tasks) command.
+#### **c. Add a Task into your Task List**
+`addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the <b>[List Task](#c-list-your-tasks)</b> command.
 
-##### Format  
+##### **Format**  
 `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`  
 
 - `task description` -- The _description_ of the _task_  
@@ -344,130 +339,114 @@ addc Project -m cs2113t -p 3
 - `category name` -- The _name_ of the   _category_  
 - `deadline` -- The _deadline_ of the _task_  
 - `priority` -- A number indicating the  _priority_ of the _category_   
+
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br>The <code>deadline</code> provided consists of both a <i>date</i> and a <i>time</i>. The <code>deadline</code> provided must adhere to the set of accepted <b><a href = '#date-time-formats'>Date Time formats</a></b>.
-</div>
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory.You can move to the <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
+The <code>task description</code> <b>cannot </b> exceed <b>25</b> characters. &#128534; <br>
+The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br><br>
+The <code>deadline</code> provided consists of a <i>date</i>, followed by a <i>time</i>. If the <i>date</i> is omitted, <b>Nuke</b> will set it to the current date on your device. If <i>time</i> is omitted, <b>Nuke</b> will set it to be <b>11:59PM</b>. <br>
+The <code>deadline</code> provided must adhere to the set of accepted <b><a href = '#date-time-formats'>Date Time formats</a></b>. &#128529;
 </div>
 
-##### Example Usage    
-
+##### **Example Usage**    
 ```
 addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15
 ```
+##### **Expected Outcome**    
+![image-20200331000315462](images/ug_addt_outcome.png)  
 
-##### Expected Outcome    
+<small><b>Before</b></small>   
+![image-20200331000255994](images/ug_addt_before.png)  
 
-![image-20200331000315462](images/ug_addt_outcome.png)
-
-
-##### Before:
-
-![image-20200331000255994](images/ug_addt_before.png)
-
-##### After:
-
-![image-20200331000315462](images/ug_addt_after.png)
+<small><b>After</b></small>   
+![image-20200331000315462](images/ug_addt_after.png)   
 
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-#### d. Add a File into your Task File List  
-`addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
+#### **d. Add a File into your File List**  
+`addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the <b>[List File](#d-list-your-files)</b> command.
 
-##### Format  
-`addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`  
+##### **Format**  
+`addf [ <file name> ] -m <module code> -c <category name> -t <task description> -f <file path>`  
 
-- `file name` -- The _name_ of the _file_  
+- `file name` -- The _name_ of the _file_  <i>(optional)</i>
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
-- `file path` -- the **Absolute** _path_ of the _file_   
+- `file path` -- The **absolute** _path_ of the _file_   
+- 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-The <b>file path</b> provided must exist. Otherwise, an error message will be displayed. &#128543;
+The <code>file path</code> provided must exist. Otherwise, an error message will be displayed. &#128543; <br>
+Also, the <code>file name</code> <b>cannot</b> exceed <b>30</b> characters. &#128566;
 </div>
+
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.<br> The <b>file path</b> provided can be different from the real file name that is stored in the disk. 
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+The <code>file path</code> should be the <b>absolute</b> <i>path</i> of the <i>file</i>. For <b>Windows</b>, the <b>absolute</b> <i>path</i> will usually start as such: <code>C:\Users\...</code><br>  <br>
+The <code>file name</code> provided can be different from the real <i>file name</i> that is stored in the disk. <br>  
+You can choose to leave the <code>file name</code> blank. In this case, <b>Nuke</b> will set your <code>file name</code> to be the <i>name</i> of your <i>file</i> without the extension at the back. For example, <code>sample_file.pdf</code> will become <code>sample_file</code>.
 </div>
 
-##### Example Usage
-
+##### **Example Usage**
 ```
-addf textbook.pdf -m CS2113t -c Assignment -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook -m CS2113t -c Assignment -t urgent assignment -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
-
 ```
-addf textbook.pdf -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook.pdf -t urgent assignment -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
-
 ```
-addf textbook.pdf -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook.pdf -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
 
-##### Expected Outcome    
+##### **Expected Outcome**    
+![image-20200331000315462](images/ug_addf_outcome.png)  
 
-![image-20200331000315462](images/ug_addf_outcome.png)
+<small><b>Before</b></small>   
+![image-20200331000315462](images/ug_addf_before.png)  
 
-##### Before:
+<small><b>After</b></small>   
+![image-20200331000315462](images/ug_addf_after.png)   
 
-![image-20200331000315462](images/ug_addf_before.png)
-
-#### After:
-
-![image-20200331000315462](images/ug_addf_after.png)
 
 [Back To Top](#table-of-contents)
-
 <br>
 
-#### e. Add a Tag to your Task
+#### **e. Add a Tag to your Task**
 Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
 
-##### Format  
-`addg <tag info> -m <module code> -c <category name> -t <task description>`  
+##### **Format**  
+`addg <tag name> -m <module code> -c <category name> -t <task description>`  
 
-- `tag info` -- The _tag_ to be added  
+- `tag name` -- The <i>name</i> of the  _tag_ to be added  
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added  
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
 
-##### Example Usage
-
+##### **Example Usage**
 ```
 addg urgent -m CS2113t -c Lab -t tp
 ```
-
 ```
 addg urgent -t tp
 ```
-
 ```
 addg urgent
 ```
 
-##### Expected Outcome
+##### **Expected Outcome**
 
-![image-20200331000315462](images/ug_addg_outcome.png)
+![image-20200331000315462](images/ug_addg_outcome.png)  
 
-##### Before:
-
+<small><b>Before</b></small>   
 ```
 TODO: attach the screenshot here
 ```
-
-##### After:
-
+  
+<small><b>After</b></small>   
 ```
 TODO: attach the screenshot here
 ```
@@ -857,7 +836,7 @@ delt urgent assignment
 [Back To Top](#table-of-contents)
 <br>
 
-#### **d. Delete Files from your Task File List**  
+#### **d. Delete Files from your File List**  
 
 `delf` deletes a _file_ from your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
 
@@ -970,9 +949,11 @@ edm cs2102 -m cs2101
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-You need to enter at least one of <code>new category name</code> and <code>new priority</code>. If both are omitted, an error message would be shown! &#128555; <br>
+You need to enter at least one of <code>new category name</code> and <code>new priority</code>. If both are omitted, an error message would be shown! &#128555; <br><br>
+
+Similar to <code>category name</code>, the <code>new category name</code>  <b>cannot </b> exceed <b>15</b> characters. <br>
 In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, the <code>new priority</code> must be between 0 and 20 inclusive.
-</div>
+</div> 
 
 ##### **Example Usage**   
 ```
@@ -1012,8 +993,9 @@ edc Lab -m cs2113t -c Project -p 8
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  
-As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <b><a href="#date-time-formats">Date Time Formats</a></b>.<br>  
+You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  <br>
+The <code>new task description</code> <b>cannot </b> exceed <b>25</b> characters. <br>  
+As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <b><a href="#date-time-formats">Date Time Formats</a></b>. If the <i>date</i> is omitted, <b>Nuke</b> will set it to the current date on your device. If <i>time</i> is omitted, <b>Nuke</b> will set it to be <b>11:59PM</b>. <br><br>
 In addition, the <code>new priority</code> should also be between 0 and 20 inclusive.
 </div>
 
@@ -1053,6 +1035,11 @@ edt tp -d sat 2359 -p 20
 - `category name` -- The <i>name</i> of the <i>category</i> containing the <i>file</i> to be edited
 - `task description` -- The <i>description</i> of the <i>task</i> containing the <i>file</i> to be edited      
 - `new file name` -- The <u>new</u> <i>name</i> of the <i>file</i>      
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Similar to <code>file name</code>, the <code>new file name</code>  <b>cannot </b> exceed <b>30</b> characters. 
+</div>
 
 ##### **Example Usage**    
 ```
@@ -1231,7 +1218,7 @@ undo
 
 <br><br>  
 
-### **9.Redo** 
+### **9. Redo** 
 `redo` redoes the change made by an earlier <b>[Undo](#8-undo)</b> command.
 
 ##### **Format**  
@@ -1376,43 +1363,51 @@ A simple summary of the various commands are shown below:
 
 <div style="text-align: center"><span style="color: green"><small>Table <b>Command Summary</b></small></span></div>
 
-| Command<br>Word   | What and How?                                                                    |
-|:---------------:|---------------------------------------------------------------------------------|
-| [`mkdir`](#1-add)| Adds a new <i>child directory</i><br><b>Format</b>: `mkdir <directory name>`<br><b>Example</b>: `mkdir cs2113t` |
-| [`addm`](#a-add-a-module-into-your-module-list)     | Adds a new <i>module</i><br><b>Format</b>: `addm <module code>`<br><b>Example</b>: `addm cs2113t` |
-| [`addc`](#b-add-a--into-your-module-list)     | Adds a new <i>category</i><br><b>Format</b>: `addc <category name> -m <module code> [ -p <priority> ]`<br><b>Example</b>: `addc Project -m cs2113t -p 3` |
-| [`addt`](#a-add-a-module-into-your-module-list)     | Adds a new <i>task</i><br><b>Format</b>: `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`<br><b>Example</b>: `addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15` |
-| [`addf`](#a-add-a-module-into-your-module-list)     | Adds a new <i>file</i><br><b>Format</b>: `addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`<br><b>Example</b>: `addm cs2113t` |
-| [`addg`](#a-add-a-module-into-your-module-list)     | Adds a new <i>tag</i><br><b>Format</b>: `addg <tag name> -m <module code> -c <category name> -t <task description>` <br><b>Example</b>: `addg urgent -m CS2113t -c Lab -t tp` |
-| [`ls`](#2-list)| Shows the <i>child directories</i>; include <i>child directory name</i> to show it <i>child directories</i> instead<br><b>Format</b>: `ls [ <child directory name> ]`<br><b>Example</b>: `ls` &nbsp; &nbsp; `ls cs2113t` |
-| [`lsm`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>modules</i><br><b>Format</b>: `lsm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |
-| [`lsc`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |
-| [`lst`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |
-| [`lsts`](#a-add-a-module-into-your-module-list)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |
-| [`due`](#a-add-a-module-into-your-module-list) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |
-| [`lsf`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |
-| [`lsg`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |
-| [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |
-| [`delm`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>modules</i><br><b>Format</b>: `delm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |
-| [`delc`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>categories</i><br><b>Format</b>: `delc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `delc lec -a` |
-| [`delt`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>tasks</i><br><b>Format</b>: `delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `delt assignment -c Assign` |
-| [`delf`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>files</i><br><b>Format</b>: `delf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]` <br><b>Example</b>: `delf -m cs2113 -t tp` |
-| [`delg`](#a-add-a-module-into-your-module-list) | Deletes filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |
-| [`edm`](#a-add-a-module-into-your-module-list)  | Edits a <i>module</i><br><b>Format</b>: `edm <module code> -m <new module code>`<br><b>Example</b>: `edm cs2102 -m cs2101` |
-| [`edc`](#b-add-a--into-your-module-list)  | Edits a <i>category</i><br><b>Format</b>: `edc <category name> -m <module code> { -c <new category name> -p <new priority> }`<br><b>Example</b>: `edc Lab -m cs2113t -c Project -p 8` |
-| [`edt`](#a-add-a-module-into-your-module-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |
-| [`edf`](#a-add-a-module-into-your-module-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description> -f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |
-| [`done`](#a-add-a-module-into-your-module-list)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |
-| [`cd`](#a-add-a-module-into-your-module-list)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |
-| [`open`](#b-add-a--into-your-module-list)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name> -t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |
-| [`info`](#a-add-a-module-into-your-module-list)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |
-| [`undo`](#a-add-a-module-into-your-module-list)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |
-| [`redo`](#a-add-a-module-into-your-module-list)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |
-| [`help`](#a-add-a-module-into-your-module-list)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |
-| [`bye`](#a-add-a-module-into-your-module-list)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |
+
+| Command<br>Word   | What and How?                                                                    |  
+|:---------------:|---------------------------------------------------------------------------------|  
+| [`mkdir`](#1-add)| Adds a new <i>child directory</i><br><b>Format</b>: `mkdir <directory name>`<br><b>Example</b>: `mkdir cs2113t` |  
+| [`addm`](#a-add-a-module-into-your-module-list) | Adds a new <i>module</i><br><b>Format</b>: `addm <module code>`<br><b>Example</b>: `addm cs2113t` |  
+| [`addc`](#b-add-a-category-into-your-category-list)| Adds a new <i>category</i><br><b>Format</b>: `addc <category name> -m <module code> [ -p <priority> ]`<br><b>Example</b>: `addc Project -m cs2113t -p 3` |  
+| [`addt`](#c-add-a-task-into-your-task-list)     | Adds a new <i>task</i><br><b>Format</b>: `addt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `[ -d <deadline> -p <priority> ]`<br><b>Example</b>: `addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15` |   
+| [`addf`](#d-add-a-file-into-your-file-list)   | Adds a new <i>file</i><br><b>Format</b>: `addf <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <file path>`<br><b>Example</b>: `addm cs2113t` |  
+| [`addg`](#e-add-a-tag-to-your-task)     | Adds a new <i>tag</i><br><b>Format</b>: `addg <tag name> -m <module code> -c <category name> -t <task description>` <br><b>Example</b>: `addg urgent -m CS2113t -c Lab -t tp` |  
+| [`ls`](#2-list)| Shows the <i>child directories</i>; include <i>child directory name</i> to show it <i>child directories</i> instead<br><b>Format</b>: `ls [ <child directory name> ]`<br><b>Example</b>: `ls` &nbsp; &nbsp; `ls cs2113t` |  
+| [`lsm`](#a-list-your-modules)     | Shows filtered <i>modules</i><br><b>Format</b>: `lsm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
+| [`lsc`](#b-list-your-categories)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |  
+| [`lst`](#c-list-your-tasks)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |  
+| [`lsts`](#d-list-your-tasks-sorted-by-deadline-or-priority)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |  
+| [`due`](#e-list-your-tasks-at-specified-time-period) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |  
+| [`lsf`](#f-list-your-files)   | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |  
+| [`lsg`](#g-list-your-tasks-tags)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
+| [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |  
+| [`delm`](#a-delete-modules-from-your-module-lists) | Deletes filtered <i>modules</i><br><b>Format</b>: `delm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
+| [`delc`](#b-delete-categories-from-your-category-lists) | Deletes filtered <i>categories</i><br><b>Format</b>: `delc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `delc lec -a` |  
+| [`delt`](#c-delete-tasks-from-your-task-lists) | Deletes filtered <i>tasks</i><br><b>Format</b>: `delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `delt assignment -c Assign` |  
+| [`delf`](#d-delete-files-from-your-file-lists) | Deletes filtered <i>files</i><br><b>Format</b>: `delf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `delf -m cs2113 -t tp` | 
+| [`delg`](#e-delete-tags-from-your-task) | Deletes filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
+| [`edm`](#a-edit-a-module-in-your-module-list)  | Edits a <i>module</i><br><b>Format</b>: `edm <module code> -m <new module code>`<br><b>Example</b>: `edm cs2102 -m cs2101` |  
+| [`edc`](#b-edit-a-category-in-your-category-list)  | Edits a <i>category</i><br><b>Format</b>: `edc <category name> -m <module code>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -c <new category name> -p <new priority> }`<br><b>Example</b>: `edc Lab -m cs2113t -c Project -p 8` |  
+| [`edt`](#c-edit-a-task-in-your-task-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |   
+| [`edf`](#d-edit-a-file-in-your-file-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |  
+| [`done`](#e-mark-a-task-as-done)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |  
+| [`cd`](#5-change-directory)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |  
+| [`open`](#6-open-file)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |  
+| [`info`](#7-info)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |   
+| [`undo`](#8-undo)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |  
+| [`redo`](#9-redo)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |  
+| [`help`](#help)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |  
+| [`bye`](#exiting-the-nuke-program)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |  
 
 <br>
+[Back To Top](#table-of-contents)
+
+<br><br>  
+
 
 <hr>
 
 ## **FAQ**
+
+[Back To Top](#table-of-contents)
+
