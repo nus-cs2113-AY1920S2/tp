@@ -70,17 +70,17 @@ Oops! Invalid Command. Check if these are met:
 
 Enter command:
 
-Added this item: [0] apple $2.45 qty: 1
+Added this item: [X] apple $2.45 qty: 1
 NOTE: You have exceeded your budget by 2.45
 
 Enter command:
 
-Added this item: [0] banana $3.00 qty: 3
+Added this item: [X] banana $3.00 qty: 3
 NOTE: You have exceeded your budget by 11.45
 
 Enter command:
 
-Added this item: [0] cherry $5.60 qty: 2
+Added this item: [X] cherry $5.60 qty: 2
 NOTE: You have exceeded your budget by 22.65
 
 Enter command:
@@ -90,7 +90,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
+| 3. [X] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -101,7 +101,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
+| 3. [X] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -112,7 +112,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
+| 3. [X] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -123,7 +123,7 @@ Here are the matching items:
 +---------------+-------+-----+
 | Item          | Price | Qty |
 +---------------+-------+-----+
-| 3. [0] cherry | $5.60 | 2   |
+| 3. [X] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 
@@ -222,19 +222,19 @@ OOPS! I already have an item with that name. Perhaps try another description? :D
 
 Enter command:
 
-The item has been updated to: [0] lollipops $2.50 qty: 5
+The item has been updated to: [X] lollipops $2.50 qty: 5
 
 Enter command:
 
-The item has been updated to: [0] lollipops $1.00 qty: 5
+The item has been updated to: [X] lollipops $1.00 qty: 5
 
 Enter command:
 
-The item has been updated to: [0] lollipops $1.00 qty: 4
+The item has been updated to: [X] lollipops $1.00 qty: 4
 
 Enter command:
 
-The item has been updated to: [0] candies $5.00 qty: 4
+The item has been updated to: [X] candies $5.00 qty: 4
 
 Enter command:
 Please provide a single numerical index number!
@@ -257,7 +257,7 @@ Please provide a single numerical index number!
 Enter command:
 
 Yes! I've unmarked this item as bought:
-[0] candies $5.00 qty: 4
+[X] candies $5.00 qty: 4
 
 
 Enter command:
@@ -287,7 +287,7 @@ Example: DEL 3
 Enter command:
 
 Got it! I have removed the following item:
-[0] candies $5.00 qty: 4
+[X] candies $5.00 qty: 4
 
 Enter command:
 
@@ -357,7 +357,7 @@ Your shopping list:
 | Item          | Price | Qty |
 +---------------+-------+-----+
 | 1. [B] banana | $3.00 | 3   |
-| 2. [0] cherry | $5.60 | 2   |
+| 2. [X] cherry | $5.60 | 2   |
 +---------------+-------+-----+
 
 Budget:           $500.00

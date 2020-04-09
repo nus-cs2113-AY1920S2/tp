@@ -157,7 +157,7 @@ This section will describe how the main features of the application are implemen
 #### 3.2.1 Current implementation
 
 The edit feature is implemented using an <code>EditCommand</code> class. This class extends from the main
-<code>Command</code> class. The <code>item</code> object to be edited is identified by the index number provided 
+<code>Command</code> class. The <code>Item</code> object to be edited is identified by the index number provided 
 in the user input. In addition to the index number, the user input **must also contain at least one** of these parameters: 
 *description*, *price*, *quantity*. 
 
@@ -167,10 +167,10 @@ The process is as follows:
 2. A <code>Parser</code> object is created.
 3. <code>Duke</code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
 4. <code>Duke</code> class then calls the <code>EditCommand#execute()</code> method.
-5. In the <code>EditCommand#execute()</code> method, it first gets the <code>item</code> object through the
+5. In the <code>EditCommand#execute()</code> method, it first gets the <code>Item</code> object through the
 <code>ShoppingList#getItem()</code>. The original description / price / quantity of the item is overwritten 
 with the new values from the user input. This is done through the use of the <code>Item</code> class setter methods.
-6. The <code>item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
+6. The <code>Item</code> object with its' new values is stored back to the <code>ShoppingList</code> object.
 
 The following sequence diagram below shows how the edit feature works. The details of updating the items' values
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
@@ -194,7 +194,7 @@ have been omitted from the diagram. Those details are shown in a separate sequen
     presence of the variable in user input.
  
  
-- Alternative 2: Require all values of an <code>item</code> object to be updated and parameters must be in alphabetical
+- Alternative 2: Require all values of an <code>Item</code> object to be updated and parameters must be in alphabetical
 order.
   - Pros: Will have less code to deal with having no additional parsing of the input string.
   
