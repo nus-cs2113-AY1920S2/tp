@@ -13,7 +13,7 @@ activate CommandHandler
 alt edit
 CommandHandler->Contact:isValidEdit(slot)
 activate Contact
-CommandHandler<--Contact:valid
+CommandHandler<--Contact:valid edit
 deactivate Contact
 CommandHandler->Contact:editTimetable(slot)
 activate Contact
@@ -25,12 +25,12 @@ User<--LogicManager:
 else exception
 CommandHandler->Contact:isValidEdit(slot)
 activate Contact
-CommandHandler<--Contact:exception
+CommandHandler<--Contact:invalid edit exception
 deactivate Contact
 
 
-LogicManager<--CommandHandler:
+LogicManager<--CommandHandler:invalid edit exception
 deactivate CommandHandler
-User<--LogicManager:
+User<--LogicManager:inform user of invalid edit
 deactivate LogicManager
 end
