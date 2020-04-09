@@ -67,8 +67,7 @@ public class MeetingOrganizer {
         throws MoException, DateTimeParseException, NumberFormatException {
         String userCommand = userInputWords[0];
 
-        // TODO member's name can only be 1 word at the moment.
-        if (userInputWords.length == 2 && userInputWords[1].contains("http")) {
+        if (userInputWords.length == 2 && userInputWords[1].contains("nusmods.com")) {
             //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
             myLogicManager.addContact(userInputWords);
         } else {

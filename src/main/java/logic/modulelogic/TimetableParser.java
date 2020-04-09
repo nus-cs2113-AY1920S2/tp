@@ -2,11 +2,14 @@ package logic.modulelogic;
 
 import common.exception.InvalidUrlException;
 
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import static common.Messages.MESSAGE_BROKEN_NUSMODLINK;
 import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
@@ -41,18 +44,21 @@ public class TimetableParser {
 
 
     public String parse() {
-        assert nusmodsLink.contains("share?");
-        int strippedIndex = this.nusmodsLink.indexOf("share?");
-        String unparsedSemester = this.nusmodsLink.substring(0, strippedIndex);
-        String unparsedModules = this.nusmodsLink.substring(strippedIndex + 6);
-        assert nusmodsLink.contains("sem-1") || nusmodsLink.contains("sem-2");
-        if (unparsedSemester.contains("1")) {
-            this.semester = "1";
-        } else {
-            this.semester = "2";
+        try {
+            assert nusmodsLink.contains("share?");
+            int strippedIndex = this.nusmodsLink.indexOf("share?");
+            String unparsedSemester = this.nusmodsLink.substring(0, strippedIndex);
+            String unparsedModules = this.nusmodsLink.substring(strippedIndex + 6);
+            assert nusmodsLink.contains("sem-1") || nusmodsLink.contains("sem-2");
+            if (unparsedSemester.contains("1")) {
+                this.semester = "1";
+            } else {
+                this.semester = "2";
+            }
+            this.modulesMap = parseModules(unparsedModules);
+        } catch (IndexOutOfBoundsException e) {
+            return MESSAGE_BROKEN_NUSMODLINK;
         }
-        this.modulesMap = parseModules(unparsedModules);
-
         return MESSAGE_RETURN_SUCCESS;
     }
 
