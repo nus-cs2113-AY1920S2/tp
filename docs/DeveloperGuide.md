@@ -431,7 +431,7 @@ to parse the user input. Upon checking that it is an Appointment-related command
 
 	**Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
 	
-3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method. 
+3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method.  
 
 4. In `DeleteAppointmentCommand#execute()`, if the patient and/or appointment does not exist, the `HappyPillsException()` 
 will be thrown. Otherwise, `DeleteAppointmentCommand#execute()` will call `Storage#writeAllToFile()` and remove the 
