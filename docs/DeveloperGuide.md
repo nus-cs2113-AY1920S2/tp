@@ -510,15 +510,29 @@ This is done in the <code>ScreenShotManager</code> class by checking if the <b>u
 </div>    
 
 Below is a sequence diagram of the undo command in action: <br>   
-![undo command sequence diagram](images/dg_undo_seq.png)
+![undo command sequence diagram](images/dg_undo_seq.png)  
 
+#### **Design Considerations**     
+<b>Number of undos allowed</b>  
+- <b>Alternative 1</b>: User can undo only once   
+	- <b>Pros</b>: Easy to implement, only need to keep track of the state before the <i>change</i>. As such, it also requires less memory to save.   
+	- <b>Cons</b>: May not be feasible as there may be instances when the user may want to undo more than once.  
+- <b>Alternative 2</b>: User can undo only a fixed number of times
+	- <b>Pros</b>: Allows user to undo more than once. Also, does not incur much memory either as a fixed number of states is saved only.
+	- <b>Cons</b>: Need to implement measures and checks for the stacks to ensure they do not exceed the limit, and what to do when it does. User may still request to undo more than the fixed number of times.     
+- <b>Alternative 3</b>: User can undo any number of times <b>(current implementation)</b>   
+	- <b>Pros</b>: Allows user the freedom to undo any number of times <i>(until the initial state, of course)</i>.   
+	- <b>Cons</b>: May require more memory to save the many number of states, although it may not be very significant considering the data size of each state tend to be very small (states are saved as a String).   
 
- 
+<br>
 
-
-
-
-
+<b>How undo and redo executes</b>  
+- <b>Alternative 1</b>: Saves the state of the entire <i>directory list</i> <b>(current implementation)</b>           
+	- <b>Pros</b>: Easy to implement, can reuse the <code>saveList()</code> and <code>loadList()</code> methods in the <code>StorageManager</code> class.
+	- <b>Cons</b>: Uses unnecessary memory as the state of the entire <i>list</i> is saved each time, even though only a small <i>change</i> is made.       
+- <b>Alternative 2</b>: Individual commands has an <code>undo</code> method, which is able to undo the changes they made.
+	- <b>Pros</b>: Uses less memory since the command will only have to record the specific <i>change</i>.
+	- <b>Cons</b>: Need to ensure correct implementation of the <code>undo</code> method, and consider scenarios if the command fails to execute.
 
 <br><br>
 
