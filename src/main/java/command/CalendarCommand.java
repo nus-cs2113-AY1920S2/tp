@@ -35,7 +35,7 @@ public class CalendarCommand extends Command {
     private static final String MORE_TASK_INDICATOR = ANSI_CYAN + "....." + ANSI_RESET;
 
     // Calendar dimensions
-    private static final int MAX_CALENDAR_ROWS = 30;
+    private static final int MAX_CALENDAR_ROWS = 36;
     private static final int CALENDAR_BOX_HEIGHT = 6;
     private static final int DAYS_IN_WEEK = 7;
 
