@@ -31,10 +31,19 @@ daily so that restaurant owners can better manage their business operations.
       - Justification: This feature is needed for restaurant to look at the details of a specific reservation or review all the reservations in a specific day.
       - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list and check the reservation number and the date to find the matched reservations.
   
-  5. Adding Logger to the Reservation-related section and Ui
+  5. Feature: Load the `Reservation` from the **"report.txt"** file to the `reservations` list
+      - What it does: The reservations in the txt file will be automatically loaded into the `reservations` list when the program is started.
+      - Justification: This feature is needed for restaurant to look at the reservations added yesterday.
+      - Highlights: The `LoadReservation` class will be in charge of loading reservations in the txt file into the `reservations` list.
+  
+  6. Feature: Clear the `reservations` list
+      - What it does: Allows the user to input `clear reservation` to clear all the reservations in the `reservations` list.
+      - Justification: This feature is needed for restaurant to clear all the reservations added before if needed.
+      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly to clear all the `Reservations`.
+  
+  7. Adding Logger to the Reservation-related section and Ui
       - What it does: It records down all the `add`, `mark` and `delete` activities which can modify the `reservations` list. A fail to set up the logger will also be recorded.
       - Justification: The restaurant need to keep track of the log regarding its reservations.
-      - Highlights:
 
 * **Contributions to documentation:**
   1. Updated User Guide for all reservation-related features.
@@ -45,7 +54,7 @@ daily so that restaurant owners can better manage their business operations.
   2. Added reservation-related user stories to the `User Stories` section.
 
 * **Contributions to team-based tasks:** Project Management
-  1. Creating the milestone
+  1. Creating the milestones
   2. Maintaining the issue tracker: I used the [Github issues](https://github.com/AY1920S2-CS2113-T14-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3ASibingWu) to allocate the upcoming work.
 
 * **Review/mentoring contributions:** I reviewed some pull requests from my teammates: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148)

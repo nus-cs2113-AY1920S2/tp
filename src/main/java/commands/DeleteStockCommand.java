@@ -1,14 +1,14 @@
 package commands;
 
+import exceptions.IngredientNotFoundException;
+import exceptions.InvalidStockCommandException;
+import ingredient.Ingredient;
+import stock.Stock;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import exceptions.InvalidStockCommandException;
-import ingredient.Ingredient;
-import exceptions.IngredientNotFoundException;
-import stock.Stock;
 
 /**
  * This class focuses on the 'delete' functionality of the application.
@@ -96,10 +96,10 @@ public class DeleteStockCommand extends StockCommand {
                 quantity = Optional.of(parseIngredientQuantity(trimmedArg));
             } else {
                 throw new InvalidStockCommandException("There is no tag specified."
-                        + " Please enter in the following format: "
+                        + " Please enter in the following format:"
                         + ls
                         + ls
-                        + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;` "
+                        + "`delete stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED;`"
                         + ls
                         + "               or"
                         + ls
