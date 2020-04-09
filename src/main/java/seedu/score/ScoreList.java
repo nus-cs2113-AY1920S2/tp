@@ -44,6 +44,10 @@ public class ScoreList implements Serializable {
         String msg;
         int counter = 1;
         for (double score : scores) {
+
+            // To check that all scores are less than or equal to 100%
+            assert score <= 100.0 : "scores should be less than or equal to 100%";
+
             System.out.println(counter + ") " + score + "%");
             counter++;
         }

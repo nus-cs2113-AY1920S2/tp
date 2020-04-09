@@ -27,13 +27,28 @@ public class CardList implements Serializable {
     /**
      * Adds a card to the deck.
      * @param card Card to be added.
+     * @throws EscException if checkRepeat fails when question has already been added previously.
      */
-    public void addCard(Card card, Subject subject) {
+    public void addCard(Card card, Subject subject) throws EscException {
+        checkRepeat(card);
         cards.add(card);
         System.out.println("Q:" + card.getQuestion());
         System.out.println("A:" + card.getAnswer());
         System.out.println("A new card has been added to subject {" + subject.getSubject() + "}");
         listCards();
+    }
+
+    /**
+     * Checks if the question has already been previously added to this subject.
+     * @param card Card to be checked before it is added.
+     * @throws EscException if question has already been added previously.
+     */
+    public void checkRepeat(Card card) throws EscException {
+        for (Card existingCard : cards) {
+            if (existingCard.getQuestion().equals(card.getQuestion())) {
+                throw new EscException("This question has already been added to this subject.");
+            }
+        }
     }
 
     /**

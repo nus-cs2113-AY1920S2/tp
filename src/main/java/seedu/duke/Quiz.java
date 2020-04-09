@@ -34,6 +34,8 @@ public class Quiz {
         Card retrievedCard;
         try {
             int randomInt = generateRandomInt(size);
+            // To check that the randomInt is smaller than the given size.
+            assert randomInt < size : "randomly generated index should be smaller than cardlist size";
             retrievedCard = cardlist.getCard(randomInt);
         } catch (EscException e) {
             throw e;
@@ -94,6 +96,10 @@ public class Quiz {
         if (userAnswer.equals("exitquiz")) {
             return -1.0;
         }
+
+        // To check that quiz terminates once user inputs the termination command.
+        assert !userAnswer.equals("exitquiz") : "method should have terminated already";
+
         String answer = questionCard.getAnswer();
         System.out.println("Correct Answer: " + answer);
         double score = markCorrectness();
