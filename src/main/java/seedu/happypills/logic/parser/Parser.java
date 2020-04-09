@@ -21,6 +21,9 @@ public class Parser {
     public static final String HELP_TAG = "help";
     public static final String APPOINTMENT_TAG = "appt";
     public static final String PATIENT_RECORD_TAG = "pr";
+    public static final String EXIT_TAG = "exit";
+    public static final String YES_TAG = "y";
+    public static final String NO_TAG = "n";
 
     /**
      * Parses the command given by the user to the other command parses.
@@ -56,9 +59,9 @@ public class Parser {
      * @throws HappyPillsException if the user input does not conform the expected format
      */
     private static Command parseGeneralCommands(String fullCommand, String[] userCommand) throws HappyPillsException {
-        if (userCommand[0].equalsIgnoreCase("help")) {
+        if (userCommand[0].equalsIgnoreCase(HELP_TAG)) {
             return new HelpCommand(fullCommand);
-        } else if (userCommand[0].equalsIgnoreCase("exit")) {
+        } else if (userCommand[0].equalsIgnoreCase(EXIT_TAG)) {
             return new ExitCommand();
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
@@ -78,10 +81,11 @@ public class Parser {
     }
 
     /**
-     * Loop the user prompting (y/n).
+     * Prompt the user for missing fields or incorrect information.
+     * Prompt the user for confirmation for add commands.
      *
-     * @param output The output after the user enters (y).
-     * @return true if the user enters y, false if the user enters n.
+     * @param output The output after the user enters (y)
+     * @return true if the user enters y, false if the user enters (n)
      */
     public static boolean loopPrompt(String output) {
         boolean userConfirmation = false;
@@ -89,22 +93,22 @@ public class Parser {
         while (!userConfirmation) {
             String confirmation = promptUser();
             System.out.println(TextUi.DIVIDER);
-            if (confirmation.equalsIgnoreCase("y")) {
+            if (confirmation.equalsIgnoreCase(YES_TAG)) {
                 userConfirmation = true;
-            } else if (confirmation.equalsIgnoreCase("n")) {
+            } else if (confirmation.equalsIgnoreCase(NO_TAG)) {
                 return false;
             } else {
-                System.out.println("    Please input [y] for yes or [n] for no");
+                System.out.println(Messages.MESSAGE_USER_CONFIRMATION);
             }
         }
         return true;
     }
 
     /**
-     * split the user input according to the tags.
+     * Split the user input according to the '/'.
      *
-     * @param content the user input.
-     * @return the array containing the split input.
+     * @param content the user input
+     * @return the array containing the split input
      */
     public static String[] splitInput(String content) {
         String[] details;

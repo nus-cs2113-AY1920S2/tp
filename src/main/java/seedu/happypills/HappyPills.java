@@ -74,7 +74,7 @@ public class HappyPills {
 
     /**
      * Main entry-point for the java.duke.Duke application.
-     * @param args I dont know.
+     * @param args arguments
      */
     public static void main(String[] args) {
         new HappyPills().run();

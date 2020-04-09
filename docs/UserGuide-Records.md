@@ -126,7 +126,20 @@ which can obtained from the [list pr](#332-list-patient-records-list-pr) command
 
 ##### Usage example:
 
-    edit pr NRIC INDEX /sym [SYMPTOMS] /diag [DIAGNOSIS] /d [DATE] /t [TIME]
+    edit pr NRIC INDEX /sym<SYMPTOMS> 
+                       /diag<DIAGNOSIS> 
+                       /d<DATE> 
+                       /t<TIME>
+                       
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <code>no spaces</code> between the tag and the edited information.</td>
+ </tr>
+</table>
     
 **Example:**
 
@@ -134,7 +147,7 @@ which can obtained from the [list pr](#332-list-patient-records-list-pr) command
 
 > ***Expected output:***
 >
-> ![](images/UG/PR/editprsuccess.PNG "help output")
+> ![EditPR](images/UG/PR/editprsuccess.PNG "edit pr output")
 
 <table>
   <col width="20">
@@ -148,7 +161,7 @@ which can obtained from the [list pr](#332-list-patient-records-list-pr) command
 > ***Expected output:***
 >
 >
->![](images/UG/PR/prEmpty.PNG "help output")
+>![prEmpty](images/UG/PR/prEmpty.PNG "help output")
 
  [&#8593; Return to Top](#table-of-content)
  

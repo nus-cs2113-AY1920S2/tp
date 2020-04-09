@@ -103,7 +103,7 @@ Format: `help`
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
+   <td>The help command is split into five different sections <code>(highlighted by the boxes)</code>.</td>
  </tr>
 </table>
 
@@ -147,7 +147,7 @@ Retrieve a patient's information | `get patient NRIC`
  Add a Patient Record |`add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME`
  List all Patient Records |`list pr NRIC`
  Find a Patient Record|`find pr NRIC INDEX`
- Edit a Patient Record |`edit pr NRIC INDEX`
+ Edit a Patient Record |`edit pr NRIC INDEX /sym<SYMPTOMS> or /diag<DIAGNOSIS> or /d<DATE> or /t<TIME>`
  Delete a Patient Record | `delete pr NRIC INDEX`
 
 #### Appointments
