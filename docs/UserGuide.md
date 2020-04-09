@@ -56,7 +56,7 @@ This section will elaborate more on how to use these features in HappyPills.
 
 ### Command Format
 - Words in `UPPER_CASE` are the parameters to be supplied by you **e.g.** in `add patient /ic NRIC`, `NRIC` is the input required from you.
-- In case a tag is used multiple times in a command then its first instance will be taken and the remaining instances will be treated as invalid input.
+- In case a tag is used multiple times in a command then its last instance will be taken and the previous instances will be overwritten.
 - Items in square brackets are optional fields **e.g.** `/ic NRIC /a [ALLERGIES]` can be used as `/ic S1234567F` or as `/ic S1234567F /a Dust`
 - Items in angle brackets indicates that only one field can be supplied at each time **e.g.** `/n<NAME> /p<PHONE_NUMBER> /dob<DOB>` can be used as `/nYAP` or `/p91122334` or `/dob18/06/2020`
 - Parameters can be in any order **e.g.** if the command requires `/n NAME /ic NRIC` or `/ic NRIC /n NAME `
