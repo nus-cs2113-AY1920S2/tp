@@ -59,7 +59,7 @@ div {
 </style>
 
 
-# **Nuke Developer Guide** <small>v1.5</small>  
+# **Nuke Developer Guide** <small>v2.1</small>  
 
 By: `CS2113T-T13-2`      Since: `Feb 2020`    
 <small>[Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/DeveloperGuide.html)</small>
@@ -192,8 +192,7 @@ Total modules: 3
    After the input is parsed as an **add module task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", then add the object into the `moduleList`.
 
 2. James receive the following feedback:
-
-   ```
+```
    root :
    addm cs3235
    SUCCESS!! Module CS3235 Computer Security has been added.
@@ -212,7 +211,7 @@ Total modules: 3
    +--------------------------------------------------------------------------------------------------+
    Total modules: 4
    +--------------------------------------------------------------------------------------------------+
-   ```
+```
 
 
 
@@ -445,6 +444,98 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 
 
 <br>
+
+### **5. Change Directory Command**   
+
+### **6. Open File Command**    
+
+### **7. Info Command**    
+  
+
+### **8. Undo and Redo Commands**    
+#### **Overview**     
+<div>
+The <b>undo</b> and <b>redo</b> commands work hand in hand with each other. The <b>undo</b> command undoes a <i>change</i> made to the <b>Directory List</b>. <i>Change</i> here refers to adding, deleting or editing items to the <i>list</i>. The <b>redo</b> command reverts the effect of the <b>undo</b> command.   
+</div>  
+
+<br>
+
+#### **Implementation**     
+<div>
+The state of the <i>directories</i> is being maintained by the <code>ScreenShotManager</code> class. This is done via two <b>stacks</b>, one for <b>undo</b>, and the other for <b>redo</b>.  <br><br>
+
+When the application starts, both stacks are empty. After the applications loads the saved <i>directory list file</i>, the current state of the <i>directories</i> is pushed into the <b>undo</b> stack. 
+</div>  
+<br>    
+  
+![undo command init](images/dg_undo_init.png)
+<br>   
+<div>
+When a <i>change</i> is made to the <i>list</i> from a successful add, delete or edit command, the <b>new</b> state is  pushed into the <b>undo</b> stack. The new state is also saved by the application. See <a href="#storage-implementation">here</a> to find out more about the storage implementation.
+</div>  
+<br>    
+  
+![undo command change 1](images/dg_undo_change_1.png)
+<br>   
+<div>
+If the user calls for the <b>undo</b> command, the top-most state in the <b>undo</b> stack is removed and pushed into the <b>redo</b> stack. Then, the <i>list</i> will reload to the current top-most state in the <b>undo</b> stack, which is actually the previous state.  
+</div>  
+<br>    
+  
+![undo command redo](images/dg_redo.png)
+<br>   
+<div>
+Conversely, If the user calls for the <b>redo</b> command, the top-most state in the <b>redo</b> stack is removed and pushed back into the <b>undo</b> stack. Then, the <i>list</i> will reload to the current top-most state in the <b>undo</b> stack, which is actually the state which was previously undone.  
+</div>  
+<br>    
+  
+![undo command undo](images/dg_undo.png)
+<br>   
+<div>
+If another <i>change</i> is made to the <i>list</i>, but the <b>redo</b> stack is emptied, and the new current state is added into the <b>undo</b> stack.
+</div>  
+<br>    
+  
+![undo command change 2](images/dg_undo_change_2.png)
+<br>   
+<div>
+The process continues.
+</div> 
+<br>
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+An error message will be shown to the user when the user tries to undo when no recent change was made, such as at the start of the application, and when the user tries to redo when nothing was recently undone. 
+<br><br>
+This is done in the <code>ScreenShotManager</code> class by checking if the <b>undo</b> stack contains more than 1 element (first element is the start-up state), and if the <b>redo</b> stack is not empty respectively. If checking fails, an exception will be thrown. &#128529;
+</div>    
+
+Below is a sequence diagram of the undo command in action: <br>   
+![undo command sequence diagram](images/dg_undo_seq.png)  
+
+#### **Design Considerations**     
+<b>Number of undos allowed</b>  
+- <b>Alternative 1</b>: User can undo only once   
+	- <b>Pros</b>: Easy to implement, only need to keep track of the state before the <i>change</i>. As such, it also requires less memory to save.   
+	- <b>Cons</b>: May not be feasible as there may be instances when the user may want to undo more than once.  
+- <b>Alternative 2</b>: User can undo only a fixed number of times
+	- <b>Pros</b>: Allows user to undo more than once. Also, does not incur much memory either as a fixed number of states is saved only.
+	- <b>Cons</b>: Need to implement measures and checks for the stacks to ensure they do not exceed the limit, and what to do when it does. User may still request to undo more than the fixed number of times.     
+- <b>Alternative 3</b>: User can undo any number of times <b>(current implementation)</b>   
+	- <b>Pros</b>: Allows user the freedom to undo any number of times <i>(until the initial state, of course)</i>.   
+	- <b>Cons</b>: May require more memory to save the many number of states, although it may not be very significant considering the data size of each state tend to be very small (states are saved as a String).   
+
+<br>
+
+<b>How undo and redo executes</b>  
+- <b>Alternative 1</b>: Saves the state of the entire <i>directory list</i> <b>(current implementation)</b>           
+	- <b>Pros</b>: Easy to implement, can reuse the <code>saveList()</code> and <code>loadList()</code> methods in the <code>StorageManager</code> class.
+	- <b>Cons</b>: Uses unnecessary memory as the state of the entire <i>list</i> is saved each time, even though only a small <i>change</i> is made.       
+- <b>Alternative 2</b>: Individual commands has an <code>undo</code> method, which is able to undo the changes they made.
+	- <b>Pros</b>: Uses less memory since the command will only have to record the specific <i>change</i>.
+	- <b>Cons</b>: Need to ensure correct implementation of the <code>undo</code> method, and consider scenarios if the command fails to execute.
+
+<br><br>
+
 
 ## **Appendix**  
 
