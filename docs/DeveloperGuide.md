@@ -166,7 +166,7 @@ Finally, this new semester list will be added to `semesterList`.
 command has been executed.
 
 The following sequence diagram shows how the `Add to Semester` operation works:
-![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/Update_DG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
+![Add to Semester](https://raw.githubusercontent.com/AY1920S2-CS2113-T15-3/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
 ### 4.1.1 `Add to available` feature 
 The `Add to available` mechanism is facilitated by `AddtoAvailableCommand` which extends from an abstract class 
@@ -229,7 +229,7 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/edit-DG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
+![SequenceDiagram-DeleteFromSemCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
 
 
 ### 4.2.1 `Delete from Available` feature
@@ -273,7 +273,7 @@ it has also been deleted from the user's module plan.
 
 The sequence diagram below shows the mechanics of `DeleteFromAvailableCommand`:
 
-![SequenceDiagram_DeleteFromAvailableCommand](https://github.com/chengTzeNing/tp/blob/edit-DG/docs/images/SequenceDiagram_DeleteFromAvailableCommand.png)
+![SequenceDiagram_DeleteFromAvailableCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromAvailableCommand.png)
 
 
 ## 4.3 Searching
