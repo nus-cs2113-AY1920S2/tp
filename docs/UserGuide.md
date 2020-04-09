@@ -445,7 +445,7 @@ addg urgent
 ```
 TODO: attach the screenshot here
 ```
-  
+
 <small><b>After</b></small>   
 ```
 TODO: attach the screenshot here
@@ -926,10 +926,20 @@ edm cs2102 -m cs2101
 ##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edm command correct](images/edm_correct.png)   
-<br>     
-<small><u><b>Duplicate Module (Incorrect)</b></u></small>  
-![edm command duplicate module](images/edm_exist.png)   
-<br>     
+
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_edm_before.png)   
+
+<small><b>After</b></small> 
+![delc command single delete](images/ug_edm_after.png)
+
+<br>
+
+<small><u><b>Duplicate Module (Incorrect)</b></u></small> 
+![edm command duplicate module](images/edm_exist.png)
+
+<br>
+
 <small><u><b>Invalid Module Code (Incorrect)</b></u></small>  
 ![edm command invalid module code](images/edm_invalid.png)   
 
@@ -963,13 +973,24 @@ edc Lab -m cs2113t -c Project -p 8
 ##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edc command correct](images/edc_correct.png)  
-<br>     
-<small><u><b>Duplicate Category (Incorrect)</b></u></small>  
-![edc command duplicate category](images/edc_exist.png)   
-<br>     
-<small><u><b>Invalid Priority (Incorrect)</b></u></small>  
-![edc command invalid priority](images/edc_invalid_priority.png)    
-<br>     
+
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_edc_before.png)   
+
+<small><b>After</b></small> 
+![delc command single delete](images/ug_edc_after.png)<br>
+
+<br>
+<small><u><b>Duplicate Category (Incorrect)</b></u></small>
+![edc command duplicate category](images/edc_exist.png)
+
+<br>
+
+<small><u><b>Invalid Priority (Incorrect)</b></u></small>
+![edc command invalid priority](images/edc_invalid_priority.png)
+
+<br>
+
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
 ![edc command nothing to edit](images/edc_empty.png)
 
@@ -1007,6 +1028,13 @@ edt tp -d sat 2359 -p 20
 ##### **Expected Outcome**     
 <small><u><b>Correct Edit</b></u></small>  
 ![edt command correct](images/edt_correct.png)    
+
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_edt_before.png)   
+
+<small><b>After</b></small> 
+![delc command single delete](images/ug_edt_after.png)<br>
+
 <br>     
 <small><u><b>Duplicate Category (Incorrect)</b></u></small>  
 ![edt command duplicate task](images/edt_exist.png)   
@@ -1014,7 +1042,7 @@ edt tp -d sat 2359 -p 20
 <small><u><b>Invalid Deadline (Incorrect)</b></u></small>  
 ![edt command invalid deadline](images/edt_invalid_deadline.png)   
 <br>     
-<small><u><b>Invalid Priority (Incorrect</b>*</u></small>      
+<small><u><b>Invalid Priority (Incorrect)</b></u></small>      
 ![edt command invalid priority](images/edt_invalid_priority.png)     
 <br>     
 <small><u><b>Nothing to Edit (Incorrect)</b></u></small>  
@@ -1049,7 +1077,12 @@ edf math report -f math report draft
 ##### **Expected Outcome**      
 <small><u><b>Correct Edit</b></u></small>  
 ![edf command correct](images/edf_correct.png)   
-<br>     
+
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_edf_before.png)   
+
+<small><b>After</b></small> 
+![delc command single delete](images/ug_edf_after.png)<br><br>     
 <small><u><b>Duplicate File (Incorrect)</b></u></small>  
 ![edf command duplicate file](images/edf_exist.png)  
 
@@ -1079,7 +1112,12 @@ done do lab 4 -m cs2106 -c Lab
 ##### **Expected Outcome**   
 <small><u><b>Done at Root Level</b></u></small>  
 ![done command root level](images/done_root_level.png)   
-<br>     
+
+<small><b>Before</b></small>   
+![delc command single delete](images/ug_done_before.png)   
+
+<small><b>After</b></small> 
+![delc command single delete](images/ug_done_after.png)<br>     
 <small><u><b>Done at Task Level</b></u></small>  
 ![done command task level](images/done_task_level.png)  
 <br>     
@@ -1364,40 +1402,40 @@ A simple summary of the various commands are shown below:
 <div style="text-align: center"><span style="color: green"><small>Table <b>Command Summary</b></small></span></div>
 
 
-| Command<br>Word   | What and How?                                                                    |  
-|:---------------:|---------------------------------------------------------------------------------|  
-| [`mkdir`](#1-add)| Adds a new <i>child directory</i><br><b>Format</b>: `mkdir <directory name>`<br><b>Example</b>: `mkdir cs2113t` |  
-| [`addm`](#a-add-a-module-into-your-module-list) | Adds a new <i>module</i><br><b>Format</b>: `addm <module code>`<br><b>Example</b>: `addm cs2113t` |  
-| [`addc`](#b-add-a-category-into-your-category-list)| Adds a new <i>category</i><br><b>Format</b>: `addc <category name> -m <module code> [ -p <priority> ]`<br><b>Example</b>: `addc Project -m cs2113t -p 3` |  
-| [`addt`](#c-add-a-task-into-your-task-list)     | Adds a new <i>task</i><br><b>Format</b>: `addt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `[ -d <deadline> -p <priority> ]`<br><b>Example</b>: `addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15` |   
-| [`addf`](#d-add-a-file-into-your-file-list)   | Adds a new <i>file</i><br><b>Format</b>: `addf <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <file path>`<br><b>Example</b>: `addm cs2113t` |  
-| [`addg`](#e-add-a-tag-to-your-task)     | Adds a new <i>tag</i><br><b>Format</b>: `addg <tag name> -m <module code> -c <category name> -t <task description>` <br><b>Example</b>: `addg urgent -m CS2113t -c Lab -t tp` |  
-| [`ls`](#2-list)| Shows the <i>child directories</i>; include <i>child directory name</i> to show it <i>child directories</i> instead<br><b>Format</b>: `ls [ <child directory name> ]`<br><b>Example</b>: `ls` &nbsp; &nbsp; `ls cs2113t` |  
-| [`lsm`](#a-list-your-modules)     | Shows filtered <i>modules</i><br><b>Format</b>: `lsm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
-| [`lsc`](#b-list-your-categories)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |  
-| [`lst`](#c-list-your-tasks)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |  
-| [`lsts`](#d-list-your-tasks-sorted-by-deadline-or-priority)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |  
-| [`due`](#e-list-your-tasks-at-specified-time-period) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |  
-| [`lsf`](#f-list-your-files)   | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |  
-| [`lsg`](#g-list-your-tasks-tags)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
-| [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |  
-| [`delm`](#a-delete-modules-from-your-module-lists) | Deletes filtered <i>modules</i><br><b>Format</b>: `delm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |  
-| [`delc`](#b-delete-categories-from-your-category-lists) | Deletes filtered <i>categories</i><br><b>Format</b>: `delc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `delc lec -a` |  
-| [`delt`](#c-delete-tasks-from-your-task-lists) | Deletes filtered <i>tasks</i><br><b>Format</b>: `delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `delt assignment -c Assign` |  
-| [`delf`](#d-delete-files-from-your-file-lists) | Deletes filtered <i>files</i><br><b>Format</b>: `delf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `delf -m cs2113 -t tp` | 
-| [`delg`](#e-delete-tags-from-your-task) | Deletes filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
-| [`edm`](#a-edit-a-module-in-your-module-list)  | Edits a <i>module</i><br><b>Format</b>: `edm <module code> -m <new module code>`<br><b>Example</b>: `edm cs2102 -m cs2101` |  
-| [`edc`](#b-edit-a-category-in-your-category-list)  | Edits a <i>category</i><br><b>Format</b>: `edc <category name> -m <module code>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -c <new category name> -p <new priority> }`<br><b>Example</b>: `edc Lab -m cs2113t -c Project -p 8` |  
-| [`edt`](#c-edit-a-task-in-your-task-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |   
-| [`edf`](#d-edit-a-file-in-your-file-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |  
-| [`done`](#e-mark-a-task-as-done)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |  
-| [`cd`](#5-change-directory)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |  
-| [`open`](#6-open-file)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |  
-| [`info`](#7-info)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |   
-| [`undo`](#8-undo)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |  
-| [`redo`](#9-redo)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |  
-| [`help`](#help)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |  
-| [`bye`](#exiting-the-nuke-program)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |  
+| Command<br>Word   | What and How?                                                                    |
+|:---------------:|---------------------------------------------------------------------------------|
+| [`mkdir`](#1-add)| Adds a new <i>child directory</i><br><b>Format</b>: `mkdir <directory name>`<br><b>Example</b>: `mkdir cs2113t` |
+| [`addm`](#a-add-a-module-into-your-module-list) | Adds a new <i>module</i><br><b>Format</b>: `addm <module code>`<br><b>Example</b>: `addm cs2113t` |
+| [`addc`](#b-add-a-category-into-your-category-list)| Adds a new <i>category</i><br><b>Format</b>: `addc <category name> -m <module code> [ -p <priority> ]`<br><b>Example</b>: `addc Project -m cs2113t -p 3` |
+| [`addt`](#c-add-a-task-into-your-task-list)     | Adds a new <i>task</i><br><b>Format</b>: `addt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `[ -d <deadline> -p <priority> ]`<br><b>Example</b>: `addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15` |
+| [`addf`](#d-add-a-file-into-your-file-list)   | Adds a new <i>file</i><br><b>Format</b>: `addf <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <file path>`<br><b>Example</b>: `addm cs2113t` |
+| [`addg`](#e-add-a-tag-to-your-task)     | Adds a new <i>tag</i><br><b>Format</b>: `addg <tag name> -m <module code> -c <category name> -t <task description>` <br><b>Example</b>: `addg urgent -m CS2113t -c Lab -t tp` |
+| [`ls`](#2-list)| Shows the <i>child directories</i>; include <i>child directory name</i> to show it <i>child directories</i> instead<br><b>Format</b>: `ls [ <child directory name> ]`<br><b>Example</b>: `ls` &nbsp; &nbsp; `ls cs2113t` |
+| [`lsm`](#a-list-your-modules)     | Shows filtered <i>modules</i><br><b>Format</b>: `lsm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |
+| [`lsc`](#b-list-your-categories)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |
+| [`lst`](#c-list-your-tasks)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |
+| [`lsts`](#d-list-your-tasks-sorted-by-deadline-or-priority)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |
+| [`due`](#e-list-your-tasks-at-specified-time-period) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |
+| [`lsf`](#f-list-your-files)   | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |
+| [`lsg`](#g-list-your-tasks-tags)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |
+| [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |
+| [`delm`](#a-delete-modules-from-your-module-lists) | Deletes filtered <i>modules</i><br><b>Format</b>: `delm [ <module keyword> -e -a ]`<br><b>Example</b>: `lsm cs` |
+| [`delc`](#b-delete-categories-from-your-category-lists) | Deletes filtered <i>categories</i><br><b>Format</b>: `delc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `delc lec -a` |
+| [`delt`](#c-delete-tasks-from-your-task-lists) | Deletes filtered <i>tasks</i><br><b>Format</b>: `delt [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `delt assignment -c Assign` |
+| [`delf`](#d-delete-files-from-your-file-lists) | Deletes filtered <i>files</i><br><b>Format</b>: `delf [ <file keyword> -m <module keyword> -c <category keyword>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task keyword> -e -a ]` <br><b>Example</b>: `delf -m cs2113 -t tp` |
+| [`delg`](#e-delete-tags-from-your-task) | Deletes filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |
+| [`edm`](#a-edit-a-module-in-your-module-list)  | Edits a <i>module</i><br><b>Format</b>: `edm <module code> -m <new module code>`<br><b>Example</b>: `edm cs2102 -m cs2101` |
+| [`edc`](#b-edit-a-category-in-your-category-list)  | Edits a <i>category</i><br><b>Format</b>: `edc <category name> -m <module code>` <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -c <new category name> -p <new priority> }`<br><b>Example</b>: `edc Lab -m cs2113t -c Project -p 8` |
+| [`edt`](#c-edit-a-task-in-your-task-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |
+| [`edf`](#d-edit-a-file-in-your-file-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |
+| [`done`](#e-mark-a-task-as-done)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |
+| [`cd`](#5-change-directory)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |
+| [`open`](#6-open-file)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name>`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `-t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |
+| [`info`](#7-info)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |
+| [`undo`](#8-undo)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |
+| [`redo`](#9-redo)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |
+| [`help`](#help)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |
+| [`bye`](#exiting-the-nuke-program)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |
 
 <br>
 [Back To Top](#table-of-contents)
