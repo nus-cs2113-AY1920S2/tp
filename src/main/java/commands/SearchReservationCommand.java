@@ -90,6 +90,11 @@ public class SearchReservationCommand extends ReservationCommand {
     @Override
     protected void parseInput(String description) 
             throws InputMissingException, DelimiterMissingException, InvalidReservationNumberException {
+        if (description == null || description.length() == 0) {
+            throw new InputMissingException(String.format("either reservation number %s or date %s",
+                    RES_INDEX_MARKER, RES_DATE_MARKER));
+        }
+        
         boolean delimiterMissing;
         boolean inputMissing = true; // to see if the command has either "number" input or "date" input
         String[] markers = {RES_INDEX_MARKER, RES_DATE_MARKER};
