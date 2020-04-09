@@ -68,7 +68,7 @@ Example of expected output:
 `ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S1`
 
 #### Adds a specific module to available module list. 
-Format: `add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+Format: `add id/[module code] n/[module name] mc/[module credit] pre/[pre requisites]`
 
 Example: `add id/IS4241 n/Social Media Network Analysis mc/4 pre/CS1010 IS1103`
 
@@ -284,7 +284,7 @@ or
 
 Command:
 
-`add id/[module code] n/[name of module] mc/[module credit] pre/[pre requisites]`
+`add id/[module code] n/[module name] mc/[module credit] pre/[pre requisites]`
 
 ### Delete a specific module from a semester in module plan
 
