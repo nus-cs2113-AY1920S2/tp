@@ -55,7 +55,6 @@ public class Main {
             ui.showMessage("Fails to load in the list from the file...");
             this.reservations = new ReservationList();
         } catch (ReservationException e) {
-            ui.showMessage("Empty txt file...");
             this.reservations = new ReservationList();
         }
 
