@@ -1,4 +1,41 @@
-# Developer Guide
+# Module Manager - Developer Guide  
+By: `CS2113-T15-3` Since: `2020`  
+
+Table of Contents
+1. [Introduction](#-1.-Introduction)  
+    1.1 [Purpose](##-1.1-Purpose)  
+    1.2 [Scope](##-1.2-Scope)
+2. [Setting up](#-2.-Setting up)  
+    2.1 [Prerequisites](##-2.1-Prerequisites)  
+    2.2 [Setting up the project in your computer](##-2.2-Setting-up-the-project-in-your-computer)  
+    2.3 [Verifying the setup](##-2.3-Verifying-the-setup)  
+    2.4 [Configurations to do before writing code](##-2.4-Configurations-to-do-before-writing-code)
+3. [Design](#-3.-Design)  
+    3.1 [Architecture](###-3.1-Architecture)  
+    3.2 [UI component](####-3.2-UI-component)  
+    3.3 [Logic component](####-3.3-Logic-component)  
+    3.4 [Model component](####-3.4-Model-component)  
+    3.5 [Storage component](####-3.5-Storage-component)  
+4. [Implementation](#-4.-Implementation)  
+    4.1 [Addition](##-4.1-Addition)  
+        4.1.1 [`Add to Semester` feature](###-4.1.1-Add-to-Semester-feature)  
+        4.1.2 [`Add to available` feature](###-4.1.2-Add-to-available-feature)
+    4.2 [Deletion](##-4.2-Deletion)  
+        4.2.1 [`Delete from Semester` feature](###-4.2.1-Delete-from-Semester-feature)  
+        4.2.2 [`Delete from Available` feature](###-4.2.1-Delete-from-Available-feature)  
+    4.3 [Searching](##-4.3-Searching)  
+    4.4 [Others](##-4.4-Others)  
+        4.4.1 [Calculate CAP feature](###-4.4.1-Calculate-CAP-feature)  
+        4.4.2 [Marking module as done](###-4.4.2-Marking-module-as-done)  
+5. [Documentation](#-5.-Documentation)  
+    5.1 [Written documentation](##-5.1-Written-documentation)  
+    5.2 [Diagrams](##-5.2-Diagrams)  
+[Appendix A: Product Scope](##-Appendix-A:-Product-Scope)  
+[Appendix B: User Stories](##-Appendix-B:-User-Stories)  
+[Appendix C: Glossary](##-Appendix-C:-Glossary)  
+[Appendix D: Instructions for Manual Testing](##-Appendix-D:-Instructions-for-Manual-Testing)  
+[Appendix E: Non-Functional Requirements](##-Appendix-E:-Non-Functional-Requirements)  
+
 
 # 1. Introduction
 ## 1.1 Purpose
@@ -168,7 +205,7 @@ command has been executed.
 The following sequence diagram shows how the `Add to Semester` operation works:
 ![Add to Semester](https://raw.githubusercontent.com/AY1920S2-CS2113-T15-3/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
-### 4.1.1 `Add to available` feature 
+### 4.1.2 `Add to available` feature
 The `Add to available` mechanism is facilitated by `AddtoAvailableCommand` which extends from an abstract class 
 `Command`. 
 It allows `ModuleManager` to add a module to the `AvailableModulesList` so that users may access its data or add it
@@ -232,7 +269,7 @@ The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 ![SequenceDiagram-DeleteFromSemCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
 
 
-### 4.2.1 `Delete from Available` feature
+### 4.2.2 `Delete from Available` feature
 
 The `Delete from Available` mechanism is facilitated by `DeleteFromAvailableCommand`, 
 which extends from `DeleteCommand`. Whereas `DeleteCommand` extends from the abstract class `Commmand`.
@@ -342,7 +379,16 @@ attribute, and the `isDone` attribute of the module will be updated to be `true`
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
 
-## Product Scope
+# 5. Documentation
+## 5.1 Written documentation  
+The user and developer guide are written and formatted using MarkDown.
+
+## 5.2 Diagrams
+Diagrams are drawn and edited using the tool [draw.io](https://app.diagrams.net/). 
+The tool provides support for a wide range of UML diagrams, 
+such as class, object and sequence diagrams.
+
+## Appendix A: Product Scope
 ### Target user profile
 
 * A computer science undergraduate of NUS with a need to manage modules
@@ -355,7 +401,7 @@ If the module does not exist in the list, a `RuntimeExcption` will be thrown to 
 
 Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app 
 
-## User Stories
+## Appendix B: User Stories
 
 |Priority| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -370,11 +416,11 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 modules|
 
 
-## Glossary
+## Appendix C: Glossary
 
 **Mainstream OS** - Windows, Linux, Unix, OS-X
 
-## Instructions for Manual Testing
+## Appendix D: Instructions for Manual Testing
 
 The following is a summary of all the commands in Module Manager, and some examples of input. 
 The commands are organised into sections, each relating to a particular feature. 
@@ -446,7 +492,7 @@ You may follow the steps in numerical order to test all the features of ArchDuke
     * Use this command to display help message  
         * `help`  
         
-## Non-Functional Requirements
+## Appendix E: Non Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules in the available module list without a noticeable sluggishness in
