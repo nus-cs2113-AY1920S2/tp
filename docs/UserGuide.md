@@ -175,7 +175,7 @@ Filters the shopping list according to a keyword specified by the user.
 
 Format: `FIND KEYWORD`
 
-* The `KEYWORD` can be any character or string.
+* The `KEYWORD` can be any word or phrase.
 * The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
@@ -258,7 +258,7 @@ Sets a budget for the user.
 Format: `SET b/AMOUNT`
 
 * The `AMOUNT` can be any decimal number that is between 0 to 5000.
-* The `b/` substring should be present in the command.  
+* The `b/` phrase should be present in the command.  
 
 Example of usage: 
 
