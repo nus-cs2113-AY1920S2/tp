@@ -3,6 +3,7 @@ package utils;
 import commands.AddDishCommand;
 import commands.AddReservationCommand;
 import commands.AddStockCommand;
+import commands.ClearReservationCommand;
 import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
 import commands.HelpCommand;
@@ -140,6 +141,10 @@ public class CommandParser {
         } else if (splitCommands[0].equals("sell")) {
             sales.addSale(commands[1]);
             successfulCommand();
+        } else if (splitCommands[0].equals("clear")) {
+            if (splitCommands[1].equals("reservation")) {
+                new ClearReservationCommand().execute(reservations, ui);
+            }
         } else {
             errorCommand();
         }

@@ -1,8 +1,8 @@
 import commands.ReservationCommand;
-import exceptions.DishNameMissingException;
-import exceptions.InvalidDeleteDishCommandException;
 import exceptions.InvalidFilePathException;
 import exceptions.StockReadWriteException;
+import exceptions.ReservationException;
+import report.LoadReservation;
 import reservation.Reservation;
 import sales.Sales;
 import menu.Menu;
@@ -46,9 +46,18 @@ public class Main {
     public void start(String[] args) {
         this.stock = new Stock();
         this.menu = new Menu();
-        this.reservations = new ReservationList();
+        // this.reservations = new ReservationList();
         this.ui = new Ui();
         this.sales = new Sales();
+
+        try {
+            this.reservations = new ReservationList(LoadReservation.getInstance("report.txt").loadFileReservations());
+        } catch (IOException e) {
+            ui.showMessage("Fails to load in the list from the file...");
+            this.reservations = new ReservationList();
+        } catch (ReservationException e) {
+            this.reservations = new ReservationList();
+        }
 
         // set up the logger
         LoggerUtils.createLogFolder(LOG_FOLDER);
