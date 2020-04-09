@@ -112,9 +112,9 @@ public class AppointmentParser extends Parser {
             System.out.println(Messages.MESSAGE_TIME_FORMAT);
         }
         if (parseInput[3].equalsIgnoreCase("")) {
-            System.out.println("    /r[REASONS]");
+            System.out.println("      /r [REASONS]");
         }
-        System.out.println("    To abort, enter \"clear\"");
+        System.out.println("\n    To abort, enter \"clear\"");
     }
 
     /**

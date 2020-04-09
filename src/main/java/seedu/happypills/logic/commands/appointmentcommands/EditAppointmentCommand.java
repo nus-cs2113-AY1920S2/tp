@@ -19,6 +19,8 @@ import seedu.happypills.ui.HelpTextUi;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+
+//@@author janicetyy
 public class EditAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String newContent;
@@ -30,7 +32,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * Constructor for EditAppointmentCommand Class.
      * It creates a new EditAppointmentCommand Object with the information provided.
      *
-     * @author janicetyy
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
      * @param apptID Contains the id of the appointment that is to be edited
@@ -44,7 +45,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the patient from the NRIC of the Edit command.
      *
-     * @author janicetyy
      * @param patients Contains the list of patients to be searched.
      */
     private Patient findPatient(PatientMap patients) {
@@ -58,7 +58,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the appointment from the patient provided.
      *
-     * @author janicetyy
      * @param appointments Contains the appointment map to get appointment from.
      * @return the appointment with the specified apptID or null if not found
      */
@@ -73,7 +72,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the date of the appointment in the list within the patient object.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newDate The new date to be edited into.
      * @return the appointment with the specified apptID or null if not found
@@ -94,7 +92,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the date of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which date is to be edited.
      * @param newDate The new date to be edited into.
      * @return true if successful, false otherwise.
@@ -112,7 +109,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the time of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newTime The new time to be edited into.
      * @return the appointment with the specified apptID or null if not found.
@@ -134,7 +130,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the time of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which time is to be edited.
      * @param newTime The new date to be edited into.
      * @return true if successful, false otherwise.
@@ -150,7 +145,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the reason of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newReason The new reason to be edited into.
      * @return the appointment with the specified apptID or null if not found.
@@ -168,7 +162,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the remark of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which reason is to be edited.
      * @param newReason The appointment's updated reason.
      * @return true if successful, false otherwise
@@ -181,7 +174,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the appointment details with the information provided by calling.
      *
-     * @author janicetyy
      * @param patients Contains the list of patients on which the commands are executed on.
      * @param appointments Contains the list of appointments on which the commands are executed on.
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
