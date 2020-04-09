@@ -45,7 +45,9 @@ public class CardList implements Serializable {
      */
     public void checkRepeat(Card card) throws EscException {
         for (Card existingCard : cards) {
-            if (existingCard.getQuestion().equals(card.getQuestion())) {
+            String existingQuestion =  existingCard.getQuestion().toLowerCase();
+            String questionToAdd = card.getQuestion().toLowerCase();
+            if (existingQuestion.equals(questionToAdd)) {
                 throw new EscException("This question has already been added to this subject.");
             }
         }
