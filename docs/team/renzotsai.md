@@ -46,7 +46,8 @@ will be recorded in log file.
 - Write the Draft of our UG v1.0 and v2.0 and revised them.
 
 #### Contributions to the Developer Guide
-- Write the part of `Add to semseter` and draw a UML diagram to explain this implementation.
+- Write the part of `Storage component` and draw a Class diagram to explain this implementation.
+- Write the part of `Add to semseter` and draw a Sequence diagram to explain this implementation.
 
 #### Contributions to team-based tasks
 
