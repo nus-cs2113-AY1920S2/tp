@@ -15,7 +15,7 @@ public class AttendanceTest {
 
     @Test
     void getAttendanceStatus() {
-        assertEquals("Present", attendanceTestUnit.getAttendanceStatus());
+        assertEquals("Present", attendanceTestUnit.getStatus());
     }
 
     @Test

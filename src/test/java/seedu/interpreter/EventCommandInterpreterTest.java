@@ -85,13 +85,13 @@ public class EventCommandInterpreterTest {
     }
 
     @Test
-    void unknown() throws PacException {
+    void unknown() {
         assertThrows(PacException.class, () -> eci.decideCommand(""));
         assertThrows(PacException.class, () -> eci.decideCommand("..."));
     }
 
     @Test
-    void missingArgument() throws PacException {
+    void missingArgument() {
         assertThrows(PacException.class, () -> eci.decideCommand("add"));
         assertThrows(PacException.class, () -> eci.decideCommand("editname"));
         assertThrows(PacException.class, () -> eci.decideCommand("editdatetime"));

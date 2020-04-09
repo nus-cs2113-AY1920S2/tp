@@ -102,6 +102,7 @@ of Pac.
 | EventParser               | EventCommandInterpreter                                       | 
 | CalenderParser            | EventCommandInterpreter                                       | 
 | PerformanceParser         | Step-by-step command at performance-related command classes   |  
+| AttendanceParser          | Step-by-step command at attendance-related command classes    |  
 
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
@@ -116,7 +117,7 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-## 3. Implementation 
+## 3. Implementation
 ### 3.1 Event
 ![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
@@ -242,20 +243,72 @@ than using the mouse.
 |v2.0|professor|view calendar of all my events|to see a overview of them|
 
 ## Appendix E: Instructions for Manual Testing
-
+#### Set up
 1. Download the jar file and copy it into an empty folder.
-1. View the populated events by typing `event list`
-1. View the populated seminars by typing `seminar list`
-1. Delete an event by typing `delete i/INDEX`
-1. Edit an existing event's name by typing `event editname i/INDEX n/NAME`
+1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
+folder in command terminal.  
+ 
+#### Follow **all-in-one** command for following commands:  
+**Event**
+1. Add an event by typing  
+`event add n/NAME`
+1. View the populated events by typing  
+`event list`
+1. View the populated seminars by typing  
+`seminar list`
+1. Delete an event by typing  
+`delete i/INDEX`
+1. Edit an existing event's name by typing  
+`event editname i/INDEX n/NAME`
 1. Edit an existing event's date and time by typing  
 `event editdatetime i/INDEX d/DATE t/TIME`
 1. Edit an existing event's venue by typing   
-`event editvenue i/INDEX v/VENUE`
-1. Display calendar by entering  
-`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+`event editvenue i/INDEX v/VENUE`  
 
+**Calender**
+1. Display calendar by entering  
+`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
+
+#### Follow **step-by-step** command for following commands:  
+
+**Attendance**
+1. Add attendance to attendance list by typing  
+`attendance add`
+1. Clear attendance list by typing  
+`attendance clear`
+1. View generated table for attendance list by typing  
+`attendance view`  
+ 
+**Performance**
+1. Sort performance list by typing
+`performance sort`
+1. Add performance to performance list by typing  
+`performance add`
+1. Delete a performance from performance list by typing  
+`performance delete`
+1. View generated table for performance list by typing  
+`performance view` 
+1. Edit performance list by typing  
+`performance edit`
+1. Sort performance list by typing
+`performance sort`  
+
+**Student name list**
+1. Add name to student name list by typing  
+`student add`
+1. Delete name from student name list by typing  
+`student delete`
+1. View generated table for student name list by typing  
+`student view` 
+1. Find a student name in student name list by typing  
+`student find`
+1. Sort student list by typing
+`student sort`
 
 ## Glossary
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
+* *performance* - a combination of student's name and result
+* *performance list* - a list of student's name and result
+* *Calendar* - Display columns of event in a chosen semester, each column represents a month 
+in the chosen semester 

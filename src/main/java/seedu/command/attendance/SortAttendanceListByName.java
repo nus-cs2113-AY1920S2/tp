@@ -12,12 +12,12 @@ import seedu.ui.UI;
 public class SortAttendanceListByName extends Command {
 
     protected UI ui;
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
     protected String eventName;
 
     public SortAttendanceListByName(AttendanceList attendances, String eventName) {
         this.eventName = eventName;
-        this.attendances = attendances;
+        this.attendanceList = attendances;
         this.ui = new UI();
     }
 
@@ -25,10 +25,10 @@ public class SortAttendanceListByName extends Command {
      * Method to sort an attendance list according to name.
      */
     private void sort() {
-        if (attendances.isEmpty()) {
+        if (attendanceList.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
-            attendances.sort();
+            attendanceList.sortByName();
             ui.sortAttendanceByName(eventName);
         }
     }

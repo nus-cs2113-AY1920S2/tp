@@ -10,7 +10,7 @@ public class CommandInterpreter {
 
     protected EventList eventList;
     private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
-        "attendance", "performance", "student.list", "calendar"};
+        "attendance", "performance", "studentlist", "calendar"};
 
     public CommandInterpreter(EventList eventList) {
         this.eventList = eventList;
@@ -111,7 +111,7 @@ public class CommandInterpreter {
             PerformanceCommandInterpreter pci = new PerformanceCommandInterpreter(eventList);
             command = pci.decideCommand(commandDescription);
             break;
-        case "student.list":
+        case "studentlist":
             StudentCommandInterpreter ssci = new StudentCommandInterpreter(eventList);
             command = ssci.decideCommand(commandDescription);
             break;
@@ -125,7 +125,7 @@ public class CommandInterpreter {
             assert (!commandCategory.equals("bye") && !commandCategory.equals("event")
                     && !commandCategory.equals("seminar") && !commandCategory.equals("attendance")
                     && !commandCategory.equals("performance") && !commandCategory.equals("calendar")
-                    && !commandCategory.equals("help") && !commandCategory.equals("student.list"))
+                    && !commandCategory.equals("help") && !commandCategory.equals("studentlist"))
                     : "accepted command category is not further interpreted!";
             throw new PacException("Please provide a valid command category. Refer to 'help' for more info.");
         }

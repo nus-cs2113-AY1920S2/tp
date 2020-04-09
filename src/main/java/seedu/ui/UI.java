@@ -224,12 +224,6 @@ public class UI {
         return getStringInput();
     }
 
-    public String getTypeOfParameterToEdit() {
-        display("Would you like to import an existing student list? "
-                + "If yes, input 'yes'. Else, input anything.");
-        return getStringInput();
-    }
-
     public boolean isImportList() {
         String userInput = getTypeOfAddPerformance();
         return userInput.equals("yes");
@@ -257,15 +251,15 @@ public class UI {
     }
 
     public void sortAttendanceByName(String eventName) {
-        display("Attendance List is sorted by attendance status for Event:  " + eventName);
+        display("Attendance List is sorted by attendance name for Event:  " + eventName);
     }
 
     public void sortPerformanceByName(String eventName) {
-        display("Performance List is sorted by Performance name for Event:  " + eventName);
+        display("Performance List is sorted by Performance status for Event:  " + eventName);
     }
 
     public String getSortType() {
-        display("Do you want to sort by students' name or grade?");
+        display("Do you want to sort by students' name or result?");
         return getStringInput().toLowerCase();
     }
 
