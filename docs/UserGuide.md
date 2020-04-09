@@ -923,7 +923,7 @@ step-by-step command for performance and all-in-one command for event?
 * View performance list `performance view`
 * Delete performance of a student `performance delete`
 * Edit performance of a student `performance edit`
-* Sort performance of a student `performance sort`
+* Sort performance list `performance sort`
 
 ## 8. Contact Us
 If you have further queries or feedback on Pac, please contact us at [contact_us@pac.com](contact_us@Pac.com)
