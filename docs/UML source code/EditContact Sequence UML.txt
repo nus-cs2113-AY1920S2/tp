@@ -3,34 +3,19 @@ title EditContact
 actor User
 participant ":LogicManager" as LogicManager #pink
 participant ":CommandHandler" as CommandHandler #lightgreen
-participant "c:Contact" as Contact #lightyellow
+participant "Contact" as Contact #lightyellow
 
 User->LogicManager:edit contact
 activate LogicManager
-LogicManager->CommandHandler:editContact(Contact c, Slot slot)
+LogicManager->CommandHandler:editContact(time slot)
 activate CommandHandler
-
-alt edit
-CommandHandler->Contact:isValidEdit(slot)
-activate Contact
-CommandHandler<--Contact:valid edit
-deactivate Contact
-CommandHandler->Contact:editTimetable(slot)
+ref over User,Contact:check if edit is valid
+CommandHandler->Contact:editSchedule(time slot)
 activate Contact
 CommandHandler<--Contact:
 deactivate Contact
 LogicManager<--CommandHandler:
-User<--LogicManager:
-
-else exception
-CommandHandler->Contact:isValidEdit(slot)
-activate Contact
-CommandHandler<--Contact:invalid edit exception
-deactivate Contact
-
-
-LogicManager<--CommandHandler:invalid edit exception
 deactivate CommandHandler
-User<--LogicManager:inform user of invalid edit
+User<--LogicManager:
 deactivate LogicManager
-end
+
