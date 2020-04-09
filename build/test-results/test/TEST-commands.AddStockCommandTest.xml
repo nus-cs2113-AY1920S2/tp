@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.AddStockCommandTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-04-07T16:30:57" hostname="Ganeshs-MacBook-Pro.local" time="0.035">
+<testsuite name="commands.AddStockCommandTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-04-09T01:24:40" hostname="Ganeshs-MacBook-Pro.local" time="0.041">
   <properties/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTagOnly()" classname="commands.AddStockCommandTest" time="0.003"/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingPriceAndQuantityTag()" classname="commands.AddStockCommandTest" time="0.008"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTagOnly()" classname="commands.AddStockCommandTest" time="0.006"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingPriceAndQuantityTag()" classname="commands.AddStockCommandTest" time="0.015"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPrice()" classname="commands.AddStockCommandTest" time="0.001"/>
-  <testcase name="construct_AddStockCommand_constructNormally()" classname="commands.AddStockCommandTest" time="0.002"/>
+  <testcase name="construct_AddStockCommand_constructNormally()" classname="commands.AddStockCommandTest" time="0.003"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameTagOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientQuantityAndPrice()" classname="commands.AddStockCommandTest" time="0.0"/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientQuantityOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTagOnly()" classname="commands.AddStockCommandTest" time="0.001"/>
-  <testcase name="getIngredient_GetIngredientInAddCommand_getNormally()" classname="commands.AddStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientQuantityOnly()" classname="commands.AddStockCommandTest" time="0.0"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameOnly()" classname="commands.AddStockCommandTest" time="0.0"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTagOnly()" classname="commands.AddStockCommandTest" time="0.0"/>
+  <testcase name="getIngredient_GetIngredientInAddCommand_getNormally()" classname="commands.AddStockCommandTest" time="0.0"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientPriceOnly()" classname="commands.AddStockCommandTest" time="0.0"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingAllTags()" classname="commands.AddStockCommandTest" time="0.001"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndQuantity()" classname="commands.AddStockCommandTest" time="0.001"/>
-  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPriceTag()" classname="commands.AddStockCommandTest" time="0.004"/>
+  <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPriceTag()" classname="commands.AddStockCommandTest" time="0.001"/>
   <testcase name="execute_ExecuteAddStockCommand_executeNormally()" classname="commands.AddStockCommandTest" time="0.001"/>
   <testcase name="parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndQuantityTag()" classname="commands.AddStockCommandTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
