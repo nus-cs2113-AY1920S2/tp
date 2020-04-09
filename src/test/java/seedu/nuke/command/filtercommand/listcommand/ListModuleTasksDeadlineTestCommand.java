@@ -22,7 +22,7 @@ import static seedu.nuke.util.Message.messageTaskSuccessfullyList;
 /**
  * Junit test class to test ListModuleTasksDeadlineCommand.
  */
-public class ListModuleTasksDeadlineTest {
+public class ListModuleTasksDeadlineTestCommand {
 
 
     @Test

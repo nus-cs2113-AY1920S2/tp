@@ -38,7 +38,23 @@ public class HelpCommand extends Command {
             "%s - Show a help guide\n"
             + "Format: %s\n",
             COMMAND_WORD, FORMAT);
+
+    public static final String GENERIC_ADD_MESSAGE_USAGE =
+            "mkdir - Add a new child directory to the current directory\n"
+            + "Format: mkdir <directory name>\n"
+            + "Example: mkdir CS2113T\n";
+    public static final String GENERIC_LIST_MESSAGE_USAGE =
+            "ls - Show child directories\n"
+            + "Note: Include child directory name to show its child directories instead\n"
+            + "Format: ls [ <child directory name> ]\n"
+            + "Example: ls\tls CS2113T\n";
+    public static final String GENERIC_DELETE_MESSAGE_USAGE =
+            "rm - Delete a child directory\n"
+            + "Format: rm <child directory name>\n"
+            + "Example: rm CS2106\n";
+
     private static final ArrayList<String> commands = new ArrayList<>(Arrays.asList(
+            GENERIC_ADD_MESSAGE_USAGE,
             AddModuleCommand.MESSAGE_USAGE,
             AddCategoryCommand.MESSAGE_USAGE,
             AddTaskCommand.MESSAGE_USAGE,
@@ -46,12 +62,7 @@ public class HelpCommand extends Command {
             AddTagCommand.MESSAGE_USAGE,
             "\n",
 
-            DeleteModuleCommand.MESSAGE_USAGE,
-            DeleteCategoryCommand.MESSAGE_USAGE,
-            DeleteTaskCommand.MESSAGE_USAGE,
-            DeleteFileCommand.MESSAGE_USAGE,
-            "\n",
-
+            GENERIC_LIST_MESSAGE_USAGE,
             ListModuleCommand.MESSAGE_USAGE,
             ListCategoryCommand.MESSAGE_USAGE,
             ListTaskCommand.MESSAGE_USAGE,
@@ -59,6 +70,13 @@ public class HelpCommand extends Command {
             // ListModuleTask.MESSAGE_USAGE,
             ListTaskSortedCommand.MESSAGE_USAGE,
             DueCommand.MESSAGE_USAGE,
+            "\n",
+
+            GENERIC_DELETE_MESSAGE_USAGE,
+            DeleteModuleCommand.MESSAGE_USAGE,
+            DeleteCategoryCommand.MESSAGE_USAGE,
+            DeleteTaskCommand.MESSAGE_USAGE,
+            DeleteFileCommand.MESSAGE_USAGE,
             "\n",
 
             EditModuleCommand.MESSAGE_USAGE,

@@ -22,7 +22,6 @@ import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.misc.ClearCommand;
@@ -234,8 +233,8 @@ public class CommandFormatText {
     private static TextFlow getDeleteModuleFormat() {
         commandFormat.getChildren().addAll(
                 createText(DeleteModuleCommand.COMMAND_WORD, Color.GREEN),
-                createText(" <module code>", Color.BLUE),
-                createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                createText(String.format(" %s %s %s %s %s", "[", "<module keyword>",
+                        EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -243,10 +242,8 @@ public class CommandFormatText {
     private static TextFlow getDeleteCategoryFormat() {
         commandFormat.getChildren().addAll(
                 createText(DeleteCategoryCommand.COMMAND_WORD, Color.GREEN),
-                createText(" <category name> ", Color.BLUE),
-                createText(MODULE_PREFIX, Color.GREEN),
-                createText(" <module code>", Color.BLUE),
-                createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                createText(String.format(" %s %s %s %s %s %s %s", "[", "<category keyword>",
+                        MODULE_PREFIX, "<module keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -254,12 +251,9 @@ public class CommandFormatText {
     private static TextFlow getDeleteTaskFormat() {
         commandFormat.getChildren().addAll(
                 createText(DeleteTaskCommand.COMMAND_WORD, Color.GREEN),
-                createText(" <task description> ", Color.BLUE),
-                createText(MODULE_PREFIX, Color.GREEN),
-                createText(" <module code> ", Color.BLUE),
-                createText(CATEGORY_PREFIX, Color.GREEN),
-                createText(" <category name>", Color.BLUE),
-                createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                createText(String.format(" %s %s %s %s %s %s %s %s %s", "[", "<task keyword>",
+                        MODULE_PREFIX, "<module keyword>",
+                        CATEGORY_PREFIX, "<category keyword>", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }
@@ -267,14 +261,10 @@ public class CommandFormatText {
     private static TextFlow getDeleteFileFormat() {
         commandFormat.getChildren().addAll(
                 createText(DeleteFileCommand.COMMAND_WORD, Color.GREEN),
-                createText(" <file name> ", Color.BLUE),
-                createText(MODULE_PREFIX, Color.GREEN),
-                createText(" <module code> ", Color.BLUE),
-                createText(CATEGORY_PREFIX, Color.GREEN),
-                createText(" <category name> ", Color.BLUE),
-                createText(TASK_PREFIX, Color.GREEN),
-                createText(" <task description>", Color.BLUE),
-                createText(String.format(" %s %s %s %s", "[", EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
+                createText(String.format(" %s %s %s %s %s %s %s %s %s %s %s",
+                "[", "<file keyword>", MODULE_PREFIX, "<module keyword>",
+                CATEGORY_PREFIX, "<category keyword>", TASK_PREFIX, "<task keyword>",
+                EXACT_FLAG, ALL_FLAG, "]"), Color.DARKGRAY)
         );
         return commandFormat;
     }

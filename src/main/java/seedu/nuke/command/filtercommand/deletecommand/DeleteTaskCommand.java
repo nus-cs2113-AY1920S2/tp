@@ -21,8 +21,8 @@ import static seedu.nuke.util.Message.messagePromptDeleteTaskIndices;
  */
 public class DeleteTaskCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delt";
-    public static final String FORMAT = COMMAND_WORD + " <task description> -m <module code> "
-            + "-c <category name> [ -e -a ]";
+    public static final String FORMAT = COMMAND_WORD + " [ <task description> -m <module code> "
+            + "-c <category name> -e -a ]";
     public static final String MESSAGE_USAGE = String.format(
             "%s - Filter and delete the tasks of category(s)\n"
             + "Note: -e to filter for exact keywords; -a to filter across ALL your tasks\n"

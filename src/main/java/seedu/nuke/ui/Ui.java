@@ -1,26 +1,6 @@
 package seedu.nuke.ui;
 
-import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.CommandResult;
-import seedu.nuke.command.ExitCommand;
-import seedu.nuke.command.HelpCommand;
-import seedu.nuke.command.addcommand.AddCategoryCommand;
-import seedu.nuke.command.addcommand.AddFileCommand;
-import seedu.nuke.command.addcommand.AddModuleCommand;
-import seedu.nuke.command.addcommand.AddTagCommand;
-import seedu.nuke.command.addcommand.AddTaskCommand;
-import seedu.nuke.command.editcommand.EditCategoryCommand;
-import seedu.nuke.command.editcommand.EditModuleCommand;
-import seedu.nuke.command.editcommand.EditTaskCommand;
-import seedu.nuke.command.editcommand.MarkAsDoneCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
-import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTask;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.DirectoryTraverser;
