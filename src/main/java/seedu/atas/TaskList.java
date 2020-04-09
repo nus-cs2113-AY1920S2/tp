@@ -70,6 +70,24 @@ public class TaskList {
 
     //@@author jichngan
     /**
+     * Checks for duplicate tasks within tasklist that is not the current specified task.
+     * @param tasklist TaskList to be checked against
+     * @param editedTask Edited task that needs to be checked
+     * @param editIndex Checked against list index to see whether its the task to be edited
+     * @return True if there exists another task within taskList. Otherwise, false.
+     */
+    public Boolean isSameEdit(TaskList tasklist, Task editedTask, int editIndex) {
+        int index = 0;
+        for (Task task : tasklist.getTaskArray()) {
+            if (task.equals(editedTask) && index != editIndex) {
+                return true;
+            }
+            index++;
+        }
+        return false;
+    }
+
+    /**
      * Getter for the current Local Date.
      * Formats Local Date into "dd/MM/yyyy" format.
      * @return LocalDate object of the formatted current Date
@@ -82,7 +100,7 @@ public class TaskList {
         return formattedCurrDate;
     }
 
-    //@@author jichngan
+
     /**
      * Getter method for tasks depending of days from today.
      * @param days Integer representing number of days from today
