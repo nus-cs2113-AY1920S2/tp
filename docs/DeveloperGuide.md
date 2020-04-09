@@ -223,6 +223,7 @@ Given below is an example usage and how ```ListContact``` command behaves.
 ### 3.4 Schedule a new meeting
 
 ### 3.5 Edit a contact's timetable
+![EditContact](images/EditContact.png)<br>
 
 ### 3.6 Delete a scheduled meeting
 
