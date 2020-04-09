@@ -344,6 +344,11 @@ Command:
 
 `clear`
 
+### Help  
+Command:  
+
+`help`
+
 ### Bye
 
 Command:

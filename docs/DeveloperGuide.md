@@ -370,23 +370,90 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 modules|
 
 
+## Glossary
+
+**Mainstream OS** - Windows, Linux, Unix, OS-X
+
+## Instructions for Manual Testing
+
+The following is a summary of all the commands in Module Manager, and some examples of input. 
+The commands are organised into sections, each relating to a particular feature. 
+There is already some data preloaded into the ArchDuke jar file. 
+You may follow the steps in numerical order to test all the features of ArchDuke.
+
+### Command Summary and Testing Instructions
+#### Module Commands
+
+1. Adding Module to available module list  
+    * Use the following commands to add a module to the available module list  
+        * `add id/[module code] s/[semester] mc/[credit] `  
+        or  
+        * `add n/[module name] s/[semester] mc/[credit]`  
+        or  
+        * `add id/[module code] n/[module name] s/[semester] mc/[credit]`  
+
+2. Adding Module to module plan  
+    * Use this command to add a module from the available module list to your module plan  
+        * `add id/[module code] s/[semester] mc/[credit]`  
+          or  
+        * `add n/[module name] s/[semester] mc/[credit]`  
+          or  
+        * `add id/[module code] n/[module name] s/[semester] mc/[credit] ` 
+
+3. Deleting Module from module plan  
+    * Use any of the following commands to delete a module from your module plan  
+        * `delete id/[module code] s/[semester]`  
+          or  
+        * `delete n/[module name] s/[semester]  `  
+        
+4. Deleting Module from available module list  
+    * Use any of the following commands to delete a module from the available module list  
+        * `delete id/[module code]  `
+        or  
+        * `delete n/[module name]  `
+        
+5. Marking Module as done  
+    * Use this command to mark a module that has been added to your module plan as done  
+        * `done n/[module name] g/[grade]  `
+          or  
+        * `done id/[module code] g/[grade]  `  
+        
+6. View module plan  
+    * Use this command to view your current module plan  
+        * `view`  
+        
+7. View done modules  
+    * Use this command to view modules that are done  
+        * `view /dm`  
+        
+8. View CAP  
+    * Use this command to view your current cap  
+        * `CAP`  
+    
+9. View Completed credits  
+    * Use this command to view the number of module credits you have completed  
+        * `view /cc`  
+    
+10. Clear the module plan  
+    * Use this command to clear your current module plan  
+        * `clear`  
+        
+11. Exit the Program  
+    * Use this command to exit the program  
+        * `bye`  
+        
+12. Display help  
+    * Use this command to display help message  
+        * `help`  
+        
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules in the available module list without a noticeable sluggishness in
  performance for typical usage.
- 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
   should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-
-## Glossary
-
-**Mainstream OS** - Windows, Linux, Unix, OS-X
-
-
-
-## Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
+4. Should be secure, to prevent unauthorised modification
+5. Should be smooth and fast to view and edit  
+        
 
