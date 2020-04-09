@@ -2,7 +2,7 @@
 
 ## Overview
 Personal Module Manager is a software that tracks the number of modular credits, modules taken and modules required 
-for its user to graduate. The software is for NUS Students who want to plan their modules per semester in an easy way 
+for its users. The software is for NUS Students who want to plan their modules per semester in an easy way 
 and it is optimized for those who want to type fast with CLI. It is written in Java.
 
 ### Summary of Contributions
@@ -15,14 +15,11 @@ In this project, I design the part of Storage, Exception and some commands.
 
 ##### Storage
 Storage in our software include three parts: `Storage Available Modules List`, `Storage Semester List` and 
-`Storage Person Info`. 
-
-`Available Modules List`, `Semester List` and `Person Info` are stored in CSV file and Person Info is 
-stored in TXT file. And each time the user runs the software, these three file will be loaded.
+`Storage Person Info`. They are all stored in CSV file. Each time the user runs the software, 
+these three file will be loaded and will be store after edit them.
 
 ##### Exception
-Exception in our software include three parts: `Input Exception`, `Runtime Exception` and `Storage Exception`.
-
+Exception in our software include three parts: `Input Exception`, `Runtime Exception` and `Storage Exception`. 
 All of them extend from `ModuleManagerException`.
 
 ##### Commands
