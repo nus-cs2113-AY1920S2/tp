@@ -2,7 +2,7 @@
 
 ## Professor Assistant Console (Pac)
 
-![alt text](images/Pac.png "Pac ver1")  
+![PAC](images/Pac.png "Pac ver1")  
 
 ## Content Page  
 1. [Introduction](#1-introduction)  
@@ -16,11 +16,11 @@
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
 4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
-4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-student-view)  
+4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-studentlist-view)  
 4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-clear)   
 4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-delete)  
 4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-studentlist-find)  
-4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-student-sort)  
+4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-studentlist-sort)  
 4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
 4.2. [Event](#42-event)  
 4.2.1. [Add New Event](#421-add-new-event)  
@@ -31,8 +31,8 @@
 4.2.6. [Edit Event -venue](#426-edit-event-venue)  
 4.2.7. [Edit Event](#427-edit-event)    
 4.3. [Calendar](#43-calendar)  
-4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)
-4.4 [Attendance List](#44-attendance)
+4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)   
+4.4 [Attendance List](#44-attendance)    
 4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance-attendance-add)    
 4.4.2. [View Attendance List](#442-view-attendance-list-attendance-view)   
 4.4.3. [Clear Attendance](#443-clear-attendance-list-attendance-clear)  
@@ -42,7 +42,7 @@
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
 4.5.3. [View Performance List](#453-view-performance-list)   
-4.5.4. [Edit Performance List](#454-edit-performance-list)
+4.5.4. [Edit Performance List](#454-edit-performance-list)   
 4.5.5. [Sort Performance List](#455-sort-performance-list)    
 5. [Possible Console Messages and Reasons](#5-possible-console-messages-and-reasons)           
 6. [FAQ](#6-faq)  
@@ -106,18 +106,18 @@ Refer to [“Features”](#Features) for details of each command.
 This section for student related commands is done in chronological order. Please follow the numbering to get
 a clearer understanding on how you can use the commands.
 
-#### 4.1.1. Add New Student List `student.list add`
+#### 4.1.1. Add New Student List `studentlist add`
 
 Creates a student list and adds it to the collection of student list that can be used for adding attendance and 
 performance. Please note that you are allowed to add in duplicated names and that all names are CASE-SENSITIVE. 
 
 Command: 
 
-    >>> student.list add
+    >>> studentlist add
     
 Examples: 
 
-    >>> student.list add
+    >>> studentlist add
     What is the name of your list?
     
     >>> CS2113T Tut
@@ -132,16 +132,16 @@ Examples:
     >>> done
     Student List created, named : CS2113T Tut
     
-#### 4.1.2 View all existing student lists from the student list collection `student view`
+#### 4.1.2 View all existing student lists from the student list collection `studentlist view`
 View all existing students lists from student list collection.
     
 Command: 
     
-    >>> student.list view
+    >>> studentlist view
         
 Examples: 
     
-    >>> student.list view
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CS2113T Tut                                                                       |
     |___________|____________________________________________________________________________________|
@@ -170,30 +170,30 @@ Examples:
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
                 
-#### 4.1.3 Clear all existing student lists from the student list collection `student.list clear`
+#### 4.1.3 Clear all existing student lists from the student list collection `studentlist clear`
 Clear all existing student lists from the student list collection. This is a clear all command. If you wish to delete 
-a specific student list, please use the `student.list delete` instead.
+a specific student list, please use the `studentlist delete` instead.
 
 Command: 
     
-    >>> student.list clear
+    >>> studentlist clear
         
 Examples: 
     
-    >>> student.list clear
+    >>> studentlist clear
     The Student List Collection is cleared
     
-#### 4.1.4 Clear all existing student lists from the student list collection `student.list delete`
+#### 4.1.4 Clear all existing student lists from the student list collection `studentlist delete`
 Delete a specific student list from the student list collection base on its index. If you wish to delete all student 
 lists in the student list collection, please use `student.list clear` instead.
 
 Command: 
 
-    >>> student.list delete
+    >>> studentlist delete
         
 Examples: 
     
-    >>> student.list delete
+    >>> studentlist delete
     Please state the index of the list you want to delete
     
     >>> 1
@@ -217,16 +217,16 @@ Examples:
     |___________|____________________________________________________________________________________|
                 
     
-#### 4.1.5 Find existing student list(s) from the student list collection `student.list find`
+#### 4.1.5 Find existing student list(s) from the student list collection `studentlist find`
 Find existing student list(s) from student list collection base on keyword.
     
 Command: 
     
-    >>> student.list find
+    >>> studentlist find
         
 Examples: 
     
-    >>> student.list find
+    >>> studentlist find
     Please state the list name you are searching for
     
     >>> CS
@@ -254,7 +254,7 @@ Examples:
     |___________|____________________________________________________________________________________|
 
     
-    >>> student.list find
+    >>> studentlist find
     Please state the list name you are searching for
     
     >>> CG
@@ -274,23 +274,23 @@ Examples:
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
                 
-    >>> student.list find
+    >>> studentlist find
     Please state the list name you are searching for
     
     >>> EG
     Nothing match you description : EG
 
-#### 4.1.6 Sort all names within the existing student lists from the student list collection `student sort`
+#### 4.1.6 Sort all names within the existing student lists from the student list collection `studentlist sort`
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their list name within the student list collection.
 
 Command: 
     
-    >>> student.list sort
+    >>> studentlist sort
         
 Examples:     
 
-    >>> student.list view
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CS2113T Tut                                                                       |
     |___________|____________________________________________________________________________________|
@@ -319,13 +319,13 @@ Examples:
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
     
-    >>> student.list sort
+    >>> studentlist sort
     Please Key in either 'name' or 'list'.
     
     >>> name
     Student List is sorted by name within the Student List Collection
     
-    >>> student.list view
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
     |___________|____________________________________________________________________________________|
@@ -359,7 +359,7 @@ Examples:
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their name.
     
-    >>> student.list sort
+    >>> studentlist sort
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
     |___________|____________________________________________________________________________________|
@@ -388,13 +388,13 @@ in order, this command will force all existing lists to be sorted by their name.
     | 2         |  Jodi                                                                              |
     |___________|____________________________________________________________________________________|
     
-    >>> student.list sort
+    >>> studentlist sort
     Please Key in either 'name' or 'list'.
     
     >>> list
     StudentList sorted by name within the lists
     
-    >>> student.list list
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
     |___________|____________________________________________________________________________________|
@@ -631,6 +631,7 @@ Example:
 
     >>> attendance list
     Please key in the name of event.
+    
     >>> CS1010 Tutorial
     _________________________________________________________________________________________________
     | index     |  Name of Student                    |  Attendance Status                          |
