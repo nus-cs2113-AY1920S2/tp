@@ -10,9 +10,11 @@ import tasks.Task;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 
 //@@author Keith-JK
 public class CalendarCommand extends Command {
@@ -33,7 +35,7 @@ public class CalendarCommand extends Command {
     private static final String MORE_TASK_INDICATOR = ANSI_CYAN + "....." + ANSI_RESET;
 
     // Calendar dimensions
-    private static final int MAX_CALENDAR_ROWS = 30;
+    private static final int MAX_CALENDAR_ROWS = 36;
     private static final int CALENDAR_BOX_HEIGHT = 6;
     private static final int DAYS_IN_WEEK = 7;
 
@@ -85,6 +87,7 @@ public class CalendarCommand extends Command {
         final int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // maximum no. days in given month
 
         ArrayList<Task> monthlyTaskList = duplicateRepeatEvents(dateTime, getTasksByYearMonth(dateTime, taskList));
+        monthlyTaskList.sort(Comparator.comparing(Task::getDateAndTime, LocalDateTime::compareTo));
 
         StringBuilder calendarView = new StringBuilder();
         addCalendarTitle(calendar, calendarView);
@@ -242,6 +245,7 @@ public class CalendarCommand extends Command {
             if (task.getDate().getDayOfMonth() == currentDayRepresented) {
                 hasPrintedTask = true;
                 if (calendarRow % CALENDAR_BOX_HEIGHT == 5) {
+                    monthlyTaskList.remove(task);
                     addTaskNotShownIndicator(calendarView);
                 } else {
                     addTaskToCalendar(monthlyTaskList, calendarView, task);
