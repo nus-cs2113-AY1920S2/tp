@@ -277,7 +277,7 @@ to check whether the <code>Item</code> at each specified index contains the give
 6. This list of matching results is then printed to standard output.
 
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object.
-Note the <code>Ui</code> class isomitted in the sequence diagram to emphasise on the other classes:
+Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
 
 ![alt text](images/Findfinal6.png)
 
