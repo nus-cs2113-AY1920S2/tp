@@ -54,6 +54,7 @@ public class CardList implements Serializable {
     /**
      * Removes a card from the deck.
      * @param index Index of card to be removed.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public void removeCard(int index) throws EscException {
         if (this.size() == 0) {
@@ -71,6 +72,7 @@ public class CardList implements Serializable {
      * Returns a card based on its index number.
      * @param index Index of card to retrieve.
      * @return card Card corresponding to index.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public Card getCard(int index) throws EscException {
         if (this.size() == 0) {
@@ -102,8 +104,6 @@ public class CardList implements Serializable {
         }
     }
 
-
-
     /**
      * Returns size of the cardlist.
      */
@@ -113,8 +113,8 @@ public class CardList implements Serializable {
 
     /**
      * Removes a card without a return message. For EditCommand usage.
-     * @param index index of card
-     * @throws EscException if the card index does not exist
+     * @param index index of card.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public void removeCardSilent(int index) throws EscException {
         if (this.size() == 0) {
@@ -130,9 +130,9 @@ public class CardList implements Serializable {
 
     /**
      * Adds a card at the given index. For EditCommand usage.
-     * @param card the card to add
-     * @param subject the given subject
-     * @param index index of the original card
+     * @param card the card to add.
+     * @param subject the given subject.
+     * @param index index of the original card.
      */
     public void addCardSilent(Card card, Subject subject, int index) {
         cards.add(index,card);

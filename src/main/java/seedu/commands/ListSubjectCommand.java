@@ -14,7 +14,7 @@ public class ListSubjectCommand extends ListCommand {
     public static final String MESSAGE_USAGE = "To list subjects, type command: listsubject";
 
     /**
-     * Lists the cards currently stored in the application.
+     * Lists the subjects currently stored in the application.
      */
     @Override
     public void execute(SubjectList subjectList) {

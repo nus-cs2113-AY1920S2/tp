@@ -35,6 +35,7 @@ public class ScoreList implements Serializable {
 
     /**
      * Prints out all the past score history for selected subject.
+     * @throws EscException if there is not past test history for this subject.
      */
     public void listScores() throws EscException {
         if (scores.isEmpty()) {
