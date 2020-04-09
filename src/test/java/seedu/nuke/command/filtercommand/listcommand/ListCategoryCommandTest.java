@@ -6,6 +6,8 @@ import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleLoader;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.storage.StoragePath;
+import seedu.nuke.directory.DirectoryTraverser;
+import seedu.nuke.directory.Root;
 
 import java.util.HashMap;
 
@@ -20,6 +22,7 @@ class ListCategoryCommandTest {
         // set up
         HashMap<String, String> modulesMap = ModuleLoader.load(StoragePath.NUS_MODULE_LIST_PATH);
         ModuleManager.initialise(modulesMap);
+        DirectoryTraverser.traverseTo(new Root());
         CommandResult result = Executor.executeCommand("addm cs3235");
         result = Executor.executeCommand("addm cs3230");
         result = Executor.executeCommand("addc test -m cs3235");

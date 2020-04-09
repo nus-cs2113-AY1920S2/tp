@@ -99,17 +99,19 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -- Time Specifier Formats [&#10149;](#time-specifier-formats)    
 <br>  <big style="color: green"> **Command Summary** [&#10149;](#command-summary) </big>   
 <br>  <big style="color: green"> **FAQ** [&#10149;](#faq) </big>   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Can I not enter the Full Path** [&#10149;](#can-i-not-enter-the-full-path)  
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **How does the Filtering Process works?** [&#10149;](#how-does-the-filtering-process-works)  
 
 <br>  
 
 ## **Introduction**  
-<span style="text-align: justify; display: block">
-This **Nuke** application is a simple yet powerful task management system that is dedicated to providing **NUS students** a more efficient way to organise their _modules_ and _tasks_.<br>  
-You will be interacting with the application via the command line. With the **Nuke** application, you will be able to perform various operations to manage your _modules_ and _tasks_ such as adding, deleting and listing your  _modules_ and _tasks_. You may also add additional properties to your _tasks_ such as _files_, _deadlines_, and _priorities_.<br>  
-**Nuke** facilitates users by automatically sorting user-added _tasks_ and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  
-If you are an **NUS student** and have not tried out **Nuke** yet...  
-What are you waiting for? Give **Nuke** a shot, and you will see how amazing it is!   
-</span>
+<div>
+This <b>Nuke</b> application is a simple yet powerful task management system that is dedicated to providing <b>NUS students</b> a more efficient way to organise their <i>modules</i> and <i>tasks</i>.<br>  <br>
+You will be interacting with the application via the command line. With the <b>Nuke</b> application, you will be able to perform various operations to manage your <i>modules</i> and <i>tasks</i> such as adding, deleting and listing your  <i>modules</i> and <i>tasks</i>. You may also add additional properties to your <i>tasks</i> such as <i>files</i>, <i>deadlines</i>, and <i>priorities</i>.<br>  <br>
+<b>Nuke</b> facilitates users by automatically sorting user-added <i>tasks</i> and displaying the most important and urgent ones to the users. In the long term, it strives to enhance the quality of NUS students’ lives by serving as the one-stop platform for efficient management of module tasks.<br>  <br>
+If you are an <b>NUS student</b> and have not tried out <b>Nuke</b> yet... <br> 
+What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing it is!   
+</div>
 
 [Back To Top](#table-of-contents)
 
@@ -146,7 +148,7 @@ Below is an illustration of a possible <b>Directory Tree</b> structure:
 
 <br>
 
-#### Root   
+#### **Root**   
 The **Root** Directory is the **base** of the entire Directory Tree. Only **one** root exists in the entire Tree. _Modules_ are added into this level into a **Module List**. A _module_ consists of both a *module code* and a _module title_. 
 
 <div class="alert alert-warning">
@@ -154,20 +156,20 @@ The **Root** Directory is the **base** of the entire Directory Tree. Only **one*
 Only <b>NUS modules</b> are allowed to be added in <b>Nuke</b>.  
 </div>
 
-#### Module
+#### **Module**
 The **Module** Directory is the **second** level of the Directory Tree.  Each _module_ has a **Category List** that has several _categories_ to categorise your _tasks_, such as Lecture, Tutorial and Assignment, so that you can further organise your _tasks_. A _category_ consists of a _name_ and a _priority_ to indicate the importance of the _tasks_ in that _category_.  
 <div class="alert alert-info">
 <i class="fa fa-info"></i> <b>Info</b> <br> 
 Upon adding a <i>module</i>, <b>Nuke</b> automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. So, you don't have to add those <i>categories</i> yourself!
 </div>   
 
-#### Category
+#### **Category**
 The **Category** Directory is the **third** level of the Directory Tree. Each _category_ has a **Task List** that can contain any number of _tasks_, which are ideally related to the _category_. A _task_ has several attributes, namely the _description_, _deadline_ of the _task_ if any, _priority_ and the _done status_ of the _task_.
 
-#### Task
+#### **Task**
 The **Task** Directory is the **fourth** level of the Directory Tree. Each _task_ can have _files_ attached to the it. _Files_ are stored in the **File List**. The _file_ must have a _file name_ and the _path_ to the _file_.   
 
-#### File
+#### **File**
 The **File** Directory is the **last** level of the Directory Tree. It contains no other directories.   
 
 <div class="alert alert-warning">
@@ -178,7 +180,7 @@ For example, you can only add a <i>task</i> into the <b>Category</b> directory, 
 
 <div class="alert alert-info">
 <i class="fa fa-info"></i> <b>Tip</b> <br> 
-You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br>
+You can shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! <br><br>
 To learn how to traverse the various directories, see the <b><a href="#6-change-directory">Change Directory</a></b> command.
 </div>   
 
@@ -254,10 +256,17 @@ Below sums up what `mkdir` does at each level of the Directory.
 | <b>Module</b>   | `mkdir <category name>` adds a *category* into the current directory |
 | <b>Category</b> | `mkdir <task description>` adds a *task* into the current directory  |
 | <b>Task</b>     | `mkdir <file name>` adds a *file* into the current directory         |
-| <b>File</b>     | You cannot `mkdir` here! :pensive:                                   |
+| <b>File</b>     | You cannot `mkdir` here! &#128532;                                   |
 
 
 The above commands have to be done in their corresponding directories. Conversely, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+In many of the <b>Add</b> commands, you have to enter the <i>directory path</i> of the <i>directory</i> you wish to add the item into. You <b>can</b> shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command! &#128522; <br><br>
+To learn how to traverse the various directories, see the <b><a href="#6-change-directory">Change Directory</a></b> command.  <br><br>
+For more information on how and if you can <b>not</b> enter  the <i>full directory path</i>, see <a href="#can-i-not-enter-the-full-path">here</a>.
+</div>   
 
 [Back To Top](#table-of-contents)
 
@@ -470,7 +479,7 @@ In the table below, you can find what `ls` does at each level of the Directory.
 | <b>Module</b>   | `ls` shows all your <i>categories</i> in the <i>module</i>'s <b>Category List</b><br>`ls <category name>` shows all the <i>tasks</i> in the <b>Task List</b> of that <i>category</i> |  
 | <b>Category</b> | `ls` shows all your <i>tasks</i> in the <i>category</i>'s <b>Task List</b><br>`ls <task description>` shows all the <i>files</i> in the <b>File List</b> of that <i>task</i>        |  
 | <b>Task</b>     | `ls` shows all your <i>files</i> in the <i>task</i>'s <b>File List</b>  |  
-| <b>File</b>     | You cannot `ls` here! :frowning:                                        |  
+| <b>File</b>     | You cannot `ls` here! &#128550;                                        |  
 
 The above commands have to be done in their corresponding directories. On the other hand, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
@@ -655,10 +664,9 @@ due over
 [Back To Top](#table-of-contents)   
 <br>  
 
-#### f. List your Files
+#### **f. List your Files**
 `lsf` will show your filtered <i>files(s)</i>.
 
-##### Format
 ##### **Format**  
 `lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]`
 
@@ -667,7 +675,7 @@ due over
 - `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by     
 - `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by      
 
-##### Example Usage 
+##### **Example Usage** 
 ```
 lsf -m cs2113t -c Assignment -t urgent assignment
 ```
@@ -681,14 +689,14 @@ lsf -t urgent assignment
 lsf
 ```
 
-##### Expected Outcome    
+##### **Expected Outcome**    
 
 ![image-20200401012942212](images/ug_lsf_outcome.png)
 
 [Back To Top](#table-of-contents)
 <br>
 
-#### g. List your Task's Tags
+#### **g. List your Task's Tags**
 <big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>  
 
 `lsg` shows *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
@@ -705,8 +713,8 @@ lsf
 Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i> or <i>files</i> from their respective lists.   
 You will be prompted to either enter `yes`  to confirm the deletion <i>or</i> `no` to abort the deletion after entering the <b>Delete</b> command.   
 <br>
-Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm`
-<br>
+Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm`    
+<br>   
 The table below shows you `rm` does at each level of the Directory.
 
 <div style="text-align: center"><span style="color: green"><small>Table <b>Generic Delete Command</b></small></span></div>
@@ -717,7 +725,7 @@ The table below shows you `rm` does at each level of the Directory.
 | <b>Module</b>   | `rm <category name>` deletes a *category* from the current directory |  
 | <b>Category</b> | `rm <task description>` deletes a *task* from the current directory  |  
 | <b>Task</b>     | `rm <file name>` deletes a *file* from the current directory         |  
-| <b>File</b>     | You cannot `rm` here! :grimacing:                                    |  
+| <b>File</b>     | You cannot `rm` here! &#128556;                                    |  
 
 The above commands have to be done in their corresponding directories. However, the commands below can be done in any directory, but may require you to enter <i>additional</i> information.   
 
@@ -905,6 +913,14 @@ delg urgent
 ### **4. Edit**
 
 Edits a <i>module</i>, <i>category</i>,  <i>task</i> or <i>file</i>.<br>  
+
+<div class="alert alert-info">
+<i class="fa fa-info"></i> <b>Tip</b> <br> 
+In many of the <b>Edit</b> commands, you have to enter the <i>directory path</i> of the <i>directory</i> you wish to edit the item. You <b>can</b> shorten the commands you enter by first entering into a directory. Then you do <b>not</b> need to enter the full <i>directory path</i> in your command!  &#128537;<br><br>
+To learn how to traverse the various directories, see the <b><a href="#6-change-directory">Change Directory</a></b> command.  <br><br>
+For more information on how and if you can <b>not</b> enter  the <i>full directory path</i>, see <a href="#can-i-not-enter-the-full-path">here</a>.
+</div>   
+
 
 #### **a. Edit a Module in your Module List**  
 `edm` edits a <i>module</i> in your <b>Module List</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.
@@ -1411,5 +1427,62 @@ A simple summary of the various commands are shown below:
 
 ## **FAQ**
 
-[Back To Top](#table-of-contents)
+### **Can I not enter the Full Path?**  
+<div>
+Yes, you <b>can</b>! &#128521; <br> 
+You do <b>not</b> have to keep entering the <i>path</i> to the <i>directory</i> at the start of most of the commands in <b>Nuke</b>, in particular the <b><a href="#1-add">Add</a></b> and  <b><a href="#4-edit">Edit</a></b> commands.<br> In other words, you do <b>not</b> have to include the <code>-m  &lt;module code&gt;</code>,  <code>-c  &lt;category name&gt;</code>,  <code>-t  &lt;task description&gt;</code> and  <code>-f  &lt;file name&gt;</code>. <br><br>
+<b>Nuke</b> is able to intelligently fill in the missing components in the <i>path</i> for you. Here are various examples on how you can utilise this feature of <b>Nuke</b> to your advantage: <br><br>
 
+<b>In each of the examples below, we set the context to be at the Category level, and the <i>current path</i> to be <code>root / CS2113T / Project</code></b> <br><br>
+
+<b><u>Commands targeting Current Directory</u></b><br>
+If you want to add a <i>task</i> into the current <i>category</i> that you are in, that is into the <code>Project</code> <i>category</i>, instead of entering <code>addt new task -m cs2113t -c Project -p 4</code>, you can simply enter <code>addt new task -p 4</code>. &#128522; <br><br>
+
+<b><u>Commands targeting Parent Directory</u></b><br>
+If you want to edit a <i>file</i> that has the path <code>root / CS2113T / Project / tp / image_1</code>, instead of entering <code>edf image_1 -m cs2113t -c Project -t tp -f new file name</code> you can just enter <code>edf image_1 -t tp -f new file name</code>. &#128522; <br><br>
+
+<b><u>Commands targeting Child Directory</u></b><br>
+If you want to add a <i>category</i> to the <code>CS2113T</code> <i>module</i>, instead of entering <code>addc new category -m cs2113t -p 3</code>, you can enter <code>addc new category -p 3</code>.  &#128522; <br><br>
+
+<b><u>Commands targeting Nearby Directory</u></b><br>
+If you want to edit a <i>task</i>  that has the path <code>root / CS2113T / Lecture / read lecture notes</code>, instead of entering <code>edt read lecture notes -m cs2113t -c Lecture -p 3 -d sun 3pm</code> you can just enter <code>edt read lecture notes -c Lecture -p 3 -d sun 3pm</code>. &#128522; <br>
+<br>
+
+Essentially, <b>Nuke</b> will fill the missing components in the <i>path</i> based on your current <i>directory path</i>. Hence, it would be good to use the <b><a href="#5-change-directory">Change Directory</a></b> command to move to the corresponding <i>directory</i> first, so you do not have to enter the <i>full path</i>.
+</div>
+
+<br>
+
+### **How does the Filtering Process works?**
+<div>
+<b>Nuke</b> does filtering for <b><a href="#2-list">List</a></b> and  <b><a href="#3-delete">Delete</a></b> commands. <b>Nuke</b> filters for the set of items that contains the <i>keywords</i> that you provide in the command. Filtering is always done in a case-<b>insensitive</b> manner. All <b>matched</b> items will be shown as a list. <br><br>
+
+Consider this example: <br>
+Let's assume you have three <i>tasks</i> with <i>directory paths</i><br> 
+1. <code>root / CS2113T / Project / do UG</code>,<br>
+2. <code>root / CS2113T / Project / peer review</code> and<br>
+3. <code>root / CS2113T / group project / do ug faq section</code>.<br>
+
+Now, entering the command <code>lst -m cs -c project -t ug</code> should fetch only the first and third <i>tasks</i>.<br><br>
+
+Furthermore, if an attribute is left <b>empty</b>, such as <code>lst -m cs -t ug</code>, where the <code>-c &lt;category keyword&gt;</code> attribute is missing, <b>Nuke</b> will simply ignore filtering for <b>all</b> of the <i>categories</i>. In this case, <b>Nuke</b> will select all <i>tasks</i> with <i>module</i> containing <code>cs</code> in their <i>module code</i> and <i>tasks</i> containing <code>ug</code> in their <i>task description</i>. <br><br>
+
+Another feature of the filtering is that it tries to filter from the current <i>directory</i>. For example, if you are in the <i>path</i>  <code>root / CS2113T</code>, then entering <code>lsc</code> will fetch all of the <i>module</i> <code>CS2113T</code> 's <i>categories</i> only, instead of fetching all your <i>categories</i>. Unless you specify the corresponding <i>keyword</i>, or choose to filter <b>all</b> as explained later, <b>Nuke</b> will always behave in such a manner when filtering. <br> <br>
+
+In addition, there are <b>two</b> extra conditions you can include to the filtering process. They are: <br><br>
+
+<b><u>Filter Exactly</u></b><br>
+This can be activated by including a <code>-e</code> at the back of your command. This filters for items that <b>matches exactly</b> the <i>keyword</i>, instead of just containing the <i>keyword</i>. <br>
+For example, for <i>modules</i> with <i>paths</i>:<br>
+<code>root / CS2113</code> and <br>
+<code>root / CS2113T</code><br>
+when the command <code>delm cs2113 -e</code> is entered, only the first <i>module</i> is shown. <br>
+The  case-<b>insensitive</b> filtering and <b>empty</b> <i>keyword</i> property still holds even when filtering <b>exactly</b>. <br> <br>
+
+<b><u>Filter All</u></b><br>
+Similarly, this can be activated by including a <code>-a</code> at the back of your command. This filters for items in your entire <b>Directory List</b>, and not just limited to the current <i>directory</i>, which is the default setting. <br> <br>
+
+You can mix both <code>-e</code> and <code>-a</code> to filter exactly the way you want. &#128521;
+</div>
+
+[Back To Top](#table-of-contents)
