@@ -241,7 +241,6 @@ public class PatientParser extends Parser {
         return parseInput;
     }
 
-
     /**
      * Prompt user for confirmation by displaying their previously entered inputs.
      *
