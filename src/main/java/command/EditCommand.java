@@ -79,8 +79,8 @@ public class EditCommand extends Command {
         try {
             switch (commandType) {
             case AssignmentCommand.COMMAND_WORD:
-                if (taskList.getTask(editIndex) instanceof RepeatEvent ||
-                        taskList.getTask(editIndex) instanceof Event) {
+                if (taskList.getTask(editIndex) instanceof RepeatEvent
+                        || taskList.getTask(editIndex) instanceof Event) {
                     return new CommandResult(Messages.EDIT_TYPE_ERROR);
                 }
 
