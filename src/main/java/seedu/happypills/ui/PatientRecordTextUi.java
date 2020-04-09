@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class PatientRecordTextUi extends TextUi {
 
     /**
-     * format a list patient record success message for user.
+     * Formats a list patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecords patient object to be returned as a part of the string.
-     * @return a formatted success message string to be displayed to user.
+     * @param patientRecords Patient records of the patient.
+     * @return message A formatted success message string to be displayed to user.
      */
     public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords) {
         String nric = patientRecords.get(0).getNric();
@@ -30,13 +30,13 @@ public class PatientRecordTextUi extends TextUi {
     }
 
     /**
-     * format a get patient record success message for user.
+     * Formats a get patient record success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecordMap patient object to be returned as a part of the string.
-     * @param patientNric      nric of the patient
-     * @param index            index for the record of the searched patient
-     * @return a formatted success message string to be displayed to user.
+     * @param patientRecordMap Patient object to be returned as a part of the string.
+     * @param patientNric      Nric of the patient.
+     * @param index            Index for the record of the searched patient.
+     * @return returnMessage A formatted success message string to be displayed to user.
      */
     public static String getPatientRecordSuccessMessage(
             PatientRecordMap patientRecordMap, String patientNric, int index) {
@@ -46,11 +46,11 @@ public class PatientRecordTextUi extends TextUi {
     }
 
     /**
-     * format a edit patient success message for user.
+     * Formats a edit patient success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecord patient object to be returned as a part of the string.
-     * @return a formatted success message string to be displayed to user.
+     * @param patientRecord Patient object to be returned as a part of the string.
+     * @return returnMessage A formatted success message string to be displayed to user.
      */
     public static String editPatientRecordSuccessMessage(PatientRecord patientRecord) {
         String returnMessage = "    Here is the edited patient's record details:\n" + patientRecord + DIVIDER;
@@ -58,11 +58,11 @@ public class PatientRecordTextUi extends TextUi {
     }
 
     /**
-     * format a delete patient success message for user.
+     * Formats a delete patient success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecord    patient record object to be returned as a part of the string.
-     * @param patientNric      nric of the patient
+     * @param patientRecord    Patient record object to be returned as a part of the string.
+     * @param patientNric      Nric of the patient.
      *
      * @return a formatted success message string to be displayed to user.
      */
@@ -80,10 +80,10 @@ public class PatientRecordTextUi extends TextUi {
 
 
     /**
-     * Prompt user for conformation with this message.
+     * Prompts user for conformation with this message.
      *
-     * @param parseInput details to be displayed to user for confirmation
-     * @return string to be displayed to user for confirmation
+     * @param parseInput Details to be displayed to user for confirmation.
+     * @return text The string to be displayed to user for confirmation.
      */
     public static String promptConfirmation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"

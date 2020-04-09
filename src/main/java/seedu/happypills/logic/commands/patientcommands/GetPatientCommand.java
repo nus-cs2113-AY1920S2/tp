@@ -7,6 +7,7 @@ import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
 
+//@@author janicetyy
 public class GetPatientCommand extends PatientCommand {
     protected String patientNric;
 
@@ -22,7 +23,7 @@ public class GetPatientCommand extends PatientCommand {
 
     /**
      * Get the details of a patient.
-     * @author janicetyy
+     *
      * @param patients Shared map of patients
      * @param appointments Shared map of appointments
      * @param visits Shared map of patient records

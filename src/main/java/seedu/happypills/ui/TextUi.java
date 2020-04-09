@@ -49,7 +49,7 @@ public class TextUi {
     }
 
     /**
-     * Append the divider to the given message.
+     * Appends the divider to the given message.
      *
      * @param s The message that requires the divider to be appended.
      * @return The message with the appended divider.
@@ -59,7 +59,7 @@ public class TextUi {
     }
 
     /**
-     * Prepend the divider to the given message.
+     * Prepends the divider to the given message.
      *
      * @param s The message that requires the divider to be prepended.
      * @return The message with the prepended divider.
@@ -74,7 +74,7 @@ public class TextUi {
     }
 
     /**
-     * Construct a string for incomplete commands, probably missing something.
+     * Constructs a string for incomplete commands, probably missing something.
      * @param helpString provide the help command that user can use to find the right format
      * @return a string for incomplete commands.
      */
@@ -84,7 +84,7 @@ public class TextUi {
     }
 
     /**
-     * Repeat a string count number of times.
+     * Repeats a string count number of times.
      *
      * @param count the number of times to be repeated.
      * @param with the string to be repeated.
@@ -95,7 +95,7 @@ public class TextUi {
     }
 
     /**
-     * Repeat a blank space count number of times.
+     * Repeats a blank space count number of times.
      *
      * @param count the number of times to be repeated.
      * @return the resulting string.

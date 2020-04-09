@@ -18,6 +18,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+//@@ itskesin
+/*
+ * Edits patient record in the Patient Record Map.
+ */
 public class EditPatientRecordCommand extends PatientRecordCommand {
 
     protected String nric;
@@ -31,10 +35,9 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
 
     /**
      * Constructor for EditPatientRecordCommand Class.
-     * It creates a new EditPatientRecordCommand Object with the information provided.
      *
-     * @param nric       Contains the nric of the patient that is to be retrieved.
-     * @param index index for the record of the searched patient
+     * @param nric       Nric of the patient that is to be retrieved.
+     * @param index      Index for the record of the searched patient.
      * @param newContent Contains the string that the attribute is to be updated to.
      */
     public EditPatientRecordCommand(String nric, int index, String newContent) {
@@ -45,11 +48,12 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     }
 
     /**
-     * Edit the appointment details with the information provided by calling.
+     * Edits the patient record details with the information provided by user.
      *
-     * @param patients     Contains the list of patients on which the commands are executed on.
-     * @param appointments Contains the list of appointments on which the commands are executed on.
-     * @throws HappyPillsException Throws an exception if the edit field is not valid.
+     * @param patients       Contains the list of patients on which the commands are executed on.
+     * @param appointments   Contains the list of appointments on which the commands are executed on.
+     * @param patientRecords Contains the list of patient records.
+     * @throws HappyPillsException If the edit field is not valid.
      */
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords)
@@ -61,7 +65,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         if (content.length() == 0) {
             return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
         }
-        String field = "";
+        String field;
         if (newContent.contains(SYMPTOM_TAG)) {
             field = newContent.substring(0, 4);
             content = newContent.substring(4);
@@ -72,6 +76,56 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             field = newContent.substring(0, 2);
             content = newContent.substring(2);
         }
+        PatientRecord editPatientRecord = checkInvalidInput(patientRecords, content);
+        content = content.trim();
+        boolean output;
+        String errorMsg = Messages.MESSAGE_EDIT_ERROR + TextUi.NEWLINE;
+        if (field.equals(SYMPTOM_TAG)) {
+            output = editSymptom(editPatientRecord, content);
+        } else if (field.equals(DIAGNOSIS_TAG)) {
+            output = editDiagnosis(editPatientRecord, content);
+        } else if (field.equals(DATE_TAG)) {
+            output = editDate(editPatientRecord, content);
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_DATE;
+        } else if (field.equals(TIME_TAG)) {
+            output = editTime(editPatientRecord, content);
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_TIME;
+        } else {
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_EDIT_PR);
+        }
+        saveEditedInformation(patients, patientRecords, output);
+        errorMsg = TextUi.appendDivider(errorMsg);
+        String message = PatientRecordTextUi.editPatientRecordSuccessMessage(editPatientRecord);
+        return output ? message : errorMsg;
+    }
+
+    /**
+     * Saves the edited patient record details with the information provided by user.
+     *
+     * @param patients       Contains the list of patients on which the commands are executed on.
+     * @param patientRecords Contains the list of patient records.
+     * @param output         Contains the boolean to check whether the patient record is updated.
+     */
+    private void saveEditedInformation(PatientMap patients, PatientRecordMap patientRecords, boolean output) {
+        if (output) {
+            try {
+                Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
+                        StorageTextUi.getFormattedPrString(patientRecords, patients));
+            } catch (IOException e) {
+                logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
+            }
+        }
+    }
+
+    /**
+     * Check for invalid input provided by user.
+     *
+     * @param patientRecords Contains the list of patient records.
+     * @param content        Contains the updated user input.
+     * @throws HappyPillsException If the edit field is not valid.
+     */
+    private PatientRecord checkInvalidInput(PatientRecordMap patientRecords, String content)
+            throws HappyPillsException {
         if (!patientRecords.containsKey(nric)) {
             logger.info("Patient Record not found");
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
@@ -93,50 +147,39 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             logger.info("Patient Record not found with given index");
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
-        content = content.trim();
-        boolean output = false;
-        String errorMsg = Messages.MESSAGE_EDIT_ERROR + TextUi.NEWLINE;
-        if (field.equals(SYMPTOM_TAG)) {
-            output = editSymptoms(editPatientRecord, content);
-        } else if (field.equals(DIAGNOSIS_TAG)) {
-            output = editDiagnosis(editPatientRecord, content);
-        } else if (field.equals(DATE_TAG)) {
-            output = editDate(editPatientRecord, content);
-            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_DATE;
-        } else if (field.equals(TIME_TAG)) {
-            output = editTime(editPatientRecord, content);
-            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_TIME;
-        } else {
-            throw new HappyPillsException(Messages.MESSAGE_INVALID_EDIT_PR);
-        }
-        if (output) {
-            try {
-                Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
-                        StorageTextUi.getFormattedPrString(patientRecords,patients));
-            } catch (IOException e) {
-                logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
-            }
-        }
-        errorMsg = TextUi.appendDivider(errorMsg);
-        return output ? PatientRecordTextUi.editPatientRecordSuccessMessage(editPatientRecord) : errorMsg;
+        return editPatientRecord;
     }
 
-    private Boolean editDiagnosis(PatientRecord editPatientRecord, String content) {
-        editPatientRecord.setDiagnosis(content);
-        return true;
-    }
-
-    private Boolean editSymptoms(PatientRecord editPatientRecord, String content) {
-        editPatientRecord.setSymptom(content);
+    /**
+     * Edits the Diagnosis of the patient record with the newly given diagnosis.
+     *
+     * @param patientRecord Contains the patient record.
+     * @param newDiagnosis  Contains the new Diagnosis given by the user.
+     * @return Boolean to indicate whether the Diagnosis is edited.
+     */
+    private Boolean editDiagnosis(PatientRecord patientRecord, String newDiagnosis) {
+        patientRecord.setDiagnosis(newDiagnosis);
         return true;
     }
 
     /**
-     * Edit the date of the appointment in the list within the patient object.
+     * Edits the symptom of the patient record with the newly given symptom.
      *
-     * @param patientRecord Contains the patient that to get appointment from.
-     * @param newDate       The new date to be edited into.
-     * @return the appointment with the specified apptID or null if not found
+     * @param patientRecord Contains the patient record.
+     * @param newSymptom    Contains the new symptom given by the user.
+     * @return Boolean to indicate whether the symptom is edited.
+     */
+    private Boolean editSymptom(PatientRecord patientRecord, String newSymptom) {
+        patientRecord.setSymptom(newSymptom);
+        return true;
+    }
+
+    /**
+     * Edits the date of the patient record with the newly given date.
+     *
+     * @param patientRecord Contains the patient record.
+     * @param newDate       Contains the new date given by the user.
+     * @return Boolean to indicate whether the date is edited.
      */
     private Boolean editDate(PatientRecord patientRecord, String newDate) {
         if (!Checker.isValidDate(newDate)) {
@@ -147,11 +190,11 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     }
 
     /**
-     * Edit the time of the appointment in the shared appointment map.
+     * Edits the time of the patient record with the newly given time.
      *
-     * @param patientRecord Contains the patient that to get appointment from.
-     * @param newTime       The new time to be edited into.
-     * @return the appointment with the specified apptID or null if not found.
+     * @param patientRecord Contains the patient record.
+     * @param newTime       Contains the new time given by the user.
+     * @return Boolean to indicate whether the time is edited.
      */
     private Boolean editTime(PatientRecord patientRecord, String newTime) {
         if (!Checker.isValidTime(newTime)) {
@@ -161,11 +204,18 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         return true;
     }
 
+    /**
+     * Finds patient record with the given NRIC and index.
+     *
+     * @param nric           Contains the NRIC of patient.
+     * @param index          Contains the index of the given user input.
+     * @param patientRecords Contains the list of patient records.
+     * @return patientRecord If patient record is existing in the patient record list otherwise null.
+     */
     private PatientRecord findPatientRecord(String nric, int index, PatientRecordMap patientRecords) {
         ArrayList<PatientRecord> patientRecordlist = patientRecords.get(nric);
         if (patientRecordlist != null && index < patientRecordlist.size()) {
-            PatientRecord patientRecord = patientRecordlist.get(index);
-            return patientRecord;
+            return patientRecordlist.get(index);
         } else {
             return null;
         }

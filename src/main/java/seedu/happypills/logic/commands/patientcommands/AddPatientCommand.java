@@ -17,6 +17,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author NyanWunPaing
+/*
+ * Adds patient into Patient Map.
+ */
 public class AddPatientCommand extends PatientCommand {
     protected String name;
     protected String nric;
@@ -32,13 +35,13 @@ public class AddPatientCommand extends PatientCommand {
      * Constructor for AddPatientCommand Class.
      * It creates a new AddPatientCommand Object with the information provided.
      *
-     * @param name        Contains the name of the patient.
-     * @param nric        Contains the nric of the patient.
-     * @param phoneNumber Contains the phone number of the patient.
-     * @param dateOfBirth Contains the date of birth of the patient.
-     * @param bloodType   Contains the blood type of the patient.
-     * @param allergies   Contains any allergies the patient has.
-     * @param remarks     Contains any remarks for the patient.
+     * @param name        Name of the patient.
+     * @param nric        Nric of the patient.
+     * @param phoneNumber Phone number of the patient.
+     * @param dateOfBirth Date of birth of the patient.
+     * @param bloodType   Blood type of the patient.
+     * @param allergies   Allergies of the patient.
+     * @param remarks     Remarks for the patient.
      */
     public AddPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
                              String bloodType, String allergies, String remarks) {
@@ -53,32 +56,33 @@ public class AddPatientCommand extends PatientCommand {
     }
 
     /**
-     * Adds a new task to the list with the information provided by calling.
-     * {} (or) {}
-     * (or) {} as require
+     * Executes the add patient command.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
+     * @param patients       The list of patients.
+     * @param appointments   The list of appointments.
+     * @param patientRecords The list of patient records.
+     * @return Error Message or Success Message.
+     * @throws HappyPillsException If NRIC already exist in the patient list.
      */
     @Override
     public String execute(
-            PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
+            PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
-        assert !patients.containsKey(nric) : "New nric can be added";
+        assert !patients.containsKey(nric) : "New NRIC can be added";
         Patient tempPatient = new Patient(name, nric, phoneNumber, dateOfBirth, bloodType, allergies, remarks);
         logger.log(logLevel, "patient is added");
         if (!Checker.isValidNric(tempPatient.getNric())) {
             return Messages.MESSAGE_INVALID_NRIC;
         }
         patients.add(tempPatient);
-        assert patients.containsKey(nric) : "nric added successfully";
+        assert patients.containsKey(nric) : "NRIC added successfully";
         try {
             Storage.addSingleItemToFile(Storage.PATIENT_FILEPATH, tempPatient.toSave());
         } catch (IOException e) {
             logger.info(StorageTextUi.FAIL_TO_ADD_PATIENT_MSG);
         }
-        String message = "";
-        message = PatientTextUi.addPatientSuccessMessage(patients.get(nric));
-        logger.log(logLevel, "end of addCommand");
+        String message = PatientTextUi.addPatientSuccessMessage(patients.get(nric));
+        logger.log(logLevel, "end of add command");
         return message;
     }
 }
