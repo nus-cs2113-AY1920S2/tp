@@ -8,22 +8,24 @@ import java.time.format.DateTimeParseException;
 import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_STARTENDTIME_OUT_OF_RANGE;
+import static common.Messages.MESSAGE_INVALID_SLOT_RANGE;
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_INVALID_EDIT;
 import static common.Messages.MESSAGE_WEEK_RANGE_EMPTY;
 import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
 
+
 /**
- * This class contains information of a member's schedule in blocks of 30mins interval,
- * as well as get methods to access it private members. It also include methods to convert from
- * user input date to blocks from 0-47, inserted into mySchedule.
+ * This class contains information of a contact's schedule in blocks of 30mins interval.
+ * It includes methods to access its private members.
+ * It includes methods to modify contact's schedules and delete contact.
  */
 
 public class Contact {
     private static final Boolean MYSCHEDULEBLOCKED = true;
     private static final Boolean MYSCHEDULEFREE = false;
-    private String memberName;
+    private String contactName;
     private Boolean[][][] mySchedule; //String[13][7][48]; 13 weeks, 7 days, separated into 30mins within 24 hours period.
     private String[][][] myScheduleName;
     private boolean isMainUser = false;
@@ -33,7 +35,7 @@ public class Contact {
             isMainUser = true;
             name = name.replace("_main", "");
         }
-        this.memberName = name;
+        this.contactName = name;
         this.mySchedule = new Boolean[13][7][48];
         this.myScheduleName = new String[13][7][48];
         for (int i = 0; i < 13; i++) {
@@ -46,27 +48,31 @@ public class Contact {
         }
     }
 
-    public void addBusyBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
-                              String[] onWeeks) throws MoException {
-        editBlocks(MYSCHEDULEBLOCKED, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+    public void addBusyBlocks(String scheduleNameStatus, Integer startDay, String startTime, Integer endDay,
+                              String endTime, String[] onWeeks) throws MoException {
+        editBlocks(MYSCHEDULEBLOCKED, scheduleNameStatus, startDay, startTime, endDay, endTime, onWeeks);
     }
 
-    public void addFreeBlocks(String meetingName, Integer startDay, String startTime, Integer endDay, String endTime,
+    public void addFreeBlocks(Integer startDay, String startTime, Integer endDay, String endTime,
                               String[] onWeeks) throws MoException {
-        editBlocks(MYSCHEDULEFREE, meetingName, startDay, startTime, endDay, endTime, onWeeks);
+        editBlocks(MYSCHEDULEFREE, "null", startDay, startTime, endDay, endTime, onWeeks);
     }
 
-    /** Adds scheduled model.meeting in LocalTime into schedule[][][] data structure.
+    /** Converts time into 30-min blocks for easy processing of slot by editBlocksLogic().
+     * Throws error if slot is not valid.
      *
-     * @param meetingName name of the scheduled model.meeting to be added.
-     * @param startDay    start day of the model.meeting in integer.
-     * @param startTime   start time of the model.meeting in LocalTime format. For eg, 11:30, 14:30, 00:00
-     * @param endDay      end day of the model.meeting in integer.
-     * @param endTime     end time of the model.meeting in LocalTime format: For eg, 11:30, 14:30, 00:00
-     * @param onWeeks     weeks that are suppose to be made busy.
-     * @return returns String of error message, else returns "Success" if schedule is successfully edited.
+     * @param blockedOrFree       Boolean variable that represents busy or free, to be inserted into mySchedule[][][].
+     * @param scheduleNameStatus  String variable that is the name to be inserted into myScheduleName[][][].
+     *                            Can be either contactName (edit busy function) or meetingName (schedule function)
+     * @param startDay            Start day of the slot in Integer.
+     * @param startTime           Start time of the slot in LocalTime format. For eg, 11:30, 14:30, 00:00
+     * @param endDay              End day of the slot in Integer.
+     * @param endTime             End time of the slot in LocalTime format: For eg, 11:30, 14:30, 00:00
+     * @param onWeeks             Weeks that are suppose to be edited.
+     * @return                    Returns String of error message, else returns "Success" if schedule is successfully edited.
+     * @throws MoException        Throws error if slot is not valid.
      */
-    public String editBlocks(Boolean blockedorfree, String meetingName, Integer startDay,
+    public String editBlocks(Boolean blockedOrFree, String scheduleNameStatus, Integer startDay,
                              String startTime, Integer endDay, String endTime, String[] onWeeks) throws MoException {
         LocalTime localTimeStart;
         LocalTime localTimeEnd;
@@ -95,25 +101,34 @@ public class Contact {
             return MESSAGE_WEEK_RANGE_EMPTY;
         }
 
-        editBlocksLogic(blockedorfree, startBlock, endBlock, startDay, endDay, meetingName, onWeeks);
+        editBlocksLogic(blockedOrFree, startBlock, endBlock, startDay, endDay, scheduleNameStatus, onWeeks);
         return MESSAGE_RETURN_SUCCESS;
     }
 
     /**
-     * Defines the logic of converting from blocks of time and day of model.meeting to data structure.
-     * Used in addBusyBlocks() and addFreeBlocks()
+     * Defines the logic of modifying mySchedule[][][] and myScheduleName[][][] with given slot.
+     * Modifies mySchedule[][][] to be busy or free for a given time slot.
+     * Modifies myScheduleName[][][] to meetingName, contactName or null for a given time slot.
+     * Used in edit function and schedule meeting function
+     *
+     * @param blockedOrFree       Boolean variable that represents busy or free, to be inserted into mySchedule[][][].
+     * @param scheduleNameStatus  String variable that is the name to be inserted into myScheduleName[][][].
+     *                            Can be either contactName (edit busy function) or meetingName (schedule function)
+     * @param startDay            Start day of the slot in Integer.
+     * @param startBlock          Start time of the slot represented by a 30-min block in Integer.
+     * @param endDay              End day of the slot in Integer.
+     * @param endBlock            End time of the slot represented by a 30-min block in Integer.
+     * @param onWeeks             Weeks that are suppose to be edited.
+     * @throws MoException        Throws error if slot is not valid.
      */
     private void editBlocksLogic(Boolean blockedOrFree, Integer startBlock, Integer endBlock, Integer startDay, Integer endDay,
-                                    String meetingName, String[] onWeeks) throws MoException {
+                                    String scheduleNameStatus, String[] onWeeks) throws MoException {
 
         String[] startOnWeeks = onWeeks.clone();
         String[] endOnWeeks = onWeeks.clone();
 
         Boolean myScheduleStatus = blockedOrFree;
-        String myScheduleNameStatus = "null";
-        if (blockedOrFree == MYSCHEDULEBLOCKED) {
-            myScheduleNameStatus = meetingName;
-        }
+        String myScheduleNameStatus = scheduleNameStatus;
 
         if (startDay > 6 && endDay > 6) {
             startDay -= 7;
@@ -124,7 +139,7 @@ public class Contact {
             endDay -= 7;
             endOnWeeks[0] = Integer.toString(Integer.parseInt(endOnWeeks[0]) + 1);
         } else if (startDay > 6 && endDay < 7) {
-            throw new MoException("Meeting can't end before it starts.");
+            throw new MoException("Start Day is later than End Day.");
         }
 
         if (!startDay.equals(endDay)) {
@@ -193,7 +208,7 @@ public class Contact {
      * @return one-based indexing of the block from LocalTime.
      * @throws MoException Throws error if LocalTime isn't in multiples of 30minutes.
      */
-    private Integer getBlocksFromTime(LocalTime myTime) throws MoException {
+    private static Integer getBlocksFromTime(LocalTime myTime) throws MoException {
         int minuteBlocks = -1;
         int hourBlocks = -1;
         switch (myTime.getMinute()) {
@@ -205,14 +220,13 @@ public class Contact {
             break;
         default:
             throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
-
         }
         hourBlocks = myTime.getHour() * 2;
         return minuteBlocks + hourBlocks;
     }
 
     public String getName() {
-        return this.memberName;
+        return this.contactName;
     }
 
     public Boolean[][][] getSchedule() {
@@ -253,6 +267,17 @@ public class Contact {
         return isMainUser;
     }
 
+    /**
+     * Used in edit function to check if slot to be edited clashes with meetings in myScheduleName[][][].
+     *
+     * @param startDay            Start day of the slot in Integer.
+     * @param startTime           Start time of the slot in LocalTime format. For eg, 11:30, 14:30, 00:00
+     * @param endDay              End day of the slot in Integer.
+     * @param endTime             End time of the slot in LocalTime format: For eg, 11:30, 14:30, 00:00
+     * @param currentWeekNumber   Current week that is supposed to be edited.
+     * @return                    Returns true if the slot does not clash with meetings.
+     * @throws MoException        Throws error if invalid edit.
+     */
     public boolean isValidEdit(Integer startDay,
                                       LocalTime startTime, Integer endDay, LocalTime endTime,
                                       int currentWeekNumber) throws MoException {
@@ -270,6 +295,17 @@ public class Contact {
         return true;
     }
 
+    /**
+     * Used in schedule function to check if slot to be edited is busy in mySchedule[][][].
+     *
+     * @param startDay            Start day of the slot in Integer.
+     * @param startTime           Start time of the slot in LocalTime format. For eg, 11:30, 14:30, 00:00
+     * @param endDay              End day of the slot in Integer.
+     * @param endTime             End time of the slot in LocalTime format: For eg, 11:30, 14:30, 00:00
+     * @param currentWeekNumber   Current week that is supposed to be edited.
+     * @return                    Returns true if the slot does not clash with meetings.
+     * @throws MoException        Throws error if invalid edit.
+     */
     public boolean isValidMeeting(Integer startDay,
                                          LocalTime startTime, Integer endDay, LocalTime endTime,
                                          int currentWeekNumber) throws MoException {
@@ -286,6 +322,23 @@ public class Contact {
         return true;
     }
 
+    /**
+     * Defines the logic of checking if a slot is valid for a meeting or for editing.
+     *
+     * @param startDay            Start day of the slot in Integer.
+     * @param startBlock          Start time of the slot represented by a 30-min block in Integer.
+     * @param endDay              End day of the slot in Integer.
+     * @param endBlock            End time of the slot represented by a 30-min block in Integer.
+     * @param startWeekNumber     Start week that is supposed to be edited.
+     * @param endWeekNumber       End week that is supposed to be edited.
+     * @param mainUserSchedule    Main user's schedule used to check slot.
+     *                            Either in String[][][] or Boolean[][][].
+     * @param invalidBlock        Status in mainUserSchedule to be detected for invalid slot.
+     *                            Either in String format or Boolean format.
+     * @param invalidBlockMessage Message to be thrown if slot is invalid in String.
+     * @return                    Returns true if the slot does not clash with meetings.
+     * @throws MoException        Throws error if invalid edit.
+     */
     private <T> void isValidLogic(Integer startDay, Integer endDay, int startWeekNumber, int endWeekNumber,
                                          Integer startBlock, Integer endBlock, T[][][] mainUserSchedule, T invalidBlock,
                                          String invalidBlockMessage) throws MoException {
@@ -301,7 +354,7 @@ public class Contact {
                     }
                 }
             } else if (startBlock > endBlock) {
-                throw new MoException(invalidBlockMessage);
+                throw new MoException(MESSAGE_INVALID_SLOT_RANGE);
             }
         }
 
@@ -358,41 +411,11 @@ public class Contact {
         }
     }
 
-
-    public static Integer getBlocksFromStartTime(LocalTime startTime) throws MoException {
-        int minuteBlocks = -1;
-        int hourBlocks = -1;
-        switch (startTime.getMinute()) {
-        case 0:
-            minuteBlocks = 0;
-            break;
-        case 30:
-            minuteBlocks = 1;
-            break;
-        default:
-            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
-        }
-        hourBlocks = startTime.getHour() * 2;
-        return minuteBlocks + hourBlocks;
-    }
-
-    public static Integer getBlocksFromEndTime(LocalTime endTime) throws MoException {
-        int minuteBlocks = -1;
-        int hourBlocks = -1;
-        switch (endTime.getMinute()) {
-        case 0:
-            minuteBlocks = 0;
-            break;
-        case 30:
-            minuteBlocks = 1;
-            break;
-        default:
-            throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
-        }
-        hourBlocks = endTime.getHour() * 2;
-        return minuteBlocks + hourBlocks - 1;
-    }
-
+    /**
+     * This private class contains information about a time slot, generated with startDay, startTime, endDay, endTime.
+     * It contains the logic that converts startTime and endTime to 30-min startBlock and endBlock.
+     * It contains the logic that converts startDay, endDay and currentWeekNumber to startWeekNumber and endWeekNumber.
+     */
     private static class Slot {
         private Integer startDay;
         private LocalTime startTime;
@@ -457,7 +480,7 @@ public class Contact {
                 throw new MoException(MESSAGE_STARTENDTIME_WRONG_FORMAT);
             }
 
-            startBlock = getBlocksFromStartTime(startTime);
+            startBlock = getBlocksFromTime(startTime);
             endBlock = -1;
             if (endTime == LocalTime.parse("00:00")) {
                 endBlock = 47;
@@ -467,7 +490,7 @@ public class Contact {
                     endDay = endDay - 1;
                 }
             } else {
-                endBlock = getBlocksFromEndTime(endTime);
+                endBlock = getBlocksFromTime(endTime) - 1;
             }
             return this;
         }
