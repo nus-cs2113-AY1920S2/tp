@@ -48,7 +48,7 @@ public class CardList implements Serializable {
             String existingQuestion =  existingCard.getQuestion().toLowerCase();
             String questionToAdd = card.getQuestion().toLowerCase();
             if (existingQuestion.equals(questionToAdd)) {
-                throw new EscException("This question has already been added to this subject.");
+                throw new EscException("This question has already been added.");
             }
         }
     }
