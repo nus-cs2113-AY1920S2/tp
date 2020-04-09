@@ -368,7 +368,7 @@ public class TextUI {
     }
 
     public static void printFormatMeeting() {
-        out.println("\nTo list meetings:\nmeeting");
+        out.println("\nTo list meetings:\nmeetings");
     }
 
     public static void displayRemovedPerson(String name) {
