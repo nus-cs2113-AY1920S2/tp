@@ -24,7 +24,7 @@ class AddStockCommandTest {
             throws InvalidStockCommandException {
         
         Ingredient tomato = new Ingredient("tomato", Optional.of(1), Optional.of(0.50));
-        Ingredient tomatoCopy = new AddStockCommand("i/tomato; q/1; p/$0.50;")
+        Ingredient tomatoCopy = new AddStockCommand("i/tomato; q/1; p/0.50;")
                 .getIngredientInAddCommand();
         
         assertTrue(tomato.equals(tomatoCopy));
@@ -38,7 +38,7 @@ class AddStockCommandTest {
         Stock stockCopy = new Stock();
         Ingredient tomatoToAdd = new Ingredient("tomato", Optional.of(1), Optional.of(0.50));
         stockCopy.addIngredient(tomatoToAdd);
-        AddStockCommand addStockCommand = new AddStockCommand("i/tomato; q/10; p/$0.50");
+        AddStockCommand addStockCommand = new AddStockCommand("i/tomato; q/10; p/0.50");
         assertEquals(addStockCommand.printExecuteOutput(stock), executeAdd(stockCopy, tomatoToAdd));
     }
     
@@ -46,7 +46,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameTagOnly() {
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("tomato; q/1; p/$0.50;");            
+                    parseIntoAddIngredientArgs("tomato; q/1; p/0.50;");            
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the 'i/' tag before the ingredient's name. "
                     + "Please enter in the following format: "
@@ -61,7 +61,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingQuantityTagOnly() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("i/tomato; 1; p/$0.50;");
+                    parseIntoAddIngredientArgs("i/tomato; 1; p/0.50;");
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the 'q/' tag before the ingredient's quantity. "
                     + "Please enter in the following format: "
@@ -76,7 +76,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingPriceTagOnly() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("i/tomato; q/1; $0.50;");
+                    parseIntoAddIngredientArgs("i/tomato; q/1; 0.50;");
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the 'p/' tag before the ingredient's price."
                     + " Please enter in the following format: "
@@ -91,7 +91,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingPriceAndQuantityTag() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("i/tomato; 1; $0.50;");
+                    parseIntoAddIngredientArgs("i/tomato; 1; 0.50;");
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the "
                     + "'q/' tag and 'p/' tag"
@@ -109,7 +109,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndQuantityTag() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("tomato; 1; p/$0.50;");
+                    parseIntoAddIngredientArgs("tomato; 1; p/0.50;");
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the "
                     + "'i/' tag and 'q/' tag"
@@ -127,7 +127,7 @@ class AddStockCommandTest {
     public void parse_ParseUserInputIntoAddIngredientsArgs_missingIngredientNameAndPriceTag() { 
         try {
             Map<String, Pair<Integer, Double>> parsedIngredientInfo = 
-                    parseIntoAddIngredientArgs("tomato; q/1; $0.50;");
+                    parseIntoAddIngredientArgs("tomato; q/1; 0.50;");
         } catch (InvalidStockCommandException isce) {
             assertEquals("The user's input did not specify the "
                     + "'i/' tag and 'p/' tag"
@@ -231,7 +231,7 @@ class AddStockCommandTest {
             throws InvalidStockCommandException {
         
         Ingredient tomato = new Ingredient("tomato", Optional.of(1), Optional.of(0.50));
-        AddStockCommand addStockCommand = new AddStockCommand("i/tomato; q/1; p/$0.50");
+        AddStockCommand addStockCommand = new AddStockCommand("i/tomato; q/1; p/0.50");
         Ingredient tomatoInAddCommand = addStockCommand.getIngredientInAddCommand();
         assertEquals(tomato, tomatoInAddCommand);       
     }
