@@ -2,6 +2,7 @@ package stock;
 
 import exceptions.IngredientNotFoundException;
 import ingredient.Ingredient;
+import report.LoadStock;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -30,11 +31,12 @@ public class Stock {
      */
     private static Map<String, Pair<Integer, Double>> stock = null;
     
+    /** A HashSet to keep track of duplicated ingredient names in the stock. */
     private static Set<String> duplicateIngredientNameSet = null;
     
+    /** A stock decoder that loads data from the report.txt file. */
     private static LoadStock stockLoader = null;
 
-    
     private final String ls = System.lineSeparator();
     
     public Stock() {
@@ -164,7 +166,7 @@ public class Stock {
                 double price = ingredient.getValue().second();
                 System.out.println(ingredientCounter 
                         + ". "
-                        + "[" 
+                        + "    [" 
                         + quantity 
                         + "]"
                         + "[$" 

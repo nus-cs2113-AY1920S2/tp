@@ -3,12 +3,12 @@ import exceptions.InvalidFilePathException;
 import exceptions.StockReadWriteException;
 import exceptions.ReservationException;
 import report.LoadReservation;
+import report.LoadStock;
 import reservation.Reservation;
 import sales.Sales;
 import menu.Menu;
 import reservation.ReservationList;
 import stock.Stock;
-import stock.LoadStock;
 import ui.Ui;
 import utils.CommandParser;
 import utils.LoggerUtils;
@@ -50,14 +50,7 @@ public class Main {
         this.ui = new Ui();
         this.sales = new Sales();
 
-        try {
-            this.reservations = new ReservationList(LoadReservation.getInstance("report.txt").loadFileReservations());
-        } catch (IOException e) {
-            ui.showMessage("Fails to load in the list from the file...");
-            this.reservations = new ReservationList();
-        } catch (ReservationException e) {
-            this.reservations = new ReservationList();
-        }
+
 
         // set up the logger
         LoggerUtils.createLogFolder(LOG_FOLDER);
@@ -73,6 +66,18 @@ public class Main {
         
         
         // load data from report.txt
+        
+        try {
+            this.reservations = new ReservationList(
+                    LoadReservation.getInstance("report.txt")
+                    .loadFileReservations());
+        } catch (IOException e) {
+            ui.showMessage("Fails to load in the list from the file...");
+            this.reservations = new ReservationList();
+        } catch (ReservationException e) {
+            this.reservations = new ReservationList();
+        }
+        
         LoadStock sl = Stock.getStockLoader();
         try {
             sl.loadStockData(stock);
@@ -89,7 +94,8 @@ public class Main {
         while (true) {
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            new CommandParser().parseCommand(userInput, this.menu, this.stock, this.reservations, this.sales, this.ui);
+            new CommandParser().parseCommand(userInput, this.menu, 
+                    this.stock, this.reservations, this.sales, this.ui);
         }
     }
     

@@ -2,8 +2,13 @@ package report;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import dish.Dish;
 import menu.Menu;
@@ -19,6 +24,8 @@ public class ReportWriter {
     protected ReservationList reservations;
     
     private final String ls = System.lineSeparator();
+    private final String indent = "                                                              "
+            + "                               ";
     
     /**
      * A convenience constructor of ReportWriter.
@@ -63,12 +70,17 @@ public class ReportWriter {
                     + ls);
             fw.write(stockTitle);
             counter = 1;
-            for (Map.Entry<String, Pair<Integer,Double>> ingredient : stock.getStock().entrySet()) {
+            
+            List<Entry<String, Pair<Integer, Double>>> sortedStock = sortStockByDescendingQuantity(stock);
+            for (Map.Entry<String, Pair<Integer,Double>> ingredient : sortedStock) {
+                String ingredientName = ingredient.getKey();
+                String spaceBetween = indent.substring(0, indent.length() - ingredientName.length());
                 String writtenString = String.format(
-                        "*%d. %s \t Price:$%.2f Quantity:%d "
+                        "*%d. %s %s Price:$%.2f Quantity:%d "
                         + ls,
                         counter, 
-                        ingredient.getKey(), 
+                        ingredientName,
+                        spaceBetween,
                         ingredient.getValue().second(), 
                         ingredient.getValue().first());
                 fw.write(writtenString);
@@ -89,5 +101,23 @@ public class ReportWriter {
             System.out.println("Invalid Path");
         }
         fw.close();
+    }
+    
+    /** Sorts the stock in descending quantity before saving into report.txt. */
+    public List<Entry<String, Pair<Integer, Double>>> sortStockByDescendingQuantity(Stock stock) {
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.getStock().entrySet());
+        
+        Collections.sort(tempList, new Comparator<Entry<String, Pair<Integer, Double>>>() {
+            @Override
+            public int compare(Entry<String, Pair<Integer, Double>> firstEntry, 
+                    Entry<String, Pair<Integer, Double>> secondEntry) {
+                
+                int firstEntryQuantity = firstEntry.getValue().first();
+                int secondEntryQuantity = secondEntry.getValue().first();
+                return secondEntryQuantity - firstEntryQuantity;
+            }
+        }); 
+        
+        return tempList;
     }
 }
