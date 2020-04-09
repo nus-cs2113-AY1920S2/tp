@@ -1431,7 +1431,8 @@ A simple summary of the various commands are shown below:
   
 ## **FAQ**  
   
-### **Can I not enter the Full Path?** <div>  
+### **Can I not enter the Full Path?**  
+<div>  
 Yes, you <b>can</b>! &#128521; <br>   
 You do <b>not</b> have to keep entering the <i>path</i> to the <i>directory</i> at the start of most of the commands in <b>Nuke</b>, in particular the <b><a href="#1-add">Add</a></b> and  <b><a href="#4-edit">Edit</a></b> commands.<br> In other words, you do <b>not</b> have to include the <code>-m  &lt;module code&gt;</code>,  <code>-c  &lt;category name&gt;</code>,  <code>-t  &lt;task description&gt;</code> and  <code>-f  &lt;file name&gt;</code>. <br><br>  
 <b>Nuke</b> is able to intelligently fill in the missing components in the <i>path</i> for you. Here are various examples on how you can utilise this feature of <b>Nuke</b> to your advantage: <br><br>  
