@@ -133,11 +133,15 @@ extracted, and parsed by `EventParser` to retrieve the relevant information
 step passed into it. 
     - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
     `index=1` as its argument.
-1. These commands are then returned to `Pac.run()` to `execute()`. 
+1. This command is returned to `CommandInterpreter#decideCommand()` which returns to `Pac#run()` to call `Command#execute()`. 
 
 The diagram below illustrates the program flow stated above, with the command 
 `event delete i/1`.
 ![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")
+
+In this diagram:
+* Other alternative paths are not shown (e.g. [add], [editEvent], [list], etc.).
+* The details after `Command#execute()` is not shown.
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
