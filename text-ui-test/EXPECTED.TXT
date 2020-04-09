@@ -296,32 +296,24 @@ Example: DEL 3
 
 Enter command:
 
+SET: Sets the budget based on user input.
+|| Parameters: SET /b[BUDGET]
+|| Example: SET /b 100.00
+
+RES: Resets the budget to $0.00.
+|| Parameters: RES
+|| Example: RES
+
 ADD: Adds an item to the list.
-|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]
+|| Parameters: ADD i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]
 || Example: ADD i/apple p/3.00 q/2
 
 EDIT: Edits the specified item in the list.
-|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]
+|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]
 || Example 1: EDIT 1 i/apple p/3.00 q/4
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/3.00
 || Example 4: EDIT 1 q/4
-
-DISPLAY: Lists all items in the list.
-|| Parameters: DISPLAY
-|| Example: DISPLAY
-
-FIND: Shows all items that contain the keyword.
-|| Parameters: FIND [KEYWORD]
-|| Example: FIND apples
-
-DEL: Deletes an item in the list.
-|| Parameters: DEL [INDEX]
-|| Example: DEL 1
-
-CLEAR: Clears the list.
-|| Parameters: CLEAR
-|| Example: CLEAR
 
 MARK: Marks an item as bought.
 || Parameters: MARK [INDEX]
@@ -331,13 +323,21 @@ UNMARK: Unmarks a bought item.
 || Parameters: UNMARK [INDEX]
 || UNMARK 1
 
-SET: Sets the budget based on user input.
-|| Parameters: SET /b[BUDGET]
-|| Example: SET /b 100.00
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
-RES: Resets the budget to $0.00.
-|| Parameters: RES
-|| Example: RES
+DEL: Deletes an item in the list.
+|| Parameters: DEL [INDEX]
+|| Example: DEL 1
+
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
+
+CLEAR: Clears the list.
+|| Parameters: CLEAR
+|| Example: CLEAR
 
 HELP: Shows program usage instructions.
 || Parameters: HELP
@@ -382,32 +382,24 @@ For the help command, just input "HELP".
 
 Enter command:
 
+SET: Sets the budget based on user input.
+|| Parameters: SET /b[BUDGET]
+|| Example: SET /b 100.00
+
+RES: Resets the budget to $0.00.
+|| Parameters: RES
+|| Example: RES
+
 ADD: Adds an item to the list.
-|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]
+|| Parameters: ADD i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]
 || Example: ADD i/apple p/3.00 q/2
 
 EDIT: Edits the specified item in the list.
-|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]
+|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]
 || Example 1: EDIT 1 i/apple p/3.00 q/4
 || Example 2: EDIT 1 i/apple
 || Example 3: EDIT 1 p/3.00
 || Example 4: EDIT 1 q/4
-
-DISPLAY: Lists all items in the list.
-|| Parameters: DISPLAY
-|| Example: DISPLAY
-
-FIND: Shows all items that contain the keyword.
-|| Parameters: FIND [KEYWORD]
-|| Example: FIND apples
-
-DEL: Deletes an item in the list.
-|| Parameters: DEL [INDEX]
-|| Example: DEL 1
-
-CLEAR: Clears the list.
-|| Parameters: CLEAR
-|| Example: CLEAR
 
 MARK: Marks an item as bought.
 || Parameters: MARK [INDEX]
@@ -417,13 +409,21 @@ UNMARK: Unmarks a bought item.
 || Parameters: UNMARK [INDEX]
 || UNMARK 1
 
-SET: Sets the budget based on user input.
-|| Parameters: SET /b[BUDGET]
-|| Example: SET /b 100.00
+FIND: Shows all items that contain the keyword.
+|| Parameters: FIND [KEYWORD]
+|| Example: FIND apples
 
-RES: Resets the budget to $0.00.
-|| Parameters: RES
-|| Example: RES
+DEL: Deletes an item in the list.
+|| Parameters: DEL [INDEX]
+|| Example: DEL 1
+
+DISPLAY: Lists all items in the list.
+|| Parameters: DISPLAY
+|| Example: DISPLAY
+
+CLEAR: Clears the list.
+|| Parameters: CLEAR
+|| Example: CLEAR
 
 HELP: Shows program usage instructions.
 || Parameters: HELP
