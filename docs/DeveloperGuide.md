@@ -124,13 +124,20 @@ saved.
 
 #### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
-1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
-`EventParser`.
-1. Then, the relevant class that corresponds to the requested command is 
-created, with the information extracted from the previous step passed into it. 
+1. The first word is extracted by `getFirstWord` to determine the command type.
+1. If this command type requires further arguments, subsequent words are extracted, 
+and parsed by `EventParser` to retrieve the relevant information (e.g. index, 
+name, time, date, venue).
+1. Alternate paths are chosen based on `commandType`, where a corresponding 
+`Command` class is created, with the information extracted from the previous 
+step passed into it. 
     - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
     `index=1` as its argument.
 1. These commands are then returned to `Pac.run()` to `execute()`. 
+
+The diagram below illustrates the program flow stated above, with the command 
+`event delete i/1`.
+![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
