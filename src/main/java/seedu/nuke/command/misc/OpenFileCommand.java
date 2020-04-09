@@ -83,12 +83,12 @@ public class OpenFileCommand extends FilterCommand {
     }
 
     /**
-     * Filters for the files to be opened.
+     * Gets the files to be opened from the task.
      *
      * @return
-     *  The filtered list of files to be opened
+     *  The list of files to be opened
      */
-    private ArrayList<TaskFile> filterFilesToOpen()
+    private ArrayList<TaskFile> getFilesToOpen()
             throws ModuleManager.ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
             TaskManager.TaskNotFoundException, TaskFileManager.TaskFileNotFoundException,
             IncorrectDirectoryLevelException {
@@ -151,7 +151,7 @@ public class OpenFileCommand extends FilterCommand {
     @Override
     public CommandResult execute() {
         try {
-            ArrayList<TaskFile> filesToOpen = filterFilesToOpen();
+            ArrayList<TaskFile> filesToOpen = getFilesToOpen();
             if (filesToOpen.isEmpty()) {
                 return new CommandResult(MESSAGE_NO_FILES_FOUND);
             }
