@@ -4,7 +4,7 @@
 
 ## Overview
 
-SHOCO is a desktop application used for the managing and planning of shopping lists and budget. Users interact with it through the use of a command-line interface (CLI), the program is written in Java and has bout 4 kLoC.
+SHOCO is a desktop application used for the managing and planning of shopping lists and budget. Users interact with it through the use of a command-line interface (CLI), the program is written in Java and has bout 5 kLoC.
 
 ### Summary of Contributions
 * **Major enhancement 1:** Included the **ability to edit items** in the shopping list.
