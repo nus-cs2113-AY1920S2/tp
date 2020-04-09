@@ -367,7 +367,7 @@ public class Parser {
         DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
                 + "[yyyy/MM/dd][yyyy-MM-dd][yyyy-M-d]"
                 + "[dd-MM-yyyy][d-M-yyyy][dd-MM-yy][d-M-yy]"
-                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy]"
+                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy][yyyy.MM.dd]"
                 + "[dd-MMM-yyyy][d-MMM-yyyy][d-MMM-yy]");
 
         LocalDate parsedDate;

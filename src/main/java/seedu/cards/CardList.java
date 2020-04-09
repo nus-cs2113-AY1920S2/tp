@@ -96,4 +96,30 @@ public class CardList implements Serializable {
         return this.cards.size();
     }
 
+    /**
+     * Removes a card without a return message. For EditCommand usage.
+     * @param index index of card
+     * @throws EscException if the card index does not exist
+     */
+    public void removeCardSilent(int index) throws EscException {
+        if (this.size() == 0) {
+            throw new EscException("The card list is empty.");
+        }
+
+        try {
+            cards.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EscException("The card item does not exist.");
+        }
+    }
+
+    /**
+     * Adds a card at the given index. For EditCommand usage.
+     * @param card the card to add
+     * @param subject the given subject
+     * @param index index of the original card
+     */
+    public void addCardSilent(Card card, Subject subject, int index) {
+        cards.add(index,card);
+    }
 }
