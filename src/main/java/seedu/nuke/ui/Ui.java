@@ -122,20 +122,4 @@ public class Ui {
     public void showMessage(String message) {
         out.println(message.replace("\n", LS));
     }
-
-    /**
-     * print the Strings in an ArrayList to the user.
-     *
-     * @param shownList an ArrayList of Strings to be shown to the user
-     */
-    public void printShownList(ArrayList<String> shownList) {
-        final String divider = String.format("%s%s%s", "+", "-".repeat(100), "+");
-        System.out.println(divider);
-
-        for (String str : shownList) {
-            System.out.println(str);
-        }
-
-        System.out.println(divider + "\n");
-    }
 }

@@ -1,4 +1,43 @@
-<style type="text/css">
+
+<head>  
+    <meta charset="UTF-8">  
+    <title>Nuke User Guide v2.1</title>  
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> </head>  
+  
+<style type="text/css">  
+div {  
+   text-align: justify;  
+}  
+.alert {  
+  padding: 15px;  
+  margin-bottom: 20px;  
+  border: 1px solid transparent;  
+  border-radius: 4px;  
+}  
+.alert-success {  
+  background-color: #dff0d8;  
+  border-color: #d6e9c6;  
+  color: #3c763d;  
+}  
+  
+.alert-info {  
+  background-color: #d9edf7;  
+  border-color: #bce8f1;  
+  color: #31708f;  
+}  
+  
+.alert-warning {  
+  background-color: #fcf8e3;  
+  border-color: #faebcc;  
+  color: #8a6d3b;  
+}  
+  
+.alert-error {  
+  background-color: #f2dede;  
+  border-color: #ebccd1;  
+  color: #a94442;  
+}  
+
 .image-right {
   display: block;
   margin-left: 10px;
@@ -32,19 +71,36 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Purpose [&#10149;](#purpose)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Scope [&#10149;](#scope)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Design Goals [&#10149;](#design-goals)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Definitions [&#10149;](#definitions)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Definitions [&#10149;](#definitions)    
+<br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
-<big style="color: green">  **Design** [&#10149;](#design)  </big>  
-<big style="color: green"> **Implementation** [&#10149;](#implementation)  </big>  
-&nbsp; &nbsp; &nbsp; &nbsp; 1. Add Feature [&#10149;](#1-add-feature)   
-&nbsp; &nbsp; &nbsp; &nbsp; 2. Delete Feature [&#10149;](#2-delete-feature)   
+<br>  
+<big style="color: green">  **Architecture** [&#10149;](#architecture)  </big>  
+<br>    
+<big style="color: green">  **Structure Implementation** [&#10149;](#structure-implementation)  </big>   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory [&#10149;](#1-directory)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory Manager [&#10149;](#2-directory-manager)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory Traversal [&#10149;](#3-directory-traversal)    
+<br>   
+<big style="color: green"> **Command Implementation** [&#10149;](#command-implementation)  </big>  
+&nbsp; &nbsp; &nbsp; &nbsp; 1. Add Command [&#10149;](#1-add-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; 2. List Command [&#10149;](#2-list-command)     
+&nbsp; &nbsp; &nbsp; &nbsp; 3. Delete Command [&#10149;](#3-delete-command)     
+&nbsp; &nbsp; &nbsp; &nbsp; 4. Edit Command [&#10149;](#4-edit-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; 5. Change Directory Command [&#10149;](#5-change-directory-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; 6. Open File Command [&#10149;](#6-open-file-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; 7. Info Command [&#10149;](#-info-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; 8. Undo and Redo Commands [&#10149;](#8-undo-and-redo-commands)    
+<br>   
+<big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
+<br>   
 <big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; User Stories [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Non-Functional Requirements [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Glossary [&#10149;](#glossary)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; Manual Testing [&#10149;](#manual-testing)    
 
-<br>  
+<br>   
 
 ## **Introduction**  
 
@@ -81,10 +137,10 @@ Refer to the guide [here](#) to set up.
 
 <br>
 
-## **Implementation**  
-This section will describe the significant details of how certain features in <b>Nuke</b> are being implemented.  
+## **Command Implementation**  
+This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
 
-### 1. Add Feature
+### 1. Add Command
 #### Overview
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
@@ -242,7 +298,7 @@ Total categories: 5
    1. enter `cd cs3235` to enter the module directory then enter `addc misc` to add the category.
    2. enter `addc misc -m cs3235` to add the category at the root directory.
 
-   Suppose James use the first method, after the second input, the input is parsed as an **add task** command and executed, the `AddCategoryCommand#execute()` will call ``AddCategoryCommand#getParentDirectory()` to get the current parent directory, then it will instantiate an `Category` object with the name "misc". After which `CategoryManager#add()` will be called to add the new object. In the `CategoryManager#add()` method, it will call `CategoryManager#contains()` method to check if the current parent directory contains the category with name "misc", finally add the object into the `ArrayList` of `categoryList`.
+   Suppose James use the first method, after the second input, the input is parsed as an **add task** command and executed, the `AddCategoryCommand#execute()` will call `AddCategoryCommand#getParentDirectory()` to get the current parent directory, then it will instantiate an `Category` object with the name "misc". After which `CategoryManager#add()` will be called to add the new object. In the `CategoryManager#add()` method, it will call `CategoryManager#contains()` method to check if the current parent directory contains the category with name "misc", finally add the object into the `ArrayList` of `categoryList`.
 
 2. James receive the following feedback:
 
@@ -260,9 +316,14 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 to-do: add the sequence diagram
 ```
 
+<br><br>
+
+### 2. List Command  
 
 
-### 2. Delete Feature  
+<br><br>
+
+### 3. Delete Command  
 #### Overview  
 The **delete** feature deletes *modules*, *categories* and *tasks* from the Module, Category and Task List respectively.   
 When the user first requests to execute the **delete** command to delete a directory by providing its name, the application will first filter for directories with matching names. From here, there are **three** possible outcomes:  
