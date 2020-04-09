@@ -1318,7 +1318,7 @@ You may enter **only** the following *date* words.
  <i class="fa fa-info"></i> <b>Info</b> <br> 
 All dates are taken with reference to the current date on your device.  <br>  
   
-If you specify the <i>date</i> using the day of the week <i>(i.e. <code>monday</code> ... <code>sunday</code>, and the current day is the day itself, the <i>date</i> will be referred to the current date. For example, if you enter <code>wednesday</code> and it is <b>Wednesday</b> today, the <i>date</i> will be the current date.
+If you specify the <i>date</i> using the day of the week <i>(i.e. <code>monday</code> ... <code>sunday</code>)</i>, and the current day is the day itself, the <i>date</i> will be referred to the current date. For example, if you enter <code>wednesday</code> and it is <b>Wednesday</b> today, the <i>date</i> will be the current date.
 </div>
 
 ##### **2. Standard Date Format**  
@@ -1392,7 +1392,7 @@ A simple summary of the various commands are shown below:
 | [`lsc`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>categories</i><br><b>Format</b>: `lsc [ <category keyword> -m <module code> -e -a ]`<br><b>Example</b>: `lsc tutorial -m cs2113 -e` |  
 | [`lst`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tasks</i><br><b>Format</b>: `lst [ <task keyword> -m <module keyword> -c <category keyword> -e -a ]`<br><b>Example</b>: `lst group -m cs -c assignment` |  
 | [`lsts`](#a-add-a-module-into-your-module-list)| Shows undone <i>tasks</i> sorted by <i>deadline</i> or <i>priority</i><br><b>Format</b>: `lsts [ <module code> -d -p (choose at most one; default -d) ]`<br><b>Example</b>: `lsts` &nbsp; &nbsp; `lsts cs2113t -p` |  
-| [`due`](#a-add-a-module-into-your-module-list) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a`  &nbsp; &nbsp; `due over` |  
+| [`due`](#a-add-a-module-into-your-module-list) | Shows <i>tasks</i> at a specified <i>time period</i><br><b>Format</b>: `due <time specifier> <date> [ -a ]` <br><b>Example</b>: `due after sun -a` &nbsp; &nbsp; `due over` |  
 | [`lsf`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>files</i><br><b>Format</b>: `lsf [ <file keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]` <br><b>Example</b>: `lsf -m cs -t tp -a` |  
 | [`lsg`](#a-add-a-module-into-your-module-list)     | Shows filtered <i>tags</i><br><b style="color: red">Still under implementation &#128528; Available in v3.0</b>  |  
 | [`rm`](#3-delete)| Deletes a <i>child directory</i><br><b>Format</b>: `rm <child directory name>`<br><b>Example</b>: `rm cs2102` |  
@@ -1406,8 +1406,16 @@ A simple summary of the various commands are shown below:
 | [`edt`](#a-add-a-module-into-your-module-list)  | Edits a <i>task</i><br><b>Format</b>: `edt <task description> -m <module code> -c <category name>`<br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; `{ -t <new task description> -d <new deadline> -p <new priority> }`<br><b>Example</b>: `edt tp -d sat 2359 -p 20` |   
 | [`edf`](#a-add-a-module-into-your-module-list)  | Edits a <i>file</i><br><b>Format</b>: `edt <file name> -m <module code> -c <category name> -t <task description> -f <new file name>`<br><b>Example</b>: `edf math report -f math report draft` |  
 | [`done`](#a-add-a-module-into-your-module-list)  | Marks a <i>task</i> as done<br><b>Format</b>: `done <task description> -m <module code> -c <category name>`<br><b>Example</b>: `done do lab 4 -m cs2106 -c Lab` |  
+| [`cd`](#a-add-a-module-into-your-module-list)  | Traverses up and down the <b>Directory Tree</b><br><b>Format</b>: `cd <next directory name>` &nbsp; &nbsp; `cd ..`<br><b>Example</b>: `cd cs2113t`  &nbsp; &nbsp; `cd ..` |  
+| [`open`](#b-add-a--into-your-module-list)  | Opens <i>files</i><br><b>Format</b>: `open [ <file name> ] -m <module code> -c <category name> -t <task description>`<br><b>Example</b>: `open lab_4 -m cs2106 -c Lab -t do lab 4` |  
+| [`info`](#a-add-a-module-into-your-module-list)  | Shows information about current <i>directory</i><br><b>Format</b>: `info`<br><b>Example</b>: `info` |   
+| [`undo`](#a-add-a-module-into-your-module-list)  | Undoes a <i>change</i><br><b>Format</b>: `undo`<br><b>Example</b>: `undo` |  
+| [`redo`](#a-add-a-module-into-your-module-list)  | Redoes a <i>change</i> made by an earlier undo <br><b>Format</b>: `redo`<br><b>Example</b>: `redo` |  
+| [`help`](#a-add-a-module-into-your-module-list)  | Shows <b>Command Summary</b><br><b>Format</b>: `help`<br><b>Example</b>: `help` |  
+| [`bye`](#a-add-a-module-into-your-module-list)  | Exits <b>Nuke</b> &#128557; <br><b>Format</b>: `bye` <br><b>Example</b>: `bye` |  
 
 <br>
+
 <hr>
 
 ## **FAQ**
