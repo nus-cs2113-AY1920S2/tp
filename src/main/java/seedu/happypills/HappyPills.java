@@ -41,6 +41,7 @@ public class HappyPills {
         appointments = new AppointmentMap();
         patientRecords = new PatientRecordMap();
         scanner = new Scanner(System.in);
+        logSetup();
         try {
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
             logger.info("    Patient loaded from file.\n");
@@ -84,8 +85,6 @@ public class HappyPills {
      * Runs the program until termination.
      */
     private void run() {
-        logSetup();
-
         TextUi.printWelcomeMessage();
 
         while (scanner.hasNextLine()) {
