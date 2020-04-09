@@ -22,6 +22,12 @@ class AgeParserTest {
             assertThrows(InvalidAgeException.class, () -> {
                 AgeParser.parseAge("0.10");
             });
+            assertThrows(InvalidAgeException.class, () -> {
+                AgeParser.parseAge("-10");
+            });
+            assertThrows(InvalidAgeException.class, () -> {
+                AgeParser.parseAge("1000");
+            });
         } catch (InvalidAgeException ignored) {
             return;
         }

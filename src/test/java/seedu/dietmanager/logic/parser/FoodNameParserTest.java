@@ -3,9 +3,7 @@ package seedu.dietmanager.logic.parser;
 import org.junit.jupiter.api.Test;
 import seedu.dietmanager.commons.exceptions.InvalidFoodNameException;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FoodNameParserTest {
 

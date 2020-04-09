@@ -22,6 +22,12 @@ class CaloriesParserTest {
             assertThrows(InvalidCaloriesException.class, () -> {
                 CaloriesParser.parseCalories(".");
             });
+            assertThrows(InvalidCaloriesException.class, () -> {
+                CaloriesParser.parseCalories("-0.50");
+            });
+            assertThrows(InvalidCaloriesException.class, () -> {
+                CaloriesParser.parseCalories("-1000");
+            });
         } catch (InvalidCaloriesException ignored) {
             return;
         }
