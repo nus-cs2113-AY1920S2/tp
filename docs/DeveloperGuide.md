@@ -301,14 +301,14 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
 1. This path is optional, and is only implemented if `Contact` the main user.
 2. `CommandHandler` calls isValidEdit(time slot) of the `Contact` class.
 
-3. isValidEdit(time slot) uses the `Contact`'s schedule to check any of the time blocks within the time slot is a
+3. isValidEdit(time slot) uses the `Contact`'s schedule to check if any of the time blocks within the time slot is a
     "meeting" time block. 
 4. If no  "meeting" time block is detected within the time slot, the edit is valid. The program continues running and 
     editSchedule() will be called.
 5. If a  "meeting" time block is detected within the time slot, the edit is invalid. An invalid exception is thrown by 
     `Contact`, and the user will be informed that the edit is invalid.
     
-    NOTE: `TextUI` and `Exception` classes which are used in generating the exception, and displaying the exception message
+    NOTE: `TextUI` and `Exception` classes which are involved in generating the exception, and displaying the exception message
     to the user are omitted to keep the sequence diagram concise.
     
 ### 3.6 Delete a scheduled meeting
