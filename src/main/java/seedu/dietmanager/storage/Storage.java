@@ -86,7 +86,7 @@ public class Storage {
      * The file path of the data file that contains recommend recipe.
      */
 
-    private static String  RECIPE_FILE_PATH = DATA_DIRECTORY_PATH
+    private static String RECIPE_FILE_PATH = DATA_DIRECTORY_PATH
             + File.separator + "recipe.txt";
 
     /**
@@ -176,7 +176,7 @@ public class Storage {
                 String[] morningFoodList = morningFood.split(",");
                 for (String foodInfo : morningFoodList) {
                     int splitIndex = foodInfo.indexOf("(");
-                    String nameDescription = foodInfo.substring(0,splitIndex);
+                    String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
                     morningFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
@@ -185,7 +185,7 @@ public class Storage {
                 String[] afternoonFoodList = afternoonFood.split(",");
                 for (String foodInfo : afternoonFoodList) {
                     int splitIndex = foodInfo.indexOf("(");
-                    String nameDescription = foodInfo.substring(0,splitIndex);
+                    String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
                     afternoonFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
@@ -194,7 +194,7 @@ public class Storage {
                 String[] nightFoodList = nightFood.split(",");
                 for (String foodInfo : nightFoodList) {
                     int splitIndex = foodInfo.indexOf("(");
-                    String nameDescription = foodInfo.substring(0,splitIndex);
+                    String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
                     nightFoods.add(foodNutritionRecord.findFood(foodName.get()).get());

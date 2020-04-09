@@ -39,13 +39,13 @@ public class StorageParser {
      * @param recipeDataLine the recipe data description.
      * @return description in standard form.
      * @throws InvalidFormatException if storage data has the wrong description format.
-     * @throws NullPointerException if storage data generates a null value.
+     * @throws NullPointerException   if storage data generates a null value.
      */
 
     public static String[] parseRecipeDataLine(String recipeDataLine)
             throws InvalidFormatException, NullPointerException {
         int argumentsRequired = 4;
-        String[] descriptionArray = recipeDataLine.trim().split("\\s+",argumentsRequired);
+        String[] descriptionArray = recipeDataLine.trim().split("\\s+", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }

@@ -36,7 +36,7 @@ public class RecipeManager {
     /**
      * Sets a meal into the recipe.
      *
-     * @param date the date of this meal
+     * @param date     the date of this meal
      * @param mealType the type of this meal
      * @param foodList foods recommended for this meal
      */
