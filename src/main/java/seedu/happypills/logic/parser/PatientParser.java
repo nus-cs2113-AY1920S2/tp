@@ -28,9 +28,9 @@ public class PatientParser extends Parser {
     /**
      * Parses user input for patient record into a command for execution.
      *
-     * @param fullCommand the full command entered by the user
-     * @return the command that the user has entered
-     * @throws HappyPillsException if the wrong command/ wrong format is given by the user as an input
+     * @param fullCommand Full command entered by the user.
+     * @return The command that the user has entered.
+     * @throws HappyPillsException If the wrong command/format is given by the user as an input.
      */
     public static PatientCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.trim().split(" ", 3);
@@ -59,10 +59,10 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the list command format.
      *
-     * @param userCommand        the command entered by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        User command entered by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientCommand checkListCommand(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -73,10 +73,10 @@ public class PatientParser extends Parser {
     }
 
     /**
-     * This method trims in the user input.
+     * Trims in the user input.
      *
-     * @param array the inputs given by the user
-     * @return the trimmed array
+     * @param array The inputs given by the user.
+     * @return Trimmed array.
      */
     private static String[] trimArray(String[] array) {
         String[] trimmedArray = new String[array.length];
@@ -89,10 +89,10 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the get command format.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        User input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientCommand checkGetCommand(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -105,9 +105,9 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the edit command format.
      *
-     * @param fullCommand the entire line of command entered by the user
-     * @return PatientCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param fullCommand The entire line of command entered by the user.
+     * @return PatientCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientCommand checkEditCommand(String fullCommand) throws HappyPillsException {
         String[] edit = fullCommand.split(" ", 4);
@@ -120,10 +120,10 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the add command format.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        User input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientCommand checkAddCommand(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -140,8 +140,8 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user input have missing fields or inputs with incorrect format.
      *
-     * @param parseInput the array that stores the user input
-     * @return true if the there is any missing/incorrect field
+     * @param parseInput The array that stores the user input.
+     * @return True if there is any missing/incorrect field.
      */
     private static boolean hasMissingFields(String[] parseInput) {
         for (int index = 0; index < 5; index++) {
@@ -156,9 +156,9 @@ public class PatientParser extends Parser {
     }
 
     /**
-     * Display missing fields to the user.
+     * Displays missing fields to the user.
      *
-     * @param parseInput the array that stores the user input
+     * @param parseInput The array that stores the user input.
      */
     private static void printMissingFields(String[] parseInput) {
         System.out.println("    Please input your missing/incorrect detail listed below");
@@ -183,9 +183,9 @@ public class PatientParser extends Parser {
     /**
      * Handles the add patient command.
      *
-     * @param content entire line of command entered by the user
-     * @return PatientCommand the command indicated by the user
-     * @throws HappyPillsException if the user aborted the add command
+     * @param content The entire line of command entered by the user.
+     * @return PatientCommand The command indicated by the user.
+     * @throws HappyPillsException If the user aborted the add command.
      */
     private static PatientCommand parseAddCommand(String content) throws HappyPillsException {
         String[] details = splitInput(content);
@@ -214,9 +214,9 @@ public class PatientParser extends Parser {
     /**
      * Updates the parsedInput array based on the newly entered inputs for add command prompt.
      *
-     * @param details    the user input entered by the user
-     * @param parseInput the array that stores the user input
-     * @return parseInput the updated array
+     * @param details    The user input entered by the user.
+     * @param parseInput The array that stores the user input.
+     * @return parseInput The updated array.
      */
     private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
@@ -242,10 +242,10 @@ public class PatientParser extends Parser {
     }
 
     /**
-     * Prompt user for confirmation by displaying their previously entered inputs.
+     * Prompts user for confirmation by displaying their previously entered inputs.
      *
-     * @param parseInput the array that stores the user input
-     * @return string to be displayed for user's confirmation
+     * @param parseInput The array that stores the user input.
+     * @return String to be displayed for user's confirmation.
      */
     public static String promptConfirmation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"

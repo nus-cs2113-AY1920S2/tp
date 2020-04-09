@@ -1,11 +1,19 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
 import seedu.happypills.logic.commands.Command;
-import seedu.happypills.model.data.PatientRecordMap;
-import seedu.happypills.model.exception.HappyPillsException;
 
+//@@ NyanWunPaing
+/**
+ * Contains both the information related to user commands and methods to execute them.
+ * Implementation is done on child classes.
+ */
 public abstract class PatientRecordCommand implements Command {
-    public String execute(PatientRecordMap patientRecordMap) throws HappyPillsException {
+    /**
+     * Executes the command based on the information provided by the user.
+     *
+     * @return null
+     */
+    public String execute() {
         return null;
     }
 }

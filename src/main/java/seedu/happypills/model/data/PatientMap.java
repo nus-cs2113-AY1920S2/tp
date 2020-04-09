@@ -15,8 +15,8 @@ public class PatientMap {
      * Associates the specified argument value with key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
      *
-     * @param patient  Patient's details
-     * @throws HappyPillsException exception if NRIC already exist
+     * @param patient  Patient's details.
+     * @throws HappyPillsException If NRIC already exist in the patient list.
      */
     public void add(Patient patient) throws HappyPillsException {
         if (!argMultimap.containsKey(patient.nric)) {

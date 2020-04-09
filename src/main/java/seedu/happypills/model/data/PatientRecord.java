@@ -20,13 +20,13 @@ public class PatientRecord {
 
     /**
      * Constructor for Patient Record class.
-     * It creates a new patient medical record with the details provided by the user.
+     * Creates a new patient medical record with the details provided by the user.
      *
-     * @param nric      NRIC of patient
-     * @param symptom   patient's symptom
-     * @param diagnosis patient's diagnosis
-     * @param date      date of medical treatment
-     * @param time      time of medical treatment
+     * @param nric      NRIC of patient.
+     * @param symptom   Patient's symptom.
+     * @param diagnosis Patient's diagnosis.
+     * @param date      Date of medical treatment.
+     * @param time      Time of medical treatment.
      */
     public PatientRecord(String nric, String symptom, String diagnosis, String date, String time) {
         this.nric = nric;
@@ -39,7 +39,7 @@ public class PatientRecord {
     /**
      * Getter function for NRIC of the patient.
      *
-     * @return nric Represents the NRIC of the patient
+     * @return nric Represents the NRIC of the patient.
      */
     public String getNric() {
         return nric;
@@ -48,7 +48,7 @@ public class PatientRecord {
     /**
      * Getter function for symptom of the patient.
      *
-     * @return symptom Represents the symptom of the patient
+     * @return symptom Represents the symptom of the patient.
      */
     public String getSymptom() {
         return symptom;
@@ -57,7 +57,7 @@ public class PatientRecord {
     /**
      * Setter function for symptom of the patient.
      *
-     * @param symptom Represents the symptom of the patient
+     * @param symptom Represents the symptom of the patient.
      */
     public void setSymptom(String symptom) {
         this.symptom = symptom;
@@ -66,7 +66,7 @@ public class PatientRecord {
     /**
      * Getter function for diagnosis of the patient.
      *
-     * @return diagnosis Represents the diagnosis of the patient
+     * @return diagnosis Represents the diagnosis of the patient.
      */
     public String getDiagnosis() {
         return diagnosis;
@@ -75,7 +75,7 @@ public class PatientRecord {
     /**
      * Setter function for diagnosis of the patient.
      *
-     * @param diagnosis Represents the diagnosis of the patient
+     * @param diagnosis Represents the diagnosis of the patient.
      */
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
@@ -84,7 +84,7 @@ public class PatientRecord {
     /**
      * Getter function for date of the patient.
      *
-     * @return date Represents the date of the medical treatment
+     * @return date Represents the date of the medical treatment.
      */
     public String getDate() {
         return date;
@@ -93,7 +93,7 @@ public class PatientRecord {
     /**
      * Setter function for date of the patient.
      *
-     * @param date Represents the date of the medical treatment
+     * @param date Represents the date of the medical treatment.
      */
     public void setDate(String date) {
         this.date = date;
@@ -102,7 +102,7 @@ public class PatientRecord {
     /**
      * Getter function for time of the patient.
      *
-     * @return time Represents the time of the medical treatment
+     * @return time Represents the time of the medical treatment.
      */
     public String getTime() {
         return time;
@@ -111,7 +111,7 @@ public class PatientRecord {
     /**
      * Setter function for time of the patient.
      *
-     * @param time Represents the time of the medical treatment
+     * @param time Represents the time of the medical treatment.
      */
     public void setTime(String time) {
         this.time = time;
@@ -120,7 +120,7 @@ public class PatientRecord {
     /**
      * Returns the information related to the patient medical record in form of a string.
      *
-     * @return string which consists of the patient's detailed medical record information
+     * @return string The string which consists of the patient's detailed medical record information.
      */
     @Override
     public String toString() {
@@ -132,10 +132,10 @@ public class PatientRecord {
     }
 
     /**
-     * Create a string with all the patient's record for storage to a text file.
+     * Creates a string with all the patient's record for storage to a text file.
      * Each variable is separated with | as a divider.
      *
-     * @return a formatted string with patient's records
+     * @return String A formatted string with patient's records.
      */
     public String toSave() {
         return nric.trim().toUpperCase() + "|"

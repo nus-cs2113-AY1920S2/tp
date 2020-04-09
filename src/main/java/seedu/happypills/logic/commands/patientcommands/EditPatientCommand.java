@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author sitinadiah25
 public class EditPatientCommand extends PatientCommand {
     protected String nric;
     protected String newContent;
@@ -128,16 +129,17 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Adds a new task to the list with the information provided by calling.
-     * {} (or) {}
-     * (or) {} as require
+     * Execute the edit patient command.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
-     * @throws HappyPillsException Throws an exception if the edit field is not valid.
+     * @param patients The list of patients
+     * @param appointments The list of appointments
+     * @param patientRecords The list of patient records
+     * @return Error Message or Success Message
+     * @throws HappyPillsException if NRIC already exist in the patient list
      */
     @Override
     public String execute(
-            PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
+            PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
         if (newContent.length() < 2) {
             throw new HappyPillsException(Messages.MESSAGE_INCOMPLETE_COMMAND);

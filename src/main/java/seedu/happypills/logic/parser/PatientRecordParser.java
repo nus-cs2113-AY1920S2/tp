@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 //@@author NyanWunPaing
 
 /**
- * This class is used to parse the user input for patient record commands.
+ * Parses the user input for patient record commands.
  */
 public class PatientRecordParser extends Parser {
     public static final String NRIC_TAG = "ic";
@@ -31,9 +31,9 @@ public class PatientRecordParser extends Parser {
     /**
      * Parses user input for patient record into a command for execution.
      *
-     * @param fullCommand the full command entered by the user
-     * @return the command that the user has entered
-     * @throws HappyPillsException if the user input does not conform the expected format
+     * @param fullCommand The full command entered by the user.
+     * @return The command that the user has entered.
+     * @throws HappyPillsException If the user input does not conform the expected format.
      */
     public static PatientRecordCommand parse(String fullCommand) throws HappyPillsException {
         String[] userCommand = fullCommand.split(" ", 3);
@@ -60,10 +60,10 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the delete command format.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        The input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientRecordCommand checkDeletePatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -78,8 +78,8 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the NRIC given by the user conforms to the NRIC format.
      *
-     * @param input the input given by the user
-     * @throws HappyPillsException if the NRIC does not conforms to the expected format
+     * @param input Input given by the user.
+     * @throws HappyPillsException If the NRIC does not conforms to the expected format.
      */
     private static void checkNricValidity(String[] input) throws HappyPillsException {
         if (!Checker.isValidNric(input[0].toUpperCase())) {
@@ -90,8 +90,8 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the index given by the user is an integer.
      *
-     * @param input the input given by the user
-     * @throws HappyPillsException if the index does not conforms to the expected format
+     * @param input Input given by the user.
+     * @throws HappyPillsException If the index does not conforms to the expected format.
      */
     private static void checkIndexValidity(String[] input) throws HappyPillsException {
         if (!Checker.isPositiveInteger(input[1])) {
@@ -102,9 +102,9 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user provides the NRIC of the patient in the user input.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @throws HappyPillsException if the index does not conforms to the expected format
+     * @param userCommand        User input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @throws HappyPillsException If the index does not conforms to the expected format.
      */
     private static void checkEmptyNric(String[] userCommand, boolean isCommandLengthOne) throws HappyPillsException {
         if (isCommandLengthOne || userCommand[1].isEmpty()) {
@@ -115,10 +115,10 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the find command format.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the NRIC or index does not conforms to the expected format
+     * @param userCommand        User input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the NRIC or index does not conforms to the expected format.
      */
     private static PatientRecordCommand checkFindPatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -133,10 +133,10 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the add command format.
      *
-     * @param userCommand        the input given by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        User input given by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientRecordCommand checkAddPatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -149,10 +149,10 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the list command format.
      *
-     * @param userCommand        the command entered by the user
-     * @param isCommandLengthOne boolean that indicates whether the command conforms to the length
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param userCommand        User command entered by the user.
+     * @param isCommandLengthOne Boolean that indicates whether the command conforms to the length.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientRecordCommand checkListPatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
@@ -165,10 +165,10 @@ public class PatientRecordParser extends Parser {
     }
 
     /**
-     * This method trims in the user input.
+     * Trims in the user input.
      *
-     * @param array the inputs given by the user
-     * @return the trimmed array
+     * @param array The inputs given by the user.
+     * @return Trimmed array.
      */
     private static String[] trimArray(String[] array) {
         String[] trimmedArray = new String[array.length];
@@ -181,9 +181,9 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the edit command format.
      *
-     * @param fullCommand the entire line of command entered by the user
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the user input does not conforms to the expected format
+     * @param fullCommand The entire line of command entered by the user.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientRecordCommand checkEditPatientRecord(String fullCommand) throws HappyPillsException {
         String[] edit = fullCommand.split(" ", 5);
@@ -207,8 +207,8 @@ public class PatientRecordParser extends Parser {
     /**
      * Checks whether there are any missing fields in the add patient record command.
      *
-     * @param parseInput the array that stores the user input
-     * @return boolean which indicates whether the format is correct or incorrect
+     * @param parseInput The array that stores the user input.
+     * @return Boolean which indicates whether the format is correct or incorrect.
      */
     private static boolean hasMissingFields(String[] parseInput) {
         for (int index = 0; index < 5; index++) {
@@ -224,9 +224,9 @@ public class PatientRecordParser extends Parser {
     /**
      * Handles the add patient command.
      *
-     * @param content entire line of command entered by the user
-     * @return PatientRecordCommand the command indicated by the user
-     * @throws HappyPillsException if the user aborted the add command
+     * @param content The entire line of command entered by the user.
+     * @return PatientRecordCommand The command indicated by the user.
+     * @throws HappyPillsException If the user aborted the add command.
      */
     private static PatientRecordCommand parseAddCommand(String content) throws HappyPillsException {
         String[] details;
@@ -255,9 +255,9 @@ public class PatientRecordParser extends Parser {
     /**
      * Updates the parsedInput array based on the newly entered inputs for add command prompt.
      *
-     * @param details    the user input entered by the user
-     * @param parseInput the array that stores the user input
-     * @return parseInput the updated array
+     * @param details    The user input entered by the user.
+     * @param parseInput The array that stores the user input.
+     * @return parseInput The updated array.
      */
     private static String[] parseInput(String[] details, String[] parseInput) {
         for (String detail : details) {
@@ -279,9 +279,9 @@ public class PatientRecordParser extends Parser {
     }
 
     /**
-     * Display missing fields to the user.
+     * Displays missing fields to the user.
      *
-     * @param parseInput the array that stores the user input
+     * @param parseInput The array that stores the user input.
      */
     private static void printMissingFields(String[] parseInput) {
         System.out.println("    Please input your missing/incorrect detail listed below");

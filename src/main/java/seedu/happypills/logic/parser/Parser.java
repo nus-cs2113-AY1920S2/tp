@@ -29,9 +29,9 @@ public class Parser {
     /**
      * Parses the command given by the user to the other command parses.
      *
-     * @param fullCommand the full command given by the user
-     * @return the command entered by the user
-     * @throws HappyPillsException throws an exception for invalid commands
+     * @param fullCommand Full command given by the user.
+     * @return The command entered by the user.
+     * @throws HappyPillsException If commands are invalid.
      */
     public static Command parse(String fullCommand) throws HappyPillsException {
         fullCommand = fullCommand.trim();
@@ -54,10 +54,10 @@ public class Parser {
     /**
      * Parses and executes general command.
      *
-     * @param fullCommand the full command given by the user
-     * @param userCommand the full command given by the user
-     * @return the command based on the user input
-     * @throws HappyPillsException if the user input does not conform the expected format
+     * @param fullCommand Full command given by the user.
+     * @param userCommand User command given by the user.
+     * @return The command based on the user input.
+     * @throws HappyPillsException If the user input does not conform the expected format.
      */
     private static Command parseGeneralCommands(String fullCommand, String[] userCommand) throws HappyPillsException {
         if (userCommand[0].equalsIgnoreCase(HELP_TAG)) {
@@ -70,7 +70,7 @@ public class Parser {
     }
 
     /**
-     * Prompt the user.
+     * Prompts the user.
      *
      * @return The string entered by the user.
      */
@@ -82,11 +82,11 @@ public class Parser {
     }
 
     /**
-     * Prompt the user for missing fields or incorrect information.
-     * Prompt the user for confirmation for add commands.
+     * Prompts the user for missing fields or incorrect information.
+     * Prompts the user for confirmation for add commands.
      *
-     * @param output The output after the user enters (y)
-     * @return true if the user enters y, false if the user enters (n)
+     * @param output Output after the user enters (y).
+     * @return True if the user enters y, false if the user enters (n).
      */
     public static boolean loopPrompt(String output) {
         boolean userConfirmation = false;
@@ -106,10 +106,10 @@ public class Parser {
     }
 
     /**
-     * Split the user input according to the '/'.
+     * Splits the user input according to the '/'.
      *
-     * @param content the user input
-     * @return the array containing the split input
+     * @param content The user input.
+     * @return The array containing the split input.
      */
     public static String[] splitInput(String content) {
         String[] details;

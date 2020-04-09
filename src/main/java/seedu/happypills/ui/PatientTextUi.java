@@ -14,7 +14,7 @@ public class PatientTextUi extends TextUi {
     /**
      * Shows a list of patients' name and their NRIC to the user, formatted as an indexed list.
      * @param patients A patient list with all existing patients.
-     * @return a message to be displayed to user.
+     * @return message A message to be displayed to user.
      */
     public static String getPatientList(PatientMap patients) {
         String message = "    Here is your list of patients:\n"
@@ -31,10 +31,10 @@ public class PatientTextUi extends TextUi {
     }
 
     /**
-     * format an add patient success message for user verification.
+     * Formats an add patient success message for user verification.
      * Includes a specified string, patient details and a divider.
-     * @param patient patient object added to patientList
-     * @return a string message to be displayed to the user for successful addCommand executed
+     * @param patient Patient object added to patientList.
+     * @return message A string message to be displayed to the user for successful addCommand executed.
      */
     public static String addPatientSuccessMessage(Patient patient) {
         String message;
@@ -43,10 +43,10 @@ public class PatientTextUi extends TextUi {
     }
 
     /**
-     * format a get patient success message for user.
+     * Formats a get patient success message for user.
      * Includes a specified string, requested patient details and a divider.
-     * @param patient patient object to be returned as a part of the string.
-     * @return a formatted success message string to be displayed to user.
+     * @param patient Patient object to be returned as a part of the string.
+     * @return returnMessage A formatted success message string to be displayed to user.
      */
     public static String getPatientSuccessMessage(Patient patient) {
         String returnMessage = "    Here are the patient's details:\n" + patient + DIVIDER;
@@ -54,10 +54,10 @@ public class PatientTextUi extends TextUi {
     }
 
     /**
-     * Display updated patient's records.
+     * Displays updated patient's records.
      *
      * @param patient The patient whose records were updated.
-     * @return The patient's updated records.
+     * @return message The patient's updated records.
      */
     public static String editPatientSuccessMessage(Patient patient) {
         String message = "    Patient details have been updated as follows:\n"
@@ -66,7 +66,7 @@ public class PatientTextUi extends TextUi {
     }
 
     /**
-     * Display message that patient is successfully deleted.
+     * Displays message that patient is successfully deleted.
      *
      * @param patient Patient to be deleted.
      * @return display message.

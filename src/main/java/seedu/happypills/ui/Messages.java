@@ -3,7 +3,7 @@ package seedu.happypills.ui;
 import static seedu.happypills.ui.TextUi.DIVIDER;
 
 /**
- * Container for user visible messages.
+ * Contains user visible messages.
  */
 public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "    Command is invalid. "
