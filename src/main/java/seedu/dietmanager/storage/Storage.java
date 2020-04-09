@@ -20,6 +20,7 @@ import seedu.dietmanager.logic.parser.WeightParser;
 import seedu.dietmanager.model.Food;
 import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.model.RecipeManager;
 import seedu.dietmanager.ui.UI;
 
 import java.io.File;
@@ -30,6 +31,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -81,6 +83,13 @@ public class Storage {
             + File.separator + "food-nutrition-record.txt";
 
     /**
+     * The file path of the data file that contains recommend recipe.
+     */
+
+    private static String  RECIPE_FILE_PATH = DATA_DIRECTORY_PATH
+            + File.separator + "recipe.txt";
+
+    /**
      * Constructs the Storage object.
      *
      * @param ui the object containing user interface functions.
@@ -94,8 +103,9 @@ public class Storage {
 
         this.loadDataDirectory();
         this.loadProfileFile();
-        //this.loadDailyFoodRecordFile();
         this.loadFoodNutritionRecordFile();
+        this.loadRecipeFile();
+        //this.loadDailyFoodRecordFile();
     }
 
     /**
@@ -114,6 +124,121 @@ public class Storage {
             }
         } else {
             logsCentre.writeInfoLog("Existing Directory found: " + directoryPath.getFileName().toString());
+        }
+    }
+
+    /**
+     * Searches for the data file in the directory, if absent, creates a new data file. <br>
+     * If data file is present, loads the existing data from the file such that it is accessible by the user.
+     */
+
+    public void loadRecipeFile() {
+        try {
+            File recipeData = new File(RECIPE_FILE_PATH);
+            if (recipeData.createNewFile()) {
+                logsCentre.writeInfoLog("No existing Recipe file found, new file created: "
+                        + recipeData.getName());
+            } else {
+                logsCentre.writeInfoLog("Existing Recipe file found: "
+                        + recipeData.getName());
+                this.readRecipeFile();
+            }
+        } catch (IOException e) {
+            logsCentre.writeSevereLog("Error in Recipe data file");
+            ui.displayFileErrorMessage();
+        }
+    }
+
+    /**
+     * Reads the data file and parses the existing data in the file, restoring the food items in the recipe.
+     */
+
+    public void readRecipeFile() {
+        try {
+            File recipeData = new File(RECIPE_FILE_PATH);
+            Scanner myReader = new Scanner(recipeData);
+            Optional<String> foodName;
+
+            RecipeManager recipeManager = RecipeManager.getInstance();
+            FoodNutritionRecord foodNutritionRecord = FoodNutritionRecord.getInstance();
+
+            while (myReader.hasNextLine()) {
+                String dataLine = myReader.nextLine();
+                String[] dataLineArray = StorageParser.parseRecipeDataLine(dataLine);
+                String morningFood = dataLineArray[1].trim();
+                String afternoonFood = dataLineArray[2].trim();
+                String nightFood = dataLineArray[2].trim();
+
+                ArrayList<Food> morningFoods = new ArrayList<>();
+                ArrayList<Food> afternoonFoods = new ArrayList<>();
+                ArrayList<Food> nightFoods = new ArrayList<>();
+
+                String[] morningFoodList = morningFood.split(",");
+                for (String foodInfo : morningFoodList) {
+                    int splitIndex = foodInfo.indexOf("(");
+                    String nameDescription = foodInfo.substring(0,splitIndex);
+
+                    foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
+                    morningFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                }
+
+                String[] afternoonFoodList = afternoonFood.split(",");
+                for (String foodInfo : afternoonFoodList) {
+                    int splitIndex = foodInfo.indexOf("(");
+                    String nameDescription = foodInfo.substring(0,splitIndex);
+
+                    foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
+                    afternoonFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                }
+
+                String[] nightFoodList = nightFood.split(",");
+                for (String foodInfo : nightFoodList) {
+                    int splitIndex = foodInfo.indexOf("(");
+                    String nameDescription = foodInfo.substring(0,splitIndex);
+
+                    foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
+                    nightFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                }
+
+                String date = dataLineArray[0].trim().toLowerCase();
+
+                recipeManager.setRecipe(date, "morning", morningFoods);
+                recipeManager.setRecipe(date, "afternoon", afternoonFoods);
+                recipeManager.setRecipe(date, "night", nightFoods);
+            }
+            myReader.close();
+        } catch (FileNotFoundException | InvalidFormatException | InvalidFoodNameException e) {
+            logsCentre.writeInfoLog("Recipe Information Invalid, Recipe cleared.");
+            clearRecipe();
+        }
+    }
+
+
+    /**
+     * Clears all content in the recipe data file.
+     */
+
+    public void clearRecipe() {
+        try {
+            PrintWriter pw = new PrintWriter(RECIPE_FILE_PATH);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            ui.displayFileErrorMessage();
+        }
+    }
+
+
+    /**
+     * Rewrites the data file to reflect the current data.
+     */
+
+    public void writeRecipeFile() {
+        try {
+            FileWriter myWriter = new FileWriter(RECIPE_FILE_PATH, false);
+            myWriter.write(RecipeManager.getInstance().getRecipeBody());
+            myWriter.close();
+        } catch (IOException e) {
+            ui.displayFileErrorMessage();
         }
     }
 
@@ -329,6 +454,5 @@ public class Storage {
             ui.displayFileErrorMessage();
         }
     }
-
 
 }

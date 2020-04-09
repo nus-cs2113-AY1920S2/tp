@@ -90,6 +90,7 @@ public class AppManager {
             }
             if (profile.isProfileExist()) {
                 storage.writeProfileFile();
+                storage.writeRecipeFile();
             }
             storage.writeFoodNutritionRecordFile();
         }

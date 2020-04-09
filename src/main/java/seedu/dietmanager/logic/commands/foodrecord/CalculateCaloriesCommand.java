@@ -148,9 +148,11 @@ public class CalculateCaloriesCommand extends Command {
         } else {
             if (isCircle) {
                 this.resultString = String.format("%s is ahead of %s, so only calories from %s to SUNDAY is calculated",
-                        this.end, this.begin, this.begin) + System.lineSeparator();
+                        this.end, this.begin, this.begin) + System.lineSeparator()
+                        + MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
+            } else {
+                this.resultString = MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
             }
-            this.resultString += MessageBank.CALCULATE_CALORIES_MESSAGE + String.format("%.2f.", sum);
         }
         return new Result(this.resultString);
     }
