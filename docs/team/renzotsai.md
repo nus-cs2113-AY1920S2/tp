@@ -19,7 +19,7 @@ Storage in our software include three parts:
 - `Storage Semester List` 
 - `Storage Person Info`. 
 
-`Available Modules List` and `Semester List` are stored in CSV file and Person Info is 
+`Available Modules List`, `Semester List` and `Person Info` are stored in CSV file and Person Info is 
 stored in TXT file. And each time the user runs the software, these three file will be loaded.
 
 ##### Exception
