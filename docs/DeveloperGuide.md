@@ -101,31 +101,31 @@ This section will describe how the main features of the application are implemen
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
  3. The <code>Duke</code> class calls the <code>AddCommand#execute()</code> method of the <code>AddCommand</code> object.
- 4. In the <code>AddCommand#execute()</code> function, the <code>item</code> to be add is called from the <code>ShoppingList</code> 
+ 4. In the <code>AddCommand#execute()</code> function, the <code>item</code> to be added is stored in the <code>ShoppingList</code> 
     object, using items.add().
- 5. In the SD, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
+ 5. In the sequence diagram, the AddCommand will add <code>item</code> if the description is provided and one / both price and 
     quantity is provided. 
  6. The <code>item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
- The following sequence diagram below shows how the add feature works. The details of the adding item's values
+ The following sequence diagram below shows how the add feature works. The details of adding item's values
  are shown in a separate sequence diagram below:
  
  ![alt text](images/AddFinal.png)
  
- ![alt text](images/AddFeature_SDFinal.png)
+ ![alt text](images/Add_Feature_SD_new.png)
  
 #### 3.1.2 Design considerations
 
 ##### Aspect: Data structure to support the add feature
 
-- Alternative 1 (current choice): User must provided a description for item, Duplicates are
+- Alternative 1 (current choice): User must provided a description for item, duplicates are
                                   not allowed in the list. 
   - Pros: User has minimal potential to see unreasonable list in the Shopping List. For 
   example, having a item that has only price and quantity but without description and also
   a list that one item is recorded multiple times in the list.
   
   - Cons: Will significantly increase the code base as there is a need to check for the 
-  presence of the variable in user input to avoid duplication, not human friendly in certain 
+  presence of the variable in user input to avoid duplication, not user-friendly in certain 
   scenario (eg: user wants to have duplicates because the item is for different occasion and 
   the user wants to record down twice without any elaboration).
 
@@ -133,12 +133,12 @@ This section will describe how the main features of the application are implemen
 - Alternative 2: Require user to provide all three values to successfully add the item into 
                  the list. Duplicates are allowed
 
-  - Pros: User will have a neat and unity Shopping list, less deal with parameter (because users are
-  forced to give all three variables). And the duplicates item are useful in certain specific condition.
+  - Pros: User will have a neat and unity Shopping list, dealing less with parameter (because users are
+  forced to give all three variables). The duplicates item are useful in certain specific condition.
   
   - Cons: User flexibility will decrease, because user must input all parameters even if he/she does not want to 
   provide certain variables such as price and quantity, which will result unsuccessful adding items into the list. 
-  Also, duplicate items may confused the user, even though in some specific scenario, duplicate item may be useful to 
+  Also, duplicate items may confuse the user, even though in some specific scenario, duplicate item may be useful to 
   the user.  
  
  Reasons for choosing Alternative 1 over alternative 2: By allowing user to just add the item without price,
