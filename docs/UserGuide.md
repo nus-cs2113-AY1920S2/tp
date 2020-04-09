@@ -19,14 +19,15 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 HappyPills is a note-taking application that allows doctors to take down notes using Command Line Interface (CLI).
   
 The application replaces all physical papers and is highly optimised for fast typing users.    
-If you can type fast, HappyPills can help to manage patients’ records **faster** than traditional Graphical User Interface (GUI) applications.  
+If you can type fast, HappyPills can help you to manage patients’ records **faster** than traditional Graphical 
+User Interface (GUI) applications.    
 All notes are **neatly organised** in HappyPills so that all your important information are **safely stored**.  
-Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! :relaxed:
+Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! <span style='font-size:20px;'>&#128522;</span>
 
 ## 2. Quick Start
 **Installation**
-1. Ensure that you have `Java 11` installed in your computer 
-2. Click [here](https://github.com/AY1920S2-CS2113T-T12-2/tp/releases) to download the HappyPills JAR File
+1. Ensure that you have `Java 11` or above installed in your computer. 
+2. Click [here](https://github.com/AY1920S2-CS2113T-T12-2/tp/releases) to download the HappyPills JAR File.
 3. Copy the file to the folder you want to use as your home folder for HappyPills.
 
 **For all users**
@@ -40,13 +41,16 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 
 HappyPills have three main features: `Patient Details`, `Patient Records` and `Appointment Scheduling`. 
 
-`Patient Details` notes down the general details of the patient such as their NRIC, name, phone number, date of birth, blood type and allergies. 
+`Patient Details` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
+blood type and allergies).
 
-`Patient Records` are previous visits to the doctors and the outcomes of it including their symptoms, the diagnosis and when the visit occurred. 
+`Patient Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
+(e.g. patient's symptoms, diagnosis and date/time of the medical treatment).
 
-`Appointment Scheduling` helps the users schedule future appointments with their patients. 
+`Appointment Scheduling` helps the you schedule future appointments with your patients. 
 
-These features come together to help users manage their patients' information and give their patients better service by being able to retrieve their patients' information quickly and easily while also being able to note down details of the visit as accurately as possible. 
+These features come together to help you easily manage their patients' information. You can now provide their patients 
+with better service by being able to retrieve their patients' information quickly and easily.  
 
 This section will elaborate more on how to use these features in HappyPills. 
 
@@ -103,7 +107,7 @@ Format: `help`
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The help command is split into five different sections <code>(highlighted by the boxes)</code>.</td>
+   <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
  </tr>
 </table>
 
