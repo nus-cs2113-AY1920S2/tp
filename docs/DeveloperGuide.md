@@ -386,8 +386,10 @@ The following steps below is an example of how the `EditAppointmentCommand` clas
 `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls 
 the `AppointmentParser#parse()` method. 
 
-2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. Warning: If 
-the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
+2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
+
+
+    **Warning**: If the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
 
 3. `HappyPills` will then call the `EditAppointmentCommand#execute()` method. 
 
@@ -427,7 +429,7 @@ to parse the user input. Upon checking that it is an Appointment-related command
 2. `AppointmentParser#parse()` will then split the user input and calls the `DeleteAppointmentCommand` class. 
 
 
-	Warning: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+	**Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
 	
 3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method. 
 
@@ -460,7 +462,7 @@ method.
 2. `AppointmentParser#parse()` will then split the user input and calls the `DoneAppointmentCommand` class. 
 
 
-    Warning: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+    **Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
     
 3. A new instance of `DoneAppointmentCommand` with the given arguments will be created. `HappyPills` will subsequently call 
 the `DoneAppointmentCommand#execute()` method.
