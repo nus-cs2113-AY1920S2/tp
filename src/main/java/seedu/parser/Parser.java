@@ -4,6 +4,7 @@ import seedu.cards.Card;
 import seedu.commands.Command;
 import seedu.commands.AddSubjectCommand;
 import seedu.commands.AddCardCommand;
+import seedu.commands.EditCardCommand;
 import seedu.commands.DeleteCardCommand;
 import seedu.commands.DeleteSubjectCommand;
 import seedu.commands.ListCardCommand;
@@ -55,52 +56,58 @@ public class Parser {
         String command = arguments[0].trim().toLowerCase();
 
         switch (command) {
-        case AddSubjectCommand.COMMAND_WORD:
-            return prepareAddSubject(arguments);
+            case AddSubjectCommand.COMMAND_WORD:
+                return prepareAddSubject(arguments);
 
-        case AddCardCommand.COMMAND_WORD:
-            return prepareAddCard(arguments);
+            case AddCardCommand.COMMAND_WORD:
+                return prepareAddCard(arguments);
 
-        case DeleteSubjectCommand.COMMAND_WORD:
-            return prepareDeleteSubject(arguments);
+            case EditCardCommand.COMMAND_WORD:
+                return prepareEditCard(arguments);
 
-        case DeleteCardCommand.COMMAND_WORD:
-            return prepareDeleteCard(arguments);
+            case DeleteSubjectCommand.COMMAND_WORD:
+                return prepareDeleteSubject(arguments);
 
-        case ListSubjectCommand.COMMAND_WORD:
-            return new ListSubjectCommand();
+            case DeleteCardCommand.COMMAND_WORD:
+                return prepareDeleteCard(arguments);
 
-        case ListCardCommand.COMMAND_WORD:
-            return prepareListCard(arguments);
+            case ListSubjectCommand.COMMAND_WORD:
+                return new ListSubjectCommand();
 
-        case QuizCommand.COMMAND_WORD:
-            return prepareQuiz(arguments);
+            case ListCardCommand.COMMAND_WORD:
+                return prepareListCard(arguments);
 
-        case ScoreCommand.COMMAND_WORD:
-            return prepareScore(arguments);
+            case QuizCommand.COMMAND_WORD:
+                return prepareQuiz(arguments);
 
-        case AddEventCommand.COMMAND_WORD:
-            return prepareAddEvent(arguments);
+            case ScoreCommand.COMMAND_WORD:
+                return prepareScore(arguments);
 
-        case DeleteEventCommand.COMMAND_WORD:
-            return prepareDeleteEvent(arguments);
+            case AddEventCommand.COMMAND_WORD:
+                return prepareAddEvent(arguments);
 
-        case ListEventCommand.COMMAND_WORD:
-            return new ListEventCommand();
+            case DeleteEventCommand.COMMAND_WORD:
+                return prepareDeleteEvent(arguments);
 
-        case ShowUpcomingCommand.COMMAND_WORD:
-            return prepareShowUpcoming(arguments);
+            case ListEventCommand.COMMAND_WORD:
+                return new ListEventCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case ShowUpcomingCommand.COMMAND_WORD:
+                return prepareShowUpcoming(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        default:
-            throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            default:
+                throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
         }
     }
+
+
+
 
     /**
      * Parses the user input into arguments for the AddSubject command.
@@ -136,6 +143,23 @@ public class Parser {
         Card cardToAdd = new Card(cardArgs[0],cardArgs[1]);
 
         return new AddCardCommand(subjectIndex, cardToAdd);
+    }
+
+    private static Command prepareEditCard(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, EditCardCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
+        checkArgumentPrefixes(arguments[1], EditCardCommand.MESSAGE_USAGE, SUBJECT_ARG, CARD_ARG, QUESTION_ARG, ANSWER_ARG);
+
+
+        int subjectIndex = getSubjectIndex(arguments[1]);
+        int cardIndex = getCardIndex(arguments[1]);
+
+
+        String[] cardArgs = getQuestionAndAnswer(arguments[1],EditCardCommand.MESSAGE_USAGE);
+
+        Card cardToAdd = new Card(cardArgs[0],cardArgs[1]);
+
+        return new EditCardCommand(subjectIndex, cardIndex, cardToAdd);
     }
 
     /**
@@ -310,7 +334,8 @@ public class Parser {
      */
     private static int getCardIndex(String argument) throws EscException {
         String argWithoutPrefixes = argument.split(CARD_ARG)[1];
-        String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").trim();
+        int space = argument.indexOf(" ");
+        String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").substring(0,space+1).trim();
 
         if (cardIndexString.trim().isEmpty()) {
             throw new EscException("The card index is required");
@@ -367,7 +392,7 @@ public class Parser {
         DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
                 + "[yyyy/MM/dd][yyyy-MM-dd][yyyy-M-d]"
                 + "[dd-MM-yyyy][d-M-yyyy][dd-MM-yy][d-M-yy]"
-                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy][yyyy.MM.dd]"
+                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy]"
                 + "[dd-MMM-yyyy][d-MMM-yyyy][d-MMM-yy]");
 
         LocalDate parsedDate;
