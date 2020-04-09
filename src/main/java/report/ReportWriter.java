@@ -35,7 +35,7 @@ public class ReportWriter {
      */
     public void writeToFile() throws IOException {
         // Written in menu.Menu > Stock > Reservation Order
-        FileWriter fw = new FileWriter("./report.txt");
+        FileWriter fw = new FileWriter("report.txt");
 
         try {
             String menuTitle = String.format("Menu Items" 

@@ -8,8 +8,9 @@
     + [3.3. List:](#list) `list`
     + [3.4. Search:](#search) `search`
     + [3.5. Sales:](#sales) `sales`
-    + [3.6. Saving](#save) `bye`
-    + [3.7. Loading](#load) 
+    + [3.6. Clear:](#clear) `clear`
+    + [3.7. Saving:](#saving) `bye`
+    + [3.8. Loading](#load) 
 * [4. Command Summary](#command-summary)
 
 <a name="introduction"></a>
@@ -98,11 +99,11 @@ Cannot mark the reservation as served if the reservation is originally invalid.
 ### List
 List items in the menu, stock and reservations.
 
-* List menu : `list dish`
-* List stock : `list stock`
-* List all reservation : `list reservation`
-* List served reservation : `list served reservation`
-* List unserved reservation : `list unserved reservation`
+* List menu : `list dish;`
+* List stock : `list stock;`
+* List all reservation : `list reservation;`
+* List served reservation : `list served reservation;`
+* List unserved reservation : `list unserved reservation;`
 
 <a name="search"></a>
 
@@ -144,7 +145,14 @@ Calculates the net profit from all the sold dishes
 Prints the most popular dish from the sold list.
 * Format: `popular`
 
-<a name="save"></a>
+<a name="clear"></a>
+### Clear
+Clear the stock, dish, or reservation list
+
+#### Clear reservation : clear reservation
+* Format: `clear reservation;`
+
+<a name="saving"></a>
 
 ### Saving
 All dishes, stock and reservations will be saved to `report.txt` automatically after the program is exited.
@@ -176,11 +184,11 @@ Dishes, stock and reservations will be automatically loaded when the program is 
 * Format: `mark reservation; r/NUMBER_OF_RESERVATIONS;`
 
 ### List
-* Format: `list dish`
-* Format: `list stock`
-* Format: `list reservation`
-* Format: `list served reservation`
-* Format: `list unserved reservation`
+* Format: `list dish;`
+* Format: `list stock;`
+* Format: `list reservation;`
+* Format: `list served reservation;`
+* Format: `list unserved reservation;`
 
 ### Search
 * Format: `search dish; k/KEYWORD;`
@@ -191,3 +199,6 @@ Dishes, stock and reservations will be automatically loaded when the program is 
 * Format: `sell dish; d/DISH; q/QUANTITY;`
 * Format: `profit`
 * Format: `popular`
+
+### Clear
+* Format: `clear reservation;`
