@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FoodNutritionRecordTest {
 
@@ -60,7 +62,7 @@ class FoodNutritionRecordTest {
     void clearFoodNutritionRecordList() {
         FoodNutritionRecord test = FoodNutritionRecord.getInstance();
         test.clearFoodNutritionRecordList();
-        assertTrue(test.getListSize()==0);
+        assertTrue(test.getListSize() == 0);
     }
 
     @Test

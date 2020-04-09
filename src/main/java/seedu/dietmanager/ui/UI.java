@@ -73,12 +73,6 @@ public class UI {
         showMessage(CREATE_PROFILE_MESSAGE);
     }
 
-    ;
-
-    public void showExecutionResult(String result) {
-        showMessage(result);
-    }
-
     /**
      * Returns the exit status.
      *

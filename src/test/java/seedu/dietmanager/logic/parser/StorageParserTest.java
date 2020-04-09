@@ -32,6 +32,26 @@ class StorageParserTest {
     }
 
     @Test
+    void parseRecipeDataLine() {
+        assertThrows(InvalidFormatException.class, () -> {
+            StorageParser.parseRecipeDataLine("Hello  ");
+        });
+        assertThrows(InvalidFormatException.class, () -> {
+            StorageParser.parseRecipeDataLine(" am John");
+        });
+        assertThrows(InvalidFormatException.class, () -> {
+            StorageParser.parseRecipeDataLine("Hello I am");
+        });
+        try {
+            assertEquals(String[].class, StorageParser.parseRecipeDataLine("Hello   I  am John").getClass());
+            assertEquals("Hello", StorageParser.parseRecipeDataLine("Hello I am John")[0]);
+            assertEquals("I", StorageParser.parseRecipeDataLine("Hello   I  am John")[1]);
+        } catch (InvalidFormatException e) {
+            return;
+        }
+    }
+
+    @Test
     void parseWeightListDataLine() {
         assertThrows(InvalidWeightException.class, () -> {
             StorageParser.parseWeightListDataLine("Hello");
