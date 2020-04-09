@@ -124,10 +124,10 @@ saved.
 
 #### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
-1. The first word is extracted by `getFirstWord` to determine the command type.
-1. If this command type requires further arguments, subsequent words are extracted, 
-and parsed by `EventParser` to retrieve the relevant information (e.g. index, 
-name, time, date, venue).
+1. The first word is extracted by `getFirstWord` to determine the `commandType`.
+1. If this `commandType` requires further arguments, subsequent words are 
+extracted, and parsed by `EventParser` to retrieve the relevant information 
+(e.g. index, name, time, date, venue).
 1. Alternate paths are chosen based on `commandType`, where a corresponding 
 `Command` class is created, with the information extracted from the previous 
 step passed into it. 
