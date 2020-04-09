@@ -27,7 +27,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the patient's confirmation.
      *
-     * @param nric  nric of the patient.
+     * @param nric          nric of the patient.
      * @param appointmentId The id of the appointment to be deleted.
      */
     public DeleteAppointmentCommand(String nric, String appointmentId) {
@@ -62,11 +62,11 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         return null;
     }
 
+    //@@ sitinadiah25
     /**
      * Delete an appointment of the patient from the shared map.
      *
-     * @author sitinadiah25
-     * @param appointments The shared appointment map.
+     * @param appointments  The shared appointment map.
      * @param appointmentId The id of the appointment to be deleted.
      */
     private Boolean deleteAppt(AppointmentMap appointments, String appointmentId) {
@@ -77,12 +77,13 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         return false;
     }
 
+    //@@ janicetyy
     /**
      * Delete an appointment of the patient in the patient object.
      *
-     * @author janicetyy
      * @param patient The patient whose appointment is to be deleted.
-     * @param apptID The id of the appointment to be deleted.
+     * @param apptID  The id of the appointment to be deleted.
+     * @author janicetyy
      */
     private Boolean deleteAppt(Patient patient, String apptID) {
         for (Appointment appointment : patient.getAppointments()) {
@@ -94,12 +95,13 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         return false;
     }
 
+    //@@ janicetyy, sitinadiah25
     /**
      * Carry out the procedures for deleting appointment.
-     * @author janicetyy, sitinadiah25
-     * @param patients Shared map of patients
+     *
+     * @param patients     Shared map of patients
      * @param appointments Shared map of appointments
-     * @param visits Shared map of patient records
+     * @param visits       Shared map of patient records
      * @return errorMessage or successMessage
      * @throws HappyPillsException not used but required as part of command
      */
@@ -121,7 +123,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
             message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE;
             return message;
         }
-        Boolean isSuccess = deleteAppt(appointments,appointmentId) && deleteAppt(delPatient,appointmentId);
+        Boolean isSuccess = deleteAppt(appointments, appointmentId) && deleteAppt(delPatient, appointmentId);
         if (isSuccess) {
             message = "    Appointment has been removed.\n";
             try {
