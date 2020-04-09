@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="stock.StockTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-04-09T01:24:40" hostname="Ganeshs-MacBook-Pro.local" time="0.052">
+<testsuite name="stock.StockTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-04-09T19:29:00" hostname="Ganeshs-MacBook-Pro.local" time="0.051">
   <properties/>
-  <testcase name="print_printStockWhenIngredientQuantityIsZero_SerialIndexUnchanged()" classname="stock.StockTest" time="0.011"/>
-  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_addNormally()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="print_printStockWhenIngredientQuantityIsZero_SerialIndexUnchanged()" classname="stock.StockTest" time="0.01"/>
+  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_addNormally()" classname="stock.StockTest" time="0.001"/>
   <testcase name="searchStock_searchIngredientInStock_ingredientNotFoundOutput()" classname="stock.StockTest" time="0.0"/>
   <testcase name="deleteIngredient_DeleteIngredientWithoutQuantity_deleteNormally()" classname="stock.StockTest" time="0.0"/>
-  <testcase name="deleteIngredient_DeleteIngredientWithQuantity_deleteNormally()" classname="stock.StockTest" time="0.001"/>
-  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_sumQuantity()" classname="stock.StockTest" time="0.0"/>
-  <testcase name="print_printStockWhenIngredientRemoved_SerialIndexReorder()" classname="stock.StockTest" time="0.002"/>
-  <testcase name="test_equalMap_bothMapsAreEqual()" classname="stock.StockTest" time="0.0"/>
-  <testcase name="listStock_listIngredientInDescendingQuantity_listNormally()" classname="stock.StockTest" time="0.011"/>
-  <testcase name="testAdd_CompareAgainstStockCopy_TrueIfSameContent()" classname="stock.StockTest" time="0.0"/>
-  <testcase name="deleteIngredient_DeleteIngredientNotInStock_deleteNormally()" classname="stock.StockTest" time="0.001"/>
-  <testcase name="addIngredient_AddIngredientOfSimilarName_DuplicateIngredientName()" classname="stock.StockTest" time="0.017"/>
+  <testcase name="deleteIngredient_DeleteIngredientWithQuantity_deleteNormally()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_sumQuantity()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="print_printStockWhenIngredientRemoved_SerialIndexReorder()" classname="stock.StockTest" time="0.003"/>
+  <testcase name="test_equalMap_bothMapsAreEqual()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="listStock_listIngredientInDescendingQuantity_listNormally()" classname="stock.StockTest" time="0.01"/>
+  <testcase name="testAdd_CompareAgainstStockCopy_TrueIfSameContent()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="deleteIngredient_DeleteIngredientNotInStock_deleteNormally()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="addIngredient_AddIngredientOfSimilarName_DuplicateIngredientName()" classname="stock.StockTest" time="0.018"/>
   <testcase name="testDelete_CompareAgainstStockCopy_TrueIfSameContent()" classname="stock.StockTest" time="0.0"/>
   <testcase name="searchStock_searchIngredientInStock_ingredientIsFoundOutput()" classname="stock.StockTest" time="0.001"/>
   <testcase name="listStock_ListIngredientInDescendingQuantity_noIngredientFound()" classname="stock.StockTest" time="0.0"/>
   <testcase name="searchStock_searchIngredientInStock_testCaseSensitivity()" classname="stock.StockTest" time="0.0"/>
-  <system-out><![CDATA[============================================================================================================================
+  <system-out><![CDATA[
 Please note that there are other similar ingredient names in the stock.
 
 You are currently adding: 'RICE'
@@ -27,7 +27,7 @@ rice
 RiCe
 
 You may want to remove the unwanted ingredient names if it is a duplicate.
-============================================================================================================================
+
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

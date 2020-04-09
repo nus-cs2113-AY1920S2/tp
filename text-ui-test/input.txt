@@ -81,6 +81,7 @@ add reservation; p/David; d/2020-03-10 12:00; n/0; c/98887777;
 add reservation; p/; d/2020-03-12 12:00    ; n/1; c/;
 add reservation; p/Peter; d/2020-03-12 12:00    ; n/1; c/;
 list reservation
+list reservation;
 delete reservation; r/;
 delete reservation; r/0;
 delete reservation; r/1.0;
@@ -91,6 +92,7 @@ delete reservation; r/1
 delete reservation; r/-1;
 delete reservation; r/5;
 list reservation
+list reservation;
 search reservation; r/1.3;
 search reservation; r/1;
 search reservation; r/1; d/2020-03-13;
@@ -106,9 +108,14 @@ mark reservation; r/0;
 mark reservation; r/1;
 delete reservation; r/4;
 list served reservation
+list served reservation;
 list unserved reservation
+list unserved reservation;
 list reservation
+list reservation;
 sell dish; d/rice; q/5;
 profit
 popular
+clear reservation
+clear reservation;
 bye
