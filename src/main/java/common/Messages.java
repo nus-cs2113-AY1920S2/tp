@@ -51,7 +51,7 @@ public class Messages {
             + System.lineSeparator() + NEWLINE_INDENT + "%s.";
     public static final String REPEATING_SUCCESS_MESSAGE = "[%s] will repeat every %s%s%s.";
     public static final String STOP_REPEATING_SUCCESS_MESSAGE = "[%s] will no longer repeat.";
-    public static final String EDIT_PROMPT = "Please edit your chosen task. Task Type needs to remain the same.";
+    public static final String EDIT_PROMPT = "Please edit your chosen task.";
 
     // Common Error Messages
     public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
@@ -83,6 +83,7 @@ public class Messages {
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
     public static final String REPEAT_ASSIGN_ERROR = "%s is not an event. Please choose an event.";
     public static final String REPEAT_NOT_SET_ERROR = "%s is not set to repeat.";
+    public static final String EDIT_TYPE_ERROR = "Error: New Task Type must match edited Task Type";
     //Saving Error Messages
     public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
     public static final String INCORRECT_STORAGE_FORMAT_ERROR = "The local save file is of an unknown format. "

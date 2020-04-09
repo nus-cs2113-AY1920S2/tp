@@ -56,7 +56,7 @@ public class EditCommand extends Command {
     /**
      * Executes the edit command function.
      * Takes in a new input from the user and formats input.
-     * Replaces task from the tasklist at index specified by user.
+     * Replaces task from the taskList at index specified by user.
      * @param taskList TaskList object that handles adding Task
      * @param ui Ui object that interacts with user
      * @return CommandResult object based on result
@@ -79,7 +79,13 @@ public class EditCommand extends Command {
         try {
             switch (commandType) {
             case AssignmentCommand.COMMAND_WORD:
+                if (taskList.getTask(editIndex) instanceof RepeatEvent ||
+                        taskList.getTask(editIndex) instanceof Event) {
+                    return new CommandResult(Messages.EDIT_TYPE_ERROR);
+                }
+
                 Task editedAssignment = editAssignment(userInput, ui);
+
                 if (taskList.isSameEdit(taskList, editedAssignment, editIndex)) {
                     return new CommandResult(Messages.SAME_TASK_ERROR);
                 }
@@ -87,6 +93,10 @@ public class EditCommand extends Command {
                 taskList.editTask(editIndex, editedAssignment);
                 return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
             case EventCommand.COMMAND_WORD:
+                if (taskList.getTask(editIndex) instanceof Assignment) {
+                    return new CommandResult(Messages.EDIT_TYPE_ERROR);
+                }
+
                 Event editedEvent = editEvent(userInput, ui);
                 if (taskList.isSameEdit(taskList, editedEvent, editIndex)) {
                     return new CommandResult((Messages.SAME_TASK_ERROR));
