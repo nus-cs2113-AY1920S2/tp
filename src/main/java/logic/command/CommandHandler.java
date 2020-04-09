@@ -24,7 +24,6 @@ public class CommandHandler {
 
     public static Contact addContact(ContactList myContactList, String[] userInputWords,
                                      Integer startDay, Integer endDay) throws MoException, InvalidUrlException {
-        Contact member;
         int checkerForRepeatedName;
         checkerForRepeatedName = myContactList.getContactList().stream()
             .mapToInt(person -> check(person, userInputWords[0])).sum();
@@ -36,6 +35,7 @@ public class CommandHandler {
         if (userInputWords[0].length() >= 260) {
             throw new MoException("Maximum characters for a given name is 260");
         }
+        Contact member;
         member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
