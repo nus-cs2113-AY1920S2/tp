@@ -105,7 +105,7 @@ public class PatientParser extends Parser {
     /**
      * Checks whether the user inputs conforms to the edit command format.
      *
-     * @param fullCommand the entire line of command entered by the user.
+     * @param fullCommand the entire line of command entered by the user
      * @return PatientCommand the command indicated by the user
      * @throws HappyPillsException if the user input does not conforms to the expected format
      */

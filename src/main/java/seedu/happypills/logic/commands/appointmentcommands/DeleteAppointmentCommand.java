@@ -28,6 +28,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
      * Retrieve the patient's confirmation.
      *
      * @param nric  y to confirm deletion, n to stop deletion.
+     * @param appointmentId The id of the appointment to be deleted.
      */
     public DeleteAppointmentCommand(String nric, String appointmentId) {
         this.nric = nric;
