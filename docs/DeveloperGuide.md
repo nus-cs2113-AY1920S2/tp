@@ -18,9 +18,10 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [3.2. List all contacts](#32-list-all-contacts)
 	* [3.3. Display timetable of selected contacts](#33-display-timetable-of-selected-contacts)
 	* [3.4. Schedule a new meeting](#34-schedule-a-new-meeting)
-	* [3.5. Delete a scheduled meeting](#35-delete-a-scheduled-meeting)
-	* [3.6. Delete a member](#36-delete-a-member)
-	* [3.7 List all scheduled meetings](#37-list-all-scheduled-meetings)
+	* [3.5. Edit a contact's timetable](#35-edit-a-contacts-timetable)
+	* [3.6. Delete a scheduled meeting](#36-delete-a-scheduled-meeting)
+	* [3.7. Delete a member](#37-delete-a-member)
+	* [3.8. List all scheduled meetings](#38-list-all-scheduled-meetings)
 * [4. Documentation](#4-documentation)
 * [5. Testing](#5-testing)
 * [6. Dev Ops](#6-dev-ops)
@@ -218,14 +219,16 @@ Given below is an example usage and how ```ListContact``` command behaves.
 
 
 ### 3.3 Display timetable of selected contacts
-
+![DisplayTimetable](images/DisplayTimetable.png)<br>
 ### 3.4 Schedule a new meeting
 
-### 3.5 Delete a scheduled meeting
+### 3.5 Edit a contact's timetable
 
-### 3.6 Delete a member
+### 3.6 Delete a scheduled meeting
 
-### 3.7 List all scheduled meetings
+### 3.7 Delete a member
+
+### 3.8 List all scheduled meetings
 
 ## 4. Documentation
 
