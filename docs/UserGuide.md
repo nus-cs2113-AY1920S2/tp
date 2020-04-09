@@ -279,7 +279,7 @@ For more information on how and if you can <b>not</b> enter  the <i>full directo
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.  
 </div>  
   
-##### Example Usage   
+##### **Example Usage**   
 ```  
 addm cs2113t  
 ```  
@@ -319,7 +319,7 @@ The <code>priority</code> that you give must be a number between 0 and 20 inclus
 addc Project -m cs2113t -p 3  
 ```  
   
-##### Expected Outcome  
+##### **Expected Outcome**  
 ![addm command](images/ug_addc_outcome.png)     
   
 <small><b>Before</b></small>     
@@ -586,7 +586,7 @@ lsts -p
 lsts cs2113 -p  
 ```  
   
-##### Expected Outcome    
+##### **Expected Outcome**    
 <small><u><b>Sort by Deadline</b></u></small>    
 ![image-20200401012942212](images/ug_lsts_1.png)    
 <br>  
@@ -634,7 +634,8 @@ due tdy
 due over  
 ```  
   
-##### **Expected Outcome** <small><u><b>With Time Specifier</b></u></small>    
+##### **Expected Outcome**   
+<small><u><b>With Time Specifier</b></u></small>    
 ![due command with time specifier](images/due_timespec.png)      
 <br>    
 <small><u><b>Without Time Specifier</b></u></small>     
@@ -720,7 +721,7 @@ Please do <b>not</b> delete the <i>directory</i> you are in, <i>or</i> any of yo
 </div>     
 [Back To Top](#table-of-contents)  
   
-#### a. Delete Modules from your Module Lists   
+#### **a. Delete Modules from your Module Lists**   
   
 `delm` deletes <i>module(s)</i> from your <b>Module Lists</b>. The <b>Module List</b> contains all your added <i>modules</i> and can be viewed via the [<b>List Module</b>](#a-list-your-modules) command.   
   
@@ -771,7 +772,7 @@ delc Tutorial
 delc lec -a  
 ```  
   
-###### Expected Outcome    
+##### **Expected Outcome**    
 <small><u><b>Single Deletion</b></u></small>    
 ![delc command single delete](images/ug_delc_outcome.png)     
   
@@ -856,13 +857,14 @@ delf diag -a
   
 `delg` deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command).   
   
-##### Format     
+##### **Format**       
 `delg <tag info> -m <module code> -c <category name> -t <task description>`   
    
 - `tag info` -- The _tag_ to be deleted  
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added    
 - `category name` -- The _name_ of the _category_ - `task decription` -- The _description_ of the _task_   
-##### Example Usage  
+   
+##### **Example Usage**  
 ```  
 delg urgent -m CS2113t -c Lab -t tp  
 ```  
@@ -875,6 +877,7 @@ delg urgent -t tp
 ```  
 delg urgent  
 ```  
+<br>  
   
 [Back To Top](#table-of-contents)  
   
@@ -1456,6 +1459,8 @@ If you want to edit a <i>task</i>  that has the path <code>root / CS2113T / Lect
 Essentially, <b>Nuke</b> will fill the missing components in the <i>path</i> based on your current <i>directory path</i>. Hence, it would be good to use the <b><a href="#5-change-directory">Change Directory</a></b> command to move to the corresponding <i>directory</i> first, so you do not have to enter the <i>full path</i>.  
 </div>  
   
+   
+[Back To Top](#table-of-contents)  
 <br>  
   
 ### **How does the Filtering Process works?**  
