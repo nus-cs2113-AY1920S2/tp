@@ -1,84 +1,138 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandResult;
-import seedu.duke.commands.ExitCommand;
 import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
-import seedu.duke.parser.Parser;
-import java.util.Scanner;
+import seedu.duke.ui.Ui;
+import seedu.duke.utils.Parser;
+import seedu.duke.utils.Storage;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 
 public class Duke {
 
-	 /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static Budget myBudget = new Budget();
+    private static Budget myBudget = new Budget();
     private static ShoppingList items = new ShoppingList();
+    private Storage storage = new Storage();
+    private static Ui ui = new Ui();
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final String DEFAULT_FILEPATH = "Logger.log";
+    private static final String LOG_FILE_ERROR = "Logging to file unsuccessful";
 
+    //@@author trishaangelica
+    /**
+     * Main entry-point for the java.duke.Duke application.
+     *
+     */
     public static void main(String[] args) {
+        Duke.setUpLogger();
         new Duke().run();
     }
+    //@@author
 
-    /** Runs the program until termination.  */
+    //@@author kokjoon97
+    /**
+     * Sets up the logger to log to the console and a file.
+     */
+    private static void setUpLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.ALL);
+        ConsoleHandler console = new ConsoleHandler();
+        console.setLevel(Level.SEVERE);
+        LOGGER.addHandler(console);
+        File logFile = new File(DEFAULT_FILEPATH);
+        try {
+            if (!logFile.exists()) {
+                logFile.createNewFile();
+            }
+            FileHandler logHandler = new FileHandler(DEFAULT_FILEPATH);
+            logHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(logHandler);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE,LOG_FILE_ERROR);
+        }
+    }
+    //@@author
+
+    //@@author trishaangelica
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         start();
         runCommandLoopUntilExitCommand();
         exit();
     }
+    //@@author
 
+    //@@author JLoh579
     /**
-     * Sets up the required objects, loads up the data from the storage file, and prints the welcome message.
-     *
-     *
+     * Prints the welcome message.
      */
     private void start() {
-        System.out.println("HELLO");
+        items = storage.loadShoppingList();
+        myBudget = storage.loadBudget();
+        LOGGER.log(Level.INFO,"Application starting.");
+        ui.greet();
     }
+    //@@author
 
-    /** Prints the Goodbye message and exits. */
+    //@@author Shannonwje
+    /**
+     * Prints the goodbye message and exits.
+     */
     private void exit() {
-        System.out.println("BYE");
+        ui.bidFarewell();
+        LOGGER.log(Level.INFO,"Application shutting down");
         System.exit(0);
     }
+    //@@author
 
-    /** Reads the user command and executes it, until the user issues the exit command.  */
+    //@@author kokjoon97
+    /**
+     * Reads user commands and executes them, until the user issues the exit command.
+     */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = readCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            System.out.println(result.feedbackToUser);
-        } while (!ExitCommand.isExit(command));
-    }
+            ui.printline("\nEnter command:");
+            String userInput = ui.readCommand();
+            assert !userInput.isEmpty() : "Input should not be empty";
 
-    public String readCommand(){
-        Scanner in = new Scanner(System.in);
-        String input = "";
-        while(input.isEmpty()){
-            input = in.nextLine();
-            input = input.trim();
-        }
-        return input;
-    }
+            command = new Parser().parseCommand(userInput);
+            assert command != null : "Command should have been initialised";
 
+            executeCommand(command);
+            assert command.feedbackToUser != null : "Result should have been initialised";
+
+            storage.saveAll(items, myBudget);
+            ui.printline(command.feedbackToUser);
+        } while (!command.isExit);
+    }
+    //@@author
+
+    //@@author jiajuinphoon
     /**
      * Executes the command and returns the result.
      *
      * @param command user command
      * @return result of the command
      */
-    private CommandResult executeCommand(Command command) {
+    private void executeCommand(Command command) {
         try {
             command.setData(items,myBudget);
-            CommandResult result = command.execute();
-            command.setData(items,myBudget);
-            return result;
+            command.execute();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ui.printline(e.getMessage());
             throw new RuntimeException(e);
         }
     }
-
+    //@@author
 }
