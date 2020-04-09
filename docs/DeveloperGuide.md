@@ -46,7 +46,7 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 
 &nbsp;
 
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 &nbsp;
 
  <!-- @@author -->
@@ -79,7 +79,7 @@ At any point in time, <code>Duke</code> only stores up to one <code>Command</cod
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 &nbsp;
 
 ## 3. Implementation
@@ -146,7 +146,7 @@ This section will describe how the main features of the application are implemen
  and edit the price and quantity later when they knew the price and have decided the quantity. 
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 &nbsp;
@@ -205,7 +205,7 @@ Reason for choosing alternative 1: By allowing users to update any values they w
 
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 &nbsp;
@@ -254,7 +254,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
 to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -308,7 +308,7 @@ also be able to trace functionality bugs more easily if each command class deals
 <!-- @@author -->
   
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -367,7 +367,7 @@ future features to the mark and unmark feature easier as well.
 <!-- @@author -->
     
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -419,7 +419,7 @@ Reason for choosing alternative 1: With each command type having its own class, 
 also be able to trace functionality bugs more easily if each command class deals with its own functionality.
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -468,7 +468,7 @@ work in parallel.
 <!-- @@author -->
  
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -518,7 +518,7 @@ to work in parallel.
   <!-- @@author -->
   
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;      
  
@@ -564,7 +564,7 @@ to work in parallel.
  also be able to trace functionality bugs more easily if each command class deals with a different functionality.
  
  &nbsp;
- <b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+ <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
  
  &nbsp;
  <!-- @@author -->
@@ -612,7 +612,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
  
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -654,7 +654,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 - Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 &nbsp;
@@ -679,7 +679,7 @@ shopping lists and also providing helpful features like budget tracking
 
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -709,7 +709,7 @@ This section contains the user stories for the different versions of our product
 |v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on how much I buy|
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 <!-- @@author kokjoon97 -->
@@ -721,7 +721,7 @@ This section contains the user stories for the different versions of our product
 <!-- @@author -->
 
 &nbsp;
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -759,7 +759,7 @@ This section contains the user stories for the different versions of our product
    &nbsp;
 
     
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;
 
@@ -806,7 +806,7 @@ This section contains the user stories for the different versions of our product
      
      &nbsp;
      
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;        
     
@@ -867,7 +867,7 @@ This section contains the user stories for the different versions of our product
      &nbsp;
     
  
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;    
 
@@ -930,7 +930,7 @@ This section contains the user stories for the different versions of our product
      &nbsp;
      
      
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;
      
@@ -970,7 +970,7 @@ This section contains the user stories for the different versions of our product
      &nbsp;
 
 
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
 &nbsp;
 
@@ -992,7 +992,7 @@ This section contains the user stories for the different versions of our product
                                                                             
       &nbsp;
   
-<b><a href="#shoco-v21---developer-guide"">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
   
 &nbsp;            
     
