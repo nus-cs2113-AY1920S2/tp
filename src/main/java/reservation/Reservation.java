@@ -213,17 +213,17 @@ public class Reservation {
                 + ls
                 + "Status: %s"
                 + ls
-                + "contact person: %s"
+                + "Contact person: %s"
                 + ls
-                + "date: %s"
+                + "Date: %s"
                 + ls
-                + "number of guests: %d"
+                + "Number of guests: %d"
                 + ls
-                + "table size: %c"
+                + "Table size: %c"
                 + ls
-                + "contact details: %s"
+                + "Contact details: %s"
                 + ls
-                + "comments: %s"
+                + "Comments: %s"
                 + ls, 
                 this.reservationNumber, this.status, this.name, 
                 this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
