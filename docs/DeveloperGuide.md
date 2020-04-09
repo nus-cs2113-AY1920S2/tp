@@ -171,7 +171,7 @@ The process is as follows:
 with the new values from the user input through the use of the <code>Item</code> class setter methods.
 6. The <code>Item</code> object with its new values is stored back to the <code>ShoppingList</code> object.
 
-The following sequence diagram below shows how the edit feature works. The details of updating an items' values
+The following sequence diagram below shows how the edit feature works. The details of updating the values of an item
 have been omitted from the diagram. Those details are shown in a separate sequence diagram.
 
 ![Edit Feature](images/Edit_v1.png)
@@ -725,7 +725,7 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
-
+<!-- @@author trishaangelica-->
 ## Appendix D: Instructions for Manual Testing
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
@@ -814,7 +814,7 @@ This section contains the user stories for the different versions of our product
 
 1. Add an item 
         
-    >:bulb: Tip: Before adding an item, you can run the <code> DISPLAY </code> command to prevent entering a duplicate description
+    >:bulb: Tip: Before adding an item, you can run the <code>DISPLAY</code> command to prevent entering a duplicate description
        
     i. Test case: <code> ADD i/apple p/3.00 q/2 </code>
        
@@ -838,7 +838,7 @@ This section contains the user stories for the different versions of our product
 
 2. Edit an item
      
-    > :bulb: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
+    > :bulb: Tip: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
       
     *Assumption: Valid index and description is provided. (No duplicate description allowed)*
            
@@ -870,6 +870,7 @@ This section contains the user stories for the different versions of our product
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;    
+<!-- @@author -->
 
 <!-- @@author Shannonwje -->    
 ### Mark and Un-mark an item
@@ -936,7 +937,7 @@ This section contains the user stories for the different versions of our product
      
 <!-- @@author -->
     
-  
+<!-- @@author trishaangelica-->  
 ### Find and Delete an item
 
 1. Find an item based on keyword
@@ -994,5 +995,5 @@ This section contains the user stories for the different versions of our product
   
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
   
-&nbsp;            
-    
+&nbsp;   
+<!-- @@author -->
