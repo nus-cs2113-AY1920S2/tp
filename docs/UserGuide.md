@@ -262,10 +262,10 @@ The above commands have to be done in their corresponding directories. Conversel
 [Back To Top](#table-of-contents)
 
 
-#### a. Add a Module into your Module List  
-`addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the [List Module command](#a-list-your-modules).
+#### **a. Add a Module into your Module List**  
+`addm` adds a _module_ into your **Module List**. The **Module List** contains all your added _modules_ and can be viewed via the <b>[List Module command](#a-list-your-modules)</b>.
 
-##### Format  
+##### **Format**  
 `addm <module code>`  
 - `module code` -- The _module code_ of the   _module_  
 
@@ -273,33 +273,30 @@ The above commands have to be done in their corresponding directories. Conversel
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
 The <i>module code</i> is case-<b>insensitive</b>. However, it must correspond to a valid <b>NUS module</b>. Only <b>NUS modules</b> can be added in this version of <b>Nuke</b>.
 </div>
+
 ##### Example Usage
 
 ```
 addm cs2113t
 ```
 
-##### Expected Outcome
+##### **Expected Outcome**
+![addm command](images/addm.png)  
 
-![addm command](images/addm.png)
+<small><b>Before</b></small>   
+![image-20200330234001037](images/ug_addm_before.png)  
 
-
-##### Before:
-
-![image-20200330234001037](images/ug_addm_before.png)
-
-##### After:
-
-![image-20200330233926681](images/ug_addm_after.png)
+<small><b>After</b></small>   
+![image-20200330233926681](images/ug_addm_after.png)   
 
 [Back To Top](#table-of-contents)   
 
 <br>
 
-#### b. Add a Category into your Category List  
-`addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the [List Category](#b-list-your-categories) command.
+#### **b. Add a Category into your Category List**  
+`addc` adds a _category_ into your **Category List**. The **Category List** contains all your added _categories_ in the _module_ and can be viewed via the <b>[List Category](#b-list-your-categories)</b> command.
 
-##### Format  
+##### **Format**  
 `addc <category name> -m <module code> [ -p <priority> ]`  
 
 - `category name` -- The _name_ of the   _category_
@@ -308,39 +305,33 @@ addm cs2113t
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+The <code>category name</code> <b>cannot </b> exceed <b>15</b> characters. &#128534; <br>
+
 The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to <b>0</b>.  
 </div>
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. You can move to the  <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
-</div>
 
-##### Example Usage
+##### **Example Usage**
 ```
 addc Project -m cs2113t -p 3
 ```
 
 ##### Expected Outcome
+![addm command](images/ug_addc_outcome.png)   
 
-![addm command](images/ug_addc_outcome.png)
+<small><b>Before</b></small>   
+![image-20200331000048607](images/ug_addc_before.png)   
 
-
-##### Before:
-
-![image-20200331000048607](images/ug_addc_before.png)
-
-##### After:
-
-![image-20200331000110946](images/ug_addc_after.png)
+<small><b>After</b></small>   
+![image-20200331000110946](images/ug_addc_after.png)   
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-#### c. Add a Task into your Task List
-`addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the [List Task](#c-list-your-tasks) command.
+#### **c. Add a Task into your Task List**
+`addt` adds a _task_ into your **Task List**. The **Task List** contains all your added _tasks_ in the _category_ and can be viewed via the <b>[List Task](#c-list-your-tasks)</b> command.
 
-##### Format  
+##### **Format**  
 `addt <task description> -m <module code> -c <category name> [ -d <deadline> -p <priority> ]`  
 
 - `task description` -- The _description_ of the _task_  
@@ -348,130 +339,114 @@ addc Project -m cs2113t -p 3
 - `category name` -- The _name_ of the   _category_  
 - `deadline` -- The _deadline_ of the _task_  
 - `priority` -- A number indicating the  _priority_ of the _category_   
+
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br>The <code>deadline</code> provided consists of both a <i>date</i> and a <i>time</i>. The <code>deadline</code> provided must adhere to the set of accepted <b><a href = '#date-time-formats'>Date Time formats</a></b>.
-</div>
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory.You can move to the <i>module</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.  
+The <code>task description</code> <b>cannot </b> exceed <b>25</b> characters. &#128534; <br>
+The <code>priority</code> that you give must be a number between 0 and 20 inclusive. The bigger the number, the more important the category. If the <code>priority</code> is not given, then it will be set to the same <i>priority</i> as it's <i>category</i>.<br><br>
+The <code>deadline</code> provided consists of a <i>date</i>, followed by a <i>time</i>. If the <i>date</i> is omitted, <b>Nuke</b> will set it to the current date on your device. If <i>time</i> is omitted, <b>Nuke</b> will set it to be <b>11:59PM</b>. <br>
+The <code>deadline</code> provided must adhere to the set of accepted <b><a href = '#date-time-formats'>Date Time formats</a></b>. &#128529;
 </div>
 
-##### Example Usage    
-
+##### **Example Usage**    
 ```
 addt urgent assignment -m cs2113t -c Assignment -d tmr 2359 -p 15
 ```
+##### **Expected Outcome**    
+![image-20200331000315462](images/ug_addt_outcome.png)  
 
-##### Expected Outcome    
+<small><b>Before</b></small>   
+![image-20200331000255994](images/ug_addt_before.png)  
 
-![image-20200331000315462](images/ug_addt_outcome.png)
-
-
-##### Before:
-
-![image-20200331000255994](images/ug_addt_before.png)
-
-##### After:
-
-![image-20200331000315462](images/ug_addt_after.png)
+<small><b>After</b></small>   
+![image-20200331000315462](images/ug_addt_after.png)   
 
 
 [Back To Top](#table-of-contents)
 
 <br>
 
-#### d. Add a File into your File List  
-`addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#d-list-your-files) command.
+#### **d. Add a File into your File List**  
+`addf` adds a _file_ into your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the <b>[List File](#d-list-your-files)</b> command.
 
-##### Format  
-`addf <file name> -m <module code> -c <category name> -t <task description> -f <file path>`  
+##### **Format**  
+`addf [ <file name> ] -m <module code> -c <category name> -t <task description> -f <file path>`  
 
-- `file name` -- The _name_ of the _file_  
+- `file name` -- The _name_ of the _file_  <i>(optional)</i>
 - `module code` -- The _module code_ of the _module_   to contain the _category_ to be added  
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
-- `file path` -- the **Absolute** _path_ of the _file_   
+- `file path` -- The **absolute** _path_ of the _file_   
+- 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-The <b>file path</b> provided must exist. Otherwise, an error message will be displayed. &#128543;
+The <code>file path</code> provided must exist. Otherwise, an error message will be displayed. &#128543; <br>
+Also, the <code>file name</code> <b>cannot</b> exceed <b>30</b> characters. &#128566;
 </div>
+
 <div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.<br> The <b>file path</b> provided can be different from the real file name that is stored in the disk. 
+<i class="fa fa-info"></i> <b>Info</b> <br> 
+The <code>file path</code> should be the <b>absolute</b> <i>path</i> of the <i>file</i>. For <b>Windows</b>, the <b>absolute</b> <i>path</i> will usually start as such: <code>C:\Users\...</code><br>  <br>
+The <code>file name</code> provided can be different from the real <i>file name</i> that is stored in the disk. <br>  
+You can choose to leave the <code>file name</code> blank. In this case, <b>Nuke</b> will set your <code>file name</code> to be the <i>name</i> of your <i>file</i> without the extension at the back. For example, <code>sample_file.pdf</code> will become <code>sample_file</code>.
 </div>
 
-##### Example Usage
-
+##### **Example Usage**
 ```
-addf textbook.pdf -m CS2113t -c Assignment -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook -m CS2113t -c Assignment -t urgent assignment -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
-
 ```
-addf textbook.pdf -t urgent assignment -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook.pdf -t urgent assignment -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
-
 ```
-addf textbook.pdf -f C:\Users\null\Desktop\CS2113T_Textbook.pdf
+addf textbook.pdf -f C:\Users\\Desktop\CS2113T_Textbook.pdf
 ```
 
-##### Expected Outcome    
+##### **Expected Outcome**    
+![image-20200331000315462](images/ug_addf_outcome.png)  
 
-![image-20200331000315462](images/ug_addf_outcome.png)
+<small><b>Before</b></small>   
+![image-20200331000315462](images/ug_addf_before.png)  
 
-##### Before:
+<small><b>After</b></small>   
+![image-20200331000315462](images/ug_addf_after.png)   
 
-![image-20200331000315462](images/ug_addf_before.png)
-
-#### After:
-
-![image-20200331000315462](images/ug_addf_after.png)
 
 [Back To Top](#table-of-contents)
-
 <br>
 
-#### e. Add a Tag to your Task
+#### **e. Add a Tag to your Task**
 Adds a _tag_ to your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).
 
-##### Format  
-`addg <tag info> -m <module code> -c <category name> -t <task description>`  
+##### **Format**  
+`addg <tag name> -m <module code> -c <category name> -t <task description>`  
 
-- `tag info` -- The _tag_ to be added  
+- `tag name` -- The <i>name</i> of the  _tag_ to be added  
 - `module code` -- The _module code_ of the _module_ to contain the _category_ to be added  
 - `category name` -- The _name_ of the   _category_  
 - `task decription` -- The _description_ of the _task_  
-<div class="alert alert-info">
-<i class="fa fa-info"></i> <b>Tip</b> <br> 
-You need <b>not</b> include the <b>module code</b> information if you are currently in that <i>module</i>'s directory. Also, you need <b>not</b> include either <b>module code</b> or <b>category name</b> if you are currently in that <i>category</i> directory. Moreover, you need <b>not</b> include <b>module code</b>, <b>category name</b> or <b>task description</b> if you are currently in that <i>task</i> directory. You can move to the <i>task</i>'s directory via the <a href="#6-change-directory">Change Directory</a> Command.
-</div>
 
-##### Example Usage
-
+##### **Example Usage**
 ```
 addg urgent -m CS2113t -c Lab -t tp
 ```
-
 ```
 addg urgent -t tp
 ```
-
 ```
 addg urgent
 ```
 
-##### Expected Outcome
+##### **Expected Outcome**
 
-![image-20200331000315462](images/ug_addg_outcome.png)
+![image-20200331000315462](images/ug_addg_outcome.png)  
 
-##### Before:
-
+<small><b>Before</b></small>   
 ```
 TODO: attach the screenshot here
 ```
-
-##### After:
-
+  
+<small><b>After</b></small>   
 ```
 TODO: attach the screenshot here
 ```
@@ -977,9 +952,11 @@ edm cs2102 -m cs2101
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-You need to enter at least one of <code>new category name</code> and <code>new priority</code>. If both are omitted, an error message would be shown! &#128555; <br>
+You need to enter at least one of <code>new category name</code> and <code>new priority</code>. If both are omitted, an error message would be shown! &#128555; <br><br>
+
+Similar to <code>category name</code>, the <code>new category name</code>  <b>cannot </b> exceed <b>15</b> characters. <br>
 In addition, similar to all the <code>priority</code> attribute in <b>Nuke</b>, the <code>new priority</code> must be between 0 and 20 inclusive.
-</div>
+</div> 
 
 ##### **Example Usage**   
 ```
@@ -1019,8 +996,9 @@ edc Lab -m cs2113t -c Project -p 8
 
 <div class="alert alert-warning">
 <i class="fa fa-exclamation"></i> <b>Note</b> <br> 
-You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  
-As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <b><a href="#date-time-formats">Date Time Formats</a></b>.<br>  
+You need to enter at least one of <code>new task description</code>, <code>new deadline</code> and <code>new priority</code>. If all are omitted, an error message would be shown! &#128555; <br>  <br>
+The <code>new task description</code> <b>cannot </b> exceed <b>25</b> characters. <br>  
+As with all <code>deadline</code> attribute, the <code>new deadline</code> must follow <b>Nuke</b>'s accepted <b><a href="#date-time-formats">Date Time Formats</a></b>. If the <i>date</i> is omitted, <b>Nuke</b> will set it to the current date on your device. If <i>time</i> is omitted, <b>Nuke</b> will set it to be <b>11:59PM</b>. <br><br>
 In addition, the <code>new priority</code> should also be between 0 and 20 inclusive.
 </div>
 
@@ -1060,6 +1038,11 @@ edt tp -d sat 2359 -p 20
 - `category name` -- The <i>name</i> of the <i>category</i> containing the <i>file</i> to be edited
 - `task description` -- The <i>description</i> of the <i>task</i> containing the <i>file</i> to be edited      
 - `new file name` -- The <u>new</u> <i>name</i> of the <i>file</i>      
+
+<div class="alert alert-warning">
+<i class="fa fa-exclamation"></i> <b>Note</b> <br> 
+Similar to <code>file name</code>, the <code>new file name</code>  <b>cannot </b> exceed <b>30</b> characters. 
+</div>
 
 ##### **Example Usage**    
 ```
