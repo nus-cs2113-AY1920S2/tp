@@ -1,14 +1,13 @@
 package seedu.happypills.logic.commands.patientcommands;
 
 import org.junit.jupiter.api.Test;
-import seedu.happypills.logic.commands.patientcommands.AddPatientCommand;
-import seedu.happypills.logic.commands.patientcommands.EditPatientCommand;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //@@author sitinadiah25
 class EditPatientCommandTest {
     private static AppointmentMap newAppointmentMap;

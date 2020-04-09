@@ -12,6 +12,7 @@ import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.TextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //@@author sitinadiah25
 class HelpCommandTest {
 
