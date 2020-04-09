@@ -20,7 +20,7 @@ public class Messages {
                                                                     + " manually using [edit] command.";
     public static final String MESSAGE_EMPTY_MODULE = "Module either can't be fetched from NUSMOD API or has been deprecated from NUS";
     public static final String MESSAGE_RETURN_SUCCESS = "SUCCESS";
-    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "You have entered an index out of bounds.";
+    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index you entered is out of bounds.";
     public static final String MESSAGE_WRONG_COMMAND_SCHEDULE = "Follow format for schedule command:";
     public static final String MESSAGE_WRONG_COMMAND_DELETE = "Follow format for delete command:";
     public static final String MESSAGE_WRONG_COMMAND_MEETING = "Follow format for meeting command:";
