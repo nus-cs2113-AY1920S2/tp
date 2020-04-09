@@ -1,0 +1,41 @@
+# Jeremy733 - Project Portfolio Page
+
+## Project - Exam Study Companion (ESC)
+
+## Overview
+Exam Study Companion (ESC) is a command-line based app that is designed to help students preparing for upcoming exams. The app is written in Java and requires JDK 11 to run.
+
+
+## Summary of Contributions
+### Major enhancement: added the subject/subjectlist class. 
++ What it does: allows user to store a subject tag to each card added and has the ability to add, delete and list subjects. 
+
++ Justification: This feature improves the product because in real life, revision is done according to subjects.
+
++ Highlights: This enhancement needs to work along side the Card/Cardlist class which alrealy exists. It needs to limit the access to Card/Cardlist class as well to conform with the design.
+
+### Major enhancement: added the editCardCommand class. 
++ What it does: allows user to edit an existing card.
+
++ Justification: The feature improves usability as users can now edit a card instead of removing it and add a new one.
+
++ Highlights: This enhancement has a new format of inputs therefore existing functions to extract data from the command needs to be adjusted.
+
+### Major enhancement: added the UI class. 
++ What it does: allows user to have easier interaction with the app.
+
++ Justification: This feature was done originally in one class. Then it was separated into different classes to  shorten the length of code needed.
+
++ Highlights: The messages follows each command was later moved to repestive classes to avoid lengthy code.
+
+### Minor enhancement: Added the view of answers when listing.
+### Minor enhancement: Added the ability to detect duplicates in subjects
+
+### Contributions to documentation
+
+#### Contributions to the DG : Added user stories and the architecture section. 
+
+#### Contributions to the UG : Added FAQ section and editted feature section acorrding to latest codes.
+
+### Code contributed: <a href="https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=jeremy733&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos" target="_blank">Code</a>
+
