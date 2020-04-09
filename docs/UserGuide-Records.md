@@ -27,7 +27,7 @@ Add patient's medical records to the database, to support the diagnosis and to j
  </tr>
 </table>
 
-##### Usage example:
+##### Format:
 
     add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
     
@@ -55,7 +55,7 @@ Displays all  patient records for the patient using his/her NRIC. Patient's reco
 index which is needed for [find pr](#333-find-patient-records-find-pr), 
 [edit pr](#334-edit-patient-records-edit-pr) and [delete pr](#335-delete-patient-records-delete-pr) commands.
 
-##### Usage example:
+##### Format:
 
     list pr NRIC
 
@@ -90,7 +90,7 @@ index which is needed for [find pr](#333-find-patient-records-find-pr),
 Display detailed information for that particular patient's visit using the NRIC and index of the patient's records 
 which can obtained from the [list pr](#332-list-patient-records-list-pr) command. 
 
-##### Usage example:
+##### Format:
 
     find pr NRIC INDEX
 
@@ -124,7 +124,7 @@ which can obtained from the [list pr](#332-list-patient-records-list-pr) command
 Edit patient's past medical record using the index of the patient's records 
 which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
 
-##### Usage example:
+##### Format:
 
     edit pr NRIC INDEX /sym<SYMPTOMS> 
                        /diag<DIAGNOSIS> 
@@ -170,7 +170,7 @@ which can obtained from the [list pr](#332-list-patient-records-list-pr) command
 Delete patient's medical records based on the given NRIC and the index of the patient's records 
 which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
 
-##### Usage example: 
+##### Format:
 
     delete pr NRIC INDEX
 

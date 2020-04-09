@@ -21,7 +21,7 @@ HappyPills helps to store appointment schedules.
 Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
 patient automatically.
  
-##### Usage example: 
+##### Format:
  
      add appt /ic NRIC /d DATE /t TIME /r REASON
          
@@ -44,7 +44,7 @@ patient automatically.
 Edit information of the appointment with the specified appointmentID(apptID).
  The appointment should belong to the patient with the specified NRIC. 
  
-##### Usage example:  
+##### Format:  
  
      edit appt NRIC apptID [Options][editedInput]
      Options:
@@ -66,7 +66,7 @@ Edit information of the appointment with the specified appointmentID(apptID).
 
 Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
 
-##### Usage example:  
+##### Format: 
 
     delete appt NRIC apptID
     
@@ -85,7 +85,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 Mark the appointment with the specified appointmentID(apptID) as done if arrived.
  The appointment should belong to the patient with the specified NRIC. 
  
-##### Usage example:  
+##### Format:
  
      done appt NRIC apptID
          
@@ -104,7 +104,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 List all the existing appointments in the clinic. 
 This can be used as a method to check for appointmentID.
  
-##### Usage example:  
+##### Format: 
  
      list appt
          
@@ -121,7 +121,7 @@ This can be used as a method to check for appointmentID.
 Check all appointments that the patient with the specified NRIC has. 
 This can be used as a method to check for appointmentID.
 
-##### Usage example: 
+##### Format: 
  
      find appt NRIC
          
