@@ -65,7 +65,7 @@ public class ReportWriter {
             counter = 1;
             for (Map.Entry<String, Pair<Integer,Double>> ingredient : stock.getStock().entrySet()) {
                 String writtenString = String.format(
-                        "%d. %s \t $%.2f %d "
+                        "*%d. %s \t Price:$%.2f Quantity:%d "
                         + ls,
                         counter, 
                         ingredient.getKey(), 

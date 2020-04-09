@@ -1,11 +1,14 @@
 import commands.ReservationCommand;
 import exceptions.DishNameMissingException;
 import exceptions.InvalidDeleteDishCommandException;
+import exceptions.InvalidFilePathException;
+import exceptions.StockReadWriteException;
 import reservation.Reservation;
 import sales.Sales;
 import menu.Menu;
 import reservation.ReservationList;
 import stock.Stock;
+import stock.LoadStock;
 import ui.Ui;
 import utils.CommandParser;
 import utils.LoggerUtils;
@@ -57,6 +60,15 @@ public class Main {
             ReservationList.setLogger();
         } catch (IOException e) {
             ui.displayLoggingSetUpFailMessage();
+        }
+        
+        
+        // load data from report.txt
+        LoadStock sl = Stock.getStockLoader();
+        try {
+            sl.loadStockData(stock);
+        } catch (InvalidFilePathException | StockReadWriteException e) {
+            ui.showMessage(e.getMessage());
         }
         
         ui.showWelcomeMessage();

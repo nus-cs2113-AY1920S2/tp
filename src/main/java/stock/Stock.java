@@ -32,11 +32,16 @@ public class Stock {
     
     private static Set<String> duplicateIngredientNameSet = null;
     
+    private static LoadStock stockLoader = null;
+
+    
     private final String ls = System.lineSeparator();
     
     public Stock() {
         stock = new HashMap<>();
         duplicateIngredientNameSet = new HashSet<>();
+        stockLoader = new LoadStock();
+
     }
     
     /**
@@ -280,12 +285,16 @@ public class Stock {
             ingredientCounter++;
         }
     }
-    
+        
     public static Map<String, Pair<Integer, Double>> getStock() {
         return stock;
     }
     
     public static Set<String> getDuplicateIngredientNames() {
         return duplicateIngredientNameSet;
+    }
+    
+    public static LoadStock getStockLoader() {
+        return stockLoader;
     }
 }
