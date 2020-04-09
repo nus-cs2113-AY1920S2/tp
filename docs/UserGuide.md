@@ -1,10 +1,10 @@
-# SHOCO v2.0 - User Guide
+# SHOCO v2.1 - User Guide
 <!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
 
 Since: `Feb 2020`
 
-Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+Creators: `Trisha Labi` `Tan Kok Joon` `Phoon Jia Juin` `Joshua Loh` `Shannon Wong`
 <!-- @@author -->
 
 <!-- @@author trishaangelica -->
@@ -48,7 +48,7 @@ grocery shopping disappear.
 &nbsp;
 
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
@@ -60,7 +60,7 @@ grocery shopping disappear.
 &nbsp;
 <!-- @@author -->
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Features 
 
@@ -83,7 +83,7 @@ grocery shopping disappear.
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author jiajuinphoon -->
@@ -115,7 +115,7 @@ Examples of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide"> &#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide"> &#129053; back to top</a></b>
 <!-- @@author trishaangelica -->
 
 ***
@@ -147,7 +147,7 @@ Examples of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -166,7 +166,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -184,7 +184,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
@@ -210,7 +210,7 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -236,7 +236,7 @@ Example of the usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -247,7 +247,7 @@ Format: `DISPLAY`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -266,7 +266,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
@@ -277,7 +277,7 @@ Format: `RES`
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -288,19 +288,19 @@ Format: `CLEAR`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 ***
 <!-- @@author trishaangelica -->
 
 ### Viewing help: `HELP`
-Shows the available commands and how they are to be used.
+Shows the available commands, their purpose and how they are to be used.
 
 Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -311,7 +311,7 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -336,7 +336,7 @@ your budget.
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -360,7 +360,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -385,4 +385,4 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
