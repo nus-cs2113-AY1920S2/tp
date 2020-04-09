@@ -51,7 +51,7 @@ public class Messages {
             + System.lineSeparator() + NEWLINE_INDENT + "%s.";
     public static final String REPEATING_SUCCESS_MESSAGE = "[%s] will repeat every %s%s%s.";
     public static final String STOP_REPEATING_SUCCESS_MESSAGE = "[%s] will no longer repeat.";
-    public static final String EDIT_PROMPT = "Please edit your chosen task.";
+    public static final String EDIT_PROMPT = "Please edit your chosen task. Task Type needs to remain the same.";
 
     // Common Error Messages
     public static final String INCORRECT_COMMAND_ERROR = "Oh no. %s";
