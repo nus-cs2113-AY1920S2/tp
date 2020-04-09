@@ -16,9 +16,25 @@ public class LoadReservation {
     private String filePath;
     private List<Reservation> fileReservations;
     
-    public LoadReservation(String filePath) {
+    // apply singleton
+    private static LoadReservation loadReservation;
+    
+    private LoadReservation(String filePath) {
         this.filePath = filePath;
         this.fileReservations = new ArrayList<>();
+    }
+
+    /**
+     * Defines the method to access this object.
+     * Instantiates a single copy of the singleton class when it is executed for the first time.
+     * @param filePath Path to the "report.txt" file.
+     * @return This object
+     */
+    public static LoadReservation getInstance(String filePath) {
+        if (loadReservation == null) {
+            loadReservation = new LoadReservation(filePath);
+        }
+        return loadReservation;
     }
 
     /**

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import reservation.ReservationList;
 import ui.Ui;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClearReservationCommandTest {
     ReservationList reservationList;

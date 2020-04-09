@@ -50,7 +50,7 @@ public class Main {
         this.sales = new Sales();
 
         try {
-            this.reservations = new ReservationList(new LoadReservation("report.txt").loadFileReservations());
+            this.reservations = new ReservationList(LoadReservation.getInstance("report.txt").loadFileReservations());
         } catch (IOException e) {
             ui.showMessage("Fails to load in the list from the file...");
             this.reservations = new ReservationList();
