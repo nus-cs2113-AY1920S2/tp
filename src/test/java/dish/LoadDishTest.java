@@ -16,21 +16,21 @@ public class LoadDishTest {
 
     @Test
     public void parseIngredientsA() {
-        String input = "1. Name: pizza      \t Price: $3.00       \t Ingredients: cheese, sauce ";
         ArrayList<String> ingredients = new ArrayList<String>();
         ingredients.add("cheese");
         ingredients.add("sauce");
+        String input = "1. Name: pizza      \t Price: $3.00       \t Ingredients: cheese, sauce ";
         assertEquals(ingredients, LoadDish.parseIngredients(input));
     }
 
     @Test
     public void parseIngredientsB() {
-        String input = "2. Name: taco       \t Price: $4.50       \t Ingredients: chicken, salsa, sour cream, eggs ";
         ArrayList<String> ingredients = new ArrayList<String>();
         ingredients.add("chicken");
         ingredients.add("salsa");
         ingredients.add("sour cream");
         ingredients.add("eggs");
+        String input = "2. Name: taco       \t Price: $4.50       \t Ingredients: chicken, salsa, sour cream, eggs ";
         assertEquals(ingredients, LoadDish.parseIngredients(input));
     }
 
@@ -64,17 +64,17 @@ public class LoadDishTest {
 
     @Test
     public void parseFileTestA() throws InvalidLoadException, FileNotFoundException {
-        String fp = "sampleReportA.txt";
-        Menu m = new Menu();
-        HashMap dishMapA = new HashMap<String, Dish>();
+        String name = "pizza";
+        double price = 3.00;
         ArrayList<String> ingredients = new ArrayList<String>();
         ingredients.add("cheese");
         ingredients.add("sauce");
-        String name = "pizza";
-        double price = 3.00;
+        HashMap dishMapA = new HashMap<String, Dish>();
         dishMapA.put("pizza", new Dish(name, ingredients, price));
-        m.setDishMap(dishMapA);
+        String fp = "sampleReportA.txt";
         LoadDish ld = LoadDish.getInstance(fp);
+        Menu m = new Menu();
+        m.setDishMap(dishMapA);
         assertEquals(m.getDishMap(), ld.readDishes().getDishMap());
     }
 
