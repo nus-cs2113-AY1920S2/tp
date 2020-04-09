@@ -98,7 +98,7 @@ public class MeetingOrganizer {
                 myLogicManager.listMeetings(userInputWords);
                 break;
             default:
-                throw new MoException("Unknown command, please try again.");
+                throw new MoException("Please follow the options in the menu.");
             }
         }
     }

@@ -61,14 +61,6 @@ public class CommandHandler {
                         break;
                     case 3:
                         weeks = myLessonDetails.get(k)[j].split(":");
-                        //future improvement: since myLessonDetails.get(k)[3] contains data on the
-                        // week number that this class occurs on, add capability of schedule to reflect
-                        // schedule of the current week.
-                        //
-                        //0900 1200 Friday 5:7:9:11
-                        //1600 1800 Thursday 1:2:3:4:5:6:7:8:9:10:11:12:13
-                        //1600 1800 Tuesday 1:2:3:4:5:6:7:8:9:10:11:12:13
-                        //0900 1200 Tuesday 1:2:3:4:5:6
                         break;
                     default:
                         //data only has four sections from api
@@ -101,8 +93,6 @@ public class CommandHandler {
             int startOfWeekDate = getStartOfWeekDate();
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
-
-            String meetingName = userInputWords[2];
 
             int memberIndex = Integer.parseInt(userInputWords[2]);
             Contact member = contactList.getContactList().get(memberIndex);
