@@ -33,6 +33,9 @@ public class CommandHandler {
             throw new MoException("Repeated user");
         }
 
+        if (userInputWords[0].length() >= 260) {
+            throw new MoException("Maximum characters for a given name is 260");
+        }
         member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
@@ -73,7 +76,7 @@ public class CommandHandler {
     }
 
     public static void editContact(String[] userInputWords, Contact mainUser, ContactList contactList,
-                                   int currentWeekNumber) throws MoException {
+                                   int currentWeekNumber) {
 
         try {
             if (userInputWords.length != 7) {
@@ -200,6 +203,9 @@ public class CommandHandler {
             Integer startDay;
             Integer endDay;
             int startOfWeekDate = getStartOfWeekDate();
+            if (userInputWords[1].length() >= 260) {
+                throw new MoException("Maximum characters for meeting name is 260");
+            }
             String meetingName = userInputWords[1];
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);
