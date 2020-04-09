@@ -88,19 +88,19 @@ grocery shopping disappear.
 ***
 <!-- @@author jiajuinphoon -->
 ### Adding an item: `ADD`
-Add the specified item in the shopping list.
+Adds an item to the shopping list.
 
 Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
 * The `DESCRIPTION` must exist.
-* The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[PRICE]` must be in **numerical** form (decimal form accepted).
+* The `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
   respective values or omit them. The system will set the price and quantity to 
-  the default values `0.0` and `1` 
-* note that you can rearrange the delimiters (more will shown in the example.)
+  the default values `0.0` and `1` if omitted.
+> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
-Example of usage: 
+Examples of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
     * Add the description, price and quantity of this item in the shopping list
@@ -126,11 +126,12 @@ Edits the specified item in the shopping list.
 Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
-shown in the displayed shopping list.
-* The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+shown in the displayed shopping list. 
+* You can view an item's `INDEX` number by using the `DISPLAY` command. More info [here](#displaying-list-and-budget-details-display).
+* The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * **At least one** of the three parameters (description/price/quantity) must be present in the command.
-* i/, p/, q/ delimiters can be in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
 Examples of usage: 
 
@@ -279,7 +280,7 @@ Format: `RES`
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
 
 ***
-
+<!-- @@author JLoh579 -->
 ### Clearing the list: `CLEAR`
 Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
@@ -288,7 +289,7 @@ Format: `CLEAR`
 &nbsp;
 
 <b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
-
+<!-- @@author -->
 ***
 <!-- @@author trishaangelica -->
 
@@ -342,7 +343,6 @@ your budget.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
-
 
 **A**: Simply transfer the JSON files that contain your SHOCO data onto the new computer and place them in the
 folder that contains the SHOCO app. If the folder already has the JSON files, replace them.

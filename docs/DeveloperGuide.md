@@ -21,11 +21,14 @@ Since: `Feb 2020`
  * **[Appendix A: Product Scope](#appendix-a-product-scope)**
  * **[Appendix B: User Stories](#appendix-b-user-stories)**
  * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
- * **[Appendix D: Glossary](#appendix-d-glossary)**
- * **[Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)**
-    + [E.1. Launch and ShutDown](#e1-launch-and-shutdown)
-    + [E.2. Set a budget and Add an item](#e2-set-a-budget-and-add-an-item)
-    + [E.3. Find and Delete an item](#e3-find-and-delete-an-item)
+ * **[Appendix D: Instructions for Manual Testing](#appendix-d-instructions-for-manual-testing)**
+    + [D.1. Launch and ShutDown](#d1-launch-and-shutdown)
+    + [D.2. Set and Reset a budget](#d2-set-and-reset-a-budget)
+    + [D.3. Add and Edit an item](#d3-add-and-edit-an-item)
+    + [D.4. Mark and Un-Mark an item](#d4-mark-and-un-mark-an-item)
+    + [D.5. Find and Delete an item](#d5-find-and-delete-an-item)
+    + [D.6. Display and Clear the shopping list](#d6-display-and-clear-the-shopping-list)
+  
     
  <!-- @@author -->
 
@@ -162,7 +165,7 @@ The process is as follows:
 
 1. <code>Duke</code> class receives user input from the <code>Ui</code> class. 
 2. A <code>Parser</code> object is created.
-3. <code><Duke></code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
+3. <code>Duke</code> calls <code>Parser#parseCommand()</code> method to instantiate an <code>EditCommand</code> object based on the user input.
 4. <code>Duke</code> class then calls the <code>EditCommand#execute()</code> method.
 5. In the <code>EditCommand#execute()</code> method, it first gets the <code>item</code> object through the
 <code>ShoppingList#getItem()</code>. The original description / price / quantity of the item is overwritten 
@@ -173,6 +176,8 @@ The following sequence diagram below shows how the edit feature works. The detai
 have been omitted from the diagram. Those details are shown in a separate sequence diagram below:
 
 ![Edit Feature](images/EditFeatureFinal.png)
+
+ The separate sequence diagram below shows how the item is updated with new values.
 
 ![Edit Feature SD](images/EditFeature_SD.png)
 
@@ -197,9 +202,8 @@ order.
   variables.
 
 
-- Reason for choosing alternative 1: By allowing users to be able to update any values they want, it provides them with
-greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater
-freedom on input values makes it a hassle-free process for the users.
+ - Reason for choosing alternative 1: By allowing users to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater freedom on input values makes it a hassle-free process for the users.
+
 
 &nbsp;
 <b><a href="#developer-guide">&#129053; back to top</a></b>
@@ -717,19 +721,11 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
-## Appendix D: Glossary
 
-* *glossary item* - Definition
-
-&nbsp;
-<b><a href="#developer-guide">&#129053; back to top</a></b>
-
-&nbsp;
-
-## Appendix E: Instructions for Manual Testing
+## Appendix D: Instructions for Manual Testing
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
-### E.1. Launch and ShutDown
+### D.1. Launch and ShutDown
 1. Initial launch 
     
       i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
@@ -755,9 +751,15 @@ This section contains the user stories for the different versions of our product
         Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
   
 
+   &nbsp;
+
+    
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
 &nbsp;
 
-### E.2. Set a budget and Add an item
+
+### D.2. Set and Reset a budget
 
 1. Set a budget
        
@@ -779,13 +781,33 @@ This section contains the user stories for the different versions of our product
         
      &nbsp;
 
-    iv. Other incorrect set budget commands to try: <code>SET b/xxx</code> (where x is not a number).
+    iv. Other incorrect set budget commands to try: <code>SET b/xxx</code> (where xxx is not a number).
             
         Expected: An error message and the correct usage of the SET command is shown.
      
      &nbsp;
+     
+2. Reset the budget
+       
+    i. Test case: <code>RES</code> 
 
-2. Add an item 
+        Expected: Budget has been reset to $0.00
+    
+     &nbsp;
+     
+    ii. Other incorrect reset budget commands to try: <code>RES xxx</code> (where xxx is not a number).
+                     
+        Expected: An error message and the correct usage of the RES command is shown.
+     
+     &nbsp;
+     
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;        
+    
+### D.3. Add and Edit an item
+
+1. Add an item 
         
     *Optional:  List all items currently in the shopping list to prevent entering a duplicate item description : <code> DISPLAY </code>*
        
@@ -797,90 +819,120 @@ This section contains the user stories for the different versions of our product
                                                            
     &nbsp;
 
-    ii. Test case: <code> ADD p/3.00 </code>
+    ii. Test case: <code>ADD p/3.00</code>
      
         Expected: No item is added. Error message and a correct usage of the ADD command is shown.
-       
+         
      &nbsp;
        
-    iii. Other incorrect ADD commands to try: <code>ADD</code>, <code>ADD p/xxx</code>, <code>ADD q/xxx</code> (where x is not a number).
+    iii. Other incorrect ADD commands to try: <code>ADD</code>, <code>ADD p/xxx</code>, <code>ADD q/xxx</code> (where xxx is not a number).
         
         Expected: Similar to previous. 
     
     &nbsp;
+
+2. Edit an item
+     
+    > :bulb: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
+           
+    i. Test case: <code>EDIT 1 i/banana</code>
+    
+    *Assumption: Valid index and description is provided. (No duplicate description allowed)*
+    
+        Expected: The description of the first item is updated to "banana". 
+        
+     &nbsp;
+    
+    ii. Test case: <code>EDIT 1 p/5.60</code>
+           
+        Expected: The price of the first item is updated to "$5.60". 
+         
+     &nbsp;
+    
+    iii. Test case: <code>EDIT 1 q/3</code>
+         
+        Expected: The quantity of the first item is updated to "3". 
+            
+     &nbsp;
+    
+    iv. Other incorrect edit commands to try: <code>EDIT p/xxx</code> , <code>EDIT q/xxx</code>. (where xxx is not a number).
+                
+        Expected: An error message and the correct usage of the EDIT command is shown.
+         
+     &nbsp;
+    
+ 
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;    
+
 <!-- @@author Shannonwje -->    
-### E.3. Reset the budget and Marking & Unmarking an item
+### D.4. Mark and Un-mark an item
 
-1. Reset the budget
+1. Marking an item
+      
+   i. Test case: <code>MARK 5</code>    
+      *Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'.*
+
+        Expected: The fifth item in the list is mark as bought, denoted as [B].
+    
+    &nbsp;
+
+   ii. Test case: <code>MARK -10</code> 
+        
+        Expected: An error message stating that the item does not exist in the list is shown.
+    
+    &nbsp;
+
+   iii. Test case: <code>MARK 100</code> 
+
+        Expected: An error message stating that the item does not exist in the list is shown.
+    
+   &nbsp;
+     
+   iv. Other incorrect MARK commands to try: <code>MARK xxx</code> (where xxx is not a number).
+     
+         Expected: An error message stating to provide a single numerical index number is shown.
+     
+   &nbsp;
+     
+2. Un-marking an item
+
+   *Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'*
        
-    i. Test case: <code>RES</code> 
+   i. Test case: <code>UNMARK 5</code> 
 
-       Expected: Budget has been reset to $0.00
+         Expected: The fifth item in the list is unmarked as bought, denoted as [0].
     
-     &nbsp;
+    &nbsp;
 
-2. Marking an item
-
-    i. Test case: <code>MARK</code> 
-
-       Expected: Please provide a single numerical index number!
-    
-     &nbsp;
-
-    ii. Test case: <code>MARK 5</code> 
-
-       Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
-       
-       Expected: Yes! I've marked this item as bought:
-                 [B] lemons $4.00 qty: 6
-    
-     &nbsp;
-
-    iii. Test case: <code>MARK -10</code> 
+   ii. Test case: <code>UNMARK -10</code> 
 
        Expected: Oh No! This item does not exist in the list
     
      &nbsp;
 
-    iv. Test case: <code>MARK 100</code> 
+   iii. Test case: <code>UNMARK 100</code> 
 
        Expected: Oh No! This item does not exist in the list
     
      &nbsp;
      
-2. Unmarking an item
-
-    i. Test case: <code>UNMARK</code> 
-
-       Expected: Please provide a single numerical index number!
-    
+   iv. Other incorrect UNMARK commands to try: <code>UNMARK xxx</code> (where xxx is not a number).
+     
+        Expected: An error message stating to provide a single numerical index number is shown.
+         
      &nbsp;
-
-    ii. Test case: <code>UNMARK 5</code> 
-
-       Assumption: there are 5 or more items in the list. The 5th item has a description of 'lemons', price of '$4.00' and quantity of '6'
-       
-       Expected: Yes! I've unmarked this item as bought:
-                 [0] lemons $4.00 qty: 6
-    
-     &nbsp;
-
-    iii. Test case: <code>UNMARK -10</code> 
-
-       Expected: Oh No! This item does not exist in the list
-    
-     &nbsp;
-
-    iv. Test case: <code>UNMARK 100</code> 
-
-       Expected: Oh No! This item does not exist in the list
-    
-     &nbsp;
+     
+     
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+     
+&nbsp;
      
 <!-- @@author -->
     
   
-### E.4. Find and Delete an item
+### D.5. Find and Delete an item
 
 1. Find an item based on keyword
        
@@ -917,3 +969,25 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
+### D.6. Display and Clear the shopping list
+
+1. List all items in the shopping list
+            
+     i. Test case: <code>DISPLAY</code>
+           
+        Expected: A list containing all the items is displayed in a table.The current amount of the budget is also shown.
+                                                                            
+      &nbsp;
+
+2. Clear all items in the shopping list
+            
+     i. Test case: <code>CLEAR</code>
+           
+        Expected: The shopping list is cleared.
+                                                                            
+      &nbsp;
+  
+<b><a href="#developer-guide">&#129053; back to top</a></b>
+  
+&nbsp;            
+    
