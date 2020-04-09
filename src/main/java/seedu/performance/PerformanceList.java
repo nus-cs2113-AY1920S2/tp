@@ -35,13 +35,13 @@ public class PerformanceList {
             return false;
         }
         for (Performance p : performanceList) {
-            return isSame(p.getStudent(), performance.getStudent());
+            return isSameString(p.getStudent(), performance.getStudent());
         }
         return false;
     }
 
-    private boolean isSame(String string1, String string2) {
-        return string1.toLowerCase().equals(string2.toLowerCase());
+    private boolean isSameString(String string1, String string2) {
+        return string1.toLowerCase().trim().equals(string2.toLowerCase().trim());
     }
 
     public ArrayList<Performance> getPerformanceList() {
@@ -61,7 +61,7 @@ public class PerformanceList {
             UI.display("No performance list under this event");
         }
         for (Performance p : performanceList) {
-            if (p != null && isSame(p.getStudent(), performance.getStudent())) {
+            if (p != null && isSameString(p.getStudent(), performance.getStudent())) {
                 performanceList.remove(p);
                 hasDeleted = true;
                 break;
@@ -77,18 +77,22 @@ public class PerformanceList {
      * @param performance The Performance to be edited.
      * @param type        The type of parameter to be edited.
      */
-    public void edit(Performance performance, String type) {
+    public void editPerformance(Performance performance, String type) {
         boolean hasEdited = false;
         if (isEmpty()) {
             UI.display("No performance list under this event");
         }
 
         for (Performance p : performanceList) {
-            if (p != null && isSame(p.getStudent(), performance.getStudent()) && isSame(type, "name")) {
+            if (p != null
+                    && isSameString(p.getStudent(), performance.getStudent())
+                    && isSameString(type, "name")) {
                 editName(p);
                 hasEdited = true;
                 break;
-            } else if (p != null && isSame(p.getStudent(), performance.getStudent()) && isSame(type, "result")) {
+            } else if (p != null
+                    && isSameString(p.getStudent(), performance.getStudent())
+                    && isSameString(type, "result")) {
                 editResult(p);
                 hasEdited = true;
             }
@@ -106,7 +110,7 @@ public class PerformanceList {
         performanceList.add(performance);
     }
 
-    public void editResult(Performance performance) {
+    private void editResult(Performance performance) {
         performance.result = ui.getPerformanceName("result");
         ui.editPerformanceMessage(performance, "result");
         performanceList.remove(performance);
@@ -139,7 +143,7 @@ public class PerformanceList {
             throw new PacException("No performance list under this event");
         }
         for (Performance performance: performanceList) {
-            if (performance.studentName.equals(studentName)) {
+            if (isSameString(performance.studentName,studentName)) {
                 return performance;
             }
         }

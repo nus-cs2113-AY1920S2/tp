@@ -11,25 +11,24 @@ import seedu.ui.UI;
 public class ClearAttendanceList extends Command {
 
     protected UI ui;
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
     protected String eventName;
 
     public ClearAttendanceList(AttendanceList attendances, String eventName) {
-        this.attendances = attendances;
+        this.attendanceList = attendances;
         this.ui = new UI();
         this.eventName = eventName;
     }
 
     /**
      * Method to clear an existing attendanceList in a specific event.
-     * @throws PacException If attendanceList fail to clear.
      */
-    private void clear() throws PacException {
-        try {
-            attendances.clearList();
+    private void clear() {
+        if (!attendanceList.isEmpty()) {
+            attendanceList.clearList();
             ui.clearAttendanceMessage(eventName);
-        } catch (Exception e) {
-            throw new PacException("Attendance List fail to clear");
+        } else {
+            UI.display("Attendance List is already empty");
         }
     }
 
