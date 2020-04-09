@@ -41,6 +41,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         this.nric = nric.toUpperCase();
         this.index = index - 1;
         this.newContent = newContent;
+        logger.info("New Edit Patient Record Command");
     }
 
     /**
@@ -72,19 +73,24 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             content = newContent.substring(2);
         }
         if (!patientRecords.containsKey(nric)) {
+            logger.info("Patient Record not found");
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         PatientRecord editPatientRecord = findPatientRecord(nric, index, patientRecords);
         boolean isIndexOutOfBound = patientRecords.get(nric).size() < index || index < 0;
         if (editPatientRecord == null) {
+            logger.info("Patient Record not found");
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         if (patientRecords.get(nric) == null) {
+            logger.info("No patient in the list");
             throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
         } else if (isIndexOutOfBound) {
+            logger.info("Patient Record not found with given index");
             throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
         }
         if (content.isEmpty()) {
+            logger.info("Patient Record not found with given index");
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
         content = content.trim();
@@ -157,7 +163,7 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
 
     private PatientRecord findPatientRecord(String nric, int index, PatientRecordMap patientRecords) {
         ArrayList<PatientRecord> patientRecordlist = patientRecords.get(nric);
-        if (patientRecordlist != null && index <= patientRecordlist.size()) {
+        if (patientRecordlist != null && index < patientRecordlist.size()) {
             PatientRecord patientRecord = patientRecordlist.get(index);
             return patientRecord;
         } else {

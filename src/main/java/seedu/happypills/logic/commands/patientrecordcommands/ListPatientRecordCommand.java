@@ -28,8 +28,7 @@ public class ListPatientRecordCommand extends PatientRecordCommand {
             }
             return PatientRecordTextUi.getPatientRecordListSuccessMessage(patientRecords.get(patientNric));
         } else {
-            String message =  Messages.MESSAGE_PATIENT_NOT_FOUND;
-            return message;
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
     }
 }

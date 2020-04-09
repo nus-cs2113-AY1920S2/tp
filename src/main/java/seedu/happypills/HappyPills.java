@@ -85,7 +85,6 @@ public class HappyPills {
      */
     private void run() {
         logSetup();
-
         TextUi.printWelcomeMessage();
 
         while (scanner.hasNextLine()) {
