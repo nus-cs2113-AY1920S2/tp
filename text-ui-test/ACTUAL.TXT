@@ -10,8 +10,8 @@ Dish pizza successfully added.
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
+Dishes successfully listed.
 
 Input next command:
 
@@ -23,8 +23,8 @@ Dish pizza successfully removed!
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Dishes successfully listed.
 
 Input next command:
 
@@ -533,19 +533,19 @@ Please specify the keyword using the format 'k/keyword;'
 
 Input next command:
 
-Reservation[5] has been added into the list
+Reservation[1] has been added into the list
 
 Input next command:
 
-Reservation[6] has been added into the list
+Reservation[2] has been added into the list
 
 Input next command:
 
-Reservation[7] has been added into the list
+Reservation[3] has been added into the list
 
 Input next command:
 
-Reservation[8] has been added into the list
+Reservation[4] has been added into the list
 
 Input next command:
 
@@ -581,3 +581,318 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
+Reservation [1]
+Status: Unserved
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Unserved
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
+
+
+Input next command:
+
+Please enter a valid positive integer.
+
+Input next command:
+
+There is no Reservation[0] in the list.
+
+Input next command:
+
+Please enter a valid positive integer.
+
+Input next command:
+
+Please enter a valid positive integer.
+
+Input next command:
+
+Successfully void Reservation[1]
+
+Input next command:
+
+Reservation[1] is already Invalid. You cannot void a Invalid reservation.
+
+Input next command:
+
+Delimiter Missing.
+
+Input next command:
+
+There is no Reservation[-1] in the list.
+
+Input next command:
+
+There is no Reservation[5] in the list.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Unserved
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
+
+
+Input next command:
+
+Please enter a valid positive reservation number.
+
+Input next command:
+
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+
+Input next command:
+
+Sorry! No such reservation.
+
+Input next command:
+
+Delimiter Missing.
+
+Input next command:
+
+Here comes the reservations on the date 2020-03-12:
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+
+Input next command:
+
+There is no Reservation[5] in the list.
+
+Input next command:
+
+Input Missing: either reservation number r/ or date d/ is missing.
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Please enter a valid positive integer.
+
+Input next command:
+
+There is no Reservation[5] in the list.
+
+Input next command:
+
+There is no Reservation[-1] in the list.
+
+Input next command:
+
+Successfully mark Reservation[4] as served.
+
+Input next command:
+
+There is no Reservation[0] in the list.
+
+Input next command:
+
+Reservation[1] is already Invalid. It cannot be marked as Served.
+
+Input next command:
+
+Reservation[4] is already Served. You cannot void a Served reservation.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Reservation [4]
+Status: Served
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
+
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Served
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
+
+
+Input next command:
+
+The command has been successfully executed.
+
+Input next command:
+
+The total profit for the day is: $57.0
+The command has been successfully executed.
+
+Input next command:
+
+The most popular dish today is: rice
+This has sales of: 5
+The command has been successfully executed.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+The reservation list has been cleared.
+
+Input next command:
+
+The menu, stock and reservations have been saved to report.txt
+The program is now exiting
