@@ -26,7 +26,7 @@ stored in TXT file. And each time the user runs the software, these three file w
 Exception in our software include three parts: 
 - `Input Exception`
 - `Runtime Exception`
-- `Storage Exception`. 
+- `Storage Exception`
 
 All of them extend from `ModuleManagerException`.
 
