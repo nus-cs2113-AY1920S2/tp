@@ -10,7 +10,7 @@ import static common.Messages.MESSAGE_STARTENDTIME_WRONG_FORMAT;
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
 import static common.Messages.MESSAGE_INVALID_MEETING;
 import static common.Messages.MESSAGE_INVALID_EDIT;
-import static common.Messages.MESSAGE_INVALID_MEETING_RANGE;
+import static common.Messages.MESSAGE_INVALID_SLOT_RANGE;
 
 public class MeetingHandler {
     private static final Boolean MYSCHEDULEBLOCKED = true;
@@ -65,7 +65,7 @@ public class MeetingHandler {
                     }
                 }
             } else if (startBlock > endBlock) {
-                throw new MoException(MESSAGE_INVALID_MEETING_RANGE);
+                throw new MoException(MESSAGE_INVALID_SLOT_RANGE);
             }
         }
 
@@ -171,7 +171,7 @@ public class MeetingHandler {
                     }
                 }
             } else if (startBlock > endBlock) {
-                throw new MoException(MESSAGE_INVALID_MEETING_RANGE);
+                throw new MoException(MESSAGE_INVALID_SLOT_RANGE);
             }
         }
 

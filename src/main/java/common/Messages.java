@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_WEEK_RANGE_EMPTY = "Class does not have lessons.";
     public static final String MESSAGE_INVALID_MEETING = "Range entered is not within free slots. Check timetable.";
     public static final String MESSAGE_INVALID_EDIT = "You cannot edit your timetable over a scheduled meeting. Check meetings.";
-    public static final String MESSAGE_INVALID_MEETING_RANGE = "Range entered is not valid.";
+    public static final String MESSAGE_INVALID_SLOT_RANGE = "Slot entered is not of valid range.";
     public static final String MESSAGE_INVALID_NUMBER = "You have entered an invalid number.";
     public static final String MESSAGE_INVALID_NUSMODLINK = "You have entered an invalid nusmods link!";
     public static final String MESSAGE_BROKEN_NUSMODLINK = "You have entered a broken nusmods link";
