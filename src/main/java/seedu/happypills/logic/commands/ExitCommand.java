@@ -29,7 +29,18 @@ public class ExitCommand implements Command {
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH, StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
-            logger.info("Adding patient list to file failed.");
+            logger.info(StorageTextUi.FAIL_TO_WRITE_PATIENT_MSG);
+        }
+        try {
+            Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH, StorageTextUi.getFormattedApptString(appointments));
+        } catch (IOException e) {
+            logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
+        }
+        try {
+            Storage.writeAllToFile(Storage.PATIENT_RECORD_FILEPATH,
+                    StorageTextUi.getFormattedPrString(patientRecords,patients));
+        } catch (IOException e) {
+            logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
         }
         TextUi.printExit();
         System.exit(0);

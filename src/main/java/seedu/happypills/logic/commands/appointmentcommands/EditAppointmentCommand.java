@@ -9,15 +9,18 @@ import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.storage.Storage;
-import seedu.happypills.ui.TextUi;
-import seedu.happypills.ui.StorageTextUi;
-import seedu.happypills.ui.PatientTextUi;
-import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.StorageTextUi;
+import seedu.happypills.ui.TextUi;
+import seedu.happypills.ui.Messages;
+import seedu.happypills.ui.HelpTextUi;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
+
+//@@author janicetyy
 public class EditAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String newContent;
@@ -29,7 +32,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * Constructor for EditAppointmentCommand Class.
      * It creates a new EditAppointmentCommand Object with the information provided.
      *
-     * @author janicetyy
      * @param nric Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
      * @param apptID Contains the id of the appointment that is to be edited
@@ -43,7 +45,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the patient from the NRIC of the Edit command.
      *
-     * @author janicetyy
      * @param patients Contains the list of patients to be searched.
      */
     private Patient findPatient(PatientMap patients) {
@@ -57,7 +58,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Retrieve the appointment from the patient provided.
      *
-     * @author janicetyy
      * @param appointments Contains the appointment map to get appointment from.
      * @return the appointment with the specified apptID or null if not found
      */
@@ -72,7 +72,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the date of the appointment in the list within the patient object.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newDate The new date to be edited into.
      * @return the appointment with the specified apptID or null if not found
@@ -93,7 +92,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the date of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which date is to be edited.
      * @param newDate The new date to be edited into.
      * @return true if successful, false otherwise.
@@ -111,7 +109,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the time of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newTime The new time to be edited into.
      * @return the appointment with the specified apptID or null if not found.
@@ -133,14 +130,12 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the time of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which time is to be edited.
      * @param newTime The new date to be edited into.
      * @return true if successful, false otherwise.
      */
     private Boolean editTime(Appointment appointment, String newTime) {
         if (Checker.isValidTime(newTime)) {
-            newTime += ":00";
             appointment.setTime(newTime);
             return true;
         }
@@ -150,7 +145,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the reason of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param patient Contains the patient that to get appointment from.
      * @param newReason The new reason to be edited into.
      * @return the appointment with the specified apptID or null if not found.
@@ -168,7 +162,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the remark of the appointment in the shared appointment map.
      *
-     * @author janicetyy
      * @param appointment The appointment which reason is to be edited.
      * @param newReason The appointment's updated reason.
      * @return true if successful, false otherwise
@@ -181,7 +174,6 @@ public class EditAppointmentCommand extends AppointmentCommand {
     /**
      * Edit the appointment details with the information provided by calling.
      *
-     * @author janicetyy
      * @param patients Contains the list of patients on which the commands are executed on.
      * @param appointments Contains the list of appointments on which the commands are executed on.
      * @throws HappyPillsException Throws an exception if the edit field is not valid.
@@ -192,6 +184,9 @@ public class EditAppointmentCommand extends AppointmentCommand {
     ) throws HappyPillsException {
         if (!Checker.isValidNric(nric)) {
             return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
+        }
+        if (!Checker.isPositiveInteger(apptID)) {
+            return TextUi.appendDivider(TextUi.INVALID_APPTID_MESSAGE);
         }
         if (newContent.length() < 3) {
             return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE;
@@ -213,10 +208,10 @@ public class EditAppointmentCommand extends AppointmentCommand {
         String errorMsg = "    Something went wrong, the edit could not be made.\n";
         if (field.equals("/d")) {
             output = editDate(editPatient, content) && editDate(editAppt,content);
-            errorMsg = output ? errorMsg : "    Invalid date or date format(DD/MM/YYYY).\n";
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_DATE;
         } else if (field.equals("/t")) {
             output = editTime(editPatient, content) && editTime(editAppt,content);
-            errorMsg = output ? errorMsg : "    Invalid time or time format(HH:MM).\n";
+            errorMsg = output ? errorMsg : Messages.MESSAGE_INVALID_TIME;
         } else if (field.equals("/r")) {
             output = editReason(editPatient, content) && editReason(editAppt,content);
         } else {

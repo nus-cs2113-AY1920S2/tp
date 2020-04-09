@@ -20,52 +20,55 @@ HappyPills can help users to manage their patients' information easily.
 
 This feature allows you to add more patients into the existing patients' list.
  
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
+HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+you will only need to fill in the couple of fields you missed.
 You can also add a new patient with the specified parameters in any order.
 
-
-###### Usage Example:   
+###### Format:   
 
     add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
 
-    add patient /ic S9999999Z /n Bob /dob 12-11-98 /b A+
-    
+    add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
+
 >***Expected output:***
 >
->![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Output")
 >
-> Enter `/p 999` to add missing field.
+> 
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>HappyPills will prompt you for missing details that are important.</td>
+   <td>HappyPills will prompt you for any missing inputs that are necessary.</td>
  </tr>
 </table>
 
+Enter `/p 91265432` to add the missing field.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Output")
 >
-> Enter `y` to confirm.
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> Entering <code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
+   <td> Entering <code>n</code> will abort the command and HappyPills will not save the patients' information.</td>
+    <!--This is a comment. Patient's information will be discarded if <code>n</code> is entered.-->
  </tr>
 </table>
+
+Enter `y` to confirm.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Output")
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -73,24 +76,39 @@ You can also add a new patient with the specified parameters in any order.
 
 Edit information of the patient with the specified NRIC. 
 
-##### Usage example: 
+##### Format: 
  
-    edit patient NRIC /n[NAME] /p[PHONE_NUMBER] /dob[DOB] /b[BLOOD_TYPE] /a[ALLERGIES] /rm[REMARKS]
+    edit patient NRIC /n<NAME> 
+                      /p<PHONE_NUMBER> 
+                      /dob<DOB> 
+                      /b<BLOOD_TYPE> 
+                      /a<ALLERGIES> 
+                      /rm<REMARKS>
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <code>no spaces</code> between the tag and the edited information.</td>
+ </tr>
+</table>
 
 **Example:**
 
-    edit patient S0618 /p9111
+    edit patient S9876543F /p99112233
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Output")
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> NRIC <code>cannot</code> be edited because it is what uniquely identifies the patient.</td>
+   <td> NRIC <code>cannot</code> be edited because it is used to uniquely identify the patient.</td>
  </tr>
 </table>
 
@@ -100,7 +118,7 @@ Edit information of the patient with the specified NRIC.
 
 Delete a patient as specified by the NRIC. 
 
-##### Usage example: 
+##### Format: 
 
     delete patient NRIC
     
@@ -110,10 +128,8 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Output")
 >
-> Enter `y` to confirm.
-
 <table>
   <col width="20">
   <col width="200">
@@ -123,17 +139,18 @@ Delete a patient as specified by the NRIC.
  </tr>
 </table>
 
+Enter `y` to confirm.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Output")
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon <code>successful deletion </code>, patient's information will not be able to be retrieved again. </td>
+   <td> Upon <code>successful deletion</code>, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
 
@@ -143,13 +160,13 @@ Delete a patient as specified by the NRIC.
 
 Displays all the patients in the patient list. 
 
-##### Usage example: 
+##### Format: 
 
     list patient
     
 > ***Expected output:***
 >
-> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Output")  
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -157,16 +174,16 @@ Displays all the patients in the patient list.
 
 Retrieve details of the patient with the specified NRIC.
 
-##### Usage example: 
+##### Format: 
 
     get patient NRIC
     
 **Example:**
 
-    get patient S9876543Z
+    get patient T9999999N
     
 > ***Expected output:***
 >
-> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Output")
 
  [&#8593; Return to Top](#table-of-content)

@@ -61,10 +61,8 @@ public class StorageTextUi extends TextUi {
         String formattedPrString = "";
         for (Map.Entry patients : patientMap.entrySet()) {
             Patient patient = (Patient) patients.getValue();
-
             if (patientRecords.containsKey(patient.getNric())
                     && (patientRecords.get(patient.getNric()) != null)) {
-
                 ArrayList<PatientRecord> prs = patientRecords.get(patient.getNric());
                 for (int index = 0; index < prs.size(); index++) {
                     formattedPrString += prs.get(index).toSave();

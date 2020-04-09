@@ -53,7 +53,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](images/StartOfApplication.PNG "Start of App")
+![Start of Application](images/UG/StartOfApplication.PNG "Start of App")
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -103,7 +103,7 @@ Format: `help`
 
 >***Expected output:***
 > 
-> ![help](images/HelpOutput.PNG "help output")
+> ![help](images/UG/HelpOutput.PNG "help output")
 
 <table>
   <col width="20">
@@ -124,7 +124,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![Exit](images/Exit.PNG "Exit Ouput")
+> ![Exit](images/UG/Exit.PNG "Exit Ouput")
 
 ### 3.2. General Patient Information
 
@@ -148,7 +148,7 @@ You can also add a new patient with the specified parameters in any order.
     
 >***Expected output:***
 >
->![MissingInput](images/MissingAddPatientInput.PNG "Missing Add Ouput")
+>![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Ouput")
 >
 > Enter `/p 999` to add missing field.
 
@@ -157,7 +157,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/addConfirm.PNG "Add Confirmation Ouput")
+>   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -166,7 +166,7 @@ You can also add a new patient with the specified parameters in any order.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](images/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
+>  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Ouput")
 
 #### 3.2.2. Edit Patient: `edit patient`
 
@@ -182,7 +182,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/EditCommandOutput.PNG "Edit Patient Ouput")
+> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Ouput")
 
 :information_source: | NRIC cannot be edited because it is what uniquely identifies the patient.
 ---------------------|--------------------------------------------------------------------------
@@ -201,7 +201,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
+> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Ouput")
 >
 > Enter `y` to confirm.
 
@@ -210,7 +210,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/DeleteSuccessful.PNG "Successfully Deleted Ouput")
+>  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Ouput")
 
 :heavy_exclamation_mark: | Upon successful deletion, patient's information will not be able to be retrieved again. 
 -------------------------|-------------------------------------------------------------------
@@ -225,7 +225,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](images/ListPatientOutput.PNG "List Ouput")  
+> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Ouput")  
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
@@ -241,7 +241,7 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](images/GetPatientOutput.PNG "Get Ouput")
+> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Ouput")
 
 ### 3.3. Patient Medical Records 
 
@@ -333,11 +333,11 @@ patient automatically.
 
 > ***Expected output:***
 >
->![addSuccess](/docs/images/AddAppt.png)
+>![addSuccess](/docs/images/UG/APPT/AddAppt.png)
 >
 >Confirm appointment details are correct by typing "y" or "Y"
 >
->![addConfirmSuccess](/docs/images/confirmAddAppt.png)
+>![addConfirmSuccess](/docs/images/UG/APPT/confirmAddAppt.png)
 
 #### 3.4.2. Edit Appointment: `edit appt`
 
@@ -358,7 +358,7 @@ Edit information of the appointment with the specified appointmentID(apptID).
 
 > ***Expected output:***
 >
->![editSuccess](/docs/images/EditAppt.png)
+>![editSuccess](/docs/images/UG/APPT/EditAppt.png)
 
 #### 3.4.3. Delete Appointment: `delete appt`
 
@@ -374,7 +374,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
 
 > ***Expected output:***
 >
-> ![editSuccess](/docs/images/DeleteAppt.png)
+> ![editSuccess](/docs/images/UG/APPT/DeleteAppt.png)
 
 #### 3.4.4. Mark Appointment as Done: `done appt` 
 
@@ -391,7 +391,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
 
 > ***Expected output:***
 >
->![doneSuccess](/docs/images/DoneAppt.png)
+>![doneSuccess](/docs/images/UG/APPT/DoneAppt.png)
 
 #### 3.4.5. List All Appointments: `list appt` 
 
@@ -406,7 +406,7 @@ as used by other commands.
 
 > ***Expected output:***
 >
->![ListSuccess](/docs/images/ListAppt.png)
+>![ListSuccess](/docs/images/UG/APPT/ListAppt.png)
 
 #### 3.4.6. Find Patient's Appointments: `find appt`
 
@@ -423,7 +423,7 @@ to check for the appointmentID used for the other commands.
 
 > ***Expected output:***
 >
->![findSuccess](/docs/images/FindAppt.png)
+>![findSuccess](/docs/images/UG/APPT/FindAppt.png)
 
 ## 4. Command Summary
 

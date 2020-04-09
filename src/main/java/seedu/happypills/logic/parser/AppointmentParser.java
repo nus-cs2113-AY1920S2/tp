@@ -1,7 +1,5 @@
 package seedu.happypills.logic.parser;
 
-import org.w3c.dom.Text;
-import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.appointmentcommands.AppointmentCommand;
 
 import seedu.happypills.logic.commands.appointmentcommands.AddAppointmentCommand;
@@ -16,8 +14,6 @@ import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
-
-import java.util.Scanner;
 
 //@@author sitinadiah25
 public class AppointmentParser extends Parser {
@@ -116,9 +112,9 @@ public class AppointmentParser extends Parser {
             System.out.println(Messages.MESSAGE_TIME_FORMAT);
         }
         if (parseInput[3].equalsIgnoreCase("")) {
-            System.out.println("    /r[REASONS]");
+            System.out.println("      /r [REASONS]");
         }
-        System.out.println("    To abort, enter \"clear\"");
+        System.out.println("\n    To abort, enter \"clear\"");
     }
 
     /**

@@ -52,7 +52,8 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 **Other contributions:**
 - Project management:
-    + Handled releases `v1.0 - v2.1` (3 releases) on GitHub
+    + Handled `v1.0` release on GitHub
+    + Handled the creation of JAR file
     + Created tags on GitHub Issues
     + Maintaining the issue tracker on GitHub
 - Enhancements to existing features:

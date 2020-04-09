@@ -9,6 +9,7 @@ import seedu.happypills.model.data.Patient;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
+import seedu.happypills.ui.AppointmentTextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -118,16 +119,10 @@ class EditAppointmentCommandTest {
 
     @Test
     public void editAppointment_editTime_validTime() throws HappyPillsException {
-        String expectedOutputEditTimeValid = "    Patient appointment have been updated as follows:\n"
-                + "        NRIC     : S1234567A\n"
-                + "        Date     : 01/02/2020\n"
-                + "        Time     : 23:59:00\n"
-                + "        Reason   : reason1\n"
-                + "        ID       : 1\n"
-                + "        Attended : No\n"
-                + "    =====================================================";
         String message = new EditAppointmentCommand("S1234567A", "1",
                 "/t 23:59").execute(newPatientMap, newAppointmentMap, newPatientRecordMap);
+        String expectedOutputEditTimeValid = ""
+                + AppointmentTextUi.editAppointmentSuccessMessage(newAppointmentMap.get("1"));
         assertEquals(expectedOutputEditTimeValid, message);
     }
 
