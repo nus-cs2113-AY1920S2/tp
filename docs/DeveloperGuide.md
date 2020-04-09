@@ -286,13 +286,13 @@ clashes with any ```Meeting```'s time slot, throw error to discontinue edit of t
 * Alternative 2: Allow the overwrite of ```Meeting```'s time slot. If ```EditContact```'s time slot clashes with any 
 ```Meeting```'s time slot, remove the ```Meeting``` from ```MeetingList```. 
 
-We choose Alternative 1 for these reasons:
+We chose Alternative 1 for these reasons:
 1. The intended purpose of the edit function is to make amendments to schedules pulled
  from NUSMODS so that additional "busy" slots or "free" slots can be visualized in the timetable, not to edit over meetings. 
 2. Editing of a ```Meeting```'s time slot to be "free" will be equivalent to deleting the ```Meeting```, for 
 which there is a dedicated feature implemented. This causes unnecessary overhead in functionality.
 3. Alternative 1 is easier to implement. When a clash is detected, Alternative 1 requires only the throwing of exception, 
-whereas Alternative 2 would require the removal of ```Meeting``` from ```MeetingList```.<br><br>
+whereas Alternative 2 requires the removal of ```Meeting``` from ```MeetingList```.<br><br>
 
 ![EditContact](images/EditContact_checkvalid.png)<br>
 
