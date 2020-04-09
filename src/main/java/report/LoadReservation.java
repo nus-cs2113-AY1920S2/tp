@@ -94,7 +94,7 @@ public class LoadReservation {
         String comments = null;
         
         for (String fileLine: fileLines) {
-            String split[] = fileLine.split(":", 2);
+            String[] split = fileLine.split(":", 2);
             String startingWords = split[0].trim();
             
             switch (startingWords) {
