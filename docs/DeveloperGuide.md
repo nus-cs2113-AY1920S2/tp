@@ -232,7 +232,7 @@ Given below is an example usage and how the ```DisplayTimetable``` command behav
     to be displayed.
 2. The ```LogicManager``` requests to display the combined timetable via ```CommandHandler```.
 3. The ```CommandHandler``` retrieves ```Contact```s from ```ContactList``` using the contacts' index passed into the 
-command, to generate ```arrayList<Contact>```.
+command, to generate ```ArrayList<Contact>```.
 
     NOTE: This step is omitted in the sequence diagram to keep it concise.
 3. The ```CommandHandler``` calls the ScheduleHandler constructor ```ScheduleHandler(ArrayList<Contacts>)```.
