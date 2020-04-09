@@ -1,12 +1,16 @@
 package dish;
 
+import exceptions.InvalidLoadException;
+import menu.Menu;
 import org.junit.jupiter.api.Test;
 import report.LoadDish;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoadDishTest {
 
@@ -56,6 +60,22 @@ public class LoadDishTest {
         String input = "2. Name: taco       \t Price: $4.50       \t Ingredients: chicken, salsa, sour cream, eggs ";
         double price = 4.50;
         assertEquals(price, LoadDish.parsePrice(input));
+    }
+
+    @Test
+    public void parseFileTestA() throws InvalidLoadException, FileNotFoundException {
+        String fp = "sampleReportA.txt";
+        Menu m = new Menu();
+        HashMap dishMapA = new HashMap<String, Dish>();
+        ArrayList<String> ingredients = new ArrayList<String>();
+        ingredients.add("cheese");
+        ingredients.add("sauce");
+        String name = "pizza";
+        double price = 3.00;
+        dishMapA.put("pizza", new Dish(name, ingredients, price));
+        m.setDishMap(dishMapA);
+        LoadDish ld = LoadDish.getInstance(fp);
+        assertEquals(m.getDishMap(), ld.readDishes().getDishMap());
     }
 
 

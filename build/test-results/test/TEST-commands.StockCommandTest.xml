@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.StockCommandTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:00:26" hostname="Ganeshs-MacBook-Pro.local" time="0.006">
+<testsuite name="commands.StockCommandTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:21:19" hostname="Ganeshs-MacBook-Pro.local" time="0.007">
   <properties/>
   <testcase name="parse_parseIngredientQuantity_quantityIsNotInteger()" classname="commands.StockCommandTest" time="0.0"/>
-  <testcase name="parse_parseIngredientPrice_blankIngredientPriceSupplied()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_blankIngredientPriceSupplied()" classname="commands.StockCommandTest" time="0.001"/>
   <testcase name="parse_parseIngredientName_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
   <testcase name="parse_parseIngredientQuantity_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
   <testcase name="parse_parseIngredientPrice_priceIsDouble()" classname="commands.StockCommandTest" time="0.001"/>
