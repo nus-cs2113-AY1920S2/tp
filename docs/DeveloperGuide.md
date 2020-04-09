@@ -329,7 +329,7 @@ The command:
 
     add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
     
-will add an appointment with `NRIC` as S7777777Z with the following attributes: 
+will add an appointment with `NRIC` as S1234567A with the following attributes: 
 * appointment date: `04/04/2020`
 * appointment time: `10:30`
 * reason for appointment: `Checkup`
@@ -371,26 +371,39 @@ The following sequence diagram summarises how the `AddAppointmentCommand` operat
 
 The user can edit an appointment from the list of appointments currently in the program. The command:
 
-    edit appt S9999999z 1 /d 02/20/2020
+    edit appt S1234567Z 1 /d 04/04/2020
 
-will edit the date of the appointment with appointment id `1`, to `02/02/2020`, if found. 
+will edit the date of the appointment with appointment id `1`, to `04/04/2020`, if found. 
 
 **Implementation**
-The following steps explains the sequence of events:
 
-1. The user enters edit command.
+The `EditAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric`, `apptId` and `newContent` in its constructor. 
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
 
-3. `AppointmentParser#parse()` will then create an object `EditAppointmentCommand`. 
+1. The user enters `edit appt S1234567Z 1 /d 04/04/2020` into the application. The `HappyPills` class then calls the 
+`Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls 
+the `AppointmentParser#parse()` method. 
 
-4. `HappyPills` then calls `EditAppointmentCommand.execute()` to execute the command. 
+2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. Warning: If 
+the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
 
-5. In `EditAppointmentCommand.execute()`, the respective appointment is edited and 
-a display message is obtained by calling `AppointmentTextUi#editAppointmentSuccessMessage()`.
+3. `HappyPills` will then call the `EditAppointmentCommand#execute()` method. 
 
-6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
+4. In `EditAppointmentCommand#execute()`, does two things: 
 
+	+ If the patient and/or appointment does not exist, the `HappyPillsException()` will be thrown.
+
+	+ `EditAppointmentCommand#execute()` checks for which parameter is to be edited, `date`, `time` or `reason`. 
+	Afterwards, the method calls both `AppointmentMap` and `PatientMap` to edit the appropriate details. `Storage#writeAllToFile()` 
+	will then be called to update the storage of the newly edited appointment. 
+
+5. A display message will be shown to the user to indicate whether or not the edit was successful. 
+
+The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
+
+![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
 
 #### 4.3.3. Delete Appointment 
 
@@ -502,24 +515,26 @@ will list all the appointments that the patient with NRIC S7777777Z has.
 
 **Implementation**
 
-![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.jpg)
+The `FindAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`patientNric` in its constructor. 
 
-The following steps explains the sequence of events: 
+The following steps below is an example of how the `FindAppointmentCommand` class behaves: 
 
-1. The user enters `find appt S7777777z`. 
+1. The user enters `find appt S1234567Z` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
+method. 
 
-2. `HappyPills` calls `Parser#parse()` which then calls `AppointmentParser#parse()`.
+2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
 
-3. `AppointmentParser#parse()` will then create an object `FindAppointmentCommand`. 
+3. `HappyPills` will then call the `FindAppointmentCommand#execute()` method. 
 
-4. `HappyPills` then calls `FindAppointmentCommand.execute()` to execute the command. 
+4. `FindAppointmentCommand#execute()` first checks the validity of the nric given. It then checks if a patient exists in the 
+`PatientMap`. If it exists, it displays all the appointments belonging to the patient, otherwise it displays that there is 
+no patient with the given nric that exists. 
 
-5. In `FindAppointmentCommand.execute()`, the respective appointment is retrieved and 
-a display message is obtained by calling `AppointmentTextUi#findAppointmentSuccessMessage()`.
+The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
 
-6. The display message is returned as a String until it reaches `HappyPills` where it would be printed. 
-
-
+![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
 
 ### 4.4. Storage
 
