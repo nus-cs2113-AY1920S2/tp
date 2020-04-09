@@ -12,7 +12,7 @@ public class AddCommand extends Command {
     public static final String EXCEED_WARNING = "\nNOTE: You have exceeded your budget by %.2f";
     public static final String SUCCESS_ACK = System.lineSeparator() + "Added this item: " + "%s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the list."
-            + System.lineSeparator() + "|| Parameters: ADD i/[DESCRIPTION] p/[PRICE]"
+            + System.lineSeparator() + "|| Parameters: ADD i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]"
             + System.lineSeparator() + "|| Example: ADD i/apple p/3.00 q/2" + System.lineSeparator();
     public static final String FAILURE_ACK = System.lineSeparator()
             + "Error! Description of an item cannot be empty."
