@@ -495,10 +495,10 @@ user input. Upon checking that it is an Appointment-related command, `Parser` th
 
 3. `HappyPills` will then call the `ListAppointmentCommand#execute()` method. 
 
-4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. If there are 
-appointments in the program, a message will be displayed to the user with information about all the appointments, which 
-includes the `apptId`, `date`, `time` and `nric` of the appointments. Otherwise, the user will receive a message saying 
-that the there is no appointments in the list. 
+4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. 
+
+5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap.getAppointments()` 
+and displays all the appointments. Otherwise, the user will receive a message saying that the there is no appointments in the list. 
 
 The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
 
@@ -529,8 +529,10 @@ method.
 3. `HappyPills` will then call the `FindAppointmentCommand#execute()` method. 
 
 4. `FindAppointmentCommand#execute()` first checks the validity of the nric given. It then checks if a patient exists in the 
-`PatientMap`. If it exists, it displays all the appointments belonging to the patient, otherwise it displays that there is 
-no patient with the given nric that exists. 
+`PatientMap`. 
+
+5. If it exists, it gets the list of appointments by calling `PatientMap.getAppointments()` and displays all the appointments 
+belonging to the patient, otherwise it displays that there is no patient with the given nric that exists. 
 
 The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
 
