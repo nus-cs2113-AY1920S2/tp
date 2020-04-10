@@ -8,18 +8,19 @@
     2. [View user profile](#32-view-user-profile)
     3. [Record meals](#33-record-meals)
     4. [Check meals](#34-check-meals)
-    5. [Check required calories](#35-check-required-calories)
-    6. [Calculate calories](#36-calculate-calories)
-    7. [List food database](#37-list-food-database)
-    8. [Add food into database](#38-add-food-into-database)
-    9. [Delete food from database](#39-delete-food-from-database)
-    10. [Get a recommended recipe](#310-get-a-recommended-recipe)
-    11. [View recipe](#311-view-recipe)
-    11. [Check Weight Progress](#312-check-weight-progress)
-    12. [Set Weight](#313-set-weight-progress)
-    13. [Delete weight](#314-delete-weight-progress)
-    14. [Help](#315-help)
-    15. [Exit application](#316-exit-application)    
+    5. [Clear food records](#35-clear-all-food-records)
+    6. [Check required calories](#36-check-required-calories)
+    7. [Calculate calories](#37-calculate-calories)
+    8. [List food database](#38-list-food-database)
+    9. [Add food into database](#39-add-food-into-database)
+    10. [Delete food from database](#310-delete-food-from-database)
+    11. [Get a recommended recipe](#311-get-a-recommended-recipe)
+    12. [View recipe](#312-view-recipe)
+    13. [Check Weight Progress](#313-check-weight-progress)
+    14. [Set Weight](#314-set-weight-progress)
+    15. [Delete weight](#315-delete-weight-progress)
+    16. [Help](#316-help)
+    17. [Exit application](#317-exit-application)    
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -168,8 +169,21 @@ Expected Output:
     Food: noodles, Calories: 2.00cal
     For morning, total calculable calories intake: 7.00cal.
     ```
+### 3.5 Clear all food records
+Clear all the existing food records in a week.
 
-### 3.5 Check required calories
+Format: `clear-records`
+
+Example of usage:
+
+`clear-records`
+
+Expected Output:
+
+```
+You have just cleared all food records in the week!
+```
+### 3.6 Check required calories
 Check the required calories for the current `profile` based on the activity level for the day.
 
 Format: `check-required-cal DATE ACTIVITYLEVEL`
@@ -208,7 +222,7 @@ Expected Output:
     Well done!!! You have consumed sufficient calories.
     ```
 
-### 3.6 Calculate calories
+### 3.7 Calculate calories
 Calculates calories intake on a day or during a time period.
 
 Format: 
@@ -238,7 +252,7 @@ Example of usage:
   ```
   * Notice `Apple` is in our database with calories info: 2.00
 
-### 3.7 List food database
+### 3.8 List food database
 Lists all foods and relevant calories info recorded in our database.
 
 Format: `list-food`
@@ -256,7 +270,7 @@ Food: Oil, Calories: 5.00cal
 Food: Tea, Calories: 6.00cal
 ```
 
-### 3.8 Add food into database
+### 3.9 Add food into database
 Adds a new food into database.
 
 Format: `addf FOODNAME --CALORIES`
@@ -275,7 +289,7 @@ Sorry, to add new food to database you must input correct calories info.
 It has to be positive Integer or Float
 ```
 
-### 3.9 Delete food from database
+### 3.10 Delete food from database
 Deletes a food from the database
 
 Format: `delf FOODNAME`
@@ -294,7 +308,7 @@ Example of usage:
     No need to delete! Referred Food doesn't exist in database
     ```
 
-### 3.10 Get a recommended recipe
+### 3.11 Get a recommended recipe
 Get a recommend recipe based on user's physical conditions and activity level.
 
 Format: `new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL`
@@ -307,7 +321,7 @@ ACTIVITY_LEVEL has three levels : low/moderate/high. Based on different activity
 
 Attention:
 ```
-1.  The maximum number of allowed food types in a meal is 4.
+1.  The maximum number of allowed food types in a meal is 3.
 2.  The recipe is generated randomly, so the same input is expected to get different recipe.
 3.  If user is unsatisfied with the current recipe, just run the command again and get a new one.
 ```
@@ -319,14 +333,14 @@ Example of usage:
     
     Expected Output: 
     ```
-               morning                                                     afternoon                                                   night
-     MONDAY    Carrots(3.00),Tea(6.00)                                     Tea(6.00),Chicken(1.00)                                     Chicken(1.00),Carrots(3.00)
-     TUESDAY   Oil(5.00),Rice(4.00)                                        Chicken(1.00),Oil(5.00)                                     Apple(2.00),Rice(4.00)
-     WEDNESDAY Rice(4.00),Tea(6.00)                                        Oil(5.00),Carrots(3.00)                                     Oil(5.00),Chicken(1.00)
-     THURSDAY  Carrots(3.00),Rice(4.00)                                    Chicken(1.00),Rice(4.00)                                    Oil(5.00),Apple(2.00)
-     FRIDAY    Chicken(1.00),Rice(4.00)                                    Carrots(3.00),Oil(5.00)                                     Tea(6.00),Oil(5.00)
-     SATURDAY  Carrots(3.00),Chicken(1.00)                                 Oil(5.00),Apple(2.00)                                       Apple(2.00),Tea(6.00)
-     SUNDAY    Apple(2.00),Oil(5.00)                                       Rice(4.00),Oil(5.00)                                        Rice(4.00),Carrots(3.00)
+             morning                                                                         afternoon                                                                       night
+    MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
+    TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
+    WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
+    THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
+    FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
+    SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
+    SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
     ```
 * `MAXIMUM_NUM` is 5, `ACTIVITY_LEVEL` is high:
 
@@ -334,20 +348,20 @@ Example of usage:
     
     Expected Output:
     ```
-    We support at most 4 kinds of food in a meal, otherwise it's not good for your health!
+    We support at most 3 kinds of food in a meal, otherwise it's easy to overtake calories and not good for your health!
     
-              morning                                                     afternoon                                                   night
-    MONDAY    Tea(6.00),Chicken(1.00),Rice(4.00),Oil(5.00)                Tea(6.00),Oil(5.00),Apple(2.00),Carrots(3.00)               Apple(2.00),Oil(5.00),Rice(4.00),Chicken(1.00)
-    TUESDAY   Apple(2.00),Chicken(1.00),Rice(4.00),Carrots(3.00)          Carrots(3.00),Rice(4.00),Oil(5.00),Tea(6.00)                Oil(5.00),Apple(2.00),Chicken(1.00),Tea(6.00)
-    WEDNESDAY Carrots(3.00),Tea(6.00),Apple(2.00),Rice(4.00)              Tea(6.00),Carrots(3.00),Oil(5.00),Chicken(1.00)             Tea(6.00),Apple(2.00),Rice(4.00),Oil(5.00)
-    THURSDAY  Oil(5.00),Carrots(3.00),Apple(2.00),Tea(6.00)               Carrots(3.00),Rice(4.00),Chicken(1.00),Apple(2.00)          Oil(5.00),Chicken(1.00),Tea(6.00),Rice(4.00)
-    FRIDAY    Carrots(3.00),Oil(5.00),Apple(2.00),Chicken(1.00)           Apple(2.00),Oil(5.00),Carrots(3.00),Rice(4.00)              Tea(6.00),Apple(2.00),Rice(4.00),Chicken(1.00)
-    SATURDAY  Apple(2.00),Carrots(3.00),Chicken(1.00),Tea(6.00)           Apple(2.00),Rice(4.00),Carrots(3.00),Tea(6.00)              Rice(4.00),Apple(2.00),Carrots(3.00),Chicken(1.00)
-    SUNDAY    Chicken(1.00),Rice(4.00),Apple(2.00),Oil(5.00)              Oil(5.00),Rice(4.00),Apple(2.00),Chicken(1.00)              Rice(4.00),Tea(6.00),Chicken(1.00),Carrots(3.00)
+              morning                                                                         afternoon                                                                       night
+    MONDAY    white-bread(77.00),fishball-noodles-soup(330.00),chicken-curry(450.00)          soft-drink(120.00),prawn-noodles-dry(459.00),fresh-milk(163.00)                 prawn-noodles-dry(459.00),white-bread(77.00),soft-drink(120.00)
+    TUESDAY   fishball-noodles-soup(330.00),orange-juice(80.00),french-fries(450.00)          soft-drink(120.00),white-bread(77.00),fishball-noodles-soup(330.00)             prawn-noodles-dry(459.00),orange-juice(80.00),fishball-noodles-soup(330.00)
+    WEDNESDAY fried-rice(508.00),orange-juice(80.00),fishball-noodles-soup(330.00)            soft-drink(120.00),fried-rice(508.00),cheeseburger(300.00)                      soft-drink(120.00),orange-juice(80.00),cheeseburger(300.00)
+    THURSDAY  prawn-noodles-dry(459.00),fishball-noodles-soup(330.00),white-bread(77.00)      soft-drink(120.00),fishball-noodles-soup(330.00),white-bread(77.00)             fried-rice(508.00),cheeseburger(300.00),soft-drink(120.00)
+    FRIDAY    fresh-milk(163.00),white-bread(77.00),chicken-rice(702.00)                      soft-drink(120.00),chicken-curry(450.00),fishball-noodles-soup(330.00)          cheeseburger(300.00),fresh-milk(163.00),orange-juice(80.00)
+    SATURDAY  chicken-rice(702.00),white-bread(77.00),orange-juice(80.00)                     prawn-noodles-dry(459.00),soft-drink(120.00),cheeseburger(300.00)               orange-juice(80.00),soft-drink(120.00),white-bread(77.00)
+    SUNDAY    cheeseburger(300.00),chicken-curry(450.00),orange-juice(80.00)                  prawn-noodles-dry(459.00),white-bread(77.00),cheeseburger(300.00)               chicken-rice(702.00),orange-juice(80.00),white-bread(77.00)
 
     ```
 
-### 3.11 View recipe
+### 3.12 View recipe
 Show the recipe recommended for the user.
 
 Format: `show-recipe`
@@ -371,17 +385,17 @@ Example of usage:`show-recipe`
 
     Expected Output:
     ```
-              morning                                                     afternoon                                                   night
-    MONDAY    Carrots(3.00),Apple(2.00)                                   Apple(2.00),Carrots(3.00)                                   Chicken(1.00),Rice(4.00)
-    TUESDAY   Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Rice(4.00)                                    Chicken(1.00),Apple(2.00)
-    WEDNESDAY Chicken(1.00),Rice(4.00)                                    Rice(4.00),Chicken(1.00)                                    Chicken(1.00),Rice(4.00)
-    THURSDAY  Carrots(3.00),Chicken(1.00)                                 Chicken(1.00),Carrots(3.00)                                 Rice(4.00),Chicken(1.00)
-    FRIDAY    Carrots(3.00),Chicken(1.00)                                 Chicken(1.00),Rice(4.00)                                    Chicken(1.00),Rice(4.00)
-    SATURDAY  Chicken(1.00),Carrots(3.00)                                 Apple(2.00),Chicken(1.00)                                   Carrots(3.00),Apple(2.00)
-    SUNDAY    Chicken(1.00),Apple(2.00)                                   Rice(4.00),Chicken(1.00)                                    Rice(4.00),Chicken(1.00)
+              morning                                                                         afternoon                                                                       night
+    MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
+    TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
+    WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
+    THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
+    FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
+    SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
+    SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
     ```
 
-### 3.12 Check Weight Progress
+### 3.13 Check Weight Progress
 Check current weight progress from the beginning.
 
 Format: `check-weight-progress JOHN`
@@ -419,7 +433,7 @@ Example of usage:`check-weight-progress JOHN`
                                                                                   
     ```  
 
-### 3.13 Set Weight Progress
+### 3.14 Set Weight Progress
 
 Update weight in profile when there is changes to user's weight after following diet plan.
 
@@ -435,7 +449,7 @@ Format: `set-weight 70`
                                                                                       
     ```
 
-### 3.14 Delete Weight Progress
+### 3.15 Delete Weight Progress
 
 Allows user to delete wrong weight input or remove any previous input weights in the profile.
 
@@ -462,7 +476,7 @@ Format: `delete-weight 2`
                                                                                       
     ```
 
-### 3.15 Help
+### 3.16 Help
 Show the help function table with the list of commands available
 
 Format: `help`
@@ -483,6 +497,7 @@ Format: `help`
     |   profile                                                  |  View user profile details                     |
     |   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
     |   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
+    |   clear-records                                            |  Clear all food records                        |
     |   calculate DATE                                           |  Calculate Calorie intake for the day          |
     |   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  |
     |   list-food                                                |  Lists all foods info in database.             |
@@ -500,7 +515,7 @@ Format: `help`
     ```
 
 
-### 3.16 Exit application
+### 3.17 Exit application
 Terminates and exits the application
 
 Format: `exit`
@@ -534,15 +549,16 @@ No. | Command | Description
 2  | `profile` | View user profile
 3  | `record-meal` | Record a meal
 4  | `check-meal` | Check a meal 
-5  | `check-required-cal` | Check calories required for an activity level
-6  | `calculate` | Calculates calories intake on a day or during a time period
-7  | `list-food` | List all foods recorded in the database 
-8  | `addf` | Add a new food into database
-9  | `delf` | Delete a food from the database
-10 | `new-recipe` | Create a recommended recipe for user
-11 | `show-recipe` | Show the recipe recommended for user
-12 | `update-weight` | Update user's weight changes
-13 | `check-weight-progress` | Check user's weight progress
-14 | `delete-weight` | Delete user's weight from progress
-15 | `help` | Show the help function table
-16 | `exit` | Exit application
+5 | `clear-records`| Clear all food records
+6  | `check-required-cal` | Check calories required for an activity level
+7  | `calculate` | Calculates calories intake on a day or during a time period
+8  | `list-food` | List all foods recorded in the database 
+9  | `addf` | Add a new food into database
+10  | `delf` | Delete a food from the database
+11 | `new-recipe` | Create a recommended recipe for user
+12 | `show-recipe` | Show the recipe recommended for user
+13 | `update-weight` | Update user's weight changes
+14 | `check-weight-progress` | Check user's weight progress
+15 | `delete-weight` | Delete user's weight from progress
+16 | `help` | Show the help function table
+17 | `exit` | Exit application

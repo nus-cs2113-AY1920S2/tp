@@ -6,6 +6,7 @@ import seedu.dietmanager.logic.commands.CheckBmiCommand;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.commands.foodrecord.CalculateCaloriesCommand;
 import seedu.dietmanager.logic.commands.foodrecord.CheckRecordCommand;
+import seedu.dietmanager.logic.commands.foodrecord.ClearFoodRecordCommand;
 import seedu.dietmanager.logic.commands.foodrecord.RecordMealCommand;
 import seedu.dietmanager.logic.commands.nutritionrecord.AddFoodCommand;
 import seedu.dietmanager.logic.commands.nutritionrecord.DeleteFoodCommand;
@@ -102,6 +103,9 @@ public class CommandParser {
                 break;
             case "show-recipe":
                 command = Optional.of(new ShowRecipeCommand(commandPrompt.get()));
+                break;
+            case "clear-records":
+                command = Optional.of(new ClearFoodRecordCommand(commandPrompt.get()));
                 break;
             case "help":
                 command = Optional.of(new HelpCommand(commandPrompt.get()));
