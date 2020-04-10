@@ -82,9 +82,9 @@ The `ManualArticleCreator#execute()` method asks the user for information includ
 
 ### Value Proposition
 
-As _lifelong learners of technology brekthroughs, Computer Science and closely related disciplines_, we have access to so many news portals, job portals and we create notes ourselves. Given the sheer volume of information we have, it almost becomes hard for one to manage all that information. TechToday Information Tracker (TTIT) is for who want to organise information about technology. In particular, it helps a user **view** new articles/jobs from HackerNews (or pre-loaded articles in the event of no internet), **save** viewed articles/jobs and **create** information describing not only articles/jobs from other sources but also notes. All in all, TTIT's value stems from being an application to manage your information abot technology so that you can come back to it later rather than being drowned by the sheer volume of publicly available information about technology.
+As _lifelong learners of technology brekthroughs, Computer Science and closely related disciplines_, we have access to so many news portals, job portals and we create notes ourselves. Given the sheer volume of information we have, it almost becomes hard for one to manage all that information. TechToday Information Tracker (TTIT) is for who want to organise information about technology. In particular, it helps a user **view** new articles/jobs from HackerNews (or pre-loaded articles in the event of no internet), **save** viewed articles/jobs and **create** information describing not only articles/jobs from other sources but also notes. All in all, TTIT's value stems from being an application that helps you manage your information about technology so that you do not have to feel drowned by the sheer volume of publicly available information about technology.
 
-Note thatTTIT utilizes Hacker News [API](https://github.com/HackerNews/API) to give the user the option to view new news articles and jobs and also has a feature to save them. 
+Note that TTIT utilizes [Hacker News API](https://github.com/HackerNews/API) to give the user the option to view new news articles and jobs and also has a feature to save them. 
 
 
 ### Target user profile
@@ -113,7 +113,7 @@ TechToday Information Tracker (TTIT) is targeted at _lifelong followers of techn
 |v2.0|student of technology|save the time of the article I create|know when I saved this particular article.|
 |v2.0|student of technology|save the time of the note I create|know when I saved this particular note.|
 |v2.0|student of technology|save the time of the job I create|know when I saved this particular job.|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+
 
 ## 5. Non-Functional Requirements
 
