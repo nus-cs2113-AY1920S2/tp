@@ -32,7 +32,8 @@ public class FindAppointmentCommand extends AppointmentCommand {
      * @throws HappyPillsException If patient not found
      */
     @Override
-    public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) throws HappyPillsException {
+    public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap visits)
+            throws HappyPillsException {
         if (!Checker.isValidNric(patientNric)) {
             return TextUi.appendDivider(TextUi.INVALID_NRIC_MESSAGE);
         }

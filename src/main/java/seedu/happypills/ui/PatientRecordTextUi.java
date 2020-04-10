@@ -16,7 +16,8 @@ public class PatientRecordTextUi extends TextUi {
      * @return message A formatted success message string to be displayed to user.
      * @throws HappyPillsException If the list is empty
      */
-    public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords) throws HappyPillsException {
+    public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords)
+            throws HappyPillsException {
         if (patientRecords.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT_RECORD);
         }
