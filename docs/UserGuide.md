@@ -55,12 +55,18 @@ The following part of the User Guide will explain the features of WhenFree in de
 
 ### Add a new contact
 Adds you or your friend into the list of contacts. 
-You will need to key in **name** and **NUSMODS link** of the 
+You will need to key in `<Contact Name>` and `<NUSMODS link>` of the 
 contact.
+* You must add in your (main user's) contact before you can use the application. 
+If you try to enter a command before adding in your contact, WhenFree will remind
+you to key in your contact first. You can add as many contacts as you want thereafter.
+* `<Contact Name>`  should be a single word with no whitespace character.
+* If you are unsure of how to obtain the NUSMODS links to the NUSMODS timetable, see the detailed instructions in 
+the [FAQ](#faq) section.
 
 Format: 
     
-    <name> <NUSMODS link>
+    <Contact Name> <NUSMODS link>
 
 Example of usage:
 
@@ -71,13 +77,6 @@ Example output:
 TODO: change image so that the words are the same font size
 ![](images/capture.png)
 
-Note:
-- You must add in your (main user's) contact before you can use the application. 
-If you try to enter a command before adding in your contact, WhenFree will remind
-you to key in your contact first.
-TODO: change image
-![](images/capture.png)
-- You can add as many contacts as you want thereafter.
 
 [&#8593; Return to list of Features](#features)
 
@@ -103,6 +102,14 @@ Example output:
 <br/>
 
 ### Display timetable of selected contacts: `timetable`
+
+There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
+and to display a combined timetable of multiple selected contacts.
+* The `timetable` command shows only the current week's timetable. **To see up to two weeks of timetable, type in `more` 
+as the next command after the `timetable` command.** 
+- You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
+[`contacts`](#list-all-contacts-contacts).
+
 **Use case 1:** Displays your (main user's) timetable.
     
 Format: 
@@ -122,7 +129,9 @@ A cross in a 30-minute square of the timetable represents "busy", while an empty
 
 <br/>
 
-**Use case 2:** Displays the timetable of a selected contact. You will need to key in **Contact Index** of the selected contact.
+**Use case 2:** Displays the timetable of a selected contact. You will need to key in `<Contact Index>` of the selected contact.
+
+* Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
 Format: 
     
@@ -139,9 +148,8 @@ TODO: update image
 
 <br/>
 
-**Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
-each of the selected contacts.
-[NOTE] You can select as many contacts as you wish
+**Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in `<Contact Index>` of each of the selected contacts.
+* You can select as many contacts as you wish
    
 Format: 
    
@@ -155,12 +163,6 @@ Example output:
 
 TODO: update image
 ![](images/capture5.png)
-    
-Note:
-- **To see up to two weeks of timetable, type in `more` as your next command.** You can only display up to 2 weeks of timetable.
-- You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
-[`contacts`](#list-all-contacts-contacts).
-- Both `timetable` and `timetable 0 ` display your (main user's) timetable.
 
 [&#8593; Return to list of Features](#features)
 
@@ -168,11 +170,29 @@ Note:
 
 ### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
-**Meeting Name**, and specify the meeting time slot with **Start Day**, **Start Time**, **End Day**, **End Time**.
+`<Meeting Name>`, and specify the meeting time slot with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
+* You can schedule a meeting on only the current week and the next week, for which your timetable can be displayed with the 
+[`timetable`](#display-timetable-of-selected-contacts-timetable) and `more` commands
+* Hence, `<Start Day>` and `<End Day>` represents the date number you wish to schedule the meeting on, within the current 
+week and the next week, from the current date onwards. For example, if the date today is 27 April:
+    * You can schedule a meeting on 29 April this week with `<Start Day>` and `<End Day>` as `29`. 
+    * You can schedule a meeting on 6 May next week with `<Start Day>` and `<End Day>` as `6`.
+    * You will not be able to schedule a meeting with `<Start Day>` and `<End Day>` as `26`. Even though 26 April is within
+    this week, the date has passed. The future date 26 May is also not within the current week and the next week.
+* `<Start Time>` and `<End Time>` should be in the 24-hour hh:mm format. For example, the time 3pm should be represented
+as `15:00`.
+* `<Meeting Name>` must be a single word with no whitespace character.
+* Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
+Timetables of other contacts will not be modified.
+* You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
+your timetable if you try to schedule a meeting during a time slot which you are busy for.
+
+
 
 Format: 
 
     schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
+    
 
 Example of usage:
 
@@ -184,19 +204,34 @@ Example output:
 
 <br/>
 
-Note:
-- Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
-Timetables of other contacts will not be modified.
-- You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
-your timetable if you try to schedule a meeting during a time slot which you are busy for.
-
 [&#8593; Return to list of Features](#features)
 
 <br/>
 
 ### Edit a contact's timetable: `edit`
-**Use case 1:** Edits a contact's timetable to be **busy** for a specified time slot. You need to key in **Contact Index**
-of the contact, and specify the time slot to be marked busy with **Start Day**, **Start Time**, **End Day**, **End Time**.
+There are 2 use cases illustrated below: to edit a contact's timetable to **"busy"** for a specified time slot, and
+to edit a contact's timetable to **"free"** for a specified time slot.
+* You can edit the contact's timetable for the current week and the next week, for which your timetable can be displayed 
+with the [`timetable <Contact Index>`](#display-timetable-of-selected-contacts-timetable) and `more` commands
+* Hence, `<Start Day>` and `<End Day>` represents the date number you wish to edit the timetable for, within the current 
+week and the next week, from the current date onwards. For example, if the date today is 27 April:
+    * You can edit the timetable on 29 April this week with `<Start Day>` and `<End Day>` as `29`. 
+    * You can edit the timetable on 6 May next week with `<Start Day>` and `<End Day>` as `6`.
+    * You will not be able to edit the timetable with `<Start Day>` and `<End Day>` as `26`. Even though 26 April is within
+    this week, the date has passed. The future date 26 May is also not within the current week and the next week.
+* `<Start Time>` and `<End Time>` should be in the 24-hour hh:mm format. For example, the time 3pm should be represented
+as `15:00`.
+* `<Meeting Name>` must be a single word with no whitespace character.
+* Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
+Timetables of other contacts will not be modified.
+* You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
+your timetable if you try to schedule a meeting during a time slot which you are busy for.
+* You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
+[`contacts`](#list-all-contacts-contacts).
+
+
+**Use case 1:** Edits a contact's timetable to be **"busy"** for a specified time slot. You need to key in `<Contact Index>`
+of the contact, and specify the time slot to be marked **"busy"** with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
 
 Format: 
     
@@ -213,8 +248,8 @@ TODO change image
 
 <br/>
 
-**Use case 2:** Edits a contact's timetable to be **free** for a specified time slot. You need to key in the **Contact Index** of
- the contact, and specify the time slot to be marked free with **Start Day**, **Start Time**, **End Day**, **End Time**.
+**Use case 2:** Edits a contact's timetable to be **"free"** for a specified time slot. You need to key in `<Contact Index>`
+                of the contact, and specify the time slot to be marked **"free"** with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
     
 Format: 
     
@@ -228,12 +263,6 @@ Example output:
 
 TODO change image
 ![](images/capture6.png)
-    
-Note: 
-- You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
-[`contacts`](#list-all-contacts-contacts).
-- You can check the timetable of the contact you wish to edit, by displaying his/her timetable using 
-[`timetable <Contact Index>`](#display-timetable-of-selected-contacts-timetable).
 
 [&#8593; Return to list of Features](#features)
     
@@ -332,11 +361,28 @@ Example output:
 ## FAQ
 **Q**: How do I transfer my data to another computer? 
 
-&ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
+&ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` folder in the program directory and paste into the selected directory 
+containing the .jar file in another computer.
 
 **Q**: How do I prevent file corruption? 
 
-&ensp;&ensp;&ensp;&ensp;**A**: Ensure that you do not abruptly exit the application and do not delete the data file while application is still running
+&ensp;&ensp;&ensp;&ensp;**A**: Ensure that you do not abruptly exit the application and do not edit delete the data file 
+while application is still running, or outside of the application.
+
+**Q**: How can I create a NUSMODS timetable?
+
+&ensp;&ensp;&ensp;&ensp;**A**: Visit the [NUSMODS website](https://nusmods.com/) to create a NUSMODS timetable.
+
+**Q**: How do I obtain the NUSMODS links to my NUSMODS timetable?
+
+&ensp;&ensp;&ensp;&ensp;**A**: 
+1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your
+browser, you can create a new one. Else, you will be brought to your saved NUSMODS timetable.
+2) Click on the red "Share/Sync" button located at the bottom right of the page.
+![NUSMODS2](images/NUSMODS_step2.png)<br>
+3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
+![NUSMODS1](images/NUSMODS_step1.png)<br>
+4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) command.
 
 [&#8593; Return to the top](#whenfree---user-guide)
 
