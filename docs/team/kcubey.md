@@ -1,28 +1,29 @@
-# Kezia Kew - Project Portfolio Page
+# kcubey - Project Portfolio Page
 
-## Project Overview
-ESC is a flashcard study command line (CLI) program, where you are able to create cards and categorise them, 
-and you can also quiz yourself using your flashcards. It has a simple, no frills user interface that is quick and easy to use
+## Project - Exam Study Companion (ESC)
 
-### Summary of Contributions
-#### Code Contributed
+## Overview
+Exam Study Companion (ESC) is a command-line based app that is designed to help students preparing for upcoming exams. The app is written in Java and requires JDK 11 to run.
+
+## Summary of Contributions
+### Code Contributed
 [https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey)
 
-#### Enhancements Implemented
+### Enhancements Implemented
 * Storage feature
   * To allow the user the ability to save their session and reopen where they left off
 * Overall UI design
   * To have a cohesive UI design for the overall program
  
-#### Contributions to Documentation
+### Contributions to the UG
 * UG layout
 * Majority of UG writeup 
   * Exceptions: Event-related commands, Edit card command
 
-#### Contributions to the DG
+### Contributions to the DG
 * All write ups & diagrams related to the Storage feature
 
-#### Contributions to team-based tasks
+### Contributions to team-based tasks
 * Role: Leader / Code Reviewer-Maintainer
   * Review and handle all pull requests
   * Prepare & upload releases
@@ -34,7 +35,7 @@ and you can also quiz yourself using your flashcards. It has a simple, no frills
   * [https://github.com/AY1920S2-CS2113-T15-2/tp/wiki](https://github.com/AY1920S2-CS2113-T15-2/tp/wiki)
 * Maintain ReadMe / AboutUs pages
 
-#### Review / Mentoring Contributions
+### Review / Mentoring Contributions
 Instances where a review was requested OR a review was required (i.e code changes or clarification needed)
 * [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/129](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/129)
 * [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/127](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/127)
@@ -49,7 +50,7 @@ Team Help/Guidance Provided
 * Provided git help/debugging
 * Check in with members
 
-#### Contributions Beyond the Project Team
+### Contributions Beyond the Project Team
 PE-D Bugs/Feedback
 * [https://github.com/kcubey/ped/issues](https://github.com/kcubey/ped/issues)
 
