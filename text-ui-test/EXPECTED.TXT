@@ -1,3 +1,4 @@
+The price in report.txt is not indented correctly.
 ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||    ||||      \       ||     / ||  ||  || ||    |      / || ||    ||   ||
 ||    ||||       \      ||    /  ||  ||  || ||    |     /  || ||    ||   ||
@@ -110,7 +111,13 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
-Dish rice successfully added.
+Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
+Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Dishes successfully listed.
+
+Input next command:
+
+Dish rice already exists!
 
 Input next command:
 
@@ -118,8 +125,8 @@ Dish pizza successfully removed!
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Dishes successfully listed.
 
 Input next command:
 
@@ -673,6 +680,28 @@ Please specify the keyword using the format 'k/keyword;'
 
 Input next command:
 
+There is no reservation currently in the list.
+
+Input next command:
+
+There is no served reservation currently in the list.
+
+Input next command:
+
+There is no unserved reservation currently in the list.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Input Missing: name p/ is missing.
+Try the 'help' command for the list of commands
+
+Input next command:
+
 Reservation[1] has been added into the list
 
 Input next command:
@@ -721,42 +750,6 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
-Reservation [1]
-Status: Unserved
-Contact person: Peter
-Date: 2020-03-12 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98955555
-Comments: No comments
-
-Reservation [2]
-Status: Unserved
-Contact person: Mary
-Date: 2020-03-11 12:00
-Number of guests: 8
-Table size: M
-Contact details: 99998888
-Comments: No comments
-
-Reservation [3]
-Status: Unserved
-Contact person: David
-Date: 2020-03-12 12:00
-Number of guests: 9
-Table size: L
-Contact details: 98887777
-Comments: No comments
-
-Reservation [4]
-Status: Unserved
-Contact person: Lisa
-Date: 2020-03-13 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98889999
-Comments: no spicy food please
-
 
 Input next command:
 
@@ -800,42 +793,6 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 
 Input next command:
-
-Reservation [1]
-Status: Invalid
-Contact person: Peter
-Date: 2020-03-12 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98955555
-Comments: No comments
-
-Reservation [2]
-Status: Unserved
-Contact person: Mary
-Date: 2020-03-11 12:00
-Number of guests: 8
-Table size: M
-Contact details: 99998888
-Comments: No comments
-
-Reservation [3]
-Status: Unserved
-Contact person: David
-Date: 2020-03-12 12:00
-Number of guests: 9
-Table size: L
-Contact details: 98887777
-Comments: No comments
-
-Reservation [4]
-Status: Unserved
-Contact person: Lisa
-Date: 2020-03-13 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98889999
-Comments: no spicy food please
 
 
 Input next command:
@@ -970,42 +927,6 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 
 Input next command:
-
-Reservation [1]
-Status: Invalid
-Contact person: Peter
-Date: 2020-03-12 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98955555
-Comments: No comments
-
-Reservation [2]
-Status: Unserved
-Contact person: Mary
-Date: 2020-03-11 12:00
-Number of guests: 8
-Table size: M
-Contact details: 99998888
-Comments: No comments
-
-Reservation [3]
-Status: Unserved
-Contact person: David
-Date: 2020-03-12 12:00
-Number of guests: 9
-Table size: L
-Contact details: 98887777
-Comments: No comments
-
-Reservation [4]
-Status: Served
-Contact person: Lisa
-Date: 2020-03-13 12:00
-Number of guests: 3
-Table size: S
-Contact details: 98889999
-Comments: no spicy food please
 
 
 Input next command:
