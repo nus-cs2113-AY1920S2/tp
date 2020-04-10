@@ -125,8 +125,34 @@ Format: `HELP`
 > *Given below are sections that I have contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.*
  
-### 3.2 Edit feature
-#### 3.2.1 Current implementation
+#### Table of Contents
+ * **[1. Introduction](#1-introduction)**
+ * **[2. Overview of the SHOCO application](#2-overview-of-the-shoco-application)**
+ * **[3. Implementation](#3-implementation)**
+     + [3.1 View help feature](#31-view-help-feature)
+     + [3.2 Display feature](#32-display-feature)
+     + [3.3 Set budget feature](#33-set-budget-feature)
+     + [3.4 Add feature](#34-add-feature)
+     + [3.5 Edit feature](#35-edit-feature)
+     + [3.6 Mark and Unmark feature](#36-mark-and-unmark-feature)
+     + [3.7 Find feature](#37-find-feature)
+     + [3.8 Delete feature](#38-delete-feature)
+     + [3.9 Clear list feature](#39-clear-list-feature)
+     + [3.10 Reset budget feature](#310-reset-budget-feature)
+     + [3.11 Exit program feature](#311-exit-program-feature)
+  * **[Appendix A: Product Scope](#appendix-a-product-scope)**
+  * **[Appendix B: User Stories](#appendix-b-user-stories)**
+  * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
+  * **[Appendix D: Instructions for Manual Testing](#appendix-d-instructions-for-manual-testing)**
+     + [Launch and Shutdown](#launch-and-shutdown)
+     + [Set and Reset a budget](#set-and-reset-a-budget)
+     + [Add and Edit an item](#add-and-edit-an-item)
+     + [Mark and Un-Mark an item](#mark-and-un-mark-an-item)
+     + [Find and Delete an item](#find-and-delete-an-item)
+     + [Display and Clear the shopping list](#display-and-clear-the-shopping-list)
+
+#### 3.2 Edit feature
+##### 3.2.1 Current implementation
 
 The edit feature is implemented using an <code>EditCommand</code> class. This class extends from the main
 <code>Command</code> class. The <code>Item</code> object to be edited is identified by the index number provided 
@@ -154,9 +180,9 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 ![Edit Feature SD](../images/Edit_SD_v1.png)
 
 
-#### 3.2.2 Design considerations
+##### 3.2.2 Design considerations
 
-##### Aspect: Data structure to support the edit feature
+###### Aspect: Data structure to support the edit feature
 
 - Alternative 1 (current choice): Only parameters present in user input are treated as values to update.
   
@@ -179,8 +205,8 @@ Reason for choosing alternative 1: By allowing users to update any values they w
 
 &nbsp;
  
-### 3.10 View help feature
-#### 3.10.1 Current implementation
+#### 3.10 View help feature
+##### 3.10.1 Current implementation
 
 The help feature is implemented using a <code>HelpCommand</code> class which extends the main
 <code>Command</code> class. The <code>HelpCommand</code> class shows the program usage instructions to the user.
@@ -199,9 +225,9 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 ![Help Feature](../images/Help_v1.png)
 
-#### 3.10.2 Design considerations
+##### 3.10.2 Design considerations
 
-##### Aspect: Data structure to support the help feature
+###### Aspect: Data structure to support the help feature
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>HelpCommand</code>
  
@@ -222,10 +248,10 @@ Reason for choosing alternative 1: By abstracting out different command types as
 
 &nbsp;
 
-### Appendix D: Instructions for Manual Testing
+#### Appendix D: Instructions for Manual Testing
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
-#### Launch and Shutdown
+##### Launch and Shutdown
 1. Initial launch 
     
       i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
@@ -255,7 +281,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
    &nbsp;
 
 
-#### Set and Reset a budget
+##### Set and Reset a budget
 
 1. Set a budget
        
@@ -298,7 +324,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
     
-#### Add and Edit an item
+##### Add and Edit an item
 
 1. Add an item 
         
@@ -308,7 +334,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
        
        Expected: An item with the description - "apple", price - "$3.00" and quantity - "2"  is added.
          
-     > :bulb: You can run the <code>DISPLAY</code> command to check the newly added item.
+     > :bulb: Tip: You can run the <code>DISPLAY</code> command to check the newly added item.
                                                            
     &nbsp;
 
@@ -355,7 +381,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
     
   
-#### Find and Delete an item
+##### Find and Delete an item
 
 1. Find an item based on keyword
        
@@ -388,7 +414,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
 
-#### Display and Clear the shopping list
+##### Display and Clear the shopping list
 
 1. List all items in the shopping list
             
