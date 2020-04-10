@@ -24,5 +24,14 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     and hassle free changing of the details.
     - Implementing the edit feature was difficult because a separate `Ui` prompt has to be implemented in the command to accept
     new user inputs. 
-    - Furthermore,  
+    - Furthermore, due to implementation limitation of `AssignmentCommand` and `EventCommand` feature, I could not use the existing
+    implementations to have instances of `assignment` or `event` class. 
+    - Hence, within the `EditCommand` class, I have to implement methods that return `assignment` and `event` task types.
+    - We discovered later that there is a bug when editing `repeat event` task types. When `repeat event` task types are edited,
+    the event no longer stays as a `repeat event` and reverts back to just being an `event` task type. This was fixed by adding checks to
+    indicate whether task to be edited is a `repeat event` and another method to preserve all the `repeat event` attributes. 
+    - Refer to Pull Request [#194](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/194) for bug fix. 
+ 
+ 
+    
     
