@@ -96,7 +96,7 @@ Some example commands to try:
 * `event list`			List all events
 * `event add n/CS1010` 	Add an event named “CS1010”
 * `student add`         Create a new student list
-* `bye`				    Exits the app
+* `bye`				    Exits the application
 
 Refer to [“Features”](#Features) for details of each command.
 
@@ -860,7 +860,7 @@ which category your command belongs to
 **Q**: How do I transfer my data to another computer? 
 
 **A**: You can look for your data at the folder "data", containing `eventlist.txt` 
-and `studentlist.txt`. Running this program in the folder containing "data" 
+and `studentlist.txt`. Running this application in the folder containing "data" 
 folder will automatically load your previously saved data.
 
 ---
@@ -893,10 +893,10 @@ step-by-step command for performance and all-in-one command for event?
 ---
 
 **Q**: Why do I see a bunch of events and/or student lists added when I launch 
-the program?
+the application?
 
 **A**: The events and student lists that you entered during your previous usage 
-were saved in your computer. Now, when you relaunch the program, those events and 
+were saved in your computer. Now, when you relaunch the application, those events and 
 student lists are loaded up automatically.
 
 ---
