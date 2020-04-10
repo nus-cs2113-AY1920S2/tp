@@ -149,6 +149,9 @@ Prints the most popular dish from the sold list.
 ### Clear
 Clear the stock, dish, or reservation list
 
+#### Clear stock : clear stock
+* Format `clear stock;`
+
 #### Clear reservation : clear reservation
 * Format: `clear reservation;`
 
@@ -201,4 +204,5 @@ Dishes, stock and reservations will be automatically loaded when the program is 
 * Format: `popular`
 
 ### Clear
+* Format: `clear stock;`
 * Format: `clear reservation;`
