@@ -7,8 +7,8 @@ import seedu.ui.UI;
 import java.util.ArrayList;
 
 public class EventList {
-    private static final String TYPE_EVENT = "event";
-    private static final String TYPE_SEMINAR = "seminar";
+    private static final String TYPE_EVENT = "Event";
+    private static final String TYPE_SEMINAR = "Seminar";
     private static final String DUPLICATE_EVENT_ERROR_MESSAGE = "Event already exists in the list. "
             + "Please add a new Event.";
     private static final String INVALID_INDEX_ERROR_MESSAGE = "Invalid index, must start from 1.";

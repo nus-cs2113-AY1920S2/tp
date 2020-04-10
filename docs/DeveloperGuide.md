@@ -24,6 +24,7 @@ Pac. The following groups are in particular the intended audience of the documen
     3.5 [Student List Collection](#35-student-list-collection)
     3.6 [Help](#36-help)
 
+
 [Appendix A: Target User Profile](#appendix-a-target-user-profile)   
 [Appendix B: Value Proposition](#appendix-b-value-proposition)  
 [Appendix C: Non-functional requirements](#appendix-c-non-functional-requirements)  
@@ -89,10 +90,12 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 ![Command](images/Command.png "Class diagram of Command component")         
 *Class diagram of the Command component*  
 
-Commands are the main classes to be executed in Pac. All of the specific Command classes inherit the 
-base Command abstract class, and utilize its abstract execute() method.  
-A subclass of Command is created and executed when the professor input a corresponding command.
-
+The diagram above shows all commands in this program, which are grouped under 
+their own categories (i.e. *StudentList-related*, *Event-related*, 
+*Attendance-related*, *Performance-related*). All these commands inherit the 
+base `Command` abstract class and utilize its abstract `execute()` method. 
+They are created and executed when the user inputs a corresponding command.
+ 
 ### 2.4 Parser component
 *Class diagram of the Parser component*  
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
@@ -353,7 +356,6 @@ displayStudentListCollectionEmpty() from UI, to inform the user.
 Else, it calls printStudentListCollection() from UI to print the table. 
 
 1. Edit student list
-
 
 ### 3.6 Help
 ![Help](images/Help.png)  
