@@ -459,7 +459,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-You now have 2meeting/s in the list.
+You now have 2 meeting(s) in the list.
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
