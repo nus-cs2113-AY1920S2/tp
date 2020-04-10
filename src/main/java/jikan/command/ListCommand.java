@@ -24,7 +24,7 @@ public class ListCommand extends Command {
      * Constructor to create a new list command.
      */
     public ListCommand(String parameters) {
-        super(parameters.strip());
+        super(parameters);
     }
 
     /**
@@ -35,9 +35,10 @@ public class ListCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         // If no time frame is specified, print the entire list
-        if (parameters == null) {
+        if (parameters == null || parameters.isBlank()) {
             listAll(activityList);
         } else {
+            parameters = parameters.strip();
             try {
                 listInterval(activityList);
             } catch (DateTimeParseException e) {
