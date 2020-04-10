@@ -35,9 +35,11 @@
 4.4 [Attendance List](#44-attendance)    
 4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance)    
 4.4.2. [View Attendance List](#442-view-attendance-list)   
-4.4.3. [Clear Attendance](#443-clear-attendance-list)  
+4.4.3. [Clear Attendance List](#443-clear-attendance-list)  
 4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name)  
 4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status)  
+4.4.6. [Edit Attendance](#446-edit-attendance)    
+4.4.7. [Find Attendance](#447-find-attendance)  
 4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
@@ -972,7 +974,7 @@ The following occurs when the attendance list is empty.
     >>> CS1010 Tutorial
     The attendance list is currently empty. Please add attendance instead.
 
-#### 4.4.6 Edit attendance:
+#### 4.4.7 Edit attendance:
 Edit a student's attendance under a certain event. 
 This allows the user to overwrite the student's name or status.
 
