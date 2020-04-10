@@ -122,7 +122,7 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 
 Follow the following steps to manually test the product:
 
-#  7.1 Setup and Initial Storage Testing
+###  7.1 Setup and Initial Storage Testing
 
 1. Download the latest release [here](ljsnc) and store it in an empty folder. 
 
