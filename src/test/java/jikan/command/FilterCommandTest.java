@@ -45,7 +45,7 @@ class FilterCommandTest {
         Duration allocatedTime = Duration.parse("PT0S");
         activity1 = new Activity("subject1 quiz", startTime, endTime, duration, tags1, allocatedTime);
         activity2 = new Activity("subject2 quiz", startTime, endTime, duration, tags1, allocatedTime);
-        activity3 = new Activity("subject1 final", startTime, endTime, duration, tags2, allocatedTime);
+        activity3 = new Activity("subject3 final", startTime, endTime, duration, tags2, allocatedTime);
         activities.add(activity1);
         activities.add(activity2);
         activities.add(activity3);
@@ -69,6 +69,11 @@ class FilterCommandTest {
         expected.add(activity3);
     }
 
+    void populateExpected4() {
+        expected.clear();
+        expected.add(activity2);
+    }
+
     @Test
     void executeCommand() {
         try {
@@ -76,6 +81,8 @@ class FilterCommandTest {
             String parameters1 = "tagA";
             String parameters2 = "tagC";
             String parameters3 = "tagA tagC tagD";
+            String findParameters = "subject2 / subject3";
+            String parameters4 = "tag A tag B";
 
             Command command1 = new FilterCommand(parameters1);
             command1.executeCommand(activities);
@@ -91,7 +98,14 @@ class FilterCommandTest {
             command3.executeCommand(activities);
             populateExpected3();
             assertEquals(Jikan.lastShownList.activities, expected);
-            
+
+            Command find = new FindCommand(findParameters);
+            Command command4 = new FilterCommand(parameters4);
+            find.executeCommand(activities);
+            command4.executeCommand(activities);
+            populateExpected4();
+            assertEquals(Jikan.lastShownList.activities, expected);
+
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {
             System.out.println("Field error.");
         }
