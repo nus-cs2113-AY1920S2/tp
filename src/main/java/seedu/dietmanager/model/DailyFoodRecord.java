@@ -140,7 +140,7 @@ public class DailyFoodRecord {
     }
 
     public boolean isDate(String date) {
-        return this.date.equals(date);
+        return this.date.toLowerCase().equals(date.toLowerCase());
     }
 
     /**
