@@ -26,6 +26,18 @@ public class LoadStock {
     
     /** Constructor of a Storage using the default file path. */
     public final Path path;
+    
+    /** 
+     * The relative index to start decoding for price. In 'PRICE:$0.11';
+     * index 7 is that start of the price to be parsed. 
+     */
+    private final int startIndexToDecodeForPrice = 7;
+    
+    /** 
+     * The relative index to start decoding for price. In 'Quantity:10';
+     * index 9 is that start of the price to be parsed. 
+     */   
+    private final int startIndexToDecodeForQuantity = 9;
 
     /** 
      * Constructor of a LoadStock retrieved from Path.
@@ -117,6 +129,9 @@ public class LoadStock {
         }
     }
     
+    /**
+     * Decodes the ingredient name from the line read from the BufferedReader.
+     */
     private String decodeIngredientName(String line, int priceIndexInLineArgs) {
         String[] lineArgs = line.split(" ");
         
@@ -128,20 +143,28 @@ public class LoadStock {
         return ingredientName;        
     }
     
+    /**
+     * Decodes the ingredient price from the line read from the BufferedReader.
+     */
     private double decodeIngredientPrice(String line, int priceIndexInLineArgs) {
         String[] lineArgs = line.split(" ");
         
-        String ingredientPrice = lineArgs[priceIndexInLineArgs].substring(7, 
+        String ingredientPrice = lineArgs[priceIndexInLineArgs].substring(
+                startIndexToDecodeForPrice, 
                 (lineArgs[priceIndexInLineArgs].length()));
         double parsedIngredientPrice = Double.parseDouble(ingredientPrice);
         
         return parsedIngredientPrice;
     }
     
+    /**
+     * Decodes the ingredient quantity from the line read from the BufferedReader.
+     */
     private int decodeIngredientQuantity(String line, int quantityIndexInLineArgs) {
         String[] lineArgs = line.split(" ");
         
-        String ingredientQuantity = lineArgs[quantityIndexInLineArgs].substring(9, 
+        String ingredientQuantity = lineArgs[quantityIndexInLineArgs].substring(
+                startIndexToDecodeForQuantity, 
                 (lineArgs[quantityIndexInLineArgs].length()));
         int parsedIngredientQuantity = Integer.parseInt(ingredientQuantity);
         
