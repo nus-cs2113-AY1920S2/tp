@@ -457,8 +457,8 @@ Expected outcome:
 
     Here are all the events in your list.
     1. Event: dinner with collegue
-    2. Event: World Cup, time: Nov 21 2022 0000
-    3. Event: soccer match, time: Jan 23 2020 1900, venue: Kallang
+    2. Event: World Cup, time: Mon, Nov 21 2022 0000
+    3. Event: soccer match, time: Thu, Jan 23 2020 1900, venue: Kallang
 
 #### 4.2.3. Delete Event
 Delete an existing event from the event list.
@@ -473,7 +473,7 @@ Examples:
 Expected outcome:
 
     Event: soccer match was deleted successfully from your Event list.
-    Index not found
+    Index cannot be found. Check your index from the list.
     
 #### 4.2.4. Edit Event Name
 Change the name of an existing event.
@@ -504,7 +504,7 @@ Examples:
     
 Expected outcome:
 
-    Your Event date and time was changed from || to |2020-03-23 1200|.
+    Your Event date and time was changed from || to |Tue, Mar 03 2020 1200|.
     Event: lunch with colleague, time: Mar 23 2020 1200
     
 #### 4.2.6. Edit Event Venue
@@ -520,7 +520,7 @@ Examples:
 Expected outcome:
 
     Your Event venue was changed from || to |Marina Bay Sands|.
-    Event: lunch with colleague, time: Mar 23 2020 1200, venue: Marina Bay Sands
+    Event: lunch with colleague, time: Tue, Mar 23 2020 1200, venue: Marina Bay Sands
 
 #### 4.2.7. Edit Event
 Change an existing event.
@@ -534,7 +534,8 @@ Examples:
     
 Expected outcome:
 
-    Your Event was edited from |Event: lunch with colleague, time: Mar 23 2020 1800, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
+    Your Event was edited from |Event: lunch with colleague, time: Tue, Mar 03 2020 1200, venue: Marina Bay Sands| to |Event: lunch by myself, venue: home|.
+    Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
 
 
 ### 4.3 Calendar 
@@ -817,8 +818,6 @@ You can follow the same procedure to sort by result, but change your input from
 
 *Note: All commands above are not case sensitive.*
 
-## FAQ
-
 ## 5. Possible Console Messages and Reasons:  
 1. If you entered a wrong command type, ie. not specifying 
 which category your command belongs to
@@ -827,7 +826,7 @@ which category your command belongs to
 
 1. If you entered two flags, i.e. n/work n/presentation:
 
-       EventParser: Duplicate name flag 
+       Please provide only 1 name flag.
 
 1. If you did not enter any flag, ie. event add: 
 
@@ -860,8 +859,9 @@ which category your command belongs to
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: It is not possible to save data locally and transfer another computer at this version. 
-Future patches will allow users to save their data and use it on another computer.
+**A**: You can look for your data at the folder "data", containing `eventlist.txt` 
+and `studentlist.txt`. Running this program in the folder containing "data" 
+folder will automatically load your previously saved data.
 
 ---
 
@@ -872,7 +872,8 @@ you can only view events under a particular semester and academic year.
 
 ---
 
-**Q**: Why is there only one type of event, ie. seminar in this application? 
+**Q**: Why is there a general event, and a specific event ie. seminar in this 
+application? 
 
 **A**: We wanted to only distinguish between seminar and events in this version. Future patches will 
 allow users to add more types of events in this application. 
@@ -888,6 +889,15 @@ step-by-step command for performance and all-in-one command for event?
  Currently, features in performance, attendance and student list are using
  step-by-step command, and we will synchronise the command type according to 
  future feedback to fit user needs.    
+
+---
+
+**Q**: Why do I see a bunch of events and/or student lists added when I launch 
+the program?
+
+**A**: The events and student lists that you entered during your previous usage 
+were saved in your computer. Now, when you relaunch the program, those events and 
+student lists are loaded up automatically.
 
 ---
 
