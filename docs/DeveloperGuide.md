@@ -76,8 +76,8 @@ The <code>Duke</code> class manages all required resources in the execution of t
 a <code>ShoppingList</code> object to keep track of the <code>Item</code> objects the user has added to his list and
 a <code>Budget</code> object to store the user's budget.
 
-<code>Duke</code> also has a <code>Storage</code> object for saving and loading data from memory - this data includes
-the latest saved <code>ShoppingList</code> and <code>Budget</code>.
+<code>Duke</code> also has a <code>Storage</code> object for saving and loading data from the disk - this data is stored as JSON files
+and consists of the latest saved <code>ShoppingList</code> and <code>Budget</code>.
 
 There is a dependency from <code>Duke</code> to <code>Parser</code> as it only creates an instance of the <code>Parser</code>
 every time user input is received by the <code>Ui</code> and does not keep track of the <code>Parser</code> which is deleted
