@@ -83,7 +83,7 @@ TODO: change image so that the words are the same font size
 
 ### List all contacts: `contacts`
 Displays index and name of all contacts stored in the program.
-* This command is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts),  [`Edit a contact's timetable`](#edit-a-contacts-timetable) or `Delete a contact` commands, to check for `<Contact Index>` and `<Contact Name>` of a contact.
+* This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts),  [`Edit a contact's timetable`](#edit-a-contacts-timetable) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
 Format:
     
@@ -382,7 +382,7 @@ browser, you can create a new one. Else, you will be brought to your saved NUSMO
 ![NUSMODS2](images/NUSMODS_step2.png)<br>
 3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
 ![NUSMODS1](images/NUSMODS_step1.png)<br>
-4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) command.
+4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) feature.
 
 [&#8593; Return to the top](#whenfree---user-guide)
 
