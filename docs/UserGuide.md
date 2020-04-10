@@ -36,15 +36,19 @@ keep track on whether they are spending too much or too little time for that par
 When you are done with the activity, or want to move onto something else, tell Jikan to `end` and the Activity time will be recorded and saved to your list.
 
 You can view all your activities using the `list` command. Or view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
+
 ![list week](./pictures/list_week.PNG)
 
 The list still looks very cluttered, we can reduce it further! Want to find everything you did for CS2113 this week? Filter out the activities you want to see using the `find` or `filter` command. This is our list after filtering out all our activities tagged as `2113`. (the -s flag tells Jikan to search our last shown list, i.e. the list of activities this week in this case)
+
 ![Continue command sequence diagram](./pictures/filter.PNG)
 
 To easily see what took up the most of your time out of all the 2113 activities, use the `graph` command to view a chart of your activities. 
+
 ![Continue command sequence diagram](./pictures/graph.png)
 
 Curious about what module took up the most time this week? We can use the `graph tags` command on our weekly activity list to find out.
+
 ![Continue command sequence diagram](./pictures/graphtags.PNG)
 
 Evidently, it was CS2105.
@@ -192,6 +196,7 @@ Here are the matching activities in your list:
 ```
 **Example:**  
 If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
+
 ![chain graph activities](./pictures/filter-find_chain.PNG)
 
 
@@ -224,6 +229,7 @@ Note: As the units of `SCALE` is minutes, if your activity is less than a minute
 For example, if we `graph tags 1` for the activity list above, we will get the following graph:
 
 ![graph tags](./pictures/graphtags_example2.png)
+
 `activity 1` and `activity 2` are both tagged `tag1` and have a duration of 5 mins. 
 `activity 3` and `activity 4` are both tagged `tag2` and have a duration of 2 and 3 mins respectively.   
 Adding up the durations for each tag, we get 10 mins for `tag1` and 5 mins for `tag2`. As we chose the graph to have a scale of 1 min, there are (10 asterisk representing 1 min each) for `tag1` and 5 asterisks for `tag2` in the graph.  
@@ -258,16 +264,19 @@ as shown in the graph)
 Using `list`, `find` and `filter` commands you can sieve out the information you wish to be graphed.
 
 **Graph Activities Example:**  
+
 ![chain graph activities](./pictures/filter-graph_chain.PNG)
 
 `filter 2113` gives all activities tagged `2113`, then we can use `graph activities 5` to view a graph of the duration for each activity.
 
 **Graph Tags Example:**
+
 ![chain graph tags](./pictures/list-graphtags_chain.PNG) 
 
 `list 25/03/2020` gives all activities completed on 25th March 2020, then we can use `graph tags 5` to view the graph of the tags. Each asterisk represents 5 minutes, as indicated by the `SCALE` parameter of the graph command.
 
 **Graph Allocations Example:**
+
 ![chain graph tags](./pictures/find-allocations_chain.PNG) 
 
 `find Lab` gives us all `Lab` activities, then we can use `graph allocations` to view the progress bar of each of the activities to see how much time was spent on the activity relative to the time that was allocated. 
@@ -293,6 +302,7 @@ By using the `goal` command, users can set specific goals for how long they woul
 **Usage:** Displays the tags with their goals, actual time spent on activities with these tags and the difference between the 2 timings.
 
 **Format:** `goal`  
+
 ![goal display](./pictures/GoalDisplay.PNG)  
 
 ## Automated Cleaning
