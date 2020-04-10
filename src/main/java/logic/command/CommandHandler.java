@@ -1,6 +1,7 @@
 package logic.command;
 
 import common.exception.InvalidUrlException;
+import java.time.format.DateTimeFormatter;
 import model.meeting.MeetingList;
 import common.exception.WfException;
 import model.meeting.Meeting;
@@ -178,18 +179,22 @@ public class CommandHandler {
         }
     }
 
-    public static Contact deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser) {
+    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList myContactList, int currentWeekNumber) {
         try {
             int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
-            String meetingNameToDelete = meetingToDelete.getMeetingName();
-            mainUser.deleteBlocksWithName(meetingNameToDelete);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            String startTimeString = meetingToDelete.getStartTime().format(formatter);
+            String endTimeString = meetingToDelete.getEndTime().format(formatter);
+            int startDay = meetingToDelete.getStartDay();
+            int endDay = meetingToDelete.getEndDay();
+            String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
+            mainUser.addFreeBlocks(startDay, startTimeString, endDay, endTimeString, thisWeekNumber);
             meetingList.delete(index);
-            return mainUser;
-        } catch (IndexOutOfBoundsException e) {
+            myContactList.set(0, mainUser);
+        } catch (IndexOutOfBoundsException | WfException e) {
             TextUI.displayInvalidDeleteTarget();
         }
-        return mainUser;
     }
 
     public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser,
@@ -221,7 +226,7 @@ public class CommandHandler {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
-                mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
+                mainUser.addBusyBlocks("meeting", startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
                 TextUI.meetingListSizeMsg(meetingList);
             } else {
                 System.out.println("Schedule is blocked at that timeslot");

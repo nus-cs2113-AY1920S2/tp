@@ -95,13 +95,12 @@ public class LogicManager {
      * Delete meeting and update model component.
      * @param userInputWords Index of the meeting to delete.
      */
-    public void deleteMeeting(String[] userInputWords) {
+    public void deleteMeeting(String[] userInputWords, int currentWeekNumber) {
         try {
             if (userInputWords.length != 2) {
                 throw new WfException(MESSAGE_WRONG_COMMAND_DELETE);
             }
-            this.mainUser = CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser());
-            this.myContactList.set(0, mainUser);
+            CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList(), currentWeekNumber);
         } catch (NumberFormatException e) {
             myContactList.remove(userInputWords[1]);
         } catch (WfException e) {

@@ -90,7 +90,7 @@ public class MeetingOrganizer {
                 myLogicManager.scheduleMeeting(userInputWords, currentWeekNumber);
                 break;
             case "delete":
-                myLogicManager.deleteMeeting(userInputWords);
+                myLogicManager.deleteMeeting(userInputWords, currentWeekNumber);
                 break;
             case "meetings":
                 myLogicManager.listMeetings(userInputWords);

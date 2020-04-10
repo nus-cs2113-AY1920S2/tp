@@ -210,24 +210,6 @@ public class Contact {
         return day >= 0 && day <= 13;
     }
 
-    /**
-     * Delete a scheduled meeting by changing mySchedule[][] via myScheduleName[][].
-     *
-     * @param meetingName name of .meeting previously added to be deleted.
-     */
-    public void deleteBlocksWithName(String meetingName) {
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 7; j++) {
-                for (int k = 0; k < 48; k++) {
-                    if (myScheduleName[i][j][k] != null && myScheduleName[i][j][k].equals(meetingName)) {
-                        mySchedule[i][j][k] = MYSCHEDULEFREE;
-                        myScheduleName[i][j][k] = null;
-                    }
-                }
-            }
-        }
-    }
-
     public String getName() {
         return this.contactName;
     }
