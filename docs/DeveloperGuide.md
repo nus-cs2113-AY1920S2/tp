@@ -305,13 +305,13 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
             -   Pros: Reduced coupling. Improved code structure.
 
-            -   Cons: More difficult to implement
+            -   Cons: More difficult to implement due to a need to consider multiple cases for `Search` and `Searchd` commands.
 
-        2.  Create another `SearchdCommand` within the `Parser` class that does the same operations as the `SearchdCommand`.
+        2.  Create another method that implements `Searchd` functionalities within the `Parser` class.
 
             -   Pros: Easier to implement.
 
-            -   Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
+            -   Cons: Makes the code for `Parser` unnecessarily long, and also makes the code less OOP.
 
 ### 3.3. Clear Task feature
 #### 3.3.1. Current Implementation
