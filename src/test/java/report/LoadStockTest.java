@@ -155,12 +155,12 @@ public class LoadStockTest {
    
     
     /**
-     * Utility functions of similar implementation in the LoadStock class. ===============================
+     * Utility functions of similar implementation in the LoadStock class. ===============================.
      */
     
     /**
      * A utility function to get the index position ready for decoding in
-     * decodeIngredientPrice();
+     * decodeIngredientPrice().
      */
     private int getStartIngredientPriceIndex(String line) {
         int priceIndexInLineArgs = 0;
@@ -177,7 +177,7 @@ public class LoadStockTest {
     
     /**
      * A utility function to get the index position ready for decoding in
-     * decodeIngredientQuantity();
+     * decodeIngredientQuantity().
      */
     private int getStartIngredientQuantityIndex(String line) {
         int quantityIndexInLineArgs = 0;
