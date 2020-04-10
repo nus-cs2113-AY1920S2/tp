@@ -203,8 +203,10 @@ public class CommandHandler {
                                        ContactList contactList, int currentWeekNumber) {
 
         try {
-            int dayDiff = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]) - Integer.parseInt(userInputWords[2]);
-            if (dayDiff > 0 && dayDiff < 14){
+            int dayDiff = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2])
+                    - Integer.parseInt(userInputWords[2]);
+
+            if (dayDiff > 0 && dayDiff < 14) {
                 throw new WfException(MESSAGE_WRONG_DATE);
             }
 

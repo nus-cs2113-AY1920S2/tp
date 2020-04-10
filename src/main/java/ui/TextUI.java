@@ -106,9 +106,11 @@ public class TextUI {
             String datePostFix;
             if (lastChar.equals("1") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "st";
-            } else if (lastChar.equals("2") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
+            } else if (lastChar.equals("2")
+                    && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "nd";
-            } else if (lastChar.equals("3") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
+            } else if (lastChar.equals("3")
+                    && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "rd";
             } else {
                 datePostFix = "th";
