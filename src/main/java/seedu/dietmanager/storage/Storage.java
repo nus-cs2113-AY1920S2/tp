@@ -326,7 +326,12 @@ public class Storage {
                     String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
-                    morningFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                    Optional<Food> curFood = foodNutritionRecord.findFood(foodName.get());
+                    if (curFood.isPresent()) {
+                        morningFoods.add(curFood.get());
+                    } else {
+                        morningFoods.add(new Food(foodName.get()));
+                    }
                 }
 
                 String[] afternoonFoodList = afternoonFood.split(",");
@@ -335,7 +340,12 @@ public class Storage {
                     String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
-                    afternoonFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                    Optional<Food> curFood = foodNutritionRecord.findFood(foodName.get());
+                    if (curFood.isPresent()) {
+                        afternoonFoods.add(curFood.get());
+                    } else {
+                        afternoonFoods.add(new Food(foodName.get()));
+                    }
                 }
 
                 String[] nightFoodList = nightFood.split(",");
@@ -344,7 +354,12 @@ public class Storage {
                     String nameDescription = foodInfo.substring(0, splitIndex);
 
                     foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
-                    nightFoods.add(foodNutritionRecord.findFood(foodName.get()).get());
+                    Optional<Food> curFood = foodNutritionRecord.findFood(foodName.get());
+                    if (curFood.isPresent()) {
+                        nightFoods.add(curFood.get());
+                    } else {
+                        nightFoods.add(new Food(foodName.get()));
+                    }
                 }
 
                 String date = dataLineArray[0].trim().toLowerCase();
