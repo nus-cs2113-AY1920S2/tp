@@ -176,7 +176,7 @@ The process is as follows:
 with the new values from the user input through the use of the <code>Item</code> class setter methods.
 6. The <code>Item</code> object with its new values is stored back to the <code>ShoppingList</code> object.
 
-The following sequence diagram below shows how the edit feature works. The details of updating an items' values
+The following sequence diagram below shows how the edit feature works. The details of updating the values of an item
 have been omitted from the diagram. Those details are shown in a separate sequence diagram.
 
 ![Edit Feature](images/Edit_v1.png)
@@ -387,7 +387,7 @@ This feature involves displaying the shopping list and budget details to the use
 The display feature is implemented using a <code>DisplayCommand</code> class which extends the <code>Command</code> 
 class. 
  
- The process is as follows:
+The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DisplayCommand</code> object based
 on that user input.
@@ -425,6 +425,7 @@ omitted to emphasise the other classes:
     
 Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
 also be able to trace functionality bugs more easily if each command class deals with its own functionality.
+<!-- @@author -->
 
 &nbsp;
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
@@ -533,50 +534,50 @@ to work in parallel.
  
 <!-- @@author JLoh579 -->
 ### 3.9 Clear list feature
- This feature involves clearing all items in the shopping list. Remaining budget is also set to the user’s set budget.
+This feature involves clearing all items in the shopping list.
  
- #### 3.9.1 Current implementation
- The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
- class. 
+#### 3.9.1 Current implementation
+The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
+class. 
  
-  The process is as follows:
- 1. <code>Duke</code> receives user input from <code>Ui</code>.
- 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ClearCommand</code> object based on that user input.
- 3. <code>Duke</code> then calls <code>ClearCommand#execute()</code>.
- 4. <code>ClearCommand#execute()</code> makes a call to <code>ShoppingList#clearList()</code>.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ClearCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>ClearCommand#execute()</code>.
+4. <code>ClearCommand#execute()</code> makes a call to <code>ShoppingList#clearList()</code>.
  
- The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
- omitted to emphasise the other classes:
+The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
+omitted to emphasise the other classes:
    
- ![alt text](images/Clear_v1.png)
+![alt text](images/Clear_v1.png)
    
- #### 3.9.2 Design considerations
+#### 3.9.2 Design considerations
    
- ##### Aspect: Data structure to support the clear list feature
+##### Aspect: Data structure to support the clear list feature
    
- - Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
-  
-   - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
+ 
+  - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
    is treated as a black box
    
-   - Cons: Might significantly increase the code base with another class being added
+  - Cons: Might significantly increase the code base with another class being added
  
  
- - Alternative 2: Implement clear list feature in the <code>Duke</code> class
+- Alternative 2: Implement clear list feature in the <code>Duke</code> class
  
    - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
    
    - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
    harder to navigate and understand. 
    
- - Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
- also be able to trace functionality bugs more easily if each command class deals with a different functionality.
+Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with a different functionality.
+<!-- @@author -->
+
+&nbsp;
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
  
- &nbsp;
- <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
- 
- &nbsp;
- <!-- @@author -->
+&nbsp;
  
 <!-- @@author trishaangelica -->
 ### 3.10 View help feature
@@ -737,7 +738,7 @@ This section contains the user stories for the different versions of our product
 
 &nbsp;
 
-
+<!-- @@author trishaangelica-->
 ## Appendix D: Instructions for Manual Testing
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
@@ -826,7 +827,7 @@ This section contains the user stories for the different versions of our product
 
 1. Add an item 
         
-    >:bulb: Tip: Before adding an item, you can run the <code> DISPLAY </code> command to prevent entering a duplicate description
+    >:bulb: Tip: Before adding an item, you can run the <code>DISPLAY</code> command to prevent entering a duplicate description
        
     i. Test case: <code> ADD i/apple p/3.00 q/2 </code>
        
@@ -850,7 +851,7 @@ This section contains the user stories for the different versions of our product
 
 2. Edit an item
      
-    > :bulb: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
+    > :bulb: Tip: You can run the <code>DISPLAY</code> command to check if the item has been correctly updated.
       
     *Assumption: Valid index and description is provided. (No duplicate description allowed)*
            
@@ -882,6 +883,7 @@ This section contains the user stories for the different versions of our product
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
 &nbsp;    
+<!-- @@author -->
 
 <!-- @@author Shannonwje -->    
 ### Mark and Un-mark an item
@@ -949,7 +951,7 @@ This section contains the user stories for the different versions of our product
      
 <!-- @@author -->
     
-  
+<!-- @@author trishaangelica-->  
 ### Find and Delete an item
 
 1. Find an item based on keyword
@@ -1007,5 +1009,5 @@ This section contains the user stories for the different versions of our product
   
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
   
-&nbsp;            
-    
+&nbsp;   
+<!-- @@author -->

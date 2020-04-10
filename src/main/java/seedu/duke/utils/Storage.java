@@ -4,7 +4,7 @@ import seedu.duke.data.Budget;
 import seedu.duke.data.ShoppingList;
 
 
-//@@ JLoh579
+//@@author JLoh579
 
 public class Storage {
     private WriteData writeData = new WriteData();
