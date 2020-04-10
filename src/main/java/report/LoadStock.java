@@ -14,16 +14,15 @@ import exceptions.StockReadWriteException;
 import ingredient.Ingredient;
 import stock.Stock;
 
+import static utils.Constants.DEFAULT_STORAGE_FILEPATH;
+
 /**
  * This class encapsulates the functionality of loading data related to
  * the 'Stock' category in the report.txt file.
  *
  */
 public class LoadStock {
-    
-    /** The default file name that is to be read or written by the program. */
-    public static final String DEFAULT_STORAGE_FILEPATH = "report.txt";
-    
+        
     /** Constructor of a Storage using the default file path. */
     public final Path path;
     
@@ -41,19 +40,18 @@ public class LoadStock {
 
     /** 
      * Constructor of a LoadStock retrieved from Path.
-     * @throws InvalidStorageFilePathException If the report data file does not match
-     *                                         a .txt extension.
      */
     public LoadStock() {
         this(DEFAULT_STORAGE_FILEPATH);
     }
-
+    
+    
     public LoadStock(String filePath) {
         this.path = Paths.get(filePath);
         
         if (!isValidPath(this.path)) {
-            throw new InvalidFilePathException(this.path.toString(), 
-                    "The current file does not end with a .txt");
+            throw new InvalidFilePathException(this.path.toString(),
+                 "The current file does not end with a .txt");
         }
     }
     
@@ -76,7 +74,7 @@ public class LoadStock {
                 } else {
                     
                     String[] lineArgs = line.split(" ");
-                    if (line.indexOf('*') == -1) {
+                    if (line.indexOf('$') == -1) {
                         continue;
                     } else {
                         lines.add(line);
@@ -171,7 +169,7 @@ public class LoadStock {
                     + "converted to a double.");
         } catch (StringIndexOutOfBoundsException siofbe) {
             throw new StockReadWriteException("The price in report.txt is not"
-                    + " indented correctly.");
+                    + "indented correctly.");
         }
     }
     

@@ -28,8 +28,6 @@
 
 ## 1. Design & Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 <a name="search-stock"></a>
 
 ### 1.1 Search stock feature
@@ -336,13 +334,19 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ### Value proposition
 
+<<<<<<< HEAD
 
 * Single application to store dishes, stock and reservations
 * Can calculate the daily profit and most popular dish
 * Allows the owner to see an overview of their restaurant
 * Simple and easy to use interface
+=======
+>>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 
-<a name="user-stories"></a>
+* Single application to store dishes, stock and reservations
+* Can calculate the daily profit and most popular dish
+* Allows the owner to see an overview of their restaurant
+* Simple and easy to use interface
 
 ## Appendix B: User Stories
 
@@ -370,7 +374,10 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
 |v2.0|restaurant owner|search dishes|I can know which dishes contain a certain word and the ingredients of those dishes|
 |v2.0|restaurant owner|search stock|I can know the quantity and cost of specific ingredients|
+<<<<<<< HEAD
 |v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
+=======
+>>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 |v2.1|restaurant owner|load the dishes, stock and reservation|I don't have to re-enter the dishes, stock and reservations when I start up the program|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
@@ -485,6 +492,10 @@ Listing all unserved reservations while all reservations are listed.
 Clear all reservations in the list while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.
 * Test case: `clear reservation;`
+<<<<<<< HEAD
+    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared.   
+=======
     - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
+>>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 * Test case: `clear reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.

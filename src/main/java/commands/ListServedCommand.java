@@ -16,16 +16,16 @@ public class ListServedCommand extends ReservationCommand {
     @Override
     public void execute(ReservationList reservations, Ui ui) {
         boolean noServed = true;
-
+        
         for (int i = 1; i <= reservations.getSize(); i++) {
             if (!reservations.getReservation(i).getStatus().equals(SERVED)) {
                 continue;
             }
-
+            
             ui.showMessage(reservations.getReservation(i).toString());
             noServed = false;
         }
-
+        
         if (noServed) {
             ui.showMessage("There is no served reservation currently in the list.");
         }

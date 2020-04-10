@@ -18,7 +18,6 @@ search dish
 search reservation
 search stock
 add dish; n/pizza; i/cheese, sauce; p/7.00;
-list dish
 list dish;
 add dish; n/rice; i/rice, salt; p/12.00;
 delete dish; n/pizza;
@@ -147,4 +146,5 @@ clear reservation
 clear reservation;
 clear stock
 clear stock;
+delete dish; n/rice;
 bye
