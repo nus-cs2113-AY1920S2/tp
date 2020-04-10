@@ -7,7 +7,6 @@ By: `CS2113T-T12-2` Since: `March 2020`
 
 ## Table of Contents
 
-
 - [1. Introduction](#1-introduction)
     * [1.1. Purpose](#11-purpose)
     * [1.2. Scope](#12-scope)
@@ -49,47 +48,61 @@ By: `CS2113T-T12-2` Since: `March 2020`
 
 ## 1. Introduction
 
-### 1.1. Purpose
+### 1.1 Purpose
 
 This document contains the architecture and software design specifications for the application HappyPills.
 
-### 1.2. Scope
+### 1.2 Scope
 
 This guide is mainly for developers, designers and software engineers that are working on and using HappyPills.
 
+### 1.3 
+`PatientParser` - A mark-up in PascalCase indicates the class used.
+
+`PatientParser#parse()` - The camelCase text after the '#' indicates the method called in the class
+
 ## 2. Setting Up
 
-1. Ensure that you have `Java 11` or later installed in your computer 
-2. Click [here](link to be added later?) to download the latest HappyPills JAR File
+Refer to the guide [here](Testing.md).
 
 ## 3. Design 
 
 This section provides a high-level overview of HappyPills.
 
-### 3.1. Architecture
+### 3.1 Architecture
 
-![Architecture diagram](images/DG/ArchitectureDiagram.png "Overview of the Application")
+![Architecture diagram](images/DG/architecture/ArchitectureDiagram.png "Overview of the Application")
 
-The **Architecture diagram** above explains the high-level design of HappyPills.
+The **Architecture diagram** above explains the high-level design of HappyPills. 
+Given below is a quick overview of each component.
 
 Main has one class called `HappyPills`.  
 It is responsible for:  
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components.
 
-The rest of the App consists of four components.
+The rest of the application consists of four other components.
 
-- `TextUi`: The UI of the App.
+- `UI`: The user interface of the application.
 
 - `Logic`: The command executor.
 
 - `Model`: Holds the data of the App in-memory.
 
-- `Storage`: Reads data from and writes data to the text file.
+- `Storage`: Reads data from and writes data to the text file stored on the user's computer.
 
+**How the architecture components interact with each other**  
+
+The Sequence Diagram below shows how the components interact with each other for 
+the scenario where the user issues the command `delete patient NRIC`.  
+
+![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
+
+The sections below give more details of each component.
+
+----- shift down ---
 
 The architecture of HappyPills is broken down into seven main classes:
-* `TextUi`: This class handles the User Interface of the application.
+* `Ui`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
 * `Command`: This class handles all the commands the application has.
 * `Storage`: This class reads and writes data to and from text files for future use.
@@ -97,13 +110,13 @@ The architecture of HappyPills is broken down into seven main classes:
 * `Appointment`: This class manages the data of data type Appointment in memory.
 * `MedicalRecords`: This class manages the data of data type MedicalRecord in memory.
 
-### 3.2. TextUi Component
+### 3.2. Ui Component
 
-The `TextUi` component: 
+The `Ui` component: 
 * Executes user commands using the command component.
 * Listens for changes and outputs messages accordingly from the Command component.
 * Store or generate formatted messages used by the other components, for display to the user.
-* Consist of 6 sub-parts:
+* Consist of 6 classes:
     - PatientTextUi
     - AppointmentTextUi
     - PatientRecordTextUi
@@ -165,25 +178,24 @@ The commands introduced in this feature include : `add`, `edit`, `list`, `delete
 The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
 The patient list feature is facilitated by PatientMap class which implements the following operations: 
 
-    - PatientMap #add(Patient patient) — This command adds the patient object into the patient list using the patient’s nric as key.
+>`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
+>`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
+>`PatientMap #hasKey(String nric)` — This command checks whether the patient object resides in the existing patient list.   
 
-    - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
-
-    - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
+----- insert class diagram -----
     
-    
-** Design Considerations ** 
+**Design Considerations** 
 
 *Aspect: Data Structure of the Patient List* 
 
-        Alternative 1 (current choice): Hash Map
-          Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
-          Cons: Implementation is harder and may result in bugs if not implemented accurately.
+- Alternative 1 (current choice): Hash Map
+  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
+  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
-        Alternative 2: Array List
-          Pros: This would be easier to implement and retrieve the information.
-          Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-                This would cause the deletion to be very slow when there is a large number of patients in the list.
+ - Alternative 2: Array List
+   * Pros: This would be easier to implement and retrieve the information.
+   * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+           This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 #### 4.1.1 Add Patient Details
 
@@ -200,8 +212,8 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 * allergies: `Peanuts`
 
 **Implementation** 
-
-The activity diagram below summarises the process of executing an `add` command.
+--incorrect add patient----
+The sequence diagram below summarises the process of executing an `add` command.
 ![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
