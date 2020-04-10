@@ -1,26 +1,36 @@
-# User Guide
+# User Guide - Diet Manager
 
 ## Content
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
-    1. [Set user profile](#31-set-user-profile)
-    2. [View user profile](#32-view-user-profile)
-    3. [Record meals](#33-record-meals)
-    4. [Check meals](#34-check-meals)
-    5. [Clear food records](#35-clear-all-food-records)
-    6. [Check required calories](#36-check-required-calories)
-    7. [Calculate calories](#37-calculate-calories)
-    8. [List food database](#38-list-food-database)
-    9. [Add food into database](#39-add-food-into-database)
-    10. [Delete food from database](#310-delete-food-from-database)
-    11. [Get a recommended recipe](#311-get-a-recommended-recipe)
-    12. [View recipe](#312-view-recipe)
-    13. [Check Weight Progress](#313-check-weight-progress)
-    14. [Set Weight](#314-set-weight-progress)
-    15. [Delete weight](#315-delete-weight-progress)
-    16. [Help](#316-help)
-    17. [Exit application](#317-exit-application)    
+    1. [Profile Features](#31-profile-features)
+        1. [Set user profile](#set-user-profile)
+        2. [View user profile](#view-user-profile)
+        3. [Set user name](#set-user-name)
+        4. [Set user age](#set-user-age)
+        5. [Set user gender](#set-user-gender)
+        6. [Set user height](#set-user-height)
+        7. [Set user weight-goal](#set-user-weight-goal)
+        8. [Set user weight](#set-user-weight)
+        9. [Delete user weight record](#delete-user-weight-record)
+        10. [Check user weight progress](#check-user-weight-progress)
+    2. [Daily Food Record Features](#32-daily-food-record-features)
+        3. [Record meals](#record-meals)
+        4. [Check meals](#check-meals)
+        5. [Clear food records](#clear-all-food-records)
+        6. [Check required calories](#check-required-calories)
+        7. [Calculate calories](#calculate-calories)
+    3. [Food Nutrition Record Features](#33-food-nutrition-record-features)
+        8. [List food database](#list-food-database)
+        9. [Add food into database](#add-food-into-database)
+        10. [Delete food from database](#delete-food-from-database)
+    4. [Recipe Features](#34-recipe-features)
+        11. [Get a recommended recipe](#get-a-recommended-recipe)
+        12. [View recipe](#view-recipe)
+    5. [Utility Features](#35-utility-features)
+        16. [Help](#help)
+        17. [Exit application](#exit-application)    
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -28,31 +38,107 @@
 
 Diet Manager is an personal text-based chat-bot application used for managing an individual's diet.
 
-Diet Manager is capable of tracking daily food intake and providing recommendations depending on a user's specified
-health data.
+Diet Manager is capable of the following functions:
+* Profile -uses a user's profile information to personalise diet recommendations.
+* Daily Food Record - record and store daily food intake.
+* Food Nutrition Record - record and store food caloric information.
+* Recipe Generator - generates a recommended recipe depending on a user's profile information.
 
 ## 2 Quick Start
 
 * Ensure that you have Java 11 or above installed in your Computer. <br>
-* Download the latest version of DietManager-2.0.0.jar [here](https://github.com/AY1920S2-CS2113-T15-4/tp/releases). <br>
+* Download the latest version of DietManager-2.1.0.jar [here](https://github.com/AY1920S2-CS2113-T15-4/tp/releases). <br>
 * Open and run the jar file by entering the following command in Windows PowerShell or Git Bash:
-      
-        java -jar DietManager-2.0.0.jar
-* 
+
+        java -jar DietManager-2.1.0.jar
+
+* The application will first search for a data directory to store all relevant data files. <br>
+* If no `data` directory is found, it will create a new `data` directory.
+
+        INFO: New Directory created: data
+
+* Next there are 4 data files that the application will search for. If any of these files are present,
+the application will read and load the data from these files. Otherwise, it will create new data files
+to store the relevant information.
+    * profile
+    
+            INFO: No existing Profile found, new file created: profile.txt
+            
+    * food-nutrition-record
+            
+            INFO: No existing Food Nutrition Record found, new file created: food-nutrition-record.txt
+            
+    * recipe
+    
+            INFO: No existing Recipe file found, new file created: recipe.txt
+            
+    * daily-food-record
+    
+            INFO: No existing food record file found, new file created: daily-food-record.txt
+
+* The following text-based user interface should then appear:
+
+        INFO: Starting Diet Manager
+          _____   _        _     __  __
+         |  __ \ (_)      | |   |  \/  |
+         | |  | | _   ___ | |_  | \  / |  __ _  _ __    __ _   __ _   ___  _ __
+         | |  | || | / _ \| __| | |\/| | / _` || '_ \  / _` | / _` | / _ \| '__|
+         | |__| || ||  __/| |_  | |  | || (_| || | | || (_| || (_| ||  __/| |
+         |_____/ |_| \___| \__| |_|  |_| \__,_||_| |_| \__,_| \__, | \___||_|
+                                                               __/ |
+                                                              |___/
+        Welcome to Diet Manager! How may I assist you today?
+         _____________________________________________________________________________________________________________
+        |                          Functions:                        |                 Descriptions:                  |
+        |____________________________________________________________|________________________________________________|
+        |   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
+        |   profile                                                  |  View user profile details                     |
+        |   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
+        |   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
+        |   calculate DATE                                           |  Calculate Calorie intake for the day          |
+        |   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  |
+        |   list-food                                                |  Lists all foods info in database.             |
+        |   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
+        |   delf FOOD_NAME                                           |  Delete food info from database                |
+        |   set-weight                                               |  Set/Update weight in user profile             |
+        |   check-weight-progress NAME                               |  List index of weight progress                 |
+        |   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+        |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
+        |   show-recipe                                              |  Show recommended recipe to user               |
+        |   help                                                     |  Show this function help table                 |
+        |   exit                                                     |  Exit the application                          |
+        |____________________________________________________________|________________________________________________|
+        Please key in your command:
+
+* The application is now ready to be used by entering text-based commands into the command line
+
+*Note that most command features are locked until a valid profile has been created. 
+Only the `set-profile`, `help` and `exit` commands are usable upon first start-up*
+
+```
+Please create a profile before using this command. Enter:
+set-profile {name} {age} {gender} {height} {weight} {weight goal}
+```
 
 ## 3 Features 
 
-### 3.1 Set user profile
+Note that:
+* Name is restricted to strings with no spaces.
+* Age is restricted to whole numbers only.
+* Gender is restricted to "male" or "female".
+* Height has units in centimetres.
+* Weight has units in kilograms.
+* Calories has units in kilocalories.
+
+## 3.1 Profile Features
+
+### Set user profile
 Creates a new profile
 
 Format: `set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`
 
-* If profile doesn't exist, the command will generate a new `Profile` object.
-* If profile already exist, the command will automatically update profile info.
-
-Attention:
-* Height has units in centimetres.
-* Weight has units in kilograms.
+* If profile doesn't exist, the command will generate a new profile.
+* If profile already exist, the command will overwrite the current profile and generate a new profile.
 
 Example of usage:
 
@@ -63,49 +149,196 @@ Expected Outcome:
 ```
 Your profile has been successfully updated.
 ```
-* If enter `profile` again, you will expect to see:
 
-```
-Welcome to Diet Manager! How may I assist you today?
-Age:          20 years old
-Gender:       Male
-Height:       180.00 centimetres
-Weight        80.00 kilograms
-Weight Goal:  75.00 kilograms
-```
-
-### 3.2 View user profile
-Views user profile details
+### View user profile
+View user profile details
 
 Format: `profile`
 
 * If profile information is present, displays it to the user.
-* If profile information is absent, prompts user to enter profile information.
 
 Example of usage: 
 
 `profile`
 
 Expected Outcome:
-* If `profile` doesn't exist
 
 ```
-No existing profile found. To create a new profile, enter:
-set-profile {name} {age} {gender} {height} {weight} {weight goal}
-```
-
-* If `profile` already exists
-
-```
-Welcome to Diet Manager! How may I assist you today?
-Age:          18 years old
-Gender:       Male
+Your profile information are as follows:
+Name:         John
+Age:          20 years old
+Gender:       male
 Height:       180.00 centimetres
-Weight        65.00 kilograms
+Weight        80.00 kilograms
 Weight Goal:  75.00 kilograms
 ```
 
-### 3.3 Record meals
+### Set user name
+
+Update name in profile.
+
+Format: `set-name NAME`
+
+Example of usage: 
+
+`set-name Jane`
+
+* Expected Outcome:
+
+```
+set-name Jane
+Your username has been changed to Jane.
+```
+
+### Set user age
+
+Update age in profile.
+
+Format: `set-age AGE`
+
+Example of usage: 
+
+`set-age 18`
+
+* Expected Outcome:
+
+```
+set-age 18
+Your age has been changed to 18.
+```
+
+### Set user gender
+
+Update gender in profile.
+
+Format: `set-age GENDER`
+
+Example of usage: 
+
+`set-gender female`
+
+* Expected Outcome:
+
+```
+set-gender female
+Your gender has been changed to female.
+```
+
+### Set user height
+
+Update height in profile.
+
+Format: `set-height HEIGHT`
+
+Example of usage: 
+
+`set-height 170`
+
+* Expected Outcome:
+
+```
+set-height 170
+Your height has been changed to 170.00.
+```
+
+### Set user weight-goal
+
+Update weight-goal in profile.
+
+Format: `set-weight-goal WEIGHT-GOAL`
+
+Example of usage: 
+
+`set-weight-goal 65`
+
+* Expected Outcome:
+
+```
+set-weight-goal 65
+Your weight goal has been changed to 65.00.
+```
+
+### Set user weight
+
+Update weight in profile when there are changes to user's weight.<br>
+Application will keep track and store records of user's weight over time.
+
+Format: `set-weight WEIGHT`
+
+Example of usage: 
+
+`set-weight 70`
+
+* Expected Outcome:
+
+```
+set-weight 70
+Your weight has been changed to 70.00.
+```
+
+### Delete user weight record
+
+Delete a specific weight record.
+
+Format: `delete-weight INDEX`
+
+Example of usage: 
+
+`delete-weight 1`
+
+* Expected Outcome:
+
+```
+delete-weight 1
+Weight Record: 80.0kg has been removed successfully!
+```
+
+### Check user weight progress
+
+Check user weight record progression.
+
+Format: `check-weight-progress`
+
+Example of usage:
+
+`check-weight-progress`
+
+* If there is weight loss from beginning:
+
+    Expected Output:
+    ```
+         check-weight-progress
+         Here is your weight changes record:
+         1. 80.0kg 
+         2. 70.0kg 
+         3. 50.0kg 
+         Great job! You have lost 30.00 kg since the beginning!                                                                                     
+    ```
+* If weight remains the same from beginning:
+
+    Expected Output:
+    ```
+  check-weight-progress       
+  Here is your weight changes record:
+         1. 80.0kg 
+         No Pain No Gain! You have not lost weight yet! Strive on!
+                                                                                  
+    ```
+* If there is weight gained from beginning:
+
+    Expected Output:
+    ```
+         check-weight-progress JOHN
+         Here is your weight changes record:
+         1. 80.0kg 
+         2. 90.0kg 
+         Maintain your diet! You have gained 10.00 kg since the beginning!
+                                                                                  
+    ```  
+
+## 3.2 Daily Food Record Features
+
+### Record meals
 Records meals for the user(so they can refer record history and calculate calories intake later).
 
 Format: `record-meal DATE TIMEPERIOD /FOOD1 {-- 10.0} /FOOD2 {-- 6.00} /...`
@@ -141,7 +374,7 @@ Food: egg prata, Calories: 5.00cal
 For morning, total calculable calories intake: 5.00cal.
 ```
 
-### 3.4 Check meals
+### Check meals
 Check what the `profile` had eaten for a meal.
 
 Format: `check-meal DATE TIMEPERIOD`
@@ -169,7 +402,7 @@ Expected Output:
     Food: noodles, Calories: 2.00cal
     For morning, total calculable calories intake: 7.00cal.
     ```
-### 3.5 Clear all food records
+### Clear all food records
 Clear all the existing food records in a week.
 
 Format: `clear-records`
@@ -183,7 +416,8 @@ Expected Output:
 ```
 You have just cleared all food records in the week!
 ```
-### 3.6 Check required calories
+
+### Check required calories
 Check the required calories for the current `profile` based on the activity level for the day.
 
 Format: `check-required-cal DATE ACTIVITYLEVEL`
@@ -222,7 +456,7 @@ Expected Output:
     Well done!!! You have consumed sufficient calories.
     ```
 
-### 3.7 Calculate calories
+### Calculate calories
 Calculates calories intake on a day or during a time period.
 
 Format: 
@@ -252,7 +486,10 @@ Example of usage:
   ```
   * Notice `Apple` is in our database with calories info: 2.00
 
-### 3.8 List food database
+
+## 3.3 Food Nutrition Record Features
+
+### List food database
 Lists all foods and relevant calories info recorded in our database.
 
 Format: `list-food`
@@ -270,7 +507,7 @@ Food: Oil, Calories: 5.00cal
 Food: Tea, Calories: 6.00cal
 ```
 
-### 3.9 Add food into database
+### Add food into database
 Adds a new food into database.
 
 Format: `addf FOODNAME --CALORIES`
@@ -289,7 +526,7 @@ Sorry, to add new food to database you must input correct calories info.
 It has to be positive Integer or Float
 ```
 
-### 3.10 Delete food from database
+### Delete food from database
 Deletes a food from the database
 
 Format: `delf FOODNAME`
@@ -308,7 +545,9 @@ Example of usage:
     No need to delete! Referred Food doesn't exist in database
     ```
 
-### 3.11 Get a recommended recipe
+## 3.4 Recipe Features
+
+### Get a recommended recipe
 Get a recommend recipe based on user's physical conditions and activity level.
 
 Format: `new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL`
@@ -361,7 +600,7 @@ Example of usage:
 
     ```
 
-### 3.12 View recipe
+### View recipe
 Show the recipe recommended for the user.
 
 Format: `show-recipe`
@@ -395,88 +634,9 @@ Example of usage:`show-recipe`
     SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
     ```
 
-### 3.13 Check Weight Progress
-Check current weight progress from the beginning.
+## 3.5 Utility Features
 
-Format: `check-weight-progress JOHN`
-
-Example of usage:`check-weight-progress JOHN`
-* If there is weight loss from beginning:
-
-    Expected Output:
-    ```
-         check-weight-progress JOHN
-         Here is your weight changes record:
-         1. 80.0kg 
-         2. 70.0kg 
-         3. 50.0kg 
-         Great job! You have lost 30.00 kg since the beginning!                                                                                     
-    ```
-* If weight remains the same from beginning:
-
-    Expected Output:
-    ```
-         Here is your weight changes record:
-         1. 80.0kg 
-         No Pain No Gain! You have not lost weight yet! Strive on!
-                                                                                  
-    ```
-* If there is weight gained from beginning:
-
-    Expected Output:
-    ```
-         check-weight-progress JOHN
-         Here is your weight changes record:
-         1. 80.0kg 
-         2. 90.0kg 
-         Maintain your diet! You have gained 10.00 kg since the beginning!
-                                                                                  
-    ```  
-
-### 3.14 Set Weight Progress
-
-Update weight in profile when there is changes to user's weight after following diet plan.
-
-This will allow the program to keep track of user's weight along the entire period.
-
-Format: `set-weight 70`
-
-* Expected Output:
-
-    ```
-        set-weight 70
-        Your weight has been changed to 70.00.
-                                                                                      
-    ```
-
-### 3.15 Delete Weight Progress
-
-Allows user to delete wrong weight input or remove any previous input weights in the profile.
-
-Format: `delete-weight 2`
-
-1. First, use the command `check-weight-progress NAME` to list out the stored weights in the user's profile.
-
-2. Then delete the weight base on the index linked to the weight stored using `delete-weight INDEX` command.
-
-
-* Example of the process
-
-    Expected Output:
-
-    ```
-        check-weight-progress JOHN
-        Here is your weight changes record:
-        1. 80.0kg 
-        2. 70.0kg 
-        Great job! You have lost 10.00 kg since the beginning!
-        delete-weight 2
-        Weight Record: 70.0kg  has been removed successfully!
-
-                                                                                      
-    ```
-
-### 3.16 Help
+### Help
 Show the help function table with the list of commands available
 
 Format: `help`
@@ -515,7 +675,7 @@ Format: `help`
     ```
 
 
-### 3.17 Exit application
+### Exit application
 Terminates and exits the application
 
 Format: `exit`
@@ -562,3 +722,5 @@ No. | Command | Description
 15 | `delete-weight` | Delete user's weight from progress
 16 | `help` | Show the help function table
 17 | `exit` | Exit application
+
+Click [here](README.md) to go back to the main page.

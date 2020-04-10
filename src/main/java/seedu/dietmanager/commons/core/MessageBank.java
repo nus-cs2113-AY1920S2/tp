@@ -41,6 +41,8 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_CHANGE_MESSAGE = "Your weight goal has been changed to ";
 
+    public static String SHOW_PROFILE_MESSAGE = "Your profile information are as follows:";
+
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
     public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
