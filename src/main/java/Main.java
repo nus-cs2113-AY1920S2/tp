@@ -1,17 +1,18 @@
 import commands.ReservationCommand;
-import exceptions.DishNameMissingException;
-import exceptions.InvalidDeleteDishCommandException;
+import exceptions.InvalidLoadException;
 import exceptions.ReservationException;
+import menu.Menu;
+import report.LoadDish;
 import report.LoadReservation;
 import reservation.Reservation;
-import sales.Sales;
-import menu.Menu;
 import reservation.ReservationList;
+import sales.Sales;
 import stock.Stock;
 import ui.Ui;
 import utils.CommandParser;
 import utils.LoggerUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static utils.Constants.LOG_FOLDER;
@@ -44,10 +45,20 @@ public class Main {
     /** Sets up the required objects and shows a welcome message. */
     public void start(String[] args) {
         this.stock = new Stock();
-        this.menu = new Menu();
+
         // this.reservations = new ReservationList();
         this.ui = new Ui();
         this.sales = new Sales();
+
+        try {
+            this.menu = LoadDish.getInstance("report.txt").readDishes();
+        } catch (InvalidLoadException e) {
+            ui.showMessage("Error loading from file, creating new menu");
+            this.menu = new Menu();
+        } catch (FileNotFoundException e) {
+            this.menu = new Menu();
+        }
+
 
         try {
             this.reservations = new ReservationList(LoadReservation.getInstance("report.txt").loadFileReservations());

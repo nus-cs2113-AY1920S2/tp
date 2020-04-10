@@ -42,6 +42,7 @@ public class HelpCommand {
 
     private static void searchCommands() {
         System.out.println("Search Commands:");
+        System.out.println("Search dish: search dish; k/KEYWORD;");
         System.out.println("Search Stock: search stock; keyword");
         System.out.println("Search Reservation: search reservation; {r/NUMBER_OF_RESERVATION; | d/DATE;}");
         System.out.println("");
