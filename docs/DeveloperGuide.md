@@ -219,8 +219,13 @@ Follow the following steps to manually test the product:
             _ **_____________________________________________________________________________**_
                  What can I do for you?
 
+            Loading "articleList.json", "jobList.json" and "notelist.json"...
 
-10. **Note** This time a message about creating new files for your data should not appear since they are already present in your folder. 
+            Done loading files, enter your command now:
+            __________________________________________________________________________________________
+
+           
+10. **Note** The message `Loading "articleList.json", "jobList.json" and "notelist.json"...` and `Done loading files, enter your command now:` should appear instead of previous message of missing data. This is to ensure these JSON files were created the first time you run the program. 
 
 ### 7.2 Load Storage Testing 
 
@@ -306,6 +311,9 @@ Follow the following steps to manually test the product:
 
 ### 7.3 Feature Testing
 
+**Important Note** 
+***Please ensure JSON data files are empty for feature testing.*** 
+
 #### `create` 
 
 **Important** Please ensure JSON data files are empty. 
@@ -318,14 +326,16 @@ Follow the following steps to manually test the product:
 
 4. When asked `What is the the category (type "default" if you don't know it)` enter the following: `test`
 
+5. When asked `Would you like to add any extract?` type `This is for testing.`
+
 5. You should see the following output: 
 
-            Done, we have added the following job to your list of saved jobs
+            Done, we have added the following article to your list of saved articles
                Title: ManualTestArticle
-               Date: 2020-Apr-09 Thu 08:10 PM
+               Date: 2020-Apr-09 Thu 08:30 PM
                Category: test
                Url: www.manualtestarticle.com
-               Extract: ...
+               Extract: This is for testing.
             __________________________________________________________________________________________
 
 #### `list` 
@@ -334,16 +344,73 @@ Follow the following steps to manually test the product:
 
 2. The only article in your list should be the article previously created. You should see the following output: 
 
+            __________________________________________________________________________________________
+
+
             _                                   Article List                                   _
 
 
-            1. Title: ManualTestArticle
-               Date: 2020-Apr-09 Thu 08:10 PM
+               1. Title: ManualTestArticle
+               Date: 2020-Apr-09 Thu 08:30 PM
                Category: test
                Url: www.manualtestarticle.com
-               Extract: ...
+               Extract: This is for testing.
 
 
             __________________________________________________________________________________________
+            
+            
+            
+#### `addinfo` 
+
+1. Type `addinfo article 1 Testing the addinfo feature` 
+
+2. You should see the following output: 
+
+            __________________________________________________________________________________________
+
+
+            Done, the article description now looks like the following 
+
+               Title: ManualTestArticle
+               Date: 2020-Apr-09 Thu 08:30 PM
+               Category: test
+               Url: www.manualtestarticle.com
+               Extract: Testing the addinfo feature
+            __________________________________________________________________________________________
+
+
+#### `delete`
+
+1. Type `delete article 1` 
+
+2. You should see the following output: 
+
+            __________________________________________________________________________________________
+
+
+            Deleting the following article:
+               Title: ManualTestArticle
+               Date: 2020-Apr-09 Thu 08:30 PM
+               Category: test
+               Url: www.manualtestarticle.com
+               Extract: Testing the addinfo feature
+            __________________________________________________________________________________________
+
+            
+3. To ensure it was deleted from the article list type `list article` 
+
+4. You should see the following output: 
+
+            __________________________________________________________________________________________
+
+
+            _                                   Article List                                   _
+
+
+            _                      There is nothing in the list currently.                     _
+            __________________________________________________________________________________________
+
+
 
 
