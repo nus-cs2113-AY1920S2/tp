@@ -7,14 +7,14 @@
     1. [Profile Features](#31-profile-features)
         1. [Set user profile](#set-user-profile)
         2. [View user profile](#view-user-profile)
-        3. [Set name]
-        4. [Set age]
-        5. [Set gender]
-        6. [Set height]
-        7. [Set weight-goal]
-        8. [Set weight](#set-weight-progress)
-        9. [Delete weight](#delete-weight-progress)
-        10. [Check Weight Progress](#check-weight-progress)
+        3. [Set user name](#set-user-name)
+        4. [Set user age](#set-user-age)
+        5. [Set user gender](#set-user-gender)
+        6. [Set user height](#set-user-height)
+        7. [Set user weight-goal](#set-user-weight-goal)
+        8. [Set user weight](#set-user-weight)
+        9. [Delete user weight record](#delete-user-weight-record)
+        10. [Check user weight progress](#check-user-weight-progress)
     2. [Daily Food Record Features](#32-daily-food-record-features)
         3. [Record meals](#record-meals)
         4. [Check meals](#check-meals)
@@ -122,8 +122,6 @@ set-profile {name} {age} {gender} {height} {weight} {weight goal}
 
 ## 3 Features 
 
-## 3.1 Profile Features
-
 Note that:
 * Name is restricted to strings with no spaces.
 * Age is restricted to whole numbers only.
@@ -131,6 +129,8 @@ Note that:
 * Height has units in centimetres.
 * Weight has units in kilograms.
 * Calories has units in kilocalories.
+
+## 3.1 Profile Features
 
 ### Set user profile
 Creates a new profile
@@ -173,7 +173,92 @@ Weight        80.00 kilograms
 Weight Goal:  75.00 kilograms
 ```
 
-### Set Weight Progress
+### Set user name
+
+Update name in profile.
+
+Format: `set-name NAME`
+
+Example of usage: 
+
+`set-name Jane`
+
+* Expected Outcome:
+
+```
+set-name Jane
+Your username has been changed to Jane.
+```
+
+### Set user age
+
+Update age in profile.
+
+Format: `set-age AGE`
+
+Example of usage: 
+
+`set-age 18`
+
+* Expected Outcome:
+
+```
+set-age 18
+Your age has been changed to 18.
+```
+
+### Set user gender
+
+Update gender in profile.
+
+Format: `set-age GENDER`
+
+Example of usage: 
+
+`set-gender female`
+
+* Expected Outcome:
+
+```
+set-gender female
+Your gender has been changed to female.
+```
+
+### Set user height
+
+Update height in profile.
+
+Format: `set-height HEIGHT`
+
+Example of usage: 
+
+`set-height 170`
+
+* Expected Outcome:
+
+```
+set-height 170
+Your height has been changed to 170.00.
+```
+
+### Set user weight-goal
+
+Update weight-goal in profile.
+
+Format: `set-weight-goal WEIGHT-GOAL`
+
+Example of usage: 
+
+`set-weight-goal 65`
+
+* Expected Outcome:
+
+```
+set-weight-goal 65
+Your weight goal has been changed to 65.00.
+```
+
+### Set user weight
 
 Update weight in profile when there are changes to user's weight.<br>
 Application will keep track and store records of user's weight over time.
@@ -191,7 +276,7 @@ set-weight 70
 Your weight has been changed to 70.00.
 ```
 
-### Delete Weight Progress
+### Delete user weight record
 
 Delete a specific weight record.
 
@@ -208,8 +293,9 @@ delete-weight 1
 Weight Record: 80.0kg has been removed successfully!
 ```
 
-### Check Weight Progress
-Check current weight progress from the beginning.
+### Check user weight progress
+
+Check user weight record progression.
 
 Format: `check-weight-progress`
 
@@ -249,8 +335,6 @@ Example of usage:
          Maintain your diet! You have gained 10.00 kg since the beginning!
                                                                                   
     ```  
-
-
 
 ## 3.2 Daily Food Record Features
 
