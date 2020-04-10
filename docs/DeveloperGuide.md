@@ -272,7 +272,7 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
+![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_DeleteFromSemCommand.png?raw=true)
 
 ### 4.2.2 `Delete from Available` feature
 
