@@ -306,7 +306,7 @@ public class ParserTest {
                         capitalize(HelpCommand.COMMAND_WORD), HelpCommand.COMMAND_USAGE)));
     }
 
-    /** EditCommand tests */
+    /** EditCommand tests. */
     @Test
     public void parseEditCommand_expectedSuccess() {
         Command parsedCommand = Parser.parseCommand(EditCommand.COMMAND_WORD + " 1");
@@ -330,7 +330,7 @@ public class ParserTest {
                         capitalize(EditCommand.COMMAND_WORD), EditCommand.COMMAND_USAGE)));
     }
 
-    /** Calendar tests */
+    /** Calendar tests. */
     @Test
     public void parseCalendarCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/01/20");
