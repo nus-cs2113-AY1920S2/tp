@@ -286,7 +286,7 @@ public class Controller {
         return new HelpingCommand();
     }
 
-    private static FindCommand processFindCommand(String args) throws InputException{
+    private static FindCommand processFindCommand(String args) throws InputException {
         if (args.length() < 1) {
             throw new InputException("Please enter your keyword to find.");
         }
