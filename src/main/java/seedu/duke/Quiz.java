@@ -15,6 +15,7 @@ public class Quiz {
      * Generate a random number with a set upper limit.
      * @param upperRange Upper limit of random number.
      * @return Random number generated.
+     * @throws EscException if card list of chosen subject is empty.
      */
     public static int generateRandomInt(int upperRange) throws EscException {
         if (upperRange < 1) {
@@ -28,12 +29,15 @@ public class Quiz {
      * Retrieves a random card from the card list.
      * @param cardlist Card list where card is taken from.
      * @return retrievedCard
+     * @throws EscException if card list of chosen subject is empty.
      */
     public static Card retrieveCard(CardList cardlist) throws EscException {
         int size = cardlist.size();
         Card retrievedCard;
         try {
             int randomInt = generateRandomInt(size);
+            // To check that the randomInt is smaller than the given size.
+            assert randomInt < size : "randomly generated index should be smaller than cardlist size";
             retrievedCard = cardlist.getCard(randomInt);
         } catch (EscException e) {
             throw e;
@@ -79,6 +83,7 @@ public class Quiz {
      * @param cards Stack of cards to quiz from.
      * @param set Set of cards that has already been quizzed.
      * @return Score obtained from question.
+     * @throws EscException if card list of chosen subject is empty.
      */
     public static double quizNext(CardList cards, HashSet<Card> set) throws EscException {
         Card questionCard = retrieveCard(cards);
@@ -94,6 +99,10 @@ public class Quiz {
         if (userAnswer.equals("exitquiz")) {
             return -1.0;
         }
+
+        // To check that quiz terminates once user inputs the termination command.
+        assert !userAnswer.equals("exitquiz") : "method should have terminated already";
+
         String answer = questionCard.getAnswer();
         System.out.println("Correct Answer: " + answer);
         double score = markCorrectness();

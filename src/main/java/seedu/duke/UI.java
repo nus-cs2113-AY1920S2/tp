@@ -83,10 +83,14 @@ public class UI {
                 + "\tscore s/<INDEX>                            View previous scores of quizzes from specified "
                         + "subject\n"
                 + "\n"
+                + "\taddevent e/<DESCRIPTION> d/<DATE>          Add an event\n"
+                + "\tlistevent                                  List all events\n"
+                + "\tdeleteevent e/<INDEX>                      Delete an event\n"
+                + "\tshowupcoming d/<DAYS>                      Show upcoming events\n"
+                + "\n"
                 + "\thelp                                       Displays the help page\n"
                 + "\texit                                       Exits the program";
         //+ "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
-        //+ "\tselect <INDEX> Select a subject by subject index\n";
 
         System.out.println(helpMessage);
     }

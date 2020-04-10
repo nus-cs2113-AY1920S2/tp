@@ -12,7 +12,8 @@ public class DeleteCardCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "deletecard";
 
-    public static final String MESSAGE_USAGE = "To delete card, type command: delete s/[SUBJECT INDEX] c/[CARD INDEX]";
+    public static final String MESSAGE_USAGE = "To delete card, type command: deletecard "
+                                                + "s/[SUBJECT INDEX] c/[CARD INDEX]";
 
     private int subjectIndex;
 
@@ -42,6 +43,5 @@ public class DeleteCardCommand extends DeleteCommand {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
         CardList cardList = chosenSubject.getCardList();
         cardList.removeCard(this.cardIndex);
-        //ui display result list
     }
 }

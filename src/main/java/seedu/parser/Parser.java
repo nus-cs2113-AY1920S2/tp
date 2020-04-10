@@ -4,6 +4,7 @@ import seedu.cards.Card;
 import seedu.commands.Command;
 import seedu.commands.AddSubjectCommand;
 import seedu.commands.AddCardCommand;
+import seedu.commands.EditCardCommand;
 import seedu.commands.DeleteCardCommand;
 import seedu.commands.DeleteSubjectCommand;
 import seedu.commands.ListCardCommand;
@@ -60,6 +61,9 @@ public class Parser {
 
         case AddCardCommand.COMMAND_WORD:
             return prepareAddCard(arguments);
+
+        case EditCardCommand.COMMAND_WORD:
+            return prepareEditCard(arguments);
 
         case DeleteSubjectCommand.COMMAND_WORD:
             return prepareDeleteSubject(arguments);
@@ -136,6 +140,24 @@ public class Parser {
         Card cardToAdd = new Card(cardArgs[0],cardArgs[1]);
 
         return new AddCardCommand(subjectIndex, cardToAdd);
+    }
+
+    private static Command prepareEditCard(String[] arguments) throws EscException {
+        checkNumberOfArguments(arguments, EditCardCommand.MESSAGE_USAGE);
+        arguments[1] = " " + arguments[1];
+        checkArgumentPrefixes(arguments[1], EditCardCommand.MESSAGE_USAGE, SUBJECT_ARG,
+                            CARD_ARG, QUESTION_ARG, ANSWER_ARG);
+
+
+        int subjectIndex = getSubjectIndex(arguments[1]);
+        int cardIndex = getCardIndex(arguments[1]);
+
+
+        String[] cardArgs = getQuestionAndAnswer(arguments[1],EditCardCommand.MESSAGE_USAGE);
+
+        Card cardToAdd = new Card(cardArgs[0],cardArgs[1]);
+
+        return new EditCardCommand(subjectIndex, cardIndex, cardToAdd);
     }
 
     /**
@@ -275,7 +297,7 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new EscException("The number of questions to quiz is needed.");
             }
-            if (numToQuiz == 0) {
+            if (numToQuiz <= 0) {
                 throw new EscException("Number of questions to quiz has to be a positive integer.");
             } else if (num.split(" ").length > 1) {
                 throw new EscException("Too many inputs. " + QuizCommand.MESSAGE_USAGE);
@@ -309,17 +331,15 @@ public class Parser {
      * @throws EscException if the card index is absent or non-integer.
      */
     private static int getCardIndex(String argument) throws EscException {
-        String argWithoutPrefixes = argument.split(CARD_ARG)[1];
-        String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").trim();
-
-        if (cardIndexString.trim().isEmpty()) {
-            throw new EscException("The card index is required");
-        }
-
         try {
+            String argWithoutPrefixes = argument.split(CARD_ARG)[1];
+            int space = argument.indexOf(" ");
+            String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").substring(0, space + 1).trim();
             return Integer.parseInt(cardIndexString);
-        } catch (NumberFormatException  e) {
+        } catch (NumberFormatException e) {
             throw new EscException("The card index has to be an integer.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new EscException("The card index is required.");
         }
     }
 
@@ -329,7 +349,7 @@ public class Parser {
      * @throws EscException if the event topic is absent.
      */
     private static String getEventTopic(String argument) throws EscException {
-        String argWithoutPrefixes = argument.split(DATE_ARG)[0].split(EVENT_ARG)[1];
+        String argWithoutPrefixes = argument.split(DATE_ARG)[0];
         String topicString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
 
         if (topicString.trim().isEmpty()) {
@@ -353,7 +373,7 @@ public class Parser {
         }
         try {
             return Integer.parseInt(eventIndexString);
-        } catch (NumberFormatException  e) {
+        } catch (NumberFormatException e) {
             throw new EscException("The event index has to be an integer.");
         }
     }
@@ -365,9 +385,8 @@ public class Parser {
      */
     private static LocalDate getEventDate(String argument) throws EscException {
         DateTimeFormatter dateKey = DateTimeFormatter.ofPattern("[dd/MM/yyyy][d/M/yyyy][dd/MM/yy][d/M/yy]"
-                + "[yyyy/MM/dd][yyyy-MM-dd][yyyy-M-d]"
                 + "[dd-MM-yyyy][d-M-yyyy][dd-MM-yy][d-M-yy]"
-                + "[dd.MM.yy][d.M.yy][dd.MM.yyyy][d.M.yyyy]"
+                + "[dd.MM.yyyy][d.M.yyyy][dd.MM.yy][d.M.yy]"
                 + "[dd-MMM-yyyy][d-MMM-yyyy][d-MMM-yy]");
 
         LocalDate parsedDate;

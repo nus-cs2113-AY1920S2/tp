@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Command class for the ScoreCommand.
+ * Command class for the ShowUpcomingCommand.
  */
 public class ShowUpcomingCommand extends Command {
 
@@ -22,14 +22,14 @@ public class ShowUpcomingCommand extends Command {
     private int dateRange;
 
     /**
-     * Initialises the parameters for score command.
+     * Initialises the parameters for showupcoming command.
      */
     public ShowUpcomingCommand(int dateRange) {
         this.dateRange = dateRange;
     }
 
     /**
-     * View all the scores attained for a subject.
+     * Show all upcoming events.
      */
     @Override
     public void execute(SubjectList subjectList) throws EscException {

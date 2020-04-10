@@ -93,6 +93,7 @@ public class SubjectList {
         try {
             System.out.print(subjects.get(index).getSubject() + " has been deleted");
             subjects.remove(index);
+            System.out.println();
             listSubjects(subjects);
         } catch (IndexOutOfBoundsException e) {
             throw new EscException("The subject item does not exist.");

@@ -19,11 +19,6 @@ public class QuizCommand extends Command {
 
     private int numToQuiz;
 
-    public QuizCommand(int subjectIndex) {
-        this.subjectIndex = subjectIndex - 1;
-        this.numToQuiz = -1;
-    }
-
     public QuizCommand(int subjectIndex, int numToQuiz) {
         this.subjectIndex = subjectIndex - 1;
         this.numToQuiz = numToQuiz;

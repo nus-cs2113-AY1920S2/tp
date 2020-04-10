@@ -51,6 +51,7 @@ public class Storage {
                 throw new EscException("File creation error");
             }
         }
+        assert saveFile.exists() : "the save file should be created";
     }
 
     /**
@@ -95,7 +96,7 @@ public class Storage {
 
         return returnList;
     }
-
+    
     /**
      * Saves the current card list to the save file.
      * @param currSub the current subject list
