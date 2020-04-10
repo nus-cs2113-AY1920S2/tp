@@ -7,7 +7,6 @@ import seedu.exception.PacException;
 import seedu.ui.UI;
 
 import java.util.Collections;
-
 import static seedu.pac.Pac.studentListCollection;
 import static seedu.student.StudentList.listNameComparator;
 
