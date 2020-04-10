@@ -2,9 +2,9 @@
 
 By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT`      Course: `CS2113`
 
-1. [Introduction](#Introduction)
-2. [Quick Start](#quick-start)
-3. [Features](#features)
+1. [Introduction](#1-Introduction)
+2. [Quick Start](#2-quick-start)
+3. [Features](#3-features)
     1. [Command Format](#command-format)
         1. [Asking for help with valid commands : `help`](#help-command)
         2. [Viewing articles or jobs : `view`](#view-command)
@@ -14,15 +14,15 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
         5. [Deleting saved/created `article`, `job`, or `note`: `delete `](#delete-command)
         7. [Adding an extract to `article`, `job`, or `note`: `list`](#add-command)
         8. [Exiting the program : `exit`](#exit-command)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
-6. [Acknowledgement](#acknowledgement)
+4. [FAQ](#4-faq)
+5. [Command Summary](#5-command-summary)
+6. [Acknowledgement](#6-acknowledgement)
 
-## Introduction
+## 1. Introduction
 
 TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop app for **managing** information about technology including news, jobs or even notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes [Hacker News](https://github.com/HackerNews/API) API to give the user the option to **view** new news articles and questions/jobs. However, note that the purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we help the user to manage metadata such as title, URL and date of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` functionality. If the device is not connected to the internet, the user can **view** pre-loaded articles and jobs. The user also has the option to add interesting articles, jobs and notes about technology themselves using the **create** functionality. 
 
-## Quick Start
+## 2. Quick Start
 
 *  Ensure you have Java `11` or above installed in your Computer.
 *  Download the latest `tp.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v1.0).
@@ -36,7 +36,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
     * **`exit`** : exits the app.
 
 
-## Features
+## 3. Features
 
 
 ### Command Format
@@ -332,13 +332,13 @@ Expected Outcome:
 
 ****
 
-## FAQ
+## 4. FAQ
 
 *Q*: How do I transfer my data to another Computer? 
 
 *A*: Copy three text files called "articlelist.json", "notelist.json", 'joblist.json' that has saved your information into the directory from which you will run the application using the jar file in your new computer. You are then set to go!
 
-## Command Summary
+## 5. Command Summary
 * *Help*  : `help`; 
 e.g. `help`
 * *View* : `view [article / job]`;
@@ -356,5 +356,5 @@ e.g. `addinfo article 1 It turns out that yes, fresh grads and keener interns do
 * *Exit* : `exit`
 e.g. `exit`
 
-## Acknowledgement
+## 6. Acknowledgement
 Our UserGuide has been heavily inspired by the superb format of the AddressBook user guide that we were given access to for this course.
