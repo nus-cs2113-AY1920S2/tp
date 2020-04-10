@@ -24,12 +24,12 @@ daily so that restaurant owners can better manage their business operations.
   3. Feature: List the Reservations
       - What it does: Allows the users to input `list reservation` to list all reservations, or input `list served reservation` to list all **served** reservations, or input `list unserved reservation` to list all **unserved** reservations.
       - Justification: This feature is needed for restaurant to review all reservations currently in the application.
-      - Highlights: When certain types of reservations are required to be listed, the `ListServedCommand` and `ListUnservedCommand` class will do a linear search among `reservations` list and check the reservation status 
+      - Highlights: When certain types of reservations are required to be listed, the `ListServedCommand` and `ListUnservedCommand` class will do a linear search among `reservations` list and check the reservation status.
   
   4. Feature: Search the Reservations
       - What it does: Allows the users to input `search reservation` to search for a specific reservation or all reservations in a certain day.
       - Justification: This feature is needed for restaurant to look at the details of a specific reservation or review all the reservations in a specific day.
-      - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list and check the reservation number and the date to find the matched reservations.
+      - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list to find the matched reservations.
   
   5. Feature: Load the `Reservation` from the **"report.txt"** file to the `reservations` list
       - What it does: The reservations in the txt file will be automatically loaded into the `reservations` list when the program is started.
@@ -38,23 +38,23 @@ daily so that restaurant owners can better manage their business operations.
   
   6. Feature: Clear the `reservations` list
       - What it does: Allows the user to input `clear reservation` to clear all the reservations in the `reservations` list.
-      - Justification: This feature is needed for restaurant to clear all the reservations added before if needed.
-      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly to clear all the `Reservations`.
+      - Justification: This feature exists in case the restaurant really needs it.
+      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly to clear all the `Reservation`s.
   
   7. Adding Logger to the Reservation-related section and Ui
       - What it does: It records down all the `add`, `mark` and `delete` activities which can modify the `reservations` list. A fail to set up the logger will also be recorded.
-      - Justification: The restaurant need to keep track of the log regarding its reservations.
+      - Justification: The restaurant need to keep track of the log of its reservations.
 
 * **Contributions to documentation:**
   1. Updated User Guide for all reservation-related features.
-  2. Added the legend for input format to the beginning of `Features` section in User Guide.
+  2. Added the legend for command format of `Features` section in User Guide.
 
 * **Contributions to the DG:**
   1. Added description for the `Search Reservation` features.
   2. Added reservation-related user stories to the `User Stories` section.
 
 * **Contributions to team-based tasks:** Project Management
-  1. Creating the milestones
+  1. Creating the milestones v1.0, v2.0, v2.1
   2. Maintaining the issue tracker: I used the [Github issues](https://github.com/AY1920S2-CS2113-T14-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3ASibingWu) to allocate the upcoming work.
 
-* **Review/mentoring contributions:** I reviewed some pull requests from my teammates: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148)
+* **Review/mentoring contributions:** I reviewed some pull requests from my teammates: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148), [#149](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/149)
