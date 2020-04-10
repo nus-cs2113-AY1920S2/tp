@@ -59,8 +59,24 @@
      * Run the tests and ensure they all pass.
 
 ## 2. Design
-![image_info](./pictures/ClassDiagram.png)
-_Fig 2.1. Class diagram of the Jikan program_
+The section provides a high-level explanation of how the Jikan software is designed.
+
+### 2.1 High-Level Architecture
+The users interact with the Jikan software which modifies the local storage data file.
+
+Within the Jikan software, there are 5 main components:
+* **Parser Component** - Parses the user inputs and calls the relevant `Command` object to execute the desired
+command.
+* **Ui Component** - Prints to the user the output of the desired commands.
+* **Commands Component** - Contains all the `Commands` to be called by the `Parser` based on user inputs.
+* **Activities Component** - Maintains the non-permanent state of all `Activities` in the `Activity List` to be accessed
+by the executing `Commands`.
+* **Storage Component** - Interacts with the local storage file, which contains the state of all activities, lasting
+even when the program terminates. It retrieves this state of activities and populates the `Activity List` at the start
+of each session.
+
+![image_info](./pictures/Architecture_Diagram.png)
+_Fig 2.1. Architecture diagram of the Jikan program_
 
 
 ## 3. Implementation
