@@ -25,9 +25,7 @@ import static seedu.nuke.util.Message.messageConfirmDeleteTask;
 public class ListNumberPrompt extends Command {
     public static final Pattern INDICES_FORMAT = Pattern.compile("(?<indices>(?:\\s*\\d+)+\\s*)");
 
-    private ArrayList<Directory> filteredList;
     private ArrayList<Integer> indices;
-    private DirectoryLevel directoryLevel;
 
     /**
      * Constructs the command to process the indices received as input from the user.
@@ -36,18 +34,19 @@ public class ListNumberPrompt extends Command {
      *  The indices received as input from the user
      */
     public ListNumberPrompt(ArrayList<Integer> indices) {
-        this.filteredList = Executor.getFilteredList();
         this.indices = indices;
-        this.directoryLevel = Executor.getDirectoryLevel();
     }
 
     /**
      * Executes the prompt to confirm the deletion of directories.
      *
+     * @param filteredList
+     *  The filtered L
      * @return
      *  The Command result of the execution
      */
-    private CommandResult executePromptConfirmation() {
+    private CommandResult executePromptConfirmation(ArrayList<Directory> filteredList, DirectoryLevel directoryLevel) {
+
         switch (directoryLevel) {
 
         case MODULE: {
@@ -102,11 +101,13 @@ public class ListNumberPrompt extends Command {
      */
     @Override
     public CommandResult execute() {
+        ArrayList<Directory> filteredList = Executor.getFilteredList();
+        DirectoryLevel directoryLevel = Executor.getDirectoryLevel();
         Executor.preparePromptConfirmation();
         Executor.setIndices(indices);
 
         try {
-            return executePromptConfirmation();
+            return executePromptConfirmation(filteredList, directoryLevel);
         } catch (IndexOutOfBoundsException e) {
             Executor.terminatePrompt();
             return new CommandResult(MESSAGE_LIST_NUMBER_NOT_FOUND);
