@@ -24,7 +24,7 @@ public class HelpCommand implements Command {
      */
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap) {
         String message;
-        String[] userCommand = command.split(" ", 3);
+        String[] userCommand = command.split("\\s+", 3);
         if (userCommand[0].equalsIgnoreCase("help") && userCommand.length == 1) {
             message = HelpTextUi.GENERAL_HELP_MESSAGE;
         } else if (userCommand[1].equalsIgnoreCase("exit")) {

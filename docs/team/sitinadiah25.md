@@ -13,24 +13,42 @@ to store all information in a single place and users can always have quick acces
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
+**Major enhancement:** I implemented the `EditPatientCommand`
+
+
 **Major enhancement:** I implemented the `Appointment` and `AppointmentMap` class and parts of the Appointment-related commands
-    + What it does:
-        - The Appointment class stores information regarding appointments that the user may want to schedule. This includes 
-        the patient's nric, date and time of appointment and the reason for the appointment. 
-        - The AppointmentMap class uses a HashMap from Java Collection framework to store the Appointment objects. 
-        - The AppointmentMap maps the AppointmentID of an Appointment object to the object itself.   
-        - Commands that I implemented includes Add Appointment and List Appointment. 
-    + Justification: 
-        - The data structure (HashMap) was used to look up an Appointment object. The HashMap has O(1) performance for every AppointmentID 
+
++ What it does:
+    
+    - The Appointment class stores information regarding appointments that the user may want to schedule. This includes 
+    the patient's nric, date and time of appointment and the reason for the appointment. 
+        
+    - The AppointmentMap class uses a HashMap from Java Collection framework to store the Appointment objects. 
+        
+    - The AppointmentMap maps the AppointmentID of an Appointment object to the object itself.   
+        
+    - Commands that I implemented includes Add Appointment, Delete Appointment and List Appointment. 
+        
++ Justification: 
+    
+    - The data structure (HashMap) was used to look up an Appointment object. The HashMap has O(1) performance for every AppointmentID 
         search, hence it will be faster when there are large number of appointments.
-    + Highlights: 
-        - 
+        
++ Highlights: 
+
+    - It was challenging to decide whether HashMaps or ArrayLists would be a more appropriate data structure to use for 
+    the list of appointments. 
+    
+    - We also had to decide whether to use the AppointmentID or Datetime as a key for the HashMap but as our future plans is to 
+    make this application multi-user, we decided that using an AppointmentID would be a better choice as many users may have an 
+    appointment schedule at the same Datetime.
 
 **Other contributions:**
 - Project management:
     + Maintaining the issue tracker on GitHub
 - Enhancements to existing features:
     + Enhancement of Help Command
+    + Validation of Date and Time
     + Refactoring of the Parser and Command classes into sub-classes
 - Community:
     + Reported bugs and suggestions for other teams in the class:  
