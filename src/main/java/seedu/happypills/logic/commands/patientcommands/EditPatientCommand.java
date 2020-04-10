@@ -131,8 +131,8 @@ public class EditPatientCommand extends PatientCommand {
     /**
      * Executes the edit patient command.
      *
-     * @param patients The list of patients
-     * @param appointments The list of appointments
+     * @param patients       The list of patients
+     * @param appointments   The list of appointments
      * @param patientRecords The list of patient records
      * @return Error Message or Success Message
      * @throws HappyPillsException if NRIC already exist in the patient list
@@ -158,13 +158,13 @@ public class EditPatientCommand extends PatientCommand {
             content = newContent.substring(2);
         }
         Patient editPatient = findPatient(patients);
-        String output = "";
         if (editPatient == null) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
+        String output = "";
         content = content.trim();
         output = checkTag(field, content, editPatient);
         saveEditedInformation(patients);
@@ -176,7 +176,7 @@ public class EditPatientCommand extends PatientCommand {
      * Checks which field of information the user intends to edit.
      *
      * @param field       The tag given by the user.
-     * @param content   The information given by the user.
+     * @param content     The information given by the user.
      * @param editPatient The patient's information.
      * @throws HappyPillsException If the edit field is not valid.
      */
@@ -216,7 +216,7 @@ public class EditPatientCommand extends PatientCommand {
     /**
      * Saves the edited patient record details with the information provided by user.
      *
-     * @param patients       The list of patients on which the commands are executed on.
+     * @param patients The list of patients on which the commands are executed on.
      */
     private void saveEditedInformation(PatientMap patients) {
         try {
