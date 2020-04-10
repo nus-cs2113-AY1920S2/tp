@@ -7,7 +7,10 @@ import jikan.ui.Ui;
 
 import jikan.exception.InvalidTimeFrameException;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
@@ -24,7 +27,7 @@ public class ListCommand extends Command {
      * Constructor to create a new list command.
      */
     public ListCommand(String parameters) {
-        super(parameters.strip());
+        super(parameters);
     }
 
     /**
@@ -35,9 +38,10 @@ public class ListCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         // If no time frame is specified, print the entire list
-        if (parameters == null) {
+        if (parameters == null || parameters.isBlank()) {
             listAll(activityList);
         } else {
+            parameters = parameters.strip();
             try {
                 listInterval(activityList);
             } catch (DateTimeParseException e) {
@@ -100,7 +104,9 @@ public class ListCommand extends Command {
             // Fallthrough
         case "monthly":
             startDate = getStartOfMonth(listInputs);
-            if (startDate == null) return;
+            if (startDate == null) {
+                return;
+            }
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
@@ -143,7 +149,8 @@ public class ListCommand extends Command {
             }
         } else {
             startDate = LocalDate.now();
-        } return startDate;
+        }
+        return startDate;
     }
 
     private void printList(ActivityList activityList, LocalDate startDate, LocalDate endDate)

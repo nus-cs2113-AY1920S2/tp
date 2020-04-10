@@ -27,6 +27,7 @@ import java.io.File;
 
 import jikan.cleaner.LogCleaner;
 
+import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -72,7 +73,7 @@ public class Parser {
         switch (instruction) {
         case "bye":
             if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
-                Ui.printDivider("Extra parameters detected!");
+                Ui.printDivider("Extra parameters detected.");
                 break;
             }
             command = new ByeCommand(null);
@@ -82,19 +83,19 @@ public class Parser {
                 command = new StartCommand(tokenizedInputs[1], scanner);
             } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
                 makeInfoLog("Activity started without activity name");
-                Ui.printDivider("Start command cannot be empty");
+                Ui.printDivider("Activity name cannot be empty.");
             }
             break;
         case "end":
             if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
-                Ui.printDivider("Extra parameters detected!");
+                Ui.printDivider("Extra parameters detected.");
                 break;
             }
             command = new EndCommand(null);
             break;
         case "abort":
             if (tokenizedInputs.length > 1 && !tokenizedInputs[1].isBlank()) {
-                Ui.printDivider("Extra parameters detected!");
+                Ui.printDivider("Extra parameters detected.");
                 break;
             }
             command = new AbortCommand(null);
@@ -110,7 +111,7 @@ public class Parser {
             try {
                 command = new DeleteCommand(tokenizedInputs[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                Ui.printDivider("Activity name cannot be empty!");
+                Ui.printDivider("Activity name cannot be empty.");
             }
             break;
         case "find":
@@ -131,7 +132,7 @@ public class Parser {
             try {
                 command = new EditCommand(tokenizedInputs[1]);
             } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
-                Ui.printDivider("Activity name cannot be empty!");
+                Ui.printDivider("Activity name cannot be empty.");
                 makeInfoLog("Edit command failed as there was no existing activity name provided.");
             }
             break;
@@ -146,19 +147,19 @@ public class Parser {
             try {
                 command = new ContinueCommand(tokenizedInputs[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                Ui.printDivider("Activity name cannot be empty!");
+                Ui.printDivider("Activity name cannot be empty.");
                 makeInfoLog("Continue command failed as there was no activity name provided.");
             }
             break;
         case "graph":
             try {
                 command = new GraphCommand(tokenizedInputs[1]);
-            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-                Ui.printDivider("Please input an integer for the time interval.\n"
-                        + "If you'd like to graph by tags, enter the command <graph tags>.");
+            } catch (NumberFormatException e) {
+                Ui.printDivider("Please input an integer for the time interval.");
             } catch (ExtraParametersException e) {
-                Ui.printDivider("Extra parameters or invalid format detected!\n"
-                        + "Use activities / tags / allocations to view the respective graphs.");
+                Ui.printDivider("Extra parameters or invalid format detected!");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
             }
             break;
         case "goal":
@@ -169,7 +170,7 @@ public class Parser {
                     command = new GoalCommand(tokenizedInputs[1], scanner);
                 }
             } catch (StringIndexOutOfBoundsException e) {
-                Ui.printDivider("Tag name cannot be empty!");
+                Ui.printDivider("Tag name cannot be empty.");
             }
             break;
         default:

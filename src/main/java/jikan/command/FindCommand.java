@@ -83,10 +83,14 @@ public class FindCommand extends Command {
      */
     private void populateLastShownList(String keyword, ArrayList<Activity> activities) {
         for (Activity i : activities) {
-            if (i.getName().contains(keyword) && !lastShownList.activities.contains(i)) {
+            if (containsIgnoreCase(i.getName(), keyword) && !lastShownList.activities.contains(i)) {
                 lastShownList.activities.add(i);
             }
         }
+    }
+
+    private boolean containsIgnoreCase(String str, String subString) {
+        return str.toLowerCase().contains(subString.toLowerCase());
     }
 
 }

@@ -70,6 +70,10 @@ public class Activity {
         return tags;
     }
 
+    public String getTagsAsString() {
+        return String.join(",", tags);
+    }
+
     public void setTags(Set<String> tags) {
         this.tags = tags;
     }

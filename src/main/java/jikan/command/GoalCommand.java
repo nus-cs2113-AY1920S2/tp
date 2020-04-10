@@ -80,14 +80,14 @@ public class GoalCommand extends Command {
                         throw new NoSuchTagException();
                     } else {
                         addTagLine(tagName + "," + goalTime);
-                        Ui.printDivider("The goal for " + tagName + " has been added!");
+                        Ui.printDivider("The goal for " + tagName + " has been added.");
                     }
                 }
             } else if (deleteDelim != -1) {
                 tagName = parameters.substring(0, deleteDelim - 1).strip();
                 index = checkIfExists(tagName);
                 if (index != -1) {
-                    Ui.printDivider("The goal for this tag has been deleted!");
+                    Ui.printDivider("The goal for this tag has been deleted.");
                     deleteLine(index);
                 } else {
                     throw new NoSuchTagException();
@@ -97,22 +97,22 @@ public class GoalCommand extends Command {
             }
 
         } catch (EmptyTagException e) {
-            Ui.printDivider("Tag name cannot be empty!");
+            Ui.printDivider("Tag name cannot be empty.");
             Log.makeInfoLog("Goal command failed as no tag name was provided.");
         } catch (InvalidGoalCommandException e) {
-            Ui.printDivider("Invalid command format entered!");
+            Ui.printDivider("Invalid command format entered.");
             Log.makeInfoLog("Goal command failed as an incorrect format was provided.");
         } catch (IOException e) {
-            Ui.printDivider("Error reading the file!");
+            Ui.printDivider("Error reading the file.");
         } catch (NoSuchTagException e) {
-            Ui.printDivider("There is no such tag!");
+            Ui.printDivider("There is no such tag.");
             Log.makeInfoLog("Goal command failed as there was no such tag saved.");
         } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException
                 | EmptyGoalException | NumberFormatException e) {
-            Ui.printDivider("Please enter the goal in the format HH:MM:SS");
+            Ui.printDivider("Please enter the goal in the format HH:MM:SS.");
             Log.makeInfoLog("Goal command failed as an incorrect format for the goal time was provided.");
         } catch (NegativeDurationException e) {
-            Ui.printDivider("Please enter a positive goal time!");
+            Ui.printDivider("Please enter a positive goal time.");
             Log.makeInfoLog("Goal command failed as a negative goal time was provided.");
         }
     }
@@ -130,7 +130,9 @@ public class GoalCommand extends Command {
                 tagFile.createNewFile();
             }
         } catch (IOException e) {
-            System.out.println("Error loading/creating file");
+            Ui.printDivider("Error saving tag goal to data file.\n"
+                    + "Your changes have not been saved in the data file.\n"
+                    + "If the data file is open, please close it, restart the app and try again.");
         }
     }
 
@@ -181,11 +183,11 @@ public class GoalCommand extends Command {
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
             deleteLine(index);
             writeToFile(tagName + "," + goalTime);
-            Ui.printDivider("The goal for " + tagName + " was updated");
+            Ui.printDivider("The goal for " + tagName + " was updated.");
         } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Ui.printDivider("Okay then, what else can I do for you?");
         } else {
-            Ui.printDivider("Incorrect format entered, please only enter yes or no!");
+            Ui.printDivider("Incorrect format entered, please only enter yes or no.");
         }
     }
 

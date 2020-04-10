@@ -51,7 +51,7 @@ public class ViewGoalsCommand extends Command {
             }
             Ui.printGoals(tagsGoals, tagsActual);
         } catch (NullPointerException | EmptyTagException e) {
-            Ui.printDivider("There are no tags to display!");
+            Ui.printDivider("There are no tags to display.");
         }
     }
 
@@ -68,11 +68,9 @@ public class ViewGoalsCommand extends Command {
                 parseDataLine(dataScanner.nextLine(), tagsGoals);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Data file not found. Could not load into the current session's tag list!");
-        } catch (InvalidTimeFrameException e) {
-            System.out.println("Invalid time frame!");
+            System.out.println("Data file not found. Could not load into the current session's tag list.");
         } catch (NullPointerException e) {
-            System.out.println("Error!");
+            System.out.println("Error.");
         }
     }
 
@@ -81,7 +79,7 @@ public class ViewGoalsCommand extends Command {
      *
      * @param s String to parse.
      */
-    private void parseDataLine(String s, HashMap<String, Duration> tagsGoals) throws InvalidTimeFrameException {
+    private void parseDataLine(String s, HashMap<String, Duration> tagsGoals) {
         if (!s.isEmpty()) {
             List<String> strings = Arrays.asList(s.split(","));
             Duration duration = Duration.parse(strings.get(1));
