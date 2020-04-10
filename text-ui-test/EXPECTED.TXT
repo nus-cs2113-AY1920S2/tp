@@ -1065,5 +1065,9 @@ The stock has been cleared.
 
 Input next command:
 
+Dish rice successfully removed!
+
+Input next command:
+
 The menu, stock and reservations have been saved to report.txt
 The program is now exiting
