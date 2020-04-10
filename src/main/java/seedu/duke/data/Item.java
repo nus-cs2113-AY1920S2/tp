@@ -7,7 +7,7 @@ public class Item {
     private int quantity;
     private boolean isBought;
     private static final String BOUGHT = "B";
-    private static final String NOT_BOUGHT = "0";
+    private static final String NOT_BOUGHT = "X";
 
     //@@author trishaangelica
     /**
