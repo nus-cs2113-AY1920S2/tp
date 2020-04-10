@@ -57,6 +57,7 @@ public class ListTaskSortedCommandTest {
         assertEquals(MESSAGE_NO_TASKS_TO_SHOW, result.getFeedbackToUser());
     }
 
+    @Test
     public void testNormalTaskList() {
         ModuleManager.initialise();
         DirectoryTraverser.traverseTo(new Root());
