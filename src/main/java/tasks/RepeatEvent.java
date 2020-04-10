@@ -2,6 +2,7 @@ package tasks;
 
 import command.RepeatCommand;
 import common.Messages;
+import exceptions.AtasException;
 import seedu.atas.Parser;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.StringJoiner;
 
 //@@author e0309556
 public class RepeatEvent extends Event {
+    protected static final int NUM_OF_ENCODED_FIELDS = 11;
     public static final String REPEAT_ICON = "R";
     int numOfPeriod;
     String typeOfPeriod;
@@ -185,13 +187,17 @@ public class RepeatEvent extends Event {
      * Converts an encoded RepeatEvent back to a RepeatEvent object.
      * @param encodedTask RepeatEvent encoded using encodedTask()
      * @return repeatEvent with the correct attributes set
+     * @throws AtasException if there are invalid characters found in the encoded RepeatEvent
      * @throws DateTimeParseException if encoded startDateAndTime or endDateAndTime cannot be parsed
      * @throws IndexOutOfBoundsException if encodedTask is not a String returned by calling encodeTask() on
      *              an RepeatEvent
      */
     public static RepeatEvent decodeTask(String encodedTask)
-            throws DateTimeParseException, IndexOutOfBoundsException {
+            throws AtasException, DateTimeParseException, IndexOutOfBoundsException {
         String[] tokens = encodedTask.split("\\" + STORAGE_DELIMITER);
+        if (tokens.length != NUM_OF_ENCODED_FIELDS) {
+            throw new AtasException(Messages.INCORRECT_STORAGE_FORMAT_ERROR);
+        }
         assert tokens[0].equals(REPEAT_ICON);
         boolean isDone = Boolean.parseBoolean(tokens[1]);
         String name = tokens[2];
@@ -203,7 +209,6 @@ public class RepeatEvent extends Event {
         int periodCounter = Integer.parseInt(tokens[8]);
         LocalDateTime originalDateAndTime = Parser.parseDate(tokens[9]);
         String comments = tokens[10];
-        assert tokens.length == 11;
         RepeatEvent repeatEvent = new RepeatEvent(name, location, startDateAndTime, endDateAndTime,
                 comments, numOfPeriod, typeOfPeriod, originalDateAndTime, periodCounter);
         if (isDone) {
