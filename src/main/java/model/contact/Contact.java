@@ -263,6 +263,8 @@ public class Contact {
                                LocalTime startTime, Integer endDay, LocalTime endTime,
                                int currentWeekNumber) throws WfException {
 
+
+
         Slot slot = new Slot(startDay, startTime, endDay, endTime, currentWeekNumber).invoke();
         startDay = slot.getStartDay();
         endDay = slot.getEndDay();
@@ -323,6 +325,7 @@ public class Contact {
     private <T> void isValidLogic(Integer startDay, Integer endDay, int startWeekNumber, int endWeekNumber,
                                   Integer startBlock, Integer endBlock, T[][][] mainUserSchedule, T invalidBlock,
                                   String invalidBlockMessage) throws WfException {
+
         if (startDay.equals(endDay)) {
             if (startBlock.equals(endBlock)) {
                 if (mainUserSchedule[startWeekNumber - 1][startDay][startBlock].equals(invalidBlock)) {
@@ -441,6 +444,7 @@ public class Contact {
         }
 
         public Slot invoke() throws WfException {
+
             if (!(startDay >= 0 && startDay <= 13) || !(endDay >= 0 && endDay <= 13)) {
                 throw new WfException(MESSAGE_STARTENDDAY_OUT_OF_RANGE);
             }
