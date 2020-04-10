@@ -7,6 +7,8 @@ Since: `Feb 2020`
 Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
 <!-- @@author -->
 
+&nbsp;
+
 <!-- @@author trishaangelica -->
 ### Table of Contents
 * **[1. Introduction](#1-introduction)**
@@ -34,9 +36,11 @@ Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
     + [Find and Delete an item](#find-and-delete-an-item)
     + [Display and Clear the shopping list](#display-and-clear-the-shopping-list)
   
-    
  <!-- @@author -->
 
+&nbsp;
+
+***
 
 ## 1. Introduction
 
@@ -53,9 +57,10 @@ of SHOCO and is tailored for the developers, designers, and software testers of 
 &nbsp;
 
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
-&nbsp;
 
- <!-- @@author -->
+***
+
+<!-- @@author -->
 
 ## 2. Overview of the SHOCO application
 <!-- @@author Shannonwje -->
@@ -83,10 +88,12 @@ to <code>Duke</code>.
 At any point in time, <code>Duke</code> only stores up to one <code>Command</code> and no more. This
 <code>Command</code> has to be executed before <code>Duke</code> can receive more user input.
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
-&nbsp;
+
+***
 
 ## 3. Implementation
 This section will describe how the main features of the application are implemented.
@@ -151,10 +158,11 @@ This section will describe how the main features of the application are implemen
  and edit the price and quantity later when they knew the price and have decided the quantity. 
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
-&nbsp;
+***
 
 <!-- @@author trishaangelica --> 
 ### 3.2 Edit feature
@@ -208,12 +216,12 @@ order.
 
 Reason for choosing alternative 1: By allowing users to update any values they want, it provides them with greater convenience and freedom as they do not need to follow strict command "rules/order". Furthermore, having greater freedom on input values makes it a hassle-free process for the users.
 
-
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
-&nbsp;
+***
 
 <!-- @@author kokjoon97 --> 
 ### 3.3 Delete feature
@@ -259,9 +267,10 @@ Reason for choosing alternative 1: By abstracting out different command types as
 to work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality.
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 ### 3.4 Find feature
 #### 3.4.1 Current implementation
@@ -313,9 +322,10 @@ also be able to trace functionality bugs more easily if each command class deals
 <!-- @@author -->
   
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 <!-- @@author Shannonwje --> 
 ### 3.5 Mark and Unmark feature
@@ -375,9 +385,10 @@ future features to the mark and unmark feature easier as well.
 <!-- @@author -->
     
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 <!-- @@author JLoh579 -->
 ### 3.6 Display feature
@@ -428,9 +439,10 @@ also be able to trace functionality bugs more easily if each command class deals
 <!-- @@author -->
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 <!-- @@author kokjoon97 -->
 ### 3.7 Set budget feature
@@ -477,9 +489,10 @@ work in parallel.
 <!-- @@author -->
  
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 <!-- @@author Shannonwje --> 
 ### 3.8 Reset budget feature
@@ -528,9 +541,10 @@ to work in parallel.
   <!-- @@author -->
   
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;      
+***
  
 <!-- @@author JLoh579 -->
 ### 3.9 Clear list feature
@@ -575,9 +589,10 @@ also be able to trace functionality bugs more easily if each command class deals
 <!-- @@author -->
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
  
-&nbsp;
+***
  
 <!-- @@author trishaangelica -->
 ### 3.10 View help feature
@@ -623,9 +638,10 @@ Reason for choosing alternative 1: By abstracting out different command types as
 in parallel and also be able to spot bugs more easily as each class deals with a different functionality
  
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 ### 3.11 Exit program feature
 #### 3.11.1 Current implementation
@@ -666,10 +682,12 @@ omitted in the sequence diagram to emphasise on the other classes:
 better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
-&nbsp;
+***
+
 <!-- @@author kokjoon97 -->
 ## Appendix A: Product Scope
 This section talks about who this product is specially designed for and what it aims to achieve.
@@ -689,12 +707,11 @@ shopping lists and also providing helpful features like budget tracking
 
 <!-- @@author -->
 
-
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-
-&nbsp;
+***
 
 ## Appendix B: User Stories
 This section contains the user stories for the different versions of our product.
@@ -722,9 +739,11 @@ This section contains the user stories for the different versions of our product
 |v2.0|frugal home cook|see the remaining budget update based on the quantity of items|see how much I spend based on how much I buy|
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
+
 <!-- @@author kokjoon97 -->
 ## Appendix C: Non-Functional Requirements
 
@@ -734,9 +753,10 @@ This section contains the user stories for the different versions of our product
 <!-- @@author -->
 
 &nbsp;
+
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 <!-- @@author trishaangelica-->
 ## Appendix D: Instructions for Manual Testing
@@ -768,14 +788,11 @@ This section contains the user stories for the different versions of our product
         
         Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
   
-
    &nbsp;
-
     
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
-&nbsp;
-
+***
 
 ### Set and Reset a budget
 
@@ -821,8 +838,8 @@ This section contains the user stories for the different versions of our product
      
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
-&nbsp;        
-    
+***
+
 ### Add and Edit an item
 
 1. Add an item 
@@ -882,7 +899,8 @@ This section contains the user stories for the different versions of our product
  
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
-&nbsp;    
+***
+
 <!-- @@author -->
 
 <!-- @@author Shannonwje -->    
@@ -947,8 +965,8 @@ This section contains the user stories for the different versions of our product
      
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
      
-&nbsp;
-     
+***
+
 <!-- @@author -->
     
 <!-- @@author trishaangelica-->  
@@ -987,7 +1005,7 @@ This section contains the user stories for the different versions of our product
 
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
 
-&nbsp;
+***
 
 ### Display and Clear the shopping list
 
@@ -1008,6 +1026,5 @@ This section contains the user stories for the different versions of our product
       &nbsp;
   
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
-  
-&nbsp;   
+
 <!-- @@author -->

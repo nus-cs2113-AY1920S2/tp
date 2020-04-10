@@ -7,6 +7,8 @@ Since: `Feb 2020`
 Creators: `Trisha Labi` `Tan Kok Joon` `Phoon Jia Juin` `Joshua Loh` `Shannon Wong`
 <!-- @@author -->
 
+&nbsp;
+
 <!-- @@author trishaangelica -->
 ### Table of Contents
 * **[1. Introduction](#introduction)**
@@ -31,6 +33,7 @@ Creators: `Trisha Labi` `Tan Kok Joon` `Phoon Jia Juin` `Joshua Loh` `Shannon Wo
 
 &nbsp;
 
+***
 <!-- @@author kokjoon97 -->
 ## Introduction
 
@@ -45,10 +48,12 @@ SHOCO is a command-line interface (CLI) application that allows you to
 manage and plan your shopping list and budget. With better organisation and also a
 budget tracker, we are here to enhance your grocery-shopping experience and make the woes of
 grocery shopping disappear.
+
 &nbsp;
 
-
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
+
+***
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
@@ -57,10 +62,13 @@ grocery shopping disappear.
 3. Open the command prompt in the directory of the executable SHOCO and type in the following command:
    `java -jar SHOCO.jar`
 4. You are now all set to plan your shopping list!
-&nbsp;
 <!-- @@author -->
 
+&nbsp;
+
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
+
+***
 
 ## Features 
 
@@ -81,6 +89,7 @@ grocery shopping disappear.
   * e.g If you have an item named "apple" in the list, both `FIND APPLE` **AND** `FIND apple` will display this
   entry to the user.
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -187,6 +196,7 @@ Example of usage:
 
 `FIND apple`
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -239,6 +249,7 @@ Example of the usage:
    * This marks the 3rd item in your list as not bought yet.
    * The status of the 3rd item is now `[X]`
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -269,6 +280,7 @@ Example of usage:
 
 `SET b/3.00`
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -280,6 +292,7 @@ Resets the budget to be $0.00 for the user.
 
 Format: `RES`
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -291,6 +304,7 @@ Clears all items in the shopping list.
 
 Format: `CLEAR`
 <!-- @@author -->
+
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
@@ -343,8 +357,7 @@ your budget.
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
-
-&nbsp;
+***
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?
@@ -367,8 +380,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
-
-&nbsp;
+***
 
 <!-- @@author trishaangelica -->
 
