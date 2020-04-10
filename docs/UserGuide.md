@@ -60,7 +60,7 @@ contact.
 * You must add in your (main user's) contact before you can use the application. 
 If you try to enter a command before adding in your contact, WhenFree will remind
 you to key in your contact first. You can add as many contacts as you want thereafter.
-* `<Contact Name>`  should be a single word with no whitespace character.
+* `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces.
 * If you are unsure of how to obtain the NUSMODS links to the NUSMODS timetable, see the detailed instructions in 
 the [FAQ](#faq) section.
 
