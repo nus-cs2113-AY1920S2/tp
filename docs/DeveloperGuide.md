@@ -15,7 +15,8 @@ Pac. The following groups are in particular the intended audience of the documen
     2.2 [UI component](#22-ui-component)  
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
-    2.5 [Storage component](#25-storage-component)
+    2.5 [Storage component](#25-storage-component)  
+    2.6 [Command Interpreter component](#26-command-interpreter-component)  
 3. [Implementation](#3-implementation)  
     3.1 [Event](#31-event)  
     3.2 [Attendance](#32-attendance)  
@@ -32,7 +33,7 @@ Pac. The following groups are in particular the intended audience of the documen
 
 ## 1. Setting Up
 
-### 1.1. Requirements 
+### 1.1 Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
 or above installed in your Computer.
 1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
@@ -91,7 +92,7 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 Commands are the main classes to be executed in Pac. All of the specific Command classes inherit the 
 base Command abstract class, and utilize its abstract execute() method.  
 A subclass of Command is created and executed when the professor input a corresponding command.
- 
+
 ### 2.4 Parser component
 *Class diagram of the Parser component*  
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
@@ -117,7 +118,35 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-## 3. Implementation
+### 2.6 Command Interpreter component
+![CommandInterpreter](images/CommandInterpreter.png)   
+*to be added: Sequence diagram of Command Interpreter*  
+Command Interpreter is the main interpreter in Pac. It determines which command 
+category the user input belongs to, and creates respective command interpreter 
+correspond to user input.  
+The user input will be further interpreted by corresponding command interpreter, which
+returns Command for execution.  
+
+#### 2.6.1 Event Command Interpreter
+#### 2.6.2 Attendance Command Interpreter
+#### 2.6.3 Performance Command Interpreter
+Performance Command Interpreter interprets the user input when it belongs to the
+performance category. 
+When user input is passed to Performance Command Interpreter, it extracts the 
+second word in the user input and decides whether that string can be interpreted to a
+valid Command. If valid, the interpreter returns its corresponding Command. 
+If invalid, the interpreter throws PacException to inform the user. 
+Below shows the flow chart and sequence diagram of 
+Performance Command Interpreter.  
+![Flow chart](images/PerformanceCommandInterpreterFlowChart.png)  
+*Flow Chart of Performance Command Interpreter*  
+![Sequence diagram](images/PerformanceCommandInterpreterSequenceDiagram.png) 
+*Sequence diagram of Performance Command Interpreter*  
+
+#### 2.6.4 Seminar Command Interpreter
+#### 2.6.5 Student Command Interpreter
+
+## 3. Implementation  
 ### 3.1 Event
 ![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
@@ -155,6 +184,8 @@ either by complete match, or fuzzy match.
 ### 3.2 Attendance
 ![attendance](images/Attendance.png "Class diagram of Attendance component")        
 *Class diagram of the Attendance component*
+
+#### Program flow
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
 1. Then, the class will execute base on its function. It modifies `AttendanceList`.
@@ -168,6 +199,7 @@ create a new attendance list. `n/` and `p/` flags are used to insert new attenda
 ### 3.3 Calendar
 *Figure 2: Class diagram of the Calendar component*
 
+#### Program flow
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, either AddFirstSemester or AddSecondSemester class that corresponds the semester number is created. 
@@ -181,9 +213,12 @@ Note that:
 it can be implement to truncate longer names to fit nicely
 
 ### 3.4 Performance
-![Performance](images/Performance.png "Class diagram of Performance component")     
+![Performance](images/Performance.png)
 *Class diagram of the Performance component*  
-1. When a user enters a performance-related command, the command is analysed by `PerformanceCommandInterpreter`. 
+
+#### Program flow
+1. When a user enters a performance-related command, the command is analysed by 
+[PerformanceCommandInterpreter](#263-performance-command-interpreter). 
 1. Once determined, the relevant class that corresponds to the command is created (e.g. AddPerformance, 
 DeletePerformance...), and ask for relevant information (e.g. event name, student name, student result) from the user. 
 1. Then, with the information extracted from the previous step passed into it. It modifies PerformanceList` under
@@ -191,10 +226,72 @@ the event class correspond to the input event name.
 1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
-* All PerformanceList class should be created under an Event class. A PerformanceList class cannot exist 
+* All PerformanceList class are created under an Event. A PerformanceList cannot exist 
 by its own. 
-* All Performance commands are line-by-line commands. This aims to assist the user with correct command format and
-prevent time wasted on key in wrong commands. 
+* All Performance commands are step-by-step commands. This aims to provide convenience to the user by 
+prompting instructions and correct command format.  
+
+#### Features under Performance
+There are 5 features for performance in total, as shown below. 
+The features will be presented in the order of sequence diagram, followed by description.  
+ 
+1. Add performanceList
+![AddPerformance](images/AddPerformance.png)
+*Sequence diagram of AddPerformanceList*  
+AddPerformanceList is a subclass of Command. It allows the user to add performances
+by importing a student list, or add manually, to a desired performance list under an Event.  
+The method addToList() calls isImportList() from UI to get a user input. This user input
+decides whether the user will add performances by list or manually. 
+The method addByList() or addManually() will then get user input for Performance parameters, 
+which will be parsed by the PerformanceParser and return a Performance.  
+The Performance attained from the parser will be added to a desired performanceList. 
+
+1. Delete performanceList
+![DeletePerformance](images/DeletePerformance.png)
+*Sequence diagram of AddPerformance*  
+DeletePerformanceList is a subclass of Command. It allows the user to delete a performance
+from a desired performance list under an Event.  
+The method deleteFromList() calls getPerformance() from itself, which get the user input for 
+Performance parameters of the Performance to be deleted, and return a Performance.  
+The Performance attained from getPerformance() will be deleted from a desired performanceList. 
+
+1. Edit performanceList
+![EditPerformance](images/EditPerformance.png)
+*Sequence diagram of EditPerformance*  
+EditPerformanceList is a subclass of Command. It allows the user to edit a performance,
+either the student's name or result, from a desired performance list under an Event.  
+The method editPerformanceList() calls getPerformance() from itself, which get the user input for 
+student's name of the Performance to be edited, and return a Performance.  
+It then calls getPerformanceParameter() from UI to get a user input. This user input
+decides whether the user will edit the student's name or result.   
+The new parameter will be attained from the user in method editPerformance(performance, editType) 
+in PerformanceList.
+
+1. Sort performanceList
+    1. ![SortPerformanceByName](images/SortPerformanceList.png)
+    *Sequence diagram of SortPerformanceListByName*  
+    
+    1. ![SortPerformanceByResult](images/SortPerformanceListByResult.png)
+    *Sequence diagram of SortPerformanceListByResult*  
+SortPerformanceListByName and SortPerformanceListByResult are subclasses of Command. 
+They both allow the user to sort a performance list, by student's name or result as their
+name suggest. 
+The two Commands will be discussed together in this section as they have similar behaviour.  
+The methods sortPerformanceBy...() access a desired performanceList and check whether 
+the list is empty. 
+If empty, it calls display() in UI and inform the user list is empty.  
+Else, it will sort the performanceList by the type mentioned in its method name.  
+
+1. View performanceList  
+![ViewPerformance](images/ViewPerformanceList.png)
+*Sequence diagram of ViewPerformanceList*  
+ViewPerformanceList is a subclass of Command. It allows the user to view a self
+generated table based on the data in a desired performance list.  
+The method viewList() accesses a desired performanceList of given event, 
+and checks whether the list is empty.  
+If empty, it calls display() in UI and inform the user list is empty.  
+Else, it will iterate through the performanceList and print Performance 
+data in a table format.  
 
 ### 3.5 Student List Collection
 ![Student](images/Student.png "Class diagram of Student component")     
