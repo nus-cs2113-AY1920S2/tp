@@ -12,22 +12,21 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     * *SEARCH* : Allows users to have the option to search for a query, based on a task type with/without date
     * *CLEAR* :  Allows user to have the option of clearing all the tasks on the list or to clear completed tasks(With the exception of repeated events).
 * Justification : 
-    * *SEARCHING WITH DATE* : Users may just want to search for a specific query based on a given date, however the current command 
-    under `list` will show all tasks for the specific date
-    * *SEARCHING WITHOUT DATE* : Similar to `SEARCHING WITH DATE`, the current commands under `list` only shows all the tasks,
-    but does not offer the functionality of searching by keywords which may make the CLI less optimized for users who want to find
-    a task based on a specific keyword
-    * *CLEARING ALL TASKS* :  Users may want to clear all their tasks in the task list. However, the existing implementation
-    (Without `clear` command) only allows users to delete the tasks based on their index, which may not be optimized 
-    for their use
-    * *CLEARING COMPLETED TASKS* : Users can clear their completed tasks in a single command so that they will not clutter 
-    their task list
+    * *SEARCH* : Users may just want to search for a specific query(with/without a given date), however the current command 
+    under `list` only shows all the tasks but does not offer the functionality of searching by keywords which may make the CLI less 
+    optimized for users who want to find a task based on a specified keyword.
+    * *CLEAR* : Users may want to clear all/completed in their task list. However, the existing implementation(Without 
+    `CLEAR` command) only allows users to delete tasks based on their index, which may not be optimized for their use.
 * Highlights :
     * The `SEARCHING WITH DATE` enhancement was more difficult and tedious to implement as there is a need to track the original index of 
-    the task in the task list, and at the same time, maintaining their original order. Initially, this feature was implmented in a HashMap,
+    the task in the task list, and at the same time, maintaining their original order. Initially, this feature was implemented in a HashMap,
     but it does not support the maintenance of original order. So, I had to figure out how to use a LinkedHashMap to support the maintenance of order of indexes.
-    * The `CLEARING COMPLETED TASKS` enhancement was tedious to implement as there is a need for a few function calls to obtain the original task list
-    and to obtain all the completed tasks.
+    * Another difficulty faced with implementing `SEARCHING WITH DATE` enhancement was the use of `LocalDateTime` api. As this was my first time 
+    handling with Date and Time using Java, there were many corner cases and exceptions that I had to consider during the implementation. Thus, proper
+    planning had to be done before implementing this feature. 
+    * The `CLEARING COMPLETED TASKS` enhancement was tedious to implement as there is a need to obtain the original task list and the list of completed tasks.
+    Thus, a lot of function calls were required and so, there is a need to consistently keep track of the function calls used during implementation so that the
+    implementation does not introduced incorrect behaviour for the enhancement.
     
 **Minor Enhancement** : Implemented the *DELETE* command, wrote the code skeleton for `Assignment`,`Event` and `Task`, 
 wrote the code skeleton for various JUnit Tests (e.g. `AssignmentTest`,`EventTest`,`MarkAsDoneTest`)
