@@ -1,17 +1,15 @@
 package logic.modulelogic;
 
-import common.exception.InvalidUrlException;
+import static common.Messages.MESSAGE_BROKEN_NUSMODLINK;
+import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
+import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
-import java.lang.reflect.Executable;
+
+import common.exception.InvalidUrlException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-
-import static common.Messages.MESSAGE_BROKEN_NUSMODLINK;
-import static common.Messages.MESSAGE_INVALID_NUSMODLINK;
-import static common.Messages.MESSAGE_RETURN_SUCCESS;
 
 /**
  * This class contains essential methods to filter out the modules and the timeslots the user

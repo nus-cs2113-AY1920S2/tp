@@ -1,6 +1,6 @@
 package ui;
 
-import common.exception.MoException;
+import common.exception.WfException;
 import model.meeting.Meeting;
 import model.meeting.MeetingList;
 import model.contact.Contact;
@@ -55,7 +55,7 @@ public class TextUI {
         out.println("Thank you for using MeetingOrganizer, goodbye!");
     }
 
-    public static void errorMsg(MoException e) {
+    public static void errorMsg(WfException e) {
         out.println("OOPS!! " + e.getMessage());
     }
 

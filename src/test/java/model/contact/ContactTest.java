@@ -1,6 +1,6 @@
 package model.contact;
 
-import common.exception.MoException;
+import common.exception.WfException;
 import org.junit.jupiter.api.Test;
 
 import static common.Messages.MESSAGE_STARTENDDAY_OUT_OF_RANGE;
@@ -13,7 +13,7 @@ public class ContactTest {
     Contact myMember;
 
     @Test
-    public void editBlocks_outOfRangeTime() throws MoException {
+    public void editBlocks_outOfRangeTime() throws WfException {
         int validStartDay = 1;
         int validEndDay = 3;
         String[] validWeek = {"1"};
@@ -28,7 +28,7 @@ public class ContactTest {
     }
 
     @Test
-    public void editBlocks_outOfRangeDay() throws MoException {
+    public void editBlocks_outOfRangeDay() throws WfException {
         int validStartDay = 1;
         int invalidOutOfRangeEndDay = 20;
         String validStartTime = "08:30";
@@ -50,7 +50,7 @@ public class ContactTest {
 
 
     @Test
-    public void editBlocks_timeNotInBlocks() throws MoException {
+    public void editBlocks_timeNotInBlocks() throws WfException {
         String meetingName = "TEST_MEETING";
         int validStartDay = 1;
         int validEndDay = 3;
@@ -66,7 +66,7 @@ public class ContactTest {
 
 
     @Test
-    public void editBlocks_correctParams() throws MoException {
+    public void editBlocks_correctParams() throws WfException {
         myMember = new Contact("MEMBER");
         String[] validWeek = {"1"};
         String correctMessage = myMember.editBlocks(true, "TEST MEETING", 1, "11:30", 2, "14:30", validWeek);

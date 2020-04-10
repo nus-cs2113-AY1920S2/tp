@@ -17,9 +17,9 @@ import java.net.URL;
  */
 public class ModuleApiParser {
     String apiUrl;
-    private final String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
 
     public ModuleApiParser(String moduleName) {
+        String templateUrl = "https://api.nusmods.com/v2/2019-2020/modules/";
         apiUrl = templateUrl + moduleName + ".json";
     }
 

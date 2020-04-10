@@ -4,7 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import common.LessonType;
 import common.exception.InvalidUrlException;
-import common.exception.MoException;
+import common.exception.WfException;
 import common.exception.UnformattedModuleException;
 
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class LessonsGenerator {
 
 
     //static main method for easy in-class behaviour testing
-    public static void main(String[] args) throws InvalidUrlException, IOException, UnformattedModuleException, MoException {
+    public static void main(String[] args) throws InvalidUrlException, WfException {
         //observe behaviour by substituting field in BackendAPI.LessonsGenerator() with other NUSMODS link
         LessonsGenerator mylesson = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01");
         mylesson.generate();
@@ -48,11 +48,11 @@ public class LessonsGenerator {
     /**
      * Generates user's blocked time-slots based on his/her Nusmods timetable.
      */
-    public String generate() throws MoException {
+    public String generate() throws WfException {
         String message;
         message = myTimetableParser.parse();
         if (!message.equals(MESSAGE_RETURN_SUCCESS)) {
-            throw new MoException(message);
+            throw new WfException(message);
         }
         //Key-value pair: Key = module code, Value = LessonType:Class number(delimited by :)
         Map<String, ArrayList<String>> userLessons = myTimetableParser.getModulesMap();

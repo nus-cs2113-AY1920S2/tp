@@ -1,7 +1,7 @@
 package common;
 
 /**
- * TESTING SUMMARY DOC.
+ * Contains all the messages when exception is thrown.
  */
 public class Messages {
     public static final String FORMAT_TIMETABLE = "To display timetable:\n\ttimetable \n\ttimetable <Member Number 1>"

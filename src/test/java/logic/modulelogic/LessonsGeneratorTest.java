@@ -1,7 +1,7 @@
 package logic.modulelogic;
 
 import common.exception.InvalidUrlException;
-import common.exception.MoException;
+import common.exception.WfException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class LessonsGeneratorTest {
     LessonsGenerator myLessonsGenerator;
 
     @Test
-    public void generate_blacklistedModule() throws InvalidUrlException, MoException {
+    public void generate_blacklistedModule() throws InvalidUrlException, WfException {
         // Will only throw exception if nusmods link is broken/invalid
         myLessonsGenerator = new LessonsGenerator("https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01&EG3301R=LEC:1,LAB:G15");
         String expected = myLessonsGenerator.generate();
@@ -24,7 +24,7 @@ public class LessonsGeneratorTest {
     }
 
     @Test
-    public void generate_correctLessonDetails() throws InvalidUrlException, MoException {
+    public void generate_correctLessonDetails() throws InvalidUrlException, WfException {
         // Will only throw exception if nusmods link is broken/invalid
         myLessonsGenerator = new LessonsGenerator("https://nusmods.com/timetable/sem-1/share?CG1111=TUT:04,LAB:02");
         myLessonsGenerator.generate();

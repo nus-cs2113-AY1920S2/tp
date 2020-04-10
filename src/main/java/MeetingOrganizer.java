@@ -1,5 +1,5 @@
 import logic.LogicManager;
-import common.exception.MoException;
+import common.exception.WfException;
 
 import model.meeting.MeetingList;
 import model.contact.Contact;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * TESTING SUMMARY DOC.
+ * Main application containing an instance of LogicManager and storage component.
  */
 public class MeetingOrganizer {
     public static final int RECESS_WEEK = 14;
@@ -64,15 +64,14 @@ public class MeetingOrganizer {
     }
 
     void botResponse(String[] userInputWords, String prevUserInputWord, String[] prevUserInputWords)
-        throws MoException, DateTimeParseException, NumberFormatException {
+        throws WfException, DateTimeParseException, NumberFormatException {
         String userCommand = userInputWords[0];
 
         if (userInputWords.length == 2 && userInputWords[1].contains("nusmods.com")) {
-            //eg. xz https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
             myLogicManager.addContact(userInputWords);
         } else {
             if (myLogicManager.checkMainUserDoesNotExists()) {
-                throw new MoException("Please enter main user first");
+                throw new WfException("Please enter main user first");
             }
             switch (userCommand) {
             case "more":
@@ -97,7 +96,7 @@ public class MeetingOrganizer {
                 myLogicManager.listMeetings(userInputWords);
                 break;
             default:
-                throw new MoException("Please follow the options in the menu.");
+                throw new WfException("Please follow the options in the menu.");
             }
         }
     }
@@ -126,7 +125,7 @@ public class MeetingOrganizer {
                 storage.updateMemberListToDisk(myContactList.getContactList());
                 prevUserInputWord = userInputWords[0];
                 prevUserInputWords = userInputWords;
-            } catch (MoException e) {
+            } catch (WfException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
                 TextUI.timeOutOfRangeMsg();

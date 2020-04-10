@@ -2,7 +2,7 @@ package logic.command;
 
 import common.exception.InvalidUrlException;
 import model.meeting.MeetingList;
-import common.exception.MoException;
+import common.exception.WfException;
 import model.meeting.Meeting;
 import logic.modulelogic.LessonsGenerator;
 import logic.schedulelogic.ScheduleHandler;
@@ -23,24 +23,24 @@ public class CommandHandler {
 
 
     public static Contact addContact(ContactList myContactList, String[] userInputWords,
-                                     Integer startDay, Integer endDay) throws MoException, InvalidUrlException {
+                                     Integer startDay, Integer endDay) throws WfException, InvalidUrlException {
         int checkerForRepeatedName;
         checkerForRepeatedName = myContactList.getContactList().stream()
             .mapToInt(person -> check(person, userInputWords[0])).sum();
         if (checkerForRepeatedName == 1) {
             TextUI.showRepeatedPerson(userInputWords[0]);
-            throw new MoException("Repeated user");
+            throw new WfException("Repeated user");
         }
 
         if (userInputWords[0].length() >= 260) {
-            throw new MoException("Maximum characters for a given name is 260");
+            throw new WfException("Maximum characters for a given name is 260");
         }
         Contact member;
         member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
         if (name.matches("[0-9]+")) {
-            throw new MoException("Name must contain letters.");
+            throw new WfException("Name must contain letters.");
         }
         LessonsGenerator myLessonGenerator;
         myLessonGenerator = new LessonsGenerator(url);
@@ -82,7 +82,7 @@ public class CommandHandler {
 
         try {
             if (userInputWords.length != 7) {
-                throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+                throw new WfException(MESSAGE_WRONG_COMMAND_SCHEDULE);
             }
             int endOfMonthDate = 0;
             endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
@@ -114,7 +114,7 @@ public class CommandHandler {
             } else {
                 throw new AssertionError("isValidEdit() should not return false");
             }
-        } catch (MoException e) {
+        } catch (WfException e) {
             System.out.println(e.getMessage());
             TextUI.printFormatEdit();
         } catch (DateTimeParseException e) {
@@ -169,10 +169,10 @@ public class CommandHandler {
     public static void listMeetings(String[] userInputWords, MeetingList meetingList) {
         try {
             if (userInputWords.length != 1) {
-                throw new MoException(MESSAGE_WRONG_COMMAND_MEETING);
+                throw new WfException(MESSAGE_WRONG_COMMAND_MEETING);
             }
             meetingList.show();
-        } catch (MoException e) {
+        } catch (WfException e) {
             System.out.println(e.getMessage());
             TextUI.printFormatMeeting();
         }
@@ -197,7 +197,7 @@ public class CommandHandler {
 
         try {
             if (userInputWords.length < 6) {
-                throw new MoException(MESSAGE_WRONG_COMMAND_SCHEDULE);
+                throw new WfException(MESSAGE_WRONG_COMMAND_SCHEDULE);
             }
             int endOfMonthDate = 0;
             endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
@@ -206,7 +206,7 @@ public class CommandHandler {
             Integer endDay;
             int startOfWeekDate = getStartOfWeekDate();
             if (userInputWords[1].length() >= 260) {
-                throw new MoException("Maximum characters for meeting name is 260");
+                throw new WfException("Maximum characters for meeting name is 260");
             }
             String meetingName = userInputWords[1];
             int startDate = Integer.parseInt(userInputWords[2]);
@@ -226,7 +226,7 @@ public class CommandHandler {
             } else {
                 System.out.println("Schedule is blocked at that timeslot");
             }
-        } catch (MoException e) {
+        } catch (WfException e) {
             System.out.println(e.getMessage());
             TextUI.printFormatSchedule();
         } catch (DateTimeParseException e) {
@@ -340,7 +340,7 @@ public class CommandHandler {
     }
 
     public static void displayTimetable(String[] userInputWords, Contact mainUser,
-                                        ContactList contactList, int weekNumber, int weeksMoreToView) throws MoException {
+                                        ContactList contactList, int weekNumber, int weeksMoreToView) throws WfException {
         int memberIndex;
         Contact member;
         try {
@@ -375,11 +375,11 @@ public class CommandHandler {
         }
     }
 
-    public static void listContacts(ContactList contactList) throws MoException {
+    public static void listContacts(ContactList contactList) throws WfException {
         try {
             TextUI.teamMemberListMsg(contactList.getContactList());
         } catch (NullPointerException e) {
-            throw new MoException("You have no stored contacts.");
+            throw new WfException("You have no stored contacts.");
         }
     }
 
