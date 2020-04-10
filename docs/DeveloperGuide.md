@@ -59,17 +59,21 @@ or above installed in your Computer.
 ### 2.1 Overall Architecture
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
-![Architecture](images/Architecture.png "Architecture of Pac")
-
+![Architecture](images/Architecture.png "Architecture of Pac")              
 *Overall architecture design of Pac*
 
 The `Pac` component contains all other components in the application.
 
 - `UI`: reads user input, and prints output in pre-defined format.
 - `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
-- `CommandInterpreter`: Determines user input
-- `EventList`: stores all events during runtime
-- `StudentListCollection`: stores all student lists during runtime
+- `CommandInterpreter`: Determines category and type of command from user input.
+- Various `Parser`: Breaks down user input to obtain command parameters.
+- Various `Features`: stores their respective objects during runtime.
+    - `EventList`: stores all events during runtime.
+    - `StudentListCollection`: stores all student lists during runtime.
+    - `AttendanceList`: stores all attendances related to an `Event`.
+    - `PerformanceList`: stores all performances related to an `Event`.
+    - `Calendar`: shows all events in calendar form.
 
 ### 2.2 UI component
 ![Ui](images/Ui.png "Class diagram of Ui component")                
@@ -98,11 +102,12 @@ of Pac.
 | EventParser               | EventCommandInterpreter                                       | 
 | CalenderParser            | EventCommandInterpreter                                       | 
 | PerformanceParser         | Step-by-step command at performance-related command classes   |  
+| AttendanceParser          | Step-by-step command at attendance-related command classes    |  
 
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
 ### 2.5 Storage component
-![Storage](images/StorageClass.png "Class diagram of Storage component")
+![Storage](images/StorageClass.png "Class diagram of Storage component")            
 *Class diagram of the Storage component*
 
 On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
@@ -112,20 +117,31 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-## 3. Implementation 
+## 3. Implementation
 ### 3.1 Event
-![event](images/event.png "Class diagram of Event component")           
+![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
 
 #### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
-1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
-`EventParser`.
-1. Then, the relevant class that corresponds to the requested command is 
-created, with the information extracted from the previous step passed into it. 
+1. The first word is extracted by `getFirstWord` to determine the `commandType`.
+1. If this `commandType` requires further arguments, subsequent words are 
+extracted, and parsed by `EventParser` to retrieve the relevant information 
+(e.g. index, name, time, date, venue).
+1. Alternate paths are chosen based on `commandType`, where a corresponding 
+`Command` class is created, with the information extracted from the previous 
+step passed into it. 
     - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
     `index=1` as its argument.
-1. These commands are then returned to `Pac.run()` to `execute()`. 
+1. This command is returned to `CommandInterpreter#decideCommand()` which returns to `Pac#run()` to call `Command#execute()`. 
+
+The diagram below illustrates the program flow stated above, with the command 
+`event delete i/1`.
+![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")
+
+In this diagram:
+* Other alternative paths are not shown (e.g. [add], [editEvent], [list], etc.).
+* The details after `Command#execute()` is not shown.
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
@@ -238,22 +254,72 @@ than using the mouse.
 |v2.0|professor|view calendar of all my events|to see a overview of them|
 
 ## Appendix E: Instructions for Manual Testing
-
+#### Set up
 1. Download the jar file and copy it into an empty folder.
-1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory folder in command terminal. 
-1. Add an event by typing `event add n/NAME`
-1. View the populated events by typing `event list`
-1. View the populated seminars by typing `seminar list`
-1. Delete an event by typing `delete i/INDEX`
-1. Edit an existing event's name by typing `event editname i/INDEX n/NAME`
+1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
+folder in command terminal.  
+ 
+#### Follow **all-in-one** command for following commands:  
+**Event**
+1. Add an event by typing  
+`event add n/NAME`
+1. View the populated events by typing  
+`event list`
+1. View the populated seminars by typing  
+`seminar list`
+1. Delete an event by typing  
+`delete i/INDEX`
+1. Edit an existing event's name by typing  
+`event editname i/INDEX n/NAME`
 1. Edit an existing event's date and time by typing  
 `event editdatetime i/INDEX d/DATE t/TIME`
 1. Edit an existing event's venue by typing   
-`event editvenue i/INDEX v/VENUE`
-1. Display calendar by entering  
-`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`
+`event editvenue i/INDEX v/VENUE`  
 
+**Calender**
+1. Display calendar by entering  
+`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
+
+#### Follow **step-by-step** command for following commands:  
+
+**Attendance**
+1. Add attendance to attendance list by typing  
+`attendance add`
+1. Clear attendance list by typing  
+`attendance clear`
+1. View generated table for attendance list by typing  
+`attendance view`  
+ 
+**Performance**
+1. Sort performance list by typing
+`performance sort`
+1. Add performance to performance list by typing  
+`performance add`
+1. Delete a performance from performance list by typing  
+`performance delete`
+1. View generated table for performance list by typing  
+`performance view` 
+1. Edit performance list by typing  
+`performance edit`
+1. Sort performance list by typing
+`performance sort`  
+
+**Student name list**
+1. Add name to student name list by typing  
+`student add`
+1. Delete name from student name list by typing  
+`student delete`
+1. View generated table for student name list by typing  
+`student view` 
+1. Find a student name in student name list by typing  
+`student find`
+1. Sort student list by typing
+`student sort`
 
 ## Glossary
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
+* *performance* - a combination of student's name and result
+* *performance list* - a list of student's name and result
+* *Calendar* - Display columns of event in a chosen semester, each column represents a month 
+in the chosen semester 

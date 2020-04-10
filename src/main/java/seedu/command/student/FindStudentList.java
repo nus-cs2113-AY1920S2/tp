@@ -26,29 +26,38 @@ public class FindStudentList extends Command {
      * @throws PacException    PacException is thrown when there is an out of bound index.
      */
     protected void find() throws PacException {
-        UI.display("Please state the list name you are searching for");
-        ui.readUserInput();
-        name = ui.getUserInput();
-        for (int i = 0; i < studentListCollection.size(); i++) {
-            if (studentListCollection.get(i).getListName().toLowerCase().contains(name.toLowerCase())) {
-                searchResults.add(studentListCollection.get(i));
-            }
-        }
-        if (searchResults.isEmpty()) {
-            UI.display("Nothing match you description : " + name);
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
         } else {
-            UI.display("You have " + searchResults.size() + " matches:");
-            displayList.printSearchResults(searchResults);
+            displayStudentList();
+            UI.display("\nPlease state the list name you are searching for");
+            ui.readUserInput();
+            name = ui.getUserInput();
+            for (int i = 0; i < studentListCollection.size(); i++) {
+                if (studentListCollection.get(i).getListName().toLowerCase().contains(name.toLowerCase())) {
+                    searchResults.add(studentListCollection.get(i));
+                }
+            }
+            if (searchResults.isEmpty()) {
+                UI.display("Nothing match you description : " + name);
+            } else {
+                UI.display("You have " + searchResults.size() + " matches:");
+                displayList.printSearchResults(searchResults);
+            }
         }
     }
 
+
+    /**
+     * Displays studentListCollection.
+     */
     private void displayStudentList() {
+        ui.display("Displaying all student list: ");
         ui.printStudentListCollection();
     }
 
     @Override
     public void execute() throws PacException {
-        displayStudentList();
         find();
     }
 

@@ -24,6 +24,10 @@ public class UI {
         System.out.println(message);
     }
 
+    public static void displayStudentListCollectionEmpty() {
+        System.out.println("There is no existing student list.");
+    }
+
     /**
      * Advances this scanner past the current line and stores the input that
      * was skipped, excluding any line separator at the end.
@@ -194,7 +198,7 @@ public class UI {
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
-        display("Please key in the attendance status for student " + studentName + "[Y/N]");
+        display("Please key in the attendance status for student " + studentName + " [Y/N]");
         readUserInput();
         return getUserInput();
     }
@@ -219,12 +223,6 @@ public class UI {
     }
 
     public String getTypeOfAddPerformance() {
-        display("Would you like to import an existing student list? "
-                + "If yes, input 'yes'. Else, input anything.");
-        return getStringInput();
-    }
-
-    public String getTypeOfParameterToEdit() {
         display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         return getStringInput();
@@ -257,28 +255,28 @@ public class UI {
     }
 
     public void sortAttendanceByName(String eventName) {
-        display("Attendance List is sorted by attendance status for Event:  " + eventName);
+        display("Attendance List is sorted by attendance name for Event:  " + eventName);
     }
 
     public void sortPerformanceByName(String eventName) {
-        display("Performance List is sorted by Performance name for Event:  " + eventName);
+        display("Performance List is sorted by Performance status for Event:  " + eventName);
     }
 
     public String getSortType() {
-        display("Do you want to sort by students' name or grade?");
+        display("Do you want to sort by students' name or result?");
         return getStringInput().toLowerCase();
     }
 
     public void addStudent(StudentList studentList) throws PacException {
         String studentName = "";
         do {
-            display("Please enter a student Name. If you are finished, enter done");
+            display("Please enter a student Name. If you are finished, enter done.");
             readUserInput();
             studentName = getUserInput().trim();
             if (studentName.equals("done")) {
                 break;
             } else if (studentList.isDuplicate(studentName)) {
-                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed");
+                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed.");
             } else {
                 studentList.addToList(studentName);
             }
@@ -292,18 +290,14 @@ public class UI {
     }
 
     public void printStudentListCollection() {
-        if (studentListCollection.isEmpty()) {
-            display("The student list collection is currently empty");
-        } else {
-            DisplayTable displayTable = new DisplayTable();
-            for (int i = 0; i < studentListCollection.size(); i++) {
-                displayTable.printHeaderOfTwo("List #" + (i + 1),
-                        studentListCollection.get(i).getListName());
-                int index = 1;
-                for (String name : studentListCollection.get(i).getStudentList()) {
-                    displayTable.printBodyOfTwo(index, name);
-                    index++;
-                }
+        DisplayTable displayTable = new DisplayTable();
+        for (int i = 0; i < studentListCollection.size(); i++) {
+            displayTable.printHeaderOfTwo("List #" + (i + 1),
+                    studentListCollection.get(i).getListName());
+            int index = 1;
+            for (String name : studentListCollection.get(i).getStudentList()) {
+                displayTable.printBodyOfTwo(index, name);
+                index++;
             }
         }
     }

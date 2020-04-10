@@ -11,29 +11,29 @@ import seedu.ui.UI;
  */
 public class SortPerformanceListByName extends Command {
     protected UI ui;
-    protected PerformanceList performances;
+    protected PerformanceList performanceList;
     protected String eventName;
 
     public SortPerformanceListByName(PerformanceList performances, String eventName) {
         this.eventName = eventName;
-        this.performances = performances;
+        this.performanceList = performances;
         this.ui = new UI();
     }
 
     /**
      * Method to sort an performance list according to name.
      */
-    private void sort() {
-        if (performances.isEmpty()) {
+    private void sortPerformanceByName() {
+        if (performanceList.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
-            performances.sortByName();
+            performanceList.sortByName();
             ui.sortPerformanceByName(eventName);
         }
     }
 
     @Override
     public void execute() throws PacException {
-        sort();
+        sortPerformanceByName();
     }
 }

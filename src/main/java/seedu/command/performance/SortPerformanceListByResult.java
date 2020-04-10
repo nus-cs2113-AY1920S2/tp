@@ -9,31 +9,31 @@ import seedu.ui.UI;
  * Class representing an performance related command to sort the performanceList of a specific event.
  * Sorts the performanceList in alphabetical order.
  */
-public class SortPerformanceListByGrade extends Command {
+public class SortPerformanceListByResult extends Command {
     protected UI ui;
-    protected PerformanceList performances;
+    protected PerformanceList performanceList;
     protected String eventName;
 
-    public SortPerformanceListByGrade(PerformanceList performances, String eventName) {
+    public SortPerformanceListByResult(PerformanceList performanceList, String eventName) {
         this.eventName = eventName;
-        this.performances = performances;
+        this.performanceList = performanceList;
         this.ui = new UI();
     }
 
     /**
      * Method to sort an performance list according to name.
      */
-    private void sort() {
-        if (performances.isEmpty()) {
+    private void sortPerformanceByResult() {
+        if (performanceList.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
-            performances.sortByGrade();
+            performanceList.sortByGrade();
             ui.sortPerformanceByName(eventName);
         }
     }
 
     @Override
     public void execute() throws PacException {
-        sort();
+        sortPerformanceByResult();
     }
 }

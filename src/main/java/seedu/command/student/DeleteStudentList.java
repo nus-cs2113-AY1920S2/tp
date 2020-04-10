@@ -38,6 +38,10 @@ public class DeleteStudentList extends Command {
 
     @Override
     public void execute() throws PacException {
-        deleteFromExisting();
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            deleteFromExisting();
+        }
     }
 }
