@@ -166,12 +166,13 @@ The user is given an option to either use an existing list stored under StudentL
 create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
 
 ### 3.3 Calendar
+
 *Figure 2: Class diagram of the Calendar component*
 
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, either AddFirstSemester or AddSecondSemester class that corresponds the semester number is created. 
-1. Subsequently, it separates events by the required month and year in `CalendarList`
+1. Subsequently, it separates events by the required month and year in `Calendar`
 1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
