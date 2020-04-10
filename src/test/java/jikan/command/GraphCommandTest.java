@@ -2,9 +2,10 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.*;
+import jikan.exception.ExtraParametersException;
+import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NameTooLongException;
 import jikan.storage.Storage;
-import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -16,7 +17,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import static jikan.Jikan.lastShownList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GraphCommandTest {
     ActivityList activities = new ActivityList();
