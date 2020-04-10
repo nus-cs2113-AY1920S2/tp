@@ -8,18 +8,18 @@ daily so that restaurant owners can better manage their business operations.
 
 ### Summary of Contributions
 * **Code contributed:** [code on tP Code Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=sibingwu&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos)
-
 * **Enhancements implemented:**
   1. Feature: Add a Reservation
       - What it does: Allows users to input `add reservation` to add a reservation with details to the `reservations` list in the application.
       - Justification: This feature is needed for restaurant to add the newly received reservation to the list in the application.
-      - Highlights: When the user input the reservation, the `AddReservationCommand` class will examine if the user misses some inputs or delimiters. Adding the reservation is handled by `ReservationList` class.
+      - Highlights: The `AddReservationCommand` class will examine if the user misses some inputs or delimiters. Adding the reservation is handled by `ReservationList` class.
   
   2. Feature: Mark a Reservation
       - What it does: Allows users to input `delete reservation` to mark a reservation as **invalid** or input `mark reservation` to mark a reservation as **served**.
       - Justification: This feature is needed for restaurant to update the status of a reservation when they finish serving it or the reservation is canceled.
-      - Highlights: When the user input the reservation number, the `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. 
-          Marking the reservation is handled by `ReservationList` class. Some restriction is set to follow the common sense: a invalid reservation cannot be makred as served or invalid again; a served reservation cannot be marked as invalid.
+      - Highlights: The `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. 
+          Marking the reservation is handled by `ReservationList` class. 
+     -    Some restriction is set to follow the common sense: a invalid reservation cannot be makred as served or invalid again; a served reservation cannot be marked as invalid.
        
   3. Feature: List the Reservations
       - What it does: Allows the users to input `list reservation` to list all reservations, or input `list served reservation` to list all **served** reservations, or input `list unserved reservation` to list all **unserved** reservations.
@@ -33,7 +33,7 @@ daily so that restaurant owners can better manage their business operations.
   
   5. Feature: Load the `Reservation` from the **"report.txt"** file to the `reservations` list
       - What it does: The reservations in the txt file will be automatically loaded into the `reservations` list when the program is started.
-      - Justification: This feature is needed for restaurant to look at the reservations added yesterday.
+      - Justification: This feature is needed for restaurant to view reservations added before.
       - Highlights: The `LoadReservation` class will be in charge of loading reservations in the txt file into the `reservations` list.
   
   6. Feature: Clear the `reservations` list
