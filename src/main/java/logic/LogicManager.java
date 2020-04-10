@@ -100,7 +100,8 @@ public class LogicManager {
             if (userInputWords.length != 2) {
                 throw new WfException(MESSAGE_WRONG_COMMAND_DELETE);
             }
-            CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser(), getMyContactList());
+            this.mainUser = CommandHandler.deleteMeeting(userInputWords, getMyMeetingList(), getMainUser());
+            this.myContactList.set(0, mainUser);
         } catch (NumberFormatException e) {
             myContactList.remove(userInputWords[1]);
         } catch (WfException e) {
@@ -114,7 +115,7 @@ public class LogicManager {
         CommandHandler.listMeetings(userInputWords, getMyMeetingList());
     }
 
-    public void editSchedule(String[] userInputWords, int currentWeekNumber) throws WfException {
+    public void editSchedule(String[] userInputWords, int currentWeekNumber) {
         CommandHandler.editContact(userInputWords, getMainUser(), getMyContactList(), currentWeekNumber);
     }
 

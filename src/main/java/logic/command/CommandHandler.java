@@ -178,18 +178,18 @@ public class CommandHandler {
         }
     }
 
-    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList
-            contactList) {
+    public static Contact deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser) {
         try {
             int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
             String meetingNameToDelete = meetingToDelete.getMeetingName();
             mainUser.deleteBlocksWithName(meetingNameToDelete);
             meetingList.delete(index);
-            contactList.set(0, mainUser);
+            return mainUser;
         } catch (IndexOutOfBoundsException e) {
             TextUI.displayInvalidDeleteTarget();
         }
+        return mainUser;
     }
 
     public static void scheduleMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser,
@@ -221,7 +221,7 @@ public class CommandHandler {
                 Meeting myMeeting = new Meeting(meetingName, startDay, startTime, endDay, endTime, startDate, endDate);
                 meetingList.add(myMeeting);
                 String[] thisWeekNumber = {Integer.toString(currentWeekNumber)};
-                mainUser.addBusyBlocks("meeting", startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
+                mainUser.addBusyBlocks(meetingName, startDay, userInputWords[3], endDay, userInputWords[5], thisWeekNumber);
                 TextUI.meetingListSizeMsg(meetingList);
             } else {
                 System.out.println("Schedule is blocked at that timeslot");

@@ -105,13 +105,10 @@ public class MeetingOrganizer {
      * Main entry-point for the application.
      */
     public void run() {
-        MeetingList myMeetingList = myLogicManager.getMyMeetingList();
-        ContactList myContactList = myLogicManager.getMyContactList();
-
         Scanner in = new Scanner(System.in);
         String prevUserInputWord = "";
         String[] prevUserInputWords = new String[0];
-        TextUI.menuMsg(myContactList.getSize());
+        TextUI.menuMsg(myLogicManager.getMyContactList().getSize());
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
             if (userInput.equals("exit")) {
@@ -121,8 +118,8 @@ public class MeetingOrganizer {
             String[] userInputWords = userInput.split(" ");
             try {
                 botResponse(userInputWords, prevUserInputWord, prevUserInputWords);
-                storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
-                storage.updateMemberListToDisk(myContactList.getContactList());
+                storage.updateMeetingListToDisk(myLogicManager.getMyMeetingList().getMeetingList());
+                storage.updateMemberListToDisk(myLogicManager.getMyContactList().getContactList());
                 prevUserInputWord = userInputWords[0];
                 prevUserInputWords = userInputWords;
             } catch (WfException e) {
@@ -134,7 +131,7 @@ public class MeetingOrganizer {
             } catch (IndexOutOfBoundsException e) {
                 TextUI.indexOutOfBoundsMsg();
             } finally {
-                TextUI.menuMsg(myContactList.getSize());
+                TextUI.menuMsg(myLogicManager.getMyContactList().getSize());
             }
         }
         TextUI.exitMsg();

@@ -46,7 +46,7 @@ Prerequisites<br>
 Setting up the project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
 2. Open Intellij and import the ```build.gradle``` from project directory of the cloned repository.
-[NOTE] If this your first time opening Intellij, you will be greeted wi4. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
+> :information_source If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
 3. Set up the correct JDK version for Gradle:
     * Click the ```File``` tab > ```Project Structure``` > ```Platform Settings``` > ```SDK```.
     * Select the path where your JDK(>11) is installed. Click this link if you do not have at least JDK11.
@@ -54,7 +54,6 @@ Setting up the project<br>
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
 2. Try out a few commands as shown on the CLI menu. Click here to know more about each commands.
-
 
 ## 2. Design
 
@@ -317,12 +316,6 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
 
 ### 3.8 List all scheduled meetings
 
-## 4. Documentation
-
-## 5. Testing
-
-## 6. Dev Ops
-
 ## Appendix A: Product Scope
 ### A.1. Target user profile
 Our application, MeetingOrganizer, is for NUS students and teaching assistants looking to save time finding
@@ -371,17 +364,44 @@ meetings into account when scheduling a common timeslot timetable.
 
 ## Appendix E: Glossary
 
-* *Blacklisted modules* - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
+* **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
 <br>
+* **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
 
-## Appendix F: Product Survey
-
-## Appendix G: Instructions for Manual Testing
+## Appendix F: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
 > :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
+> :information_source: We also recommend testers to have a stable internet connection throughout the tests to successfully pull the data from nusmods API.
 
-### G.1. Launch and Shutdown
-
-### G.2. Saving data
+### F.1. Launch and Shutdown
+1. Initial launch
+    1. Download the jar file and copy into an empty folder.
+    2. Double click the jar file
+    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar jarname.jar``` to access the application.
+   
+    **Expected: The CLI application would be running with our logo: WhenFree.**
+    
+2. Shutting down
+    1. Type ```exit``` followed by kbd:[enter] key to exit.
+    **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
+   
+### F.2. Setting up profile
+1. Set up your contacts profile
+    1. Test case: Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
+    **Expected: New contact will be added.. Name: Tommy, with his respective modules.**
+    
+    > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
+    
+    2. Test case: Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1
+                  Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01
+                  Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1
+    **Expected: 3 new contacts will be added, with their respective modules.**
+### F.3. Scheduling a meeting
+1. Setting up a meeting among all contacts.
+    1. Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
+    2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
+    3. Scheduling a meeting in slots marked with ```X``` will not be allowed.
+ 
+### F.2. Saving data
