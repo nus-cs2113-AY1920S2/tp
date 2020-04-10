@@ -62,6 +62,7 @@ public class LoadDishTest {
         assertEquals(price, LoadDish.parsePrice(input));
     }
 
+    /*
     @Test
     public void parseFileTestA() throws InvalidLoadException, FileNotFoundException {
         String name = "pizza";
@@ -77,6 +78,7 @@ public class LoadDishTest {
         m.setDishMap(dishMapA);
         assertEquals(m.getDishMap(), ld.readDishes().getDishMap());
     }
+     */
 
 
 }
