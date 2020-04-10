@@ -11,34 +11,27 @@
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### Architecture
 
-![ArchitectureDiagram](images/Architecture.png)
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The Architecture Diagram given above explains the high-level design of the Diet Manager Application.
 
 The components involved are given below:
 
-`UI`: The user interface of the application
+* `UI`: The Component responsible for reading user input and displaying command results.
 
-`Storage`: Reads data from and writes data to the specified data files
+* `Storage`: The Component responsible for reading, writing and saving of data files.
 
-`Parser`: Reads the given user input and breaks it down into machine-readable code
+* `Logic`: The Component responsible for managing the logic flow of the application and executing commands.
 
-`Profile`: Stores and records the user's profile information
+* `Model`: The Component responsible for storing information required by the application in-memory.
 
-### Logic component
-
-The `Logic` component is responsible for:
-* Arranging the whole workflow
-* Deciding how functional components interact with each other. 
-
-The Logic consists of the following class:
-* DietManager-Arranges the main workflow of the program.
+* `Commons`: A collection of classes used by multiple other components.
 
 ### UI component
+
+![UI-Component](images/UI-Component.png)
 
 The `UI` component is responsible for:
 * Receiving all command line inputs from the user
@@ -46,28 +39,37 @@ The `UI` component is responsible for:
 
 The UI consists of the following classes: 
 * `UI` - Reads user input and displays system output
-* `MessageBank` - Stores all standard system output messages
+
+The `UI` component
+1) Reads user input and passes it to `Logic` for parsing and execution of the command.
+2) Receives command results from `Logic` and listens 
+for changes in `Model` to display updated information to the user.
+3) Draws on `Commons` to obtain the relevant messages to be displayed to the user.
 
 ### Storage component
 
 The `Storage` component is responsible for:
-* Managing the respective data files
-* Storing all system logs generated from the application
+* Reading data files to update the information in local memory.
+* Writing and saving all data into the relevant data files.
 
 The Storage consists of the following classes: 
 * `Storage` - Stores all user profile information in respective data files
-* `AppLogger` - Stores all system logs generated from the application
 
+The `Storage` component
+1) Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
+2) Receives instructions from `logic` to save and write in-memory information from
+`Model` into the relevant data files.
 
-### Parser component
+### Logic component
 
-The `Parser` component is responsible for:
-* Reading user input and breaking it down to machine-readable code
+The `Logic` component is responsible for:
+* Arranging the whole workflow
+* Deciding how functional components interact with each other.
 
-The Parser consists of the following classes: 
-* `Parser` - Breaks down inputs into machine-readable code
+The Logic consists of the following class:
+* DietManager-Arranges the main workflow of the program.
 
-### Profile component
+### Model component
 
 The `Profile` component is responsible for:
 * Storing all user profile information
@@ -76,7 +78,7 @@ The Profile consists of the following classes:
 * `Profile` - Stores the personal information of a person including the name, age, gender, height, weight, weight goal, list of food consumed and list of weight changes
 * `DailyFoodRecord` - Keeps a record of the food consumed in a day, comprising morning, afternoon and night
 
-### Food component
+### Commons component
 
 The `Food` component is responsible for:
 * Creating a food Object with a name if food exists in the FoodNutritionInfo class OR
