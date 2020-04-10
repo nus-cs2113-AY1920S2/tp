@@ -65,7 +65,7 @@ public class StorageHandlerTest {
 
         int j = 0;
         Scanner dataScanner = new Scanner(storage.dataFile);
-        StorageHandler.replaceLine(2, replace, storage.dataFilePath);
+        //StorageHandler.replaceLine(2, replace, storage.dataFilePath);
 
         String replacedString = "";
 
