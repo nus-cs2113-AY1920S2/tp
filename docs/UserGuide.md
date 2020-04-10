@@ -20,14 +20,14 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 
 ## 1. Introduction
 
-TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop app for **managing** information about technology including news, jobs or even notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes [Hacker News](https://github.com/HackerNews/API) API to give the user the option to **view** new news articles and questions/jobs. However, note that the purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we help the user to manage metadata such as title, URL and date of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` functionality. If the device is not connected to the internet, the user can **view** pre-loaded articles and jobs. The user also has the option to add interesting articles, jobs and notes about technology themselves using the **create** functionality. 
+TechToday Information Tracker(TTIT) is for an application for users who *prefer to use a desktop application for **managing** information about the technology field, in the form of news, jobs and/or notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes the [Hacker News](https://github.com/HackerNews/API) API to give users access to the latest technology related news through the **view** feature of the application. However, the purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we help the user to manage metadata such as the title, URL, date, and additional extract of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` feature. If the user is not connected to the internet while using the app, the user can **view** pre-loaded articles and jobs. The user also has the option to add additional articles, jobs and notes about technology themselves using the **create** functionality. 
 
 ## 2. Quick Start
 
 *  Ensure you have Java `11` or above installed in your Computer.
 *  Download the jar file -`CS2113-T14-2.TechToday.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v2.1).
 *  Copy the file to the folder you want to use as the home folder for your Technology Information tracker.
-*  Open command prompt in the directory where the Jar file is stored and type `java -jar CS2113-T14-2.TechToday.jar`.
+*  Open the command prompt and go into the directory where the Jar file is stored and type `java -jar CS2113-T14-2.TechToday.jar`.
 * When the application executes, all possible commands that can help you manage your information are shown.
 *Some example commands you can try:
     * **`view `**`article` : helps you view articles about technolgy from the internet. If the device is not connected to the internet, it loads an existing set of articles pre-loaded into the program.
@@ -44,7 +44,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 * When the user types the help command and sees`[article / job / note]` or `[article / job]` under the command format option, it means that the user is requred to choose one of `article`, `job` or `note`. For example, `view [article / job]` can be intrepreted as `view article` or `view job`.
 * The `INDEX_NUMBER` is the interger index of a article/job/note to be saved, deleted, or edited from a saved article list, or a saved note list or a saved job list. It is of format `delete article INDEX_NUMBER`, `save job TASK_NUMBER`.
 * `EXTRACT` represents a string that can be composed of multiple words that you wish to add to an existing note, job or article. For example, `addinfo article INDEX_NUMBER EXTRACT`.
-* Note that if the input from the user is a valid command followed by arbitrary input, the programme will just ignore the arbitrary input and execute the valid command. For example, a command like `view article ls;dgljfg` will only read `view article` and ignore the gibberish command that follows the valid part.
+* Note that if the input from the user is a valid command followed by arbitrary input, the programme will just ignore the arbitrary input and execute the valid command. For example, a command like `view article ls;dgljfg` will only read `view article` and ignore the additional command that follows the valid command.
 
 
 #### Help Command
