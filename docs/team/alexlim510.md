@@ -20,6 +20,9 @@ https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=alexli
   - Justification: To improve the code for maintenance, integration and testing, it should follow certain OOP principles such as the single responsibility principle.  
   - Highlights: This enhancement can ease the maintenance of the code. Moreover, the addition of new commands also become easier with the help of the open close principle.
 
+###Contributions to the UG
+- Added screenshots of UI
+
 ###Contributions to the DG
 - Contributed to section [1. Design](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#1-design) and [2.1.[Proposed] Subject Feature](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#21-proposed-subject-feature)
 - Added figures 1, 2, 3, 4, 6 and 7
