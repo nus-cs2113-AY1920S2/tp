@@ -1,6 +1,8 @@
 package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
+import seedu.dietmanager.commons.core.MessageBank;
+import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.commons.exceptions.InvalidCaloriesException;
 import seedu.dietmanager.commons.exceptions.InvalidFoodNameException;
@@ -21,6 +23,7 @@ import seedu.dietmanager.model.Food;
 import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
+import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.ui.UI;
 
 import java.io.File;
@@ -105,7 +108,7 @@ public class Storage {
         this.loadProfileFile();
         this.loadFoodNutritionRecordFile();
         this.loadRecipeFile();
-        //this.loadDailyFoodRecordFile();
+        this.loadDailyFoodRecordFile();
     }
 
     /**
@@ -124,6 +127,152 @@ public class Storage {
             }
         } else {
             logsCentre.writeInfoLog("Existing Directory found: " + directoryPath.getFileName().toString());
+        }
+    }
+
+    /**
+     * Searches for the data file in the directory, if absent, creates a new data file. <br>
+     * If data file is present, loads the existing data from the file such that it is accessible by the user.
+     */
+
+    public void loadDailyFoodRecordFile() {
+        try {
+            File foodRecordData = new File(DAILY_FOOD_RECORD_FILE_PATH);
+            if (foodRecordData.createNewFile()) {
+                logsCentre.writeInfoLog("No existing food record file found, new file created: "
+                        + foodRecordData.getName());
+            } else {
+                logsCentre.writeInfoLog("Existing food record file found: "
+                        + foodRecordData.getName());
+                this.readFoodRecordFile();
+            }
+        } catch (IOException e) {
+            logsCentre.writeSevereLog("Error in food record data file");
+            ui.displayFileErrorMessage();
+        }
+    }
+
+    /**
+     * Reads the data file and parses the existing data in the file, restoring the daily food record.
+     */
+
+    public void readFoodRecordFile() {
+        try {
+            File foodRecordData = new File(DAILY_FOOD_RECORD_FILE_PATH);
+            Scanner myReader = new Scanner(foodRecordData);
+            Optional<String> foodName;
+
+            FoodNutritionRecord foodNutritionRecord = FoodNutritionRecord.getInstance();
+
+            while (myReader.hasNextLine()) {
+                String dataLine = myReader.nextLine();
+                String[] dataLineArray = StorageParser.parseFoodRecordDataLine(dataLine);
+                String timeDescription = dataLineArray[0].trim();
+                String foodDescription = dataLineArray[1].trim();
+
+                if (foodDescription.equals("nothing")) {
+                    continue;
+                }
+
+                String[] timeDescriptionArray = StorageParser.parseTimeDescription(timeDescription);
+                String date = timeDescriptionArray[0].trim().toLowerCase();
+                String timeFrame = timeDescriptionArray[1].trim().toLowerCase();
+
+                ArrayList<Food> foods = new ArrayList<>();
+
+                System.out.println(date);
+                String[] foodList = foodDescription.split(",");
+                for (String foodInfo : foodList) {
+                    int splitIndex = foodInfo.indexOf("(");
+                    String nameDescription = foodInfo.substring(0, splitIndex);
+
+                    foodName = Optional.of(FoodNameParser.parseFoodName(nameDescription));
+                    Optional<Food> curFood = foodNutritionRecord.findFood(foodName.get());
+                    if (curFood.isPresent()) {
+                        foods.add(curFood.get());
+                    } else {
+                        foods.add(new Food(foodName.get()));
+                    }
+                }
+
+                DailyFoodRecord curRecord = profile.getRecordOfDay(date);
+                curRecord.recordMeals(timeFrame, foods);
+            }
+            myReader.close();
+        } catch (FileNotFoundException | InvalidFormatException | InvalidFoodNameException e) {
+            logsCentre.writeInfoLog("Food record Information Invalid, food record cleared.");
+            clearFoodRecord();
+        }
+    }
+
+    /**
+     * Clears all content in the daily food record data file.
+     */
+
+    public void clearFoodRecord() {
+        try {
+            PrintWriter pw = new PrintWriter(DAILY_FOOD_RECORD_FILE_PATH);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            ui.displayFileErrorMessage();
+        }
+    }
+
+    /**
+     * Rewrites the data file to reflect the current data.
+     */
+
+    public void writeFoodRecordFile() {
+        try {
+            FileWriter myWriter = new FileWriter(DAILY_FOOD_RECORD_FILE_PATH, false);
+            for (Weekday date : Weekday.values()) {
+                String curDate = date.getName();
+                DailyFoodRecord curRecord = profile.getRecordOfDay(curDate);
+
+                ArrayList<Food> morningFoods = curRecord.getDailyFood("morning");
+                String morningFoodDescription  = "";
+
+                for (Food food : morningFoods) {
+                    morningFoodDescription += food.getPair();
+                }
+                if (!morningFoodDescription.equals("")) {
+                    morningFoodDescription = morningFoodDescription.substring(0, morningFoodDescription.length() - 1);
+                    myWriter.write(curDate + " morning: " + morningFoodDescription + System.lineSeparator());
+                } else {
+                    myWriter.write(curDate + " morning: " + "nothing" + System.lineSeparator());
+                }
+
+                ArrayList<Food> afternoonFoods = curRecord.getDailyFood("afternoon");
+                String afternoonFoodDescription  = "";
+
+                for (Food food : afternoonFoods) {
+                    afternoonFoodDescription += food.getPair();
+                }
+                if (!afternoonFoodDescription.equals("")) {
+                    afternoonFoodDescription =
+                            afternoonFoodDescription.substring(0, afternoonFoodDescription.length() - 1);
+                    myWriter.write(curDate + " afternoon: " + afternoonFoodDescription + System.lineSeparator());
+                }  else {
+                    myWriter.write(curDate + " afternoon: " + "nothing" + System.lineSeparator());
+                }
+
+                ArrayList<Food> nightFoods = curRecord.getDailyFood("night");
+                String nightFoodDescription  = "";
+
+                for (Food food : nightFoods) {
+                    nightFoodDescription += food.getPair();
+                }
+                if (!nightFoodDescription.equals("")) {
+                    nightFoodDescription = nightFoodDescription.substring(0,nightFoodDescription.length() - 1);
+                    myWriter.write(curDate + " night: " + nightFoodDescription + System.lineSeparator());
+                } else {
+                    myWriter.write(curDate + " night: " + "nothing" + System.lineSeparator());
+                }
+
+            }
+            myWriter.close();
+        } catch (IOException e) {
+            ui.displayFileErrorMessage();
         }
     }
 

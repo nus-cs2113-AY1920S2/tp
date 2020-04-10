@@ -1,5 +1,6 @@
 package seedu.dietmanager.logic.parser;
 
+import seedu.dietmanager.commons.exceptions.InvalidFoodNameException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 
@@ -46,6 +47,46 @@ public class StorageParser {
             throws InvalidFormatException, NullPointerException {
         int argumentsRequired = 4;
         String[] descriptionArray = recipeDataLine.trim().split("\\s+", argumentsRequired);
+        if (descriptionArray.length != argumentsRequired) {
+            throw new InvalidFormatException();
+        }
+        testAssertions(descriptionArray, argumentsRequired);
+        return descriptionArray;
+    }
+
+    /**
+     * Validates the recipe storage data and parsing it into a valid description array.
+     *
+     * @param foodRecordDataLine the daily food record data description.
+     * @return description in standard form.
+     * @throws InvalidFormatException if storage data has the wrong description format.
+     * @throws NullPointerException   if storage data generates a null value.
+     */
+
+    public static String[] parseFoodRecordDataLine(String foodRecordDataLine)
+            throws InvalidFormatException, NullPointerException {
+        int argumentsRequired = 2;
+        String[] descriptionArray = foodRecordDataLine.trim().split(": ",2);
+        if (descriptionArray.length != argumentsRequired) {
+            throw new InvalidFormatException();
+        }
+        testAssertions(descriptionArray, argumentsRequired);
+        return descriptionArray;
+    }
+
+    /**
+     * Validates the recipe storage data and parsing it into a valid description array.
+     *
+     * @param timeDescription the time description of a meal record.
+     * @return description in standard form.
+     * @throws InvalidFormatException if storage data has the wrong description format.
+     * @throws NullPointerException   if storage data generates a null value.
+     */
+
+    public static String[] parseTimeDescription(String timeDescription)
+            throws InvalidFormatException, NullPointerException {
+        int argumentsRequired = 2;
+        String[] descriptionArray = timeDescription.trim().split("\\s+",argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
