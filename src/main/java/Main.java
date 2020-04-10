@@ -53,16 +53,6 @@ public class Main {
         this.ui = new Ui();
         this.sales = new Sales();
 
-        // load the Dishes from the "report.txt" file
-        try {
-            this.menu = LoadDish.getInstance("report.txt").readDishes();
-        } catch (InvalidLoadException e) {
-            ui.showMessage("Error loading from file, creating new menu");
-            this.menu = new Menu();
-        } catch (FileNotFoundException e) {
-            this.menu = new Menu();
-        }
-        
         // load the Reservations from the "report.txt" file
         try {
             this.reservations = new ReservationList(
@@ -72,6 +62,16 @@ public class Main {
             this.reservations = new ReservationList();
         } catch (ReservationException e) {
             this.reservations = new ReservationList();
+        }
+
+        // load the Dishes from the "report.txt" file
+        try {
+            this.menu = LoadDish.getInstance("report.txt").readDishes();
+        } catch (InvalidLoadException e) {
+            ui.showMessage("Error loading from file, creating new menu");
+            this.menu = new Menu();
+        } catch (FileNotFoundException e) {
+            this.menu = new Menu();
         }
         
         // load the Stocks from the "report.txt" file
