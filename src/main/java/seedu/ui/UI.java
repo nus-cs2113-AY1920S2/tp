@@ -25,7 +25,7 @@ public class UI {
     }
 
     public static void displayStudentListCollectionEmpty() {
-        System.out.println("The student list collection is currently empty");
+        System.out.println("There is no existing student list.");
     }
 
     /**

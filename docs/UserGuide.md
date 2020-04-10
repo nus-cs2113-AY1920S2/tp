@@ -194,7 +194,7 @@ The following occurs when there is at least one existing student list in the stu
 The following occurs when there are no existing student list in the student list collection.
 
     >>> studentlist view
-    The student list collection is currently empty                
+    There is no existing student list.              
                 
 #### 4.1.3 Clear all existing student lists from the student list collectionst
 Clear all existing student lists from the student list collection. This is a clear all command. If you wish to delete 
@@ -214,7 +214,7 @@ The following occurs when there is at least one existing student list in the stu
 The following occurs when there are no existing student list in the student list collection.
 
     >>> studentlist clear
-    The student list collection is currently empty.   
+    There is no existing student list.
     
 #### 4.1.4 Clear all existing student lists from the student list collection
 Delete a specific student list from the student list collection base on its index. If you wish to delete all student 
@@ -257,7 +257,7 @@ The following occurs when there is at least one existing student list in the stu
 The following occurs when there are no existing student list in the student list collection.
 
     >>> studentlist delete
-    The student list collection is currently empty.               
+    There is no existing student list.               
     
 #### 4.1.5 Find existing student list(s) from the student list collection
 Find existing student list(s) from student list collection base on keyword.
@@ -356,7 +356,7 @@ The following occurs when there are existing student list in the student list co
 The following occurs when there are no existing student list in the student list collection.
 
     >>> studentlist find
-    The student list collection is currently empty.        
+    There is no existing student list.        
 
 #### 4.1.6 Sort all names within the existing student lists from the student list collection
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
@@ -1270,15 +1270,19 @@ which category your command belongs to
 
 1. If event list is empty:    
         
-       The event list is empty
+       The event list is empty.
        
 1. If student list is empty:
        
        There is no existing student list.
        
+1. If attendance list under an event is empty: *Message may be different*
+      
+       No attendance list under this event.
+       
 1. If performance list under an event is empty:
 
-       No performance list under this event
+       No performance list under this event.
        _________________________________________________________________________________________________
        | index     |  Name of Student                                   |  Result                      |
        |___________|____________________________________________________|______________________________|
