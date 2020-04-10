@@ -8,17 +8,19 @@ import seedu.parser.CalendarParser;
 
 public class CalendarCommandInterpreter extends CommandInterpreter {
     private static final String INVALID_SEMESTER_ERROR_MESSAGE = "Please give a valid semester number: s/1, s/2";
+    protected CalendarParser calendarParser;
 
     public CalendarCommandInterpreter(EventList eventList) {
         super(eventList);
+        this.calendarParser = new CalendarParser();
     }
 
     @Override
     public Command decideCommand(String commandDescription) throws PacException {
         Command command;
         String description = commandDescription.toLowerCase();
-        int semester = CalendarParser.getSemester(description);
-        int year = CalendarParser.getYear(description, semester);
+        int semester = calendarParser.getSemester(description);
+        int year = calendarParser.getYear(description, semester);
 
         switch (semester) {
         case 1:
