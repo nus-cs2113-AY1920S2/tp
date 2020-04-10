@@ -162,11 +162,11 @@ Creates a new event and adds it to the app.
 
 Format: `addevent e/<DESCRIPTION> d/<DATE>`
 * The `DESCRIPTION` is a text description of the event to be input by the user.
-* The `DATE` formats that are accepted are:
-    1. dd-MM-yy, dd-MM-yyyy, yyyy-MM-dd 
-    2. dd/MM/yy, dd/MM/yyyy, yyyy/MM/dd
-    3. dd.MM.yy, dd.MM.yyyy, yyyy.MM.dd
-    4. dd-MMM-yy, dd-MMM-yyyy
+* The accepted `DATE` formats are:
+    1. dd-MM-yy, dd-MM-yyyy
+    2. dd/MM/yy, dd/MM/yyyy
+    3. dd.MM.yy, dd.MM.yyyy
+    4. dd-MMM-yy, dd-MMM-yyyy (e.g. 1-May-2020)
 
 Example of Usage:
 * `addevent e/CS2113T exam d/2/5/2020`
