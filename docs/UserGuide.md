@@ -374,9 +374,9 @@ while application is still running, or outside of the application.
 1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your
 browser, you can create a new one. Else, you will be brought to your saved NUSMODS timetable.
 2) Click on the red "Share/Sync" button located at the bottom right of the page.
-![NUSMODS2](images/NUSMODS_step2.png)<br>
+![](images/NUSMODS_step2.png)<br>
 3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
-![NUSMODS1](images/NUSMODS_step1.png)<br>
+![](images/NUSMODS_step1.png)<br>
 4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) feature.
 
 [&#8593; Return to the top](#whenfree---user-guide)
