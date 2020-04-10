@@ -690,7 +690,7 @@ omitted in the sequence diagram to emphasise on the other classes:
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
 
-- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work
+Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work
 better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
 
 &nbsp;
