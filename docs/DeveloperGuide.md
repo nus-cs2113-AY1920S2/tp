@@ -325,31 +325,45 @@ The StorageHandler class functions as a support to the main Storage class, allow
 ### 3.5 Edit feature
 The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
 
-
 #### 3.5.1 Current Implementation
 The following sequence diagram shows how the edit feature works.
 The current implementation of the edit feature allows the user to edit the activity name as well as its allocated time.
 The following sequence diagram shows how the edit feature works for editing the activity name. The diagram for the editing of allocated time is omitted as the sequence is relatively similar.
 ![image_info](./pictures/EditSequenceDiagram.png)
-The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The `executeCommand()` method of the EditCommand object is called and the specified parameters are updated accordingly.
+The current implementation of the edit feature allows the user to edit only the name and allocated time parameter of the activity. When the user wants to edit an activity using the edit command, a new EditCommand object is created. The `executeCommand()` method of the EditCommand object is called and the specified parameters are updated accordingly.
 
-The order of method calls to edit the activity details is as follows if the specified activity exists (meaning `index >= 0`) else an exception is thrown:
+The order of method calls to edit the activity details is as follows if the specified activity exists (meaning `index != -1`) else an exception is thrown:
 1. The `updateName()` method of the ActivityList class is called, with the user-specified parameters of the activity index and new activity name
 2. The `get()` method is self-invoked by the ActivityList class to obtain the activity at the given index 
 3. The `setName()` method of the Activity class is called to edit the activity name to the user-specified name
-4. The activity with the updated name is returned to the activityList  
+4. The activity is updated with its new name in the activityList.
+5. The `fieldChangeUpdateFile()` method of the StorageHandler class is called to update the data file with the new activity name.
 
 
 #### 3.5.2 Additional Implementations
-The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
+The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
 This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
 
 #### 3.5.3 Design Considerations
-By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
+##### Current Design
+The user is able to edit only the name and allocated time of the activity, which are user input data. 
+Pros:
+* The user is able to correct any mistake made during the recording of the activity.
+* The user is able to adjust their allocated time for the activity based on their needs.
+* Ensures that the record of activities is accurate and consistent in order for more efficient analysis of the time spent.
 
-However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
+Cons: 
+* The user is only able to edit 2 parameters of the activity, which may be restrictive for them.
 
+##### Possible Design
+The user is able to edit any parameters of the activity, including tags, start and end date/time.  
+Pros:
+* The user has more flexibility in modifying the record of activities based on their needs.
+
+Cons:  
+* By allowing the user to edit the date and time, there may be potential inaccuracies in the record of activities, defeating the purpose of the time tracking program. 
+* By allowing the user to edit the tags, the tag goals command may become more complicated due to the need to keep track of the presence of the tags.
 ### 3.6 Continue Feature
 The continue feature allows the user to continue a previously ended activity.
 
