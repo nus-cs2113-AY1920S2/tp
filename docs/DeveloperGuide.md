@@ -105,7 +105,7 @@ This section will guide you on how to set up this project on your own computer.
 This section will give a high-level overview of how various components in **ATAS** function and interact with each other.
 
 ### 2.1. Architecture
-![overall architecture](images/overall_architecture.PNG)
+<img src="images/overall_architecture.PNG" alt="overall_architecture" height="646" width="557">
 
 The architecture diagram above illustrates the high-level design of the **ATAS** application.  
 
@@ -139,10 +139,10 @@ The Logic component comprises the `Parser`, `Command`, and `CommandResult` class
 ### 2.4. Model Component
 The Model component contains the `Task` and `TaskList` classes, which store the user’s schedule.
 
-![TaskList and Tasks](images/TaskList_Task_class_diagram.PNG)
+<img src="images/TaskList_Task_class_diagram.PNG" alt="TaskList and Tasks" width="640" height="414.51">
 
 ### 2.5. Storage Component
-![Storage Class Diagram](images/storage.PNG)
+<img src="images/storage.PNG" alt="Storage Class Diagram" width="640" height="356.98">
 
 1.  A `Storage` object is created by the `Atas` class to handle the loading and saving of `Task` data.
 
@@ -154,7 +154,7 @@ The Model component contains the `Task` and `TaskList` classes, which store the 
 The `Atas` component integrates all the aforementioned components to run the overall application logic.  
 The sequence diagram below shows how various components, broken down into the various classes, interact when the user enters a `help` command  
 
-![Component interactions for help command](images/atas_help_command_sequence_diagram_v3.PNG)
+<img src="images/atas_help_command_sequence_diagram_v3.PNG" alt="Component interactions for help command" width="640" height="345.61">
 
 1.  The `Ui` class is used to read user input.  
 
@@ -204,7 +204,7 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete_v2.0.png)
+<img src="images/delete_v2.0.png" alt="delete task" width="640" height="475.88">
 
 #### 3.1.2. Design Considerations
 
@@ -277,7 +277,7 @@ The String results from Step 5 will be parsed into `SearchCommand#resultsList()`
         
 The following sequence diagram summarizes how the *search* and *searchd* command works :
 
-![Search operations](images/search.png)
+<img src="images/search.png" alt="search operations" width="640" height="847.86">
 
 #### 3.2.2. Design Considerations:
 
@@ -359,7 +359,7 @@ are no completed tasks
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear.png)
+<img src="images/clear.png" alt="clear command" width="640" height="494.54">
 
 #### 3.3.2. Design Considerations
 
@@ -427,7 +427,7 @@ be printed by calling `Ui#showToUser()` Then the event will be saved into local 
 The following sequence diagram summarizes how repeat command operation works, from the parser creating an `RepeatCommand` till when
  `execute()` method called by `Atas` is returned:
 
-![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
+<img src="images/RepeatCommand_UML.png" alt="Repeat Command Sequence Diagram" width="640" height="723.28">
 
 #### 3.4.2. `Event` and `RepeatEvent` Differences and their Impact
 
@@ -602,11 +602,11 @@ Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed 
 
 The following sequence diagram summarises what happens when the `EditCommand` class is executed.
 
-![EditCommand\_SequenceDiagram.png](images/EditCommand_MainSequence.png)
+<img src="images/EditCommand_MainSequence.png" alt="EditCommand_SequenceDiagram.png" width="640" height="494.54">
 
 The following sequence diagram shows the checking of `RepeatEvent` task type.
 
-![EditCommand\_Ref.png](images/EditCommand_Ref.png)
+<img src="images/EditCommand_Ref.png" alt="EditCommand_Ref.png" width="640" height="493.7">
 
 #### 3.5.2. Design Considerations
 
@@ -647,17 +647,17 @@ The following sequence diagram shows the checking of `RepeatEvent` task type.
     Keep an ArrayList of tasks which are edited and when user is exiting **ATAS**, notify the user by printing ArrayList.  
 
 ### 3.6. View Calendar feature
-![Sample output of Calendar Command](images/calendar2.png)
+<img src="images/calendar2.png" alt="Sample output of Calendar Command" width="640" height="409.14">
 
 #### 3.6.1. Implementation
 
 The `CalendarCommand` class extends the `Command` class with methods to implement the necessary pre-processing to display an overview of tasks in the given date. The following sequence diagram outlines an example execution of `CalendarCommand` when it is called and the interaction it has with the relevant components.
 
-![Interaction of CalendarCommand and the various major components](images/calendar-diagram.png)
+<img src="images/calendar-diagram.png" alt="Interaction of CalendarCommand and the various major components" width="640" height="436.81">
 
 In particular, the diagram below shows the explicit execution flow that `buildMonthCalendar()` method of the `CalendarCommand` takes.
 
-![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
+<img src="images/addMonthlyCalendar.png" alt="Explicit execution flow of CalendarCommand" width="640" height="726.55">
 
 Given below is an example usage of the `calendar` command. The step by step execution is shown in the sequence diagram above.
 
@@ -1065,15 +1065,21 @@ to learn how to make a pull request.
 
 2.  For Google Chrome users:
     -   Go the `settings` icon and click on `print`
-    ![Print Image](images/print.jpg)
+    
+        <img src="images/print.jpg" alt="Print Image" width="612" height="315.38">
+    
     -   In the print screen, choose the option `save as pdf` and click `save`
-    ![Save as PDF](images/savepdf.jpg)
+        
+        <img src="images/savepdf.jpg" alt="Save as PDF" width="612" height="315.13">
     
 3.  For Windows users:
     -   Go the `settings` icon and click on `print`
-    ![Print Image](images/windowsprint.jpg)
+    
+        <img src="images/windowsprint.jpg" alt="Print Image" width="612" height="349.5">
+    
     -   In the print screen, choose the option `Microsoft Print to PDF` and click `print`
-    ![Save as PDF](images/windowspdf.jpg)
+        
+        <img src="images/windowspdf.jpg" alt="Save as PDF" width="612" height="330.16">
     
 ### 6.5 Appendix E: Instructions for Manual Testing 
 #### 6.5.1 Launch and Shutdown 
