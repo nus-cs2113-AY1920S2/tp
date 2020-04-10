@@ -265,7 +265,8 @@ public class BlacklistedModules {
 
     /**
      * Run this to retrieve all the modules that doesn't follow the conventional format and
-     * store it into /UnformattedModules file.
+     * store it into /UnformattedModules file and
+     * update the static final HashSet blacklistModule accordingly.
      */
     public static void main(String[] args) throws IOException {
         FileWriter fw = new FileWriter("UnformattedModules", true);

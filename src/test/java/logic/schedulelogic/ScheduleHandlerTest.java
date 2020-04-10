@@ -1,6 +1,6 @@
 package logic.schedulelogic;
 
-import common.exception.MoException;
+import common.exception.WfException;
 import model.contact.Contact;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class ScheduleHandlerTest {
     private final Boolean myScheduleFree = false;
 
     @Test
-    public void testScheduleHandler() throws MoException {
+    public void testScheduleHandler() throws WfException {
         ArrayList<Contact> myScheduleList = new ArrayList<>();
         final Contact member1 = new Contact("member1");
         final Contact member2 = new Contact("member2");

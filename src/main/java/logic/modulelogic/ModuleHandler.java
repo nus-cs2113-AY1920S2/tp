@@ -31,7 +31,7 @@ public class ModuleHandler {
     private ArrayList<ArrayList<String>> classNumber; // can be repeated.
     private ArrayList<ArrayList<String>> startTime;
     private ArrayList<ArrayList<String>> endTime;
-    private ArrayList<ArrayList<String>> lessonType; //tutorial, lecture etc
+    private ArrayList<ArrayList<String>> lessonType; // tutorial, lecture etc
     private ArrayList<ArrayList<String>> day; // one day per classNumber
     private ArrayList<ArrayList<ArrayList<String>>> weeks;
     private String moduleName;
