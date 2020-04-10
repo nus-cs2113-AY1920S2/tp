@@ -1,4 +1,4 @@
-# Module Manager User Guide]
+# Module Manager - User Guide
 By: `CS2113-T15-3` Since: `2020`  
 
 Table of Contents  
