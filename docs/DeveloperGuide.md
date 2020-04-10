@@ -15,7 +15,8 @@ Pac. The following groups are in particular the intended audience of the documen
     2.2 [UI component](#22-ui-component)  
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
-    2.5 [Storage component](#25-storage-component)
+    2.5 [Storage component](#25-storage-component)  
+    2.6 [Command Interpreter component](#26-command-interpreter-component)  
 3. [Implementation](#3-implementation)  
     3.1 [Event](#31-event)  
     3.2 [Attendance](#32-attendance)  
@@ -32,7 +33,7 @@ Pac. The following groups are in particular the intended audience of the documen
 
 ## 1. Setting Up
 
-### 1.1. Requirements 
+### 1.1 Requirements 
 1.  Ensure you have [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
 or above installed in your Computer.
 1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
@@ -117,7 +118,7 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-### 2.6 Command Interpreter
+### 2.6 Command Interpreter component
 ![CommandInterpreter](images/CommandInterpreter.png)   
 *to be added: Sequence diagram of Command Interpreter*  
 Command Interpreter is the main interpreter in Pac. It determines which command 
