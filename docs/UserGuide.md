@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -42,6 +43,10 @@ div {
 By: `CS2113T-T13-2` Since: `Feb 2020` <small>    
 [Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/UserGuide.html)</small>     
   
+<br>    
+  
+ 
+<hr>  
   
 ## **Table of Contents**   
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>     
@@ -96,8 +101,12 @@ By: `CS2113T-T13-2` Since: `Feb 2020` <small>
 <br>  <big style="color: green"> **FAQ** [&#10149;](#faq) </big>     
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Can I not enter the Full Path** [&#10149;](#can-i-not-enter-the-full-path)    
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **How does the Filtering Process works?** [&#10149;](#how-does-the-filtering-process-works)    
-  
+<br>  <big style="color: green"> **Contact Us** [&#10149;](#contact-us) </big>     
+    
 <br>    
+  
+ 
+<hr>  
   
 ## **Introduction**   
 <div>  
@@ -110,13 +119,19 @@ What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing 
   
 [Back To Top](#table-of-contents)  
   
-<br>  
+<br>    
+  
+ 
+<hr>  
   
 ## **Setting Up**  
   
 [Back To Top](#table-of-contents)  
   
-<br>  
+<br>    
+  
+ 
+<hr>  
   
 ## **General Usage**   
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.    
@@ -183,30 +198,30 @@ To learn how to traverse the various directories, see the <b><a href="#6-change-
   
 <br>  
   
-## **Command Format**   
+### **Command Format**   
 In this <b>User Guide</b>, the format for each feature _(command)_ will usually be of this form:    
 `CommandWord <attr0> -pfix1 <attr1> ... [ -pfix2 <attr2> ... ] { -pfix3 <attr3> -pfix4 <attr4> ... }`  
   
-### **Command Word**  
+#### **Command Word**  
 Each command you give to **Nuke** has to begin with its corresponding unique **command word**. This helps **Nuke** to know that you want it to execute a particular command.    
   
-### **Attribute**  
+#### **Attribute**  
 **Attributes** are information to be provided in the command. An **attribute** for the command will be wrapped in angular brackets `< >` to help you to recognise it.     
   
-### **Prefix**  
+#### **Prefix**  
 A **prefix** is used to provide additional supplementary information to the command. More information on the various **command prefixes** can be found [here](#command-prefixes).     
    
-### **Optional**   
+#### **Optional**   
 Some **attributes** and **prefixes** are _optional_ and the command can still execute properly even when omitted. However, they may be useful if you want to provide a more specific information to the command. Optional **attributes** and **prefixes** will be wrapped in square brackets `[ ]` to help you to recognise them.     
   
-### **Any**    
+#### **Any**    
 There are times when you may have to include at least one from a set of **attributes** and **prefixes**. You may choose to include one <i>or</i> more from the set, but <b>not</b> none of them. Such **attributes** and **prefixes** will be wrapped in curly brackets `{ }` to help you to recognise them.     
   
 [Back To Top](#table-of-contents)  
   
 <br>  
   
-## **Command Prefixes**  
+### **Command Prefixes**  
 On many occasions, you may be required to enter more information to describe the commands you give to **Nuke**. For example, when adding a _task_, you may need to specify the _module_ and _category_ to add the _task_ into. You may also want to include additional attributes such as the _deadline_ and _priority_. All these information can only be recognised by **Nuke** if they are preceded by the correct **prefix**.<br>      
 All **command prefixes** in **Nuke** begins with a `-` and followed by a **letter**. Below is the exhaustive list of **command prefixes** and general information that should follow after.     
   
@@ -233,7 +248,10 @@ Specifically, each word in the name of your directory has to begin with a alpha-
   
 [Back To Top](#table-of-contents)    
   
-<br><br>    
+<br>    
+  
+ 
+<hr>  
   
 ## **Features**  
 ### **1. Add**  
@@ -1269,7 +1287,7 @@ redo
   
 [Back To Top](#table-of-contents)  
   
-<br><br>    
+<br>    
   
 <hr>  
   
@@ -1380,7 +1398,7 @@ The <i>time specifier</i> is <u>optional</u> and if omitted, is set to `on`.
   
 [Back To Top](#table-of-contents)     
   
-<br><br>  
+<br>  
 
 <hr>  
   
@@ -1428,9 +1446,9 @@ A simple summary of the various commands are shown below:
 <br>  
 [Back To Top](#table-of-contents)  
   
-<br><br>    
+<br>    
   
-  
+ 
 <hr>  
   
 ## **FAQ**  
@@ -1495,4 +1513,28 @@ Similarly, this can be activated by including a <code>-a</code> at the back of y
 You can mix both <code>-e</code> and <code>-a</code> to filter exactly the way you want. &#128521;  
 </div>  
   
+[Back To Top](#table-of-contents)
+
+<br>    
+  
+ 
+<hr>  
+
+## **Contact Us**   
+<div>
+If you have any further inquiries, or if you realised any <b>bugs</b> <i class="fa fa-bug"></i> while running the <B>Nuke</b> application, feel free to contact us at: <br><br>
+
+<div style="text-align: center">
+<i class="fa fa-facebook-square fa-lg" style="color:blue"></i> <a href="https://www.facebook.com/nukeproject/"><b>Facebook</b></a> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nukeproject@gmail.com"><b>Gmail</b></a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<i class="fa fa-yahoo fa-lg" style="color: purple"></i> <a href="mailto:nukeproject@yahoo.com"><b>Yahoo! Mail</b></a> 
+</div>
+
+<br> <br>
+
+We are currently still at the development stage of the <b>Nuke</b> application. Any feedback you give can help us to improve <b>Nuke</b> even further! &#128516;
+</div>
+
 [Back To Top](#table-of-contents)

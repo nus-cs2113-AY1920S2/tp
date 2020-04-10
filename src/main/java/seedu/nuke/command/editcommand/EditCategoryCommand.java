@@ -6,6 +6,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.storage.StorageManager;
 import seedu.nuke.directory.Category;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
@@ -98,8 +99,21 @@ public class EditCategoryCommand extends EditCommand {
         }
     }
 
-    private boolean exceedLengthLimit() {
+    private boolean isExceedLengthLimit() {
         return newCategoryName.length() > 15;
+    }
+
+    /**
+     * Edits the category.
+     *
+     * @param toEdit
+     *  The category to edit
+     * @throws CategoryManager.DuplicateCategoryException
+     *  If the new category name is duplicated
+     */
+    @Override
+    protected void edit(Directory toEdit) throws CategoryManager.DuplicateCategoryException {
+        ((Category) toEdit).getParent().getCategories().edit((Category) toEdit, newCategoryName, newPriority);
     }
 
     /**
@@ -113,13 +127,13 @@ public class EditCategoryCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
-        if (exceedLengthLimit()) {
+        if (isExceedLengthLimit()) {
             return new CommandResult(MESSAGE_CATEGORY_EXCEED_LIMIT);
         }
         try {
             Category toEdit = DirectoryTraverser.getCategoryDirectory(moduleCode, oldCategoryName);
             fillAllAttributes(toEdit);
-            toEdit.getParent().getCategories().edit(toEdit, newCategoryName, newPriority);
+            edit(toEdit);
             StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_CATEGORY_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {

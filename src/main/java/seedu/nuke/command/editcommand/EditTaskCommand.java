@@ -6,6 +6,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -125,8 +126,21 @@ public class EditTaskCommand extends EditCommand {
         }
     }
 
-    private boolean exceedLengthLimit() {
+    private boolean isExceedLengthLimit() {
         return newTaskDescription.length() > 25;
+    }
+
+    /**
+     * Edits the task.
+     *
+     * @param toEdit
+     *  The task to edit
+     * @throws TaskManager.DuplicateTaskException
+     *  If the new task description is duplicated
+     */
+    @Override
+    protected void edit(Directory toEdit) throws TaskManager.DuplicateTaskException {
+        ((Task) toEdit).getParent().getTasks().edit((Task) toEdit, newTaskDescription, newDeadline, newPriority);
     }
 
     /**
@@ -140,13 +154,13 @@ public class EditTaskCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
-        if (exceedLengthLimit()) {
+        if (isExceedLengthLimit()) {
             return new CommandResult(MESSAGE_TASK_EXCEED_LIMIT);
         }
         try {
             Task toEdit = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, oldTaskDescription);
             fillAllAttributes(toEdit);
-            toEdit.getParent().getTasks().edit(toEdit, newTaskDescription, newDeadline, newPriority);
+            edit(toEdit);
             StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_TASK_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {
