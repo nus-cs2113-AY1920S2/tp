@@ -65,8 +65,7 @@ public class Main {
         }
         
         
-        // load data from report.txt
-        
+        // load data from report.txt       
         try {
             this.reservations = new ReservationList(
                     LoadReservation.getInstance("report.txt")
@@ -83,7 +82,7 @@ public class Main {
             sl.loadStockData(stock);
         } catch (InvalidFilePathException | StockReadWriteException e) {
             ui.showMessage(e.getMessage());
-        }
+        } 
         
         ui.showWelcomeMessage();
     }

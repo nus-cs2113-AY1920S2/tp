@@ -93,8 +93,11 @@ public class LoadStock {
     /**
      * Decodes each line from the BufferedReader into readable ingredient arguments 
      * format to be added into the Stock class.
+     * @throws StockReadWriteException If the ingredient quantity or price cannot be
+     *                                 parsed into an integer or a double respectively.
      */
-    private void decodeIngredientFromReportTextFile(List<String> lines, Stock stock) {
+    private void decodeIngredientFromReportTextFile(List<String> lines, Stock stock) 
+            throws StockReadWriteException {
 
         for (String line : lines) {
 
@@ -145,30 +148,47 @@ public class LoadStock {
     
     /**
      * Decodes the ingredient price from the line read from the BufferedReader.
+     * @throws StockReadWriteException If the ingredient price cannot be parsed
+     *                                 into a double.
      */
-    private double decodeIngredientPrice(String line, int priceIndexInLineArgs) {
+    private double decodeIngredientPrice(String line, int priceIndexInLineArgs) 
+            throws StockReadWriteException {
+        
         String[] lineArgs = line.split(" ");
         
         String ingredientPrice = lineArgs[priceIndexInLineArgs].substring(
                 startIndexToDecodeForPrice, 
                 (lineArgs[priceIndexInLineArgs].length()));
-        double parsedIngredientPrice = Double.parseDouble(ingredientPrice);
         
-        return parsedIngredientPrice;
+        try {
+            double parsedIngredientPrice = Double.parseDouble(ingredientPrice);
+            return parsedIngredientPrice;
+        } catch (NumberFormatException nfe) {
+            throw new StockReadWriteException("The price in report.txt cannot be "
+                    + "converted to a double.");
+        }        
     }
     
     /**
      * Decodes the ingredient quantity from the line read from the BufferedReader.
+     * @throws StockReadWriteException If the ingredient quantity cannot be parsed
+     *                                 into an integer.
      */
-    private int decodeIngredientQuantity(String line, int quantityIndexInLineArgs) {
+    private int decodeIngredientQuantity(String line, int quantityIndexInLineArgs) 
+            throws StockReadWriteException {
         String[] lineArgs = line.split(" ");
         
         String ingredientQuantity = lineArgs[quantityIndexInLineArgs].substring(
                 startIndexToDecodeForQuantity, 
                 (lineArgs[quantityIndexInLineArgs].length()));
-        int parsedIngredientQuantity = Integer.parseInt(ingredientQuantity);
         
-        return parsedIngredientQuantity;
+        try {
+            int parsedIngredientQuantity = Integer.parseInt(ingredientQuantity);
+            return parsedIngredientQuantity;
+        } catch (NumberFormatException nfe) {
+            throw new StockReadWriteException("The quantity in report.txt cannot be"
+                    + "be converted to an integer.");
+        }
     }
     
     public String getFilePath() {
