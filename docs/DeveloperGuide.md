@@ -187,6 +187,7 @@ Follow the following steps to manually test the product:
             _                      There is nothing in the list currently.                     _
             __________________________________________________________________________________________
 
+
 8. Type `exit` to exit the program. You should get the following output: 
 
             __________________________________________________________________________________________
@@ -195,6 +196,7 @@ Follow the following steps to manually test the product:
             _                                Saving your data...                               _
             _                           We are exiting the program...                          _
             _                            Bye. Come back again later.                           _
+
 
 
 9. Rerun by typing `java -jar tp.jar` to start the program again. You should get the following output: 
@@ -217,14 +219,16 @@ Follow the following steps to manually test the product:
             _ **_____________________________________________________________________________**_
                  What can I do for you?
 
+
 10. **Note** This time a message about creating new files for your data should not appear since they are already present in your folder. 
 
-### 7.2 Load Storage 
-1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
+### 7.2 Load Storage Testing 
 
-1. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
+1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the original jar file. If you have already run the program and existing JSON data files exist, replace them with the onces from the sampleData folder. 
 
-1. This should load all the data in the folders. Type the following commands:
+2. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
+
+3. This should load all the data in the folders. Type the following commands:
 
   * `list article`
         
@@ -300,3 +304,6 @@ Follow the following steps to manually test the product:
 
                 __________________________________________________________________________________________
 
+### 7.3 Feature Testing
+
+#### `create` feature 
