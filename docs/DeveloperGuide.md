@@ -112,7 +112,19 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 
 ## 5. Non-Functional Requirements
 
-{Give non-functional requirements}
+1. This application should be able to work on Linux, Windows, and OS machines as long the user has installed Java 11. 
+
+2. Any user with knowledge of English language and basic typing skills should be able to use this application without any issues. If user is unable to understand commands, please see User Guide for more clarification. 
+
+3. User interface should be seen through the terminal and, depending on command user is using, depict changes the user is making within the application. 
+
+4. The data the user manipulated using the application should be saved once they type `exit` which saves and exits the application. This data is restored when the user uses the application again. 
+
+5. If one wishes to use application from different computer with saved data, they just must transfer their saves JSON files to the new folder where the application will be run. 
+
+6. The application should not crash at any moment. If there is an error within application, error message will appear. 
+
+7. If the application is unable to connect to the internet to retrieve data for `view` feature, the application will still produce data that has been previously saved. 
 
 ## 6. Glossary
 
