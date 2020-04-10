@@ -144,9 +144,9 @@ The ```contacts``` component of our application consists of 2 classes: ```TeamMe
 
 ### 2.5. Storage component
 
-![storage component structure](images/storage_class_diagram.png)
+![storage component class structure](images/storage_class_diagram.png)
 
-Above image shows the structure of Storage object. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
+Above image shows the structure of Storage. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
 
 The `Storage` component,
 - can save `Contact` objects in .txt format and read it back.
