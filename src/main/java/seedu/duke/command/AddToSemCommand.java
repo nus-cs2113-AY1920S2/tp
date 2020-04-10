@@ -98,8 +98,8 @@ public class AddToSemCommand extends AddCommand {
                     if (hasModuleFailed) {
                         return false;
                     }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
