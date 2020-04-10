@@ -65,7 +65,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 [TIP]
 Connect to the internet if you wish to see latest articles. If you use the `view` command more than once in a short period of time, it is highly likely that it will load the same articles/jobs as HackerNews updates information related to articles/jobs once or twice a day only.
 
-Examples:
+Example:
 
     view article 
 
@@ -85,7 +85,7 @@ Shows six articles from the internet/memory.
 [TIP]
 You have to view an article/job before being able to save it. Even if you exit the program and immediately reload it, the application is designed such that you will have you view a list of articles/jobs first before saving a particlar one.
 
-Examples:
+Example:
 
     save article 1
 
@@ -134,7 +134,7 @@ Asks user input to create an information piece describing an article.
 [TIP]
 You must have saved or created some articles/jobs/notes in order to list them.
 
-Examples:
+Example:
 
     list article
 
@@ -151,11 +151,11 @@ Lists all saved articles.
 * When an `article`, `job`, or `note` is deleted, all subsequent ones in the resepective list will have their index reduced by 1.
 * Format: `delete [article / job / note] INDEX_NUMBER`
 
-Examples:
+Example:
 
     delete article 1
 
-Expected Outcome
+Expected Outcome:
 
     __________________________________________________________________________________________
 
@@ -175,11 +175,11 @@ Expected Outcome
 * Adds an extract to an `article`, `job`, or `note`.
 * Format: `addinfo [article / job / note] INDEX_NUMBER EXTRACT`
 
-Examples:
+Example:
 
     addinfo article 1 It turns out that yes, fresh grads and keener interns do complain to senior developers about asymptotic efficiency.
 
-Expected outcome:
+Expected Outcome:
 
     __________________________________________________________________________________________
 
