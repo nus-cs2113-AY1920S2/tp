@@ -126,6 +126,34 @@ Follow the following steps to manually test the product:
 
 1. Download the latest release [here](ljsnc) and store it in an empty folder. 
 
+2. Open the terminal and go to the folder where the file is stored and type `java -jar tp.jar` to initialize the program. 
+
+3. Once the program starts, you should get the following output: 
+
+`_ **_____________________________________________________________________________**_
+_                                                                                  _
+_                             Hello! Here's TechToday.                             _
+_            Let me show you some technology news to refresh your mind!            _
+_ **_____________________________________________________________________________**_
+_                    Your queries can be of the following forms:                   _
+_                                      1. help                                     _
+_                              2. view [article / job]                             _
+_                       3. save [article / job] INDEX_NUMBER                       _
+_                         4. create [article / job / note]                         _
+_                          5. list [article / job / note]                          _
+_                   6. delete [article / job / note] INDEX_NUMBER                  _
+_              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+_                                      8. exit                                     _
+_                                                                                  _
+_ **_____________________________________________________________________________**_
+     What can I do for you?
+
+No files with your data exits, we will create new files to save your data.
+__________________________________________________________________________________________`
+
+
+
+
 1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
 
 1. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
