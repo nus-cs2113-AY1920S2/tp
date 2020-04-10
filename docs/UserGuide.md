@@ -82,7 +82,8 @@ TODO: change image so that the words are the same font size
 <br/>
 
 ### List all contacts: `contacts`
-Displays index and names of all added contacts stored in the program.
+Displays index and name of all contacts stored in the program.
+* This command is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts),  [`Edit a contact's timetable`](#edit-a-contacts-timetable) or `Delete a contact` commands, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
 Format:
     
