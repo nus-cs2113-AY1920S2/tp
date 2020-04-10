@@ -35,7 +35,6 @@ By: `CS2113T-T12-2` Since: `March 2020`
         + [4.3.6. Find Appointments of Patient](#436-find-appointments-of-patient)
     * [4.4 Storage](#44-storage)
     * [4.5 User Prompting](#45-user-prompting)
-    * [4.6 Logging](#46-logging)
 - [5. Documentation](#5-documentation)
 - [6. Testing](#6-testing)
 - [7. Useful Links](#7-useful-links)
@@ -171,19 +170,21 @@ for add commands executed on the various objects.
 ## 4. Implementation
 
 This section describes some of the details on how the features of the program has been implemented. This section has been broken 
-down into five main features: `Patient Details`, `Patient Medical Records`, `Appointment Scheduling`, `Storage` and `Logging`.
+down into nine main features: `Data Structure`, `Add Details Feature`, `List Feature`, `Find/Get Feature`, `Edit Detail Feature`, `Delete Feature`, `Done Appointment Feature`, `Storage`, `Prompting Feature`.
 
-### 4.1. Patient Details Feature
+### 4.1. Data Structure
 
-The commands introduced in this feature include : `add`, `edit`, `list`, `delete`, `get`. 
-The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
-The patient list feature is facilitated by PatientMap class which implements the following operations: 
+The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
 
 >`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
 >`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
->`PatientMap #hasKey(String nric)` — This command checks whether the patient object resides in the existing patient list.   
-
------ insert class diagram -----
+>`PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
+>`PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
+>`PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
+>`PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
+>`AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
+>`AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
+>`AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
     
 **Design Considerations** 
 
@@ -198,142 +199,386 @@ The patient list feature is facilitated by PatientMap class which implements the
    * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
            This would cause the deletion to be very slow when there is a large number of patients in the list.
 
-#### 4.1.1 Add Patient Details
 
-The user is able to add patients into the program to keep track of the patient's details. 
-The command: 
+### 4.2. Add Feature
 
-    add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts
-    
-will add a patient with `NRIC` as S7777777Z with the following attributes: 
-* name: `Alice`
-* phone number: `98765432`
-* date of birth: `01/01/2000`
-* blood type: `B+`
-* allergies: `Peanuts`
+The user is able to add patient details, patient's record and appointment details into the program to keep track of the patient. 
 
 **Implementation** 
 
---incorrect add patient----
-The sequence diagram below summarises the process of executing an `add` command.
-![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
+The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric`, `date`, `time`, and `reason` in its constructor. 
 
-The following steps explains the sequence of events: 
+![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
 
-1. The user enters `add patient /ic S7777777Z /n Alice /p 98765432 /d 01/01/2000 /b B+ /a Peanuts`.
 
-2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`. 
+The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
-3. `PatientParser#parse()` will call its own method `PatientParser#parseAddCommand()`.
+1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
+class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
+`Parser` then calls the `AppointmentParser#parse()` method. 
 
-4. `PatientParser#parseAddCommand()` will first validate the attributes and then create an object `AddPatientCommand` 
-if the attributes are valid. 
+2. `AppointmentParser#parse()` will then call the `parseAddCommand` in the same class to parse all the arguments of the user input. 
 
-5. `HappyPills` then calls `AddPatientCommand.execute()` to execute the command. 
+3. A new instance of `AddAppointmentCommand` with the given arguments initialised will be created. `HappyPills` will 
+subsequently call the `AddAppointmentCommand#execute()` method. 
 
-6. In `AddPatientCommand.execute()`, a patient is added and the display message is returned.
+4. The `AddAppointmentCommand#execute()` method will do 2 things: 
 
-#### 4.1.2 Edit Patient Details
+	+ If there is no patients in the `PatientMap` with the given nric, the method returns a string to notify the user 
+	that the patient does not exist. 
+	
+	+ If the patient with the given nric exists in `PatientMap`, a new Appointment object with the given arguments 
+	(nric, date, time and reason) are created and added into the `AppointmentMap` and into the ArrayList of Appointment 
+	objects in the Patient object mapped with the nric given. The `Appointment` object is stored in the storage by calling `Storage#writeAllToFile()`. 
+	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
+	and displays the `AppointmentID` associated to the `Appointment` object created. 
 
-The user is able to edit the details of a patient in the list of patients currently in the program. The command: 
+The following sequence diagram summarises how the `AddAppointmentCommand` operation works: 
 
-    edit patient S7777777Z /a School
+#### 4.2.1 Add Patient Details
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+#### 4.2.2 Add Patient Record Details
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.2.3. Add Appointment Details 
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+### 4.3 List Features 
+
+short description 
+                 
+    example
+
+**Implementation**
+
+![Image]()
+
+The following steps explains the sequence of events:
+1.
+1.
+1.
+
+#### 4.3.1. List Patients
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.3.2 List Patient's Records
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+#### 4.3.3 List Appointments 
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+### 4.4. Find/Get Feature
+
+short description 
+                 
+    example
+
+**Implementation**
+
+![Image]()
+
+The following steps explains the sequence of events:
+1.
+1.
+1.
+
+#### 4.4.1. Get Patient Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.4.2. Find Patient Record Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.4.3. Find Appointment Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+### 4.5. Edit Feature
+short description 
+                 
+    example
+
+**Implementation**
+
+![Image]()
+
+The following steps explains the sequence of events:
+1.
+1.
+1.
+
+#### 4.5.1. Edit Patient Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.5.2. Edit Patient Record Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.5.3. Edit Appointment Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+### 4.6. Delete Feature
+short description 
+                 
+    example
+
+**Implementation**
+
+![Image]()
+
+The following steps explains the sequence of events:
+1.
+1.
+1.
+
+#### 4.6.1. Delete Patient Detail
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+#### 4.6.2. Delete Patient Record Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+#### 4.6.3. Delete Appointment Detail
+
+**Design Considerations**
+
+##### Aspect: Prompt handling method
+
+        Alternative 1 (current choice):
+          Pros: 
+          Cons: 
+            
+        Alternative 2: 
+          Pros: 
+          
+        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
+        P.S subject to change in v2.
+
+
+### 4.7. Done Appoint Feature
+The user can mark an appointment as done from the list of appointments currently in the program. The command: 
+
+    done appt S1234567Z 1
     
-will edit the patient's allergies to `School`. 
+will mark the appointment with appointment ID `1` as done, if found. 
 
 **Implementation** 
 
-![Edit Patient Sequence Diagram](images/DG/EditPatientSequenceDiagram.png)
+The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric` and `apptId` in its constructor. 
 
-The following steps explains the sequence of events: 
+![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
 
-1. The user enters `edit patient S7777777Z /a School` 
+The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
 
-2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
+1. The user enters `done appt S1234567Z 1` into the application. The `HappyPills` class then calls `Parser#parse()` to 
+parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
+method. 
 
-3. `PatientParser#parse()` will then create an object `EditPatientCommand`. 
+2. `AppointmentParser#parse()` will then split the user input and calls the `DoneAppointmentCommand` class. 
 
-4. `HappyPills` then calls `EditPatientCommand.execute()` method to execute the command. 
 
-5. In `EditPatientCommand.execute()`, the given attribute of the patient is edited and the display message is returned. 
-
-#### 4.1.3. Delete Patient Details 
-
-The user can delete a patient from the list of patients currently in the program. The command: 
-
-    delete patient S1234567Z 
+    **Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
     
-will delete the patient with NRIC `S1234567Z`, if found. 
+3. A new instance of `DoneAppointmentCommand` with the given arguments will be created. `HappyPills` will subsequently call 
+the `DoneAppointmentCommand#execute()` method.
 
-**Implementation** 
+4. The `DoneAppointmentCommand#execute()` method will then check that the nric given is valid and that a patient with that 
+nric and appointment exists. If all the checks are successful, it calls `Storage#writeAllToFile()` and displays a success 
+message to the user. Otherwise the `HappyPillsException()` will be thrown according to what is invalid. 
 
-![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.png)
+The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
 
-The following steps explains the sequence of events: 
-
-1. The user enters `delete patient S1234567Z`. 
-
-2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
-
-3. `PatientParser#parse()` will then create an object `DeletePatientCommand`. 
-
-4. `HappyPills` then calls `DeletePatientCommand.execute()` to execute the command. 
-
-5. In `DeletePatientCommand.execute()`, the respective patient is deleted and the display message is returned. 
-
-#### 4.1.4. List Patients
-
-The user is able to get a list of all the patients currently in the program.
-The command: 
-    
-    list patient
-    
-will list all the appointments in the `PatientMap`. 
-
-**Implementation** 
-
-The following steps explains the sequence of events: 
-
-1. The user enters `list patient`.
-
-2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
-
-3. `APatientParser#parse()` will create an object `ListPatientCommand`.
-
-4. `HappyPills` then calls `ListPatientCommand.execute()` to execute the method. 
-
-5. In `ListPatientCommand.execute()`, it calls `TextUi.getPatientList()` which is then returned as the display message. 
-
-#### 4.1.5. Retrieve Patient Details 
-
-The user can retrieve a patient's details. The command: 
-
-    get patient S7777777Z
-    
-will retrieve the details of the patient with NRIC `S7777777Z`. 
-
-**Implementation** 
-
-![Get Patient Sequence Diagram](images/DG/GetPatientSequenceDiagram.jpg)
-
-The following steps explains the sequence of events: 
-
-1. The user enters `get patient S7777777Z` .
-
-2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`. 
-
-3. `PatientParser#parse()` will create an object `GetPatientCommand`.
-
-5. `HappyPills` then calls `GetPatientCommand.execute()` to execute the method. 
-
-6. `GetPatientCommand.execute()` calls `TextUi.getPatientSuccessMessage()` if a patient of NRIC `S7777777Z` can be found 
-or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the program. 
-
-7. The respective `TextUi` methods will then display the message to the user accordingly.
-
-### 4.2 Patient Medical Records Features 
-
-
+---------------------------------------
+---------------------------------------
 ### 4.3. Appointment Scheduling Feature 
 
 #### 4.3.1. Add Appointment
@@ -455,40 +700,6 @@ The following sequence diagram summarises how the `DeleteAppointmentCommand` ope
 
 ![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
 
-#### 4.3.4. Mark Appointment as Done 
-The user can mark an appointment as done from the list of appointments currently in the program. The command: 
-
-    done appt S1234567Z 1
-    
-will mark the appointment with appointment ID `1` as done, if found. 
-
-**Implementation** 
-
-The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`nric` and `apptId` in its constructor. 
-
-The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
-
-1. The user enters `done appt S1234567Z 1` into the application. The `HappyPills` class then calls `Parser#parse()` to 
-parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
-method. 
-
-2. `AppointmentParser#parse()` will then split the user input and calls the `DoneAppointmentCommand` class. 
-
-
-    **Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
-    
-3. A new instance of `DoneAppointmentCommand` with the given arguments will be created. `HappyPills` will subsequently call 
-the `DoneAppointmentCommand#execute()` method.
-
-4. The `DoneAppointmentCommand#execute()` method will then check that the nric given is valid and that a patient with that 
-nric and appointment exists. If all the checks are successful, it calls `Storage#writeAllToFile()` and displays a success 
-message to the user. Otherwise the `HappyPillsException()` will be thrown according to what is invalid. 
-
-The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
-
-![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
-
 #### 4.3.5. List Appointments 
 
 The user is able to get a list of all the appointments currently in the program.
@@ -554,7 +765,10 @@ The following sequence diagram summarises how the `FindAppointmentCommand` opera
 
 ![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
 
-### 4.4. Storage
+
+---------------------------------------------------------
+----------------------------------------------------------
+### 4.8. Storage
 
 This is an internal feature of the program, implemented to allow users to recover information even after HappyPills is 
 closed in the terminal. This is achieved by storing all relevant information in a text file using a structured format.
@@ -650,29 +864,25 @@ Alternative 1 was chosen for now as the program is relatively new, and is more l
           Pros: Delay deletion time cost so that the use of the program is faster and smoother during time of use.
           Cons: If the program was to terminate unexpectedly, the deletion may not be reflected in the respective files.
 
-### 4.5 User Prompting 
+### 4.9. User Prompting 
     
-#### 4.5.1 Description
+#### 4.9.1. Description
 
 When the user adds a patient’s details, the input could be missing a few compulsory fields. Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.
 
 The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details. The add command will only be executed when all the compulsory fields are provided. 
 
-#### 4.5.2 Implementation 
-
-Representing a prompt
-
-The prompting mechanism uses prefix to represent individual 
-
-#### 4.5.3 Design Consideration
-
-##### Representing a prompt
+**Implementation**
+ 
+*Representing a prompt*
 
 The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual field in patient's information. A list of tags is use to pass to the `Parser` which contains:
 
         - Parser #addCommandParser(String input) — This method break down user input base on tags such as (/ic, /p)
 
-##### Passing the prompts
+*Passing the prompts*
+
+![PromptSequenceDiagram](images/DG/PromptSequenceDiagram.png)
 
 Given below is an example scenario where the user command has missing compulsory fields
 
@@ -685,6 +895,8 @@ Step 3: The new user input was than check again by `Parser#parseAddCommand` and 
 Step 4: `Parser#parseAddCommand` will ask for conformation before passing the correct input into `AddCommand`.
 
 Step 5: `HappyPills` will execute the command.
+
+**Design Considerations**
 
 ##### Aspect: Prompt handling method
 
@@ -700,7 +912,6 @@ Step 5: `HappyPills` will execute the command.
         P.S subject to change in v2.
 
 
-### 4.6 Logging 
 
 ## 5. Documentation 
 

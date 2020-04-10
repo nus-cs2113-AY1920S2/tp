@@ -106,6 +106,9 @@ public class PatientParser extends Parser {
         if (isCommandLengthOne || userCommand[1].isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_NRIC_NOT_PROVIDED);
         }
+        if (!Checker.isValidNric(userCommand[2].toUpperCase())) {
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
+        }
         return new GetPatientCommand(userCommand[2].toUpperCase());
     }
 
@@ -120,6 +123,9 @@ public class PatientParser extends Parser {
         String[] edit = fullCommand.split("\\s+", 4);
         if (edit.length < 3) {
             throw new HappyPillsException(Messages.MESSAGE_MISSING_FIELD);
+        }
+        if (!Checker.isValidNric(edit[2].toUpperCase())) {
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
         }
         return new EditPatientCommand(edit[2], edit[3]);
     }

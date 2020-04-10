@@ -79,6 +79,10 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
             content = newContent.substring(2);
         }
         PatientRecord editPatientRecord = checkInvalidInput(patientRecords, content);
+        return updateRecord(patients, patientRecords, content, field, editPatientRecord);
+    }
+
+    private String updateRecord(PatientMap patients, PatientRecordMap patientRecords, String content, String field, PatientRecord editPatientRecord) throws HappyPillsException {
         content = content.trim();
         boolean output;
         String errorMsg = Messages.MESSAGE_EDIT_ERROR + TextUi.NEWLINE;
