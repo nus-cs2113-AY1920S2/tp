@@ -70,13 +70,15 @@ public class EditCommandTest {
     public void editTask_emptyList_failure() {
         TaskList emptyTaskList = new TaskList();
         assertEquals(new EditCommand(1).execute(emptyTaskList,ui).feedbackToUser,
-                Messages.NO_TASKS_MSG);
+                Messages.NO_TASKS_MSG + System.lineSeparator()
+                        + Messages.REPEAT_EDITCOMMAND_PROMPT);
     }
 
     @Test
     public void editTask_filledList_failure() {
         assertEquals(new EditCommand(6).execute(filledTaskList, ui).feedbackToUser,
-                "Please provide a valid task number from 1 to 4");
+                "Please provide a valid task number from 1 to 4" + System.lineSeparator()
+                        + Messages.REPEAT_EDITCOMMAND_PROMPT);
     }
 
     //@@author Keith-JK
@@ -101,9 +103,10 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
-        assertEquals(Messages.SAME_TASK_ERROR, feedback);
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
+        assertEquals(Messages.SAME_TASK_ERROR + System.lineSeparator()
+                + Messages.REPEAT_EDITCOMMAND_PROMPT, feedback);
     }
 
 
@@ -129,9 +132,10 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
-        assertEquals(Messages.UNKNOWN_COMMAND_ERROR, feedback);
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
+        assertEquals(Messages.UNKNOWN_COMMAND_ERROR + System.lineSeparator()
+                + Messages.REPEAT_EDITCOMMAND_PROMPT, feedback);
     }
 
     @Test
@@ -157,8 +161,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 
@@ -185,8 +189,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 
@@ -220,8 +224,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 }

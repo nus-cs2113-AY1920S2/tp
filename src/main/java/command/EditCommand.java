@@ -64,16 +64,17 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         if (taskList.getListSize() == 0) {
-            return new CommandResult(Messages.NO_TASKS_MSG);
+            return new CommandResult(Messages.NO_TASKS_MSG + System.lineSeparator()
+                    + Messages.REPEAT_EDITCOMMAND_PROMPT);
         }
 
         if (editIndex + 1 > taskList.getListSize() || editIndex < 0) {
             return new CommandResult(String.format(Messages.INVALID_ID_ERROR,
-                    taskList.getRangeOfValidIndex(taskList)));
+                    taskList.getRangeOfValidIndex(taskList)) + System.lineSeparator()
+                    + Messages.REPEAT_EDITCOMMAND_PROMPT);
         }
 
         ui.showToUser(Messages.EDIT_PROMPT);
-        ui.showToUser(Messages.DIVIDER);
         String userInput = ui.getUserInput();
         String commandType = userInput.split("\\s+", 2)[0].trim().toLowerCase();
         try {
@@ -81,25 +82,29 @@ public class EditCommand extends Command {
             case AssignmentCommand.COMMAND_WORD:
                 if (taskList.getTask(editIndex) instanceof RepeatEvent
                         || taskList.getTask(editIndex) instanceof Event) {
-                    return new CommandResult(Messages.EDIT_TYPE_ERROR);
+                    return new CommandResult(Messages.EDIT_TYPE_ERROR + System.lineSeparator()
+                            + Messages.REPEAT_EDITCOMMAND_PROMPT);
                 }
 
                 Task editedAssignment = editAssignment(userInput, ui);
 
                 if (taskList.isSameEdit(taskList, editedAssignment, editIndex)) {
-                    return new CommandResult(Messages.SAME_TASK_ERROR);
+                    return new CommandResult(Messages.SAME_TASK_ERROR + System.lineSeparator()
+                            + Messages.REPEAT_EDITCOMMAND_PROMPT);
                 }
 
                 taskList.editTask(editIndex, editedAssignment);
                 return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedAssignment));
             case EventCommand.COMMAND_WORD:
                 if (taskList.getTask(editIndex) instanceof Assignment) {
-                    return new CommandResult(Messages.EDIT_TYPE_ERROR);
+                    return new CommandResult(Messages.EDIT_TYPE_ERROR + System.lineSeparator()
+                            + Messages.REPEAT_EDITCOMMAND_PROMPT);
                 }
 
                 Event editedEvent = editEvent(userInput, ui);
                 if (taskList.isSameEdit(taskList, editedEvent, editIndex)) {
-                    return new CommandResult((Messages.SAME_TASK_ERROR));
+                    return new CommandResult((Messages.SAME_TASK_ERROR) + System.lineSeparator()
+                            + Messages.REPEAT_EDITCOMMAND_PROMPT);
                 }
                 //Check if Event to be edited is repeating event.
                 if (taskList.getTask(editIndex) instanceof RepeatEvent) {
@@ -113,10 +118,12 @@ public class EditCommand extends Command {
                     return new CommandResult(String.format(Messages.EDIT_SUCCESS_MESSAGE, editedEvent));
                 }
             default:
-                return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR);
+                return new CommandResult(Messages.UNKNOWN_COMMAND_ERROR
+                        + System.lineSeparator() + Messages.REPEAT_EDITCOMMAND_PROMPT);
             }
         } catch (AtasException e) {
-            return new CommandResult(e.toString());
+            return new CommandResult(e.toString() + System.lineSeparator()
+                    + Messages.REPEAT_EDITCOMMAND_PROMPT);
         }
     }
 
@@ -141,7 +148,6 @@ public class EditCommand extends Command {
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
             throw new AtasException(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
         }
-
 
 
         String assignmentName = Parser.capitalize(matcher.group("assignmentName"));
