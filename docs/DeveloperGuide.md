@@ -379,7 +379,7 @@ This feature involves displaying the shopping list and budget details to the use
 The display feature is implemented using a <code>DisplayCommand</code> class which extends the <code>Command</code> 
 class. 
  
- The process is as follows:
+The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DisplayCommand</code> object based
 on that user input.
@@ -417,6 +417,7 @@ omitted to emphasise the other classes:
     
 Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
 also be able to trace functionality bugs more easily if each command class deals with its own functionality.
+<!-- @@author -->
 
 &nbsp;
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
@@ -524,50 +525,50 @@ to work in parallel.
  
 <!-- @@author JLoh579 -->
 ### 3.9 Clear list feature
- This feature involves clearing all items in the shopping list. Remaining budget is also set to the user’s set budget.
+This feature involves clearing all items in the shopping list.
  
- #### 3.9.1 Current implementation
- The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
- class. 
+#### 3.9.1 Current implementation
+The clear list feature is implemented using a <code>ClearCommand</code> class which extends the <code>Command</code> 
+class. 
  
-  The process is as follows:
- 1. <code>Duke</code> receives user input from <code>Ui</code>.
- 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ClearCommand</code> object based on that user input.
- 3. <code>Duke</code> then calls <code>ClearCommand#execute()</code>.
- 4. <code>ClearCommand#execute()</code> makes a call to <code>ShoppingList#clearList()</code>.
+The process is as follows:
+1. <code>Duke</code> receives user input from <code>Ui</code>.
+2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>ClearCommand</code> object based on that user input.
+3. <code>Duke</code> then calls <code>ClearCommand#execute()</code>.
+4. <code>ClearCommand#execute()</code> makes a call to <code>ShoppingList#clearList()</code>.
  
- The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
- omitted to emphasise the other classes:
+The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
+omitted to emphasise the other classes:
    
- ![alt text](images/Clear_v1.png)
+![alt text](images/Clear_v1.png)
    
- #### 3.9.2 Design considerations
+#### 3.9.2 Design considerations
    
- ##### Aspect: Data structure to support the clear list feature
+##### Aspect: Data structure to support the clear list feature
    
- - Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
-  
-   - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
+- Alternative 1 (current choice): Object-oriented style with a separate class for <code>ClearCommand</code>
+ 
+  - Pros: Easy to add the clear list feature without having to change the logic of the code much as each command object
    is treated as a black box
    
-   - Cons: Might significantly increase the code base with another class being added
+  - Cons: Might significantly increase the code base with another class being added
  
  
- - Alternative 2: Implement clear list feature in the <code>Duke</code> class
+- Alternative 2: Implement clear list feature in the <code>Duke</code> class
  
-   - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
    
-   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
+  - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
    harder to navigate and understand. 
    
- - Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
- also be able to trace functionality bugs more easily if each command class deals with a different functionality.
+Reason for choosing alternative 1: With each command type having its own class, we could work better in parallel and
+also be able to trace functionality bugs more easily if each command class deals with a different functionality.
+<!-- @@author -->
+
+&nbsp;
+<b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
  
- &nbsp;
- <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
- 
- &nbsp;
- <!-- @@author -->
+&nbsp;
  
 <!-- @@author trishaangelica -->
 ### 3.10 View help feature
