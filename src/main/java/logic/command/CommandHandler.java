@@ -16,9 +16,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
-import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
+import static common.Messages.*;
 
 public class CommandHandler {
 
@@ -90,11 +88,23 @@ public class CommandHandler {
 
             Integer startDay;
             Integer endDay;
+            Integer today;
             int startDate = Integer.parseInt(userInputWords[3]);
             int endDate = Integer.parseInt(userInputWords[5]);
             int startOfWeekDate = getStartOfWeekDate();
+            int todayDate = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]);
+
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
+            today = getDay(endOfMonthDate, startOfWeekDate, todayDate);
+
+            if (endDay < startDay) {
+                throw new WfException(MESSAGE_INVALID_SLOT_RANGE);
+            }
+
+            if (endDay < today || startDay < today) {
+                throw new WfException(MESSAGE_INVALID_SLOT_RANGE);
+            }
 
             int memberIndex = Integer.parseInt(userInputWords[2]);
             Contact member = contactList.getContactList().get(memberIndex);
@@ -210,6 +220,7 @@ public class CommandHandler {
 
             Integer startDay;
             Integer endDay;
+            Integer today;
             int startOfWeekDate = getStartOfWeekDate();
             if (userInputWords[1].length() >= 260) {
                 throw new WfException("Maximum characters for meeting name is 260");
@@ -217,9 +228,19 @@ public class CommandHandler {
             String meetingName = userInputWords[1];
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);
+            int todayDate = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]);
+
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
+            today = getDay(endOfMonthDate, startOfWeekDate, todayDate);
 
+            if (endDay < startDay) {
+                throw new WfException(MESSAGE_INVALID_SLOT_RANGE);
+            }
+
+            if (endDay < today || startDay < today) {
+                throw new WfException(MESSAGE_INVALID_SLOT_RANGE);
+            }
 
             LocalTime startTime = LocalTime.parse(userInputWords[3]);
             LocalTime endTime = LocalTime.parse(userInputWords[5]);
