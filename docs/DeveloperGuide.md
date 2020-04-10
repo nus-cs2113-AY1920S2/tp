@@ -655,7 +655,7 @@ The `CalendarCommand` class extends the `Command` class with methods to implemen
 
 ![Interaction of CalendarCommand and the various major components](images/calendar-diagram.png)
 
-In particular, the diagram below shows the explicit execution flow that `buildMonthCalendar()` method of the `CalendarCommand` takes.
+In particular, the diagram below shows the sequence that `buildMonthCalendar()` method of the `CalendarCommand` takes.
 
 ![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
 
@@ -669,6 +669,10 @@ The users enters the command `calendar d/05/20`. This is captured by the `Ui` co
 
 **Step 2**  
 The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.
+
+> **Note:**
+>
+> To reduce confusion, the LocalDate object created has its day hardcoded to 1, and is implemented by appending `01` to front of `[MM/YY]`. 
 
 > **Note:**  
 > An `IncorrectCommand` object will be constructed with its specific error message instead according to the error encountered. This can be in the form of no arguments provided or parser fails to parse the date provided.
@@ -703,7 +707,7 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
     -   Rationale:  
-        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task`. Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
+        By duplicating the `RepeatEvent`, it allows better abstraction of methods by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task`. Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
 
     -   Alternatives considered:  
         Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.4, RepeatEvent design considerations](#344-design-considerations))
@@ -713,7 +717,7 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
     -   Rationale:  
         This keeps the calendar compact such that the command line application can be viewed as a smaller window as opposed to the taking up the entire screen. Since row size is also extendable, extending column size independently from row size will destroy the integrity of a traditional calendar box view.
 
-    -   Also, there are other features that can be used in conjunction with the `Calendar` to allow users to obtain more information of the `Task` such as `SearchCommand` and `ListCommand`.
+    -   Furthermore, there are other features that can be used in conjunction with the `Calendar` to allow users to obtain more information of the `Task` such as `SearchCommand` and `ListCommand`.
 
     -   Alternative Considered:  
         Wrapping of `Task` details to display its full details. This is not feasible as this further increases the need for number of rows. As mentioned, we would like to keep the integrity and view of a traditional calendar and this does the opposite of that.
