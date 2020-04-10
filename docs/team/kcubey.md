@@ -1,8 +1,9 @@
-# Kezia Kew - Project Portfolio Page
+# kcubey - Project Portfolio Page
 
-## Project Overview
-ESC is a flashcard study command line (CLI) program, where you are able to create cards and categorise them, 
-and you can also quiz yourself using your flashcards. It has a simple, no frills user interface that is quick and easy to use
+## Project - Exam Study Companion (ESC)
+
+## Overview
+Exam Study Companion (ESC) is a command-line based app that is designed to help students preparing for upcoming exams. The app is written in Java and requires JDK 11 to run.
 
 ### Summary of Contributions
 #### Code Contributed
