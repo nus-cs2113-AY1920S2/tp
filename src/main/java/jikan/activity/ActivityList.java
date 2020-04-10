@@ -180,6 +180,9 @@ public class ActivityList {
             }
             Parser.continuedIndex = -1;
             Parser.resetInfo();
+            assert(Parser.tags == null);
+            assert(Parser.activityName == null);
+            assert(Parser.startTime == null);
 
         } else {
             Ui.printDivider(Parser.activityName + " was ended.");
@@ -194,6 +197,9 @@ public class ActivityList {
             }
             // reset activity info
             Parser.resetInfo();
+            assert(Parser.tags == null);
+            assert(Parser.activityName == null);
+            assert(Parser.startTime == null);
         }
     }
 

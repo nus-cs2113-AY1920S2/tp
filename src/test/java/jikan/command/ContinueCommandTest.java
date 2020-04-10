@@ -44,6 +44,11 @@ class ContinueCommandTest {
         activities.add(activity3);
     }
 
+    private void resetFields() {
+        Parser.startTime = null;
+        Parser.tags.clear();
+    }
+
     @Test
     void executeContinue() throws InterruptedException {
         try {
@@ -56,6 +61,8 @@ class ContinueCommandTest {
             assertEquals(startTime.getMinute(), Parser.startTime.getMinute());
             final Duration initial = activities.get(1).getDuration();
             Thread.sleep(2000);
+
+            resetFields();
             // End Activity2
             command = new EndCommand(null);
             command.executeCommand(activities);

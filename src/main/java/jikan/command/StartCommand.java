@@ -49,11 +49,7 @@ public class StartCommand extends Command {
      * @return true if there is a concurrent running activity and false otherwise.
      */
     private boolean hasStarted(LocalDateTime startTime) {
-        if (startTime != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return startTime != null;
     }
 
     /**

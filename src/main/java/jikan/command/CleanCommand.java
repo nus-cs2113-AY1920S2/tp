@@ -45,11 +45,7 @@ public class CleanCommand extends Command {
      */
     private boolean isParameterEmpty() {
         String parametersTrimmed = this.parameters.trim();
-        if (parametersTrimmed.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return parametersTrimmed.isEmpty();
     }
 
     /**
