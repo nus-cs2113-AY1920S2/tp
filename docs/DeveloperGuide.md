@@ -14,14 +14,11 @@
 * [Appendix D: Glossary](#glossary)
 * [Appendix E: Instructions for Manual Testing](#manual-test)
     + [E.1. Launch and Shutdown](#e1-launch-and-shutdown)
-    + [E.2. Adding a reservation](#e2-adding-a-reservation) 
-    + [E.3. Deleting a reservation](#e3-deleting-a-reservation)
-    + [E.4. Marking a reservation](#e4-marking-a-reservation)
-    + [E.5. Search a reservation](#e5-search-a-reservation)
-    + [E.6. List all reservations](#e6-list-all-reservations)
-    + [E.7. List all Served reservations](#e7-list-all-served-reservations)
-    + [E.8. List all Unserved reservations](#e8-list-all-unserved-reservations)
-    + [E.9. Clear all reservations](#e9-clear-all-reservations)
+    + [E.2. Add functionality](#e2-add-functionality) 
+    + [E.3. Delete functionality](#e3-delete-functionality)
+    + [E.4. Search functionality](#e4-search-functionality)
+    + [E.5. Listing functionality](#e5-list-functionality)
+    + [E.6. Clear functionality](#e6-clear-functionality)
 
 
 <a name="design-implementation"></a>
@@ -110,7 +107,25 @@ Step 3. The user can now view the current `stock` to see what ingredients are th
   <img src="https://user-images.githubusercontent.com/59989652/78977634-05e6d900-7b4b-11ea-8911-057c4ceb768b.png">
 </p>
 
-The following class diagram shows how the listing operation works:
+The listing mechanism process can be summarized in the following sequence diagram below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59989652/78683798-52030500-7922-11ea-8a8d-3aaa5d7af486.png">
+</p>
+
+The sequence diagram can be interpreted as such:
+1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
+2. Assuming the user input the list stock command correctly, `ListStockCommand#ListStockCommand()` constructor is called. 
+3. The time line returns back to `CommandParser`.
+4. The `CommandParser` then invokes `ListStockCommand#execute(...)`, which then further invokes `Stock#ListStock()` from the Stock object.
+5. The `Stock` object then self-invoke `Stock#printStock()` to print the ingredients that are in the stock to display it to the user.
+6. Note that within the method `Stock#printStock()`, the hashMap in the `Stock` will be sorted in descending ingredient quantity.
+7. If there is no ingredient that in the `Stock`, the program will display a different message to show the user.
+8. Next, the time line returns back to `CommandParser` and the `ListStockCommand` object is destroyed here.
+9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
+
+
+Alternatively, the following class diagram also explains listing operation works:
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/59989652/78975984-dda9ab00-7b47-11ea-8df4-f9510b8328ee.png" width="900">
@@ -123,23 +138,6 @@ The following class diagram shows how the listing operation works:
 4. The `ListStockCommand` object is then executed via its `ListStockCommand#execute(...)` method, which takes in the `stock` object initialized previously and instructs it to list all ingredients through its `Stock#listIngredient()` method.
 5. Within  the `Stock#listIngredient()` method, a temporary `List` data structure is used to convert from the `HashMap` in the `stock` object. The list is then sorted by supplying a `new Comparator` that compares the ingredient's quantity. Afterwards, the sorted list is then printed to be displayed to the user.
 
-Alternatively, the listing mechanism process can be summarized in the following sequence diagram below:
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/78683798-52030500-7922-11ea-8a8d-3aaa5d7af486.png">
-</p>
-
-
-The sequence diagram can be interpreted as such:
-1. `CommandParser` calls its own `CommandParser#parseCommand(...)`. 
-2. Assuming the user input the list stock command correctly, `ListStockCommand#ListStockCommand()` constructor is called. 
-3. The time line returns back to `CommandParser`.
-4. The `CommandParser` then invokes `ListStockCommand#execute(...)`, which then further invokes `Stock#ListStock()` from the Stock object.
-5. The `Stock` object then self-invoke `Stock#printStock()` to print the ingredients that are in the stock to display it to the user.
-6. Note that within the method `Stock#printStock()`, the hashMap in the `Stock` will be sorted in descending ingredient quantity.
-7. If there is no ingredient that in the `Stock`, the program will display a different message to show the user.
-8. Next, the time line returns back to `CommandParser` and the `ListStockCommand` object is destroyed here.
-9. If however, the user input did not input the search stock command correctly, `CommandParser` will invoke `CommandParser#errorCommand()` to notify the user.
 
 
 
@@ -411,8 +409,37 @@ Given below are instructions to test the app manually.
 3. Run the command `java -jar [CS2113-T14-4][RestaurantDailyReport].jar`. The CLI should appear in a few seconds. It should be a welcome page.
 
 
-<a name="e2-adding-a-reservation"></a>
-### E.2. Adding a reservation
+<a name="e2-add-functionality"></a>
+### E.2. Add Functionality
+
+#### E.2.1 Adding a dish into menu
+Adding a dish into menu.
+* Test case: `add dish; n/pizza; i/cheese, sauce; p/7.00;`
+    - Expected: Dish `pizza` added into the menu.
+* Test case: `add dish; n/pizza; i/cheese, sauce;`
+    - Expected: Dish `pizza` will not be added. An error message will be displayed to request the user to input the correct format.
+* Other incorrect add commands to try: ``add dish; n/pizza; sauce;`` or `add dish;i/cheese, sauce;``
+    - Expected: The ingredient will not be added. An error message will be displayed accordingly.
+
+#### E.2.2. Adding an ingredient into stock
+Adding an ingredient into stock.
+* Test case: `add stock; i/tomato; q/10; p/0.50;`
+    - Expected: Ingredient `tomato` added into the stock.
+* Test case: `add stock; i/tomato; q/10; p/0.50;`
+    - Expected: The quantity of `tomato` increased to 20 due to the addition from the previous entry.
+* Test case: `add stock; i/rice; q/10; p/randomNumber;`
+    - Expected: Rice will not be added into the stock. An error message will be displayed to request the user to type in the price
+    as a double.
+* Test case: `add stock; i/tOMaTO; q/10; p/0.50`
+    - Expected: tOMaTO will be added into the stock. However, because of case-sensitivity, the quantity will not add on to the previous `tomato` 
+    in the stock. A message will be displayed to inform the user of similar ingredient names already present in the stock.
+* Other incorrect add commands to try: `add stock; i/tomato; q/LOL; p/10` or `add stock; i/tomato;`
+    - Expected: The ingredient will not be added. An error message will be displayed accordingly.
+* Extra Notes: 
+    - Adding `add stock; i/tomato; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
+    **This is intentional.**
+
+#### E.2.3. Adding a reservation
 Adding a reservation to an empty list.
 * Prerequisite: Clear the `reservations` list using `clear reservation;` command to ensure the empty list.
 * Test case: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`
@@ -421,12 +448,30 @@ Adding a reservation to an empty list.
     - Expected: No Reservation is added. An error message shows to remind the user that "number of guests n/" is missing.
 * Test case: `add reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
-* Other incorrect delete commands to try: `add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;`, `add reservation;`...
+* Other incorrect add commands to try: `add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;`, `add reservation;`...
     - Expected: No Reservation is added. Error messages for input missing displays.
 
+<a name="e3-delete-functionality"></a>
+### E.3. Delete functionality
 
-<a name="e3-deleting-a-reservation"></a>
-### E.3. Deleting a reservation
+#### E.3.1 Deleting a dish in the menu
+Deleting a dish in the menu.
+* Test case: `delete dish; n/pizza`
+    - Expected: The dish `pizza` will be deleted from the menu. This is assuming you have followed the add commands in E.2.1.
+* Test case: `delete dish; n/rice cake;`
+    - Expected: The dish `rice cake` will not be deleted. An error message will be displayed to show that this dish does not exist. 
+
+#### E.3.2. Delete an ingredient in the stock
+Deleting an ingredient in the stock.
+* Test case: `delete stock; i/tomato; q/1`
+    - Expected: The quantity of tomato will be reduced by 1. Assuming that you have followed the add commands in E.2.2, the count of `tomato`
+    should be `19` now.
+* Test case:  `delete stock; i/tOMaTO;
+    - Expected: The ingredient `tOMaTO` is completely removed in the stock.
+* Test case: `delete stock; q/10`
+    - Expected: No ingredient is deleted. An error message will be displayed to remind the user to input an ingredient name.
+    
+#### E.3.3 Deleting a reservation
 Deleting a reservation while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[1] is Unserved.
 * Test case: `delete reservation; r/1;`
@@ -436,17 +481,39 @@ Deleting a reservation while all reservations are listed.
 * Test case: `delete reservation; r/2.3;`
     - Expected: No Reservation is marked as Invalid. An error message shows to remind the user to input a positive integer.
 
-
-<a name="e4-marking-a-reservation"></a>
-### E.4. Marking a reservation
+### E.3.4 Marking a reservation
 Marking a reservation as Served while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[2] is Unserved.
 * Test case: `mark reservation; r/2;`
     - Expected: The status of the second reservation in the list is changed to **Served**.
     
+  
+<a name="e4-search-functionality"></a>
+### E.4. Search functionality
+
+#### E.4.1 Search a dish
+Searching a dish in the menu.
+* Test case: `search dish; k/bacon;`
+    - Expected: The dish `pizza` will be displayed.
+* Test case: `search dish; k/sushi;`
+    - Expected: An error message will be displayed as the dish `sushi` does not exist in the menu.
+* Test case: `search dish; k/water`
+    - Expected: An error message will be displayed to reuest the user to input in the following format: `search dish; k/KEYWORD;`
     
-<a name="e5-search-a-reservation"></a>
-### E.5. Search a reservation
+
+#### E.4.2 Search an ingredient
+Searching an ingredient in the menu.
+* Test case: `search stock; k/tomato;`
+    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2., the only ingredient that will      
+    be displayed is `tomato`.
+* Test case: `search stock; k/banana`
+    - Expected: A message will be displayed to show that there is currently no existing ingredient that matches the keyword you have just given.
+* Test case: `search stock; k/TOMATO;`
+    - Expected: The ingredient `tomato` will still be listed. The search stock functionality takes care of case-sensitivity of the keyword given.
+* Test case: `search stock; tomato`
+    - Expected: An error message will be displayed to request the user to input the keyword in the follow format of `k/keyword`. 
+
+#### E.4.3 Search a reservation
 Searching a reservation while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[1] and Reservation[3] are on 2020-04-10.
 * Test case: `search reservation; r/1;`
@@ -457,8 +524,26 @@ Searching a reservation while all reservations are listed.
     - Expected: A message of no such reservation will display.
 
 
-<a name="e6-list-all-reservations"></a>
-### E.6. List all reservations
+
+<a name="e5-list-functionality"></a>
+### E.5 List functionality
+
+### E.5.1 List all dishes in the menu
+Listing all dishes in the menu.
+* Test case: `list dish;`
+    - Expected: All dishes in the menu will be listed. Assuming you have followed up to E.4.1 strictly, there should be no dishes listed in the menu.
+* Test case: `list dish`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.  
+
+### E.5.2 List all ingredients in the stock
+Listing all ingredients in the stock.
+* Test case: `list stock;`
+    - Expected: All ingredients in the stock will be listed. Assuming that you have followed up to E.4.2 strictly, the only ingredient listed would be
+    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently.
+* Test case: `list stock`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+
+#### E.5.3 List all reservations
 Listing all reservations at the beginning of the program execution with reservation content already exist in the "report.txt" file.
 * Prerequisites: Execute the program for the first time and add some reservations. Type `bye` to exit the program and the reservations added will be automatically saved to the "report.txt" file. Execute the program again.
 * Test case: `list reservation;`
@@ -467,8 +552,7 @@ Listing all reservations at the beginning of the program execution with reservat
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
   
 
-<a name="e7-list-all-served-reservations"></a>
-### E.7. List all Served reservations
+#### E.5.4. List all Served reservations
 Listing all served reservations while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[2] and Reservation [3] are Served.
 * Test case: `list served reservation;`
@@ -477,25 +561,27 @@ Listing all served reservations while all reservations are listed.
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
 
 
-<a name="e8-list-all-unserved-reservations"></a>
-### E.8. List all Unserved reservations
+#### E.5.5. List all Unserved reservations
 Listing all unserved reservations while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[4] and Reservation [5] are Served.
 * Test case: `list unserved reservations`
     - Expected: The details of Reservation[4] and Reservation[5] will display on the screen.
 * Test case: `list unserved reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
-  
 
-<a name="e9-clear-all-reservations"></a>
-### E.9. Clear all reservations
+<a name="e6-clear-functionality"></a>  
+### E.6 Clear functionality
+#### E.6.1 Clear all ingredients 
+Clear all ingredients in the stock.
+* Test case: `clear stock;`
+    - Expected: All ingredients in the stock are cleared. You can use `list stock;` to ensure this.
+* Test case: `clear stock`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+    
+#### E.6.2 Clear all reservations
 Clear all reservations in the list while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.
 * Test case: `clear reservation;`
-<<<<<<< HEAD
-    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared.   
-=======
     - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 * Test case: `clear reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
