@@ -73,7 +73,9 @@ public class LoadStock {
                     new FileReader(this.path.toString()));
             
             while ((line = br.readLine()) != null) {
-
+                if (line.isBlank()) {
+                    continue;
+                }
                 String[] lineArgs = line.split(" ");
                 if (line.indexOf('$') == -1) {
                     continue;
