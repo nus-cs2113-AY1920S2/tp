@@ -3,11 +3,10 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyTagException;
-import jikan.exception.InvalidTimeFrameException;
+import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
-import static jikan.Jikan.tagFile;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.util.Arrays;
@@ -20,22 +19,25 @@ import java.util.Scanner;
  */
 public class ViewGoalsCommand extends Command {
 
-    File tagFile;
+    //File tagFile;
     private static final String TAG_FILE_PATH = "data/tag/tag.csv";
+    public Storage tagStorage; // Storage the list was loaded from
+    public StorageHandler tagStorageHandler;
 
     /**
      * Constructor to create a new viewgoal command.
      * @param parameters the parameters of the goal command.
      */
-    public ViewGoalsCommand(String parameters, File tagFile) {
+    public ViewGoalsCommand(String parameters, Storage tagStorage) {
         super(parameters);
-        this.tagFile = tagFile;
+        this.tagStorage = tagStorage;
+        this.tagStorageHandler = new StorageHandler(tagStorage);
     }
 
     @Override
     public void executeCommand(ActivityList activityList) {
         HashMap<String, Duration> tagsGoals = new HashMap<>();
-        populateTagList(tagFile, tagsGoals);
+        populateTagList(tagStorage, tagsGoals);
         getGoalData(activityList,tagsGoals);
 
     }
@@ -58,12 +60,11 @@ public class ViewGoalsCommand extends Command {
     /**
      * Populates task list from file.
      *
-     * @param dataFile Data file to populate from.
+     * @param tagStorage Storage object containing the tag file.
      */
-    private void populateTagList(File dataFile, HashMap<String, Duration> tagsGoals) {
+    private void populateTagList(Storage tagStorage, HashMap<String, Duration> tagsGoals) {
         try {
-            tagFile = new File(TAG_FILE_PATH);
-            Scanner dataScanner = new Scanner(tagFile);
+            Scanner dataScanner = new Scanner(tagStorage.dataFile);
             while (dataScanner.hasNext()) {
                 parseDataLine(dataScanner.nextLine(), tagsGoals);
             }

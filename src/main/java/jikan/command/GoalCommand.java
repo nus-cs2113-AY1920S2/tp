@@ -8,6 +8,8 @@ import jikan.exception.InvalidGoalCommandException;
 import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchTagException;
 import jikan.log.Log;
+import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 
 import java.io.BufferedReader;
@@ -25,7 +27,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
-import static jikan.Jikan.tagFile;
 
 
 /**
@@ -35,15 +36,20 @@ import static jikan.Jikan.tagFile;
 public class GoalCommand extends Command {
     private static Scanner scanner;
     private static final String TAG_FILE_PATH = "data/tag/tag.csv";
+    //private static File tagStorage;
+    public static Storage tagStorage; // Storage the list was loaded from
+    public static StorageHandler tagStorageHandler;
 
     /**
      * Constructor to create a new goal command.
      * @param parameters the parameters of the goal command.
      * @param scanner to read the user input.
      */
-    public GoalCommand(String parameters, Scanner scanner) {
+    public GoalCommand(String parameters, Scanner scanner, Storage tagStorage) {
         super(parameters);
         this.scanner = scanner;
+        this.tagStorage = tagStorage;
+        this.tagStorageHandler = new StorageHandler(tagStorage);
     }
 
     @Override
@@ -182,8 +188,8 @@ public class GoalCommand extends Command {
     private static void updateGoal(String userInput, String tagName, Duration goalTime, int index) throws IOException {
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
             deleteLine(index);
-            writeToFile(tagName + "," + goalTime);
-            Ui.printDivider("The goal for " + tagName + " was updated.");
+            tagStorage.writeToFile(tagName + "," + goalTime);
+            Ui.printDivider("The goal for " + tagName + " was updated");
         } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Ui.printDivider("Okay then, what else can I do for you?");
         } else {
@@ -198,7 +204,7 @@ public class GoalCommand extends Command {
      */
     public static void addTagLine(String dataLine) {
         try {
-            writeToFile(dataLine);
+            tagStorage.writeToFile(dataLine);
         } catch (IOException e) {
             System.out.println("Error saving tag to tag file.");
         }
@@ -215,17 +221,16 @@ public class GoalCommand extends Command {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(TAG_FILE_PATH),
                 StandardCharsets.UTF_8));
         fileContent.remove(lineNumber);
-        saveNewTags(fileContent, tagFile);
+        saveNewTags(fileContent);
     }
 
     /**
      * Saves the updated tags to the csv file.
      *
      * @param newList The list containing the updated data.
-     * @param dataFile The file to save to.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void saveNewTags(List<String> newList, File dataFile) throws IOException {
+    public static void saveNewTags(List<String> newList) throws IOException {
         clearFile();
         FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
 
@@ -242,18 +247,6 @@ public class GoalCommand extends Command {
     public static void clearFile() throws IOException {
         FileWriter fw = new FileWriter(TAG_FILE_PATH, false);
         fw.write("");
-        fw.close();
-    }
-
-    /**
-     * Writes the input string to file.
-     *
-     * @param s The input string.
-     * @throws IOException If an error occurs while writing.
-     */
-    public static void writeToFile(String s) throws IOException {
-        FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
-        fw.write(s + System.lineSeparator());
         fw.close();
     }
 
