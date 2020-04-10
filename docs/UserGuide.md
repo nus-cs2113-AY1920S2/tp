@@ -2,9 +2,9 @@
 
 By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT`      Course: `CS2113`
 
-1. [Introduction](#Introduction)
-2. [Quick Start](#quick-start)
-3. [Features](#features)
+1. [Introduction](#1.-Introduction)
+2. [Quick Start](#2.-quick-start)
+3. [Features](#3.-features)
     1. [Command Format](#command-format)
         1. [Asking for help with valid commands : `help`](#help-command)
         2. [Viewing articles or jobs : `view`](#view-command)
@@ -14,15 +14,15 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
         5. [Deleting saved/created `article`, `job`, or `note`: `delete `](#delete-command)
         7. [Adding an extract to `article`, `job`, or `note`: `list`](#add-command)
         8. [Exiting the program : `exit`](#exit-command)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
-6. [Acknowledgement](#acknowledgement)
+4. [FAQ](#5.-faq)
+5. [Command Summary](#5.-command-summary)
+6. [Acknowledgement](#6.-acknowledgement)
 
-## Introduction
+## 1. Introduction
 
-TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop app for **managing** information about technology including news, jobs or even notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes [Hacker News](https://github.com/HackerNews/API) API to give the user the option to **view** new news articles and questions/jobs. The purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we refer to *viewing* an article, for instance, as referring to the option of viewing its title, URL and date. The user can even add a short extract to the afformentioned article using the `addinfo` functionality. If the device is not connected to the internet, the user can **view** pre-loaded articles and jobs. The user also has the option to add interesting articles, jobs and notes about technology themselves using the **create** functionality. 
+TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop app for **managing** information about technology including news, jobs or even notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes [Hacker News](https://github.com/HackerNews/API) API to give the user the option to **view** new news articles and questions/jobs. However, note that the purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we help the user to manage metadata such as title, URL and date of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` functionality. If the device is not connected to the internet, the user can **view** pre-loaded articles and jobs. The user also has the option to add interesting articles, jobs and notes about technology themselves using the **create** functionality. 
 
-## Quick Start
+## 2. Quick Start
 
 *  Ensure you have Java `11` or above installed in your Computer.
 *  Download the latest `tp.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v1.0).
@@ -36,7 +36,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
     * **`exit`** : exits the app.
 
 
-## Features
+## 3. Features
 
 
 ### Command Format
@@ -95,48 +95,48 @@ Expected Outcome:
     __________________________________________________________________________________________
 
 
-    Loading information from the internet... 
+    Connecting to the internet and loading information... 
 
-    1. Title: JITs Are Un-Ergonomic
-       Date: 2020-Mar-29 Sun 10:47 AM
+       1. Title: The Global Dollar Short Squeeze
+       Date: 2020-Apr-10 Fri 09:24 AM
        Category: default
-       Url: https://abe-winter.github.io/2020/03/28/jitu-brutus.html
-       Extract:
+       Url: https://www.lynalden.com/global-dollar-short-squeeze/
+       Extract: 
 
 
-    2. Title: Show HN: SpicyPass – A free and open-source minimalist password manager
-       Date: 2020-Mar-29 Sun 06:18 AM
+       2. Title: Take-home vs. whiteboard coding: The problem is bad interviews
+       Date: 2020-Apr-10 Fri 08:48 AM
        Category: default
-       Url: https://github.com/JFreegman/SpicyPass
-       Extract:
+       Url: https://andrewrondeau.com/blog/2020/04/take-home-vs-whiteboard-coding-the-problem-is-bad-interviews
+       Extract: 
 
 
-    3. Title: Building a Raspberry Pi GPS Speedometer
-       Date: 2020-Mar-29 Sun 07:48 AM
+       3. Title: Ask HN: Has any progress been made on large format E-ink displays?
+       Date: 2020-Apr-10 Fri 06:24 AM
        Category: default
-       Url: https://gleslie.com/rpi/raspberry/pi/dashboard/2020/03/28/building-a-rpi-vehicle-dashboard.html
-       Extract:
+       Url: URL Not provided
+       Extract: 
 
 
-    4. Title: National Emergency Library – Free 1.4M ebooks
-       Date: 2020-Mar-29 Sun 07:12 AM
+       4. Title: Should western museums return colonial cultural artifacts stolen from Africa?
+       Date: 2020-Apr-10 Fri 01:04 PM
        Category: default
-       Url: https://archive.org/details/nationalemergencylibrary
-       Extract:
+       Url: https://www.fatumasvoice.org/should-western-museums-return-colonial-cultural-artifacts-from-africa-the-caribbean-and-the-pacific/
+       Extract: 
 
 
-    5. Title: New Grad vs. Senior Dev
-       Date: 2020-Mar-28 Sat 08:20 AM
+       5. Title: The software industry's greatest sin: hiring
+       Date: 2020-Apr-10 Fri 09:13 AM
        Category: default
-       Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
-       Extract:
+       Url: https://www.neilwithdata.com/developer-hiring
+       Extract: 
 
 
-    6. Title: NYC Subway Turnstile Data
-       Date: 2020-Mar-29 Sun 05:49 AM
+       6. Title: Founder's Field Guide for Navigating This Crisis
+       Date: 2020-Apr-10 Fri 03:38 AM
        Category: default
-       Url: https://github.com/toddwschneider/nyc-subway-turnstile-data
-       Extract:
+       Url: https://firstround.com/review/the-founders-field-guide-for-navigating-this-crisis-advice-from-recession-era-leaders-investors-and-ceos-currently-at-the-helm/
+       Extract: 
 
 
     __________________________________________________________________________________________
@@ -158,15 +158,15 @@ Examples:
 
 Expected Outcome
 
-    ________________________________________________________________________________________
+    __________________________________________________________________________________________
 
 
     Done, saved the article with the following details:
-       Title: JITs Are Un-Ergonomic
-       Date: 2020-Mar-29 Sun 10:47 AM
+       Title: The Global Dollar Short Squeeze
+       Date: 2020-Apr-10 Fri 09:24 AM
        Category: default
-       Url: https://abe-winter.github.io/2020/03/28/jitu-brutus.html
-       Extract:
+       Url: https://www.lynalden.com/global-dollar-short-squeeze/
+       Extract: 
     __________________________________________________________________________________________
 
 
@@ -186,6 +186,9 @@ Examples:
 
 Expected Outcome:
 
+    __________________________________________________________________________________________
+
+
     Enter the title of the article?
     New grad vs senior dev
     __________________________________________________________________________________________
@@ -196,17 +199,22 @@ Expected Outcome:
     __________________________________________________________________________________________
 
 
-    What is the category (type "default" if you done know it)
+    What is the category (type "default" if you don't know it)
     Funny
     __________________________________________________________________________________________
 
 
-    Done, we have added the following job to your list of saved jobs
+    Would you like to add any extract?
+    This article is about the difference of the experienced and newbie developer.
+    __________________________________________________________________________________________
+
+
+    Done, we have added the following article to your list of saved articles
        Title: New grad vs senior dev
-       Date: 2020-Mar-29 Sun 12:25 PM
+       Date: 2020-Apr-10 Fri 01:44 PM
        Category: Funny
        Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
-       Extract: 
+       Extract: This article is about the difference of the experienced and newbie developer.
     __________________________________________________________________________________________
 
 ****
@@ -226,25 +234,27 @@ Examples:
 
 Expected Outcome:
       
-      __________________________________________________________________________________________
+    __________________________________________________________________________________________
 
 
-      _                                   Article List                                   _
+    _                                   Article List                                   _
 
 
-      1. Title: JITs Are Un-Ergonomic
-         Date: 2020-Mar-29 Sun 10:47 AM
-         Category: default
-         Url: https://abe-winter.github.io/2020/03/28/jitu-brutus.html
-         Extract: 
+       1. Title: The Global Dollar Short Squeeze
+       Date: 2020-Apr-10 Fri 09:24 AM
+       Category: default
+       Url: https://www.lynalden.com/global-dollar-short-squeeze/
+       Extract: 
 
 
-      2. Title: New grad vs senior dev
-         Date: 2020-Mar-29 Sun 12:25 PM
-         Category: Funny
-         Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
-         Extract: It turns out that yes, fresh grads and keener interns do complain to senior developers about asympto...
-      __________________________________________________________________________________________
+       2. Title: New grad vs senior dev
+       Date: 2020-Apr-10 Fri 01:44 PM
+       Category: Funny
+       Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
+       Extract: This article is about the difference of the experienced and newbie developer.
+
+
+    __________________________________________________________________________________________
 
 ****
 
@@ -263,12 +273,13 @@ Expected Outcome
 
     __________________________________________________________________________________________
 
+
     Deleting the following article:
-       Title: JITs Are Un-Ergonomic
-       Date: 2020-Mar-29 Sun 10:47 AM
+       Title: The Global Dollar Short Squeeze
+       Date: 2020-Apr-10 Fri 09:24 AM
        Category: default
-       Url: https://abe-winter.github.io/2020/03/28/jitu-brutus.html
-       Extract:
+       Url: https://www.lynalden.com/global-dollar-short-squeeze/
+       Extract: 
     __________________________________________________________________________________________
 ****
 
@@ -284,16 +295,18 @@ Examples:
 
 Expected outcome:
 
-      __________________________________________________________________________________________
+    __________________________________________________________________________________________
+
 
     Done, the article description now looks like the following 
 
        Title: New grad vs senior dev
-       Date: 2020-Mar-29 Sun 12:25 PM
+       Date: 2020-Apr-10 Fri 01:44 PM
        Category: Funny
        Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
        Extract: It turns out that yes, fresh grads and keener interns do complain to senior developers about asympto...
     __________________________________________________________________________________________
+
 
 
 ****
@@ -319,13 +332,13 @@ Expected Outcome:
 
 ****
 
-## FAQ
+## 4. FAQ
 
 *Q*: How do I transfer my data to another Computer? 
 
-*A*: Copy three text files called "articlelist.json", "notelist.json", 'joblist.json' that has saved your information into the directory from which you will run the application in your new computer. You are then set to go!
+*A*: Copy three text files called "articlelist.json", "notelist.json", 'joblist.json' that has saved your information into the directory from which you will run the application using the jar file in your new computer. You are then set to go!
 
-## Command Summary
+## 5. Command Summary
 * *Help*  : `help`; 
 e.g. `help`
 * *View* : `view [article / job]`;
@@ -343,5 +356,5 @@ e.g. `addinfo article 1 It turns out that yes, fresh grads and keener interns do
 * *Exit* : `exit`
 e.g. `exit`
 
-## Acknowledgement
+## 6. Acknowledgement
 Our UserGuide has been heavily inspired by the superb format of the AddressBook user guide that we were given access to for this course.
