@@ -260,9 +260,9 @@ The following steps explains the sequence of events:
 
 The user can delete a patient from the list of patients currently in the program. The command: 
 
-    delete patient S7777777Z 
+    delete patient S1234567Z 
     
-will delete the patient with NRIC `S7777777Z`, if found. 
+will delete the patient with NRIC `S1234567Z`, if found. 
 
 **Implementation** 
 
@@ -270,7 +270,7 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 The following steps explains the sequence of events: 
 
-1. The user enters `delete patient S7777777Z`. 
+1. The user enters `delete patient S1234567Z`. 
 
 2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
 
