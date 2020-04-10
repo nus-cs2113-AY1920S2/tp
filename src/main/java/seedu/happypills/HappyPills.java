@@ -41,6 +41,7 @@ public class HappyPills {
         appointments = new AppointmentMap();
         patientRecords = new PatientRecordMap();
         scanner = new Scanner(System.in);
+        logSetup();
         try {
             patients = Storage.loadPatientsFromFile(Storage.PATIENT_FILEPATH);
             logger.info("    Patient loaded from file.\n");
@@ -74,7 +75,7 @@ public class HappyPills {
 
     /**
      * Main entry-point for the java.duke.Duke application.
-     * @param args I dont know.
+     * @param args arguments
      */
     public static void main(String[] args) {
         new HappyPills().run();
@@ -84,8 +85,6 @@ public class HappyPills {
      * Runs the program until termination.
      */
     private void run() {
-        logSetup();
-
         TextUi.printWelcomeMessage();
 
         while (scanner.hasNextLine()) {

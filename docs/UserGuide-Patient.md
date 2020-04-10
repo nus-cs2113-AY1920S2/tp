@@ -20,49 +20,51 @@ HappyPills can help users to manage their patients' information easily.
 
 This feature allows you to add more patients into the existing patients' list.
  
-HappyPills will prompt you if there are any missing fields and ask for confirmation before adding the patient's information into the patients's list.  
+HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+you will only need to fill in the couple of fields you missed.
 You can also add a new patient with the specified parameters in any order.
 
-
-###### Usage Example:   
+###### Format:   
 
     add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
 
     add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
-    
+
 >***Expected output:***
 >
 >![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Output")
 >
-> Enter `/p 91265432` to add missing field.
+> 
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>HappyPills will prompt you for missing details that are important.</td>
+   <td>HappyPills will prompt you for any missing inputs that are necessary.</td>
  </tr>
 </table>
 
+Enter `/p 91265432` to add the missing field.
 
 > ***Expected output:***
 >
 >   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Output")
 >
-> Enter `y` to confirm.
 
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> Entering <code>n</code> will not save the patients' information when HappyPills prompt you for confirmation.</td>
+   <td> Entering <code>n</code> will abort the command and HappyPills will not save the patients' information.</td>
     <!--This is a comment. Patient's information will be discarded if <code>n</code> is entered.-->
  </tr>
 </table>
+
+Enter `y` to confirm.
 
 > ***Expected output:***
 >    
@@ -74,7 +76,7 @@ You can also add a new patient with the specified parameters in any order.
 
 Edit information of the patient with the specified NRIC. 
 
-##### Usage example: 
+##### Format: 
  
     edit patient NRIC /n<NAME> 
                       /p<PHONE_NUMBER> 
@@ -116,7 +118,7 @@ Edit information of the patient with the specified NRIC.
 
 Delete a patient as specified by the NRIC. 
 
-##### Usage example: 
+##### Format: 
 
     delete patient NRIC
     
@@ -128,8 +130,6 @@ Delete a patient as specified by the NRIC.
 >
 > ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Output")
 >
-> Enter `y` to confirm.
-
 <table>
   <col width="20">
   <col width="200">
@@ -139,6 +139,7 @@ Delete a patient as specified by the NRIC.
  </tr>
 </table>
 
+Enter `y` to confirm.
 
 > ***Expected output:***
 >    
@@ -159,7 +160,7 @@ Delete a patient as specified by the NRIC.
 
 Displays all the patients in the patient list. 
 
-##### Usage example: 
+##### Format: 
 
     list patient
     
@@ -173,7 +174,7 @@ Displays all the patients in the patient list.
 
 Retrieve details of the patient with the specified NRIC.
 
-##### Usage example: 
+##### Format: 
 
     get patient NRIC
     

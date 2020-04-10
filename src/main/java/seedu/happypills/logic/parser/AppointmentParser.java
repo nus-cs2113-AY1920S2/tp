@@ -1,7 +1,5 @@
 package seedu.happypills.logic.parser;
 
-import org.w3c.dom.Text;
-import seedu.happypills.HappyPills;
 import seedu.happypills.logic.commands.appointmentcommands.AppointmentCommand;
 
 import seedu.happypills.logic.commands.appointmentcommands.AddAppointmentCommand;
@@ -17,13 +15,12 @@ import seedu.happypills.ui.HelpTextUi;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
-import java.util.Scanner;
-
 //@@author sitinadiah25
 public class AppointmentParser extends Parser {
 
     /**
      * Parses the command given by the user to appointment commands.
+     *
      * @param fullCommand the full command entered by the user.
      * @return the command that the user has entered.
      * @throws HappyPillsException throws an exception for invalid commands.
@@ -42,16 +39,16 @@ public class AppointmentParser extends Parser {
                 throw new HappyPillsException(HelpTextUi.incompleteCommandString("help edit appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("done")) {
-            String [] detailedCommand = userCommand[2].trim().split(" ",2);
+            String[] detailedCommand = userCommand[2].trim().split(" ", 2);
             if (detailedCommand.length == 2) {
-                return new DoneAppointmentCommand(detailedCommand[0].trim(),detailedCommand[1].trim());
+                return new DoneAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {
                 throw new HappyPillsException(HelpTextUi.incompleteCommandString("help done appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
-            String [] detailedCommand = userCommand[2].trim().split(" ",2);
+            String[] detailedCommand = userCommand[2].trim().split(" ", 2);
             if (detailedCommand.length == 2) {
                 return new DeleteAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {

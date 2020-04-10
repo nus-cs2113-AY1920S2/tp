@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author sitinadiah25
 public class EditPatientCommand extends PatientCommand {
     protected String nric;
     protected String newContent;
@@ -31,7 +32,7 @@ public class EditPatientCommand extends PatientCommand {
 
     /**
      * Constructor for EditCommand Class.
-     * It creates a new EditCommand Object with the information provided.
+     * Creates a new EditCommand Object with the information provided.
      *
      * @param nric       Contains the nric of the patient that is to be retrieved.
      * @param newContent Contains the string that the attribute is to be updated to.
@@ -42,7 +43,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Retrieve the patient from the NRIC of the Edit command.
+     * Retrieves the patient from the NRIC of the Edit command.
      *
      * @param patients Contains the list of patients to be searched.
      */
@@ -56,7 +57,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the phone number of the patient.
+     * Edits the phone number of the patient.
      *
      * @param patient The patient whose phone number is to be edited.
      * @param content The patient's new phone number.
@@ -68,7 +69,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the allergies of the patient.
+     * Edits the allergies of the patient.
      *
      * @param patient The patient whose allergies is to be edited.
      * @param content The patient's updated allergies.
@@ -80,7 +81,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the remarks of the patient.
+     * Edits the remarks of the patient.
      *
      * @param patient The patient whose remarks is to be edited.
      * @param content The patient's new remarks.
@@ -92,7 +93,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the Date of Birth of the patient.
+     * Edits the Date of Birth of the patient.
      *
      * @param patient The patient whose DOB is to be edited.
      * @param content The patient's new DOB.
@@ -104,7 +105,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the name of the patient.
+     * Edits the name of the patient.
      *
      * @param patient The patient whose name is to be edited.
      * @param content The patient's new name.
@@ -116,7 +117,7 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Edit the blood type of the patient.
+     * Edits the blood type of the patient.
      *
      * @param patient The patient whose blood type is to be edited.
      * @param content The patient's new blood type.
@@ -128,16 +129,17 @@ public class EditPatientCommand extends PatientCommand {
     }
 
     /**
-     * Adds a new task to the list with the information provided by calling.
-     * {} (or) {}
-     * (or) {} as require
+     * Executes the edit patient command.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
-     * @throws HappyPillsException Throws an exception if the edit field is not valid.
+     * @param patients       The list of patients
+     * @param appointments   The list of appointments
+     * @param patientRecords The list of patient records
+     * @return Error Message or Success Message
+     * @throws HappyPillsException if NRIC already exist in the patient list
      */
     @Override
     public String execute(
-            PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
+            PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
         if (newContent.length() < 2) {
             throw new HappyPillsException(Messages.MESSAGE_INCOMPLETE_COMMAND);
@@ -156,14 +158,30 @@ public class EditPatientCommand extends PatientCommand {
             content = newContent.substring(2);
         }
         Patient editPatient = findPatient(patients);
-        String output = "";
         if (editPatient == null) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
         }
+        String output = "";
         content = content.trim();
+        output = checkTag(field, content, editPatient);
+        saveEditedInformation(patients);
+        assert output.length() > 0 : "output message is invalid";
+        return output;
+    }
+
+    /**
+     * Checks which field of information the user intends to edit.
+     *
+     * @param field       The tag given by the user.
+     * @param content     The information given by the user.
+     * @param editPatient The patient's information.
+     * @throws HappyPillsException If the edit field is not valid.
+     */
+    private String checkTag(String field, String content, Patient editPatient) throws HappyPillsException {
+        String output;
         if (field.equals(PHONE_NUMBER_TAG)) {
             if (Checker.isValidPhoneNum(content.trim())) {
                 output = editPhone(editPatient, content);
@@ -184,7 +202,7 @@ public class EditPatientCommand extends PatientCommand {
             if (Checker.isValidBloodType(content.trim())) {
                 output = editBloodType(editPatient, content.trim());
             } else {
-                throw new HappyPillsException("    Please ensure that the BLOOD TYPE is in [A|B|AB|O][+-] ");
+                throw new HappyPillsException(Messages.MESSAGE_INVALID_BLOOD_TYPE);
             }
             output = editBloodType(editPatient, content.trim());
         } else if (field.equals(NAME_TAG)) {
@@ -192,13 +210,20 @@ public class EditPatientCommand extends PatientCommand {
         } else {
             throw new HappyPillsException(Messages.MESSAGE_INVALID_EDIT_PATIENT);
         }
+        return output;
+    }
+
+    /**
+     * Saves the edited patient record details with the information provided by user.
+     *
+     * @param patients The list of patients on which the commands are executed on.
+     */
+    private void saveEditedInformation(PatientMap patients) {
         try {
             Storage.writeAllToFile(Storage.PATIENT_FILEPATH,
                     StorageTextUi.getFormattedPatientString(patients));
         } catch (IOException e) {
             logger.info(StorageTextUi.FAIL_TO_WRITE_PATIENT_MSG);
         }
-        assert output.length() > 0 : "output message is invalid";
-        return output;
     }
 }

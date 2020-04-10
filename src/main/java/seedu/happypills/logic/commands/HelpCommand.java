@@ -17,7 +17,7 @@ public class HelpCommand implements Command {
     }
 
     /**
-     * Return help command instructions.
+     * Returns help command instructions.
      *
      * @param patients Contains the list of tasks on which the commands are executed on.
      * @return message The command instructions.

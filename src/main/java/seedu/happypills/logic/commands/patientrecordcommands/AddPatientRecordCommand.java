@@ -13,6 +13,10 @@ import seedu.happypills.ui.StorageTextUi;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+//@@ NyanWunPaing
+/*
+ * Adds patient record into Patient Record Map.
+ */
 public class AddPatientRecordCommand extends PatientRecordCommand {
 
     protected String nric;
@@ -25,13 +29,13 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
 
     /**
      * Constructor for PatientRecordCommand Class.
-     * It creates a new PatientCommand Object with the information provided.
+     * Creates a new PatientCommand Object with the information provided.
      *
-     * @param nric patient's nric.
-     * @param symptom patient's symptom.
-     * @param diagnosis patient's diagnosis.
-     * @param date date of record.
-     * @param time time of record.
+     * @param nric      The patient's NRIC.
+     * @param symptom   The patient's symptom.
+     * @param diagnosis The patient's diagnosis.
+     * @param date      The date of the medical treatment.
+     * @param time      The time of the medical treatment.
      */
     public AddPatientRecordCommand(String nric, String symptom, String diagnosis, String date, String time) {
         this.nric = nric;
@@ -41,15 +45,24 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
         this.time = time;
     }
 
+    /**
+     * Executes the add patient record command.
+     *
+     * @param patients       The list of patients.
+     * @param appointments   The list of appointments.
+     * @param patientRecords The list of patient records.
+     * @return message Error message or success message to be displayed.
+     * @throws HappyPillsException If NRIC already exist in the patient list.
+     */
     @Override
     public String execute(
-            PatientMap patients,AppointmentMap appointments, PatientRecordMap patientRecords
+            PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
-        String message = "";
+        String message;
         if (!patients.containsKey(nric)) {
             message = Messages.MESSAGE_PATIENT_NOT_FOUND;
         } else {
-            PatientRecord patientRecord = new PatientRecord(nric,symptom,diagnosis,date,time);
+            PatientRecord patientRecord = new PatientRecord(nric, symptom, diagnosis, date, time);
             patientRecords.addPersonalRecord(patientRecord, nric);
             try {
                 Storage.addSingleItemToFile(Storage.PATIENT_RECORD_FILEPATH, patientRecord.toSave());

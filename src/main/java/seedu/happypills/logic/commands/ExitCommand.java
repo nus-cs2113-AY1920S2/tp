@@ -18,11 +18,11 @@ public class ExitCommand implements Command {
     }
 
     /**
-     * Execute the exit command and write data to the file.
+     * Executes the exit command and write data to the file.
      *
-     * @param patients       the list of patients
-     * @param appointments  the list of appointments
-     * @param patientRecords the list of patient records
+     * @param patients       The list of patients.
+     * @param appointments  The list of appointments.
+     * @param patientRecords The list of patient records.
      */
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords) {

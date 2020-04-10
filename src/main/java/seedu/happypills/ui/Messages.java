@@ -3,7 +3,7 @@ package seedu.happypills.ui;
 import static seedu.happypills.ui.TextUi.DIVIDER;
 
 /**
- * Container for user visible messages.
+ * Contains user visible messages.
  */
 public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "    Command is invalid. "
@@ -32,11 +32,13 @@ public class Messages {
     public static final String MESSAGE_PATIENT_RECORD_NOT_ADDED = "    The current information is not added.\n"
             + "    Please add all the details again! Thank you.\n"
             + DIVIDER;
-    public static final String MESSAGE_USER_CONFIRMATION = "    Please input [y] for yes or [n] for no";
+    public static final String MESSAGE_USER_CONFIRMATION = "    Please enter [y] for yes or [n] for no";
     public static final String MESSAGE_PATIENT_RECORD_NOT_FOUND = "    Patient record not found. Please try again.";
     public static final String MESSAGE_EDIT_ERROR = "    Something went wrong, the edit could not be made.";
     public static final String MESSAGE_INVALID_DATE = "    Invalid date or date format(DD/MM/YYYY).\n";
     public static final String MESSAGE_INVALID_DATE_OF_BIRTH = "    Please ensure that the DATE is in DD/MM/YYYY ";
+    public static final String MESSAGE_INVALID_BLOOD_TYPE =
+            "    Please ensure that the BLOOD TYPE is in [A|B|AB|O][+-] ";
     public static final String MESSAGE_INVALID_TIME = "    Invalid time or time format(HH:MM).\n";
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "    Please ensure that all the phone number is 8 digit";
     public static final String MESSAGE_INVALID_EDIT_APPOINTMENT =
@@ -50,7 +52,7 @@ public class Messages {
                     + "\n    enter \"help edit patient\"";
 
     public static final String MESSAGE_EMPTY_PATIENT = "    There is no patient in the list.\n" + DIVIDER;
-    public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given Index";
+    public static final String MESSAGE_INDEX_OUT_OF_BOUND = "    No record found with given index";
     public static final String MESSAGE_PATIENT_IS_IN_THE_MAP =
             "    Patient is already in the list. Please use help command.";
     public static final String MESSAGE_CONTENT_IS_EMPTY = "    Please do not leave the field as empty string";
@@ -60,5 +62,6 @@ public class Messages {
     public static final String MESSAGE_BLOOD_TYPE_FORMAT = "      /b BLOOD TYPE (Format: A/B/O/AB with +/-)";
     public static final String MESSAGE_INCORRECT_INPUT_FORMAT = "    Incorrect input format. Sorry please try again";
     public static final String MESSAGE_DATE_OF_BIRTH_FORMAT = "      /dob DATE OF BIRTH (Format: DD/MM/YYYY)";
+    public static final String MESSAGE_CLEAR_COMMAND = "    To abort, enter \"clear\"";
 }
 
