@@ -7,7 +7,8 @@
 
 **Code contribution**: You can view my code contribution for this project [here:](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=josephlimweijie)
 
-* **Enhancement added**
+**Enhancement added**
+
 **Add**:
 1. Basic add functionality.
 2. Informs user if the user enters a name that is similar to the existing ingredients in the stock.
@@ -50,7 +51,7 @@
 **Load**
 1. Loads the stock-related data from the `report.txt` file.
 
-* **Contributions to documentations:**
+**Contributions to documentations:**
 
 **User guide contribution:**
 
@@ -81,11 +82,11 @@ The following sections are where the **content** is contributed by me:
     + Stock-related in Appendix B
     + Manual testing instructions for dish and stock in Appendix E.
 
-* **Team-based Task**
+**Team-based Task**
 1. Automate testing by incorporating test cases using text-ui-test.
 2. Release `Restaurant Daily Report v2.0`.
 
-* **Review/Mentoring contributions:** 
+**Review/Mentoring contributions:** 
 1. Troubleshoot failing CI-Test in issue [#74](https://github.com/nus-cs2113-AY1920S2/forum/issues/74)
 
 
