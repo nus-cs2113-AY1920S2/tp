@@ -2,6 +2,7 @@ package stock;
 
 import exceptions.IngredientNotFoundException;
 import ingredient.Ingredient;
+import report.LoadStock;
 import utils.Pair;
 
 import java.util.ArrayList;
@@ -30,13 +31,19 @@ public class Stock {
      */
     private static Map<String, Pair<Integer, Double>> stock = null;
     
+    /** A HashSet to keep track of duplicated ingredient names in the stock. */
     private static Set<String> duplicateIngredientNameSet = null;
     
+    /** A stock decoder that loads data from the report.txt file. */
+    private static LoadStock stockLoader = null;
+
     private final String ls = System.lineSeparator();
     
     public Stock() {
         stock = new HashMap<>();
         duplicateIngredientNameSet = new HashSet<>();
+        stockLoader = new LoadStock();
+
     }
     
     /**
@@ -60,7 +67,9 @@ public class Stock {
             int newQuantity = currQuantity + quantityToAdd;
             stock.replace(ingredientName, Pair.of(newQuantity, ingredientPrice));
         } else {
-            checkForDuplicateIngredientName(ingredientName);
+            if (checkForDuplicateIngredientName(ingredientName)) {
+                printDuplicateIngredientMessage(ingredientName);
+            };
             stock.put(ingredientName, Pair.of(quantityToAdd, ingredientPrice));
             duplicateIngredientNameSet.add(ingredientName.toLowerCase());
 
@@ -175,6 +184,12 @@ public class Stock {
         System.out.println("");
     }
     
+    /** Clears the stock completely. */
+    public void clearStock() {
+        stock.clear();
+        System.out.println("The stock has been cleared.");
+    }
+    
     /**
      * A utility function to check against stock if any of the ingredient within the stock
      * matches the keyword supplied by the user.
@@ -199,46 +214,64 @@ public class Stock {
     }
     
     /**
-     * A utility function to inform user that there is an existing ingredient in the stock
-     * that has the same name as the one that just added.
+     * A utility function to check within the stock if there are ingredient names similar 
+     * to the one just added. For example, if the stock contains 'tomato', adding another
+     * ingredient named 'TomATo' will return true.
      */
-    private void checkForDuplicateIngredientName(String ingredientNameToCheck) {
+    private boolean checkForDuplicateIngredientName(String ingredientNameToCheck) {
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
+        boolean hasDuplicateIngredientName = false;
         
-        if (tempList.size() <= 1) {
-            return;
-        } else if (checkIngredientInStock(ingredientNameToCheck)) {
-            String outputMessage = ls;
-            
-            outputMessage += ("Please note that there are other similar ingredient names in the stock."
-                    + ls
-                    + ls);
-            
-            outputMessage += ("You are currently adding: '"
-                    + ingredientNameToCheck
-                    + "'");
-            
-            outputMessage += (ls
-                    + ls
-                    + "Here are the ingredients in the stock with similar names:"
-                    + ls);
-            
-          
+        if (tempList.size() < 1) {
+            return hasDuplicateIngredientName;
+        } else {
             for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
                 String ingredientName = ingredient.getKey();
                 if (ingredientName.toLowerCase().equals(ingredientNameToCheck.toLowerCase())) {
-                    outputMessage += (ingredientName
-                            + ls);
+                    hasDuplicateIngredientName = true;
+                    break;
                 }
             }
-            
-            outputMessage += (ls
-                    + "You may want to remove the unwanted ingredient names if it is a duplicate.");
-            
-            outputMessage += (ls);
-            
-            System.out.println(outputMessage);
+            return hasDuplicateIngredientName;
         }
+    }
+    
+    /**
+     * A utility function to inform user that there is an existing ingredient in the stock
+     * that has the same name as the one that just added.
+     */
+    private void printDuplicateIngredientMessage(String duplicateIngredientName) {
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
+        String outputMessage = ls;
+        
+        outputMessage += ("Please note that there are other similar ingredient names in the stock."
+                + ls
+                + ls);
+        
+        outputMessage += ("You are currently adding: '"
+                + duplicateIngredientName
+                + "'");
+        
+        outputMessage += (ls
+                + ls
+                + "Here are the ingredients in the stock with similar names:"
+                + ls);
+        
+      
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            if (ingredientName.toLowerCase().equals(duplicateIngredientName.toLowerCase())) {
+                outputMessage += (ingredientName
+                        + ls);
+            }
+        }
+        
+        outputMessage += (ls
+                + "You may want to remove the unwanted ingredient names if it is a duplicate.");
+        
+        outputMessage += (ls);
+        
+        System.out.println(outputMessage);
     }
     
     /**
@@ -280,12 +313,16 @@ public class Stock {
             ingredientCounter++;
         }
     }
-    
+        
     public static Map<String, Pair<Integer, Double>> getStock() {
         return stock;
     }
     
     public static Set<String> getDuplicateIngredientNames() {
         return duplicateIngredientNameSet;
+    }
+    
+    public static LoadStock getStockLoader() {
+        return stockLoader;
     }
 }
