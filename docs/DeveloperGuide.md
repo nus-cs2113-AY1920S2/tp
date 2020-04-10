@@ -15,7 +15,8 @@ Table of Contents
 	- [Atas Component](#26-atas-component)
 3. [Implementation](#3-implementation)
 	- [Delete Task Feature](#31-delete-task-feature)
-		- [Design Considerations](#311-design-considerations)
+		- [Current Implementation](#311-current-implementation)
+		- [Design Considerations](#312-design-considerations)
 	- [Search task feature](#32-search-task-feature)
 		- [Current Implementation](#321-current-implementation)
 		- [Design Considerations:](#322-design-considerations)
@@ -52,10 +53,9 @@ Table of Contents
 6. [Appendices](#6-appendices)
     - [Product Scope](#61-appendix-a-product-scope)
     - [User Stories](#62-appendix-b-user-stories)
-    - [Use Cases](#63-appendix-c-use-cases)
-    - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
-    - [Documentation](#65-appendix-e-documentation)
-    - [Instructions for Manual Testing](#66-appendix-f-instructions-for-manual-testing)
+    - [Non-Functional Requirements](#63-appendix-c-non-functional-requirements)
+    - [Documentation](#64-appendix-d-documentation)
+    - [Instructions for Manual Testing](#65-appendix-e-instructions-for-manual-testing)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -65,9 +65,6 @@ This section will guide you on how to set up this project on your own computer.
 1.  JDK 11 or above
 
 2.  IntelliJ IDE
-
-> **Note**: Knowing [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) API from Java 
-> would help in understanding how Date and Time is used in our implementation and [Tests](#4-testing).
 
 ### 1.2. Setting up the project
 1.  Fork this repository, and clone the fork to your computer
@@ -172,7 +169,7 @@ The sequence diagram below shows how various components, broken down into the va
 ## 3. Implementation
 This section will detail how some noteworthy features are implemented.
 
-> Note: 
+> **Note:**  
 > You will need to create tasks to use the features mentioned below.  
 > Create an `assignment`: `assignment n/[NAME] m/[MODULE] d/[DATE] [TIME] c/[COMMENTS]`  
 > Create an `event`     : `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`  
@@ -180,7 +177,7 @@ This section will detail how some noteworthy features are implemented.
 > For more information, please refer to the user guide.
 
 ### 3.1. Delete Task Feature
-Current Implementation:  
+#### 3.1.1 Current Implementation  
 The `DeleteCommand` extends the `Command` class and initializes the `delete index` in its constructor. The `delete index` specifies the index of task that the user wants to delete.
 
 Given below is an example usage and how the `DeleteCommand` mechanism behaves at each step:
@@ -191,7 +188,7 @@ The user launches the app and retrieves the tasks which are saved under a local 
 **Step 2**  
 The user enters `delete 1` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided. It will obtain information to get `delete index`.
 
-> **Warning:**
+> **Warning:**  
 > If `IndexOutOfBoundsException` or `NumberFormatException` is caught, a new instance of `IncorrectCommand` class will be called to print the respective error messages
 
 **Step 3**  
@@ -207,11 +204,11 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete v2.0.png)
+![delete task](images/delete_v2.0.png)
 
-#### 3.1.1. Design Considerations
+#### 3.1.2. Design Considerations
 
--   Calling `remove()` method in `deleteTask()` command of `TaskList` method instead of calling `remove()` method within the `execute()` method of the `DeleteCommand` class
+-   Calling `remove()` method in `TaskList#deleteTask()` instead of calling `remove()` method in `DeleteCommand#execute()`
 
     -   Pros: Easier implementation for other classes that requires the same use. 
 
@@ -229,11 +226,11 @@ The search task feature is currently implemented in `SearchCommand` class that i
 -   `SearchCommand` initializes the `taskType`, `searchParam` and `date` in its constructor.
     -   `taskType` refers to the type of task the user wants to search through.
     -   `searchParam` refers to the search query that the user wants to find.
-    -   `date` refers to the date of the task that the user wants to find. It is set as a default value of NULL if it is a *search* command.
+    -   `date` refers to the date of the task that the user wants to find. It is set as a default value of `NULL` if it is a `search` command.
     -   `SearchCommand` class contains `CURRENT_COMMAND_WORD` to store the command word used by the user(i.e. `search` or `searchd`)
     -   `SearchCommand` class also contains `CURRENT_COMMAND_USAGE` to store the error messages for the respective commands.
 
-Given below is an example usage of the `Search` command:  
+Given below is an example usage of the `search` command:  
 
 **Step 1**  
 The user launches the app and retrieves the tasks that are saved under a local file using `Storage`.
@@ -246,33 +243,33 @@ provided to obtain the `taskType`, `searchParam` and `date` .
 A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` will be created.
 -   `SearchCommand` contains an ArrayList `storeIndex` to store the original index of the task containing the search query.
 
--   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` in the `SearchCommand` class will be updated to the *command word* of the user and the 
+-   Depending on the input that the user puts in, the `CURRENT_COMMAND_WORD` in the `SearchCommand` class will be updated to the user's input command word and the 
 `CURRENT_COMMAND_USAGE` in the `SearchCommand` class will be updated accordingly.
 
     -   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
 
-    -   Otherwise, If the `taskType` is an *assignment* or *event* , `SearchCommand#getSearchQueryAssignments()` or `SearchCommand#getSearchQueryEvents()`will be called respectively.
+    -   Otherwise, If the `taskType` is an `assignment` or `event` , `SearchCommand#getSearchQueryAssignments()` or `SearchCommand#getSearchQueryEvents()`will be called respectively.
         
-        -   In the method,  `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` will be called respectively, to obtain the original task list and the corresponding index.
+        -   In the method,  `TaskList#getEventsHashMap()` and `TaskList#getAssignmentsHashMap()` will be called respectively, to obtain the original task list and the corresponding index.
         
         -   `getEventOrAssignmentResults` will be called to obtain the results of the search query.
         
-            -   `SearchCommand#loopArrayNoDateEventsAssignments` or `SearchCommand#loopArrayWithDateEventsAssignments` will be called to loop through the *Linked HashMap~ to find the tasks
+            -   `SearchCommand#loopArrayNoDateEventsAssignments()` or `SearchCommand#loopArrayWithDateEventsAssignments()` will be called to loop through the Linked HashMap to find the tasks
             matching the search query and date(if applicable) and add the original index to the `storeIndex` and return an ArrayList containing the results.
         
-    -   Lastly, If `taskType` is *all*, `SearchCommand#etSearchQueryAllTasks` will be called.
+    -   Lastly, If `taskType` is "all", `SearchCommand#getSearchQueryAllTasks()` will be called.
         
-        -   In the method, an *ArrayList* will be used to store the updated task list from `Parser#getTaskArray()`
+        -   In the method, an ArrayList will be used to store the updated task list from `TaskList#getTaskArray()`
         
-        -   We will iterate through the *ArrayList* to find the tasks matching the search query and date(if applicable) and add the original index
+        -   We will iterate through the ArrayList to find the tasks matching the search query and date(if applicable) and add the original index
         to the `storeIndex` and return an ArrayList containing the results.
 
 **Step 4**  
-The ArrayList containing the results from Step 3 will be parsed into `SearchCommand#SearchList` to format the results into a String suitable 
+The ArrayList containing the results from Step 3 will be parsed into `SearchCommand#SearchList()` to format the results into a String suitable 
 for printing out to the users.
 
 **Step 5**  
-The String results from Step 5 will be parsed into `SearchCommand#resultsList` to print out the results.
+The String results from Step 5 will be parsed into `SearchCommand#resultsList()` to print out the results.
 
 -   If there are no matching search query, a new instance of `CommandResult` class will be created to print out the error message, indicating no matching search query,
 
@@ -284,7 +281,7 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
 #### 3.2.2. Design Considerations:
 
--   Using Linked HashMap to store key-value pairs for *events* and *assignments*
+-   Using Linked HashMap to store key-value pairs for `events` and `assignments`
 
     -   Rationale:
         To maintain an ordering among the events and assignments that we iterate through so that there is no need to sort through the list again to restore the original ordering
@@ -460,12 +457,13 @@ The following sequence diagram summarizes how repeat command operation works, fr
     `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
     date if today is not possible. (More information on how date and time is updated is given below)
     
-    > **NOTE**: Using `originalDateAndTime` instead of the recorded date and time of the task helps to circumvent a potential bug concerning
-     the last few dates of a month. For example, given 31st Jan 2020, if we add 1 month to it using the LocalDateTime Java API,
-     we will get 29 Feb 2020. Then adding another month, we will get 29 Mar 2020 instead of 31 Mar 2020.
-    >
-    > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
-    next date and time. In this case, we will obtain 31 Mar 2020 instead of 29 Mar 2020. 
+ > **Note**:  
+ > Using `originalDateAndTime` instead of the recorded date and time of the task helps to circumvent a potential bug concerning
+   the last few dates of a month. For example, given 31st Jan 2020, if we add 1 month to it using the LocalDateTime Java API,
+   we will get 29 Feb 2020. Then adding another month, we will get 29 Mar 2020 instead of 31 Mar 2020.
+ >
+ > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
+   next date and time. In this case, we will obtain 31 Mar 2020 instead of 29 Mar 2020. 
 
 -   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
  no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
@@ -533,14 +531,15 @@ There are 2 ways an event's date and time is updated.
             -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood 
             the user’s list and increase the size of the local file that stores the `TaskList`.
             
-#### 3.4.4 Future Enhancements
-A list of possible future enhancements and implementations are provided below as ways to further enhance the user's experience with ATAS.
+#### 3.4.5 Future Enhancements
+A list of possible future enhancements and implementations are provided below as ways to further enhance the user's experience with **ATAS**.
 
 - Allow users to add `RepeatEvent` directly instead of getting an event to repeat.
     - Possible Implementation: 
         1. Create new `RepeatEventCommand` class similar to `AssignmentCommand` and `EventCommand`. Then edit `Parser` class
            to allow user to create an `RepeatEvent` from command line itself. <br/>
-           > **Note**: It is possible to reuse `EventCommand` and `RepeatCommand` current implementations for the new class but will 
+           > **Note**:                                                                                                                                                                                                          
+           It is possible to reuse `EventCommand` and `RepeatCommand` current implementations for the new class but will 
            increase coupling as it reuses code from the 2 classes.
       
 - Allow users to keep track of past instances of repeated events for users to be able to reflect on how much time was spent on past
@@ -570,7 +569,7 @@ The user types in `edit 1`. The `parseCommand()` method of the `Parser` class is
 **Step 2**  
 The `parseCommand()` method subsequently calls the `prepareEditCommand()` method inside the same `Parser` class. This method splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the **Index** of the task specified in the list. This method returns a new instance of the `EditCommand` class, passing the integer `1` as the parameter.
 
-> **Warning**:
+> **Warning**:  
 > An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed into the constructor of that class if the number supplied was not an **integer**. <br/> 
 > An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed into the constructor of that class if there are no task index supplied by the user.  
 
@@ -580,7 +579,7 @@ A new instance of the `EditCommand` class is returned to the main method of **AT
 **Step 4**  
 The `execute()` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
 
-> **Tip**:
+> **Tip**:  
 > Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENTS]` <br/> 
 > Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
 
@@ -596,7 +595,7 @@ In the `editRepeatEvent` method, the `numOfPeriod`, `typeOfPeriod`, `originalDat
 
 
 **Step 6**  
-This newly instanced class (either `Assignment` or `Event`) will be passed into the method `editTask()` of the `TaskList` class. The `editTask()` method of the `TaskList` class uses Java’s `ArrayList` `set()` method to replace the task.
+This newly instanced class (either `Assignment` or `Event`) will be passed into the method `editTask()` of the `TaskList` class. The `editTask()` method of the `TaskList` class uses Java’s `ArrayList#set()` method to replace the task.
 
 **Step 7**  
 Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed as the parameter to the constructor of that class.
@@ -617,7 +616,7 @@ The following sequence diagram shows the checking of `RepeatEvent` task type.
         The `execute()` method of `EditCommand` class has to use the `Ui` class parsed as one of the parameters to get input from user on new details of the task. The new input captured will be then passed to the `editAssignment()` or `editEvent()` method in the `EditCommand` class.
 
     -   **Alternatives Considered**:  
-        The `editAssignment()` and `editEvent()` methods can be placed in the `Parser` class and called in the `prepareEditCommand` method of that class.
+        The `editAssignment()` and `editEvent()` methods can be placed in the `Parser` class and called in the `prepareEditCommand()` method of that class.
 
 -   Using Java’s `ArrayList#set()` method
 
@@ -625,25 +624,25 @@ The following sequence diagram shows the checking of `RepeatEvent` task type.
         When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited. Therefore, the `set()` method of `ArrayList` is used to replace the edited task with the old task.
 
     -   **Alternatives Considered**:  
-        Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
+        Use the available `add()` and `delete()` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
         
-- Editing of `Repeat Event` task types will retain `Repeat Event` task type
+- Editing of `RepeatEvent` task types will retain `RepeatEvent` task type
 
     - **Rationale**: <br/>
-    When a `repeat event` task is edited, the `repeat event` task retains the `repeat event` task type. It is only logical in editing that when 
+    When a `RepeatEvent` task is edited, the `RepeatEvent` task retains the `RepeatEvent` task type. It is only logical in editing that when 
     a user edits an event, only the details of the event is changed. The task type of the original task should not change. 
     
     - **Alternatives Considered**: <br/>
-    Any editing of `repeat event` task will revert task back to `event` task and user will have to issue `repeat` command to 
+    Any editing of `RepeatEvent` task will revert task back to `event` task and user will have to issue `repeat` command to 
     set `event` task to `repeat`. However, this will affect the usability of `editCommand` thus this alternative is not selected. 
     
 #### 3.5.3 Future Enhancements
-- Allow users to edit `Repeat Event` directly from edit task prompt
+- Allow users to edit `RepeatEvent` directly from edit task prompt
     - Possible Implementation: <br/>
-    Call `RepeatEventCommand` if a `repeat event` task is to be edited to prompt user if they want to edit the `repeat` details
-    of a `repeat event` task. 
+    Call `RepeatEventCommand` if a `RepeatEvent` task is to be edited to prompt user if they want to edit the `repeat` details
+    of a `RepeatEvent` task. 
     
-- Notify users if users of edits during exit of ATAS. This helps user keep track of what edits he/she made to existing tasks.
+- Notify users if users of edits during exit of **ATAS**. This helps user keep track of what edits he/she made to existing tasks.
     - Possible Implementaion: <br/>
     Keep an ArrayList of tasks which are edited and when user is exiting **ATAS**, notify the user by printing ArrayList.  
 
@@ -665,15 +664,13 @@ Given below is an example usage of the `calendar` command. The step by step exec
 **Step 1**  
 The users enters the command `calendar d/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
 
-> **Note**
->
+> **Note:**  
 > The arguments specified after the command word `calendar` represents the month and year of the calendar view returned. `d/05/20` refers to May 2020.
 
 **Step 2**  
 The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.
 
-> **Note**
->
+> **Note:**  
 > An `IncorrectCommand` object will be constructed with its specific error message instead according to the error encountered. This can be in the form of no arguments provided or parser fails to parse the date provided.
 
 **Step 3**  
@@ -695,8 +692,7 @@ The method manages all pre-processing to get the details needed to formulate the
 
 -   Constructs a `CommandResult` object with the resultant string that contains the calendar view and returns this object.
 
-> **Note**
->
+> **Note:**  
 > Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the [design considerations](#362-design-considerations) subsection.
 
 **Step 4**  
@@ -707,7 +703,7 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
     -   Rationale:  
-        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task` Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
+        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task`. Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
 
     -   Alternatives considered:  
         Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.4, RepeatEvent design considerations](#344-design-considerations))
@@ -739,7 +735,7 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 ### 3.7. Storage
 #### 3.7.1. Implementation
 
-The `Storage` class uses the `encode()` and `decode()` method of each Task subclass to save and load Task data in a file on the user’s computer.  
+The `Storage` class uses the `encode()` and `decode()` method of each `Task` subclass to save and load `Task` data in a file on the user’s computer.  
 Every time a `Command` is executed, the `Storage#save()` method is run to update the save file.
 
 #### 3.7.2. Saving the current state of **ATAS** with `Storage#save()`:  
@@ -779,14 +775,15 @@ When all lines in the save file have been decoded, return the `TaskList`.
 
 ## 4. Testing
 Testing is required to ensure that the code written is accurate, bug free (at least in the tests designed) and do not cause any existing
- feature to fail. For ATAS, there are 2 ways to run automated testing.
+ feature to fail. For **ATAS**, there are 2 ways to run automated testing.
  
 ### 4.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
 -   To run all test using Gradle: Open a console and run the command `gradlew clean test`
-    > **Note**: For more tips on how to use gradle commands, look at 
+    > **Note**:  
+    For more tips on how to use gradle commands, look at 
     [Gradle Tutorial](https://github.com/AY1920S2-CS2113T-M16-1/tp/blob/master/tutorials/gradleTutorial.md)
 
 -   For individual test, navigate to folder `src/test/java`. From there, you can right-click any of the test **package**, **class** or a
@@ -831,11 +828,11 @@ To make a new release:
 ### 6.1. Appendix A: Product Scope
 Target user profile:  
 
--   university students who require the use of computer device often and is reasonably comfortable with the command line interface
+-   university students who use a computer often, and are reasonably comfortable with the command line interface
 
 -   desire to efficiently organise, manage, view and record their day to day events and tasks through an application 
 
--   has a need to manage large scale of university assignments and / or university / personal events that might occur on a regular basis
+-   has a need to manage a number of university assignments and university / personal events that might occur on a regular basis
 
 -   prefers desktop applications over other types of applications
 
@@ -843,7 +840,7 @@ Target user profile:
 
 -   able to type fast and prefers typing over mouse input
 
--   prefer one shot commands over multi-step commands
+-   prefer one-line commands over multi-step commands
 
 **Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application
 
@@ -1007,8 +1004,7 @@ Target user profile:
 </tbody>
 </table>
 
-### 6.3. Appendix C: Use Cases
-### 6.4. Appendix D: Non-Functional Requirements
+### 6.3. Appendix C: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
@@ -1033,8 +1029,8 @@ Target user profile:
 
 13. Application should be scalable to handle increased functionality at any instance. 
 
-### 6.5 Appendix E: Documentation
-#### 6.5.1 Introduction
+### 6.4 Appendix D: Documentation
+#### 6.4.1 Introduction
 
 We use MarkDown for writing documentation.
 
@@ -1042,19 +1038,19 @@ We use MarkDown for writing documentation.
 > We choose Markdown over asciidoc, although asciidoc provides more flexibility in formatting because Markdown is easier 
 >to master for new developers, and also because it is easier to be deployed on GitHub Pages<br/>
 
-#### 6.5.2 Editing documentation
+#### 6.4.2 Editing documentation
 
 See [here](https://www.markdownguide.org/getting-started/) to learn the basic syntax for Markdown.
 To preview your changes to your Markdown documents, you could download the Markdown plugin for IntelliJ, that allows 
-you to preview your changes real-time. Alternatively, you could push the changes to `GitHub` and view the changes from 
+you to preview your changes real-time. Alternatively, you could push the changes to GitHub and view the changes from 
 your commits. 
 
-#### 6.5.3 Editing diagrams
+#### 6.4.3 Editing diagrams
 
 See [here](https://www.lucidchart.com/blog/getting-started-in-lucidchart) to learn how to use LucidCharts to draw your 
 own diagrams.
 
-#### 6.5.4. Publishing Documentation
+#### 6.4.4. Publishing Documentation
 
 1.  Push the new documents to your own repository on github
 
@@ -1064,7 +1060,7 @@ to learn how to make a pull request.
 
 3. The moderators will review your change and make a decision if they want to use your changes
 
-### 5. Converting Documentation to PDF format
+### 6.4.5. Converting Documentation to PDF format
 1.  Click [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/) to find the desired guides that you wish to convert to PDF format.
 
 2.  For Google Chrome users:
@@ -1079,8 +1075,8 @@ to learn how to make a pull request.
     -   In the print screen, choose the option `Microsoft Print to PDF` and click `print`
     ![Save as PDF](images/windowspdf.jpg)
     
-### 6.6 Appendix F: Instructions for Manual Testing 
-#### 6.6.1 Launch and Shutdown 
+### 6.5 Appendix E: Instructions for Manual Testing 
+#### 6.5.1 Launch and Shutdown 
 Launch **ATAS**
 * Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases)
 * Using Terminal, navigate to folder containing **ATAS**
@@ -1096,7 +1092,7 @@ Exit **ATAS**
 
 Expected Output: **ATAS** program terminates
 
-#### 6.6.2 Adding `assignment` task type
+#### 6.5.2 Adding `assignment` task type
 
 **Prerequisites**: Issue `list` command, there are no tasks in the list
 
@@ -1134,7 +1130,7 @@ show `assignment four` on the list.
 
 Expected Output: `assignment three` will be displayed when **ATAS** is started.
 
-#### 6.6.3 Adding `event` task type
+#### 6.5.3 Adding `event` task type
 
 **Test Case 1**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment`
 
@@ -1175,7 +1171,7 @@ show `meeting four` on the list.
 
 Expected Output: `meeting four` will be displayed when **ATAS** is started.
 
-#### 6.6.4 Setting an `event` task to `repeat`
+#### 6.5.4 Setting an `event` task to `repeat`
 
 **Prerequisite**: 
 1. List of tasks contain both `assignment` and `event` tasks 
@@ -1213,7 +1209,7 @@ for `event` task types.
 Expected Output: An error message indicating the valid range of task index to enter will be displayed. 
 
 
-#### 6.6.5 Listing Tasks
+#### 6.5.5 Listing Tasks
 **Prerequisite**: List is empty
 
 **Test Case 1**: `list`
@@ -1257,7 +1253,7 @@ Expected Output: All `event` and `repeat event` task types that are occurring fr
 
 Expected Output: All `assignment` task types that are incomplete will be displayed.
 
-#### 6.6.6 Editing Tasks 
+#### 6.5.6 Editing Tasks 
 
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
@@ -1309,7 +1305,7 @@ Expected Output: An error message indicating that newly edited task should have 
 edited. 
 
 
-#### 6.6.7 Marking Task as Done
+#### 6.5.7 Marking Task as Done
 
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
@@ -1324,7 +1320,7 @@ command shows that the task marked done will be indicated with `[/]`.
 
 Expected Output: An error message indicating the range of valid task numbers. 
 
-#### 6.6.8 Deleting Task
+#### 6.5.8 Deleting Task
 
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
@@ -1339,7 +1335,7 @@ command shows that the task is deleted.
 
 Expected Output: An error message indicating the range of valid task numbers.
 
-#### 6.6.9 Clearing Task
+#### 6.5.9 Clearing Task
 
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
@@ -1368,7 +1364,7 @@ gives a no task is found error because there are no tasks on the list.
 
 Expected Output: An error message indicating there are no tasks at the moment is displayed. 
 
-#### 6.6.10 Searching for Tasks
+#### 6.5.10 Searching for Tasks
 
 **Prerequisite**: 
 1. List should contain several `assignment`, `event` and `repeat event` task types
@@ -1419,7 +1415,7 @@ Expected Output: Success message showing *all* the tasks matching the search que
 Expected Output: An error message showing that there is no matching task for the search query is shown.
 
 
-#### 6.6.11 Calendar View
+#### 6.5.11 Calendar View
 
 **Prerequisites**:
 1. List should contain several `assignment`, `event` and `repeat event` task types
