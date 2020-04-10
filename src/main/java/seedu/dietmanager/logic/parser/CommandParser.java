@@ -98,6 +98,12 @@ public class CommandParser {
             case "profile":
                 command = Optional.of(new ProfileCommand(commandPrompt.get()));
                 break;
+            case "check-weight-progress":
+                command = Optional.of(new CheckWeightRecordCommand(commandPrompt.get()));
+                break;
+            case "check-bmi":
+                command = Optional.of(new CheckBmiCommand(commandPrompt.get()));
+                break;
             case "list-food":
                 command = Optional.of(new ListFoodDatabaseCommand(commandPrompt.get()));
                 break;
@@ -112,9 +118,6 @@ public class CommandParser {
                 break;
             case "exit":
                 command = Optional.of(new ExitCommand(commandPrompt.get()));
-                break;
-            case "check-weight-progress":
-                command = Optional.of(new CheckWeightRecordCommand(commandPrompt.get()));
                 break;
             default:
                 throw new InvalidCommandException();
@@ -165,9 +168,6 @@ public class CommandParser {
                 break;
             case "new-recipe":
                 command = Optional.of(new BuildNewRecipeCommand(commandPrompt.get(), description.get()));
-                break;
-            case "check-bmi":
-                command = Optional.of(new CheckBmiCommand(commandPrompt.get(), description.get()));
                 break;
             default:
                 throw new InvalidCommandException();

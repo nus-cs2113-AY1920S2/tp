@@ -23,7 +23,7 @@ public class MessageBank {
 
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
-    public static String EXIT_COMMAND_MESSAGE = "Thank you and see you again soon!";
+    public static String EXIT_COMMAND_MESSAGE = "You are now exiting the application.";
 
     public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
 

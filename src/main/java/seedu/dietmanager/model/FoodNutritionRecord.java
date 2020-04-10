@@ -19,8 +19,8 @@ public class FoodNutritionRecord {
         foodNutritionRecordList.add(new Food("chicken-rice", 702));
         foodNutritionRecordList.add(new Food("fried-rice", 508));
         foodNutritionRecordList.add(new Food("chicken-curry", 450));
-        foodNutritionRecordList.add(new Food("prawn-noodles-dry", 459));
-        foodNutritionRecordList.add(new Food("fishball-noodles-soup", 330));
+        foodNutritionRecordList.add(new Food("prawn-noodles", 459));
+        foodNutritionRecordList.add(new Food("fishball-noodles", 330));
         foodNutritionRecordList.add(new Food("cheeseburger", 300));
         foodNutritionRecordList.add(new Food("white-bread", 77));
         foodNutritionRecordList.add(new Food("french-fries", 450));

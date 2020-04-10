@@ -101,7 +101,8 @@ public class UI {
 
     public String readInput() {
         Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        String input = sc.nextLine();
+        return input;
     }
 
     /**

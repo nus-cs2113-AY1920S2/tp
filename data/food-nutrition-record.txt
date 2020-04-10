@@ -1,8 +1,8 @@
 chicken-rice,702.0
 fried-rice,508.0
 chicken-curry,450.0
-prawn-noodles-dry,459.0
-fishball-noodles-soup,330.0
+prawn-noodles,459.0
+fishball-noodles,330.0
 cheeseburger,300.0
 white-bread,77.0
 french-fries,450.0

@@ -15,22 +15,23 @@
         8. [Set user weight](#set-user-weight)
         9. [Delete user weight record](#delete-user-weight-record)
         10. [Check user weight progress](#check-user-weight-progress)
+        11. [Check user BMI](#check-user-bmi)
     2. [Daily Food Record Features](#32-daily-food-record-features)
-        3. [Record meals](#record-meals)
-        4. [Check meals](#check-meals)
-        5. [Clear food records](#clear-all-food-records)
-        6. [Check required calories](#check-required-calories)
-        7. [Calculate calories](#calculate-calories)
+        1. [Record meals](#record-meals)
+        2. [Check meals](#check-meals)
+        3. [Clear food records](#clear-all-food-records)
+        4. [Check required calories](#check-required-calories)
+        5. [Calculate calories](#calculate-calories)
     3. [Food Nutrition Record Features](#33-food-nutrition-record-features)
-        8. [List food database](#list-food-database)
-        9. [Add food into database](#add-food-into-database)
-        10. [Delete food from database](#delete-food-from-database)
+        1. [List food database](#list-food-database)
+        2. [Add food into database](#add-food-into-database)
+        3. [Delete food from database](#delete-food-from-database)
     4. [Recipe Features](#34-recipe-features)
-        11. [Get a recommended recipe](#get-a-recommended-recipe)
-        12. [View recipe](#view-recipe)
+        1. [Get a recommended recipe](#get-a-recommended-recipe)
+        2. [View recipe](#view-recipe)
     5. [Utility Features](#35-utility-features)
-        16. [Help](#help)
-        17. [Exit application](#exit-application)    
+        1. [Help](#help)
+        2. [Exit application](#exit-application)    
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -313,7 +314,7 @@ Example of usage:
     1. 70.0kg
     2. 60.0kg
     Overall, you have lost 10.00 kg!
-    5.00 kg more to go to meet your dream girl/boy!                                                                                    
+    5.00 kg more to go to meet your dream girl/boy!
     ```
   
 * If weight remains the same from beginning:
@@ -325,7 +326,7 @@ Example of usage:
   Here is your weight changes record:
   1. 70.0kg
   There has been no change in your weight!
-  -5.00 kg more to go to meet your dream girl/boy!                                                                
+  -5.00 kg more to go to meet your dream girl/boy!
   ```
   
 * If there is weight gained from beginning:
@@ -338,9 +339,93 @@ Example of usage:
     1. 70.0kg
     2. 80.0kg
     Overall, you have gained 10.00 kg!
-    -15.00 kg more to go to meet your dream girl/boy!                                                                        
+    -15.00 kg more to go to meet your dream girl/boy!
     ```  
   
+### Check user BMI
+
+Check user BMI and BMI classification.
+
+Format: `check-bmi`
+
+Example of usage: 
+
+`check-bmi`
+
+* Expected Outcome:
+
+```
+check-bmi
+Your current BMI : 24.22
+
+You can check your height and weight against this table to see which category you fall into.
+Check weight first then height.
+
+LEGEND for BMI Table:
+1: UNDERWEIGHT       2: HEALTHY      3: OVERWEIGHT      4: OBESE      5: EXTREMELY OBESE
+ ___________________________________________________________________________________________________________________________________
+|        |                                                      WEIGHT in KG                                                        |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        |         | 41 | 45 | 50 | 54 | 59 | 64 | 68 | 73 | 77 | 82 | 86 | 91 | 95 | 100 | 104 | 109 | 113 | 118 | 122 | 127 | 132 |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 142.2   | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 144.7   | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 147.3   | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 149.8   | 1  | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 152.4   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 154.9   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 157.4   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 160.0   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 162.5   | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 165.1   | 1  | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 167.6   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 170.1   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 172.7   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+| HEIGHT | 175.2   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |
+|   in   |--------------------------------------------------------------------------------------------------------------------------|
+|   CM   | 177.8   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 180.3   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 182.8   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 185.4   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 187.9   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 190.5   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 193.0   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 195.5   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 198.1   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 200.6   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 203.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 205.7   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 208.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 210.8   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+|________|__________________________________________________________________________________________________________________________|
+```
+
 
 ## 3.2 Daily Food Record Features
 
@@ -643,19 +728,17 @@ Example of usage:`show-recipe`
 ## 3.5 Utility Features
 
 ### Help
-Show the help function table with the list of commands available
+Show the help function table with supported commands.
 
 Format: `help`
 
-* Shows the help table.
+Example of usage: 
 
-    Example of usage: 
+`help`
 
-    `help`
+* Expected Outcome:
 
-    Expected Outcome:
-
-    ```
+```
      _____________________________________________________________________________________________________________
     |                          Functions:                        |                 Descriptions:                  |
     |____________________________________________________________|________________________________________________|
@@ -677,42 +760,63 @@ Format: `help`
     |   help                                                     |  Show this function help table                 |
     |   exit                                                     |  Exit the application                          |
     |____________________________________________________________|________________________________________________|
-    
-    ```
+
+```
 
 
 ### Exit application
-Terminates and exits the application
+Terminates and exits the application.
 
 Format: `exit`
 
-* Terminates the application.
+Example of usage: 
 
-    Example of usage: 
+`exit`
 
-    `exit`
+* Expected Outcome:
 
-    Expected Outcome:
-
-    ```
-  
-    Thanks for using Diet Manager! See you again soon :)
-    
-    ```
+```
+Thanks for using Diet Manager! See you again soon :)
+```
 
 ## 4 FAQ
 
-**Q**: How do I transfer my dietary and health data to another computer? 
+**Q**: What do I do if the application cannot be launched? 
+
+**A**: Ensure that you have Java 11 and above installed on your device, 
+and that you have the most updated version of the application.
+
+**Q**: How do I transfer my data to another device? 
 
 **A**: All recorded user-related data will be stored in a folder when running the application. 
 Simply copying and moving that specific folder would be sufficient.
+
+**Q**: What if I want to use this application for multiple users on the same device? 
+
+**A**: The application is localised and user data is dependent on the specific data files present.
+Simply switch the data files to that of another user, or have multiple folders present for multiple users.
+
+**Q**: Can I directly change the data in the data files? 
+
+**A**: You can, but it is strongly discouraged as it could lead to the data file being corrupt and the application
+being forced to delete the data file and create a new one.
 
 ## 5 Command Summary
 
 No. | Command | Description
 ----| ------- | -----------
-1  | `set-profile` | Set up user profile
-2  | `profile` | View user profile
+1|`set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`|Creates a new profile
+2|`profile`| View user profile details
+3|`set-name NAME`| Update name in profile.
+4|`set-age AGE`| Update age in profile.
+5|`set-age GENDER`| Update gender in profile.
+6|`set-height HEIGHT`| Update height in profile.
+7|`set-weight-goal WEIGHT-GOAL`| Update weight-goal in profile.
+8|`set-weight WEIGHT`| Update weight in profile.
+9|`delete-weight INDEX`| Delete a specific weight record.
+10|`check-weight-progress`| Check user weight record progression.
+11|`check-bmi`| Check user BMI and BMI classification.
+
 3  | `record-meal` | Record a meal
 4  | `check-meal` | Check a meal 
 5 | `clear-records`| Clear all food records
@@ -723,10 +827,8 @@ No. | Command | Description
 10  | `delf` | Delete a food from the database
 11 | `new-recipe` | Create a recommended recipe for user
 12 | `show-recipe` | Show the recipe recommended for user
-13 | `update-weight` | Update user's weight changes
-14 | `check-weight-progress` | Check user's weight progress
-15 | `delete-weight` | Delete user's weight from progress
-16 | `help` | Show the help function table
-17 | `exit` | Exit application
+
+22|`help`| Show the help function table with supported commands.
+23|`exit`| Terminates and exits the application.
 
 Click [here](README.md) to go back to the main page.
