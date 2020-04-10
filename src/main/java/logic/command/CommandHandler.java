@@ -20,7 +20,7 @@ import java.util.Calendar;
 import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
 import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
 import static common.Messages.MESSAGE_WRONG_DATE;
-import static common.Messages.MESSAGE_INVALID_SLOT_RANGE
+import static common.Messages.MESSAGE_INVALID_SLOT_RANGE;
 
 public class CommandHandler {
 
@@ -229,9 +229,7 @@ public class CommandHandler {
             int endOfMonthDate = 0;
             endOfMonthDate = getEndOfMonthDate(endOfMonthDate);
 
-            Integer startDay;
-            Integer endDay;
-            Integer today;
+
             int startOfWeekDate = getStartOfWeekDate();
             if (userInputWords[1].length() >= 260) {
                 throw new WfException("Maximum characters for meeting name is 260");
@@ -240,6 +238,10 @@ public class CommandHandler {
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);
             int todayDate = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]);
+
+            Integer startDay;
+            Integer endDay;
+            Integer  today;
 
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
