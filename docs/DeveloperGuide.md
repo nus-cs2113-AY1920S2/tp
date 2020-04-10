@@ -106,10 +106,10 @@ This section will describe how the main features of the application are implemen
  2. A <code>Parser</code> object is created to call its <code>parseCommand</code> method.
      * The <code>Parser</code> object instantiates an <code>AddCommand</code> object based on the user input.
  3. The <code>Duke</code> class calls the <code>AddCommand#execute()</code> method of the <code>AddCommand</code> object.
- 4. In the <code>AddCommand#execute()</code> function, the <code>Item</code> to be added is stored in the <code>ShoppingList</code> 
-    object, using <code>Item.add()</code>.
- 5. In the sequence diagram, the AddCommand will add <code>Item</code> if the description is provided. 
- 6. The <code>Item</code> object with its' values is stored into the <code>ShoppingList</code> object.
+ 4. In the <code>AddCommand#execute()</code> method, the <code>Item</code> to be added is stored in the <code>ShoppingList</code> 
+    object, using <code>ShoppingList#add()</code> method.
+ 5. In the sequence diagram, <code>AddCommand</code> will add <code>Item</code> if the description is provided. 
+ 6. The <code>Item</code> object is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of adding item's values
  are shown in a separate sequence diagram below:
@@ -250,7 +250,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 2: Implement delete feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
@@ -303,7 +303,7 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
 
 - Alternative 2: Implement find feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
@@ -332,7 +332,7 @@ also be able to trace functionality bugs more easily if each command class deals
  object based on the user input
  3. <code>Duke</code> then calls the <code>MarkCommand#execute()</code> /
  <code>UnmarkCommand#execute()</code> method. 
- 4. The <code>MarkCommand#execute()</code> / <code>UnmarkCommand#execute()</code> calls the
+ 4. <code>MarkCommand#execute()</code> / <code>UnmarkCommand#execute()</code> makes a call to the
  <code>ShoppingList#markAsBought()</code> / <code>ShoppingList#unmarkAsBought()</code> method with the
  specified index.
 
@@ -418,7 +418,7 @@ omitted to emphasise the other classes:
 
 - Alternative 2: Implement display feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
   harder to navigate and understand. 
@@ -465,7 +465,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 2: Implement set budget feature in the <code>Duke</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
@@ -515,7 +515,7 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 2: Implement reset budget feature in the <code>Duke</code> or <code>Parser</code> class.
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class.
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class.
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details.
@@ -564,7 +564,7 @@ to work in parallel.
  
  - Alternative 2: Implement clear list feature in the <code>Duke</code> class
  
-   - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+   - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
    
    - Cons: Handling the command under the <code>Duke</code> class results in longer methods. Thus, the code becomes 
    harder to navigate and understand. 
@@ -613,12 +613,13 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 2: Implement help feature in the <code>Duke</code> or <code>Parser</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
 
-Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better
+in parallel and also be able to spot bugs more easily as each class deals with a different functionality
  
 &nbsp;
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>
@@ -655,12 +656,13 @@ omitted in the sequence diagram to emphasise on the other classes:
 
 - Alternative 2: Implement exit feature in the <code>Duke</code> or <code>Parser</code> class
 
-  - Pros: Will have less code to deal with as a new function is simply created in the <code>Duke</code> class
+  - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
   
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
 
-- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
+- Reason for choosing alternative 1: By abstracting out different command types as separate classes, we could work
+better in parallel and also be able to spot bugs more easily as each class deals with a different functionality
 
 &nbsp;
 <b><a href="#shoco-v21---developer-guide">&#129053; back to top</a></b>

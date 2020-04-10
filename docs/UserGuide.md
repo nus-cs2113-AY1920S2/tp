@@ -203,8 +203,8 @@ Format: `MARK INDEX`
 
 * The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
-  * Out of bounds indexes include negative indexes & indexes that are greater than the size of the shopping list.
-* Indexes that are not numbers or are out of bounds will produce an error message indicating the error of the index.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
+* Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * Marking an item whose status was previously `[B]` will be successful, assuring the success of the mark command executed.
 
 Example of the usage: 
@@ -229,7 +229,7 @@ Format: `UNMARK INDEX`
 
 * The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
-  * Out of bounds Indices include negative Indices & Indices that are greater than the size of the shopping list.
+  * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
 * Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * Un-marking an item whose status was previously `[X]` will be successful, assuring the success of the un-mark command executed.
 
