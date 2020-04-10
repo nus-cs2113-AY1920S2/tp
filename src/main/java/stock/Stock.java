@@ -67,7 +67,9 @@ public class Stock {
             int newQuantity = currQuantity + quantityToAdd;
             stock.replace(ingredientName, Pair.of(newQuantity, ingredientPrice));
         } else {
-            checkForDuplicateIngredientName(ingredientName);
+            if (checkForDuplicateIngredientName(ingredientName)) {
+                printDuplicateIngredientMessage(ingredientName);
+            };
             stock.put(ingredientName, Pair.of(quantityToAdd, ingredientPrice));
             duplicateIngredientNameSet.add(ingredientName.toLowerCase());
 
@@ -166,7 +168,7 @@ public class Stock {
                 double price = ingredient.getValue().second();
                 System.out.println(ingredientCounter 
                         + ". "
-                        + "    [" 
+                        + "[" 
                         + quantity 
                         + "]"
                         + "[$" 
@@ -206,46 +208,64 @@ public class Stock {
     }
     
     /**
-     * A utility function to inform user that there is an existing ingredient in the stock
-     * that has the same name as the one that just added.
+     * A utility function to check within the stock if there are ingredient names similar 
+     * to the one just added. For example, if the stock contains 'tomato', adding another
+     * ingredient named 'TomATo' will return true.
      */
-    private void checkForDuplicateIngredientName(String ingredientNameToCheck) {
+    private boolean checkForDuplicateIngredientName(String ingredientNameToCheck) {
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
+        boolean hasDuplicateIngredientName = false;
         
         if (tempList.size() <= 1) {
-            return;
-        } else if (checkIngredientInStock(ingredientNameToCheck)) {
-            String outputMessage = ls;
-            
-            outputMessage += ("Please note that there are other similar ingredient names in the stock."
-                    + ls
-                    + ls);
-            
-            outputMessage += ("You are currently adding: '"
-                    + ingredientNameToCheck
-                    + "'");
-            
-            outputMessage += (ls
-                    + ls
-                    + "Here are the ingredients in the stock with similar names:"
-                    + ls);
-            
-          
+            return hasDuplicateIngredientName;
+        } else {
             for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
                 String ingredientName = ingredient.getKey();
                 if (ingredientName.toLowerCase().equals(ingredientNameToCheck.toLowerCase())) {
-                    outputMessage += (ingredientName
-                            + ls);
+                    hasDuplicateIngredientName = true;
+                    break;
                 }
             }
-            
-            outputMessage += (ls
-                    + "You may want to remove the unwanted ingredient names if it is a duplicate.");
-            
-            outputMessage += (ls);
-            
-            System.out.println(outputMessage);
+            return hasDuplicateIngredientName;
         }
+    }
+    
+    /**
+     * A utility function to inform user that there is an existing ingredient in the stock
+     * that has the same name as the one that just added.
+     */
+    private void printDuplicateIngredientMessage(String duplicateIngredientName) {
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
+        String outputMessage = ls;
+        
+        outputMessage += ("Please note that there are other similar ingredient names in the stock."
+                + ls
+                + ls);
+        
+        outputMessage += ("You are currently adding: '"
+                + duplicateIngredientName
+                + "'");
+        
+        outputMessage += (ls
+                + ls
+                + "Here are the ingredients in the stock with similar names:"
+                + ls);
+        
+      
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            if (ingredientName.toLowerCase().equals(duplicateIngredientName.toLowerCase())) {
+                outputMessage += (ingredientName
+                        + ls);
+            }
+        }
+        
+        outputMessage += (ls
+                + "You may want to remove the unwanted ingredient names if it is a duplicate.");
+        
+        outputMessage += (ls);
+        
+        System.out.println(outputMessage);
     }
     
     /**
