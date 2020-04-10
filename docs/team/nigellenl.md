@@ -35,6 +35,7 @@
 ### Contributions to team-based tasks  
 * Made extensive use of the issue tracker to manage enhancements and bugs.
 * Did refactoring for commands by creating command classes.
+* Generate table of content for user guide.
 
 ### Review contributions  
 * Discussed with team on how to further enhance existing features (e.g. allowing user to edit allocated time)
