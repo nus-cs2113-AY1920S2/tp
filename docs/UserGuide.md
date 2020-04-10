@@ -46,8 +46,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
 - [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
-- [Delete a meeting](#delete-a-meeting-delete--m)
-- [Delete a contact](#delete-a-contact-delete--c)
+- [Delete an item](#delete-an-item-delete)
 - [List all meetings](#list-all-meetings-meetings)
 - [Exit application](#exit-the-application-exit)
 
@@ -262,7 +261,7 @@ TODO change image
     
 <br/>
 
-### Delete item: `delete`
+### Delete an item: `delete`
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
 - You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
 - You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
