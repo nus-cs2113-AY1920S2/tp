@@ -130,7 +130,8 @@ Follow the following steps to manually test the product:
 
 3. Once the program starts, you should get the following output: 
 
-`_ **_____________________________________________________________________________**_
+ __________________________________________________________________________________________
+ 
 _                                                                                  _
 _                             Hello! Here's TechToday.                             _
 _            Let me show you some technology news to refresh your mind!            _
@@ -149,7 +150,11 @@ _ **____________________________________________________________________________
      What can I do for you?
 
 No files with your data exits, we will create new files to save your data.
-__________________________________________________________________________________________`
+__________________________________________________________________________________________
+
+****
+
+
 
 
 
