@@ -4,9 +4,17 @@ import exceptions.ReservationException;
 import menu.Menu;
 import report.LoadDish;
 import report.LoadReservation;
+
+import commands.ReservationCommand;
+import exceptions.InvalidFilePathException;
+import exceptions.StockReadWriteException;
+import exceptions.ReservationException;
+import report.LoadReservation;
+import report.LoadStock;
 import reservation.Reservation;
 import reservation.ReservationList;
 import sales.Sales;
+import stock.Stock;
 import stock.Stock;
 import ui.Ui;
 import utils.CommandParser;
@@ -69,6 +77,10 @@ public class Main {
             this.reservations = new ReservationList();
         }
 
+        this.menu = new Menu();
+        this.ui = new Ui();
+        this.sales = new Sales();
+
         // set up the logger
         LoggerUtils.createLogFolder(LOG_FOLDER);
         
@@ -81,6 +93,26 @@ public class Main {
             ui.displayLoggingSetUpFailMessage();
         }
         
+        
+        // load data from report.txt       
+        try {
+            this.reservations = new ReservationList(
+                    LoadReservation.getInstance("report.txt")
+                    .loadFileReservations());
+        } catch (IOException e) {
+            ui.showMessage("Fails to load in the list from the file...");
+            this.reservations = new ReservationList();
+        } catch (ReservationException e) {
+            this.reservations = new ReservationList();
+        }
+        
+        LoadStock ls = Stock.getStockLoader();
+        try {
+            ls.loadStockData(stock);
+        } catch (InvalidFilePathException | StockReadWriteException e) {
+            ui.showMessage(e.getMessage());
+        } 
+        
         ui.showWelcomeMessage();
     }
     
@@ -90,7 +122,8 @@ public class Main {
         while (true) {
             System.out.println("Input next command:");
             String userInput = ui.getUserCommand();
-            new CommandParser().parseCommand(userInput, this.menu, this.stock, this.reservations, this.sales, this.ui);
+            new CommandParser().parseCommand(userInput, this.menu, 
+                    this.stock, this.reservations, this.sales, this.ui);
         }
     }
     

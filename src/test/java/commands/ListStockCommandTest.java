@@ -127,15 +127,12 @@ class ListStockCommandTest {
             outputMessage += ("There is nothing in the stock currently.");
         } else {
             outputMessage += ("Here are the ingredients in the stock currently:"
-                    + ls)
-                    + ("============================================================"
-                    + "================================================================");
+                    + ls);
             
             outputMessage += printStock(stock) 
                     + ls;
             
-            outputMessage += ("============================================================"
-                    + "================================================================"
+            outputMessage += (ls
                     + ls);
         }
         
@@ -145,9 +142,7 @@ class ListStockCommandTest {
     private String createListIngredientOutputCopy() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock currently:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
      
         outputMessage += ("1. [10][$0.50] tomato" 
@@ -159,8 +154,7 @@ class ListStockCommandTest {
                 + "4. [1][$0.50] potato"
                 + ls);
                 
-        outputMessage += ("============================================================"
-                + "================================================================"
+        outputMessage += (ls
                 + ls
                 + "All ingredients listed successfully!");
         

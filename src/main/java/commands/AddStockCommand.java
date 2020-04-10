@@ -89,7 +89,7 @@ public class AddStockCommand extends StockCommand {
                         + " Please enter in the following format:"
                         + ls
                         + ls
-                        + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; "
+                        + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; "
                         + "p/PRICE;`");
             }
         }     
@@ -144,21 +144,21 @@ public class AddStockCommand extends StockCommand {
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
             throw new InvalidStockCommandException("The user's input did not specify the 'q/' tag"
                     + " before the ingredient's quantity."
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
             throw new InvalidStockCommandException("The user's input did not specify the 'p/' tag"
                     + " before the ingredient's price."
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (!hasIngredientNameTag && !hasQuantityTag && hasPriceTag) {
             throw new InvalidStockCommandException("The user's input did not specify the "
                     + "'i/' tag and 'q/' tag"
@@ -167,7 +167,7 @@ public class AddStockCommand extends StockCommand {
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (!hasIngredientNameTag && hasQuantityTag && !hasPriceTag) {
             throw new InvalidStockCommandException("The user's input did not specify the "
                     + "'i/' tag and 'p/' tag"
@@ -176,7 +176,7 @@ public class AddStockCommand extends StockCommand {
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (hasIngredientNameTag && !hasQuantityTag && !hasPriceTag) {
             throw new InvalidStockCommandException("The user's input did not specify the "
                     + "'q/' tag and 'p/' tag"
@@ -185,7 +185,7 @@ public class AddStockCommand extends StockCommand {
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else if (!hasIngredientNameTag && !hasQuantityTag && !hasPriceTag)  {
             throw new InvalidStockCommandException("The user's input did not specify the "
                     + "'i/', 'q/' tag and 'p/' tag"
@@ -194,7 +194,7 @@ public class AddStockCommand extends StockCommand {
                     + " Please enter in the following format:"
                     + ls
                     + ls
-                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`");
+                    + "`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`");
         } else {
             assert (hasIngredientNameTag && hasQuantityTag && hasPriceTag);
             return;
