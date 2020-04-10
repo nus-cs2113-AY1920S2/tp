@@ -74,9 +74,9 @@ public class Main {
             this.reservations = new ReservationList();
         }
         
-        LoadStock sl = Stock.getStockLoader();
+        LoadStock ls = Stock.getStockLoader();
         try {
-            sl.loadStockData(stock);
+            ls.loadStockData(stock);
         } catch (InvalidFilePathException | StockReadWriteException e) {
             ui.showMessage(e.getMessage());
         } 

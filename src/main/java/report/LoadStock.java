@@ -75,12 +75,14 @@ public class LoadStock {
             while ((line = br.readLine()) != null) {
                 if (line.isBlank()) {
                     continue;
-                }
-                String[] lineArgs = line.split(" ");
-                if (line.indexOf('$') == -1) {
-                    continue;
                 } else {
-                    lines.add(line);
+                    
+                    String[] lineArgs = line.split(" ");
+                    if (line.indexOf('$') == -1) {
+                        continue;
+                    } else {
+                        lines.add(line);
+                    }
                 }
             }
         } catch (IOException e) {
@@ -107,6 +109,7 @@ public class LoadStock {
             if (lineArgs[0].equals("Current")) {
                 continue;
             } else {            
+                
                 int priceIndexInLineArgs = 0;
                 int quantityIndexInLineArgs = 0;
                 
@@ -157,18 +160,21 @@ public class LoadStock {
             throws StockReadWriteException {
         
         String[] lineArgs = line.split(" ");
-        
-        String ingredientPrice = lineArgs[priceIndexInLineArgs].substring(
-                startIndexToDecodeForPrice, 
-                (lineArgs[priceIndexInLineArgs].length()));
-        
+
         try {
+            String ingredientPrice = lineArgs[priceIndexInLineArgs].substring(
+                    startIndexToDecodeForPrice, 
+                    (lineArgs[priceIndexInLineArgs].length()));
+            
             double parsedIngredientPrice = Double.parseDouble(ingredientPrice);
             return parsedIngredientPrice;
         } catch (NumberFormatException nfe) {
             throw new StockReadWriteException("The price in report.txt cannot be "
                     + "converted to a double.");
-        }        
+        } catch (StringIndexOutOfBoundsException siofbe) {
+            throw new StockReadWriteException("The price in report.txt is not"
+                    + "indented correctly.");
+        }
     }
     
     /**
@@ -179,17 +185,20 @@ public class LoadStock {
     private int decodeIngredientQuantity(String line, int quantityIndexInLineArgs) 
             throws StockReadWriteException {
         String[] lineArgs = line.split(" ");
-        
-        String ingredientQuantity = lineArgs[quantityIndexInLineArgs].substring(
-                startIndexToDecodeForQuantity, 
-                (lineArgs[quantityIndexInLineArgs].length()));
-        
+
         try {
+            String ingredientQuantity = lineArgs[quantityIndexInLineArgs].substring(
+                    startIndexToDecodeForQuantity, 
+                    (lineArgs[quantityIndexInLineArgs].length()));
+            
             int parsedIngredientQuantity = Integer.parseInt(ingredientQuantity);
             return parsedIngredientQuantity;
         } catch (NumberFormatException nfe) {
             throw new StockReadWriteException("The quantity in report.txt cannot be"
                     + "be converted to an integer.");
+        } catch (StringIndexOutOfBoundsException siofbe) {
+            throw new StockReadWriteException("The quantity in report.txt is not"
+                    + "indented correctly.");
         }
     }
     
