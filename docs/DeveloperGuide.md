@@ -252,6 +252,8 @@ than using the mouse.
 |v2.0|professor|Create repeatable events without having the need to manually add in|easily create occurring events|
 |v2.0|professor|find an event by name|locate an event without having to go through the entire list|
 |v2.0|professor|view calendar of all my events|to see a overview of them|
+|v2.1|professor|edit my student's attendance|update my existing student's attendance|
+|v2.1|professor|find my student's attendance|locate an existing student's attendance|
 
 ## Appendix E: Instructions for Manual Testing
 #### Set up
