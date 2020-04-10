@@ -136,7 +136,7 @@ public class AddAttendanceList extends Command {
     private void addByLine() throws PacException {
         while (!input.toLowerCase().equals("done")) {
             UI.display("Please key following format:\n"
-                    + "n/Name p/Status[Y/N]\n"
+                    + "n/Name p/Status [Y/N]\n"
                     + "Status will be take as absent if the format above is not followed.");
             ui.readUserInput();
             input = ui.getUserInput();

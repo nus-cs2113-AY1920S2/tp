@@ -28,7 +28,7 @@ public class FindAttendance extends Command {
         if (!attendanceList.isEmpty()) {
             attendanceList.findAttendance();
         } else {
-            UI.display("Attendance List is empty");
+            UI.display("The attendance list is currently empty. Please add attendance instead.");
         }
     }
 
