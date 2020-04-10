@@ -62,20 +62,36 @@ class FilterCommandTest {
         expected.add(activity3);
     }
 
+    void populateExpected3() {
+        expected.clear();
+        expected.add(activity1);
+        expected.add(activity2);
+        expected.add(activity3);
+    }
+
     @Test
     void executeCommand() {
         try {
             populateActivityList();
-            String parameters1 = "quiz";
-            String parameters2 = "final";
-            Command command1 = new FindCommand(parameters1);
+            String parameters1 = "tagA";
+            String parameters2 = "tagC";
+            String parameters3 = "tagA tagC tagD";
+
+            Command command1 = new FilterCommand(parameters1);
             command1.executeCommand(activities);
             populateExpected1();
             assertEquals(Jikan.lastShownList.activities, expected);
-            Command command2 = new FindCommand(parameters2);
+
+            Command command2 = new FilterCommand(parameters2);
             command2.executeCommand(activities);
             populateExpected2();
             assertEquals(Jikan.lastShownList.activities, expected);
+
+            Command command3 = new FilterCommand(parameters3);
+            command3.executeCommand(activities);
+            populateExpected3();
+            assertEquals(Jikan.lastShownList.activities, expected);
+            
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {
             System.out.println("Field error.");
         }
