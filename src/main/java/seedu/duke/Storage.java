@@ -51,6 +51,7 @@ public class Storage {
                 throw new EscException("File creation error");
             }
         }
+        assert saveFile.exists() : "the save file should be created";
     }
 
     /**
