@@ -2,7 +2,7 @@
 
 # [Project TechToday](https://github.com/AY1920S2-CS2113-T14-2/tp) - Developer Guide
 
-By: `Alaukik Pant`      Since: `Mar 2020`      Licence: `MIT`
+By: `Alaukik Pant, Melissa Lopez`      Since: `Mar 2020`      Licence: `MIT`
 
 ## Table Of Contents
 1. [Setting Up](#1-setting-up)
@@ -35,7 +35,7 @@ The above figure demonstrates that once a user inputs a command through the **UI
 
 This section will describe the design and implementation of a notable feature in the project.
 
-Note: You will need to create an `article`, `job` or `note` for the feture. It can be done through the following commands.
+Note: You will need to create an `article`, `job` or `note` for the feature. It can be done through the following commands.
 
      1. create article
      2. create job
@@ -47,15 +47,15 @@ For more information, please refer to the user guide.
 
 **Current Implementation:**
 
-The `InformationCreator` is a standalone class inside the `commands` package. The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them to the Article, Note and Job List respectively. 
+The `InformationCreator` is a standalone class inside the `commands` package. The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them an ArrayList of object types Article, List, or Note, respectively. 
 
 Given below is an example usage and how the `CreateCommand` mechanism behaves at each step:
 
 * Step 1:
-The user launches the app and loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the memory. If the data of these lists do not exist in the memory, the application initializes empty lists.
+The user launches the application and it loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the stored, corresponding JSON files. If the data of these JSON files do not exist in the memory, the application creates new JSON files to store into memory and makes the initial ArrayLists in the application empty. 
 
 * Step 2:
-The user enters `create article`, for instance, into the command line. Method `TechToday#executeProgram()` from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator#execute(userResponse)` method, where `userResponse` is the original command provided by the user.
+The user enters a command, `create article`, for instance, into the command line. The`TechToday#executeProgram()` method from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator#execute(userResponse)` method, where `userResponse` is the original command provided by the user.
 
 * Step 3:
 The  `InformationCreator#execute(userResponse)` method again parses the user command to check what kind of information object the user is seeking to create. The three possibilities are `article`, `job` and `note`. The following daigram illustrates what steps are taken for different user responses.
@@ -122,9 +122,11 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 
 Follow the following steps to manually test the product:
 
-1. Download the latest release [here](ljsnc) and store it in a foler of your choice in your computer.
+#  7.1 Setup and Initial Storage Testing
 
-1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.josn', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
+1. Download the latest release [here](ljsnc) and store it in an empty folder. 
+
+1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
 
 1. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
 
