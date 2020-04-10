@@ -154,9 +154,7 @@ At any point in time, <code>Duke</code> only stores up to one <code>Command</cod
 ##### 3.3.1 Current implementation
 
 The set budget feature is implemented using a <code>SetBudgetCommand</code> class which extends the main
-<code>Command</code> class with a variable representing the budget amount.
-
-The process is as follows:
+<code>Command</code> class with a variable representing the budget amount. The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>SetBudgetCommand</code> object based on that user input.
 3. <code>Duke</code> then calls <code>SetBudgetCommand#execute()</code>.
@@ -165,25 +163,19 @@ The process is as follows:
 
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
-
 ![alt text](../images/Set_v2.png)
-
 
 #### 3.3.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>SetBudgetCommand</code>
- 
   - Pros: Easy to add the set budget feature without having to change the logic of the code much as each command object
   is treated as a black box
-  
   - Cons: Might significantly increase the code base with another class being added
 
 - Alternative 2: Implement set budget feature in the <code>Duke</code> class
-
   - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
-  
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
   simply executes those commands as black boxes, without worrying about their internal details
   
@@ -195,9 +187,7 @@ work in parallel.
 ##### 3.7.1 Current implementation
 
 The find feature is implemented using a <code>FindCommand</code> class which extends the main
-<code>Command</code> class with a String representing the keyword specified by the user.
-
-The process is as follows:
+<code>Command</code> class with a String representing the keyword specified by the user. The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>FindCommand</code> object based on
 that user input.
@@ -210,11 +200,9 @@ to check whether the <code>Item</code> at each specified index contains the give
 
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object.
 Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
-
 ![alt text](../images/Find_v2.png)
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
-
 ![alt text](../images/Find_SD_v2.png)
 
 #### 3.7.2 Design considerations
@@ -222,17 +210,12 @@ This next sequence diagram will show how the <code>FindCommand</code> creates th
 ##### Aspect: Data structure to support the find feature
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>FindCommand</code>
- 
   - Pros: Easy to add the find feature without having to change the logic of the code much as each command object
   is treated as a black box
-  
   - Cons: Might significantly increase the code base with another class being added
 
-
 - Alternative 2: Implement find feature in the <code>Duke</code> class
-
   - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
-  
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
     
@@ -244,9 +227,7 @@ also be able to trace functionality bugs more easily if each command class deals
 
 The delete feature is implemented using a <code>DeleteCommand</code> class which extends the main
 <code>Command</code> class with an index representing that of the item to be deleted from the shopping
-list. 
-
-The process is as follows:
+list. The process is as follows:
 1. <code>Duke</code> receives user input from <code>Ui</code>.
 2. <code>Duke</code> calls <code>Parser#parseCommand()</code> to instantiate a <code>DeleteCommand</code> object based
 on that user input.
@@ -256,7 +237,6 @@ on that user input.
 
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
-
 ![alt text](../images/Delete_v2.png)
 
 #### 3.8.2 Design considerations
@@ -264,17 +244,12 @@ omitted in the sequence diagram to emphasise on the other classes:
 ##### Aspect: Data structure to support the delete feature
 
 - Alternative 1 (current choice): Object-oriented style with a separate class for <code>DeleteCommand</code>
- 
   - Pros: Easy to add the delete feature without having to change the logic of the code much as each command object
   is treated as a black box
-  
   - Cons: Might significantly increase the code base with another class being added
 
-
 - Alternative 2: Implement delete feature in the <code>Duke</code> class
-
   - Pros: Will have less code to deal with as a new method is simply created in the <code>Duke</code> class
-  
   - Cons: Code becomes less organised since for every other command that we have implemented, <code>Duke</code> class
     simply executes those commands as black boxes, without worrying about their internal details
 
