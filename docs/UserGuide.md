@@ -83,7 +83,7 @@ TODO: change image so that the words are the same font size
 
 ### List all contacts: `contacts`
 Displays index and name of all contacts stored in the program.
-* This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts),  [`Edit a contact's timetable`](#edit-a-contacts-timetable) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
+* This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
 Format:
     
@@ -105,8 +105,7 @@ Example output:
 
 There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
 and to display a combined timetable of multiple selected contacts.
-* The `timetable` command shows only the current week's timetable. **To see up to two weeks of timetable, type in `more` 
-as the next command after the `timetable` command.** 
+* For all 3 uses cases, the `timetable` command shows only the current week's timetable. **To see up to two weeks of timetable, enter `more` command after the `timetable` command.** 
 - You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
 [`contacts`](#list-all-contacts-contacts).
 
@@ -149,7 +148,7 @@ TODO: update image
 <br/>
 
 **Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in `<Contact Index>` of each of the selected contacts.
-* You can select as many contacts as you wish
+* You can enter as many contacts as you wish
    
 Format: 
    
