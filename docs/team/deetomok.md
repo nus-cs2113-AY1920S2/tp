@@ -14,15 +14,10 @@ For all the code that I have contributed to Module Manager, click here:
 [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
 
 #### Enhancements implemented  
-In this project, I added the portion of Controller, Parser, Person, JUnit test, Logging, some commands and some exception classes.  
+In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands and some exception classes.  
 
 ##### Controller  
-* What it does:
-* Justification: 
-* Highlights: 
-
-##### Parser  
-* What it does: 
+* What it does: When a user inputs a command line, 
 * Justification: 
 * Highlights: 
 
@@ -38,8 +33,9 @@ In this project, I added the portion of Controller, Parser, Person, JUnit test, 
 - Clear Command  
 
 ### Contributions to documentation: 
-The user guide is updated with relevant instructions and their correct format. I was responsible for the 
-Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
+* Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
+* Added Command Format, Mark as Done feature, Deleting features, FAQ, Command summary 
+([#62](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/62), [#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121))
 
 ### Contributions to the DG: 
 * Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
