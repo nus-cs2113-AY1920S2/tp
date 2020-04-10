@@ -99,13 +99,13 @@ Step 2. The user executes `add stock; i/tomato; q/10; p/$0.40;` command to add a
 Step 3. The user can now view the current `stock` to see what ingredients are there in the stock. The user now executes `list stock`, which will display the following result in the image. In this case, `rice` has the highest quantity of `55`, which is listed first as compared to `potato`, which has the lowest quantity of `0`. This can be seen from the image below.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/78977348-8d801800-7b4a-11ea-96d3-a75635e8e81d.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78977634-05e6d900-7b4b-11ea-8911-057c4ceb768b.png">
 </p>
 
 The following class diagram shows how the listing operation works:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/78975984-dda9ab00-7b47-11ea-8df4-f9510b8328ee.png">
+  <img src="https://user-images.githubusercontent.com/59989652/78975984-dda9ab00-7b47-11ea-8df4-f9510b8328ee.png" width="900">
 </p>
 
 1. When the user first runs the application, the `Main` object is initialized. The `Main` object then initializes the `ui`, the `stock` object and other objects such as `reservations` etc. in its `Main#start()` method. 
