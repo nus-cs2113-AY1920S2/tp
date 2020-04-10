@@ -76,7 +76,7 @@ public class LoadStock {
                 } else {
                     
                     String[] lineArgs = line.split(" ");
-                    if (line.indexOf('$') == -1) {
+                    if (line.indexOf('*') == -1) {
                         continue;
                     } else {
                         lines.add(line);

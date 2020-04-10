@@ -1,4 +1,3 @@
-The price in report.txt is not indented correctly.
 ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||    ||||      \       ||     / ||  ||  || ||    |      / || ||    ||   ||
 ||    ||||       \      ||    /  ||  ||  || ||    |     /  || ||    ||   ||
@@ -111,8 +110,8 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
-Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
-Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Name: pizza     Price: $7.0     Ingredients: cheese, sauce
+Name: rice     Price: $12.0     Ingredients: rice, salt
 Dishes successfully listed.
 
 Input next command:
@@ -125,7 +124,7 @@ Dish pizza successfully removed!
 
 Input next command:
 
-Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Name: rice     Price: $12.0     Ingredients: rice, salt
 Dishes successfully listed.
 
 Input next command:
