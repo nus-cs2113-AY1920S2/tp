@@ -485,6 +485,6 @@ Listing all unserved reservations while all reservations are listed.
 Clear all reservations in the list while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.
 * Test case: `clear reservation;`
-    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
+    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared.   
 * Test case: `clear reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
