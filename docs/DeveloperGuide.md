@@ -80,9 +80,8 @@ _Fig 2.1. Architecture diagram of the Jikan program_
 
 ### 2.2 Class Diagram
 The high-level class diagram describes the structure of the components
-![image_info](./pictures/Simplified_Class_Diagram.png)
 
-![image_info](./pictures/ClassDiagram.png)
+![image_info](./pictures/Simplified_Class_Diagram.png)
 _Fig 2.1. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
