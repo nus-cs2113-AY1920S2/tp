@@ -3,15 +3,25 @@
 **Since:** May 2020
 
 * [1. Design & Implementation](#design-implementation)
-    + [1.1. [Proposed] Search stock feature](#search-stock)
-    + [1.2. [Proposed] List stock in descending quantities](#list-stock)
-    + [1.3. [Proposed] Generate profit for the day](#generate-profit)
-    + [1.4. [Proposed] Search reservation](#search-reservation)
-    + [1.5. [Proposed] Search dish](#search-dish)
-* [2. Product Scope](#product-scope)
-* [3. User Stories](#user-stories)
-* [4. Non-Functional Requirements](#nonfunctional-requirement)
-* [5. Glossary](#glossary)
+    + [1.1. Search stock feature](#search-stock)
+    + [1.2. List stock in descending quantities](#list-stock)
+    + [1.3. Generate profit for the day](#generate-profit)
+    + [1.4. Search reservation](#search-reservation)
+    + [1.5. Search dish](#search-dish)
+* [Appendix A: Product Scope](#product-scope)
+* [Appendix B: User Stories](#user-stories)
+* [Appendix C: Non-Functional Requirements](#nonfunctional-requirement)
+* [Appendix D: Glossary](#glossary)
+* [Appendix E: Instructions for Manual Testing](#manual-test)
+    + [E.1. Launch and Shutdown](#e1-launch-and-shutdown)
+    + [E.2. Adding a reservation](#e2-adding-a-reservation) 
+    + [E.3. Deleting a reservation](#e3-deleting-a-reservation)
+    + [E.4. Marking a reservation](#e4-marking-a-reservation)
+    + [E.5. Search a reservation](#e5-search-a-reservation)
+    + [E.6. List all reservations](#e6-list-all-reservations)
+    + [E.7. List all Served reservations](#e7-list-all-served-reservations)
+    + [E.8. List all Unserved reservations](#e8-list-all-unserved-reservations)
+    + [E.9. Clear all reservations](#e9-clear-all-reservations)
 
 
 <a name="design-implementation"></a>
@@ -22,7 +32,7 @@
 
 <a name="search-stock"></a>
 
-### 1.1 [Proposed] Search stock feature
+### 1.1 Search stock feature
 #### 1.1.1 Proposed implementation
 
 In the restaurant daily report, users can search against the stock category by supplying a keyword.
@@ -85,7 +95,7 @@ The sequence diagram can be interpreted as such:
 
 <a name="list-stock"></a>
 
-### 1.2 [Proposed] List stock ingredients in descending quantity
+### 1.2 List stock ingredients in descending quantity
 #### 1.2.1 Proposed implementation
 
 In the restaurant daily report, users can view all the ingredients presently in the stock by supplying the input `list stock`. The ingredients will be ordered in descending quantities, that is, the ingredient that has the highest quantity will be listed first and vice versa.
@@ -157,7 +167,7 @@ The sequence diagram can be interpreted as such:
 
 <a name="generate-profit"></a>
 
-### 1.3 [Proposed] Generate profit for the day
+### 1.3 Generate profit for the day
 #### 1.3.1 Proposed Implementation
 In the restaurant daily report, the user can input the amount of items sold each day and a total profit will be generated, when the user inputs `profit`.
 
@@ -170,6 +180,8 @@ The user can input as many sales as they like as long as the dish exists in the 
 
 Step 3. The user can generate the profit by inputting `profit`.
 
+The execution can be viewed in the sequence diagram below.
+![](https://github.com/nguan1/tp/blob/master/docs/documentations/Ned/GenerateProfitSequenceDiagram.PNG)
 
 #### 1.3.2 Design Considerations
 ##### Aspect: Using a separate class to perform sale commands
@@ -184,7 +196,7 @@ Step 3. The user can generate the profit by inputting `profit`.
 
 <a name="search-reservation"></a>
 
-### 1.4 [Proposed] Search reservation
+### 1.4 Search reservation
 #### 1.4.1. Proposed Implementation
 
 In the restaurant daily report, users can search against the reservation category by supplying either a reservation number or a date.
@@ -273,7 +285,7 @@ Once a new Reservation object is created, it will be added into the `HashMap` ac
 
 <a name="search-dish"></a>
 
-### 1.5 [Proposed] Search dish feature
+### 1.5 Search dish feature
 #### 1.5.1 Proposed implementation
 
 In restaurant daily report, a user can search from available menu items using the search dish commmand.
@@ -316,18 +328,21 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 <a name="product-scope"></a>
 
 
-## 2. Product Scope
+## Appendix A: Product Scope
 ### Target user profile
 
-{Describe the target user profile}
+The Restaurant Daily Report is a CLI application is designed for restaurant owners, who need a simple and efficient way to manage the operation of their business.
+Ideally, the owner would be proficient at using desktop apps and is a quick typer.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 
-<a name="user-stories"></a>
+* Single application to store dishes, stock and reservations
+* Can calculate the daily profit and most popular dish
+* Allows the owner to see an overview of their restaurant
+* Simple and easy to use interface
 
-## 3. User Stories
+## Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -337,6 +352,13 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 |v1.0|restaurant owner|add a newly received reservation|I can record the details about the reservation and make corresponding preparations|
 |v1.0|restaurant owner|mark a reservation as invalid|I can update the status of the reservation if the reservation gets canceled|
 |v1.0|restaurant owner|list all reservations|I can view what reservations the restaurant has currently|
+|v1.0|restaurant owner|add dishes|I can introduce new dishes to the menu|
+|v1.0|restaurant owner|list dishes|I can see all the dishes on the menu|
+|v1.0|restaurant owner|delete dishes|I can remove dishes from the menu|
+|v1.0|restaurant owner|add stock|I can add stock to the inventory|
+|v1.0|restaurant owner|list stock|I can see how much stock I currently have|
+|v1.0|restaurant owner|delete stock|I can remove the stock that has been used or spoiled
+|v1.0|restaurant owner|save the dishes, stock and reservation|I have a document that contains all the important details about my restaurant|
 |v2.0|restaurant owner|search an ingredient by giving a keyword|I can quickly find out the current ingredient's quantity and price|
 |v2.0|restaurant owner|list the reservations in descending quantities|I can find out the ingredients that we have the most quickly|
 |v2.0|restaurant owner|mark a reservation as served|I can update the status of the reservation|
@@ -344,6 +366,10 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 |v2.0|restaurant owner|list all unserved reservations|I can know what reservations need to be prepared|
 |v2.0|restaurant owner|search a reservation via reservation number|I can know the details about a specific reservation|
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
+|v2.0|restaurant owner|search dishes|I can know which dishes contain a certain word and the ingredients of those dishes|
+|v2.0|restaurant owner|search stock|I can know the quantity and cost of specific ingredients|
+|v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
+|v2.1|restaurant owner|load the dishes, stock and reservation|I don't have to re-enter the dishes, stock and reservations when I start up the program|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
 |v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
@@ -353,16 +379,111 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 
 <a name="nonfunctional-requirement"></a>
 
-## 4. Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+* Should work on any [mainstream OS](#mainstream-os) as long as it has `Java 11` or above installed.
+* A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* Commands should be intuitive and follow a logical order
+* Information should be displayed in a easy to read format
 
 <a name="glossary"></a>
 
-## Glossary
+## Appendix D: Glossary
+<a name="mainstream-os"></a>
+* *Mainstream OS* - Windows, Linux, Unix, OS-X
 
-* *glossary item* - Definition
+<a name="manual-test"></a>
+## Appendix E: Instructions for Manual Testing
+Given below are instructions to test the app manually.
 
-## 5. Instructions for Manual Testing
+<a name="e1-launch-and-shutdown"></a>
+### E.1. Launch and Shutdown
+1. Download the jar file and copy into an empty folder.
+2. Open a Terminal in that folder.
+3. Run the command `java -jar [CS2113-T14-4][RestaurantDailyReport].jar`. The CLI should appear in a few seconds. It should be a welcome page.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+<a name="e2-adding-a-reservation"></a>
+### E.2. Adding a reservation
+Adding a reservation to an empty list.
+* Prerequisite: Clear the `reservations` list using `clear reservation;` command to ensure the empty list.
+* Test case: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`
+    - Expected: An unserved Reservation with reservation number [1] is added into the `reservations` list. Details of the added Reservation are displayed.
+* Test case: `add reservation; p/David; d/2020-03-12 12:00; c/98887777;`
+    - Expected: No Reservation is added. An error message shows to remind the user that "number of guests n/" is missing.
+* Test case: `add reservation`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+* Other incorrect delete commands to try: `add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;`, `add reservation;`...
+    - Expected: No Reservation is added. Error messages for input missing displays.
+
+
+<a name="e3-deleting-a-reservation"></a>
+### E.3. Deleting a reservation
+Deleting a reservation while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[1] is Unserved.
+* Test case: `delete reservation; r/1;`
+    - Expected: The status of the first reservation in the list is changed to **Invalid**. The reservation itself still remains in the list.
+* Test case: `delete reservation; r/X;` where X is a large number exceeding the maximum of reservation number
+    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user that there is no such reservation in the list.
+* Test case: `delete reservation; r/2.3;`
+    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user to input a positive integer.
+
+
+<a name="e4-marking-a-reservation"></a>
+### E.4. Marking a reservation
+Marking a reservation as Served while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[2] is Unserved.
+* Test case: `mark reservation; r/2;`
+    - Expected: The status of the second reservation in the list is changed to **Served**.
+    
+    
+<a name="e5-search-a-reservation"></a>
+### E.5. Search a reservation
+Searching a reservation while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[1] and Reservation[3] are on 2020-04-10.
+* Test case: `search reservation; r/1;`
+    - Expected: The details of the first reservation in the list are displayed on the screen.
+* Test case: `search reservation; d/2020-04-10;`
+    - Expected: The details of the Reservation[1] and Reservation[3] will be displayed on the screen. 
+* Test case: `search reservation; r/1; d/2020-04-11;`
+    - Expected: A message of no such reservation will display.
+
+
+<a name="e6-list-all-reservations"></a>
+### E.6. List all reservations
+Listing all reservations at the beginning of the program execution with reservation content already exist in the "report.txt" file.
+* Prerequisites: Execute the program for the first time and add some reservations. Type `bye` to exit the program and the reservations added will be automatically saved to the "report.txt" file. Execute the program again.
+* Test case: `list reservation;`
+    - Expected: The details of reservations originally in the "report.txt" will display on the screen.
+* Test case: `list reservation`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+  
+
+<a name="e7-list-all-served-reservations"></a>
+### E.7. List all Served reservations
+Listing all served reservations while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[2] and Reservation [3] are Served.
+* Test case: `list served reservation;`
+    - Expected: The details of Reservation[2] and Reservation[3] will display on the screen.
+* Test case: `list served reservation`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+
+
+<a name="e8-list-all-unserved-reservations"></a>
+### E.8. List all Unserved reservations
+Listing all unserved reservations while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[4] and Reservation [5] are Served.
+* Test case: `list unserved reservations`
+    - Expected: The details of Reservation[4] and Reservation[5] will display on the screen.
+* Test case: `list unserved reservation`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+  
+
+<a name="e9-clear-all-reservations"></a>
+### E.9. Clear all reservations
+Clear all reservations in the list while all reservations are listed.
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.
+* Test case: `clear reservation;`
+    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
+* Test case: `clear reservation`
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
