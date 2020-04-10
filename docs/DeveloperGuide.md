@@ -102,6 +102,7 @@ Step 2. The user executes the command ``listsubject`` to view the subjects curre
 
 Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
 to add a flashcard into the subject. 
+
 The following diagram describes how the add card operation works:
 <br />
 <p align="center">
@@ -125,8 +126,8 @@ The following diagram describes how the add card operation works:
     - The application will become more complex as different states use different commands.
     - The application can also become more difficult to use as users can be unclear about the states.
 
-### 2.x. Quiz Feature
-#### 2.x.1. Implementation
+### 2.2. Quiz Feature
+#### 2.2.1. Implementation
 The quiz feature now incorporates random testing, builds upon the subject feature to allows users to set how many questions to quiz for a selected subject. 
 This helps users to quiz by subject, and get a score at the end of each quiz. 
 
@@ -145,8 +146,9 @@ Step 1. Before the user decides to start a quiz, he/she has to create a subject 
  ``addsubject s/SUBJECTNAME``, and add flashcards to that subject using the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``.
 
 Step 2. The user can start a quiz by indicating a subject and the number of questions to quiz using the command
-``quiz s/SUBJECTINDEX n/NUMBERTOQUIZ``. If the number of questions to quiz is not specified, all the questions stored
-in that subject will be quizzed.
+``quiz s/SUBJECTINDEX n/NUMBERTOQUIZ``. If the number of questions to quiz is not specified (e.g. if ``quiz s/SUBJECTINDEX`` is entered)
+, all the questions stored in that subject will be quizzed.
+
 The following diagram describes how the quiz operation works:
 
 <br />
@@ -158,7 +160,7 @@ The following diagram describes how the quiz operation works:
 Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
 command ``exitquiz``.
 
-#### 2.x.2. Design Considerations
+#### 2.2.2. Design Considerations
 ##### Aspect: How the answers are marked for correctness
 - **Alternative 1 (current choice)**: Display the correct answer after the user has submitted his answer, and prompt
 the user to indicate if his answer is correct or wrong.
@@ -189,8 +191,8 @@ the user to indicate if his answer is correct or wrong.
     - More complex implementation.
     - The user has to type in a longer command to start a quiz, or they will be quizzed with all questions by default.
     
-### 2.x. Score Feature
-#### 2.x.1. Implementation
+### 2.3. Score Feature
+#### 2.3.1. Implementation
 The score feature builds on the quiz feature, storing the score for each quiz session in a ScoreList. 
 This allows users to see all past scores and track any improvements. It implements the following operations:
 
@@ -205,6 +207,7 @@ session for that subject using the command ``quiz s/SUBJECTINDEX n/NUMBERTOQUIZ`
 
 Step 2. The user can view the score history and average score of a selected subject, if he has done at least one
 quiz session for that subject, using the command ``score s/SUBJECTINDEX``.
+
 The following diagram describes how the score operation works:
 
 <br />
@@ -213,7 +216,7 @@ The following diagram describes how the score operation works:
 </p>
 <br />Figure 8. Sequence diagram of score command
 
-#### 2.x.2. Design Considerations
+#### 2.3.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
 - **Alternative 1 (current choice)**: Show all scores in chronological order and in percentages of number of correct answers / number of
  questions asked. Also show the average percentage score of all the scores.
@@ -232,8 +235,8 @@ The following diagram describes how the score operation works:
   - Cons:
     - User will be unable to track his progress.
     
-### 2.x. Event Management Feature
-#### 2.x.1 Implementation
+### 2.4. Event Management Feature
+#### 2.4.1 Implementation
 The event feature builds on the quiz feature by adding another aid to the user when preparing for an exam/event.
 This feature allows the user to add and keep track of upcoming events, such as exams/tests. It implements the following operations:
 
@@ -246,21 +249,29 @@ Given below is an example usage scenario and how the event mechanism behaves at 
 
 Step 1. Before the user can manage his/her events, he/she needs to first add events using the
  command ``addevent e/DESCRIPTION d/DATE``.
+ 
 The following diagram describes how the add event operation works:
 
-![](images/addevent_sequence_uml.jpg)
+<br />
+<p align="center">
+  <img src="images/addevent_sequence_uml.png" width="600" alt="Addevent Sequence Diagram"/>  
+</p>
 Figure 9. Sequence diagram of addevent command
 
 Step 2. The user executes the command ``listevent`` to view the events currently stored in the application.
 
 Step 3. The user can then execute the command ``showupcoming d/DAYS`` to show events that are upcoming within ``DAYS``
 number of days.
+
 The following diagram describes how the show upcoming operation works:
 
-![](images/showupcoming_sequence_uml.png)
+<br />
+<p align="center">
+  <img src="images/showupcoming_sequence_uml.png" width="600" alt="Showupcoming Sequence Diagram"/>  
+</p>
 Figure 10. Sequence diagram of showupcoming command
 
-#### 2.x.2. Design Considerations
+#### 2.4.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
 - **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
 does not have to be tied to a pre-existing subject).
@@ -276,8 +287,8 @@ does not have to be tied to a pre-existing subject).
   - Cons:
     - The user does not have the flexibility to add anything other than exams for subjects that have been created.
     
-### 2.x. Save/Load Feature
-#### 2.x.1 Implementation
+### 2.5. Save/Load Feature
+#### 2.5.1 Implementation
 The save/load process is facilitated with the `java.io.Serializable` interface, which converts the given object to a byte stream and back.
 Writing and reading from the file uses the `java.io.FileOutputStream` and `java.io.FileInputStream` classes respectively.
 
@@ -285,7 +296,10 @@ To serialize the object to be written to file via `java.io.FileOutputStream`, it
 To deserialize the object after being read from file via `java.io.FileInputStream`, it uses the `java.io.ObjectInputStream#readObject()` method.
 
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
-![](images/storage_sequence_uml.jpg)
+<br />
+<p align="center">
+  <img src="images/storage_sequence_uml.jpg" width="600" alt="Storage Sequence Diagram"/>  
+</p>
 Figure 11. Sequence diagram of storage command
 
 ## Appendix A: Product Scope
@@ -310,27 +324,22 @@ The product aims to provide students with more convenient way of doing revision.
 |v2.0|user|delete subjects|organize subjects better|
 |v2.0|user|view my score|see how I performed|
 |v2.0|user|view my test history|see how I performed|
+|v2.1|user|add upcoming event dates|know what to prepare|
+|v2.1|user|delete upcoming event dates|no longer have reminders of the events|
+|v2.1|user|edit the cards|change the mistakes done when adding|
+
 
 ## Appendix C: Non-Functional Requirements
 1. The product should be able to run on any platform that has JDK11
 2. The product should be able to hold up to 1000 cards
+3. The product should be able to store up to 1000 events
 
-## Appendix D: Glossary
-
-* *glossary item* - Definition
-
-## Appendix E: Instructions for Manual Testing
+## Appendix D: Instructions for Manual Testing
 ### Running Tests
-There are two ways to run tests.
 
-Method 1: Using IntelliJ JUnit test runner
+Method : Using IntelliJ JUnit test runner
     
-    To run all tests, right-click on the src/test/java folder and choose Run 'All Tests'
-
-Method 2: Using Gradle
-
-    Open a console and run the command gradlew clean test (Mac/Linux: ./gradlew clean test)
-See UsingGradle.adoc for more info on how to run tests using Gradle.
+    To run all tests, right-click on the src/test/java/seedu folder to select the part to be tested and run as Junit in IDE.
 
 ### Types of Tests
 There have three types of tests:

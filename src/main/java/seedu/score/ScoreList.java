@@ -35,6 +35,7 @@ public class ScoreList implements Serializable {
 
     /**
      * Prints out all the past score history for selected subject.
+     * @throws EscException if there is not past test history for this subject.
      */
     public void listScores() throws EscException {
         if (scores.isEmpty()) {
@@ -44,6 +45,10 @@ public class ScoreList implements Serializable {
         String msg;
         int counter = 1;
         for (double score : scores) {
+
+            // To check that all scores are less than or equal to 100%
+            assert score <= 100.0 : "scores should be less than or equal to 100%";
+
             System.out.println(counter + ") " + score + "%");
             counter++;
         }
