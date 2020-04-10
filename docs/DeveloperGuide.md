@@ -317,14 +317,9 @@ The sequence diagram below shows the mechanics of `DeleteFromAvailableCommand`:
 
 ![SequenceDiagram_DeleteFromAvailableCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromAvailableCommand.png)
 
-
-## 4.3 Searching
-
-
-
 ## 4.4 Others
 
-### 4.4.1 Calculate CAP feature
+### 4.4.1 `Calculate CAP` feature
 
 The Calculate CAP mechanism is executed by `CalculateCapCommand`.  
 `CalculateCapCommand` is extended from `Command` and this implementation calculates the CAP using completed 
@@ -356,8 +351,6 @@ The following diagram shows how the Calculate CAP operation works:
 
 ### 4.4.2 Marking module as done
 
-The Marking as done 
-
 The Marking as done mechanism is executed by `MarkAsDoneCommand`.
 `MarkAsDoneCommand` is extended from the abstract class `Command`, and this implementation marks the module that has
 been added to a `SemModuleList` in the `SemesterList` as done, and updates the respective grade to the `Module` object.  
@@ -383,6 +376,34 @@ If the module exists in the list, the grade of the module will be passed to the 
 attribute, and the `isDone` attribute of the module will be updated to be `true`. 
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
+ 
+ 
+### 4.4.3 Looking up modules with keywords
+The `FindCommand` allows users to look up commands using keywords. It then displays a list of related modules in
+the module plan and the list of available modules.
+
+#### Step 1:
+When a user enters the `find` keyword, the command is being parsed in `Controller`.
+`Controller` then returns a `FindCommand`, which proceeds to call 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, or in this context,
+`FindCommand.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+#### Step 2:
+In the `execute(SemesterList semesterList, AvailableModulesList availableModulesList)` method, it first calls another
+method in the `FindCommand` class, 
+`generateResult(SemesterList selectedModulesList, AvailableModulesList availableModulesList)`. Within this method, it
+first runs through the module plan to look for modules that contain the corresponding keyword.
+After this is done, it searches the list of available modules for any relevant modules. 
+The list of relevant modules from the module plan and the list of available modules is then converted into a `String`
+object and passed back to the `execute(semesterList, availableModulesList)` method.
+
+#### Step 3:
+Finally, with the `String` of the list of relevant modules, the `Ui.showFindMessage(result)` is called, and the list of 
+relevant modules from the both the module plan and the list of available modules is printed out.
+
+The sequence diagram below shows the mechanics of `FindCommand`:
+[SequenceDiagram_FindCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_FindCommand.png)
+
 
 # 5. Documentation
 ## 5.1 Written documentation  
