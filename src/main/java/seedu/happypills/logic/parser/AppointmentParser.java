@@ -72,6 +72,7 @@ public class AppointmentParser extends Parser {
                 || !Checker.isValidNric(parseInput[0].trim())) {
             printMissingInput(parseInput);
             String input = promptUser().trim();
+            System.out.println(TextUi.DIVIDER);
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
