@@ -459,12 +459,12 @@ The following sequence diagram summarizes how repeat command operation works, fr
     `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
     date if today is not possible. (More information on how date and time is updated is given below)
     
-    > **NOTE**: Using `originalDateAndTime` instead of the recorded dead and time of the task helps to circumvent a potential bug concerning
-     the last few dates of a month. For example, given 31st Jan 2020, adding 1 month to it using the LocalDateTime Java API,
-     we will get 29th Feb 2020. Then adding another month, we will get 29th March 2020 instead of 31st March 2020.
+    > **NOTE**: Using `originalDateAndTime` instead of the recorded date and time of the task helps to circumvent a potential bug concerning
+     the last few dates of a month. For example, given 31st Jan 2020, if we add 1 month to it using the LocalDateTime Java API,
+     we will get 29 Feb 2020. Then adding another month, we will get 29 Mar 2020 instead of 31 Mar 2020.
     >
-    > However by using `originalDateAndTime`, we must also keep track of how much time has past to accurately and quickly obtain the correct
-    next date and time. Hence we also utilize `periodCounter` to count how many `numOfPeriods` with type `typeOfPeriod` has passed.
+    > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
+    next date and time. In this case, we will obtain 31 Mar 2020 instead of 29 Mar 2020. 
 
 -   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
  no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
@@ -480,7 +480,7 @@ There are 2 ways an event's date and time is updated.
 -  `updateEvent()` solely compares dates. 
 - It will loop until `startDate` (which is the `RepeatEvent` object's stated `startDateAndTime.toLocalDate()`) is equal to or
   greater than the current date. With each loop, it will simply add `numOfPeriod` of days, months or years using the methods
-   provided in `LocalDateTime` API of Java to `startDate`. `periodCounter` will also increase by one per iteration. 
+   provided by Java `LocalDateTime` API to `startDate`. `periodCounter` will also increase by one per iteration. 
 - At the end of the loop, we add `numOfPeriod` * `periodCounter` of days, months or years to `originalDateAndTime` to get our
  `startDateAndTime`. Similarly, we add the same amount to the `endDateAndTime`. <br/> 
   Then we add 1 more `numOfPeriod` of days, months or years to `startDateAndTime` to get our `nextDateAndTime`.
@@ -488,7 +488,7 @@ There are 2 ways an event's date and time is updated.
 #### 3.4.4. Design Considerations
 
 -   Allowing only tasks that are `Event` to be repeated. As stated in our UG, an event is a task that you plan to do at a particular date
-    and time.  
+    and time with an end time in mind.
 
     -   Rationale:  
         We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it 
