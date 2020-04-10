@@ -16,7 +16,8 @@ By: `Alaukik Pant, Melissa Lopez`      Since: `Mar 2020`      Licence: `
 1. [Non-Functional Requirements](#5-non-functional-requirements)
 1. [Testing](#6-testing)
 1. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
-    * [Setup and Initial Storage Testing](#-Setup and Initial Storage Testing)
+1. [Glossary](#8-glossary)
+
 
 
 
@@ -525,3 +526,12 @@ Follow the following steps to manually test the product:
 
 
 **Additional Note: These manual tests were created just for article objects. Similar commands can be replicated for note and job objects as well.** 
+
+
+## 8. Glossary 
+
+* Article - an object that is meant to represent and have characterisitcs of a news/website article 
+* Job - a technology related employment 
+* Note - an object that holds additional information about a certain topic that does not fit under article or job description. 
+* Extract - refers to additional information you would like to add to certain article, job, or note object. 
+
