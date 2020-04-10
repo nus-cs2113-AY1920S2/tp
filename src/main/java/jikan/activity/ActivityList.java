@@ -107,7 +107,9 @@ public class ActivityList {
         try {
             storage.writeToFile(dataLine);
         } catch (IOException e) {
-            System.out.println("Error saving task to data file.");
+            Ui.printDivider("Error saving task to data file.\n"
+                    + "Your changes have not been saved in the data file.\n"
+                    + "If the data file is open, please close it, restart the app and try again.");
         }
     }
 
@@ -139,7 +141,9 @@ public class ActivityList {
         try {
             storageHandler.removeLine(index, storage);
         } catch (IOException e) {
-            System.out.println("Error while deleting activity from data file.");
+            Ui.printDivider("Error while deleting activity from data file.\n"
+                    + "Your changes have not been saved in the data file.\n"
+                    + "If the data file is open, please close it, restart the app and try again.");
         }
     }
 
@@ -147,7 +151,9 @@ public class ActivityList {
         try {
             storageHandler.updateField(activities, storage);
         } catch (IOException e) {
-            System.out.println("Error while updating activity from data file.");
+            Ui.printDivider("Error while updating activity from data file.\n"
+                    + "Your changes have not been saved in the data file.\n"
+                    + "If the data file is open, please close it, restart the app and try again.");
         }
     }
 
@@ -161,7 +167,7 @@ public class ActivityList {
      */
     public void saveActivity() throws InvalidTimeFrameException, NameTooLongException {
         if (Parser.continuedIndex != -1) {
-            Ui.printDivider("Ended: " + Parser.activityName);
+            Ui.printDivider(Parser.activityName + " was ended.");
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
             Duration oldDuration = this.get(Parser.continuedIndex).getDuration();
@@ -176,7 +182,7 @@ public class ActivityList {
             Parser.resetInfo();
 
         } else {
-            Ui.printDivider("Ended: " + Parser.activityName);
+            Ui.printDivider(Parser.activityName + " was ended.");
             Parser.endTime = LocalDateTime.now();
             Duration duration = Duration.between(Parser.startTime, Parser.endTime);
             Activity newActivity = new Activity(Parser.activityName, Parser.startTime,

@@ -27,11 +27,11 @@ public class AbortCommand extends Command {
                 throw new NoSuchActivityException();
             } else {
                 Parser.resetInfo();
-                String line = "You have aborted the current activity!";
+                String line = "You have aborted the current activity.";
                 Ui.printDivider(line);
             }
         } catch (NoSuchActivityException e) {
-            Ui.printDivider("You have not started any activity!");
+            Ui.printDivider("You have not started any activity.");
             Log.makeInfoLog("Abort command failed as no activity was ongoing");
         }
     }

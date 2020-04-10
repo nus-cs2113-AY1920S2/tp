@@ -3,15 +3,14 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.ExtraParametersException;
-import jikan.exception.NameTooLongException;
 import jikan.ui.Ui;
 
 import jikan.exception.InvalidTimeFrameException;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.YearMonth;
+import java.time.DayOfWeek;
 import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
@@ -39,9 +38,10 @@ public class ListCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         // If no time frame is specified, print the entire list
-        if (parameters == null) {
+        if (parameters == null || parameters.isBlank()) {
             listAll(activityList);
         } else {
+            parameters = parameters.strip();
             try {
                 listInterval(activityList);
             } catch (DateTimeParseException e) {
@@ -95,14 +95,7 @@ public class ListCommand extends Command {
         case "week":
             // Fallthrough
         case "weekly":
-            // If user has input a specific date to obtain the week from, use that;
-            // (eg. the input is list week 2020-05-20)
-            // Otherwise get current date
-            if (listInputs.length == 2) {
-                startDate = LocalDate.parse(listInputs[1], parser);
-            } else {
-                startDate = LocalDate.now();
-            }
+            startDate = getStartOfWeek(listInputs, parser);
             // Set current Monday and Sunday as time range
             startDate = startDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
             endDate = startDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
@@ -110,31 +103,54 @@ public class ListCommand extends Command {
         case "month":
             // Fallthrough
         case "monthly":
-            // If user has input a specific month, use that;
-            // Otherwise get current date
-            if (listInputs.length == 2) {
-                try {
-                    startDate = getMonth(listInputs[1]);
-                } catch (IllegalArgumentException e) {
-                    Ui.printDivider("Please specify the full month name.");
-                    return;
-                }
-            } else {
-                startDate = LocalDate.now();
-                startDate = startDate.withDayOfMonth(1);
+            startDate = getStartOfMonth(listInputs);
+            if (startDate == null) {
+                return;
             }
             endDate = startDate.with(TemporalAdjusters.lastDayOfMonth());
             break;
         default:
             // date / date range is given
             startDate = LocalDate.parse(listInputs[0], parser);
-
             if (listInputs.length == 2) {
                 endDate = LocalDate.parse(listInputs[1], parser);
             }
             break;
         }
         printList(activityList, startDate, endDate);
+    }
+
+    private LocalDate getStartOfMonth(String[] listInputs) throws ExtraParametersException {
+        LocalDate startDate;// If user has input a specific month, use that;
+        // Otherwise get current date
+        if (listInputs.length == 2) {
+            try {
+                startDate = getMonth(listInputs[1]);
+            } catch (IllegalArgumentException e) {
+                Ui.printDivider("Please specify the full month name.");
+                return null;
+            }
+        } else {
+            startDate = LocalDate.now();
+            startDate = startDate.withDayOfMonth(1);
+        }
+        return startDate;
+    }
+
+    private LocalDate getStartOfWeek(String[] listInputs, DateTimeFormatter parser) {
+        LocalDate startDate;// If user has input a specific date to obtain the week from, use that;
+        // (eg. the input is list week 2020-05-20)
+        // Otherwise get current date
+        if (listInputs.length == 2) {
+            if (listInputs[1].isBlank()) {
+                startDate = LocalDate.now();
+            } else {
+                startDate = LocalDate.parse(listInputs[1], parser);
+            }
+        } else {
+            startDate = LocalDate.now();
+        }
+        return startDate;
     }
 
     private void printList(ActivityList activityList, LocalDate startDate, LocalDate endDate)
@@ -163,17 +179,28 @@ public class ListCommand extends Command {
         }
     }
 
-    private LocalDate getMonth(String listInput) {
+    private LocalDate getMonth(String listInput) throws ExtraParametersException {
         LocalDate startDate;
-        Month month = Month.valueOf(listInput.toUpperCase());
-        YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
-        startDate = yearMonth.atDay(1);
+        Month month;
+        if (listInput.isBlank()) {
+            // return current month
+            LocalDate currentDate = LocalDate.now();
+            month = currentDate.getMonth();
+            YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
+            startDate = yearMonth.atDay(1);
+        } else {
+            month = Month.valueOf(listInput.toUpperCase());
+            YearMonth yearMonth = YearMonth.of(Calendar.getInstance().get(Calendar.YEAR), month.getValue());
+            startDate = yearMonth.atDay(1);
+        }
         return startDate;
     }
 
     private void checkExtraParameters(String[] listInputs) throws ExtraParametersException {
         if (listInputs.length > 1) {
-            throw new ExtraParametersException();
+            if (!listInputs[1].isBlank()) {
+                throw new ExtraParametersException();
+            }
         }
     }
 }

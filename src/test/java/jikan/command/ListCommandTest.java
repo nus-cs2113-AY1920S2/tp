@@ -17,7 +17,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ListCommandTest {
     ActivityList activities = new ActivityList();

@@ -18,7 +18,7 @@ public class ContinueCommand extends Command {
      * Constructor to create a new continue command.
      */
     public ContinueCommand(String parameters) {
-        super(parameters);
+        super(parameters.strip());
     }
 
     @Override

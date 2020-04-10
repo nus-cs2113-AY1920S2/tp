@@ -7,23 +7,14 @@ start activity 4
 end
 continue activity 1
 end
-list
-filter tag
-find 1
-find 3
 start activity 1
 yes
 end
-list week
 graph
-graph 1
 start
 end
 abort
 hi
-filter
-find
 delete
 delete activity 2
-list
 bye

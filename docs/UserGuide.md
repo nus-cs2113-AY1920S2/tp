@@ -26,10 +26,13 @@ Jikan lets you record how much time you spend on various activities so that you 
 
 To start, record your first activity using the `start ACTIVITY_NAME` command.
 
-Add some tags to your activities to group similar activities together using `/t`. Tags help you group activities of the same type together, in this example, we use the tags feature to label activities according to their module code.
+Add some tags to your activities to group similar activities together using `/t`. Tags help you group activities of the same type together, 
+in this example, we use the tags feature to label activities according to their module code. 
+**(Note that each activity can only store two tags at maximum.)**
 
-Add allocated time to your activities using `/a`. 
- 
+Add allocated time to your activities using `/a`. This allows users to set aside how much time they would like to spend on an activity and
+keep track on whether they are spending too much or too little time for that particular activity.
+
 When you are done with the activity, or want to move onto something else, tell Jikan to `end` and the Activity time will be recorded and saved to your list.
 
 You can view all your activities using the `list` command. Or view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
@@ -39,14 +42,14 @@ The list still looks very cluttered, we can reduce it further! Want to find ever
 ![Continue command sequence diagram](./pictures/filter.PNG)
 
 To easily see what took up the most of your time out of all the 2113 activities, use the `graph` command to view a chart of your activities. 
-![Continue command sequence diagram](./pictures/graph.PNG)
+![Continue command sequence diagram](./pictures/graph.png)
 
 Curious about what module took up the most time this week? We can use the `graph tags` command on our weekly activity list to find out.
 ![Continue command sequence diagram](./pictures/graphtags.PNG)
 
 Evidently, it was CS2105.
 
-Not done with an activity and want to continue it? Use the `continue` command to continue recording time for a previously started activity.
+Not done with an activity and want to continue on it? Use the `continue` command to continue recording time for a previously started activity.
 
 Finally, when you're done and want to close the app, simply say `bye` and Jikan will exit.
 
@@ -60,7 +63,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
  * `ACTIVITY_NAME` can contains spaces and must be less than 25 characters.     
 * `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
 * `ALLOCATED_TIME` should be of the format [HH:MM:SS] and cannot exceed 23:59:59.
-* `TAGS` must be single spaced separated.  
+* `TAGS` must be single spaced separated and a maximum of 2 tags can be stored.
 * `ALLOCATED_TIME` and `TAGS` are optional.  
     
 **Example:**  
@@ -143,8 +146,8 @@ By using `find` and `filter` commands, the user can reduce clutter and zoom-in t
 * `filter TAGNAME1 TAGNAME2`
 
 ### Chaining Lists, Finds & Filters: `-s`
-**Usage:** The user to `find` and `filter` based on the last shown list by providing the `-s` immediately each
-`find` or `filter`.
+**Usage:** Users can provide the `find` and `filter` command on the last shown list by providing the `-s` flag after each
+`find` or `filter` command.
 
 **Format:** 
 * `find -s KEYWORD`
@@ -188,8 +191,9 @@ Here are the matching activities in your list:
 ------------------------------------------------------------------------------------------
 ```
 **Example:**  
-![chain graph activities](./pictures/filter-find_chain.PNG)
 If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
+![chain graph activities](./pictures/filter-find_chain.PNG)
+
 
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
@@ -216,6 +220,7 @@ Note: As the units of `SCALE` is minutes, if your activity is less than a minute
 **Usage:** View a comparison of the absolute time spent on each tag in the last shown list. 
 
 ![graph tags](./pictures/graphtags_example.PNG)
+
 For example, if we `graph tags 1` for the activity list above, we will get the following graph:
 
 ![graph tags](./pictures/graphtags_example2.png)
@@ -231,10 +236,20 @@ As tags can be used to group activities of a similar nature together (i.e. same 
 **Example:**    
 `graph tags 1` 
 
-### Activity targets graph: `graph targets`
-**Usage:** View the progress of activities to see how much time was spent on the activity relative to the time that was allocated. 
+### Activity targets graph: `graph allocations`
+**Usage:** View the progress of activities to see how much time was spent on the activity relative to the allocated time.
 
 Note: Only activities with an `ALLOCATED_TIME` will be shown.
+
+![graph_allocations](./pictures/listforgraphallocations.png)
+
+For example, if we `graph allocations` for the activity list above, we will get the following graph:
+
+![graph_allocations](./pictures/graphallocations.png)
+
+`activity 3` and `activity 5` does not have an allocated time, thus they do not appear in the graph. 
+The percentage shown in the graph represents the activity's progress relative to their allocated time. (`activity 4` have a duration of 2 seconds while its allocated time was 5 seconds, 2/5 * 100% = 40%. Thus the progress of `activity 4` is 40%
+as shown in the graph)
 
 **Format:**   
 `graph allocations`
@@ -244,17 +259,18 @@ Using `list`, `find` and `filter` commands you can sieve out the information you
 
 **Graph Activities Example:**  
 ![chain graph activities](./pictures/filter-graph_chain.PNG)
+
 `filter 2113` gives all activities tagged `2113`, then we can use `graph activities 5` to view a graph of the duration for each activity.
 
 **Graph Tags Example:**
 ![chain graph tags](./pictures/list-graphtags_chain.PNG) 
+
 `list 25/03/2020` gives all activities completed on 25th March 2020, then we can use `graph tags 5` to view the graph of the tags. Each asterisk represents 5 minutes, as indicated by the `SCALE` parameter of the graph command.
 
 **Graph Allocations Example:**
 ![chain graph tags](./pictures/find-allocations_chain.PNG) 
+
 `find Lab` gives us all `Lab` activities, then we can use `graph allocations` to view the progress bar of each of the activities to see how much time was spent on the activity relative to the time that was allocated. 
-
-
 
 ## Tag Goals
 
@@ -279,37 +295,68 @@ By using the `goal` command, users can set specific goals for how long they woul
 **Format:** `goal`  
 ![goal display](./pictures/GoalDisplay.PNG)  
 
-## Usage of Automated Cleaning
+## Automated Cleaning
 
-As Jikan is a time tracker application which works with various data files (data file for activities, log files for execution history
-etc.), over time it can be a mess to deal with these data files especially when they get too big. Thus, Jikan provides automated cleaning
-services for such situations.
+Jikan provides a `clean` command where users can automate the cleaning of activities from the activity list at application startup.
 
-### Activating the automated cleaning: `clean on | clean log on`
-At runtime, users can switch on the automated cleaning services. Once the automated cleaning is activated, the application will
-do an auto cleanup of files at the start of every execution until this services is switch off. Do note that the cleaning will only start from the next execution.
-(i.e no cleaning will be done for the current execution which activated auto cleaning).
+### Activate cleaning: `clean on`
+**Usage:** Switch on automated cleaning.
 
-Note: \
-`clean on` activates the cleaning of data files where activities are stored. \
-`clean log on` activates the cleaning of log files where application execution history is stored.
+**Format:** `clean on`
 
-### Deactivating the automated cleaning: `clean off | clean log off`
-At runtime, users can switch off the automated cleaning services. Once deactivated, the application will
-stop doing an auto cleanup of files at the start of every execution. Similarly, the changes only applies to the next execution.
+### Deactivate cleaning: `clean off`
+**Usage:** Switch off automated cleaning. 
 
-Note:\
-When the application is executed for the first time, the automated cleaning is deactivated by default and will remain so until it is activated by the user.
+**Format:** `clean off`
 
-### Specifying how much data to clean: `clean /n NUMBER | clean log /n NUMBER`
-At runtime, the user can manually set the amount of data to clean using these commands where `NUMBER` is an integer based on user input. 
-Thus, `clean /n 5` will automatically clean the top 5 oldest activities from the activity list upon every startup (assuming automated cleaning
-is activated).
+### Set the number of activities to clean: `clean /n`
+**Usage:** Set a number of activities to clean.
 
-Note:\
-Default `NUMBER` value for data files : 3\
-Default `NUMBER` value for log files : 10
+**Format:** `clean /n NUMBER`
 
+Note: Once cleaning is switched on, the automated cleaning persists (i.e cleaning will be done at every application startup) until it is switched off.
+
+**Example:**
+
+![CleanExample](./pictures/cleanlist.png)
+
+Taking a look at this cluttered activity list, we can see that there are some activities which are done (i.e duration > allocation).
+Thus, to reduce clutter, we would like to get rid of these done activities. 
+
+However, since the list is so huge, it would be troublesome to use the delete function as users will have to manually navigate through
+the list to identify the done activities and delete them.
+
+This is where the `clean` command would be useful. See that activity 6, 7 and 10 are done.
+
+![CleanExample](./pictures/cleanEg.png)
+
+By using the `clean` command. Users can choose how much of these done activities to clean, for the example here, the number is set to 2.
+
+![CleanExample](./pictures/afterClean.png)
+
+Upon the next startup, the automated cleaning will do its work and clean the 2 oldest done activities (i.e oldest here is based on date).
+
+Note that since the user specified to clean only 2 activities, only activity 6 and 7 are cleaned and activity 10 remains in the activity list.
+
+### Automated Cleaning for Logs:
+
+Jikan also provides cleaning for log file which are used to record important information during program execution. This feature will be useful
+to users who are running this application on systems with limited hardware (small storage space).
+
+### Activate log cleaning: `clean log on`
+**Usage:** Switch on automated cleaning.
+
+**Format:** `clean log on`
+
+### Deactivate log cleaning: `clean log off`
+**Usage:** Switch off automated cleaning. 
+
+**Format:** `clean log off`
+
+### Set the number of logs to clean: `clean log /n`
+**Usage:** Set number of lines of logs to clean.
+
+**Format:** `clean log /n NUMBER`
 
 ## Command Guide
 
