@@ -75,9 +75,12 @@ Interested in cultivating a habit of time management and plan your time more eff
                 `java -jar atas-2.0.0.jar`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
                                                                                                                                                                                                                                                                                                                                                                                                             
     3. For **Linux** Users:
-        1. Download the **latest** release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases). 
+        1. Download the **latest** release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+         
         2. Open up `Terminal` and maximise the window.
+        
         3. Navigate to the directory containing the downloaded jar file.
+        
         4. Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds. 
          > **Note**: Replace `atas.jar` with the filename of the jar file. For example if the file name is `atas-2.0.0.jar`, run command 
                         `java -jar atas-2.0.0.jar`. 
@@ -101,7 +104,7 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
     Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
 
--   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list).   
+-   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4. "List Tasks: `list`"](#34-list-tasks-list).   
     Example index of list:  
     ![Task Index Example](images/task_index_example.png)
 
@@ -477,7 +480,7 @@ Here are the search results:
 
 ### 3.10. Calendar View: **`calendar`**
 
-You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you can see your free slots at a glance.
+You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan your free time as you can see your free slots at a glance.
 
 Format: `calendar d/[MM/YY]`
 
@@ -485,7 +488,7 @@ Expected outcome:
 
 ![calendar.png](images/calendar2.png)
 
-> **Note**: The calendar does not show past repeated events instances and will only show upcoming ones. 
+> **Note**: The calendar does not show past repeated event instances and will only show upcoming ones. 
 
 ### 3.11. Storage
 
