@@ -159,7 +159,7 @@ public class Parser {
             } catch (NumberFormatException e) {
                 Ui.printDivider("Please input an integer for the time interval.");
             } catch (ExtraParametersException e) {
-                Ui.printDivider("Extra parameters or invalid format detected!");
+                Ui.printDivider("Extra parameters or invalid format detected.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
             }
