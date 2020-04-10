@@ -242,7 +242,7 @@ combined schedule.
 6. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
 
 ### 3.4 Schedule a new meeting
-![ScheduleMeeting](images/ScheduleMeeting.png)
+![ScheduleMeeting](images/ScheduleMeeting_seq.png)
 
 The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
 It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
