@@ -33,7 +33,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <br>   
 <big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
 <br>   
-<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>
+<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Product Scope** [&#10149;](#product-scope)
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **User Stories** [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
@@ -838,10 +838,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>  
 
 ### **Non-Functional Requirements**  
-1. Should work on any [mainstream OS](#mainstream os) as long as it has Java `11` or above installed.
-2. User with above [average typing speed](#average typing speed) for English text (not coding) should be able to utilize the product to manage tasks more efficiently compared to using a mouse.
+1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `11` or above installed.
+2. User with above [average typing speed](#average-typing-speed) for English text (not coding) should be able to utilize the product to manage tasks more efficiently compared to using a mouse.
 3. Data entered by the user should be able to saved and carried forward for the next time usage.
-4. The file containing the saved data should be portable so that the user can transfer to the other machine with any [mainstream OS](#mainstream os) and continuing using the app without any additional configuration.
+4. The file containing the saved data should be portable so that the user can transfer to the other machine with any [mainstream OS](#mainstream-os) and continuing using the app without any additional configuration.
 5. The product should be able to run without any noticeable sluggishness in performance for typical usage when dealing with up to 100 academic tasks.
 6. The product should never crash and able to handle any input from the user.
 7. Should work on both 32-bit and 64-bit environments.
@@ -852,11 +852,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Glossary**  
 ##### mainstream OS
-
 ​    Windows, Linux, Unix, OS-X
-
 ##### average typing speed
-
 ​    40 words per minute
 
 
