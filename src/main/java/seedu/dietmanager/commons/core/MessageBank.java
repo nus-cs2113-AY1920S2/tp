@@ -13,7 +13,7 @@ public class MessageBank {
 
     public static String WELCOME_MESSAGE = "Welcome to Diet Manager! How may I assist you today?";
 
-    public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
+    public static String INVALID_COMMAND_MESSAGE = "Sorry, that is an invalid command.";
 
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
 
@@ -41,7 +41,10 @@ public class MessageBank {
 
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
-    public static String PROFILE_NOT_FOUND_MESSAGE = "No existing profile found. To create a new profile, enter:\n"
+    public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
+            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static String BREAKFAST_RECORD_MESSAGE = "You just record the meal in the morning of: ";
@@ -50,63 +53,58 @@ public class MessageBank {
 
     public static String DINNER_RECORD_MESSAGE = "You just record the meal in the night of: ";
 
-    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!! "
+    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!!\n"
             + "Choose from: morning/afternoon/night.";
 
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
 
-    public static String WEIGHT_DELETED_MESSAGE = " has been removed successfully!";
+    public static String WEIGHT_DELETED_MESSAGE = "has been removed successfully!";
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
 
-    public static String WEIGHT_LOSS_MESSAGE = "\nGreat job! You have lost %.2f kg since the beginning!\n\n";
+    public static String WEIGHT_LOSS_MESSAGE = "Overall, you have lost %.2f kg!";
 
-    public static String WEIGHT_NO_CHANGE_MESSAGE = "\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n";
+    public static String WEIGHT_NO_CHANGE_MESSAGE = "There has been no change in your weight!";
 
-    public static String WEIGHT_GAIN_MESSAGE = "\nMaintain your diet! You have gained %.2f kg since the beginning!\n\n";
+    public static String WEIGHT_GAIN_MESSAGE = "Overall, you have gained %.2f kg!";
 
-    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
+    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:";
 
-    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.\n";
+    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.";
 
     public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
 
     public static String TIME_CALORIES_MESSAGE = "total calculable calories intake: ";
 
-    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.\n";
+    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.";
 
-    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.\n";
+    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.";
 
-    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.\n";
+    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.";
 
-    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.\n";
+    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.";
 
-    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.\n";
+    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.";
 
-    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.\n";
+    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.";
 
-    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.\n";
+    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.";
 
     public static String CALCULATE_CALORIES_MESSAGE = "Your Calories intake during the given period is ";
 
     public static String NO_DESCRIPTION_MESSAGE = "This command must follow by description! Please input again!";
 
-    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}! "
+    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}!\n"
             + "Either uppercase or lowercase is supported!";
 
     public static String SPLIT_LINE = "----------------------------------------------------------------";
 
-    public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. "
-            + "Please set a new profile using the set-profile command.";
-
-    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n\n"
-            + "All girls/boys will now fall for your determination and physique! :)\n\n"
-            + "You can also set a new weight goal using set-weight-goal NEW_GOAL\n";
+    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
+            + "All girls/boys will now fall for your determination and physique! :)\n"
+            + "You can also set a new weight goal using set-weight-goal NEW_GOAL";
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
-    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
-            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"

@@ -82,7 +82,7 @@ public class BuildNewRecipeCommand extends Command {
         if (noDescription) {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (noProfileFound) {
-            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (isInvalidFormat) {
             this.resultString = "You have given wrong format for parameters!!!\n"
                     + "First parameter is maximum food types, need to provide an integer.\n"

@@ -109,7 +109,7 @@ public class CheckRequiredCaloriesCommand extends Command {
         if (noDescription) {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (noProfileFound) {
-            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (isInvalidDate) {
             this.resultString = MessageBank.INVALID_DATE_MESSAGE;
         } else if (!isInValidCommand) {

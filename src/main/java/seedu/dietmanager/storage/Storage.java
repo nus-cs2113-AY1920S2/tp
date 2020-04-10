@@ -1,7 +1,6 @@
 package seedu.dietmanager.storage;
 
 import seedu.dietmanager.commons.core.LogsCentre;
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.commons.exceptions.InvalidCaloriesException;
@@ -19,11 +18,11 @@ import seedu.dietmanager.logic.parser.HeightParser;
 import seedu.dietmanager.logic.parser.NameParser;
 import seedu.dietmanager.logic.parser.StorageParser;
 import seedu.dietmanager.logic.parser.WeightParser;
+import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Food;
 import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
-import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.ui.UI;
 
 import java.io.File;
@@ -230,7 +229,7 @@ public class Storage {
                 DailyFoodRecord curRecord = profile.getRecordOfDay(curDate);
 
                 ArrayList<Food> morningFoods = curRecord.getDailyFood("morning");
-                String morningFoodDescription  = "";
+                String morningFoodDescription = "";
 
                 for (Food food : morningFoods) {
                     morningFoodDescription += food.getPair();
@@ -243,7 +242,7 @@ public class Storage {
                 }
 
                 ArrayList<Food> afternoonFoods = curRecord.getDailyFood("afternoon");
-                String afternoonFoodDescription  = "";
+                String afternoonFoodDescription = "";
 
                 for (Food food : afternoonFoods) {
                     afternoonFoodDescription += food.getPair();
@@ -252,18 +251,18 @@ public class Storage {
                     afternoonFoodDescription =
                             afternoonFoodDescription.substring(0, afternoonFoodDescription.length() - 1);
                     myWriter.write(curDate + " afternoon: " + afternoonFoodDescription + System.lineSeparator());
-                }  else {
+                } else {
                     myWriter.write(curDate + " afternoon: " + "nothing" + System.lineSeparator());
                 }
 
                 ArrayList<Food> nightFoods = curRecord.getDailyFood("night");
-                String nightFoodDescription  = "";
+                String nightFoodDescription = "";
 
                 for (Food food : nightFoods) {
                     nightFoodDescription += food.getPair();
                 }
                 if (!nightFoodDescription.equals("")) {
-                    nightFoodDescription = nightFoodDescription.substring(0,nightFoodDescription.length() - 1);
+                    nightFoodDescription = nightFoodDescription.substring(0, nightFoodDescription.length() - 1);
                     myWriter.write(curDate + " night: " + nightFoodDescription + System.lineSeparator());
                 } else {
                     myWriter.write(curDate + " night: " + "nothing" + System.lineSeparator());

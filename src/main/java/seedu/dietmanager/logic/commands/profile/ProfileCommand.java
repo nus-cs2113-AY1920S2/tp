@@ -36,7 +36,7 @@ public class ProfileCommand extends Command {
                     + String.format("Weight        %.2f kilograms", profile.getWeight()) + System.lineSeparator()
                     + String.format("Weight Goal:  %.2f kilograms", profile.getWeightGoal());
         } else {
-            this.resultString = MessageBank.PROFILE_NOT_FOUND_MESSAGE;
+            this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         }
         return new Result(this.resultString);
     }
