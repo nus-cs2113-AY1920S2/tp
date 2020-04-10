@@ -14,9 +14,11 @@ public class Calendar {
     private static final String EMPTY_YEAR_LIST_ERROR_MESSAGE = "Unable to find any events for this time period.";
     private static final String MONTH_NOT_FOUND_ERROR_MESSAGE = "Month not found.";
     private UI ui;
+    private DisplayTable displayTable;
 
     public Calendar() {
         this.ui = new UI();
+        this.displayTable = new DisplayTable();
     }
 
     /**
@@ -266,7 +268,7 @@ public class Calendar {
                     eventDescriptionList.add(j, monthList.get(j).get(k));
                 }
             }
-            DisplayTable.printBodyOfSix(eventDescriptionList);
+            displayTable.printBodyOfSix(eventDescriptionList);
             eventDescriptionList = removePreviousElements(eventDescriptionList);
         }
     }
