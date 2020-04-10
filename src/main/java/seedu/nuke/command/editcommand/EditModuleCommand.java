@@ -4,6 +4,7 @@ import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -55,6 +56,21 @@ public class EditModuleCommand extends EditCommand {
     }
 
     /**
+     * Edits the module.
+     *
+     * @param toEdit
+     *  The module to edit
+     * @throws ModuleManager.DuplicateModuleException
+     *  If the new module code is duplicated
+     * @throws ModuleNotProvidedException
+     *  If the new module code is not a recognised NUS module
+     */
+    @Override
+    protected void edit(Directory toEdit) throws ModuleManager.DuplicateModuleException, ModuleNotProvidedException {
+        ModuleManager.edit((Module) toEdit, newModuleCode);
+    }
+
+    /**
      * Executes the <b>Edit Module Command</b> to edit a <b>Module</b> with the <code>module code</code>
      * from the <b>Module List</b>.
      *
@@ -67,7 +83,7 @@ public class EditModuleCommand extends EditCommand {
     public CommandResult execute() {
         try {
             Module toEdit = DirectoryTraverser.getModuleDirectory(oldModuleCode);
-            ModuleManager.edit(toEdit, newModuleCode);
+            edit(toEdit);
             StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_MODULE_SUCCESS);
         }  catch (ModuleNotProvidedException e) {

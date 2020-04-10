@@ -7,6 +7,7 @@ import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskFileManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -80,8 +81,21 @@ public class EditFileCommand extends EditCommand {
         this.newFileName = newFileName;
     }
 
-    private boolean exceedLengthLimit() {
+    private boolean isExceedLengthLimit() {
         return newFileName.length() > 30;
+    }
+
+    /**
+     * Edits the file.
+     *
+     * @param toEdit
+     *  The file to edit
+     * @throws TaskFileManager.DuplicateTaskFileException
+     *  If the new file name is duplicated
+     */
+    @Override
+    protected void edit(Directory toEdit) throws TaskFileManager.DuplicateTaskFileException {
+        ((TaskFile) toEdit).getParent().getFiles().edit((TaskFile) toEdit, newFileName);
     }
 
     /**
@@ -95,13 +109,13 @@ public class EditFileCommand extends EditCommand {
      */
     @Override
     public CommandResult execute() {
-        if (exceedLengthLimit()) {
+        if (isExceedLengthLimit()) {
             return new CommandResult(MESSAGE_FILE_EXCEED_LIMIT);
         }
         try {
             TaskFile toEdit =
                     DirectoryTraverser.getFileDirectory(moduleCode, categoryName, taskDescription, oldFileName);
-            toEdit.getParent().getFiles().edit(toEdit, newFileName);
+            edit(toEdit);
             StorageManager.setIsSave();
             return new CommandResult(MESSAGE_EDIT_FILE_SUCCESS);
         } catch (ModuleManager.ModuleNotFoundException e) {

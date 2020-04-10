@@ -5,6 +5,7 @@ import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
 import seedu.nuke.data.TaskManager;
 import seedu.nuke.data.storage.StorageManager;
+import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
@@ -55,6 +56,17 @@ public class MarkAsDoneCommand extends EditCommand {
         this.taskDescription = taskDescription;
     }
 
+    /**
+     * Marks the task as done.
+     *
+     * @param toMarkAsDone
+     *  The task to mark as done
+     */
+    @Override
+    protected void edit(Directory toMarkAsDone) {
+        ((Task) toMarkAsDone).setDone(true);
+    }
+
     @Override
     public CommandResult execute() {
         try {
@@ -62,7 +74,7 @@ public class MarkAsDoneCommand extends EditCommand {
             if (toMarkAsDone.isDone()) {
                 return new CommandResult(MESSAGE_ALREADY_DONE_TASK);
             }
-            toMarkAsDone.setDone(true);
+            edit(toMarkAsDone);
             assert toMarkAsDone.isDone() : "How can this be?";
             StorageManager.setIsSave();
             return new CommandResult(MESSAGE_DONE_TASK);
