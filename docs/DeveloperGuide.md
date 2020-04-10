@@ -41,12 +41,14 @@ The UI consists of the following classes:
 * `UI` - Reads user input and displays system output
 
 The `UI` component
-1) Reads user input and passes it to `Logic` for parsing and execution of the command.
-2) Receives command results from `Logic` and listens 
+1. Reads user input and passes it to `Logic` for parsing and execution of the command.
+2. Receives command results from `Logic` and listens 
 for changes in `Model` to display updated information to the user.
-3) Draws on `Commons` to obtain the relevant messages to be displayed to the user.
+3. Draws on `Commons` to obtain the relevant messages to be displayed to the user.
 
 ### Storage component
+
+![Storage-Component](images/Storage-Component.png)
 
 The `Storage` component is responsible for:
 * Reading data files to update the information in local memory.
@@ -56,11 +58,13 @@ The Storage consists of the following classes:
 * `Storage` - Stores all user profile information in respective data files
 
 The `Storage` component
-1) Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
-2) Receives instructions from `logic` to save and write in-memory information from
+1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
+2. Receives instructions from `logic` to save and write in-memory information from
 `Model` into the relevant data files.
 
 ### Logic component
+
+
 
 The `Logic` component is responsible for:
 * Arranging the whole workflow

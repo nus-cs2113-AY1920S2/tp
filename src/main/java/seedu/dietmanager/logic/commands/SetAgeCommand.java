@@ -1,16 +1,16 @@
-package seedu.dietmanager.logic.commands.profile;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidHeightException;
+import seedu.dietmanager.commons.exceptions.InvalidAgeException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.parser.HeightParser;
+import seedu.dietmanager.logic.parser.AgeParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class SetHeightCommand extends Command {
+public class SetAgeCommand extends Command {
 
-    private double height;
+    private int age;
     private boolean isValidCommand;
     private boolean isValidProfile;
 
@@ -20,12 +20,12 @@ public class SetHeightCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetHeightCommand(String command, String description) {
+    public SetAgeCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
         try {
-            this.height = HeightParser.parseHeight(description);
-        } catch (InvalidHeightException e) {
+            this.age = AgeParser.parseAge(description);
+        } catch (InvalidAgeException e) {
             this.isValidCommand = false;
         }
     }
@@ -37,7 +37,7 @@ public class SetHeightCommand extends Command {
             this.isValidCommand = false;
         }
         if (this.isValidCommand) {
-            profile.setHeight(this.height);
+            profile.setAge(this.age);
         }
         Result result = getResult(profile);
         return result;
@@ -48,9 +48,9 @@ public class SetHeightCommand extends Command {
         if (!this.isValidProfile) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.resultString = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getHeight());
+            this.resultString = MessageBank.AGE_CHANGE_MESSAGE + profile.getAge() + ".";
         } else {
-            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
+            this.resultString = MessageBank.INVALID_AGE_MESSAGE;
         }
         return new Result(this.resultString);
     }

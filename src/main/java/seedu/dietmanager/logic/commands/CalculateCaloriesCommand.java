@@ -1,4 +1,4 @@
-package seedu.dietmanager.logic.commands.foodrecord;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;

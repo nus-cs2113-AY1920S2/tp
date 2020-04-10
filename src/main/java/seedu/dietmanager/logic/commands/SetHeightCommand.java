@@ -1,16 +1,16 @@
-package seedu.dietmanager.logic.commands.profile;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidWeightException;
+import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.parser.WeightParser;
+import seedu.dietmanager.logic.parser.HeightParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class SetWeightGoalCommand extends Command {
+public class SetHeightCommand extends Command {
 
-    private double weightGoal;
+    private double height;
     private boolean isValidCommand;
     private boolean isValidProfile;
 
@@ -20,12 +20,12 @@ public class SetWeightGoalCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetWeightGoalCommand(String command, String description) {
+    public SetHeightCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
         try {
-            this.weightGoal = WeightParser.parseWeight(description);
-        } catch (InvalidWeightException e) {
+            this.height = HeightParser.parseHeight(description);
+        } catch (InvalidHeightException e) {
             this.isValidCommand = false;
         }
     }
@@ -37,7 +37,7 @@ public class SetWeightGoalCommand extends Command {
             this.isValidCommand = false;
         }
         if (this.isValidCommand) {
-            profile.setWeightGoal(this.weightGoal);
+            profile.setHeight(this.height);
         }
         Result result = getResult(profile);
         return result;
@@ -48,8 +48,7 @@ public class SetWeightGoalCommand extends Command {
         if (!this.isValidProfile) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.resultString = MessageBank.WEIGHT_GOAL_CHANGE_MESSAGE
-                    + String.format("%.2f.", profile.getWeightGoal());
+            this.resultString = MessageBank.HEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getHeight());
         } else {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
