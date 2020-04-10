@@ -38,12 +38,14 @@ ATAS is catered for students who want to maximise their productivity and cultiva
 * Wrote the *Design* section
 * Wrote *Section 3.7 - Storage*
 * Wrote *Section 5 - DevOps*
-* Normalize the writing style and format of the various sections: [#142](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/142)
+* Normalize the writing style and format of the various sections: [#142](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/142), [#220](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/220)
 
 **Contributions to Team-based Tasks:**
 * Managed the issue tracker
+* Managed links in the project GitHub page
 * Compiled all comments from the developer guide review
 * Compiled all relevant bugs reported in the practical exam dry run
 
 **Community:**
 * Fixed minor bugs overlooked by group members: [#46](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/46)
+* Fixed careless mistakes of group members in the Developer Guide before final submission: [#220](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/220) 
