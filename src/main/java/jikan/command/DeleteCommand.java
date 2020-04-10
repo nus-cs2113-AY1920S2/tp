@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             int index = activityList.findActivity(parameters);
             if (index != -1) {
                 // activity was found
-                Ui.printDivider("You have deleted " + parameters);
+                Ui.printDivider("You have deleted " + parameters + ".");
                 activityList.delete(index);
             } else {
                 if (parameters.isEmpty()) {
@@ -34,9 +34,9 @@ public class DeleteCommand extends Command {
                 }
             }
         } catch (NoSuchActivityException e) {
-            Ui.printDivider("No activity with this name exists!");
+            Ui.printDivider("No activity with this name exists.");
         } catch (EmptyNameException e) {
-            Ui.printDivider("Activity name cannot be empty!");
+            Ui.printDivider("Activity name cannot be empty.");
         }
     }
 }

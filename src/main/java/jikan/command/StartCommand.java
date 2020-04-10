@@ -256,7 +256,7 @@ public class StartCommand extends Command {
         } catch (DateTimeException e) {
             Log.makeInfoLog("Allocated time provided was not valid.");
             Ui.printDivider("Time provided is invalid, please provide time in this format"
-                    + " HH:MM:SS");
+                    + " HH:MM:SS.");
         }
     }
 
@@ -278,10 +278,10 @@ public class StartCommand extends Command {
             Ui.printDivider("Please provide a valid tag");
         } else if (allocatedTime == Duration.parse("PT0S")) {
             Log.makeInfoLog("Allocated time is zero.");
-            Ui.printDivider("Please provide a non zero allocated time");
+            Ui.printDivider("Please provide a non zero allocated time.");
         } else if (tags.size() > 2) {
             Log.makeInfoLog("Activity has more than 2 tags");
-            Ui.printDivider("Cannot have more than 2 tags");
+            Ui.printDivider("There cannot be more than 2 tags.");
         } else {
             Parser.tags.addAll(tags);
             Parser.allocatedTime = allocatedTime;
@@ -304,7 +304,7 @@ public class StartCommand extends Command {
         } catch (DateTimeException e) {
             Log.makeInfoLog("Allocated time provided was not valid.");
             Ui.printDivider("Time provided is invalid, please provide time in this format"
-                    + " HH:MM:SS");
+                    + " HH:MM:SS.");
         }
     }
 
@@ -314,7 +314,7 @@ public class StartCommand extends Command {
         Duration allocatedTime = Duration.between(startTime, endTime);
         if (allocatedTime == Duration.parse("PT0S")) {
             Log.makeInfoLog("Allocated time is zero.");
-            Ui.printDivider("Please provide a non zero allocated time");
+            Ui.printDivider("Please provide a non zero allocated time.");
         } else {
             Parser.allocatedTime = allocatedTime;
             addActivity(activityName);
@@ -334,10 +334,10 @@ public class StartCommand extends Command {
         ArrayList<String> tags = getTags(tagStrings);
         if (tagInfo.isEmpty()) {
             Log.makeInfoLog("No tags found with tag flag.");
-            Ui.printDivider("Please provide a valid tag");
+            Ui.printDivider("Please provide a valid tag.");
         } else if (tags.size() > 2) {
             Log.makeInfoLog("Activity has more than 2 tags");
-            Ui.printDivider("Cannot have more than 2 tags");
+            Ui.printDivider("There cannot be more than 2 tags.");
         } else {
             Parser.tags.addAll(tags);
             addActivity(activityName);
@@ -368,8 +368,8 @@ public class StartCommand extends Command {
     private void addActivity(String activityName) {
         Parser.activityName = activityName;
         Parser.startTime = LocalDateTime.now();
-        Log.makeFineLog("Started: " + activityName);
-        Ui.printDivider("Started: " + activityName);
+        Log.makeFineLog(activityName + " was started.");
+        Ui.printDivider(activityName + " was started.");
     }
 
 
