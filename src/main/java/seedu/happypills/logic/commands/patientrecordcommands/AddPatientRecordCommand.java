@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 //@@ NyanWunPaing
 /*
- * Add patient record into Patient Record Map.
+ * Adds patient record into Patient Record Map.
  */
 public class AddPatientRecordCommand extends PatientRecordCommand {
 
@@ -29,13 +29,13 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
 
     /**
      * Constructor for PatientRecordCommand Class.
-     * It creates a new PatientCommand Object with the information provided.
+     * Creates a new PatientCommand Object with the information provided.
      *
-     * @param nric      patient's NRIC
-     * @param symptom   patient's symptom
-     * @param diagnosis patient's diagnosis
-     * @param date      date of the medical treatment
-     * @param time      time of the medical treatment
+     * @param nric      The patient's NRIC.
+     * @param symptom   The patient's symptom.
+     * @param diagnosis The patient's diagnosis.
+     * @param date      The date of the medical treatment.
+     * @param time      The time of the medical treatment.
      */
     public AddPatientRecordCommand(String nric, String symptom, String diagnosis, String date, String time) {
         this.nric = nric;
@@ -46,13 +46,13 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
     }
 
     /**
-     * Execute the add patient record command.
+     * Executes the add patient record command.
      *
-     * @param patients       The list of patients
-     * @param appointments   The list of appointments
-     * @param patientRecords The list of patient records
-     * @return Error Message or Success Message
-     * @throws HappyPillsException if NRIC already exist in the patient list
+     * @param patients       The list of patients.
+     * @param appointments   The list of appointments.
+     * @param patientRecords The list of patient records.
+     * @return message Error message or success message to be displayed.
+     * @throws HappyPillsException If NRIC already exist in the patient list.
      */
     @Override
     public String execute(

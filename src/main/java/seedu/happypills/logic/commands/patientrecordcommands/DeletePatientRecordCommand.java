@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * Deletes patient record from Patient Record Map.
  */
 public class DeletePatientRecordCommand extends PatientRecordCommand {
-    protected String patientNric;
+    protected String nric;
     protected int index;
 
     Logger logger = Logger.getLogger(HappyPills.class.getName());
@@ -28,22 +28,22 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
     /**
      * Constructor for Delete Patient Record Command Class.
      *
-     * @param patientNric contains the NRIC of the patient that is to be retrieved.
-     * @param index       index for the record of the searched patient.
+     * @param nric The NRIC of the patient that is to be retrieved.
+     * @param index       The index for the record of the searched patient.
      */
-    public DeletePatientRecordCommand(String patientNric, int index) {
-        this.patientNric = patientNric;
+    public DeletePatientRecordCommand(String nric, int index) {
+        this.nric = nric;
         this.index = index - 1;
     }
 
     /**
      * Removes the patient record from the patient record map in the program.
      *
-     * @param patientRecordMap contains the NRIC of the patient that is to be retrieved.
-     * @param patientRecords   array of patient records for given NRIC.
+     * @param patientRecordMap The NRIC of the patient that is to be retrieved.
+     * @param patientRecords   The list of patient records for given NRIC.
      */
     private void deletePatientRecord(PatientRecordMap patientRecordMap, ArrayList<PatientRecord> patientRecords) {
-        patientRecordMap.removePersonalRecord(patientRecords, patientNric);
+        patientRecordMap.removePersonalRecord(patientRecords, nric);
         patientRecords.remove(index);
     }
 
@@ -53,25 +53,25 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
      * @param patients       The list of patients.
      * @param appointments   The list of appointments.
      * @param patientRecordMap The list of patient records.
-     * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
+     * @return message The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException If the patient does not exist.
      */
     @Override
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecordMap
     ) throws HappyPillsException {
-        if (!patientRecordMap.containsKey(patientNric)) {
+        if (!patientRecordMap.containsKey(nric)) {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
         }
-        boolean isIndexOutOfBound = patientRecordMap.get(patientNric).size() <= index && index > 0;
-        assert !patientNric.isEmpty() : "No NRIC was provided";
-        if (patients.containsKey(patientNric)) {
-            if (patientRecordMap.get(patientNric) == null || patientRecordMap.get(patientNric).isEmpty()) {
+        boolean isIndexOutOfBound = patientRecordMap.get(nric).size() <= index && index > 0;
+        assert !nric.isEmpty() : "No NRIC was provided";
+        if (patients.containsKey(nric)) {
+            if (patientRecordMap.get(nric) == null || patientRecordMap.get(nric).isEmpty()) {
                 throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
             } else if (isIndexOutOfBound) {
                 throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
             }
-            ArrayList<PatientRecord> patientRecords = patientRecordMap.get(patientNric);
+            ArrayList<PatientRecord> patientRecords = patientRecordMap.get(nric);
             PatientRecord patientRecord = patientRecords.get(index);
             deletePatientRecord(patientRecordMap, patientRecords);
             try {
@@ -80,7 +80,7 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
             } catch (IOException e) {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_PR_MSG);
             }
-            String message = PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecord, patientNric);
+            String message = PatientRecordTextUi.deletePatientRecordSuccessMessage(patientRecord, nric);
             return message;
 
         } else {

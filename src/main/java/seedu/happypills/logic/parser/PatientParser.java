@@ -245,7 +245,7 @@ public class PatientParser extends Parser {
      * Prompts user for confirmation by displaying their previously entered inputs.
      *
      * @param parseInput The array that stores the user input.
-     * @return String to be displayed for user's confirmation.
+     * @return text The string to be displayed for user's confirmation.
      */
     public static String promptConfirmation(String[] parseInput) {
         String text = "        Are you sure all the listed details are correct?\n"
