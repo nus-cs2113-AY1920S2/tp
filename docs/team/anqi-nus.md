@@ -100,8 +100,11 @@ when he/she enters `help`.
 
 ### Documentation
 - I have written in the User Guide and Developer Guide for all the features/enhancements I have mentioned above.  
+- I have written in the Developer Guide for add, delete, clear and view functions for Student feature.
 - I have drawn all class diagram and sequence diagram for all the features/enhancements I have mentioned above.  
-- I have drawn sequence diagram for add, delete, clear and view functions for Student List Collection.
+- I have drawn sequence diagram for add, delete, clear and view functions for Student feature.
+- I have drawn class diagram for Student feature.
+
 
 ### Community
 - PRs reviewed (with non-trivial comments)  

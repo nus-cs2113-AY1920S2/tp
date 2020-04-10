@@ -16,14 +16,13 @@ Pac. The following groups are in particular the intended audience of the documen
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
     2.5 [Storage component](#25-storage-component)  
-    2.6 [Command Interpreter component](#26-command-interpreter-component)  
 3. [Implementation](#3-implementation)  
     3.1 [Event](#31-event)  
     3.2 [Attendance](#32-attendance)  
     3.3 [Calendar](#33-calendar)  
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)
-    3.6 [Help](#36-Help)
+    3.6 [Help](#36-help)
 
 [Appendix A: Target User Profile](#appendix-a-target-user-profile)   
 [Appendix B: Value Proposition](#appendix-b-value-proposition)  
@@ -119,38 +118,11 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-### 2.6 Command Interpreter component
-![CommandInterpreter](images/CommandInterpreter.png)   
-*to be added: Sequence diagram of Command Interpreter*  
-Command Interpreter is the main interpreter in Pac. It determines which command 
-category the user input belongs to, and creates respective command interpreter 
-correspond to user input.  
-The user input will be further interpreted by corresponding command interpreter, which
-returns Command for execution.  
-
-#### 2.6.1 Event Command Interpreter
-#### 2.6.2 Attendance Command Interpreter
-#### 2.6.3 Performance Command Interpreter
-Performance Command Interpreter interprets the user input when it belongs to the
-performance category. 
-When user input is passed to Performance Command Interpreter, it extracts the 
-second word in the user input and decides whether that string can be interpreted to a
-valid Command. If valid, the interpreter returns its corresponding Command. 
-If invalid, the interpreter throws PacException to inform the user. 
-Below shows the flow chart and sequence diagram of 
-Performance Command Interpreter.  
-![Flow chart](images/PerformanceCommandInterpreterFlowChart.png)  
-*Flow Chart of Performance Command Interpreter*  
-![Sequence diagram](images/PerformanceCommandInterpreterSequenceDiagram.png) 
-*Sequence diagram of Performance Command Interpreter*  
-
-#### 2.6.4 Seminar Command Interpreter
-#### 2.6.5 Student Command Interpreter
-
 ## 3. Implementation  
 ### 3.1 Event
 ![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
+The Event features allow users to update and keep track of their schedules.
 
 #### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
@@ -185,6 +157,7 @@ either by complete match, or fuzzy match.
 ### 3.2 Attendance
 ![attendance](images/Attendance.png "Class diagram of Attendance component")        
 *Class diagram of the Attendance component*
+The Attendance features allow users to update and keep track of their students' attendance for a Event.
 
 #### Program flow
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
@@ -216,6 +189,20 @@ it can be implement to truncate longer names to fit nicely
 ### 3.4 Performance
 ![Performance](images/Performance.png)
 *Class diagram of the Performance component*  
+The Performance features allow users to update and keep track of their students' result for a Event.    
+#### Performance Command Interpreter
+Performance Command Interpreter interprets the user input when it belongs to the
+performance category. 
+When user input is passed to Performance Command Interpreter, it extracts the 
+second word in the user input and decides whether that string can be interpreted to a
+valid Command. If valid, the interpreter returns its corresponding Command. 
+If invalid, the interpreter throws PacException to inform the user. 
+Below shows the flow chart and sequence diagram of 
+Performance Command Interpreter.  
+![Flow chart](images/PerformanceCommandInterpreterFlowChart.png)  
+*Flow Chart of Performance Command Interpreter*  
+![Sequence diagram](images/PerformanceCommandInterpreterSequenceDiagram.png) 
+*Sequence diagram of Performance Command Interpreter*  
 
 #### Program flow
 1. When a user enters a performance-related command, the command is analysed by 
@@ -231,9 +218,10 @@ Note that:
 by its own. 
 * All Performance commands are step-by-step commands. This aims to provide convenience to the user by 
 prompting instructions and correct command format.  
+* All Performance discussed in Pac are constructed with student's name and result.
 
 #### Features under Performance
-There are 5 features for performance in total, as shown below. 
+There are 5 features for Performance in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
  
 1. Add performanceList
@@ -301,6 +289,9 @@ Else, it will iterate through the performanceList and print Performance
 data in a table format.  
 
 ### 3.5 Student List Collection
+The Student list features allow users to store a list of student names, which could be used
+when updating students' attendance and performance data conveniently.  
+
 ![Student](images/Student.png "Class diagram of Student component")     
 *Class diagram of the Student component*  
 1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
@@ -362,8 +353,6 @@ displayStudentListCollectionEmpty() from UI, to inform the user.
 Else, it calls printStudentListCollection() from UI to print the table. 
 
 1. Edit student list
-
-
 
 
 ### 3.6 Help
@@ -442,6 +431,10 @@ folder in command terminal.
 `event editvenue i/INDEX v/VENUE`  
 
 **Calender**
+The Calender features allow users to view their schedule by semesters. Since our target
+users are professors, this feature allows our target user to manage their schedules in a 
+way which is more related to their daily life.   
+  
 1. Display calendar by entering  
 `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
 
