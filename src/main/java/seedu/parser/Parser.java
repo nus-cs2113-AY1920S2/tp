@@ -334,7 +334,7 @@ public class Parser {
         try {
             String argWithoutPrefixes = argument.split(CARD_ARG)[1];
             int space = argument.indexOf(" ");
-            String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").substring(0,space+1).trim();
+            String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").substring(0, space + 1).trim();
             return Integer.parseInt(cardIndexString);
         } catch (NumberFormatException e) {
             throw new EscException("The card index has to be an integer.");
@@ -373,7 +373,7 @@ public class Parser {
         }
         try {
             return Integer.parseInt(eventIndexString);
-        } catch (NumberFormatException  e) {
+        } catch (NumberFormatException e) {
             throw new EscException("The event index has to be an integer.");
         }
     }
