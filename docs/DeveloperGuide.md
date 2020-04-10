@@ -130,30 +130,96 @@ Follow the following steps to manually test the product:
 
 3. Once the program starts, you should get the following output: 
 
-                   __________________________________________________________________________________________
+               __________________________________________________________________________________________
 
-                    _                                                                                  _
-                    _                             Hello! Here's TechToday.                             _
-                    _            Let me show you some technology news to refresh your mind!            _
-                    _ **_____________________________________________________________________________**_
-                    _                    Your queries can be of the following forms:                   _
-                    _                                      1. help                                     _
-                    _                              2. view [article / job]                             _
-                    _                       3. save [article / job] INDEX_NUMBER                       _
-                    _                         4. create [article / job / note]                         _
-                    _                          5. list [article / job / note]                          _
-                    _                   6. delete [article / job / note] INDEX_NUMBER                  _
-                    _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-                    _                                      8. exit                                     _
-                    _                                                                                  _
-                    _ **_____________________________________________________________________________**_
-                         What can I do for you?
+                _                                                                                  _
+                _                             Hello! Here's TechToday.                             _
+                _            Let me show you some technology news to refresh your mind!            _
+                _ **_____________________________________________________________________________**_
+                _                    Your queries can be of the following forms:                   _
+                _                                      1. help                                     _
+                _                              2. view [article / job]                             _
+                _                       3. save [article / job] INDEX_NUMBER                       _
+                _                         4. create [article / job / note]                         _
+                _                          5. list [article / job / note]                          _
+                _                   6. delete [article / job / note] INDEX_NUMBER                  _
+                _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+                _                                      8. exit                                     _
+                _                                                                                  _
+                _ **_____________________________________________________________________________**_
+                     What can I do for you?
 
-                    No files with your data exits, we will create new files to save your data.
-                    __________________________________________________________________________________________
+                No files with your data exits, we will create new files to save your data.
+                __________________________________________________________________________________________
+        
+
+4. **Note** Ensure that it outputs `No files with your data exits, we will create new files to save your data.`
+
+5. Type `list article` and ensure the initial list is empty. You should get the following output: 
+
+            __________________________________________________________________________________________
 
 
+            _                                   Article List                                   _
 
+
+            _                      There is nothing in the list currently.                     _
+            __________________________________________________________________________________________
+           
+
+6. Type `list note` and ensure the initial list is empty. You should get the following output: 
+            __________________________________________________________________________________________
+
+
+            _                                     Note List                                    _
+
+
+            _                      There is nothing in the list currently.                     _
+            __________________________________________________________________________________________
+
+7. Type `list job` and ensure the initial list is empty. You should get the following output: 
+            __________________________________________________________________________________________
+
+
+            _                                     Job List                                     _
+
+
+            _                      There is nothing in the list currently.                     _
+            __________________________________________________________________________________________
+
+8. Type `exit` to exit the program. You should get the following output: 
+
+            __________________________________________________________________________________________
+
+
+            _                                Saving your data...                               _
+            _                           We are exiting the program...                          _
+            _                            Bye. Come back again later.                           _
+
+
+9. Rerun by typing `java -jar tp.jar` to start the program again. You should get the following output: 
+
+            _ **_____________________________________________________________________________**_
+            _                                                                                  _
+            _                             Hello! Here's TechToday.                             _
+            _            Let me show you some technology news to refresh your mind!            _
+            _ **_____________________________________________________________________________**_
+            _                    Your queries can be of the following forms:                   _
+            _                                      1. help                                     _
+            _                              2. view [article / job]                             _
+            _                       3. save [article / job] INDEX_NUMBER                       _
+            _                         4. create [article / job / note]                         _
+            _                          5. list [article / job / note]                          _
+            _                   6. delete [article / job / note] INDEX_NUMBER                  _
+            _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+            _                                      8. exit                                     _
+            _                                                                                  _
+            _ **_____________________________________________________________________________**_
+                 What can I do for you?
+
+10. **Note** This time a message about creating new files for your data should not appear since they are already present in your folder. 
+
+### 7.2 Load Storage 
 1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the jar file mentioned above.
 
 1. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
