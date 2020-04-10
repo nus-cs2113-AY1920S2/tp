@@ -34,7 +34,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
     index for the specific patient.
         - The variable is specified by `/d` for editing date, `/t` for editing time and `r` for editing reason.
         - Validation is done for the date to be entered in `DD/MM/YYY` format.
-        - Validation is done for the time to be entered as `HH:mm` and the seconds are predefined as ' :00'.
+        - Validation is done for the time to be entered as `HH:mm` format.
     - The `find appt NRIC ` command returns a list of all specified appointments that the patient has, according to the
     appointment list in the patient object.
     - As for the `delete appt NRIC ApptID`, I revised the deletion logic so that it removes from both the map
@@ -52,7 +52,6 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 **Other contributions:**
 - Project management:
-    + Created tags on GitHub Issues
     + Maintaining the issue tracker on GitHub
 - Enhancements to existing features:
     + Refactor TextUi to be parent class of other objectTextUi so that they only return strings that 
@@ -87,4 +86,6 @@ section.
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
+[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#35-storage-component) 
+[Section 4.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-appointment-scheduling-feature)
 [Storage](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-storage)   

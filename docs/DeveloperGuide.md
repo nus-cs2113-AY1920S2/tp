@@ -574,7 +574,8 @@ closed in the terminal. This is achieved by storing all relevant information in 
   overwriting any pre-existing strings in the file.
   
   This is implemented for edit and delete command of the various object. The process is identical regardless of
-  the object.
+  the object. It is also implemented in the exitCommand for all the objects, to ensure a final save of the current state
+  of the program.
   
   ![writing](images/DG/STORAGE/StorageWriteAll.png)
  
