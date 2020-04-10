@@ -16,7 +16,7 @@ public class Ui {
 
     private static final String START_MESSAGE = "Hello from\n" + LOGO;
 
-    private static final String FAREWELL_MESSAGE = "bye!";
+    private static final String FAREWELL_MESSAGE = "Bye bye! I hope to see you again soon ^.^";
 
     private static final String ADDED_TO_SEM_MESSAGE = "Okay! I have added this module to your semester's module list:";
 
@@ -25,7 +25,7 @@ public class Ui {
 
     private static final String VIEWED_MODULE_PLAN_MESSAGE = "Okay! Here is your module plan:";
 
-    private static final String VIEWED_AVAILABLE_MODULE_MESSAGE = "Okay! Here are your available modules in database:";
+    private static final String VIEWED_AVAILABLE_MODULE_MESSAGE = "Okay! Here are your available modules:";
 
     private static final String VIEWED_DONE_MODULE_MESSAGE = "Okay! Here are your completed modules:";
 
@@ -46,6 +46,8 @@ public class Ui {
     private static final String BOX_EDGE = "--------------------------------------------------------------------------"
             + "--------------------------------------------------";
 
+    private static final String INPUT_MARK = "Please input your command:";
+
     private static final String BOX_HEADER = "| S/N |    ID    | Name                                                 "
             + "         | Module Credit | Prerequisites           |";
 
@@ -63,17 +65,26 @@ public class Ui {
             + " to add a module to the list of available modules\n"
             + "5. \"done n/[module name] g/[grade] | done id/[module code] g/[grade]\" "
             + "to mark it as done\n"
-            + "6. \"view /mp\" to view your module plan\n"
-            + "7. \"view /dm\" to view all finished modules\n"
-            + "8. \"view /cc\" to view the number of modular credits u have completed\n"
-            + "9. \"CAP\" to view your current cap\n"
-            + "10. \"bye\" to exit\n";
+            + "6. \"delete id/[module code] s/[semester] "
+            + "| delete n/[module name] s/[semester] "
+            + " to delete a module from your personal module manager\n"
+            + "7. \"delete id/[module code] "
+            + "| delete n/[module name] "
+            + " to delete a module from your list of available modules\n"
+            + "8. \"view /mp\" to view your module plan\n"
+            + "9. \"view /dm\" to view all finished modules\n"
+            + "10. \"view /cc\" to view the number of modular credits u have completed\n"
+            + "11. \"CAP\" to view your current cap\n"
+            + "12. \"bye\" to exit\n";
+
 
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
     private static final String SHOW_CAP = "Your current CAP is:";
     private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
             + " Type \"help\" for help";
+    private static final String CLEAR = "Your module plan has been cleared :)";
+    private static final String EMPTY_MODULE_PLAN = "Your module plan is empty.";
 
     private static void showToUser(String... messages) {
         for (String m: messages) {
@@ -149,4 +160,15 @@ public class Ui {
         showToUser(SHOW_INPUT_ERROR);
     }
 
+    public static void showClearMessage() {
+        showToUser(CLEAR);
+    }
+
+    public static void showEmptyModulePlan() {
+        showToUser(EMPTY_MODULE_PLAN);
+    }
+
+    public static void showReadyToInput() {
+        showToUser(INPUT_MARK);
+    }
 }

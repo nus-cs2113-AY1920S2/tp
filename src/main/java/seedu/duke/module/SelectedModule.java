@@ -23,7 +23,7 @@ public class SelectedModule extends Module {
     }
 
     /**
-     * This is Module's constructor.
+     * This is Module's constructor, for when String type is "Both".
      *
      * @param type             the type of module identifier.
      * @param moduleId         the module's id
@@ -115,6 +115,14 @@ public class SelectedModule extends Module {
     }
 
 
+    /**
+     * This is Module's constructor.
+     *
+     * @param id               the module's id.
+     * @param name             the module's name.
+     * @param semester         the module's semester.
+     * @param moduleCredit     the amount of MC the module awards.
+     */
     public SelectedModule(String id, String name, String semester, int moduleCredit, boolean isDone) {
         super();
         this.semester = semester;
@@ -142,6 +150,10 @@ public class SelectedModule extends Module {
     }
 
 
+    /**
+     * Updates selected module's info if it is in available modules list.
+     * @param availableModule available modules list.
+     */
     public void setModuleConfig(Module availableModule) {
         this.name = availableModule.name;
         this.id = availableModule.id;
@@ -194,6 +206,10 @@ public class SelectedModule extends Module {
         }
     }
 
+    /**
+     * Convert module to string for storage.
+     * @return module's string for storage.
+     */
     @Override
     public String toStorageString() {
         StringBuilder storageString = new StringBuilder();

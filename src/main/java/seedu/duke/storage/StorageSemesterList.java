@@ -70,6 +70,12 @@ public class StorageSemesterList {
         }
     }
 
+    /**
+     * Processes Module information string and loads semester list.
+     * @param moduleInfo Module information.
+     * @param semesterList User's semester list.
+     * @throws StorageException Storage exception.
+     */
     public static void processModuleInfoString(String moduleInfo,
                                                SemesterList semesterList) throws StorageException {
 
@@ -85,6 +91,10 @@ public class StorageSemesterList {
         addToSemesterList(semesterList, selectedModule);
     }
 
+    /**
+     * Checks whether the selected module in available modules list.
+     * @param selectedModule the selected module.
+     */
     private static void checkAvailableModulesList(SelectedModule selectedModule) {
         for (Module availableModule: AvailableModulesList.availableModulesList) {
             boolean isSameName = availableModule.getName().equals(selectedModule.getName());
@@ -95,8 +105,12 @@ public class StorageSemesterList {
         }
     }
 
+    /**
+     * Adds selected modules in CSV file to semester list.
+     * @param semesterList User's semester list.
+     * @param selectedModule selected modules in CSV file.
+     */
     private static void addToSemesterList(SemesterList semesterList, SelectedModule selectedModule) {
-
         for (SemModulesList sem: semesterList) {
             if (sem.getSem().equals(selectedModule.getSem())) {
                 sem.add(selectedModule);

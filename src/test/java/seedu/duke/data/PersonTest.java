@@ -3,6 +3,8 @@ package seedu.duke.data;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PersonTest {
 
@@ -19,4 +21,33 @@ public class PersonTest {
         String matricYear = "2018";
         assertEquals(matricYear, Person.getMatricYear());
     }
+
+    @Test
+    void createNewUser() {
+        assertFalse(Person.isPersonExist());
+        Person.createNewUser();
+        assertEquals("User", Person.getName());
+        assertEquals("2020", Person.getMatricYear());
+        assertTrue(Person.isPersonExist());
+    }
+
+    @Test
+    void getTotalCap() {
+        Person.setTotalCap(5.0);
+        assertEquals(5.0, Person.getTotalCap());
+    }
+
+    @Test
+    void toStorageString() {
+        Person person = new Person("Duke", "2018");
+        assertEquals("Duke,2018",Person.toStorageString());
+    }
+
+    @Test
+    void addTotalModuleCreditCompleted() {
+        assertEquals(0, Person.getTotalModuleCreditCompleted());
+        Person.addTotalModuleCreditCompleted(4);
+        assertEquals(4, Person.getTotalModuleCreditCompleted());
+    }
+
 }

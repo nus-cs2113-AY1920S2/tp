@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+import seedu.duke.exception.InputException;
 import seedu.duke.module.Module;
 import seedu.duke.module.SelectedModule;
 
@@ -10,6 +11,9 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     private String semester;
     private String yearSemester;
 
+    /**
+     * Constructor of SemModulesList.
+     */
     public SemModulesList(String semester) {
         this.semester = semester;
         setYearSemester();
@@ -20,7 +24,7 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     }
 
     /**
-     * Converts semester (e.g. semester 5) to specific year semester string (Y3S1)
+     * Converts semester (e.g. semester 5) to specific year semester string (Y3S1).
      */
     public void setYearSemester() {
         StringBuilder yearSemesterBuilder = new StringBuilder();
@@ -34,6 +38,10 @@ public class SemModulesList extends ArrayList<SelectedModule> {
         yearSemester = yearSemesterBuilder.toString();
     }
 
+    /**
+     * Returns true if the module exists in the SemModulesList.
+     * @param moduleIdentifier : String module name or module code.
+     */
     public boolean isInList(String moduleIdentifier) {
         for (SelectedModule module: this) {
             boolean hasSameName = module.getName().equalsIgnoreCase(moduleIdentifier) && module.isNameValid();
@@ -45,20 +53,19 @@ public class SemModulesList extends ArrayList<SelectedModule> {
         return false;
     }
 
-
     /**
      * To retrieve a module from the modules in that semester from the Id or the Name of the module.
-     * Assumes that the user knows that the module already exists in the list of modules.
      * @param moduleIdentifier Id or Name of module.
      * @return Module that corresponds to the modules identifier inputted.
      */
-    public Module getModule(String moduleIdentifier) {
+    public Module getModule(String moduleIdentifier) throws InputException {
         for (Module module : this) {
-            if (module.getId().equals(moduleIdentifier) || module.getName().equals(moduleIdentifier)) {
+            if (module.getId().equalsIgnoreCase(moduleIdentifier)
+                    || module.getName().equalsIgnoreCase(moduleIdentifier)) {
                 return module;
             }
         }
-        return null;
+        throw new InputException("The module you entered seems incorrect");
     }
 
     public void deleteModule(String moduleIdentifier) {

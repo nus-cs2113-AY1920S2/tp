@@ -59,13 +59,14 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         Ui.greetUser();
         if (!Person.isPersonExist()) {
-            Person.createNewUser(in);
+            Person.createNewUser();
         }
         Ui.showHelpMessage();
         String fullCommand = "";
         boolean isExit = false;
         do {
             try {
+                Ui.showReadyToInput();
                 fullCommand = in.nextLine();
                 Command command = Controller.control(fullCommand);
                 command.execute(semesterList, availableModulesList);

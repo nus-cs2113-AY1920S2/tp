@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
 import seedu.duke.data.SemesterList;
+import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
 
@@ -11,7 +12,7 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList)
-            throws StorageException, RuntimeException {
+            throws StorageException, RuntimeException, InputException {
         super.execute(semesterList, availableModulesList);
     }
 
