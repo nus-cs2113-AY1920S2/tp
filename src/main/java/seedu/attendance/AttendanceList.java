@@ -74,8 +74,12 @@ public class AttendanceList {
     /**
      * To display the attendanceList in table form.
      */
-    public void displayAttendanceList() {
-        displayList(attendanceList);
+    public void displayList() {
+        if (attendanceList.isEmpty()) {
+            UI.display("Attendance List is empty");
+        } else {
+            displayList(attendanceList);
+        }
     }
 
     /**

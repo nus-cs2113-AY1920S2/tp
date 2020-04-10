@@ -20,14 +20,9 @@ public class ViewAttendanceList extends Command {
 
     /**
      * Method To view the existing attendanceList.
-     * If the attendanceList is empty, it will display a message to inform that the attendanceList is empty.
      */
     private void view() {
-        if (!attendanceList.isEmpty()) {
-            attendanceList.displayAttendanceList();
-        } else {
-            UI.display("Attendance List is empty");
-        }
+        attendanceList.displayList();
     }
 
     @Override
