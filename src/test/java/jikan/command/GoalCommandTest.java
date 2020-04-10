@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GoalCommandTest {
     Storage storage = new Storage("data/activityList_test.txt");

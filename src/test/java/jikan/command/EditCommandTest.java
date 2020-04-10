@@ -16,7 +16,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EditCommandTest {
 
