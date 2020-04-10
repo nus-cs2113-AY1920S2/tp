@@ -13,7 +13,6 @@ import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -36,7 +35,6 @@ import static java.lang.Integer.valueOf;
 public class GoalCommand extends Command {
     private static Scanner scanner;
     private static final String TAG_FILE_PATH = "data/tag/tag.csv";
-    //private static File tagStorage;
     public static Storage tagStorage; // Storage the list was loaded from
     public static StorageHandler tagStorageHandler;
 
@@ -64,7 +62,7 @@ public class GoalCommand extends Command {
                 if (tagName.isEmpty()) {
                     throw new EmptyTagException();
                 }
-                index = checkIfExists(tagName);
+                index = checkIfExists(tagName, TAG_FILE_PATH);
                 String tmpTime = parameters.substring(delimiter + 3);
                 if (tmpTime.isEmpty()) {
                     throw new EmptyGoalException();
@@ -91,7 +89,7 @@ public class GoalCommand extends Command {
                 }
             } else if (deleteDelim != -1) {
                 tagName = parameters.substring(0, deleteDelim - 1).strip();
-                index = checkIfExists(tagName);
+                index = checkIfExists(tagName, TAG_FILE_PATH);
                 if (index != -1) {
                     Ui.printDivider("The goal for this tag has been deleted.");
                     deleteLine(index);
@@ -124,34 +122,13 @@ public class GoalCommand extends Command {
     }
 
     /**
-     * Creates a new tag file.
-     * @param filePath the filepath of the tag file.
-     * @param tagFile the File object.
-     */
-    public static void createFile(String filePath, File tagFile) {
-        tagFile = new File(filePath);
-        try {
-            if (!tagFile.exists()) {
-                tagFile.getParentFile().mkdirs(); // Create data directory (does nothing if directory already exists)
-                tagFile.createNewFile();
-            }
-        } catch (IOException e) {
-            Ui.printDivider("Error saving tag goal to data file.\n"
-                    + "Your changes have not been saved in the data file.\n"
-                    + "If the data file is open, please close it, restart the app and try again.");
-        }
-    }
-
-
-
-    /**
      * Check that tag exists in the tag list.
      * @param tagName the tag name.
      * @return index the index of the tag in the tag list.
      * @throws IOException when there is an error loading/creating the file.
      */
-    public static int checkIfExists(String tagName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(TAG_FILE_PATH));
+    public static int checkIfExists(String tagName, String filePath) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         int index = 0;
         int status = 0;
         try {
