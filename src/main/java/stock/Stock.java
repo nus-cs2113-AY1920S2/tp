@@ -184,6 +184,12 @@ public class Stock {
         System.out.println("");
     }
     
+    /** Clears the stock completely. */
+    public void clearStock() {
+        stock.clear();
+        System.out.println("The stock has been cleared.");
+    }
+    
     /**
      * A utility function to check against stock if any of the ingredient within the stock
      * matches the keyword supplied by the user.
