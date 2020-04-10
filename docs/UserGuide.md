@@ -218,13 +218,8 @@ week and the next week, from the current date onwards. For example, if the date 
     * You can edit the timetable on 6 May next week with `<Start Day>` and `<End Day>` as `6`.
     * You will not be able to edit the timetable with `<Start Day>` and `<End Day>` as `26`. Even though 26 April is within
     this week, the date has passed. The future date 26 May is also not within the current week and the next week.
-* `<Start Time>` and `<End Time>` should be in the 24-hour hh:mm format. For example, the time 3pm should be represented
+* `<Start Time>` and `<End Time>` should be in the 24-hour HH:MM format. For example, the time 3pm should be represented
 as `15:00`.
-* `<Meeting Name>` should be a single word with no whitespace character.
-* Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
-Timetables of other contacts will not be modified.
-* You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
-your timetable if you try to schedule a meeting during a time slot which you are busy for.
 * You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
 [`contacts`](#list-all-contacts-contacts).
 
