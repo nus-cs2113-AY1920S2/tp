@@ -304,6 +304,12 @@ public class StartCommand extends Command {
         }
     }
 
+    /**
+     * Method to check if allocated time given is valid before adding the activity.
+     * @param activityName the string representing activity name.
+     * @param durationInfo the string representing the duration information.
+     * @param startTime a LOCALTIME object representing the time 00:00:00.
+     */
     private void checkTime(String activityName, String durationInfo, LocalTime startTime) {
         LocalTime endTime;
         endTime = LocalTime.parse(durationInfo);

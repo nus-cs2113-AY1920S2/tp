@@ -3,28 +3,30 @@
 - [1. Setting Up](#1-setting-up)
 - [2. Design](#2-design)
 - [3. Implementation](#3-implementation)
-  - [3.1 Automated Storage Cleanup feature](#31-automated-storage-cleanup-feature)
-    - [3.1.1 Current Implementation](#311-current-implementation)
-      - [initialiseCleaner](#initialisecleaner)
-      - [setStatus](#setstatus)
-      - [autoClean](#autoclean)
-    - [3.1.2 Additional Implementation (proposed)](#312-additional-implementation-proposed)
-  - [3.2 Storage feature](#32-storage-feature)
-  - [3.3 Storage handler](#33-storage-handler)
-  - [3.4 Edit feature](#34-edit-feature)
-    - [3.4.1 Current Implementation](#341-current-implementation)
-    - [3.4.2 Additional Implementations](#342-additional-implementations)
-    - [3.4.3 Design Considerations](#343-design-considerations)
-  - [3.5 Continue Feature](#35-continue-feature)
-    - [3.5.1 Current Implementation](#351-current-implementation)
-    - [3.5.2 Design Considerations](#352-design-considerations)
-    - [3.5.3 Additional Features](#353-additional-features)
-  - [3.5 List feature](#35-list-feature)
-    - [3.5.1 Current implementation](#351-current-implementation-1)
-  - [3.6 Find Feature](#36-find-feature)
-    - [3.6.1 Current Implementation](#361-current-implementation)
-  - [3.7 Filter Feature](#37-filter-feature)
-    - [3.7.1 Current Implementation](#371-current-implementation)
+  - [3.1 Start Feature]()
+    - [3.1.1 Current Implementation]()
+    - [3.1.2 Additional Implementation]()
+    - [3.1.3 Design Considerations]()
+  - [3.2 Clean Feature](#31-automated-storage-cleanup-feature)
+    - [3.2.1 Current Implementation](#311-current-implementation)
+    - [3.2.2 Additional Implementation]()
+    - [3.2.3 Design Considerations]()
+  - [3.3 Storage feature](#32-storage-feature)
+  - [3.4 Storage handler](#33-storage-handler)
+  - [3.5 Edit feature](#34-edit-feature)
+    - [3.5.1 Current Implementation](#341-current-implementation)
+    - [3.5.2 Additional Implementations](#342-additional-implementations)
+    - [3.5.3 Design Considerations](#343-design-considerations)
+  - [3.6 Continue Feature](#35-continue-feature)
+    - [3.6.1 Current Implementation](#351-current-implementation)
+    - [3.6.2 Design Considerations](#352-design-considerations)
+    - [3.6.3 Additional Features](#353-additional-features)
+  - [3.7 List feature](#35-list-feature)
+    - [3.7.1 Current implementation](#351-current-implementation-1)
+  - [3.8 Find Feature](#36-find-feature)
+    - [3.8.1 Current Implementation](#361-current-implementation)
+  - [3.9 Filter Feature](#37-filter-feature)
+    - [3.9.1 Current Implementation](#371-current-implementation)
 - [4. Appendix](#4-appendix)
   - [Product Scope](#product-scope)
     - [Target user profile](#target-user-profile)
@@ -88,67 +90,217 @@ _Fig 2.2. Commands of Jikan (private methods omitted)_
 
 All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
-
 ## 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Automated Storage Cleanup feature
+### 3.1 Start Feature
 
 #### 3.1.1 Current Implementation
 
-The storage cleanup mechanism is stored internally as a StorageCleaner class. The StorageCleaner class has an association with the Storage class and thus it is able to access and edit the datafile which contains the list of activities. 
+![StartCD](./pictures/startCD2.png)
 
-Additionally, when the StorageCleaner class is first initialised, it will create two files, namely a status file and a data file in the “recycled” folder under the “data” folder. The status file keeps track of the activation status of the storage cleaner while the data file serves as a recycle bin for deleted data. 
+With Jikan as the main entry point for our application, 
 
-Moreover, the class also implements the following operations:
+1. Jikan will receive user input and pass it to the Parser class to get the corresponding command.
+2. The Parser class will initialise and return a Command class object based on the command in user input.
+3. In this case, Parser will return a StartCommand class object to Jikan.
+4. Then, Jikan will call the StartCommand#executeCommand method to start an activity.
 
-`StorageCleaner#initialiseCleaner - Loads up the status file to decide whether to activate/deactivate the automated cleaner.`
+Additionally, StartCommand also implements the following operations:
 
-`StorageCleaner#setStatus - Gives the user the freedom to activate/de-activate the cleaner using commands during application runtime.`
+* **StartCommand#checkActivity** Checks if the activity already exists in the activity list.
+* **StartCommand#checkTime** Checks if the allocated time provided is valid.
+* **StartCommand#continueActivity** Continue on an existing activity.
 
-`StorageCleaner#autoClean - This operation is called whenever the application is executed. Storage cleaning will only be done if the cleaner is activated.`
+**checkActivity**
 
-Given below is the example scenario of how the operations work.
+![checkActivity](./pictures/checkactivityv2.png)
 
-##### initialiseCleaner
+The diagram above shows how the StartCommand#checkActivity function works. This function is used to check 
+if the activity to be started exists in the activity list. If the activity exists in the list, that activity will be 
+continued and this way the user cannot start duplicate activities.
 
-Step 1. Loads up the status file for reading. If the status file is not found, create a new status file and write the character ‘0’ to the first line of the status file.
+1. When checkActivity() is called, it will make a call to the ActivityList#findActivity method.
+2. Once the findActivity() method finishes execution, it will return an integer index back to checkActivity().
+3. If the index is not equals to -1, the activity to be started exists in the activity list and continueActivity() will be called.
+4. Else, the activity to be started is a brand new activity and addActivityToList() will be called.
 
-Step 2. Read the first line of the status file, if a character ‘0’ is found, deactivate the automated cleanup. Else if a character ‘1’ is found, activate the automated cleanup.
+**checkTime**
 
-![image_info](./pictures/FlowchartinitCleaner.png)
+![checkTime](./pictures/checkTimev2.png)
 
-##### setStatus
+The diagram above shows how the StartCommand#checkTime function works. This function is used to check the validity of 
+the allocated time provided by the user input. If the allocated time is valid, the activity will be added to activity
+list.
 
-Step 1. Read the boolean parameter `status`.
+1. When checkTime() is called, it will initialise two LocalTime objects called endTime and startTime respectively.
+2. startTime will be initialised to time 00:00:00 while endTime will be calculated based on the user input to the start
+command (i.e `start activity name /a HH:MM:SS /t tags`)
+3. Then, the method Duration.between() will be used to get a Duration object that holds the time difference between startTime
+and endTime.
+4. If this Duration object is non zero (i.e user gave a valid non zero allocated time), then the activity will be added to the activity list
+using the addActivity() method.
 
-Step 2a. If `status` is equal to true, activate the automated cleanup and write the character ‘1’ to the first line of the status file. (overwrite any existing value at the first line).
+**continueActivity**
 
-Step 2b. If `status` is equal to false, deactivate the automated cleanup and write the character ‘0’ to the first line of the status file.
+![continueActivity](./pictures/continueActivity.png)
 
-![image_info](./pictures/FlowchartsetStatus.png)
+The diagram above shows how the StartCommand#continueActivity function works. This function is used when the current activity
+to be started already exists in the activity list. Thus, this function will check with the user whether to continue on that activity 
+and prevent duplicate activities from being started.
 
-##### autoClean
+1. When continueActivity() is called, it will make a call to the Scanner object to read in the next line of user input.
+2. If the user input is "yes", information about the activity (activity name, tags etc.) will be forwarded to parser and the parser
+will update the activity list (i.e when continue is used, activity duration is added on and needs to be updated).
+3. Else, if the user input is "no", continueActivity() will notify the parser to read in the next line of user input.
 
-Step 1. Check activation status of StorageCleaner through the class level attribute boolean `toClean`.
+#### 3.1.2 Additional Implementation
 
-Step 2a. If the attribute `toClean` is equal to `false`, return the operation and give control back to the caller.
+1. `start` command have the ability to continue an activity if the activity to be started exists in activity list as discussed above. However, the second 
+start command's tags and allocated time parameters will not be captured if the activity originally did have tags or allocated time.
+    * `start activity 1`
+    * `start activity 1 /a HH:MM:SS /t tags` (this command will continue activity 1 but won't add the tags and allocated time to it)
 
-Step 2b. If the attribute `toClean` is equal to `true`, access the storage data file and remove some of the activities starting from the oldest. Put these deleted activities into the data file under the ‘recycled’ folder.
+    Thus, it would be best for `start` command to address this issue and allow the second `start` command to not only continue the
+activity but also edit the fields of the activity.
 
-![image_info](./pictures/SDautoClean.png)
+2. Allows two activities to start at the same time. As a user, sometimes the activity we are doing may be linked to another activity (i.e activities like 
+revising CS2106 and doing CS2106 Labs are similar as doing the labs can serve like a revision too).
 
-#### 3.1.2 Additional Implementation (proposed)
+    Thus, it would be good if more than one activity can be started at a particular time.
 
-`StorageCleaner#setDeleteQuota - Allows the user to manipulate how much activity is deleted when auto cleanup is activated. Currently only delete the oldest 3 activities.`
+#### 3.1.3 Design Considerations
 
-`StorageCleaner#setTimeFrame - Set a particular time frame for auto cleanup to activate. (i.e auto cleanup after every 2 weeks etc).`
+The current design is centred around the Parser Class as all the relevant activity information (activity startTime, endTime, name, tags,
+allocated time) are stored inside Parser.
 
-`StorageCleaner#initialiseLogCleaner - Gives the storage cleaner an added functionality of being able to clear log files too.`
+Since Parser is a public class. There are some benefits to this design.
+* All the command classes have access to activity information.
+* Makes the classes more lightweight as there is no need for local variables to store activity informations.
+* Reduces coupling between the commands as they interact through Parser.
 
+However, there are some drawbacks to this design too.
+* Since all the activity information are public, every class in Jikan can access/modify activity information which is
+undesirable.
+* This creates a lot of dependencies between Commands and Parser which makes unit testing harder to implement.
+* As more commands is created to accommodate new features , Parser will be overloaded with new variables and classes.
 
-### 3.2 Storage feature
+### 3.2 Clean Feature
+
+#### 3.2.1 Current Implementation
+
+Jikan provides a `clean` command where users can automate the cleaning of done activities (i.e activities with duration > allocation) and logging data
+at application startup.
+
+![StartCD](./pictures/CleanCD.png)
+
+With Jikan as the main entry for our application,
+
+1. Upon startup, Jikan will initialise a LogCleaner and StorageCleaner object.
+2. Jikan will call upon LogCleaner#autoClean() and StorageCleaner#autoClean() functions.
+3. These two functions will check if the Storage and Log Cleaner are enabled respectively before cleaning.
+4. Thus, by the time the user can interact with Jikan (i.e send commands to Jikan), the activity list and log files would already be cleaned.
+5. Using the `clean` command, users would be able to manage the cleaner's behaviour (switching it on/off, set number of done activities/logging data to clean).
+
+The cleanup mechanism is stored internally as a StorageCleaner and LogCleaner class. 
+
+These two classes have access to the data files of activity list and logs respectively and thus they are able to 
+directly manipulate the activity list and logging data.
+
+A status.txt file is initialised to keep track of the status (on/off) of the two cleaners and contains information on 
+the number of done activities/logging data for cleaning.
+
+Moreover, the CleanCommand also implements the following operation:
+
+* **CleanCommand#setStatus** Switch on/off the two cleaners respectively.
+* **CleanCommand#setValue** Set a value for the number of done activities/logging data to be cleaned.
+* Note: The two cleaners are independent, setting a value/status for one of the cleaner will not affect the other cleaner.
+
+**setStatus**
+
+![setStatus](./pictures/setStatusSD.png)
+
+The diagram above shows how CleanCommand#setStatus function works. This function is a generalized function that is used to
+switch on or off the cleaners by checking the parameters to the `clean` command. Thus, based on the return value of getStatus() and
+getCleaner(), there are four possible scenarios.
+
+1. When setStatus() is called, the method will call its own class method getStatus() to check what is the status to set to.
+2. There are two valid return values for getStatus() method which is "on" and "off". The diagram shows the former.
+3. Upon receiving a valid return value from getStatus() which is "on" in the diagram, the setStatus() method will self invoke another
+of its own class method getCleaner().
+4. The return result of the getCleaner() together with getStatus() will then be used to determine which cleaner are we setting and what is
+the status to set to. 
+5. In other words, result of getCleaner() is used to determine whether are we calling StorageCleaner#setStatus or LogCleaner#setStatus while
+the result of getStatus() determines the parameter to setStatus(). (e.g "on" will call setStatus("true") while "off" will call setStatus("false")).
+
+**setValue**
+
+The diagram of setValue is omitted as it is similar to setStatus diagram. This function is a generalized function that is used to 
+set a value for the number of done activities or the number of lines of logging data to be cleaned for the two cleaners respectively.
+
+1. When setValue() is called, the method will call its own class method getNumber() that will return an integer value corresponding to the number 
+to set to.
+2. Upon receiving a valid return value (non negative), the setValue() method will self invoke another of its own class method getCleaner().
+3. The return result of the getCleaner() together with getNumber() will then be used to determine which cleaner are we setting and what is 
+the value to set to.
+4. In other words, result of getCleaner() is used to determine whether are we calling StorageCleaner#setNumberOfActivitiesToClean or LogCleaner#setNumberOfLogsToClean
+while the result of getNumber determines the parameter to these two functions.
+
+Note that steps 2-4 of setValue() are similar to steps 3-5 of setStatus().
+
+On the other hand, the Storage/Log Cleaner class implements the following core operation of `clean` command.
+
+* **Cleaner#autoClean** This operation is called whenever Jikan is executed. Cleaning will only be done to the activity list/logging data if
+the two cleaners are enabled respectively.
+
+**autoClean**
+
+![autoClean](./pictures/ACSD.png)
+
+The diagram above shows how Cleaner#autoClean function works. This function is called whenever Jikan executes Jikan#main and is used to
+perform cleaning of the activity list and logging data if Storage Cleaner and Log Cleaner are enabled respectively. The number of done activities and
+lines of logging data to clean is set to 5 at default if user did not specify a value for both cleaners.
+
+1. When main() is called, Jikan will first initialise both the StorageCleaner and LogCleaner object using StorageCleaner() and 
+LogCleaner().
+2. Once both objects are initialised, Jikan will first call storageAutoClean() method of the StorageCleaner class.
+3. This method will invoke another method under the StorageCleaner class called checkStatus() which will return a boolean toClean variable.
+4. If toClean == true, the storageAutoClean() method will proceed and clean up the activity list before returning control back to main().
+5. Else, the storageAutoClean() will not do any clean up and will immediately return control back to main().
+6. Steps 2 to 5 will then be repeated when Jikan call logAutoClean() method of the LogCleaner class. 
+
+#### 3.2.2 Additional Implementation
+
+1. Currently, the data that is cleaned up by this command is sent to a recycled folder similar to how Windows recycle bin works. 
+
+    Thus, it would be good to have a feature to restore the data deleted in the event the user wishes to recover some of the activities/logs.
+    
+    On a similar note, it would also be good to have a permanent delete feature built into the recycled folder so that items that are too old (> 6 months old) will
+    deleted away for good.
+    
+2. The automated cleaning does not have a lot of flexibility as the current implementation only cleans up done activities starting from the oldest.
+
+    Thus, it would be good if the `clean` command is expanded to allow users more freedom in specifying what activities to clean.
+    
+    * `clean /n 3 /t CS2113` does cleaning on the 3 oldest done activities with CS2113 tag.
+    * `clean /n 5 /i 1/4/2020 3/4/2020` does cleaning on the 5 oldest done activities with dates between 1 April 2020 and 3 April 2020.
+    
+
+#### 3.2.3 Design Considerations
+
+The current design uses the abstract cleaner class to create dedicated cleaners (i.e Storage and Log Cleaners) to perform
+cleaning for various data files (e.g activity list data file, logging data file).
+
+There are some benefits to this design.
+* Creating an abstract class reduces the amount of repetitive code as common methods between cleaners are abstracted out.
+* Abstract classes produce a more OOP solution as different cleaners will handle different parts of the data.
+
+However there are drawbacks to this design too.
+* There are some very similar methods with key differences that cannot be abstracted out (for e.g different parameters, different printing).
+* This causes the CleanCommand class to have similar and repetitive methods to handle this difference. (for e.g setStorageCleanerOn(), setLogCleanerOn() etc).
+
+### 3.3 Storage feature
 The Storage class represents the back-end of Jikan, handling the creation, saving and loading of data. 
 Jikan uses a `.csv` file to store its data, formatted in the following way:
 
@@ -165,15 +317,17 @@ Storage provides the following functions:
 Loading a pre-existing data file via `loadFile`. If a data file already exists for the provided data file path, the function will return `true`; if the specified data file did not previously exist, this function will call the `createDataFile` method and returns `false`. The return value is useful so that the application knows whether or not this is the first session with a specific data file or if data already exists.
 - Creating an ActivityList via `createActivityList`. This function calls `loadFile()` to check whether the file already existed or not; if the data file previously existed, it will construct an ActivityList object by passing the data from the data file to it, and return this populated ActivityList object; if the data file did not previously exist, it will return an empty activityList object.
 
-### 3.3 Storage handler
+### 3.4 Storage handler
 The StorageHandler class functions as a support to the main Storage class, allowing the Jikan application to manipulate the stored data file. Its main provided functions are:
 - Removing an entry from the data file via `removeLine`. This function takes in the number of the line to remove.
 - Replacing an entry in the data file via `replaceLine`. This function takes in the number of the line to replace, along with the String object that needs to be written to the data file in place of the replaced line.
 
-### 3.4 Edit feature
+### 3.5 Edit feature
 The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
 
-#### 3.4.1 Current Implementation
+
+#### 3.5.1 Current Implementation
+The following sequence diagram shows how the edit feature works.
 The current implementation of the edit feature allows the user to edit the activity name as well as its allocated time.
 The following sequence diagram shows how the edit feature works for editing the activity name. The diagram for the editing of allocated time is omitted as the sequence is relatively similar.
 ![image_info](./pictures/EditSequenceDiagram.png)
@@ -185,20 +339,21 @@ The order of method calls to edit the activity details is as follows if the spec
 3. The `setName()` method of the Activity class is called to edit the activity name to the user-specified name
 4. The activity with the updated name is returned to the activityList  
 
-#### 3.4.2 Additional Implementations
-The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
+
+#### 3.5.2 Additional Implementations
+The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
 This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
 
-#### 3.4.3 Design Considerations
-By letting the user edit the name and allocated time of the activity, it will allow them to correct any mistakes made during the data entry as well as allowing them to update their allocated time for the activity. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
+#### 3.5.3 Design Considerations
+By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
 
 However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
 
-### 3.5 Continue Feature
+### 3.6 Continue Feature
 The continue feature allows the user to continue a previously ended activity.
 
-#### 3.5.1 Current Implementation
+#### 3.6.1 Current Implementation
 ![Continue command sequence diagram](./pictures/continue.png)
 
 **Continuing an activity:**
@@ -216,7 +371,7 @@ The continue feature allows the user to continue a previously ended activity.
 * The elapsed time is added with the previous duration of the activity to get the `newDuration` using the `plus()` method of Duration class.
 * `updateDuration()` method is called to update the `duration` attribute of the continued activity in the `activityList` as well as the `data.csv` file.
 
-#### 3.5.2 Design Considerations
+#### 3.6.2 Design Considerations
 
 **Execution:**
  * Continue by activity name (current implementation)
@@ -229,11 +384,11 @@ The continue feature allows the user to continue a previously ended activity.
  
 Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task they wanted to continue. Also, the index would constantly be changing when changes are made to the list.
 
-#### 3.5.3 Additional Features
+#### 3.6.3 Additional Features
 As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, they will be given the option to continue the stated activity.
 ![decision flowchart](./pictures/continue_flowchart.PNG)
 
-### 3.6 List feature
+### 3.7 List feature
 This feature is used to list activities within a range specified by the user.
 If no parameter is passed to the `list` command, then all the stored activities will be displayed.
 By passing a single date, the command returns all activities within that date.
@@ -244,7 +399,7 @@ will return all the activities for that day, week or month respectively.
 Additionally, the user can specify a specific week of month by including a date
 (e.g. `list month 2020-03-01` returns all the activities in March 2020.)
 
-#### 3.6.1 Current implementation
+#### 3.7.1 Current implementation
 * List all activities: `list`
     * List today's activities: `list day` or `list daily`
     * List this week's activities: `list week` or `list weekly`
@@ -257,7 +412,7 @@ Additionally, the user can specify a specific week of month by including a date
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 
-### 3.7 Find & Filter Features
+### 3.8 Find & Filter Features
 
 #### Find Feature
 This command accepts keyword(s) and searches either the entire activity list or the last shown list for activities with 
@@ -268,7 +423,7 @@ This feature accepts space-separated keyword(s) to search either the entire list
 for activities with tags matching each keyword. The keywords should be an exact-match with the tag names.
 
 
-#### 3.7.1 Design Considerations
+#### 3.8.1 Design Considerations
 As the `find` and `filter` commands are important for the user to analyse and eventually graph time-spent on each 
 activity. The user should be allowed to query for all useful combinations of activities in the activity list. 
 This entails:
@@ -280,7 +435,7 @@ This entails:
 
   
 
-#### 3.7.2a Current Implementation for Find
+#### 3.8.2a Current Implementation for Find
 * This feature is called by the user when the `find` command is entered into the command line. 
 The string following the command are the parameters:
     * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
@@ -294,11 +449,13 @@ The string following the command are the parameters:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-#### 3.7.2b Current Implementation for Filter
-* This feature is called by the user when the `filter` command is entered into the command line. The string following 
-command contains the parameters:
-    * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
-    * The remaining parameters are a string of keywords are space-separated. 
+![find seq diagram](https://imgur.com/Icg5rdB.png)
+
+### 3.9 Filter Feature
+This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
+
+#### 3.9.1 Current Implementation
+* This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
 * The Parser's `lastShownList` will be cleared.
@@ -320,17 +477,17 @@ in a single user input. Possibly "pipe-lining" the output of one query into the 
 **For example:** 
 * `list week | find -s KEYWORD | filter -s TAGNAME` 
 
-### 3.8 Graph Feature
+### 3.10 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
-#### 3.8.1 Current Implementation
+#### 3.10.1 Current Implementation
 ![graph seq diagram](./pictures/graph.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
 * The Parser will create a GraphCommand object.
 * The GraphCommand will invoke its own `executeCommand()` method.  
 
-**Graph targets**  
+**Graph allocations**  
 This displays the progress bar for the duration with respect to allocated time of activities in the `lastShownList`. 
 * If the user indicated `targets`, Ui calss will be called to execute graphTargets.
 
@@ -348,7 +505,8 @@ This displays a bar graph of the durations of each activity in the `lastShownLis
 * If the user indicated `activities`, `GraphCommand` will call it's own `graphDuration` method.
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
 
-#### 3.8.2 Additional features
+
+#### 3.10.2 Additional features
 As graph gets it's data based on the `lastShownList`, users can pair the `graph` command with `find`, `filter`, and `list` to sieve out the activities to be graphed.
 
 
@@ -356,7 +514,8 @@ As graph gets it's data based on the `lastShownList`, users can pair the `graph`
 ### Product Scope
 #### Target user profile
 
-* Students with time management issues/poor time management skills.
+* University students with poor time management skills who are struggling to allocate time efficiently for
+  the numerous deadlines/tasks.
 * Users who are reasonably comfortable using CLI apps.
 
 #### Value proposition
