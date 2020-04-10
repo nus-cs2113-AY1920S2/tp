@@ -216,6 +216,19 @@ class StockTest {
         assertEquals(createSearchStockOutputCopyOne(), executeSearch(stock, "TOMATO"));
     }
     
+    @Test
+    public void clearStock_clearAllIngredientsInStock_emptyStock() {
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        stock.clearStock();
+        
+        assertTrue(stock.getStock().isEmpty());
+    }
+    
     @Test 
     public void print_printStockWhenIngredientQuantityIsZero_SerialIndexUnchanged() 
             throws IngredientNotFoundException {
