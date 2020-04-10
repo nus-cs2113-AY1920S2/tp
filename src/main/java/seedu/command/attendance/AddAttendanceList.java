@@ -108,9 +108,9 @@ public class AddAttendanceList extends Command {
      */
     private void createNewList() throws PacException {
         if (isNewUser()) {
-            addByList();
-        } else {
             addManually();
+        } else {
+            addByLine();
         }
     }
 
@@ -133,19 +133,24 @@ public class AddAttendanceList extends Command {
      * Method to create new attendanceList using flags within the user input.
      * @throws PacException If parameter provided is invalid.
      */
-    private void addByList() throws PacException {
+    private void addByLine() throws PacException {
         while (!input.toLowerCase().equals("done")) {
             UI.display("Please key following format:\n"
-                    + "n/Name p/Status[Y/N]");
+                    + "n/Name p/Status[Y/N]\n"
+                    + "Status will be take as absent if the format above is not followed.");
             ui.readUserInput();
             input = ui.getUserInput();
             if (input.equals("done")) {
                 break;
             }
-            attendanceList.addToList(attendanceParser.parseAttendance(input), eventName);
-            studentName = attendanceParser.parseAttendance(input).getStudentName();
-            newStudentList.addToList(studentName);
-            studentNumber++;
+            if (!attendanceList.isDuplicate(attendanceParser.getName(input))) {
+                attendanceList.addToList(attendanceParser.parseAttendance(input), eventName);
+                studentName = attendanceParser.parseAttendance(input).getStudentName();
+                newStudentList.addToList(studentName);
+                studentNumber++;
+            } else {
+                UI.display("There is an entry with the same name.");
+            }
         }
         studentListCollection.push(newStudentList);
         UI.display("You have successfully added "
@@ -154,9 +159,8 @@ public class AddAttendanceList extends Command {
 
     /**
      * Method to create new attendanceList using a line-by-line input from the user.
-     * @throws PacException If parameter provided is invalid.
      */
-    private void addManually() throws PacException {
+    private void addManually() {
         while (!studentName.equals("done")) {
             UI.display("Please key in student name.");
             ui.readUserInput();

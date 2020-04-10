@@ -7,9 +7,18 @@ import seedu.command.attendance.ClearAttendanceList;
 import seedu.command.attendance.SortAttendanceListByName;
 import seedu.command.attendance.ViewAttendanceList;
 import seedu.command.attendance.SortAttendanceListByStatus;
+import seedu.command.attendance.FindAttendance;
+import seedu.command.attendance.EditAttendance;
 import seedu.event.EventList;
 import seedu.exception.PacException;
 import seedu.ui.UI;
+
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * To interpret the attendance command.
@@ -19,11 +28,30 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
     protected AttendanceList attendances;
     protected String eventName;
     protected UI ui;
+    private static final Logger logger = Logger.getLogger(AttendanceCommandInterpreter.class.getName());
 
     public AttendanceCommandInterpreter(EventList eventList) {
         super(eventList);
         this.ui = new UI();
     }
+
+    static void setupLogger() throws PacException {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.ALL);
+
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.SEVERE);
+        logger.addHandler(ch);
+
+        try {
+            FileHandler fh = new FileHandler("AttendanceCommandInterpreter.log");
+            fh.setLevel(Level.FINE);
+            logger.addHandler(fh);
+        } catch (IOException e) {
+            throw new PacException(e.getMessage());
+        }
+    }
+
 
     /**
      * Execute the command from userInput.
@@ -37,6 +65,12 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         eventName = ui.getEventNameForAttendance();
         attendances = getAttendance(eventName);
 
+        assert commandType.isBlank() : "Attendance: Unknown command";
+
+        AttendanceCommandInterpreter.setupLogger();
+        logger.info("Attendance List Log");
+        logger.finest(commandType);
+
         switch (commandType.toLowerCase().trim()) {
         case "add":
             return new AddAttendanceList(attendances, eventName);
@@ -45,7 +79,11 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         case "clear":
             return new ClearAttendanceList(attendances, eventName);
         case "sort":
-            return sortCommand();
+            return sortAttendanceList();
+        case "find":
+            return new FindAttendance(attendances);
+        case "edit":
+            return new EditAttendance(attendances);
         default:
             throw new PacException("Attendance: Unknown command.");
         }
@@ -61,7 +99,7 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         return ui.getUserInput().toLowerCase().trim();
     }
 
-    private Command sortCommand() throws PacException {
+    private Command sortAttendanceList() throws PacException {
         switch (sortType()) {
         case "name":
             return new SortAttendanceListByName(attendances, eventName);

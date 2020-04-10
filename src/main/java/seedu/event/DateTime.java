@@ -74,7 +74,7 @@ public class DateTime {
     }
 
     public String toStorable() {
-        return getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return this.dateTime;
     }
 
     public static DateTime parseStorable(String representation) {

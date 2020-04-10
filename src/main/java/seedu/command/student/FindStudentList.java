@@ -42,6 +42,10 @@ public class FindStudentList extends Command {
         }
     }
 
+
+    /**
+     * Displays studentListCollection.
+     */
     private void displayStudentList() {
         ui.printStudentListCollection();
     }

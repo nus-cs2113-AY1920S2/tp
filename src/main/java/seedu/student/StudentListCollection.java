@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class StudentListCollection extends ArrayList<StudentList> {
 
+
+
     public boolean isExistedListName(String name) {
         for (int i = 0; i < this.size(); ++i) {
             if (this.get(i).getListName().toLowerCase().equals(name.toLowerCase())) {
@@ -11,6 +13,21 @@ public class StudentListCollection extends ArrayList<StudentList> {
             }
         }
         return false;
+    }
+
+    public StudentList getList(int index) {
+        return this.get(index);
+    }
+
+    public String getListCollection() {
+        String data = "";
+        for (int i = 0; i < this.size(); i++) {
+            data = data.concat(System.lineSeparator() + getList(i).listName + "|");
+            for (String studentName: this.getList(i).getStudentList()) {
+                data = data.concat(studentName + "|");
+            }
+        }
+        return data;
     }
 
     @Override

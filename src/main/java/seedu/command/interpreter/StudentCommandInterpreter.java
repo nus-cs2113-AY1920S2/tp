@@ -12,9 +12,13 @@ import seedu.event.EventList;
 import seedu.exception.PacException;
 import seedu.ui.UI;
 
+import java.util.logging.Logger;
+
+
 public class StudentCommandInterpreter extends CommandInterpreter {
 
     protected UI ui;
+    private static final Logger logger = Logger.getLogger(StudentCommandInterpreter.class.getName());
 
     public StudentCommandInterpreter(EventList eventList) {
         super(eventList);
@@ -31,6 +35,13 @@ public class StudentCommandInterpreter extends CommandInterpreter {
     public Command decideCommand(String commandDescription) throws PacException {
 
         String commandType = getFirstWord(commandDescription);
+
+        assert commandType.isBlank() : "studentlist: Unknown command";
+
+        AttendanceCommandInterpreter.setupLogger();
+        logger.info("StudentList Log");
+        logger.finest(commandType);
+
         switch (commandType) {
         case "add":
             return new AddStudentList();
