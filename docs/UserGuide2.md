@@ -16,12 +16,12 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
         + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
         
-    * [3.3. Patient Medical Records](#33-patient-medical-information-commands)
+    * [3.3. Patient Medical Records](#33-patient-medical-records)
         + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
-        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-edit-pr)
-        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-delete-pr)
-        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
-        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
+        + [3.3.2. Edit Patient Records : `edit pr`](#332-list-patient-records-list-pr)
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-find-patient-records-find-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-edit-patient-records-edit-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-delete-patient-records-delete-pr)
     
     * [3.4. Appointments](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
@@ -30,8 +30,6 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.4.4. Mark Appointment as Done: `done appt`](#344-mark-appointment-as-done-done-appt)
         + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
         + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
-      
-     * [3.5. Saving Data](#)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
@@ -509,11 +507,11 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- ### 3.4. Appointment Scheduling Commands 
+### 3.4. Appointment Scheduling Commands 
  
  HappyPills helps to store appointment schedules. 
  
- #### 3.4.1. Add Appointment: `add appt`
+ ####3.4.1. Add Appointment: `add appt`
  
  Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
  patient automatically.
