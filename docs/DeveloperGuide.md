@@ -69,37 +69,37 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 ## **Table of Contents**  
 
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>  
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Purpose [&#10149;](#purpose)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Scope [&#10149;](#scope)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Design Goals [&#10149;](#design-goals)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Definitions [&#10149;](#definitions)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Purpose** [&#10149;](#purpose)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Scope** [&#10149;](#scope)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Definitions** [&#10149;](#definitions)    
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <br>  
 <big style="color: green">  **Architecture** [&#10149;](#architecture)  </big>  
 <br>    
 <big style="color: green">  **Structure Implementation** [&#10149;](#structure-implementation)  </big>   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory [&#10149;](#1-directory)    
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory Manager [&#10149;](#2-directory-manager)    
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Directory Traversal [&#10149;](#3-directory-traversal)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory** [&#10149;](#1-directory)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Manager** [&#10149;](#2-directory-manager)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Traversal** [&#10149;](#3-directory-traversal)    
 <br>   
 <big style="color: green"> **Command Implementation** [&#10149;](#command-implementation)  </big>  
-&nbsp; &nbsp; &nbsp; &nbsp; 1. Add Command [&#10149;](#1-add-command)    
-&nbsp; &nbsp; &nbsp; &nbsp; 2. List Command [&#10149;](#2-list-command)     
-&nbsp; &nbsp; &nbsp; &nbsp; 3. Delete Command [&#10149;](#3-delete-command)     
-&nbsp; &nbsp; &nbsp; &nbsp; 4. Edit Command [&#10149;](#4-edit-command)    
-&nbsp; &nbsp; &nbsp; &nbsp; 5. Change Directory Command [&#10149;](#5-change-directory-command)    
-&nbsp; &nbsp; &nbsp; &nbsp; 6. Open File Command [&#10149;](#6-open-file-command)    
-&nbsp; &nbsp; &nbsp; &nbsp; 7. Info Command [&#10149;](#-info-command)    
-&nbsp; &nbsp; &nbsp; &nbsp; 8. Undo and Redo Commands [&#10149;](#8-undo-and-redo-commands)    
+&nbsp; &nbsp; &nbsp; &nbsp; **1. Add Command** [&#10149;](#1-add-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; **2. List Command** [&#10149;](#2-list-command)     
+&nbsp; &nbsp; &nbsp; &nbsp; **3. Delete Command** [&#10149;](#3-delete-command)     
+&nbsp; &nbsp; &nbsp; &nbsp; **4. Edit Command** [&#10149;](#4-edit-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; **5. Change Directory Command** [&#10149;](#5-change-directory-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; **6. Open File Command** [&#10149;](#6-open-file-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; **7. Info Command** [&#10149;](#-info-command)    
+&nbsp; &nbsp; &nbsp; &nbsp; **8. Undo and Redo Commands** [&#10149;](#8-undo-and-redo-commands)    
 <br>   
 <big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
 <br>   
 <big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>  
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; User Stories [&#10149;](#user-stories)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Non-Functional Requirements [&#10149;](#non-functional-requirements)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Glossary [&#10149;](#glossary)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; Manual Testing [&#10149;](#manual-testing)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **User Stories** [&#10149;](#user-stories)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Glossary** [&#10149;](#glossary)   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Manual Testing** [&#10149;](#manual-testing)    
 
 <br>   
 
@@ -188,8 +188,8 @@ This document will cover the structure and software design decisions for the imp
 ## **Command Implementation**  
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
 
-### 1. Add Command
-#### Overview
+### **1. Add Command**
+#### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
 #### 1.1. Add module feature
@@ -202,7 +202,7 @@ When the user first requests to execute the `addm` command(*assuming the command
 2. The module specified by the user is already added -- No module will be added.
 3. The module specified by the user is provided by NUS and have not been added -- Module will be added.
 
-#### Feature Implementation
+#### **Feature Implementation**
 
 This feature is facilitated by the `AddModuleCommand` class which add the modules specified by the user. It overrides the `execute()` method which extends from the abstract `AddCommand` class which extends from the abstract `Command` class.   The `execute()` method's role is to execute the adding module operation and do necessary checks .
 
@@ -367,7 +367,7 @@ to-do: add the sequence diagram
 
 ### 2. List Command  
 
-#### Overview  
+#### **Overview**  
 
 The **List** feature lists out *modules*, *categories* and *tasks* from the Module, Category and Task List respectively.   
 When the user first requests to execute the **list** command to list out directory by providing its name, the application will first filter for directories with matching names. From here, there are **three** possible outcomes:  
@@ -426,122 +426,190 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 
 <br><br>
 
-### 3. Delete Command  
-#### Overview  
-The **delete** feature deletes *modules*, *categories* and *tasks* from the Module, Category and Task List respectively.   
-When the user first requests to execute the **delete** command to delete a directory by providing its name, the application will first filter for directories with matching names. From here, there are **three** possible outcomes:  
+### **3. Delete Command**  
+#### **Overview**  
+<div>
+The <b>delete</b> command deletes <i>directories</i> from their respective lists. For example, a user can delete a <i>module</i> from the <b>Module List</b>. <br>
+When the user first requests to execute the <b>delete</b> command to delete a <i>directory</i> by providing its <i>name</i>, the <b>Nuke</b> application will first filter for <i>directories</i> with matching <i>names</i>. From here, there are <b>three</b> possible outcomes:  
 
-1. There are **no** matches --  Nothing is deleted.
-2. There is **one** match -- A prompt will be given to the user to confirm the deletion.
-3. There are **multiple** matches -- The list of matches will be shown to the user, and the user chooses which ones to delete. A further prompt will be given to confirm the deletion(s).
+<ol>  
+<li>There are <b>no</b> matches &ndash;  Nothing is deleted.</li>  
+<li>There is <b>one</b> match &ndash; A prompt will be given to the user to confirm the deletion.</li>  
+<li>There are <b>multiple</b> matches &ndash; The list of matches will be shown to the user, and the user chooses which ones to delete. A further prompt will be given to confirm the deletion(s).</li>  
+</ol>
 
-#### Feature Implementation  
-![Delete Command Class Diagram](images/Delete_Command_Class_Diagram.png)
-<span style="color: green"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>
+</div>
 
+#### **Implementation**  
 <br>
-
-The `DeleteModuleCommand`, `DeleteCategoryCommand` and `DeleteTaskCommand` classes in the application facilitates this **delete** feature. They are in charge of deleting *modules*, *categories* and *tasks* respectively. <br>  
-
-As shown in the figure above, those three classes each extends from the abstract `DeleteCommand` class.  They also [override](#) the `DeleteCommand` class's `executeInitialDelete()` method, which role is to prepare the necessary messages or prompts for the user depending on the number of filtered matches. <br>  
-
-The `DeleteCommand` class in turn extends the `FilterCommand` abstract class. The `FilterCommandClass` contains the following vital methods for filtering:  
-- `createFilteredModuleList()` -- Creates an `ArrayList` of the filtered *modules*.  
-- `createFilteredCategoryist()` -- Creates an `ArrayList` of the filtered *categories*.  
-- `createFilteredTaskList()` -- Creates an `ArrayList`of the filtered *tasks*.  
-
-Lastly, the `FilterCommand` class extends the abstract `Command` class that contains the `execute()` method to execute the actual **delete** command.  
-<br>  
-
-![Prompt Command Class Diagram](images/Prompt_Class_Diagram.png)
-<span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>
-
+  
+![delete command class diagram](images/dg_delete_class.png)     
+<span style="color: green"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>   
+    
+<br>
+<div>
+The <b>delete</b> commands are similar to each other, and targets to delete <i>directories</i> of a specific <i>directory level</i>. For example, the <code>DeleteTaskCommand</code> class will only delete <i>tasks</i> <i>(and not modules, categories or files)</i>.
+<br><br>
+Like the <b><a href="#2-list-command">list</a></b> commands, the <b>delete</b> commands function with a filter property. That is to say, the <b>delete</b> commands will first filter for the possible <i>directories</i> to delete based on the user-provided <i>keywords</i>. If there are <b>multiple</b> matches after the filtering, the user will be prompted to choose which of the <i>directories</i> they wish to delete.
+<br><br>
+Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, the <code>DeleteCommand</code> class extends from the same <code>FilterCommand</code> class as the <code>ListCommand</code> class.  The <code>DeleteCommand</code> class thus inherits the same methods in the <code>FilterCommand</code>  class.
+<br><br>
+Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
+<br><br>
+     
+![prompt command class diagram](images/dg_prompt_class.png)      
+<span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
+   
 <br> 
+Two <b>prompt</b> commands are involved in the deletion process:<br>  
+<ol>  
+<li><code>ListNumberPrompt</code> manages the event after the user has input the <i>list numbers</i> of the <i>directories</i> to delete when there are <b>multiple</b> matches.</li>  
+<li><code>DeleteConfirmationPrompt</code> manages the event after the user has responded to the confirmation prompt to delete the <i>directories</i></li>  
+</ol>
 
-Other than the commands, two prompts are involved.   
-The prompt to request for the list number(s) of the item(s) to delete from the filtered list is managed by the `ListNumberPrompt` class. The prompt to request to confirm the deletion is managed by the `DeleteConfirmationPrompt` class.  
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The <code>ListNumberPrompt</code> class will only be executed if there are <b>multiple</b> matches. Otherwise, only the 
+corresponding <code>DeleteCommand</code> and <code>DeleteConfirmationPrompt</code> classes will be executed in the deletion process.
+</div>   
 <br>
-
-
-#### Example Usage  
-The deletion process for *modules*, *categories* and *tasks* are similar. In this example, the deletion process for *tasks* will be illustrated as a series of steps.  <br>
-James is a user and wants to delete some of his *tasks* with *description* "work". Assume that he has the current Task List:  
+The deletion process can thus be broken down into <b>3</b> stages. We provide for you the relevant <i>sequence diagrams</i> to help you to see how each stage works in our current implementation of the <b>delete</b> command.
+</div>  
+   
+  
+<div>
+<big><big><big><big><big style="color: green">&#10102;</big></big></big></big></big>
+The user, <i>say Peter in this example</i>,  will first request the <i>directory(s)</i> he wishes to be deleted. Assume Peter currently has these <i>modules</i> in his <b>Module List</b>:
+</div>
 
 ```
 +--------------------------------------------------------------------------------------------------+
- NO |  MODULE  |       CATEGORY       |          TASK          |           DEADLINE           | PTY 
+ NO |  MODULE CODE   |                                 MODULE TITLE                                 
 +--------------------------------------------------------------------------------------------------+
- 1  |  CS1231  |      Assignment      |       group work       |      28/03/2020 06:00PM      | 20  
- 2  |  CS1231  |       Tutorial       |       Tutorial 6       | 24/03/2020 11:59PM [OVER!!]  |  6  
- 3  |  CS2100  |       Lecture        |     watch webcast      |            -NIL-             |  1  
- 4  |  CS2113  |      Bigger Lab      |      Big Lab Work      |        today 06:00PM         |  7  
- 5  |  CS2113  |       Tutorial       | tutorial worksheet 10  |        today 12:00PM         |  5  
+ 1  |     CS1231     |                             Discrete Structures                              
+ 2  |     CS2101     |             Effective Communication for Computing Professionals              
+ 3  |     CS2102     |                               Database Systems                               
+ 4  |    CS2113T     |              Software Engineering & Object-Oriented Programming              
+ 5  |     CS3235     |                              Computer Security                               
+ 6  |    GEH1036     |                           Living with Mathematics                            
+ 7  |    IFS4103     |                         Penetration Testing Practice                         
 +--------------------------------------------------------------------------------------------------+
-Total tasks: 5
+Total modules: 7
 +--------------------------------------------------------------------------------------------------+
 ```
-
-![Step 1](images/Number_1.png){: .image-left .step }   
 <br>
-James will first enter the command to delete *tasks*:  
-	`delt work -a`  
-	After the input is parsed as a **delete task** command and executed, the `DeleteTaskCommand#execute()` will call `FilterCommand#createFilteredTaskList()` to create the filtered list of *tasks* containing the *description* "work". `DeleteTaskCommand#execute()` will then call its own method `DeleteTaskCommand#executeInitialDelete(filteredList)` to prepare the prompt to request James to enter the list number of the *tasks* he would like to delete.  
-
-![Step 2](images/Number_2.png){: .image-left .step }    
+<div>
+Now, Peter wishes to delete <i>modules</i> <b>CS1231</b> and <b>CS2102</b>. He enters <code>delm cs</code> to execute the command.
+<br><br>
+The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</b> command. The <code>DeleteModuleCommand</code> class is instantiated and executed. The class will first filter <i>modules</i> containing the <i>keyword</i> "<b>cs</b>". This is done by the <code>FilterCommand#createFilteredModuleList()</code> method. Then, <code>DeleteModuleCommand</code> will call its own <code>executeInitialDelete(filteredList)</code> method to prepare the prompt to ask Peter to choose which <i>modules</i> he would like to delete. 
+</div>
 <br>
-James receives the following prompt:
+The <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10102;</big></big>:<br>   
+ 
+![delete command sequence diagram](images/dg_delete_seq.png)  
+ <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 1</b></i></small></span>   
+
+<div>
+<big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
+Peter receives the following prompt: 
+</div>
+  
+```  
+Multiple matching modules were found.
++--------------------------------------------------------------------------------------------------+
+ NO |  MODULE CODE   |                                 MODULE TITLE                                 
++--------------------------------------------------------------------------------------------------+
+ 1  |     CS1231     |                             Discrete Structures                              
+ 2  |     CS2101     |             Effective Communication for Computing Professionals              
+ 3  |     CS2102     |                               Database Systems                               
+ 4  |    CS2113T     |              Software Engineering & Object-Oriented Programming              
+ 5  |     CS3235     |                              Computer Security                               
++--------------------------------------------------------------------------------------------------+
+Total modules: 5
++--------------------------------------------------------------------------------------------------+
+
+Enter the list number(s) of the modules to delete.
+```
+<br>
+<div>
+He then proceeds to enter the corresponding  list numbers <code>1 3</code> to delete  <i>modules</i> <b>CS1231</b> and <b>CS2102</b>.  
+<br>  <br>
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+Since there are <b>multiple</b> matches,  the application will first request for the user to choose the <i>directories</i> he wants to delete. If there is only a <b>single</b> match, this stage is skipped, and the application will continue at <b>stage</b> <big><big style="color: green">&#10104;</big></big>
+</div>   
+<br>
+After the <code>Parser</code> has parsed the list numbers, the <code>ListNumberPrompt</code> class is constructed. <code>ListNumberPrompt</code> will prepare the prompt for the delete confirmation, and then calls its <code>executePromptConfirmation(filteredList, MODULE)</code> method.  
+</div>   
+
+This is the <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10103;</big></big>:<br>   
+
+![prompt command sequence diagram](images/dg_prompt_seq.png)  
+ <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 2</b></i></small></span>   
+
+<div>
+<big><big><big><big><big style="color: green">&#10104;</big></big></big></big></big>
+Peter receives the confirmation prompt: 
+</div>
 
 ```  
-Multiple matching tasks found.
-+--------------------------------------------------------------------------------------------------+
- NO |  MODULE  |       CATEGORY       |          TASK          |           DEADLINE           | PTY 
-+--------------------------------------------------------------------------------------------------+
- 1  |  CS1231  |      Assignment      |       group work       |      28/03/2020 06:00PM      | 20  
- 2  |  CS2113  |      Bigger Lab      |      Big Lab Work      |        today 06:00PM         |  7  
- 3  |  CS2113  |       Tutorial       | tutorial worksheet 10  |        today 12:00PM         |  5  
-+--------------------------------------------------------------------------------------------------+
-Total tasks: 3
-+--------------------------------------------------------------------------------------------------+
-
-Enter the list number(s) of the tasks to delete.
+Confirm delete these modules?
+CS1231 Discrete Structures
+CS2102 Database Systems
 ```
 
-He proceeds to enter list numbers `2 3` as he has already completed both *tasks*.  
-After the list numbers are parsed, it will call `ListNumberPrompt#execute()`, which will prepare the prompt for the delete confirmation, and then calls `ListNumberPrompt#executePromptConfirmation()`.
+<div>
+He enters <code>yes</code> to confirm the deletion.
+<br><br>
+At the backend, the <code>Parser</code> will parse the confirmation, and constructs the <code>DeleteConfirmationPrompt</code> class. After getting the list of <i>modules</i> to delete, <code>DeleteConfirmationPrompt</code> then calls <code>executeMultipleDelete(filteredList, MODULE)</code> to delete Peter's selected <i>modules</i> from his <b>Module List</b>.  
+</div>   
 
-![Step 3](images/Number_3.png){: .image-left .step}   
-<br>
-James receives another prompt:  
+Below is the <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10104;</big></big>:<br>   
 
-```  
-Confirm delete these tasks?
-tutorial worksheet 10
-Big Lab Work
-```
-
-He enters `y` to confirm the deletion.
-`DeleteConfirmationPrompt#execute()` will be called, which then calls `DeleteConfirmationPrompt#executeMultipleDelete(filteredList)` to delete James' selected *tasks* from his Task List.
-
-![Step 4](images/Number_4.png){: .image-left .step}  
-<br>
-James receives the final message:
-
-```
-SUCCESS!! Task(s) have been deleted.
-```
-
-Deletion process ends.  
+![confirm command sequence diagram](images/dg_confirm_seq.png)  
+ <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 3</b></i></small></span>   
 
 <br>
+<div>
+Peter receives the final message:<br>  
+</div>
 
-Below is a *sequence diagram* to illustrate the above example scenario.  
+```
+SUCCESS!! Module(s) have been deleted.
+```
 
-![Delete Command Sequence Diagram](images/Delete_Command_Sequence_Diagram.png)
-<span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram</b></i></small></span>    
+<div>
+and the delete process ends.  
+</div>
+<br>   
+  
+[Back To Top](#table-of-contents)    
+
+#### **Design Considerations**     
+<b>Filtering for Deletion</b>    
+- <b>Alternative 1</b>: Do not allow filtering for deleting <i>directories</i>       
+	- <b>Pros</b>: Easy to implement. We would only have to check if the <i>directory</i> exists, and then delete it from its respective list.     
+	- <b>Cons</b>: Multiple deletions would not be supported. User has to delete one <i>directory</i> at a time, and can be tedious, especially if the user wants to delete several <i>directories</i> with the similar names.     
+- <b>Alternative 2</b>: Allow filtering for deleting <i>directories</i> <b>(current implementation)</b>         
+	- <b>Pros</b>: User can delete multiple <i>directories</i> at the same time with ease. This is especially useful when deleting <i>directories</i> with similar names, such as deleting a set of <i>tasks</i> with <i>descriptions</i> starting with "<b>tutorial</b>".     
+	- <b>Cons</b>: Relatively harder to implement. &#128551;     
+<br>
+
+<b>Prompts for Deletion</b>  
+- <b>Alternative 1</b>: No prompts for deletion       
+	- <b>Pros</b>: Easy to implement. Deletion process will be fast! &#128513; Simply search for the <i>directories</i> and then delete them.
+	- <b>Cons</b>: The user may accidentally delete the <b>wrong</b> <i>directory</i>! &#128561; <small><i>(although may still be undone with the <b>undo</b> command)</i></small> This is made worse if a wrong deletion is made during <b>multiple</b> deletions. 
+- <b>Alternative 2</b>: Prompts are enabled <b>(current implementation)</b>    
+	- <b>Pros</b>: User has another chance to choose to confirm the deletion. &#128517; This reduce the chance of accidental deletions happening.
+	- <b>Cons</b>: Deletion process is now longer. The user has to go through another layer of confirmation despite being sure that he he deleting the correct <i>directories</i> <small>(but who knows?)</small>. Moreover, we will have a harder time to implement the <b>delete</b> command, since it has now become multi-staged. Considerations have to be made to counter scenarios with <b>zero</b>, <b>one</b> or <b>more</b> matches after filtering. We will also have to consider how the <code>Parser</code> will be able to recognise if the user's input is a regular command, or an input corresponding to a prompt for list number, or a prompt for delete confirmation.  
+  
+  <br>
+[Back To Top](#table-of-contents)    
 
 <br><br>
 
-### **4. Edit Command**
+### **4. Edit Command**   
+#### **Overview**    
 <div>   
 The <b>edit</b> command edits the attributes of a <i>directory</i>. For example, user can edit a <i>category</i>'s <i>name</i> and <i>priority</i>. For <i>tasks</i>, the user is also able to mark them as done.   
 </div>    
@@ -553,7 +621,7 @@ The <b>edit</b> command edits the attributes of a <i>directory</i>. For example,
  <span style="color: green"><small><i>Figure <b>Edit Commands Class Diagram</b></i></small></span>   
  <br>  
 <div>   
-The <b>edit</b> commands all work in a similar manner. As seen in the <i>class diagram</i> above, each of the <b>commands</b> extends from the <i>abstract</i> <code>EditCommand</code> class. The <code>EditCommand</code> class has an <i>abstract</i> method, <code>toEdit(Directory)</code>, which is to be implemented by each of the <b>edit</b> commands. 
+The <b>edit</b> commands all work in a similar manner. As seen in the <i>class diagram</i> above, each of the <b>edit</b> commands extends from the <i>abstract</i> <code>EditCommand</code> class. The <code>EditCommand</code> class has an <i>abstract</i> method, <code>toEdit(Directory)</code>, which is to be implemented by each of the <b>edit</b> commands. 
 <br><br>
 The <b>edit</b> command will first checks if the attribute String exceeds a fixed length by its own  <code>isExceedLengthLimit()</code> method <i>(See <a href="design-considerations-1">here</a> for the considerations of the length limit)</i>. It then calls <code>DirectoryTraverser</code> class to get the appropriate <code>Directory</code> to edit.    
 <br><br>   
@@ -572,10 +640,10 @@ Finally, the <b>edit</b> command will perform the <code>edit()</code> method to 
 The <code>Parser</code> class also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
 </div>   
 <br>    
-
-An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>
+   
+An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>       
 ![edit command sequence diagram](images/dg_edit_seq.png)    
- <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
+<span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
 <br>   
 
 [Back To Top](#table-of-contents)    
@@ -605,6 +673,7 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 <br>  
 
 ### **5. Change Directory Command**   
+#### **Overview**    
 <div>  
 The <b>change directory</b> command traverses the user up and down the <b>Directory Tree</b>, much like how the Linux Shell operates. In other words, the user enters the <i>directory name</i> to traverse to that <i>directory</i>, or <code>..</code> to traverse to the parent <i>directory</i>  
 </div>   
@@ -620,7 +689,7 @@ If the user want to traverse up from the current <i>directory</i> instead, <code
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
 </div> <br>   
 
-Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>
+Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>      
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
  <span style="color: green"><small><i>Figure <b>Change Directory Command Sequence Diagram</b></i></small></span>   
 <br>   
@@ -642,6 +711,7 @@ Shown below is the <i>sequence diagram</i> when a user executes the <b>change di
 <br>  <br>  
 
 ### **6. Open File Command**    
+#### **Overview**    
 <div>  
 The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specified by the user. User can choose whether to open a single <i>file</i> in the <i>task</i>, or <b>all</b> the <i>files</i> in the <i>task</i>.  
 </div>   
@@ -651,7 +721,7 @@ The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specif
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
 
 The <code>OpenFile</code> class first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
-</div>   
+</div><br>   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 If there is an error opening a particular <i>file</i> in the list &#128534;, the opening process will not be terminated immediately. Instead, the application will continue to open the rest of the <i>files</i> in the list. <br>
@@ -685,12 +755,11 @@ Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:
 <br>  <br>  
 
 ### **7. Info Command**    
+#### **Overview**    
 <div>  
 The <b>info</b> command shows the information of the <i>current directory</i> that the user is in. For example, when in the <b>Module</b> directory, the <b>info</b> command will show the <i>module code</i>, <i>module title</i> and the <i>module</i>'s <i>category list</i> to the user.  
 </div>  
-
-<br>
-
+   
 #### **Implementation**     
 <div>
 The implementation of this command is quite straightforward. <br>
@@ -710,9 +779,7 @@ The <i>sequence</i> diagram of what happens when a user executes the <b>info</b>
 <div>
 The <b>undo</b> and <b>redo</b> commands work hand in hand with each other. The <b>undo</b> command undoes a <i>change</i> made to the <b>Directory List</b>. <i>Change</i> here refers to adding, deleting or editing items to the <i>list</i>. The <b>redo</b> command reverts the effect of the <b>undo</b> command.   
 </div>  
-
-<br>
-
+   
 #### **Implementation**     
 <div>
 The state of the <i>directories</i> is being maintained by the <code>ScreenShotManager</code> class. This is done via two <b>stacks</b>, one for <b>undo</b>, and the other for <b>redo</b>.  <br><br>
@@ -749,8 +816,7 @@ If another <i>change</i> is made to the <i>list</i>, the <b>redo</b> stack is em
 <br>   <br>  
 <div>
 The process continues.
-</div> 
-<br>
+</div>   
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 An error message will be shown to the user when the user tries to undo when no recent change was made, such as at the start of the application, and when the user tries to redo when nothing was recently undone. 

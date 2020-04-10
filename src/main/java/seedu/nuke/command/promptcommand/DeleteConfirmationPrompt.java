@@ -27,7 +27,6 @@ import static seedu.nuke.util.Message.MESSAGE_PROMPT_FORMAT;
 
 public class DeleteConfirmationPrompt extends Command {
     private ConfirmationStatus confirmationStatus;
-    private DirectoryLevel directoryLevel;
 
     /**
      * Constructs the command to process the delete confirmation prompt.
@@ -37,7 +36,6 @@ public class DeleteConfirmationPrompt extends Command {
      */
     public DeleteConfirmationPrompt(ConfirmationStatus confirmationStatus) {
         this.confirmationStatus = confirmationStatus;
-        this.directoryLevel = Executor.getDirectoryLevel();
     }
 
     /**
@@ -148,10 +146,13 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param toDelete
      *  The Directory to be deleted
+     * @param directoryLevel
+     *  The level of the current directory
      * @return
      *  The Command result of the execution
      */
-    private CommandResult executeSingleDelete(Directory toDelete) {
+    private CommandResult executeSingleDelete(Directory toDelete, DirectoryLevel directoryLevel) {
+
         switch (directoryLevel) {
 
         case MODULE: {
@@ -184,11 +185,14 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param filteredList
      *  The list of Directories to be deleted
+     * @param directoryLevel
+     *  The level of the current directory
      * @return
      *  The Command result of the execution
      */
-    private CommandResult executeMultipleDelete(ArrayList<Directory> filteredList) {
+    private CommandResult executeMultipleDelete(ArrayList<Directory> filteredList, DirectoryLevel directoryLevel) {
         ArrayList<Integer> toDeleteIndices = Executor.getIndices();
+
         switch (directoryLevel) {
 
         case MODULE: {
@@ -237,12 +241,14 @@ public class DeleteConfirmationPrompt extends Command {
      *
      * @param filteredList
      *  The filtered list of directories to be deleted
+     * @param directoryLevel
+     *  The level of the current directory
      * @return
      *  <code>TRUE</code> if the current directory or its parent is being deleted, or <code>FALSE</code> otherwise
      * @throws IncorrectDirectoryLevelException
      *  If there is illegal access to a directory
      */
-    private boolean isCurrentDirectoryInList(ArrayList<Directory> filteredList)
+    private boolean isCurrentDirectoryInList(ArrayList<Directory> filteredList, DirectoryLevel directoryLevel)
             throws IncorrectDirectoryLevelException {
         // Current directory is of a higher level than the directories to be deleted
         if (DirectoryTraverser.getCurrentDirectoryLevel().ordinal() < directoryLevel.ordinal()) {
@@ -304,8 +310,9 @@ public class DeleteConfirmationPrompt extends Command {
         case CONFIRM:
             Executor.terminatePrompt();
             ArrayList<Directory> filteredList = Executor.getFilteredList();
+            DirectoryLevel directoryLevel = Executor.getDirectoryLevel();
             try {
-                if (isCurrentDirectoryInList(filteredList)) {
+                if (isCurrentDirectoryInList(filteredList, directoryLevel)) {
                     return new CommandResult(MESSAGE_ILLEGAL_DELETE);
                 }
             } catch (IncorrectDirectoryLevelException e) {
@@ -313,10 +320,10 @@ public class DeleteConfirmationPrompt extends Command {
             }
             if (filteredList.size() == 1) {
                 StorageManager.setIsSave();
-                return executeSingleDelete(filteredList.get(0));
+                return executeSingleDelete(filteredList.get(0), directoryLevel);
             } else {
                 StorageManager.setIsSave();
-                return executeMultipleDelete(filteredList);
+                return executeMultipleDelete(filteredList, directoryLevel);
             }
         case ABORT:
             Executor.terminatePrompt();
