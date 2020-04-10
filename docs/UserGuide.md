@@ -24,17 +24,37 @@ TechToday Information Tracker(TTIT) is for an application for users who *prefer 
 
 ## 2. Quick Start
 
-*  Ensure you have Java `11` or above installed in your Computer.
-*  Download the jar file -`CS2113-T14-2.TechToday.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v2.1).
-*  Copy the file to the folder you want to use as the home folder for your Technology Information tracker.
-*  Open the command prompt and go into the directory where the Jar file is stored and type `java -jar CS2113-T14-2.TechToday.jar`.
+* Ensure you have Java `11` or above installed in your Computer.
+* Download the jar file -`CS2113-T14-2.TechToday.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v2.1).
+* Copy the file to the folder you want to use as the home folder for your Technology Information tracker.
+* Open the command prompt and go into the directory where the Jar file is stored and type `java -jar CS2113-T14-2.TechToday.jar`.
 * When the application executes, all possible commands that can help you manage your information are shown.
-*Some example commands you can try:
+* Some example commands you can try:
     * **`view `**`article` : helps you view articles about technolgy from the internet. If the device is not connected to the internet, it loads an existing set of articles pre-loaded into the program.
     * **`list `**`article`: Lists all the articles you have saved in your database into the Command Line.
     * **`delete `**` article 1` : deletes the 1st article that appears in the article list.
     * **`exit`** : exits the app.
+* Expected output when you first run application: 
 
+                _ **_____________________________________________________________________________**_
+                _                                                                                  _
+                _                             Hello! Here's TechToday.                             _
+                _            Let me show you some technology news to refresh your mind!            _
+                _ **_____________________________________________________________________________**_
+                _                    Your queries can be of the following forms:                   _
+                _                                      1. help                                     _
+                _                              2. view [article / job]                             _
+                _                       3. save [article / job] INDEX_NUMBER                       _
+                _                         4. create [article / job / note]                         _
+                _                          5. list [article / job / note]                          _
+                _                   6. delete [article / job / note] INDEX_NUMBER                  _
+                _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+                _                                      8. exit                                     _
+                _                                                                                  _
+                _ **_____________________________________________________________________________**_
+
+
+* Note: When the application first runs, it will create new JSON files to store data in the folder where the JAR file is located. 
 
 ## 3. Features
 
