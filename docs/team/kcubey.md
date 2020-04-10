@@ -5,25 +5,25 @@
 ## Overview
 Exam Study Companion (ESC) is a command-line based app that is designed to help students preparing for upcoming exams. The app is written in Java and requires JDK 11 to run.
 
-### Summary of Contributions
-#### Code Contributed
+## Summary of Contributions
+### Code Contributed
 https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey
 
-#### Enhancements Implemented
+### Enhancements Implemented
 * Storage feature
   * To allow the user the ability to save their session and reopen where they left off
 * Overall UI design
   * To have a cohesive UI design for the overall program
  
-#### Contributions to Documentation
+### Contributions to the UG
 * UG layout
 * Majority of UG writeup 
   * Exceptions: Event-related commands, Edit card command
 
-#### Contributions to the DG
+### Contributions to the DG
 * All write ups & diagrams related to the Storage feature
 
-#### Contributions to team-based tasks
+### Contributions to team-based tasks
 * Role: Leader / Code Reviewer-Maintainer
   * Review and handle all pull requests
   * Prepare & upload releases
@@ -35,7 +35,7 @@ https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey
   * https://github.com/AY1920S2-CS2113-T15-2/tp/wiki
 * Maintain ReadMe / AboutUs pages
 
-#### Review / Mentoring Contributions
+### Review / Mentoring Contributions
 Instances where a review was requested OR a review was required (i.e code changes or clarification needed)
 * https://github.com/AY1920S2-CS2113-T15-2/tp/pull/129
 * https://github.com/AY1920S2-CS2113-T15-2/tp/pull/127
@@ -49,7 +49,7 @@ Instances where a review was requested OR a review was required (i.e code change
 Team Help/Guidance Provided
 * Provided git help/debugging
 
-#### Contributions Beyond the Project Team
+### Contributions Beyond the Project Team
 PE-D Bugs/Feedback
 
 Bugs Identified (Forum)
