@@ -28,4 +28,5 @@ Welcome to Diet Manager! How may I assist you today?
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
 Please key in your command: 
-Your profile has been successfully updated.
+You are now exiting the application.
+Thanks for using Diet Manager! See you again soon. :)
