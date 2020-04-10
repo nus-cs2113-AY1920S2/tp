@@ -48,7 +48,7 @@ public class FindCommand extends Command {
         }
 
         output.append(System.lineSeparator()
-                + "List of available modules"
+                + "List of available modules:"
                 + System.lineSeparator());
 
         for (Module module : listOfAvailableModulesToDisplay) {

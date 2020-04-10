@@ -294,7 +294,7 @@ Example: 'find cs'
  `[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1`
 
 
- `List of available modules`
+ `List of available modules:`
  
  `ID: CS1010 Name: Programming Methodology | Modular Credit: 4`
  
