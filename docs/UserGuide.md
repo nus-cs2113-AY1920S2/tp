@@ -285,11 +285,11 @@ Format: `RES`
 Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
 
 Format: `CLEAR`
-
+<!-- @@author -->
 &nbsp;
 
 <b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
-<!-- @@author -->
+
 ***
 <!-- @@author trishaangelica -->
 
