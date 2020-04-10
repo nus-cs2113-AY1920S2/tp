@@ -324,27 +324,22 @@ The product aims to provide students with more convenient way of doing revision.
 |v2.0|user|delete subjects|organize subjects better|
 |v2.0|user|view my score|see how I performed|
 |v2.0|user|view my test history|see how I performed|
+|v2.1|user|add upcoming event dates|know what to prepare|
+|v2.1|user|delete upcoming event dates|no longer have reminders of the events|
+|v2.1|user|edit the cards|change the mistakes done when adding|
+
 
 ## Appendix C: Non-Functional Requirements
 1. The product should be able to run on any platform that has JDK11
 2. The product should be able to hold up to 1000 cards
+3. The product should be able to store up to 1000 events
 
-## Appendix D: Glossary
-
-* *glossary item* - Definition
-
-## Appendix E: Instructions for Manual Testing
+## Appendix D: Instructions for Manual Testing
 ### Running Tests
-There are two ways to run tests.
 
-Method 1: Using IntelliJ JUnit test runner
+Method : Using IntelliJ JUnit test runner
     
-    To run all tests, right-click on the src/test/java folder and choose Run 'All Tests'
-
-Method 2: Using Gradle
-
-    Open a console and run the command gradlew clean test (Mac/Linux: ./gradlew clean test)
-See UsingGradle.adoc for more info on how to run tests using Gradle.
+    To run all tests, right-click on the src/test/java/seedu folder to select the part to be tested and run as Junit in IDE.
 
 ### Types of Tests
 There have three types of tests:

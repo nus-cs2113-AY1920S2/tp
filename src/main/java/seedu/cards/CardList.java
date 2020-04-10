@@ -27,8 +27,10 @@ public class CardList implements Serializable {
     /**
      * Adds a card to the deck.
      * @param card Card to be added.
+     * @throws EscException if checkRepeat fails when question has already been added previously.
      */
-    public void addCard(Card card, Subject subject) {
+    public void addCard(Card card, Subject subject) throws EscException {
+        checkRepeat(card);
         cards.add(card);
         System.out.println("Q:" + card.getQuestion());
         System.out.println("A:" + card.getAnswer());
@@ -37,8 +39,24 @@ public class CardList implements Serializable {
     }
 
     /**
+     * Checks if the question has already been previously added to this subject.
+     * @param card Card to be checked before it is added.
+     * @throws EscException if question has already been added previously.
+     */
+    public void checkRepeat(Card card) throws EscException {
+        for (Card existingCard : cards) {
+            String existingQuestion =  existingCard.getQuestion().toLowerCase();
+            String questionToAdd = card.getQuestion().toLowerCase();
+            if (existingQuestion.equals(questionToAdd)) {
+                throw new EscException("This question has already been added.");
+            }
+        }
+    }
+
+    /**
      * Removes a card from the deck.
      * @param index Index of card to be removed.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public void removeCard(int index) throws EscException {
         if (this.size() == 0) {
@@ -56,6 +74,7 @@ public class CardList implements Serializable {
      * Returns a card based on its index number.
      * @param index Index of card to retrieve.
      * @return card Card corresponding to index.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public Card getCard(int index) throws EscException {
         if (this.size() == 0) {
@@ -87,8 +106,6 @@ public class CardList implements Serializable {
         }
     }
 
-
-
     /**
      * Returns size of the cardlist.
      */
@@ -98,8 +115,8 @@ public class CardList implements Serializable {
 
     /**
      * Removes a card without a return message. For EditCommand usage.
-     * @param index index of card
-     * @throws EscException if the card index does not exist
+     * @param index index of card.
+     * @throws EscException if the card list is empty or card index does not exist.
      */
     public void removeCardSilent(int index) throws EscException {
         if (this.size() == 0) {
@@ -115,9 +132,9 @@ public class CardList implements Serializable {
 
     /**
      * Adds a card at the given index. For EditCommand usage.
-     * @param card the card to add
-     * @param subject the given subject
-     * @param index index of the original card
+     * @param card the card to add.
+     * @param subject the given subject.
+     * @param index index of the original card.
      */
     public void addCardSilent(Card card, Subject subject, int index) {
         cards.add(index,card);
