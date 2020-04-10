@@ -12,6 +12,7 @@ import command.SearchCommand;
 import command.IncorrectCommand;
 import command.ListCommand;
 import command.RepeatCommand;
+import command.EditCommand;
 import common.Messages;
 import org.junit.jupiter.api.Test;
 import tasks.Event;
@@ -286,6 +287,50 @@ public class ParserTest {
         assertTrue(parsedCommand instanceof ExitCommand);
     }
 
+    //@@author Keith-JK
+    @Test
+    public void parseExitCommand_expectedError() {
+        Command parsedCommand = Parser.parseCommand(ExitCommand.COMMAND_WORD + " 123");
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
+                        capitalize(ExitCommand.COMMAND_WORD), ExitCommand.COMMAND_USAGE)));
+    }
+
+    @Test
+    public void parseHelpCommand_expectedError() {
+        Command parsedCommand = Parser.parseCommand(HelpCommand.COMMAND_WORD + " 123");
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.INCORRECT_FORMAT_ERROR,
+                        capitalize(HelpCommand.COMMAND_WORD), HelpCommand.COMMAND_USAGE)));
+    }
+
+    /** EditCommand tests */
+    @Test
+    public void parseEditCommand_expectedSuccess() {
+        Command parsedCommand = Parser.parseCommand(EditCommand.COMMAND_WORD + " 1");
+        assertTrue(parsedCommand instanceof EditCommand);
+    }
+
+    @Test
+    public void parseEditCommand_expectedNumberFormatException() {
+        Command parsedCommand = Parser.parseCommand(EditCommand.COMMAND_WORD + " n");
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.NUM_FORMAT_ERROR));
+    }
+
+    @Test
+    public void parseEditCommand_expectedOutOfBoundsException() {
+        Command parsedCommand = Parser.parseCommand(EditCommand.COMMAND_WORD);
+        assertTrue(parsedCommand instanceof IncorrectCommand);
+        assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
+                String.format(Messages.INCORRECT_COMMAND_ERROR,String.format(Messages.INCORRECT_ARGUMENT_ERROR,
+                        capitalize(EditCommand.COMMAND_WORD), EditCommand.COMMAND_USAGE)));
+    }
+
+    /** Calendar tests */
     @Test
     public void parseCalendarCommand_expectedInput_success() {
         Command parsedCommand = Parser.parseCommand(CalendarCommand.COMMAND_WORD + " d/01/20");
