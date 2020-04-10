@@ -88,9 +88,10 @@ public class AddToSemCommand extends AddCommand {
      */
     private boolean checkModuleExistAndNotFailed(SemesterList semesterList) {
         for (SemModulesList sem: semesterList) {
+//            if (sem.isInList(selectedModule.getName()) || sem.isInList(selectedModule.getId())) {
             for (SelectedModule module: sem) {
-                boolean hasSameModuleId = module.getId().equals(selectedModule.getId());
-                boolean hasSameModuleName = module.getName().equals(selectedModule.getName());
+                boolean hasSameModuleId = module.getId().equals(selectedModule.getId()) && module.isNameValid();
+                boolean hasSameModuleName = module.getName().equals(selectedModule.getName()) && module.isNameValid();
                 if (hasSameModuleId || hasSameModuleName) {
                     boolean isModuleGradeF = module.getGrade().equals(Grading.F);
                     boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
