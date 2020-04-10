@@ -8,7 +8,7 @@ Table of Contents
     3.1 [Command Format](#31-command-format)  
     3.2 [Adding modules](#32-adding-modules-add)  
     . . 3.2.1 [Adds a specific module to a specific semester](#321-adds-a-specific-module-to-a-specific-semester)  
-    . . 3.2.2 [Based on module code](#322-based-on-module-code)
+    . . 3.2.2 [Based on module code](#322-based-on-module-code)  
     . . 3.2.3 [Based on module name](#323-based-on-module-name)  
     . . 3.2.4 [Based on module code and name](#324-based-on-module-code-and-name)  
     . . 3.2.5 [Adds a specific module to available module list](#325-adds-a-specific-module-to-available-module-list)  
@@ -28,9 +28,9 @@ Table of Contents
     . . 3.5.3 [Viewing module plan](#353-viewing-module-plan)  
     . . 3.5.4 [Viewing completed modules' credit](#354-viewing-completed-modules-credits)  
     . . 3.5.5 [Viewing CAP](#355-viewing-cap)  
-    3.6 [Find](#36-find)
+    3.6 [Find](#36-find)  
     3.7 [Clear](#37-clear)  
-    3.8 [Help](#38-help) 
+    3.8 [Help](#38-help)  
     3.9 [Exit](#39-exit)  
 4. [FAQ](#4-faq)  
 5. [Command Summary](#5-command-summary)  
@@ -374,7 +374,13 @@ or
 
 `done id/[module code] g/[grade]`
 
-### 5.6 View
+### 5.6 Find
+
+Command: 
+
+`find [keyword]`
+
+### 5.7 View
 
 Command: 
 
@@ -396,18 +402,18 @@ or
 
 `CAP`
 
-### 5.7 Clear
+### 5.8 Clear
 
 Command:
 
 `clear`
 
-### 5.8 Help  
+### 5.9 Help  
 Command:  
 
 `help`
 
-### 5.9 Bye
+### 5.10 Bye
 
 Command:
 
