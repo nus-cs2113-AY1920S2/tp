@@ -185,8 +185,6 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 > **Note**:
 > Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y`. <br/>
 > `INDEX` of task specified has to be an **event** task. <br/>
-> Refer to below, [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands on how to obtain the `INDEX` of
-> an event task.
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
@@ -198,7 +196,9 @@ Expected outcome:
 
 > **Note**:
 > Repeating an event will cause the event to have the symbol `[R]` instead of `[E]` and its `PERIOD_NUM` and `PERIOD_TYPE` will also
-> be shown in a square bracket beside `notes` section. Below is an example:
+> be shown in a square bracket beside `notes` section. More explanation on these symbol
+> will be provided below, at [Section 3.4. List Tasks: `list`](#34-list-tasks-list). 
+> Below is an example:
 > ```
 > Here are the search results:
 >  1.[R][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
@@ -237,7 +237,7 @@ Expected outcome:
 > ```
 
 > **Note**: It is perfectly acceptable to place a `[PERIOD TYPE]` value beside 0. For example `repeat id/6 p/0d`. The command will still
-> be accepted. However, placing any other English alphabet will result in an invalid command.
+> be accepted. However, placing other valid characters (like English alphabet) will result in an invalid command.
 
 ### 3.4. List Tasks: **`list`**
 
@@ -312,7 +312,7 @@ Here are the relevant tasks:
 #### 3.4.4. List Upcoming Events: **`list upcoming events`**
 
 You can view **all** your **upcoming events** from the list of tasks regardless of how far it is from today.
-It will only show **events** that have not occurred yet and is time-sensitive. 
+The command will only show **events** that have not occurred and it is time-sensitive.
 
 Format: `list upcoming events`
 
@@ -398,7 +398,7 @@ Expected outcome:
 ```
 
 > **Note**: 
-> If a repeating event is marked done, it will automatically be marked undone once the date of the repeatEvent passes today and 
+> If a repeating event is marked done, it will automatically be marked undone if the date of the repeatEvent passes today and 
 > is updated to the next one. This also applies when you call `repeat` on an event that is marked done. 
 
 ### 3.8. Clear Tasks: **`clear`**
