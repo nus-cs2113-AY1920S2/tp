@@ -4,6 +4,7 @@ import commands.AddDishCommand;
 import commands.AddReservationCommand;
 import commands.AddStockCommand;
 import commands.ClearReservationCommand;
+import commands.ClearStockCommand;
 import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
 import commands.HelpCommand;
@@ -144,6 +145,8 @@ public class CommandParser {
         } else if (splitCommands[0].equals("clear")) {
             if (splitCommands[1].equals("reservation")) {
                 new ClearReservationCommand().execute(reservations, ui);
+            } else if (splitCommands[1].equals("stock")) {
+                new ClearStockCommand().execute(stock);
             }
         } else {
             errorCommand();

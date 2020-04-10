@@ -1,3 +1,22 @@
+add
+delete
+list
+search
+random
+keyword
+add dish
+add reservation
+add stock
+delete stock
+delete dish
+delete reservation
+add delete
+1111
+2222
+add delete list search
+search dish
+search reservation
+search stock
 add dish; n/pizza; i/cheese, sauce; p/7.00;
 list dish;
 add dish; n/rice; i/rice, salt; p/12.00;
@@ -43,10 +62,12 @@ add stock; i/water; q/; p/1.00;
 add stock; i/water; q/10; p/;
 add stock; i/water; q/10; p/$$$$;
 list stock
+list stock;
 delete stock; i/tomato; q/1;
 delete stock; q/1; i/tomato;
 delete stock; i/tomato; q/9;
 list stock
+list stock;
 delete stock; green
 delete stock; i/tomato;
 delete stock;
@@ -55,7 +76,7 @@ delete stock; i/tomato; q/LOL;
 delete stock; i/tomato; q/-10;
 delete stock; tomato; q/1;
 delete stock; i/tomato; 1;
-list stock
+list stock;
 search stock;      
 search stock; tomato
 search stock; rice
@@ -123,4 +144,6 @@ profit
 popular
 clear reservation
 clear reservation;
+clear stock
+clear stock;
 bye
