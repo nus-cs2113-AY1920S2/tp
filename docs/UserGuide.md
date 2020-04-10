@@ -636,13 +636,13 @@ A: Yes, you can! To do so, follow the instructions mentioned in the answer below
 Q: How do I transfer my saved data to another computer?  
 A: In the folder where your **ATAS** jar file is located, look for a file named "atasData.txt". Place a copy of this file into the folder where the **ATAS** jar file is located in your new computer.
 
-Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats three days later?  
+Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats 3 days later?  
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
 Refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
 
-Q: Can I edit my repeated event details using `edit` command?
+Q: Can I edit my repeated event details using `edit` command? <br/>
 A: The `edit` command is used to edit the details such as `date` or `comments` of `assignment`, `event` or `repeat event`. 
 To change the repeat details for a `repeat event`, please refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
 
