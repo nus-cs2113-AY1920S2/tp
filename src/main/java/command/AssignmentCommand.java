@@ -42,7 +42,7 @@ public class AssignmentCommand extends Command {
     @Override
     public CommandResult execute(TaskList taskList, Ui ui) {
         Task newAssignment = new Assignment(assignmentName, moduleName, deadline, comments);
-        if (taskList.isRepeatTask(taskList, newAssignment)) {
+        if (taskList.isSameTask(taskList, newAssignment)) {
             return new CommandResult(Messages.SAME_TASK_ERROR);
         }
         taskList.addTask(newAssignment);

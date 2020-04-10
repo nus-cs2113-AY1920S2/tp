@@ -38,6 +38,10 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    public void setNotDone() {
+        this.isDone = false;
+    }
+
     public abstract LocalDateTime getDateAndTime();
 
     public abstract LocalDate getDate();

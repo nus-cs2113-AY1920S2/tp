@@ -44,8 +44,13 @@ public class RepeatCommand extends Command {
         this.typeOfPeriod = typeOfPeriod;
     }
 
-    private String iconToString(String type) {
-        switch (type) {
+    /**
+     * Converts 'd' to day, 'w' to week, 'm' to month, 'y' to year.
+     * @param symbol symbol of the repeating period ('d', 'w', 'm', 'y')
+     * @return String of the symbol that is spelt out
+     */
+    private String iconToString(String symbol) {
+        switch (symbol) {
         case(DAILY_ICON):
             return DAILY_STRING;
         case(WEEKLY_ICON):
@@ -58,7 +63,7 @@ public class RepeatCommand extends Command {
             assert false;
         }
         assert false;
-        return type;
+        return symbol;
     }
 
     @Override
@@ -84,8 +89,14 @@ public class RepeatCommand extends Command {
     }
 
     private CommandResult setRepeat(TaskList taskList, Event event) {
+        boolean isDone = event.getIsDone();
         RepeatEvent newRepeatEvent = new RepeatEvent(event.getName(), event.getLocation(), event.getDateAndTime(),
                 event.getEndDateAndTime(), event.getComments(), numOfPeriod, typeOfPeriod, event.getDateAndTime(), 0);
+        if (isDone) {
+            newRepeatEvent.setDone();
+        }
+        newRepeatEvent.updateDate();
+
         taskList.editTask(eventIndex, newRepeatEvent);
         return new CommandResult(String.format(Messages.REPEATING_SUCCESS_MESSAGE, newRepeatEvent.getName(),
                 numOfPeriod == 1 ? "" : numOfPeriod + " ", iconToString(typeOfPeriod),
@@ -94,9 +105,14 @@ public class RepeatCommand extends Command {
 
     private CommandResult unsetRepeat(TaskList taskList, Event event) {
         if (event instanceof RepeatEvent) {
+            boolean isDone = event.getIsDone();
             Event newEvent = new Event(event.getName(), event.getLocation(), event.getDateAndTime(),
                     event.getEndDateAndTime(), event.getComments());
+            if (isDone) {
+                taskList.getTask(eventIndex).setDone();
+            }
             taskList.editTask(eventIndex, newEvent);
+
             return new CommandResult(String.format(Messages.STOP_REPEATING_SUCCESS_MESSAGE, newEvent.getName()));
         }
         return new CommandResult(String.format(Messages.REPEAT_NOT_SET_ERROR, event.getName()));

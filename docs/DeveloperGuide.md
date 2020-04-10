@@ -2,18 +2,18 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Table of Contents
-- [Setting up](#1-setting-up)
+1. [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
 	- [Verifying the Setup](#13-verifying-the-setup)
-- [Design](#2-design)
+2. [Design](#2-design)
 	- [Architecture](#21-architecture)
 	- [UI Component](#22-ui-component)
 	- [Logic Component](#23-logic-component)
 	- [Model Component](#24-model-component)
 	- [Storage Component](#25-storage-component)
 	- [Atas Component](#26-atas-component)
-- [Implementation](#3-implementation)
+3. [Implementation](#3-implementation)
 	- [Delete Task Feature](#31-delete-task-feature)
 		- [Design Considerations](#311-design-considerations)
 	- [Search task feature](#32-search-task-feature)
@@ -25,27 +25,31 @@ Table of Contents
 	- [Repeat event feature](#34-repeat-event-feature)
 		- [Current Implementation](#341-current-implementation)
 		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-their-impact)
-		- [Design Considerations](#343-design-considerations)
+		- [How date and time is updated](#343-how-date-and-time-is-updated-in-repeateventupdateevent)
+		- [Design Considerations](#344-design-considerations)
+		- [Future Enhancement](#344-future-enhancements)
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
 		- [Design Considerations](#352-design-considerations)
+		- [Future Enhancements](#353-future-enhancements)
 	- [View Calendar feature](#36-view-calendar-feature)
 		- [Implementation](#361-implementation)
 		- [Design Considerations](#362-design-considerations)
+		- [Future Enhancements](#363-future-enhancements)
 	- [Storage](#37-storage)
 		- [Implementation](#371-implementation)
 			- [Saving the current state of **ATAS** with `Storage#save()`:](#372-saving-the-current-state-of-atas-with-storagesave)
 			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#373-loading-previously-saved-tasklist-data-into-atas-with-storageload)
 		- [Design Considerations](#374-design-considerations)
-- [Testing](#4-testing)
+4. [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
-- [DevOps](#5-devops)
+5. [DevOps](#5-devops)
     - [Build Automation](#51-build-automation)
     - [Continuous Integration](#52-continuous-integration)
     - [Coverage Reporting](#53-coverage-reporting)
     - [Making a Release](#54-making-a-release)
-- [Appendices](#6-appendices)
+6. [Appendices](#6-appendices)
     - [Product Scope](#61-appendix-a-product-scope)
     - [User Stories](#62-appendix-b-user-stories)
     - [Non-Functional Requirements](#63-appendix-c-non-functional-requirements)
@@ -60,6 +64,9 @@ This section will guide you on how to set up this project on your own computer.
 1.  JDK 11 or above
 
 2.  IntelliJ IDE
+
+> **Note**: Knowing [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) API from Java 
+> would help in understanding how Date and Time is used in our implementation and [Tests](#4-testing).
 
 ### 1.2. Setting up the project
 1.  Fork this repository, and clone the fork to your computer
@@ -199,7 +206,7 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete.png)
+![delete task](images/delete v2.0.png)
 
 #### 3.1.1. Design Considerations
 
@@ -243,12 +250,14 @@ A new instance of `SearchCommand` with the `taskType`, `searchParam` and `date` 
 
     -   If there are no tasks in the existing task list, it will initialize a new `CommandResult` class that prints out an error message, indicating an empty task list
 
-    -   Otherwise, If the `taskType` is an *assignment* or *event* , `SearchCommand#getSearchQueryAssignments()` or `SearcCommand#getSearchQueryEvents()`will be called respectively.
-    
-        -   In the method, a *linked hash map* will be used to store the results from `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` respectively.
+    -   Otherwise, If the `taskType` is an *assignment* or *event* , `SearchCommand#getSearchQueryAssignments()` or `SearchCommand#getSearchQueryEvents()`will be called respectively.
         
-        -   We will iterate through the linked hash map to find the *events* or *assignments* matching the search query and date(if applicable) and add the
-        original index to the `storeIndex` and return an ArrayList containing the results.
+        -   In the method,  `Parser#getEventsHashMap()` and `Parser#getAssignmentsHashMap()` will be called respectively, to obtain the original task list and the corresponding index.
+        
+        -   `getEventOrAssignmentResults` will be called to obtain the results of the search query.
+        
+            -   `SearchCommand#loopArrayNoDateEventsAssignments` or `SearchCommand#loopArrayWithDateEventsAssignments` will be called to loop through the *Linked HashMap~ to find the tasks
+            matching the search query and date(if applicable) and add the original index to the `storeIndex` and return an ArrayList containing the results.
         
     -   Lastly, If `taskType` is *all*, `SearchCommand#etSearchQueryAllTasks` will be called.
         
@@ -335,7 +344,7 @@ Example 2: Given below is an example usage of `clear done` command:
 The user launches the app and retrieves the tasks which are saved under a local file using `Storage`.
 
 **Step 2**  
-The user enters `clear all` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
+The user enters `clear done` into the command line. Method `Parser#parseCommand()` will be called to parse the command provided.
 
 **Step 3**  
 A new instance of `ClearCommand` with `clearParam` initialized will be created. The `DeleteCommand#execute()` will then be called.
@@ -345,7 +354,10 @@ The `execute()` method will then call the `ClearCommand#clearDone()` :
 
 -   If there are no tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating an empty task list
 
--   If there are tasks in the existing task list, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method.
+-   If there are no completed tasks in the existing task list, it will initialize a new instance of `CommandResult` that prints out an error message indicating that there 
+are no completed tasks
+
+-   Otherwise, it will call the `clearDone()` method that will call the `TaskList#deleteAllDone()` method to delete all the completed tasks, excluding repeat events.
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
@@ -373,7 +385,8 @@ The following sequence diagram summarizes how the `ClearCommand` operation works
             -   Cons: `ArrayList` will be filled up with unnecessary tasks that could have been removed. This might affect the time complexity of future addition or searching operations on the `ArrayList`.
 
 ### 3.4. Repeat event feature
-This feature allow users to repeat their events, removing the need to insert the same event multiple times with different dates.
+This feature allow users to repeat their events at a specified frequency forever, removing the need to insert the
+same event multiple times with different dates.
 
 #### 3.4.1. Current Implementation
 
@@ -383,7 +396,7 @@ Given below is an example usage of the `repeat id/2 p/1w` command given by a use
 
 **Step 1**  
 `Parser#parseCommand()` will be called to parse the command provided. Through this method, we will be able to
- obtain information to get integers `eventID`, `numOfPeriod` and the string `typeOfPeriod`.  
+ obtain information to get integers `eventID`, `numOfPeriod` and string `typeOfPeriod`.  
 - `eventID` identifies the task that the user wishes to repeat.  
 - `numOfPeriod` and `typeOfPeriod` specifies how often the user wants to repeat the event.
 
@@ -400,44 +413,86 @@ The `execute()` method will check 3 things after it calls `getTask()` method fro
 
 -   It will then check if `numOfPeriod` equals to 0. In which case, it will be setting the event to not repeat by calling `RepeatCommand#unsetRepeat()`.
 
-    -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using the variables from `RepeatEvent` and replace it in the `TaskList`.
+    -   `unsetRepeat()` method will check if the given task is indeed a `RepeatEvent` object and then create a new `Event` object using
+     the variables from `RepeatEvent` and replace it in the `TaskList` with no changes to any variables in `Event` object.
 
 -   If it is not 0, it will set the event to repeating by calling `RepeatCommand#setRepeat()`.
 
-    -   `setRepeat()` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object and replace
-     the current `Event` object at the `eventID` in `TaskList`.
-
+    -   `setRepeat()` method will use 2 of the variables (`numOfPeriod`, `typeOfPeriod`) to create a new `RepeatEvent` object, update its
+        date to the next upcoming date if the current date is in the past by calling `RepeatEvent#updateDate()` and replace the
+        current `Event` object at the `eventID` in`TaskList`. 
+     
 **Step 4**  
-After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will be printed by calling `showToUser()` method in the `Ui` class. Then the event will be saved into local file by calling the `trySaveTaskList()` method from the `Atas` class.
+After the `execute()` method completes, a new `CommandResult` class with a string containing the result of the execution. This string will 
+be printed by calling `Ui#showToUser()` Then the event will be saved into local file by calling `Atas#trySaveTaskList()`.
 
-The following sequence diagram summarizes how repeat command operation works:  
+The following sequence diagram summarizes how repeat command operation works, from the parser creating an `RepeatCommand` till when
+ `execute()` method called by `Atas` is returned:
 
 ![Repeat Command Sequence Diagram](images/RepeatCommand_UML.png)
 
 #### 3.4.2. `Event` and `RepeatEvent` Differences and their Impact
 
--   There are 4 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an event to repeat accurately.
+-   There are 5 main variables that differentiate a `RepeatEvent` object from an `Event` object, and keep track of Date and Time for an
+ event to repeat accurately.
 
-    1.  `int numOfPeriod`: Set to the given value that states the frequency which `typeOfPeriod` will repeat at.
+    1.  `int numOfPeriod`: Set to the user input value that states the frequency which `typeOfPeriod` will repeat at.
 
     2.  `String typeOfPeriod`: Set to `d` (days), `w` (weeks), `m` (months) or `y` (years) to indicate how often it will repeat.
 
-    3.  `LocalDateTime originalDateAndTime`: Set to be the event’s current Date and Time and will not change so that we can keep track of the original Date and Time for other usages later.
+    3.  `LocalDateTime originalDateAndTime`: Set to be the event’s current Date and Time and will not change so that we can keep track of 
+        the original Date and Time for other usages later.
 
-    4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with type `typeOfPeriod` has passed.  
-        For example, if `numofPeriod` is `2` and `typeOfPeriod` is `d`, and 6 days has passed since `originalDateAndTime`, then `periodCounter` will be 3.
+    4.  `int periodCounter`: Set to 0 at the start, but increases periodically. It will keep track of how many times `numOfPeriods` with 
+        type `typeOfPeriod` has passed.  
+        For example, if `numofPeriod` is `2`, `typeOfPeriod` is `d` and 6 days has passed since `originalDateAndTime`, then 
+        `periodCounter` will be 3.
+        
+    5. `LocalDateTime nextDateAndTime`: Not initialized initially, but gets updated every time `updateDate()` is called. This is used to
+     keep track of the event's next date and time so that it could be utilized in other areas, such as `list upcoming events` for corner
+     cases. For example, a repeating event that occurs today but we have past its time (thus will not appear in `list upcoming events` as
+      the event has past and its date will not be updated yet since it is still today) but should appear as it will repeat into the future.
 
 -   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will
- call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future date if today is not possible.
+    call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is
+    of class `RepeatEvent` and its date is in the past. The method will update the dates of the tasks using `originalDateAndTime` and also 
+    `periodCounter` to accurately update the starting date and time of the `RepeatEvent` so that it reflects the closest possible future
+    date if today is not possible. (More information on how date and time is updated is given below)
+    
+    > **NOTE**: Using `originalDateAndTime` instead of the recorded date and time of the task helps to circumvent a potential bug concerning
+     the last few dates of a month. For example, given 31st Jan 2020, if we add 1 month to it using the LocalDateTime Java API,
+     we will get 29 Feb 2020. Then adding another month, we will get 29 Mar 2020 instead of 31 Mar 2020.
+    >
+    > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
+    next date and time. In this case, we will obtain 31 Mar 2020 instead of 29 Mar 2020. 
 
--   To users, apart from minor differences such as the icon and `RepeatEvent` listing how often it is being repeated, there will be no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and they can only add `Event` or `Assignment` to the app and would appear as if there are only 2 type of tasks.
+-   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
+ no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
+they can only add or edit `Event` or `Assignment` and would appear as if there are only 2 type of tasks.
 
-#### 3.4.3. Design Considerations
+#### 3.4.3 How date and time is updated in `RepeatEvent#updateEvent()`
+There are 2 ways an event's date and time is updated. 
+1. When a `RepeatCommand` is created to convert an `Event` object to `RepeatEvent` object in `setRepeat()` method under Step 3 of
+ `RepeatCommand`.
+2. When a user starts up ATAS with `RepeatEvent` object in its `TaskList`, `Atas#updateEventDate()` will be called. It will then
+ call `updateEvent()` for each `RepeatEvent` objects and its date will be updated if it is in the past.
+ 
+-  `updateEvent()` solely compares dates. 
+- It will loop until `startDate` (which is the `RepeatEvent` object's stated `startDateAndTime.toLocalDate()`) is equal to or
+  greater than the current date. With each loop, it will simply add `numOfPeriod` of days, months or years using the methods
+   provided by Java `LocalDateTime` API to `startDate`. `periodCounter` will also increase by one per iteration. 
+- At the end of the loop, we add `numOfPeriod` * `periodCounter` of days, months or years to `originalDateAndTime` to get our
+ `startDateAndTime`. Similarly, we add the same amount to the `endDateAndTime`. <br/> 
+  Then we add 1 more `numOfPeriod` of days, months or years to `startDateAndTime` to get our `nextDateAndTime`.
 
--   Allowing only tasks that are `Event` to be repeated.
+#### 3.4.4. Design Considerations
+
+-   Allowing only tasks that are `Event` to be repeated. As stated in our UG, an event is a task that you plan to do at a particular date
+    and time with an end time in mind.
 
     -   Rationale:  
-        We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it makes sense for events to repeat since many events actually occur on a regular basis.
+        We feel that given the context of university students, it makes little sense for most assignments to repeat. However, it 
+        makes sense for events to repeat since many events actually occur on a regular basis.
 
     -   Alternative Considered:  
 
@@ -464,15 +519,40 @@ The following sequence diagram summarizes how repeat command operation works:
 
     -   Rationale:  
         It allows the repeated events to be easily removed or un-repeated as a there will only be a single `RepeatEvent` present in the list.
+        However, this means that past instances of that event will not be kept and we feel that it is acceptable as the past events are not 
+        nearly as important as future events for a time management app.
 
     -   Alternative considered:  
 
         1.  Repeatedly add new events with changes in dates for a fixed amount when repeat command is used.
 
-            -   Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling is lower.
+            -   Pros: It will be simpler to implement and test if repeating events can be treated like any other events as coupling will be
+             lower compared to current implementation.
 
-            -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood the user’s list and increase the size of the local file that stores the `TaskList`.
+            -   Cons: Deleting a repeating event would be difficult as there would be multiple entries to delete. It will also flood 
+            the user’s list and increase the size of the local file that stores the `TaskList`.
+            
+#### 3.4.4 Future Enhancements
+A list of possible future enhancements and implementations are provided below as ways to further enhance the user's experience with ATAS.
 
+- Allow users to add `RepeatEvent` directly instead of getting an event to repeat.
+    - Possible Implementation: 
+        1. Create new `RepeatEventCommand` class similar to `AssignmentCommand` and `EventCommand`. Then edit `Parser` class
+           to allow user to create an `RepeatEvent` from command line itself. <br/>
+           > **Note**: It is possible to reuse `EventCommand` and `RepeatCommand` current implementations for the new class but will 
+           increase coupling as it reuses code from the 2 classes.
+      
+- Allow users to keep track of past instances of repeated events for users to be able to reflect on how much time was spent on past
+ instances of the repeated event.
+    - Possible Implementation:
+        1. Store past events in current/another local file that could be retrieved later on by the calendar or the app.
+    
+- Allow users to find repeated events on `searchd` commands.
+    - Possible Implementation: 
+        1. Keep an array of future dates so that that array could be utilized by `searchd` commands if the task is an instance of
+         `RepeatEvent`.
+         
+         
 ### 3.5. Edit Task Feature
 #### 3.5.1. Implementation
 
@@ -483,16 +563,14 @@ Given below is an example usage scenario of the `edit` command.
 **Step 1**  
 The user types in `edit 1`. The `parseCommand()` method of the `Parser` class is called to obtain `edit` which is the type of command the user is entering.
 
-> **Warning**
->
+> **Warning**:
 > An `IncorrectCommand` class will be returned and an `UNKNOWN_COMMAND_ERROR` string from the `Messages` class will be passed into the constructor of that class if the command supplied was invalid.
 
 **Step 2**  
 The `parseCommand()` method subsequently calls the `prepareEditCommand()` method inside the same `Parser` class. This method splits the `fullCommand` string parameters into 2 tokens. The integer `1` will be obtained as the **Index** of the task specified in the list. This method returns a new instance of the `EditCommand` class, passing the integer `1` as the parameter.
 
-> **Warning**
->
-> An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed into the constructor of that class if the number supplied was not an **integer**.  
+> **Warning**:
+> An `IncorrectCommand` class will be returned and a `NUM_FORMAT_ERROR` string from the `Messages` class will be passed into the constructor of that class if the number supplied was not an **integer**. <br/> 
 > An `IncorrectCommand` class will be returned and a `INCORRECT_ARGUMENT_ERROR` string from the `Messages` class will be passed into the constructor of that class if there are no task index supplied by the user.  
 
 **Step 3**  
@@ -501,15 +579,20 @@ A new instance of the `EditCommand` class is returned to the main method of **AT
 **Step 4**  
 The `execute()` method in the `EditCommand` class first gets an input from the user on the details of the edited task.
 
-> **Tip**
->
-> Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENTS]`  
+> **Tip**:
+> Assignment Command Format: `assignment n/[NAME] m/[MODULE] d/DD/MM/YY HHmm c/[COMMENTS]` <br/> 
 > Event Command Format: `event n/[NAME] l/[LOCATION] d/DD/MM/YY HHmm - HHmm c/[COMMENTS]`
 
 **Step 5**  
 If the user supplies an `assignment` command, the `editAssignment()` method will be invoked. This method extracts the `assignmentName`, `moduleName`, `dateTime` and `comments` string to return a new instance of the `Assignment` class.  
 
 If the user supplies an `event` command, the `editEvent()` method will be invoked. This method extracts the `eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of the `Event` class.
+
+Afterwards, the task will be checked to see whether it is a `RepeatEvent` task type. If it is not, it will proceed to **Step 6**.
+
+If it is a `RepeatEvent` task, the edited task as well as the task to be edited is passed to a `editRepeatEvent` method to edit the repeated task. 
+In the `editRepeatEvent` method, the `numOfPeriod`, `typeOfPeriod`, `originalDateAndTime` and `periodCounter` will be extracted to be passed into creating a new `RepeatEvent` task. 
+
 
 **Step 6**  
 This newly instanced class (either `Assignment` or `Event`) will be passed into the method `editTask()` of the `TaskList` class. The `editTask()` method of the `TaskList` class uses Java’s `ArrayList` `set()` method to replace the task.
@@ -519,25 +602,49 @@ Finally, a `CommandResult` class is returned with `EDIT_SUCCESS_MESSAGE` passed 
 
 The following sequence diagram summarises what happens when the `EditCommand` class is executed.
 
-![EditCommand\_SequenceDiagram.png](images/EditCommand_SequenceDiagram.png)
+![EditCommand\_SequenceDiagram.png](images/EditCommand_MainSequence.png)
+
+The following sequence diagram shows the checking of `RepeatEvent` task type.
+
+![EditCommand\_Ref.png](images/EditCommand_Ref.png)
 
 #### 3.5.2. Design Considerations
 
 -   Placing invocation of new `Assignment` and `Event` class in `EditCommand` class
 
-    -   Rationale:  
+    -   **Rationale**:  
         The `execute()` method of `EditCommand` class has to use the `Ui` class parsed as one of the parameters to get input from user on new details of the task. The new input captured will be then passed to the `editAssignment()` or `editEvent()` method in the `EditCommand` class.
 
-    -   Alternatives Considered:  
+    -   **Alternatives Considered**:  
         The `editAssignment()` and `editEvent()` methods can be placed in the `Parser` class and called in the `prepareEditCommand` method of that class.
 
 -   Using Java’s `ArrayList#set()` method
 
-    -   Rationale:  
+    -   **Rationale**:  
         When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited. Therefore, the `set()` method of `ArrayList` is used to replace the edited task with the old task.
 
-    -   Alternatives Considered:  
+    -   **Alternatives Considered**:  
         Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
+        
+- Editing of `Repeat Event` task types will retain `Repeat Event` task type
+
+    - **Rationale**: <br/>
+    When a `repeat event` task is edited, the `repeat event` task retains the `repeat event` task type. It is only logical in editing that when 
+    a user edits an event, only the details of the event is changed. The task type of the original task should not change. 
+    
+    - **Alternatives Considered**: <br/>
+    Any editing of `repeat event` task will revert task back to `event` task and user will have to issue `repeat` command to 
+    set `event` task to `repeat`. However, this will affect the usability of `editCommand` thus this alternative is not selected. 
+    
+#### 3.5.3 Future Enhancements
+- Allow users to edit `Repeat Event` directly from edit task prompt
+    - Possible Implementation: <br/>
+    Call `RepeatEventCommand` if a `repeat event` task is to be edited to prompt user if they want to edit the `repeat` details
+    of a `repeat event` task. 
+    
+- Notify users if users of edits during exit of ATAS. This helps user keep track of what edits he/she made to existing tasks.
+    - Possible Implementaion: <br/>
+    Keep an ArrayList of tasks which are edited and when user is exiting **ATAS**, notify the user by printing ArrayList.  
 
 ### 3.6. View Calendar feature
 ![Sample output of Calendar Command](images/calendar2.png)
@@ -548,14 +655,18 @@ The `CalendarCommand` class extends the `Command` class with methods to implemen
 
 ![Interaction of CalendarCommand and the various major components](images/calendar-diagram.png)
 
-In particular, the diagram below shows the explicit execution flow that `CalendarCommand` takes.
+In particular, the diagram below shows the explicit execution flow that `buildMonthCalendar()` method of the `CalendarCommand` takes.
 
 ![Explicit execution flow of CalendarCommand](images/addMonthlyCalendar.png)
 
 Given below is an example usage of the `calendar` command. The step by step execution is shown in the sequence diagram above.
 
 **Step 1**  
-The users enters the command `calendar d/05/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+The users enters the command `calendar d/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
+
+> **Note**
+>
+> The arguments specified after the command word `calendar` represents the month and year of the calendar view returned. `d/05/20` refers to May 2020.
 
 **Step 2**  
 The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.
@@ -585,7 +696,7 @@ The method manages all pre-processing to get the details needed to formulate the
 
 > **Note**
 >
-> Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the design considerations subsection.
+> Since an `Event` can be set to repeat, but is stored within the `TaskList` as a single `Task` object, duplicating a repeat `Event` allows us to obtain the full list of `Tasks` that might occur within the month as separate Task. The decision is further explained in the [design considerations](#362-design-considerations) subsection.
 
 **Step 4**  
 The `CommandResult` object is subsequently passed to `Ui` component which obtains and prints the `Calendar` view by calling `showToUser()` method of the `Ui` component.
@@ -595,10 +706,10 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
     -   Rationale:  
-        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects, with each `RepeatEvent` being stored as a separate `Task` within the `ArrayList` of `Task` objects. Each `Task` can be removed from the `ArrayList` after it has been printed which makes the task simpler.
+        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task` Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
 
     -   Alternatives considered:  
-        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`.
+        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.4, RepeatEvent design considerations](#344-design-considerations))
 
 -   Truncation of `Task` details instead of extending column size
 
@@ -617,6 +728,12 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 
     -   Alternative Considered:  
         Expanding number of `Calendar` rows. This will require the need to increase the number of `Calendar` columns to preserve the integrity of a traditional calendar view. However, this also is infeasible as our goal is to keep the calendar compact such that it does not need to fill the screen.
+        
+#### 3.6.3. Future Enhancements
+
+- Future enhancement to the Calendar feature of **ATAS** is inclusive but not limited to the following:
+
+    - Allowing users the ability to dictate their dimensions of the calendar view so that they are able to customise the size to their preference. Current implementation involves hardcoded dimensions that might not meet every users' requirements. 
 
 ### 3.7. Storage
 #### 3.7.1. Implementation
@@ -660,14 +777,23 @@ When all lines in the save file have been decoded, return the `TaskList`.
         As the `TaskList` is expected to be small for most users, the drop in performance due to unnecessary saves is negligible. The first method is chosen to make the code easier to maintain.
 
 ## 4. Testing
+Testing is required to ensure that the code written is accurate, bug free (at least in the tests designed) and do not cause any existing
+ feature to fail. For ATAS, there are 2 ways to run automated testing.
+ 
 ### 4.1. Using IntelliJ JUnit Tests
 
 -   To run all test, right-click on `src/test/java` folder and choose `Run 'All Tests'`
 
--   For individual tests, you can right-click on the test **package**, **class** or a single test and choose `Run 'TEST'`
+-   To run all test using Gradle: Open a console and run the command `gradlew clean test`
+    > **Note**: For more tips on how to use gradle commands, look at 
+    [Gradle Tutorial](https://github.com/AY1920S2-CS2113T-M16-1/tp/blob/master/tutorials/gradleTutorial.md)
+
+-   For individual test, navigate to folder `src/test/java`. From there, you can right-click any of the test **package**, **class** or a
+    single test and choose `Run 'TEST'` to run the corresponding test.
 
 ### 4.2. Using Input-Output Tests
--   Navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script.
+-   Open a console, navigate to the `text-ui-test` folder and run the `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) script. <br/>
+    This will run ATAS with the commands written in `input.txt` and compare its output with the text file `EXPECTED.txt`. 
 
 ## 5. DevOps
 ### 5.1 Build Automation
@@ -704,17 +830,21 @@ To make a new release:
 ### 6.1. Appendix A: Product Scope
 Target user profile:  
 
--   manages many university assignments or events
+-   university students who require the use of computer device often and is reasonably comfortable with the command line interface
 
--   understands how to use a command line interface application
+-   desire to efficiently organise, manage, view and record their day to day events and tasks through an application 
+
+-   has a need to manage large scale of university assignments and / or university / personal events that might occur on a regular basis
 
 -   prefers desktop applications over other types of applications
 
 -   prefers using a command line interface over a graphical user interface
 
--   types fast
+-   able to type fast and prefers typing over mouse input
 
-**Value proposition:** manage assignments and events more efficiently than a typical task manager application with a GUI
+-   prefer one shot commands over multi-step commands
+
+**Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application
 
 ### 6.2. Appendix B: User Stories
 <table>
@@ -881,7 +1011,25 @@ Target user profile:
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
-3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+3.  App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
+
+4.  The user interface should be intuitive enough for users who are not IT-savvy but understands the basics of a task managing application.
+
+5.  Data saved in a session should be persistent and carry forward to the next session of use. 
+
+6.  Saved data files should be portable across different instance of application on different devices, meaning one can resume a saved session on another device if he so chooses to. Moving from one OS to another does not create any issues either.
+
+7.  Application should not crash, application should always recover from error gracefully with an error message. 
+
+8.  Response in the form of command line output should be intuitive, quick and respond specifically to the user's intent or instructions
+
+9.  Documentation in the form of User Guide and Developer Guide should be clear, concise and understandable to their respective target audience. 
+
+11. Source code are to remain open source such that anyone can make editions to create their own rendition of the application. 
+
+12. Saved data files should not be tampered with by the user unless they understand the methods to make changes. Application should recover from unreadable tampered data files by overwriting the entire file with new session data while old session data is lost.  
+
+13. Application should be scalable to handle increased functionality at any instance. 
 
 ### 6.4 Appendix D: Documentation
 #### 6.4.1 Introduction

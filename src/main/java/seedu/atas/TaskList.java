@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class TaskList {
@@ -60,7 +59,7 @@ public class TaskList {
      * @param addedTask new Task that needs to be checked
      * @return True if there already exists a task within tasklist. Otherwise, false.
      */
-    public Boolean isRepeatTask(TaskList tasklist, Task addedTask) {
+    public Boolean isSameTask(TaskList tasklist, Task addedTask) {
         for (Task task : tasklist.getTaskArray()) {
             if (task.equals(addedTask)) {
                 return true;
@@ -70,6 +69,24 @@ public class TaskList {
     }
 
     //@@author jichngan
+    /**
+     * Checks for duplicate tasks within tasklist that is not the current specified task.
+     * @param tasklist TaskList to be checked against
+     * @param editedTask Edited task that needs to be checked
+     * @param editIndex Checked against list index to see whether its the task to be edited
+     * @return True if there exists another task within taskList. Otherwise, false.
+     */
+    public Boolean isSameEdit(TaskList tasklist, Task editedTask, int editIndex) {
+        int index = 0;
+        for (Task task : tasklist.getTaskArray()) {
+            if (task.equals(editedTask) && index != editIndex) {
+                return true;
+            }
+            index++;
+        }
+        return false;
+    }
+
     /**
      * Getter for the current Local Date.
      * Formats Local Date into "dd/MM/yyyy" format.
@@ -83,7 +100,7 @@ public class TaskList {
         return formattedCurrDate;
     }
 
-    //@@author jichngan
+
     /**
      * Getter method for tasks depending of days from today.
      * @param days Integer representing number of days from today
@@ -155,6 +172,7 @@ public class TaskList {
         return eventList;
     }
 
+    //@@author joelczk
     /**
      * Getter method for Task with the provided index in TaskList.
      * @param index index of Task to return
@@ -165,6 +183,7 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    //@@author joelczk
     /**
      * Getter for all assignment tasks.
      * @return ArrayList object containing all assignments
@@ -181,7 +200,7 @@ public class TaskList {
         return assignmentList;
     }
 
-    //@@author
+    //@@author joelczk
     /**
      * Adds a task to TaskList.
      * @param task task object to be added
@@ -244,7 +263,7 @@ public class TaskList {
         }
     }
 
-    //@@author
+    //@@author Keith-JK
     /**
      * Getter for tasks that falls within the provided time period.
      * @param startOfRange LocalDate representing start of time period
@@ -287,67 +306,131 @@ public class TaskList {
 
         switch (typeOfPeriod) {
         case RepeatCommand.YEARLY_ICON:
-            for (int timesRepeated = 1; taskDate.plusYears(numOfPeriod * timesRepeated)
-                    .compareTo(endOfRange) <= 0; timesRepeated++) {
-                if (isWithinRange(startOfRange, endOfRange,
-                        taskDate.plusYears(numOfPeriod * timesRepeated))) {
-                    RepeatEvent yearlyEventToAdd = new RepeatEvent(event.getName(),
-                            event.getLocation(),
-                            event.getDateAndTime().plusYears(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod), event.getComments(),
-                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
-                    taskArrayList.add(yearlyEventToAdd);
-                    break;
-                }
-            }
+            addYearlyRepeatEvent(startOfRange, endOfRange, taskDate, taskArrayList, event, numOfPeriod, typeOfPeriod);
             break;
         case RepeatCommand.MONTHLY_ICON:
-            for (int timesRepeated = 1; taskDate.plusMonths(numOfPeriod * timesRepeated)
-                    .compareTo(endOfRange) <= 0; timesRepeated++) {
-                if (isWithinRange(startOfRange, endOfRange,
-                        taskDate.plusMonths(numOfPeriod * timesRepeated))) {
-                    Event monthlyEventToAdd = new RepeatEvent(event.getName(),
-                            event.getLocation(),
-                            event.getDateAndTime().plusMonths(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod), event.getComments(),
-                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
-                    taskArrayList.add(monthlyEventToAdd);
-                    break;
-                }
-            }
+            addMonthlyRepeatEvent(startOfRange, endOfRange, taskDate, taskArrayList, event, numOfPeriod, typeOfPeriod);
             break;
         case RepeatCommand.WEEKLY_ICON:
-            for (int timesRepeated = 1; taskDate.plusWeeks(numOfPeriod * timesRepeated)
-                    .compareTo(endOfRange) <= 0; timesRepeated++) {
-                if (isWithinRange(startOfRange, endOfRange,
-                        taskDate.plusWeeks(numOfPeriod * timesRepeated))) {
-                    RepeatEvent weeklyEventToAdd = new RepeatEvent(event.getName(),
-                            event.getLocation(),
-                            event.getDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod), event.getComments(),
-                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
-                    taskArrayList.add(weeklyEventToAdd);
-                    break;
-                }
-            }
+            addWeeklyRepeatEvent(startOfRange, endOfRange, taskDate, taskArrayList, event, numOfPeriod, typeOfPeriod);
             break;
         case RepeatCommand.DAILY_ICON:
-            for (int timesRepeated = 1; taskDate.plusDays(numOfPeriod * timesRepeated)
-                 .compareTo(endOfRange) <= 0; timesRepeated++) {
-                if (isWithinRange(startOfRange, endOfRange,
-                        taskDate.plusDays(numOfPeriod * timesRepeated))) {
-                    RepeatEvent dailyEventToAdd = new RepeatEvent(event.getName(),
-                            event.getLocation(),
-                            event.getDateAndTime().plusDays(timesRepeated * numOfPeriod),
-                            event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod), event.getComments(),
-                            numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
-                    taskArrayList.add(dailyEventToAdd);
-                    break;
-                }
-            }
+            addDailyRepeatEvent(startOfRange, endOfRange, taskDate, taskArrayList, event, numOfPeriod, typeOfPeriod);
             break;
         default:
             assert false;
+        }
+    }
+
+    /**
+     * Adds a daily RepeatEvent if RepeatEvent eventually falls within the time period provided.
+     * @param startOfRange LocalDate that indicates start of time period
+     * @param endOfRange LocalDate that indicates end of time period
+     * @param taskDate LocalDate of the event
+     * @param taskArrayList ArrayList of Task that is to be returned
+     * @param event RepeatEvent to be checked
+     * @param numOfPeriod Integer that represents the frequency of repeats
+     * @param typeOfPeriod String that represents type of repeats
+     */
+    private void addDailyRepeatEvent(LocalDate startOfRange, LocalDate endOfRange,
+                                     LocalDate taskDate, ArrayList<Task> taskArrayList,
+                                     RepeatEvent event, int numOfPeriod, String typeOfPeriod) {
+        for (int timesRepeated = 1; taskDate.plusDays(numOfPeriod * timesRepeated)
+             .compareTo(endOfRange) <= 0; timesRepeated++) {
+            if (isWithinRange(startOfRange, endOfRange,
+                    taskDate.plusDays(numOfPeriod * timesRepeated))) {
+                RepeatEvent dailyEventToAdd = new RepeatEvent(event.getName(),
+                        event.getLocation(),
+                        event.getDateAndTime().plusDays(timesRepeated * numOfPeriod),
+                        event.getEndDateAndTime().plusDays(timesRepeated * numOfPeriod), event.getComments(),
+                        numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
+                taskArrayList.add(dailyEventToAdd);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Adds a weekly RepeatEvent if RepeatEvent eventually falls within the time period provided.
+     * @param startOfRange LocalDate that indicates start of time period
+     * @param endOfRange LocalDate that indicates end of time period
+     * @param taskDate LocalDate of the event
+     * @param taskArrayList ArrayList of Task that is to be returned
+     * @param event RepeatEvent to be checked
+     * @param numOfPeriod Integer that represents the frequency of repeats
+     * @param typeOfPeriod String that represents type of repeats
+     */
+    private void addWeeklyRepeatEvent(LocalDate startOfRange, LocalDate endOfRange,
+                                      LocalDate taskDate, ArrayList<Task> taskArrayList,
+                                      RepeatEvent event, int numOfPeriod, String typeOfPeriod) {
+        for (int timesRepeated = 1; taskDate.plusWeeks(numOfPeriod * timesRepeated)
+                .compareTo(endOfRange) <= 0; timesRepeated++) {
+            if (isWithinRange(startOfRange, endOfRange,
+                    taskDate.plusWeeks(numOfPeriod * timesRepeated))) {
+                RepeatEvent weeklyEventToAdd = new RepeatEvent(event.getName(),
+                        event.getLocation(),
+                        event.getDateAndTime().plusWeeks(timesRepeated * numOfPeriod),
+                        event.getEndDateAndTime().plusWeeks(timesRepeated * numOfPeriod), event.getComments(),
+                        numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
+                taskArrayList.add(weeklyEventToAdd);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Adds a monthly RepeatEvent if RepeatEvent eventually falls within the time period provided.
+     * @param startOfRange LocalDate that indicates start of time period
+     * @param endOfRange LocalDate that indicates end of time period
+     * @param taskDate LocalDate of the event
+     * @param taskArrayList ArrayList of Task that is to be returned
+     * @param event RepeatEvent to be checked
+     * @param numOfPeriod Integer that represents the frequency of repeats
+     * @param typeOfPeriod String that represents type of repeats
+     */
+    private void addMonthlyRepeatEvent(LocalDate startOfRange, LocalDate endOfRange,
+                                       LocalDate taskDate, ArrayList<Task> taskArrayList,
+                                       RepeatEvent event, int numOfPeriod, String typeOfPeriod) {
+        for (int timesRepeated = 1; taskDate.plusMonths(numOfPeriod * timesRepeated)
+                .compareTo(endOfRange) <= 0; timesRepeated++) {
+            if (isWithinRange(startOfRange, endOfRange,
+                    taskDate.plusMonths(numOfPeriod * timesRepeated))) {
+                Event monthlyEventToAdd = new RepeatEvent(event.getName(),
+                        event.getLocation(),
+                        event.getDateAndTime().plusMonths(timesRepeated * numOfPeriod),
+                        event.getEndDateAndTime().plusMonths(timesRepeated * numOfPeriod), event.getComments(),
+                        numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
+                taskArrayList.add(monthlyEventToAdd);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Adds a yearly RepeatEvent if RepeatEvent eventually falls within the time period provided.
+     * @param startOfRange LocalDate that indicates start of time period
+     * @param endOfRange LocalDate that indicates end of time period
+     * @param taskDate LocalDate of the event
+     * @param taskArrayList ArrayList of Task that is to be returned
+     * @param event RepeatEvent to be checked
+     * @param numOfPeriod Integer that represents the frequency of repeats
+     * @param typeOfPeriod String that represents type of repeats
+     */
+    private void addYearlyRepeatEvent(LocalDate startOfRange, LocalDate endOfRange,
+                                      LocalDate taskDate, ArrayList<Task> taskArrayList,
+                                      RepeatEvent event, int numOfPeriod, String typeOfPeriod) {
+        for (int timesRepeated = 1; taskDate.plusYears(numOfPeriod * timesRepeated)
+                .compareTo(endOfRange) <= 0; timesRepeated++) {
+            if (isWithinRange(startOfRange, endOfRange,
+                    taskDate.plusYears(numOfPeriod * timesRepeated))) {
+                RepeatEvent yearlyEventToAdd = new RepeatEvent(event.getName(),
+                        event.getLocation(),
+                        event.getDateAndTime().plusYears(timesRepeated * numOfPeriod),
+                        event.getEndDateAndTime().plusYears(timesRepeated * numOfPeriod), event.getComments(),
+                        numOfPeriod, typeOfPeriod, event.getOriginalDateAndTime(), event.getPeriodCounter());
+                taskArrayList.add(yearlyEventToAdd);
+                break;
+            }
         }
     }
 

@@ -15,11 +15,11 @@ import java.util.Map;
 //@@author joelczk
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
-    public static final String COMMAND_USAGE = "Search for tasks: search t/[TASK TYPE] n/[TASK NAME]";
+    public static final String COMMAND_USAGE = "Search for tasks: search t/[all/event/assignment] n/[TASK NAME]";
 
     public static final String dCOMMAND_WORD = "searchd";
     public static final String dCOMMAND_USAGE = "Search for tasks according to date: "
-            + "searchd t/[TASK TYPE] n/[TASK NAME] d/[DD/MM/YY]";
+            + "searchd t/[all/event/assignment] n/[TASK NAME] d/[DD/MM/YY]";
 
     protected static String CURRENT_COMMAND_WORD = "";
     protected static String CURRENT_COMMAND_USAGE = "";
@@ -32,9 +32,10 @@ public class SearchCommand extends Command {
     protected LocalDate date;
 
     /**
-     * Constructor for search command.
+     * Constructor for search and searchd command.
      * @param searchParam search query that has to be searched
      * @param taskType type of task to search through
+     * @param date date to find search query
      */
     public SearchCommand(String searchParam, String taskType, LocalDate date) {
         this.searchParam = searchParam.toLowerCase();
@@ -50,6 +51,12 @@ public class SearchCommand extends Command {
         }
     }
 
+    /**
+     *  Loops through the task list to find all tasks that matches search query for search command.
+     * @param tasks task list containing all tasks
+     * @param results ArrayList storing the results
+     * @return ArrayList containing results that match the search query
+     */
     private ArrayList<Task> loopArrayNoDateAllTasks(ArrayList<Task> tasks, ArrayList<Task> results) {
         int index = 1;
         for (Task task: tasks) {
@@ -62,6 +69,13 @@ public class SearchCommand extends Command {
         return results;
     }
 
+    /**
+     * Loops through the task list to find all tasks that match the search query and date for searchd command.
+     * @param tasks task list containing all tasks
+     * @param results ArrayList storing the results
+     * @param date query date
+     * @return ArrayList containing results that match the search query and the date
+     */
     private ArrayList<Task> loopArrayWithDateAllTasks(ArrayList<Task> tasks, ArrayList<Task> results, LocalDate date) {
         int index = 1;
         for (Task task: tasks) {
@@ -74,7 +88,13 @@ public class SearchCommand extends Command {
         return results;
     }
 
-    private ArrayList<Task> loopArrayNoDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results) {
+    /**
+     * Loops through the task list to find the Assignment or Event objects that match the search query.
+     * @param tasks task list containing all the tasks
+     * @param results ArrayList storing the results
+     * @return ArrayList storing Assignments objects that match the search query
+     */
+    private ArrayList<Task> loopArrayNoDateEventsAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results) {
         for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
             Task task = entry.getKey();
             if (task.getName().toLowerCase().contains(searchParam)) {
@@ -85,7 +105,14 @@ public class SearchCommand extends Command {
         return results;
     }
 
-    private ArrayList<Task> loopArrayWithDateEventAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results,
+    /**
+     * Loops through the task list to find Assignment or Event objects that match the search query and the date.
+     * @param tasks task list containing all the tasks
+     * @param results ArrayList storing all the results
+     * @param date query date
+     * @return ArrayList storing Assignment objects that match the search query and date
+     */
+    private ArrayList<Task> loopArrayWithDateEventsAssignments(HashMap<Task, Integer> tasks, ArrayList<Task> results,
                                                               LocalDate date) {
         for (Map.Entry<Task,Integer> entry: tasks.entrySet()) {
             Task task = entry.getKey();
@@ -98,9 +125,9 @@ public class SearchCommand extends Command {
     }
 
     /**
-     * Returns an arrayList of all the tasks that matches the search query.
-     * @param taskList taskList object containing all the tasks
-     * @return arrayList of all tasks that match the search query
+     * Returns an ArrayList of all the Events objects that matches the search query.
+     * @param taskList TaskList object containing all the tasks
+     * @return ArrayList of all Event objects that match the search query
      */
     private ArrayList<Task> getSearchQueryAllTasks(TaskList taskList, LocalDate date) {
         ArrayList<Task> tasks = taskList.getTaskArray();
@@ -114,44 +141,48 @@ public class SearchCommand extends Command {
     }
 
     /**
-     * Returns an ArrayList of all event objects that matches the search query.
-     * @param taskList taskList object containing all the tasks
-     * @return ArrayList of all event objects that matches the search query
+     * Helper function to get all the results of search query for Event and Assignment objects.
+     * @param date date of search query
+     * @param eventsOrAssignments LinkedHashMap for Event or Assignment object
+     * @return ArrayList containing all the results
      */
-    private ArrayList<Task> getSearchQueryEvents(TaskList taskList, LocalDate date) {
-        LinkedHashMap<Task, Integer> events = taskList.getEventsHashMap();
-        assert events.size() == taskList.getEventsHashMap().size();
+    private ArrayList<Task> getEventOrAssignmentResults(LocalDate date, LinkedHashMap<Task, Integer>
+            eventsOrAssignments) {
         ArrayList<Task> results = new ArrayList<>();
         if (date == null) {
-            results = loopArrayNoDateEventAssignments(events,results);
+            results = loopArrayNoDateEventsAssignments(eventsOrAssignments, results);
         } else {
-
-            results = loopArrayWithDateEventAssignments(events, results, date);
+            results = loopArrayWithDateEventsAssignments(eventsOrAssignments, results, date);
         }
         return results;
     }
 
     /**
-     * Returns an ArrayList of all assignments objects that matches the search query.
-     * @param taskList taskList objects containing all assignment tasks
-     * @return ArrayList of all assignment object that matches the search query
+     * Returns an ArrayList of all Event objects that matches the search query.
+     * @param taskList TaskList object containing all the tasks
+     * @return ArrayList of all Event objects that matches the search query
+     */
+    private ArrayList<Task> getSearchQueryEvents(TaskList taskList, LocalDate date) {
+        LinkedHashMap<Task, Integer> events = taskList.getEventsHashMap();
+        assert events.size() == taskList.getEventsHashMap().size();
+        return getEventOrAssignmentResults(date, events);
+    }
+
+    /**
+     * Returns an ArrayList of all Assignment objects that matches the search query.
+     * @param taskList TaskList objects containing all assignment tasks
+     * @return ArrayList of all Assignment objects that matches the search query
      */
     private ArrayList<Task> getSearchQueryAssignments(TaskList taskList, LocalDate date) {
         LinkedHashMap<Task, Integer> assignments = taskList.getAssignmentsHashMap();
-        ArrayList<Task> results = new ArrayList<>();
         assert assignments.size() == taskList.getAssignmentsHashMap().size();
-        if (date == null) {
-            results = loopArrayNoDateEventAssignments(assignments,results);
-        } else {
-            results = loopArrayWithDateEventAssignments(assignments, results, date);
-        }
-        return results;
+        return getEventOrAssignmentResults(date,assignments);
     }
 
     /**
      * Returns list of search queries.
      * @param results ArrayList containing the results of search query
-     * @return list of search queries
+     * @return ArrayList of search queries
      */
     private String searchList(ArrayList<Task> results) {
         assert results.size() > 0;
@@ -185,6 +216,7 @@ public class SearchCommand extends Command {
         if (taskList.getListSize() == 0) {
             return new CommandResult(Messages.EMPTY_TASKLIST_MESSAGE);
         }
+        assert taskList.getListSize() > 0;
         switch (taskType) {
         case allTasks:
             ArrayList<Task> results = getSearchQueryAllTasks(taskList, date);
