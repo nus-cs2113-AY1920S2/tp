@@ -14,8 +14,9 @@ By: `Alaukik Pant, Melissa Lopez`      Since: `Mar 2020`      Licence: `
      * [Target user profile](#target-user-profile)
      * [User Stories](#user-stories)
 1. [Non-Functional Requirements](#5-non-functional-requirements)
-1. [Glossary](#6-glossary)
+1. [Testing](#6-testing)
 1. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
+    * [Setup and Initial Storage Testing](#-Setup and Initial Storage Testing)
 
 
 
@@ -126,9 +127,15 @@ TechToday Information Tracker (TTIT) is targeted to lifelong followers of techno
 
 7. If the application is unable to connect to the internet to retrieve data for `view` feature, the application will still produce data that has been previously saved. 
 
-## 6. Glossary
+## 6. Testing
 
-* *glossary item* - Definition
+JUnit tests were created for this application to ensure that our code is free of bugs, runs correclty, and outputs the intended data. 
+
+### 6.1 IntelliJ JUnit Tests
+
+1. To run all tests, right click on `src/test/java` and click Run "Tests in tp". 
+
+2. To run using Gradle, open terminal and type `gradlew clean test`
 
 ## 7. Instructions for Manual Testing
 
