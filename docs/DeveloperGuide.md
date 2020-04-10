@@ -64,34 +64,52 @@ The `Storage` component
 
 ### Logic component
 
-
+![Logic-Component](images/Logic-Component.png)
 
 The `Logic` component is responsible for:
-* Arranging the whole workflow
+* Establishing the logic flow.
 * Deciding how functional components interact with each other.
 
-The Logic consists of the following class:
-* DietManager-Arranges the main workflow of the program.
+The Logic consists of the following classes:
+* `AppManager` - Arranges the main workflow of the program.
+* `Result` - Stores the command result in-memory.
+* `CommandParser` - Parses the user input and generates a specific command.
+* `"ABC"Command` - A collection of parser classes which parses a specific input to generate a specific value.
+* `Command` - An abstract class which other command classes inherits from.
+* `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
+
+The `Logic` component
+1. Receives the user input and parses it to generate a specific command.
+2. Executes the command to generate a specific result.
+3. Passes results to `UI` to display system output to the user.
+4. Updates `Storage` to save any changes made to in-memory information to the respective data files.
 
 ### Model component
 
-The `Profile` component is responsible for:
-* Storing all user profile information
+The `Model` component is responsible for:
+* Storing all relevant information in-memory for the application to access.
 
-The Profile consists of the following classes: 
+The Model consists of the following classes: 
 * `Profile` - Stores the personal information of a person including the name, age, gender, height, weight, weight goal, list of food consumed and list of weight changes
 * `DailyFoodRecord` - Keeps a record of the food consumed in a day, comprising morning, afternoon and night
+* `Food` - A food object which contains the relevant food information
+* `FoodNutritionRecord` - Provides a data bank of food items with the food name and calories value
+* `RecipeManager` - Generates and stores recipes depending on user information
+
+The `Model` component
+1. Receives instructions from `Logic` to update in-memory information.
+2. Is not dependent on any of the other components.
 
 ### Commons component
 
-The `Food` component is responsible for:
-* Creating a food Object with a name if food exists in the FoodNutritionInfo class OR
-* Creating a food Object with a name and no calories value if food does not exists in the FoodNutritionInfo class OR
-* Creating a food Object with a name and calories value from user input
+The `Commons` component is responsible for:
+* Consisting of multiple useful classes which are utilised by other components in the application.
 
 The Food consists of the following classes: 
-* `Food` - Create a food Object from the user input
-* `FoodNutritionInfo` - Provides a data bank of food items with the food name and calories value
+* `LogsCentre` - Tracks system through log records and saves them to a log file
+* `MessageBank` - Consists of multiple system output messages
+* `Weekday` - Enumeration class for classifying weekdays
+* `"ABC"Exception` - A collection of exceptions to aid in running of the application.
 
 
 ## Implementation
