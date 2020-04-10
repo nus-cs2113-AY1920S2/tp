@@ -105,8 +105,8 @@ Dish pizza successfully added.
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
+Dishes successfully listed.
 
 Input next command:
 
@@ -124,7 +124,11 @@ Dish pizza successfully removed!
 
 Input next command:
 
+<<<<<<< HEAD
 Name: rice     Price: $12.0     Ingredients: rice, salt
+=======
+Name: rice	 Price: $12.0	 Ingredients: rice, salt
+>>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 Dishes successfully listed.
 
 Input next command:
@@ -960,6 +964,10 @@ Try the 'help' command for the list of commands
 Input next command:
 
 The stock has been cleared.
+
+Input next command:
+
+Dish rice successfully removed!
 
 Input next command:
 

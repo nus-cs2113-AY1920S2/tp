@@ -6,12 +6,107 @@ ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
 Input next command:
 
-Dish pizza successfully added.
+Command is of incorrect format
+Try the 'help' command for the list of commands
 
 Input next command:
 
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Dish pizza successfully added.
+
+Input next command:
+
+Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
+Dishes successfully listed.
 
 Input next command:
 
@@ -23,8 +118,8 @@ Dish pizza successfully removed!
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Name: rice	 Price: $12.0	 Ingredients: rice, salt
+Dishes successfully listed.
 
 Input next command:
 
@@ -49,7 +144,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not meet the required format. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -143,7 +238,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -153,7 +248,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -163,7 +258,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -201,7 +296,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'i/' tag before the ingredient's name. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -211,7 +306,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'q/' tag before the ingredient's quantity. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -221,7 +316,7 @@ Try the 'help' command for the list of commands
 
 The user's input did not specify the 'p/' tag before the ingredient's price. Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -232,7 +327,7 @@ Try the 'help' command for the list of commands
 The user's input did not specify the 'i/' tag and 'q/' tag before the ingredient's name and quantity.
  Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -243,7 +338,7 @@ Try the 'help' command for the list of commands
 The user's input did not specify the 'q/' tag and 'p/' tag before the ingredient's quantity and price.
  Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -254,7 +349,7 @@ Try the 'help' command for the list of commands
 The user's input did not specify the 'i/', 'q/' tag and 'p/' tag before the ingredient's name, quantity and price.
  Please enter in the following format:
 
-`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_DELETED; p/PRICE;`
+`add stock; i/INGREDIENT_NAME; q/QUANTITY_TO_BE_ADDED; p/PRICE;`
 
 
 Input next command:
@@ -333,6 +428,23 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
+Here are the ingredients in the stock currently:
+
+1. [50][$0.50] tomato
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$1.00] pepper
+5. [10][$1.40] CuRrY
+6. [10][$1.00] PEPPER
+7. [10][$0.40] vege
+8. [10][$1.00] PePPer
+9. [1][$0.40] toxic greens
+10. [0][$0.40] greenie
+
+All ingredients listed successfully!
+
+Input next command:
+
 Ingredient tomato reduced by 1!
 
 Input next command:
@@ -347,6 +459,23 @@ Input next command:
 
 Command is of incorrect format
 Try the 'help' command for the list of commands
+
+Input next command:
+
+Here are the ingredients in the stock currently:
+
+1. [39][$0.50] tomato
+2. [20][$0.20] salt
+3. [11][$0.40] rice
+4. [10][$1.00] pepper
+5. [10][$1.40] CuRrY
+6. [10][$1.00] PEPPER
+7. [10][$0.40] vege
+8. [10][$1.00] PePPer
+9. [1][$0.40] toxic greens
+10. [0][$0.40] greenie
+
+All ingredients listed successfully!
 
 Input next command:
 
@@ -426,8 +555,19 @@ There is no tag specified. Please enter in the following format:
 
 Input next command:
 
-Command is of incorrect format
-Try the 'help' command for the list of commands
+Here are the ingredients in the stock currently:
+
+1. [20][$0.20] salt
+2. [11][$0.40] rice
+3. [10][$1.00] pepper
+4. [10][$1.40] CuRrY
+5. [10][$1.00] PEPPER
+6. [10][$0.40] vege
+7. [10][$1.00] PePPer
+8. [1][$0.40] toxic greens
+9. [0][$0.40] greenie
+
+All ingredients listed successfully!
 
 Input next command:
 
@@ -530,6 +670,28 @@ Try the 'help' command for the list of commands
 
 Please specify the keyword using the format 'k/keyword;'
 
+
+Input next command:
+
+There is no reservation currently in the list.
+
+Input next command:
+
+There is no served reservation currently in the list.
+
+Input next command:
+
+There is no unserved reservation currently in the list.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Input Missing: name p/ is missing.
+Try the 'help' command for the list of commands
 
 Input next command:
 
@@ -891,6 +1053,19 @@ Try the 'help' command for the list of commands
 Input next command:
 
 The reservation list has been cleared.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+The stock has been cleared.
+
+Input next command:
+
+Dish rice successfully removed!
 
 Input next command:
 

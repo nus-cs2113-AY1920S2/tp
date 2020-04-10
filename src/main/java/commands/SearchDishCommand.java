@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class SearchDishCommand extends Menu {
 
-
     /**
      * Searches menu for dish names containing keyword.
      * @param input input string containing keyword
@@ -55,7 +54,7 @@ public class SearchDishCommand extends Menu {
             }
         }
     }
-    
+
     /**
      * Generates ingredient list for a dish, then prints dish.
      * @param matchingDishes hashMap of dishes that match keyword
@@ -66,12 +65,22 @@ public class SearchDishCommand extends Menu {
         for (String str: matchingDishes.get(name).getIngredients()) {
             ingredientList += str + ", ";
         }
-
         ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
         System.out.println("Name: " + name + "; Ingredients: " + ingredientList
                 + "; Price: $" + matchingDishes.get(name).getPrice() + ";");
     }
-    
+
+    /**
+     * Parses keyword from input string.
+     * @param input input string
+     * @return keyword
+     */
+    public static String parseKeyword(String input) {
+        input = input.substring(input.indexOf("k/") + 2);
+        input = input.substring(0, input.indexOf(";"));
+        return input;
+    }
+
     /**
      * Check format for delete dish command.
      * @param input input string
@@ -84,17 +93,6 @@ public class SearchDishCommand extends Menu {
         } else if (input.chars().filter(ch -> ch == ';').count() != 1) {
             throw new InvalidSearchDishCommandException();
         }
-    }
-
-    /**
-     * Parses keyword from input string.
-     * @param input input string
-     * @return keyword
-     */
-    public static String parseKeyword(String input) {
-        input = input.substring(input.indexOf("k/") + 2);
-        input = input.substring(0, input.indexOf(";"));
-        return input;
     }
 
 }

@@ -2,6 +2,10 @@
 build/
 .idea/
 .gradle/
-report.txt
+sampleReportA.txt
 logs/
+<<<<<<< HEAD
 /bin/
+=======
+report.txt
+>>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp

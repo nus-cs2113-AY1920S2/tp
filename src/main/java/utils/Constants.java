@@ -28,4 +28,5 @@ public class Constants {
     public static final String DELIMITER = ";";
     
     public static final String LOG_FOLDER = "logs/";
+    public static final String DEFAULT_STORAGE_FILEPATH = "report.txt";
 }

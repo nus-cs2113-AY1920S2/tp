@@ -17,6 +17,10 @@ public class ListReservationCommand extends ReservationCommand {
             ui.showMessage("There is no reservation currently in the list.");
             return;
         }
+        
+        for (int i = 1; i <= reservations.getSize(); i++) {
+            ui.showMessage(reservations.getReservation(i).toString());
+        }
     }
 
     @Override
