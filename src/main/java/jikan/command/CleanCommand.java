@@ -43,7 +43,7 @@ public class CleanCommand extends Command {
      * Method to check if user input is empty for clean command.
      * @return true if is empty and false otherwise.
      */
-    private boolean isParameterEmpty() {
+    public boolean isParameterEmpty() {
         String parametersTrimmed = this.parameters.trim();
         return parametersTrimmed.isEmpty();
     }
@@ -79,7 +79,7 @@ public class CleanCommand extends Command {
      * @param line a string representing a line of information.
      * @return the first word of the line.
      */
-    private String getFirstWord(String line) {
+    public String getFirstWord(String line) {
         int delimiter = line.indexOf(" ");
         String word;
         if (delimiter == -1) {
@@ -95,7 +95,7 @@ public class CleanCommand extends Command {
      * @param word a word to remove.
      * @return a this.parameters string without the word.
      */
-    private String getRemainingParameter(String word) {
+    public String getRemainingParameter(String word) {
         int index = this.parameters.indexOf(word);
         int number = word.length();
         String remainingParameter = this.parameters.substring(index + number);
@@ -339,7 +339,7 @@ public class CleanCommand extends Command {
      * @throws InvalidCleanCommandException when the format of user input is wrong.
      * @throws NegativeNumberException when the numberString is negative.
      */
-    private int getNumber(String numberString) throws InvalidCleanCommandException, NegativeNumberException {
+    public int getNumber(String numberString) throws InvalidCleanCommandException, NegativeNumberException {
         try {
             int value = Integer.parseInt(numberString);
             if (value < 0) {
