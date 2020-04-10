@@ -1,40 +1,83 @@
 # Mok Kai Sheng Daryl - Project Portfolio Page
 
-## Overview
+## Overview  
 Personal Module Manager is a software that tracks the number of modular credits, modules taken and modules required 
 for its user to graduate. The software is for NUS Students who want to plan their modules per semester in an easy way 
-and it is optimized for those who want to type fast with CLI. It is written in Java.
+and it is optimized for those who want to type fast with CLI. It is written in Java.  
 
-### Summary of Contributions
+### Summary of Contributions  
+This section describes a summary of my code and documentation contributions, as well as other contributions to help
+other peers.  
 
-#### Code contributed
-The given link is my [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).
+#### Code contributed  
+For all the code that I have contributed to Module Manager, click here:
+[code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
 
-#### Enhancements implemented
-In this project, I design the part of Controller, Parser, Person's grade and cap, changed user's year and semester display/format
- JUnit test, logging and some commands.
-enhanced delete class (fixed its bugs)
+#### Enhancements implemented  
+In this project, I added the portion of Controller, Parser, Person, JUnit test, Logging, some commands and some exception classes.  
 
-##### Controller
+##### Controller  
+* What it does:
+* Justification: 
+* Highlights: 
+
+##### Parser  
+* What it does: 
+* Justification: 
+* Highlights: 
+
+##### Person  
+* What it does: 
+* Justification: 
+* Highlights: 
+
+##### Commands  
+- Mark as Done Command  
+- View Command  
+- Helping Command  
+- Clear Command  
+
+### Contributions to documentation: 
+The user guide is updated with relevant instructions and their correct format. I was responsible for the 
+Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
+
+### Contributions to the DG: 
+* Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
+* Added Introduction Section and Setting up section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
+* Added Architecture, UI component, Logic component and Model component under Design section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
+* Wrote implementation document for Delete from Available, Add to Available and Marking as Done
+([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),)
+* Added Architecture Diagram, Sequence Diagram for MarkAsDone feature and Object Diagrams for 
+Ui component, Logic component and Model component ([#119](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/119), 
+[#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118), 
+[#135](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/135))  
+* Implemented Product Scope section, User Stories section, Non-Functional Requirements section, 
+Glossary section and Instructions for Manual Testing section.([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133))  
+
+### Contributions to team-based tasks  
+- configured Build Gradle windows to make sure runtest.bat works ([#28](https://github.com/AY1920S2-CS2113-T15-3/tp/commit/f2767e597522e0aa84c1a99dcf087354bddfda62))  
+- Maintaining the issue tracker.  
+- Ensuring group meetings and consolidation of group discussions  
+
+### Review/mentoring contributions:
+- Reviewed pull requests in my team: [Review of #8](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/8), 
+[Review of #19](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/19), [Review of #35](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/35),
+[Review of #51](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/51) and 65 others.  
+- Made PRs to teammate's PR to suggest code revision 
+e.g [#51 PR in our team repo](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/51) and 
+[Suggestion PR to teammate's repo](https://github.com/chengTzeNing/tp/pull/4).  
+- Helped team mates using windows who had trouble setting up runtest.bat on their personal computers  
+
+### Contributions beyond the project team
+- Contributed to CS2113/CS2113T forums discussions: ([#30](https://github.com/nus-cs2113-AY1920S2/forum/issues/30), [#93](https://github.com/nus-cs2113-AY1920S2/forum/issues/93))   
+- bugs reported in other team's products: ([Bug reports to CS2113T-T12-3](https://github.com/DeetoMok/ped/issues))  
 
 
 
-##### Parser
-
-##### Person
 
 
-##### Commands
-- Mark as Done Command
 
-- Helping Command
-
-- Clear Command
-
-#### Enhancements improved
-In this project, I added on to parts of Delete command and 
-
-### Contributions to documentation (Which sections did u contribute to the UG?)
+### Contributions to the User Guide
 The user guide is updated with relevant instructions and their correct format. I was responsible for the 
 Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
 
@@ -97,6 +140,12 @@ Expected output:
 `Okay, this module has been deleted from the list of available modules`
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
+
+
+
+
+
+
 
 
 ### Contributions to the Developer Guide (Which sections did you contribute to the DH? Which UML Diagrams did u add/update)
@@ -208,23 +257,3 @@ The responsibilities of the `Model` component includes
 `ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
 * All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
 in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
-
-### Contributions to team-based tasks
-
-- Maintaining the issue tracker.
-
-- Ensuring group meetings and consolidation of group discussions
-
-
-### Review/mentoring contributions:
-- Review over 80% code enhancement's PRs and give code revise suggestion by making a PR to their branch. 
-e.g [#42 PR in our team repo](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/42) and 
-[Revise suggestion PR to teammate's repo](https://github.com/chengTzeNing/tp/pull/3).
-
-- Help teammates understanding some data structures in our code by making some slides to explain. 
-[Google Slides: Available Modules List's data structure](https://docs.google.com/presentation/d/1UeuonNaPafGD5bX36J_iroB_umS6lvyD37ECp8OfvSI/edit)
-
-### Contributions beyond the project team
-- responses posted in forum: [a possible answer to #89](https://github.com/nus-cs2113-AY1920S2/forum/issues/89#issuecomment-605184683)
-(why Java CI build failure only for windows)
-- bugs reported in other team's products: [bugs reports to CS2113T-T12-4](https://github.com/RenzoTsai/ped/issues)
