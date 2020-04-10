@@ -22,7 +22,8 @@ Here are the commands that I can do for you:
 9. "view /dm" to view all finished modules
 10. "view /cc" to view the number of modular credits u have completed
 11. "CAP" to view your current cap
-12. "bye" to exit
+12. "find" [keyword] to search a module based on the keyword
+13. "bye" to exit
 
 Please input your command:
 Okay! Here are your available modules:
@@ -192,7 +193,7 @@ List of selected modules:
 [x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 [x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
-List of available modules
+List of available modules:
 ID: CS1010 Name: Programming Methodology | Modular Credit: 4
 ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010
 ID: CS2040 Name: Data Structures and Algorithms | Modular Credit: 4 | Prerequisites: CS1010
@@ -246,6 +247,7 @@ Your current CAP is:
 4.50
 
 
+Please input your command:
 Please input your command:
 Okay, this module has been deleted from the corresponding semester
 Module IS4241 has been deleted from semester Y2S2
