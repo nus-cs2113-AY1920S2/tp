@@ -13,7 +13,6 @@ import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -83,7 +82,7 @@ public class GoalCommand extends Command {
                     if (!existInActivity(activityList, tagName)) {
                         throw new NoSuchTagException();
                     } else {
-                        addTagLine(tagName + "," + goalTime);
+                        tagStorage.writeToFile(tagName + "," + goalTime);
                         Ui.printDivider("The goal for " + tagName + " has been added.");
                     }
                 }
@@ -124,6 +123,7 @@ public class GoalCommand extends Command {
     /**
      * Check that tag exists in the tag list.
      * @param tagName the tag name.
+     * @param filePath the file path of the tag file.
      * @return index the index of the tag in the tag list.
      * @throws IOException when there is an error loading/creating the file.
      */
@@ -175,19 +175,6 @@ public class GoalCommand extends Command {
     }
 
     /**
-     * Updates tag file with new tag.
-     *
-     * @param dataLine Line to write to file.
-     */
-    public static void addTagLine(String dataLine) {
-        try {
-            tagStorage.writeToFile(dataLine);
-        } catch (IOException e) {
-            System.out.println("Error saving tag to tag file.");
-        }
-    }
-
-    /**
      * Removes the line whose index matches lineNumber from file.
      *
      * @param lineNumber Index of line to remove.
@@ -208,22 +195,12 @@ public class GoalCommand extends Command {
      * @throws IOException If an error occurs while writing the new list to file.
      */
     public static void saveNewTags(List<String> newList) throws IOException {
-        clearFile();
+        tagStorage.clearFile();
         FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
 
         for (String s : newList) {
             fw.write(s + System.lineSeparator());
         }
-        fw.close();
-    }
-
-    /**
-     * Clears the data file.
-     * @throws FileNotFoundException If file is not found.
-     */
-    public static void clearFile() throws IOException {
-        FileWriter fw = new FileWriter(TAG_FILE_PATH, false);
-        fw.write("");
         fw.close();
     }
 

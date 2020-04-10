@@ -8,7 +8,6 @@ import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
 import jikan.storage.Storage;
-import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
@@ -21,15 +20,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GoalCommandTest {
     Storage storage = new Storage("data/activityList_test.txt");
     ActivityList activities = new ActivityList(storage);
     HashSet<String> tags = new HashSet<>();
-    Storage tagStorage = new Storage("data/tag_test.txt");
-    private static final String TAG_TEST_FILEPATH = "data/tag_test.txt";
-    StorageHandler tagStorageHandler = new StorageHandler(tagStorage);
     Scanner scanner;
 
     void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
@@ -52,40 +49,6 @@ class GoalCommandTest {
         activities.add(activity3);
     }
 
-    /**
-     * Check that tag exists in the tag list.
-     * @param tagName the tag name.
-     * @return index the index of the tag in the tag list.
-     * @throws IOException when there is an error loading/creating the file.
-     */
-    public static int checkIfExists(String tagName, String filePath) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        int index = 0;
-        int status = 0;
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            String[] name;
-            while (line != null) {
-                name = line.split(",");
-                if (name[0].equals(tagName)) {
-                    status = 1;
-                    break;
-                }
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-                index++;
-            }
-        } finally {
-            br.close();
-        }
-        if (status == 0) {
-            index = -1;
-        }
-        return index;
-    }
-
     @Test
     void executeGoal() throws IOException {
         try {
@@ -98,16 +61,23 @@ class GoalCommandTest {
         }
         String parameters = "tag1 /g 10:10:10";
         String tagName = "tag1";
+        Storage tagStorage = new Storage("data/tag_test.txt");
+        String testFile = "data/tag_test.txt";
+        tagStorage.loadFile();
+        assertTrue(tagStorage.dataFile.exists());
         boolean found = false;
         Command command = new GoalCommand(parameters, scanner, tagStorage);
         try {
             command.executeCommand(activities);
-            if (checkIfExists(tagName, TAG_TEST_FILEPATH) != -1) {
-                found = true;
-            } else {
+            if (GoalCommand.checkIfExists(tagName, testFile) == -1) {
                 found = false;
+                assertFalse(found);
+                tagStorage.dataFile.delete();
+            } else {
+                found = true;
+                assertTrue(found);
+                tagStorage.dataFile.delete();
             }
-            assertTrue(found);
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         }
