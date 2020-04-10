@@ -7,6 +7,7 @@
 2. [Summary of Contributions](#summary-of-contributions)
 3. [Contributions to the User Guide](#contributions-to-the-user-guide)
 4. [Contributions to the Developer Guide](#contributions-to-the-developer-guide)
+5. [Contributions to team-based tasks ](#contributions-to-team-based-tasks)
 
 ---
 
@@ -56,7 +57,7 @@ meal, the other is one's activity level(low/moderate/high) which indicates diffe
 * Implement the `calculate` feature which enables user to calculate their calories intake on a day or during a time period.
 * Add DailyFoodRecord class and related codes to support all kinds of operations related to food record.
 
-### Contributions to UG
+### Contributions to the User Guide
 
 * Which sections did you contribute to the UG?
 Documented the details of following features (feature 1-12 in the UG):
@@ -73,7 +74,7 @@ Documented the details of following features (feature 1-12 in the UG):
     * Get a recommended recipe
     * View recipe
 
-### Contributions to the DG: 
+### Contributions to the Developer Guide: 
 
 * Which sections did you contribute to the DG? 
     * Help in building framework.
