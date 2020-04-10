@@ -17,10 +17,9 @@ Enter command:
 [Command entered: addcard s/1 q/question a/answer]
 Q:question
 A:answer
-Card has been added to subject {biology}
+A new card has been added to subject {biology}
 Here is the list of questions.
-1.Q. question
-  A. answer
+1. question
 ______________________
 Enter command: 
 [Command entered: exit]
