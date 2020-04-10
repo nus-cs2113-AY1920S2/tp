@@ -112,8 +112,8 @@ to store the relevant information.
 
 * The application is now ready to be used by entering text-based commands into the command line
 
-__Note that most command features are locked until a valid profile has been created. 
-Only the `set-profile`, `help` and `exit` commands are usable upon first start-up__
+*Note that most command features are locked until a valid profile has been created. 
+Only the `set-profile`, `help` and `exit` commands are usable upon first start-up*
 
 ```
 Please create a profile before using this command. Enter:
