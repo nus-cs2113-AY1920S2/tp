@@ -18,9 +18,6 @@ import static jikan.Jikan.lastShownList;
  */
 public class EndCommand extends Command {
 
-
-    private Scanner scanner;
-
     /**
      * Constructor to create a new end command.
      */

@@ -14,6 +14,10 @@ import static jikan.Jikan.lastShownList;
 
 public class GraphCommand extends Command {
 
+    private static final String ALLOCATIONS = "allocations";
+    private static final String TAGS = "tags";
+    private static final String ACTIVITIES = "activities";
+
     String[] inputs;
 
     /**
@@ -34,13 +38,13 @@ public class GraphCommand extends Command {
     public void executeCommand(ActivityList activityList) {
         try {
             switch (inputs[0]) {
-            case "allocations":
+            case ALLOCATIONS:
                 Ui.graphAllocation(lastShownList);
                 break;
-            case "tags":
+            case TAGS:
                 graphTags();
                 break;
-            case "activities":
+            case ACTIVITIES:
                 graphActivities();
                 break;
             default:

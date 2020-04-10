@@ -3,7 +3,6 @@ package jikan.command;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyNameException;
 import jikan.exception.NoSuchActivityException;
-import jikan.parser.Parser;
 import jikan.ui.Ui;
 
 /**
