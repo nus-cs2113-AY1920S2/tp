@@ -2,13 +2,13 @@ package seedu.atas;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import tasks.Assignment;
 import tasks.Task;
 
+//@@author joelczk
 public class TaskListTest {
-    //@@author joelczk
+
     @Test
     public void taskListTest_GetListSize() {
         TaskList testTaskList = new TaskList();
@@ -24,5 +24,5 @@ public class TaskListTest {
         testTaskList.addTask(newTask);
         assertEquals(testTaskList.getListSize(), 2);
     }
-    //@@author joelczk
+    //@@author
 }

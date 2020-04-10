@@ -1,19 +1,18 @@
-# ATAS (Amazing Task and Assignment System) Developer Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Table of Contents
-- [Setting up](#1-setting-up)
+1. [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
 	- [Verifying the Setup](#13-verifying-the-setup)
-- [Design](#2-design)
+2. [Design](#2-design)
 	- [Architecture](#21-architecture)
 	- [UI Component](#22-ui-component)
 	- [Logic Component](#23-logic-component)
 	- [Model Component](#24-model-component)
 	- [Storage Component](#25-storage-component)
 	- [Atas Component](#26-atas-component)
-- [Implementation](#3-implementation)
+3. [Implementation](#3-implementation)
 	- [Delete Task Feature](#31-delete-task-feature)
 		- [Design Considerations](#311-design-considerations)
 	- [Search task feature](#32-search-task-feature)
@@ -40,15 +39,15 @@ Table of Contents
 			- [Saving the current state of **ATAS** with `Storage#save()`:](#372-saving-the-current-state-of-atas-with-storagesave)
 			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#373-loading-previously-saved-tasklist-data-into-atas-with-storageload)
 		- [Design Considerations](#374-design-considerations)
-- [Testing](#4-testing)
+4. [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
-- [DevOps](#5-devops)
+5. [DevOps](#5-devops)
     - [Build Automation](#51-build-automation)
     - [Continuous Integration](#52-continuous-integration)
     - [Coverage Reporting](#53-coverage-reporting)
     - [Making a Release](#54-making-a-release)
-- [Appendices](#6-appendices)
+6. [Appendices](#6-appendices)
     - [Product Scope](#61-appendix-a-product-scope)
     - [User Stories](#62-appendix-b-user-stories)
     - [Use Cases](#63-appendix-c-use-cases)
@@ -206,7 +205,7 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete.png)
+![delete task](images/delete v2.0.png)
 
 #### 3.1.1. Design Considerations
 
@@ -361,7 +360,7 @@ are no completed tasks
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear command.png)
+![clear command](images/clear.png)
 
 #### 3.3.2. Design Considerations
 
