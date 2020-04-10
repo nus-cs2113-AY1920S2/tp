@@ -1,4 +1,4 @@
-# Project Template for the tP
+# Set Up for TechToday
 ## Team 14
 
 This is a project template for a small CLI Java project. It uses Gradle for build automation and GitHub Actions for CI.
@@ -35,8 +35,8 @@ Prerequisites: JDK 11, update Intellij to the most recent version
          _ **_____________________________________________________________________________**_
               What can I do for you?
 
-         All the required files do not exist. We will create completely new files to save your data.
-         __________________________________________________________________________________________
+All the required files do not exist. We will create completely new files to save your data.
+__________________________________________________________________________________________
 
 
 Type exit and press enter to let the execution proceed to the end. Also note how Intellij is now using Gradle to run your code (you can make Intellij run the code without Gradle [this way](tutorials/assets/RunUsingIntellij.png)).
