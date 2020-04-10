@@ -8,6 +8,8 @@
 </file>
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\ClearReservationCommandTest.java">
 </file>
+<file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\ClearStockCommandTest.java">
+</file>
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\DeleteDishCommandTest.java">
 </file>
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\DeleteStockCommandTest.java">
@@ -23,6 +25,8 @@
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\StockCommandTest.java">
 </file>
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\commands\VoidReservationCommandTest.java">
+</file>
+<file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\dish\LoadDishTest.java">
 </file>
 <file name="D:\NTU\大二\大二2020.1-2020.5\CS2113 Software Engineering n Object-Oriented Programming\tp\src\test\java\ingredient\IngredientTest.java">
 </file>

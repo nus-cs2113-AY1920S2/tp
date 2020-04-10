@@ -28,8 +28,6 @@
 
 ## 1. Design & Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 <a name="search-stock"></a>
 
 ### 1.1 Search stock feature
@@ -368,7 +366,6 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
 |v2.0|restaurant owner|search dishes|I can know which dishes contain a certain word and the ingredients of those dishes|
 |v2.0|restaurant owner|search stock|I can know the quantity and cost of specific ingredients|
-|v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
 |v2.1|restaurant owner|load the dishes, stock and reservation|I don't have to re-enter the dishes, stock and reservations when I start up the program|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
