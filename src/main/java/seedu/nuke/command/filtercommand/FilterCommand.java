@@ -11,6 +11,7 @@ import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
+import seedu.nuke.directory.TaskTag;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.ALL_FLAG;
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
+import static seedu.nuke.parser.Parser.DEADLINE_PREFIX;
 import static seedu.nuke.parser.Parser.EXACT_FLAG;
 import static seedu.nuke.parser.Parser.MODULE_PREFIX;
+import static seedu.nuke.parser.Parser.PRIORITY_PREFIX;
 import static seedu.nuke.parser.Parser.TASK_PREFIX;
 
 public abstract class FilterCommand extends Command {
@@ -48,6 +51,16 @@ public abstract class FilterCommand extends Command {
             + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
+
+    public static final Pattern TASK_SORTED_REGEX_FORMAT = Pattern.compile(
+            "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<priority>(?:\\s+" + PRIORITY_PREFIX + ")?)"
+            + "(?<deadline>(?:\\s+" + DEADLINE_PREFIX + ")?)"
+            + "(?<prioritySecond>(?:\\s+" + PRIORITY_PREFIX + ")?)"
+            + "(?<invalid>.*)"
+    );
+
     public static final Pattern FILE_REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
             + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
@@ -58,6 +71,18 @@ public abstract class FilterCommand extends Command {
             + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<invalid>.*)"
     );
+
+    public static final Pattern TAG_REGEX_FORMAT = Pattern.compile(
+            "(?<identifier>(?:\\s+\\w\\S*)*)"
+            + "(?<moduleCode>(?:\\s+" + MODULE_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<categoryName>(?:\\s+" + CATEGORY_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
+            + "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
+            + "(?<allSecond>(?:\\s+" + ALL_FLAG + ")?)"
+            + "(?<invalid>.*)"
+    );
+
     public static final Pattern REGEX_OPTIONAL_FORMAT = Pattern.compile(
             "(?<all>(?:\\s+" + ALL_FLAG + ")?)"
             + "(?<exact>(?:\\s+" + EXACT_FLAG + ")?)"
@@ -108,6 +133,27 @@ public abstract class FilterCommand extends Command {
         } catch (IncorrectDirectoryLevelException e) {
             return filterTasks(moduleKeyword, categoryKeyword, taskKeyword, isExact);
         }
+    }
+
+    protected ArrayList<TaskTag> createFilteredTagList(String moduleKeyword,
+            String categoryKeyword, String taskKeyword, String tagKeyword, boolean isExact, boolean isAll) {
+        ArrayList<Task> filteredTaskList;
+        ArrayList<TaskTag> filteredTagList = new ArrayList<>();
+        filteredTaskList = createFilteredTaskList(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
+
+        if(filteredTaskList.isEmpty()) return filteredTagList;
+
+        for(Task task: filteredTaskList) {
+            int i = 0;
+            for(String tag: task.getTags()) {
+                if((isExact && tag.equalsIgnoreCase(tagKeyword))
+                        || (!isExact && tag.toLowerCase().contains(tagKeyword.toLowerCase()))) {
+                    filteredTagList.add(new TaskTag(task, tag, i));
+                }
+                i++;
+            }
+        }
+        return filteredTagList;
     }
 
     protected ArrayList<TaskFile> createFilteredFileList(String moduleKeyword,
@@ -234,5 +280,17 @@ public abstract class FilterCommand extends Command {
                 Comparator.comparing(TaskFile::getFileName);
 
         toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask).thenComparing(sortByFile));
+    }
+
+    protected void sortTagList(ArrayList<TaskTag> toSort) {
+        Comparator<TaskTag> sortByModule =
+                Comparator.comparing(taskTag -> taskTag.getParent().getParent().getParent().getModuleCode());
+        Comparator<TaskTag> sortByCategory =
+                Comparator.comparing(taskTag -> taskTag.getParent().getParent().getCategoryName());
+        Comparator<TaskTag> sortByTask =
+                Comparator.comparing(taskTag -> taskTag.getParent().getDescription());
+        Comparator<TaskTag> sortByTag =
+                Comparator.comparing(TaskTag::getTagInfo);
+        toSort.sort(sortByModule.thenComparing(sortByCategory).thenComparing(sortByTask).thenComparing(sortByTag));
     }
 }

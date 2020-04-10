@@ -1,7 +1,6 @@
 package seedu.nuke.parser;
 
 import seedu.nuke.Executor;
-
 import seedu.nuke.command.Command;
 import seedu.nuke.command.ExitCommand;
 import seedu.nuke.command.HelpCommand;
@@ -20,14 +19,15 @@ import seedu.nuke.command.filtercommand.FilterCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteCategoryCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteFileCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteModuleCommand;
+import seedu.nuke.command.filtercommand.deletecommand.DeleteTagCommand;
 import seedu.nuke.command.filtercommand.deletecommand.DeleteTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.DueCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTagCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
+import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.misc.ChangeDirectoryCommand;
 import seedu.nuke.command.misc.ClearCommand;
 import seedu.nuke.command.misc.InfoCommand;
@@ -168,6 +168,8 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, true);
             case DeleteFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, true);
+            case DeleteTagCommand.COMMAND_WORD:
+                return prepareDeleteAndListTagCommand(parameters, true);
 
             case ListModuleCommand.COMMAND_WORD:
                 return prepareDeleteAndListModuleCommand(parameters, false);
@@ -177,10 +179,10 @@ public class Parser {
                 return prepareDeleteAndListTaskCommand(parameters, false);
             case ListFileCommand.COMMAND_WORD:
                 return prepareDeleteAndListFileCommand(parameters, false);
-            case ListModuleTaskCommand.COMMAND_WORD:
-                return new ListModuleTaskCommand(parameters.trim());
             case ListTaskSortedCommand.COMMAND_WORD:
                 return prepareListTaskSortedCommand(parameters);
+            case ListTagCommand.COMMAND_WORD:
+                return prepareDeleteAndListTagCommand(parameters, false);
             case DueCommand.COMMAND_WORD:
                 return prepareDueCommand(parameters);
 
@@ -664,6 +666,36 @@ public class Parser {
         }
     }
 
+    private Command prepareDeleteAndListTagCommand(String parameters, boolean isDelete)
+            throws DuplicatePrefixException, InvalidParameterException {
+        Matcher matcher = FilterCommand.TAG_REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, TASK_PREFIX, EXACT_FLAG, ALL_FLAG);
+
+        String tagKeyword = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleKeyword = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String categoryKeyword = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
+        String taskKeyword = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
+        String exactFlag = matcher.group(EXACT_GROUP).trim();
+        String allFlag = getOptionalAttribute(matcher, ALL_GROUP, ALL_GROUP_SECOND);
+        boolean isAll = !allFlag.isEmpty();
+        boolean isExact = !exactFlag.isEmpty();
+
+        String invalid = matcher.group(INVALID_GROUP).trim();
+        if (!invalid.isEmpty()) {
+            return isDelete
+                    ? new IncorrectCommand(String.format("%s%s\n\n%s%s\n", MESSAGE_INVALID_COMMAND_FORMAT, invalid,
+                    MESSAGE_CHECK_COMMAND_FORMAT, DeleteTagCommand.FORMAT)) :
+                    new IncorrectCommand(String.format("%s%s\n\n%s%s\n", MESSAGE_INVALID_COMMAND_FORMAT, invalid,
+                            MESSAGE_CHECK_COMMAND_FORMAT, ListTagCommand.FORMAT));
+        }
+
+        if (isDelete) {
+            return new DeleteTagCommand(moduleKeyword, categoryKeyword, taskKeyword, tagKeyword, isExact, isAll);
+        } else {
+            return new ListTagCommand(moduleKeyword, categoryKeyword, taskKeyword, tagKeyword, isExact, isAll);
+        }
+    }
+
     /**
      * Prepares the command to show a list of undone tasks sorted by deadline or priority.
      *
@@ -674,10 +706,11 @@ public class Parser {
      */
     private Command prepareListTaskSortedCommand(String parameters)
             throws InvalidParameterException, DuplicatePrefixException {
-        Matcher matcher = ListTaskSortedCommand.REGEX_FORMAT.matcher(parameters);
-        validateParameters(parameters, matcher, DEADLINE_PREFIX, PRIORITY_PREFIX);
+        Matcher matcher = ListTaskSortedCommand.TASK_SORTED_REGEX_FORMAT.matcher(parameters);
+        validateParameters(parameters, matcher, MODULE_PREFIX, CATEGORY_PREFIX, DEADLINE_PREFIX, PRIORITY_PREFIX);
 
-        String moduleCode = matcher.group(IDENTIFIER_GROUP).trim();
+        String moduleCode = matcher.group(MODULE_GROUP).replace(MODULE_PREFIX, NONE).trim();
+        String category = matcher.group(CATEGORY_GROUP).replace(CATEGORY_PREFIX, NONE).trim();
         String deadlineFlag = matcher.group(DEADLINE_GROUP).trim();
         String priorityFlag = getOptionalAttribute(matcher, PRIORITY_GROUP, PRIORITY_GROUP_SECOND);
 
@@ -694,7 +727,7 @@ public class Parser {
 
         boolean isByPriority = !priorityFlag.isEmpty();
 
-        return new ListTaskSortedCommand(moduleCode, isByPriority);
+        return new ListTaskSortedCommand(moduleCode, category, isByPriority);
     }
 
     /**

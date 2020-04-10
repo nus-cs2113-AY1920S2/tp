@@ -6,6 +6,7 @@ import seedu.nuke.directory.Directory;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
+import seedu.nuke.directory.TaskTag;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -65,6 +66,7 @@ public class Message {
     public static final String MESSAGE_NO_CATEGORIES_TO_SHOW = "There are no categories to show.\n";
     public static final String MESSAGE_NO_TASKS_TO_SHOW = "There are no tasks to show.\n";
     public static final String MESSAGE_NO_FILES_TO_SHOW = "There are no files to show.\n";
+    public static final String MESSAGE_NO_TAGS_TO_SHOW = "There are no tags to show.\n";
 
     public static final String MESSAGE_DEADLINE_OR_PRIORITY =
             "Please choose either to sort by deadline or priority.\n";
@@ -73,6 +75,7 @@ public class Message {
     public static final String MESSAGE_NO_CATEGORIES_FOUND = "Sorry. No categories found.\n";
     public static final String MESSAGE_NO_TASKS_FOUND = "Sorry. No tasks found.\n";
     public static final String MESSAGE_NO_FILES_FOUND = "Sorry. No files found.\n";
+    public static final String MESSAGE_NO_TAGS_FOUND = "Sorry. No tasks with the tag found.\n";
 
     public static final String MESSAGE_HELP = "Here are valid commands and corresponding format:\n";
 
@@ -103,6 +106,7 @@ public class Message {
     public static final String MESSAGE_DELETE_CATEGORY_SUCCESS = "SUCCESS!! Category(s) have been deleted.\n";
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "SUCCESS!! Task(s) have been deleted.\n";
     public static final String MESSAGE_DELETE_FILE_SUCCESS = "SUCCESS!! Files(s) have been deleted.\n";
+    public static final String MESSAEGE_DELETE_TAG_SUCCESS = "SUCCESS!! Tag(s) have been deleted.\n";
 
     public static final String MESSAGE_DELETE_ABORTED = "The deletion is aborted.\n";
 
@@ -254,6 +258,32 @@ public class Message {
         return "Multiple matching tasks were found.\n"
                 + ListCreator.createTaskListTable(tasks)
                 + "\nEnter the list number(s) of the tasks to delete.\n";
+    }
+
+    public static String messagePromptDeleteTagIndices(ArrayList<Directory> filteredTasks) {
+        ArrayList<TaskTag> tags = filteredTasks.stream()
+                .map(TaskTag.class::cast)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return "Multiple matching tags were found.\n"
+                + ListCreator.createTagListTable(tags)
+                + "\nEnter the list number(s) of the tags to delete.\n";
+    }
+
+    public static String messageConfirmDeleteTag(TaskTag toDelete) {
+        return String.format("Confirm delete tag %s of the task %s?\n", toDelete.getTagInfo(),
+                toDelete.getParent().getDescription());
+    }
+
+    public static String messageConfirmDeleteTag(ArrayList<TaskTag> filteredFiles,
+                                                  ArrayList<Integer> toDeleteIndices) {
+        StringBuilder promptMessage = new StringBuilder();
+        promptMessage.append("Confirm delete these tags?\n");
+        for (int index : toDeleteIndices) {
+            String toDeleteTagName = filteredFiles.get(index).getParent().getDescription() + ": "
+                    + filteredFiles.get(index).getTagInfo();
+            promptMessage.append(String.format("%s\n", toDeleteTagName));
+        }
+        return promptMessage.toString();
     }
 
     /**

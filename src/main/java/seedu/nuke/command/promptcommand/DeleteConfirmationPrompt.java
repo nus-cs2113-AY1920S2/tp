@@ -12,11 +12,13 @@ import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
+import seedu.nuke.directory.TaskTag;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import static seedu.nuke.util.Message.MESSAEGE_DELETE_TAG_SUCCESS;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_ABORTED;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_CATEGORY_SUCCESS;
 import static seedu.nuke.util.Message.MESSAGE_DELETE_FILE_SUCCESS;
@@ -83,6 +85,10 @@ public class DeleteConfirmationPrompt extends Command {
         parentTask.getFiles().delete(toDelete);
     }
 
+    private void deleteSingleTag(TaskTag toDelete) {
+        toDelete.getParent().getTags().remove(toDelete.getTagIndex());
+    }
+
     /**
      * Deletes multiple modules.
      *
@@ -143,6 +149,13 @@ public class DeleteConfirmationPrompt extends Command {
         }
     }
 
+    private void deleteMultipleTags(ArrayList<TaskTag> tags, ArrayList<Integer> toDeleteIndices) {
+        for (int index: toDeleteIndices) {
+            TaskTag toDelete = tags.get(index);
+            deleteSingleTag(toDelete);
+        }
+    }
+
     /**
      * Executes single deletion for the various levels of the Directory.
      *
@@ -172,6 +185,11 @@ public class DeleteConfirmationPrompt extends Command {
         case FILE: {
             deleteSingleFile(((TaskFile) toDelete));
             return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
+        }
+
+        case TAG: {
+            deleteSingleTag((TaskTag) toDelete);
+            return new CommandResult((MESSAEGE_DELETE_TAG_SUCCESS));
         }
 
         default:
@@ -227,6 +245,14 @@ public class DeleteConfirmationPrompt extends Command {
             return new CommandResult(MESSAGE_DELETE_FILE_SUCCESS);
         }
 
+        case TAG: {
+            ArrayList<TaskTag> filteredTags = filteredList.stream()
+                    .map(TaskTag.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            deleteMultipleTags(filteredTags, toDeleteIndices);
+            return new CommandResult(MESSAEGE_DELETE_TAG_SUCCESS);
+        }
+
         default:
             return new CommandResult("Error in multiple deletion.");
         }
@@ -278,7 +304,7 @@ public class DeleteConfirmationPrompt extends Command {
             }
             return false;
 
-        case FILE   :
+        case FILE:
             String baseFileName = DirectoryTraverser.getBaseFile().getFileName();
             for (Directory task : filteredList) {
                 if (((TaskFile) task).isSameFile(baseFileName)) {

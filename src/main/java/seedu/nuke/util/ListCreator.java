@@ -4,6 +4,7 @@ import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
+import seedu.nuke.directory.TaskTag;
 
 import java.util.ArrayList;
 
@@ -198,6 +199,50 @@ public class ListCreator {
                 centraliseText("DEADLINE", 28), SEPARATOR,
                 centraliseText("PTY", 5), SEPARATOR,
                 centraliseText("DONE", 6)
+        ));
+        header.append(LIST_DIVIDER);
+
+        return header.toString();
+    }
+
+    public static String createTagListTable(ArrayList<TaskTag> tags) {
+        StringBuilder tagListTable = new StringBuilder();
+
+        tagListTable.append(createTagListTableHeader());
+
+        int id = 1;
+        for (TaskTag tag: tags) {
+            String moduleCode = tag.getParent().getParent().getParent().getModuleCode();
+            String categoryName = tag.getParent().getParent().getCategoryName();
+            String taskDescription = tag.getParent().getDescription();
+            String tagInfo = tag.getTagInfo();
+
+            tagListTable.append(String.format("%s%s%s%s%s%s%s%s%s\n",
+                    centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
+                    centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
+                    centraliseText(fitText(categoryName, 16), 16), SEPARATOR,
+                    centraliseText(fitText(taskDescription, 25), 25), SEPARATOR,
+                    centraliseText(fitText(tagInfo, 20), 20)
+            ));
+        }
+
+        tagListTable.append(LIST_DIVIDER);
+        tagListTable.append(String.format("Total tags: %d\n", tags.size()));
+        tagListTable.append(LIST_DIVIDER);
+
+        return tagListTable.toString();
+    }
+
+    private static String createTagListTableHeader() {
+        StringBuilder header = new StringBuilder();
+
+        header.append(LIST_DIVIDER);
+        header.append(String.format("%s%s%s%s%s%s%s%s%s\n",
+                centraliseText("NO", 4), SEPARATOR,
+                centraliseText("MODULE", 10), SEPARATOR,
+                centraliseText("CATEGORY", 16), SEPARATOR,
+                centraliseText("TASK", 25), SEPARATOR,
+                centraliseText("TAG", 20)
         ));
         header.append(LIST_DIVIDER);
 

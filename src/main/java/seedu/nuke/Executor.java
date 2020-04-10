@@ -3,10 +3,8 @@ package seedu.nuke;
 import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.command.promptcommand.PromptType;
-import seedu.nuke.data.ModuleManager;
-import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.directory.Directory;
-import seedu.nuke.exception.IncorrectDirectoryLevelException;
+import seedu.nuke.directory.DirectoryLevel;
 import seedu.nuke.parser.Parser;
 
 import java.util.ArrayList;
