@@ -13,8 +13,9 @@ public class ListReservationCommand extends ReservationCommand {
      */
     @Override
     public void execute(ReservationList reservations, Ui ui) {
-        for (int i = 1; i <= reservations.getSize(); i++) {
-            ui.showMessage(reservations.getReservation(i).toString());
+        if (reservations.getSize() == 0) {
+            ui.showMessage("There is no reservation currently in the list.");
+            return;
         }
     }
 

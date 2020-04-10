@@ -1,24 +1,25 @@
 package utils;
 
 import commands.AddDishCommand;
-import commands.AddStockCommand;
 import commands.AddReservationCommand;
+import commands.AddStockCommand;
+import commands.ClearReservationCommand;
+import commands.ClearStockCommand;
 import commands.DeleteDishCommand;
 import commands.DeleteStockCommand;
-import commands.MarkReservationCommand;
-import commands.SearchDishCommand;
-import commands.VoidReservationCommand;
+import commands.HelpCommand;
 import commands.ListDishCommand;
-import commands.ListStockCommand;
 import commands.ListReservationCommand;
 import commands.ListServedCommand;
+import commands.ListStockCommand;
 import commands.ListUnservedCommand;
-import commands.SearchStockCommand;
-import commands.SearchReservationCommand;
-import commands.HelpCommand;
+import commands.MarkReservationCommand;
 import commands.QuitCommand;
-import exceptions.DishNameMissingException;
-import exceptions.InvalidDeleteDishCommandException;
+import commands.SearchDishCommand;
+import commands.SearchReservationCommand;
+import commands.SearchStockCommand;
+import commands.VoidReservationCommand;
+import exceptions.CommandFormatException;
 import exceptions.InvalidStockCommandException;
 import menu.Menu;
 import report.ReportWriter;
@@ -37,7 +38,9 @@ public class CommandParser {
      */
     public void parseCommand(String command, Menu menu,
                              Stock stock, ReservationList reservations, Sales sales, Ui ui) {
-
+        System.out.println("");
+        String[] commands = command.split(";", 2);
+        String[] splitCommands = commands[0].split(" ", 2);
         
         if (command.equals("bye")) {
             try {
@@ -46,12 +49,18 @@ public class CommandParser {
                 System.out.println("Error writing to file");
             }
             new QuitCommand().execute();
-        }
-
-        String[] commands = command.split(";", 2);
-        String[] splitCommands = commands[0].split(" ", 2);
-
-        if (splitCommands[0].equals("add")) {
+        } else if (command.equals("help")) {
+            new HelpCommand().execute();
+            successfulCommand();
+        } else if (command.equals("profit")) {
+            sales.calculateProfit();
+            successfulCommand();
+        } else if (command.equals("popular")) {
+            sales.mostPopularDish();
+            successfulCommand();
+        } else if (commands.length < 2 || splitCommands.length < 2) {
+            errorCommand();
+        } else if (splitCommands[0].equals("add")) {
             if (splitCommands[1].equals("dish")) {
                 // Add dish.
                 AddDishCommand.addDish(commands[1]);
@@ -130,40 +139,36 @@ public class CommandParser {
             } else {
                 errorCommand();
             }
-        } else if (splitCommands[0].equals("help")) {
-            new HelpCommand().execute();
-            successfulCommand();
         } else if (splitCommands[0].equals("sell")) {
             sales.addSale(commands[1]);
             successfulCommand();
-        } else if (splitCommands[0].equals("profit")) {
-            sales.calculateProfit();
-            successfulCommand();
-        } else if (splitCommands[0].equals("popular")) {
-            sales.mostPopularDish();
-            successfulCommand();
+        } else if (splitCommands[0].equals("clear")) {
+            if (splitCommands[1].equals("reservation")) {
+                new ClearReservationCommand().execute(reservations, ui);
+            } else if (splitCommands[1].equals("stock")) {
+                new ClearStockCommand().execute(stock);
+            }
         } else {
             errorCommand();
         }
+        System.out.println("");
     }
 
 
 
     public static void errorCommand() {
-        System.out.println("Incorrect command");
+        new CommandFormatException().getMessage();
     }
 
     /**
      * Displays an error message to the user.
      */
     public static void printErrorMessage(String message) {
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
 
         System.out.println(message);
 
-        System.out.println("============================================================"
-                + "================================================================");
+        System.out.println("");
     }
 
     public static void successfulCommand() {

@@ -4,7 +4,6 @@ import dish.Dish;
 import exceptions.DishIngredientsMissingException;
 import exceptions.DishNameMissingException;
 import exceptions.DishPriceMissingException;
-import exceptions.InputMissingException;
 import exceptions.InvalidAddDishCommandException;
 import exceptions.InvalidPriceException;
 import menu.Menu;

@@ -50,17 +50,17 @@ class ReservationTest {
                 + ls
                 + "Status: Served"
                 + ls
-                + "contact person: Peter"
+                + "Contact person: Peter"
                 + ls
-                + "date: 2020-03-15 13:00"
+                + "Date: 2020-03-15 13:00"
                 + ls
-                + "number of guests: 8"
+                + "Number of guests: 8"
                 + ls
-                + "table size: M"
+                + "Table size: M"
                 + ls
-                + "contact details: 11111111"
+                + "Contact details: 11111111"
                 + ls
-                + "comments: no spicy food please"
+                + "Comments: no spicy food please"
                 + ls, reservation.toString());
     }
 }
