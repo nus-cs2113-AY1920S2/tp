@@ -69,8 +69,9 @@ public class AddToAvailableCommand extends AddCommand {
     private void checkSemesterList(SemesterList semesterList) {
         for (SemModulesList sem: semesterList) {
             for (SelectedModule selectedModule: sem) {
-                if (selectedModule.getId().equals(newModule.getId())
-                        || selectedModule.getName().equals(newModule.getName())) {
+                boolean hasSameModuleId = selectedModule.getId().equals(newModule.getId());
+                boolean hasSameModuleName = selectedModule.getName().equals(newModule.getName());
+                if (hasSameModuleId || hasSameModuleName) {
                     selectedModule.setModuleConfig(newModule);
                 }
             }
