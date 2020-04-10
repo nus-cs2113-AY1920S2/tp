@@ -271,7 +271,7 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-
+![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
 
 ### 4.2.2 `Delete from Available` feature
 
@@ -401,7 +401,7 @@ Finally, with the `String` of the list of relevant modules, the `Ui.showFindMess
 relevant modules from the both the module plan and the list of available modules is printed out.
 
 The sequence diagram below shows the mechanics of `FindCommand`:
-[SequenceDiagram_FindCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_FindCommand.png)
+![SequenceDiagram_FindCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_FindCommand.png)
 
 
 # 5. Documentation
