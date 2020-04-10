@@ -27,7 +27,7 @@ class ParserTest {
     @Test
     void parseCommand_emptyCommand_throwException() {
         try {
-            command = parser.parse("list");
+            command = parser.parse("");
             fail("Invalid command not identified");
         } catch (HappyPillsException e) {
             assertEquals("    Command is invalid. Enter help to know how to use HappyPills.",e.getMessage());

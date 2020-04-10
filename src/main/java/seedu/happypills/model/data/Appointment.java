@@ -21,7 +21,7 @@ public class Appointment {
 
     /**
      * Constructor for Appointment class.
-     * It creates a new appointment with the details provided by the user.
+     * Creates a new appointment with the details provided by the user.
      *
      * @param nric NRIC of patient.
      * @param reason reason for appointment.
@@ -42,12 +42,12 @@ public class Appointment {
      * Constructor for Appointment class.
      * It creates a new appointment with the details provided by load function in storage.
      *
-     * @param id id of the appointment
+     * @param id Id of the appointment
      * @param nric NRIC of patient.
-     * @param reason reason for appointment.
-     * @param date date of appointment.
-     * @param time time of appointment.
-     * @param done status of whether the appointment is over
+     * @param reason Reason for appointment.
+     * @param date Date of appointment.
+     * @param time Time of appointment.
+     * @param done Status of whether the appointment is over.
      */
     public Appointment(String id, String nric, String date, String time,String reason, Boolean done) {
         this.nric = nric;

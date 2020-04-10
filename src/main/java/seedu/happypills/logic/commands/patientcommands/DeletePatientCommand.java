@@ -22,10 +22,14 @@ public class DeletePatientCommand extends PatientCommand {
     Logger logger = Logger.getLogger(HappyPills.class.getName());
     Level logLevel = Level.INFO;
 
+    /**
+     * Constructor for Delete Patient Command Class.
+     *
+     * @param nric Contains the nric of the patient that is to be retrieved.
+     */
     public DeletePatientCommand(String nric) {
         this.nric = nric.toUpperCase();
     }
-
 
     /**
      * Retrieve the patient's confirmation.
@@ -41,7 +45,7 @@ public class DeletePatientCommand extends PatientCommand {
     /**
      * Remove the patient from the patient list in the program.
      *
-     * @param patient The patient to be deleted.
+     * @param patient  The patient to be deleted.
      * @param patients The patient list within the program.
      * @return Message to inform the user that the patient has been deleted.
      */
@@ -54,12 +58,14 @@ public class DeletePatientCommand extends PatientCommand {
     /**
      * Run the delete command.
      *
-     * @param patients Contains the list of tasks on which the commands are executed on.
+     * @param patients       Contains the list of tasks on which the commands are executed on.
+     * @param appointments   The list of appointments
+     * @param patientRecords The list of patient records
      * @return The message to confirm deletion of patient or to confirm that the patient has not be deleted.
      * @throws HappyPillsException Throws an exception if patient does not exist.
      */
     public String execute(
-            PatientMap patients, AppointmentMap appointments, PatientRecordMap visits
+            PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
 
         if (patients.containsKey(nric)) {

@@ -11,11 +11,11 @@ public class PatientRecordMap {
     private final Map<String, ArrayList<PatientRecord>> argMultimap = new HashMap<String, ArrayList<PatientRecord>>();
 
     /**
-     * Adds an Visit into the VisitMap.
+     * Adds patient record into the PatientRecordMap.
      *
-     * @param patientRecord the appointment to be added into the map.
-     * @param nric nric for the patient
-     * @throws HappyPillsException throws exception if there is already an appointment with the given datetime.
+     * @param patientRecord The patient record to be added into the map.
+     * @param nric Nric of the patient.
+     * @throws HappyPillsException If the patient's nric is already in the PatientRecordMap.
      */
     public void addPersonalRecord(PatientRecord patientRecord, String nric) throws HappyPillsException {
         ArrayList<PatientRecord> patientRecords = argMultimap.get(nric);
@@ -55,15 +55,6 @@ public class PatientRecordMap {
 
     public boolean containsKey(String appointmentId) {
         return argMultimap.containsKey(appointmentId);
-    }
-
-    public void remove(String nric) {
-        argMultimap.remove(nric);
-    }
-
-    public void removeVisit(String nric, int index) {
-        ArrayList<PatientRecord> patientRecords = argMultimap.get(nric);
-        patientRecords.remove(index - 1);
     }
 
     public void removePersonalRecord(ArrayList<PatientRecord> patientRecord, String patientNric) {

@@ -27,7 +27,7 @@ public class Patient {
 
     /**
      * Constructor for Patient Class.
-     * It creates a new patient with the description provided by the user.
+     * Creates a new patient with the description provided by the user.
      *
      * @param name          Name of the patient.
      * @param nric          NRIC of the patient.
@@ -56,18 +56,16 @@ public class Patient {
     }
 
     /**
-     * Returns the status of the task in form of an icon.
-     * "\u2713" is returned to denote that the task is complete.
-     * "\u2718" is returned to denote that the task is incomplete.
+     * Getter function for name of the patient.
      *
-     * @return statusIcon Represents the current status of the task as described above.
+     * @return name Represents the name of the patient.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * Returns the nric of the patient.
+     * Getter function for Nric of the patient.
      *
      * @return nric Represents the nric of the patient.
      */
@@ -76,7 +74,7 @@ public class Patient {
     }
 
     /**
-     * Returns the phone number of the patient.
+     * Getter function for the phone number of the patient.
      *
      * @return phoneNumber Represents the phone number of the patient.
      */
@@ -85,25 +83,25 @@ public class Patient {
     }
 
     /**
-     * Returns the date of birth of the patient.
+     * Getter function for the date of birth of the patient.
      *
-     * @return phoneNumber Represents the date of birth of the patient.
+     * @return dateOfBirth Represents the date of birth of the patient.
      */
     public String getDateOfBirth() {
         return this.dateOfBirth;
     }
 
     /**
-     * Returns the blood type of the patient.
+     * Getter function for the blood type of the patient.
      *
-     * @return phoneNumber Represents the blood type of the patient.
+     * @return bloodType Represents the blood type of the patient.
      */
     public String getBloodType() {
         return this.bloodType;
     }
 
     /**
-     * Returns the allergies of the patient.
+     * Getter function for the allergies of the patient.
      *
      * @return allergies Represents the allergies of the patient.
      */
@@ -112,7 +110,7 @@ public class Patient {
     }
 
     /**
-     * Returns the remarks of the patient.
+     * Getter function for the remarks of the patient.
      *
      * @return remarks Represents the remarks of the patient.
      */
@@ -121,7 +119,7 @@ public class Patient {
     }
 
     /**
-     * Returns the ArrayList of appointments of the patient.
+     * Getter function for the ArrayList of appointments of the patient.
      *
      * @return appointments Represents the ArrayList of appointments of the patient.
      */
@@ -133,6 +131,11 @@ public class Patient {
         this.appointments.add(appt);
     }
 
+    /**
+     * Returns the information related to the patient in form of a string.
+     *
+     * @return string The string that consists the patient's detailed information.
+     */
     @Override
     public String toString() {
         String text = "        Name : " + this.name + "\n"
@@ -145,35 +148,65 @@ public class Patient {
         return text;
     }
 
+    /**
+     * Setter for phone number of the patient.
+     *
+     * @param phoneNumber The phone number of the patient.
+     */
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Setter for allergies of the patient.
+     *
+     * @param allergies The allergies of the patient.
+     */
     public void setAllergies(String allergies) {
         this.allergies = allergies;
     }
 
+    /**
+     * Setter for remarks of the patient.
+     *
+     * @param remarks The remarks of the patient.
+     */
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
 
+    /**
+     * Setter for name of the patient.
+     *
+     * @param name The name of the patient.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Setter for allergies of the patient.
+     *
+     * @param dateOfBirth The date of birth of the patient.
+     */
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     * Setter for blood type of the patient.
+     *
+     * @param bloodType The blood type of the patient.
+     */
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
 
     /**
-     * Create a string with all the patient's data for storage to a text file.
+     * Creates a string with all the patient's data for storage to a text file.
      * Each variable is separated with | as a divider.
      *
-     * @return a formatted string with patient's data.
+     * @return text A formatted string with patient's details.
      */
     public String toSave() {
         String text = this.name + "|" + this.nric + "|"
@@ -182,6 +215,11 @@ public class Patient {
         return text;
     }
 
+    /**
+     * Checks whether the date is in correct format.
+     *
+     * @return status The boolean to indicate the correctness of the date.
+     */
     private static boolean dateValidation(String date) {
         boolean status = false;
         if (Checker.isValidDate(date)) {

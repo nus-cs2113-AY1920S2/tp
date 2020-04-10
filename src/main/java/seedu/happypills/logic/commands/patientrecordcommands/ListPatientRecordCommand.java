@@ -5,31 +5,48 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
-import seedu.happypills.ui.PatientTextUi;
 import seedu.happypills.ui.PatientRecordTextUi;
-import seedu.happypills.ui.TextUi;
 
+//@@ itskesin
+
+/**
+ * Lists all patient records to the user.
+ */
 public class ListPatientRecordCommand extends PatientRecordCommand {
 
-    protected String patientNric;
+    protected String nric;
 
-    public ListPatientRecordCommand(String patientNric) {
-        this.patientNric = patientNric;
+    /**
+     * Constructor for List Patient Record Command Class.
+     *
+     * @param nric Contains the nric of the patient that is to be retrieved.
+     */
+    public ListPatientRecordCommand(String nric) {
+        this.nric = nric;
     }
 
+    /**
+     * Executes the list patient record command.
+     *
+     * @param patients       The list of patients.
+     * @param appointments   The list of appointments.
+     * @param patientRecords The list of patient records.
+     * @return Error Message or Success Message.
+     * @throws HappyPillsException If NRIC is not found in the patient record list.
+     */
     @Override
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
-        assert !patientNric.isEmpty() : "No NRIC was provided";
-        if (patients.containsKey(patientNric)) {
-            if (patientRecords.get(patientNric) == null) {
+        assert !nric.isEmpty() : "No NRIC was provided";
+        if (patients.containsKey(nric)) {
+            if (patientRecords.get(nric) == null) {
                 throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
             }
-            return PatientRecordTextUi.getPatientRecordListSuccessMessage(patientRecords.get(patientNric));
-        } else {
-            String message =  Messages.MESSAGE_PATIENT_NOT_FOUND;
+            String message = PatientRecordTextUi.getPatientRecordListSuccessMessage(patientRecords.get(nric));
             return message;
+        } else {
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
     }
 }
