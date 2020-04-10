@@ -96,18 +96,15 @@ public class Parser {
             return prepareShowUpcoming(arguments);
 
         case HelpCommand.COMMAND_WORD:
-           return new HelpCommand();
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
-           return new ExitCommand();
+            return new ExitCommand();
 
         default:
-           throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
+            throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
         }
     }
-
-
-
 
     /**
      * Parses the user input into arguments for the AddSubject command.
@@ -148,7 +145,8 @@ public class Parser {
     private static Command prepareEditCard(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, EditCardCommand.MESSAGE_USAGE);
         arguments[1] = " " + arguments[1];
-        checkArgumentPrefixes(arguments[1], EditCardCommand.MESSAGE_USAGE, SUBJECT_ARG, CARD_ARG, QUESTION_ARG, ANSWER_ARG);
+        checkArgumentPrefixes(arguments[1], EditCardCommand.MESSAGE_USAGE, SUBJECT_ARG,
+                            CARD_ARG, QUESTION_ARG, ANSWER_ARG);
 
 
         int subjectIndex = getSubjectIndex(arguments[1]);
@@ -338,7 +336,7 @@ public class Parser {
             int space = argument.indexOf(" ");
             String cardIndexString = argWithoutPrefixes.replace(CARD_ARG,"").substring(0,space+1).trim();
             return Integer.parseInt(cardIndexString);
-        } catch (NumberFormatException  e) {
+        } catch (NumberFormatException e) {
             throw new EscException("The card index has to be an integer.");
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new EscException("The card index is required.");
