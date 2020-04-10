@@ -11,10 +11,10 @@ public class ManualJobCreator {
 
     /** Executes the creation of a job object from user input. */
     public static void execute() {
-        String title = getTitle();
-        String text = getText();
-        String category = getCategory();
-        String extract = getExtract();
+        String title = getJobTitle();
+        String text = getJobText();
+        String category = getJobCategory();
+        String extract = getJobExtract();
         String epochSecond = CurrentTimeFetcher.execute();
         Job job = new Job(title, text, category);
         job.setExtract(extract);
@@ -28,7 +28,7 @@ public class ManualJobCreator {
      * Function that asks and gets job title.
      * @return String representation of title from user input.
      */
-    public static String getTitle() {
+    public static String getJobTitle() {
         System.out.println("Enter the title of the job?");
         return Ui.getCommand();
     }
@@ -37,7 +37,7 @@ public class ManualJobCreator {
      * Function that asks and gets job description.
      * @return String representation of job description given by user.
      */
-    public static String getText() {
+    public static String getJobText() {
         System.out.println("What is the job description/details?");
         return Ui.getCommand();
     }
@@ -46,8 +46,8 @@ public class ManualJobCreator {
      * Function that asks and gets job category.
      * @return String representation of job category given by user.
      */
-    public static String getCategory() {
-        System.out.println("What is the category (type \"default\" if you don't know it)");
+    public static String getJobCategory() {
+        System.out.println("What is the category of the Job? (type \"default\" if you don't know it)");
         return Ui.getCommand();
     }
 
@@ -55,8 +55,8 @@ public class ManualJobCreator {
      * Function that asks and gets job extract.
      * @return String representation of extract form user input.
      */
-    public static String getExtract() {
-        System.out.println("Would you like to add any extract?");
+    public static String getJobExtract() {
+        System.out.println("Would you like to add any extract to the Job?");
         return Ui.getCommand();
     }
 }

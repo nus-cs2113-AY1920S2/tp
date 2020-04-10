@@ -28,7 +28,7 @@ public class ViewedArticleListCreator {
             String tailUrl = ".json?print=pretty";
             String finalUrl = headOfUrl + midUrl + tailUrl;
             JSONObject rawNews = UrlJsonParser.readJsonFromUrl(finalUrl);
-            Article processedArticle = NewsCreator.rawToProcessedNews(rawNews);
+            Article processedArticle = NewsCreator.convertToProcessedNews(rawNews);
             ViewedArticleList.viewedArticleList.add(processedArticle);
         }
     }

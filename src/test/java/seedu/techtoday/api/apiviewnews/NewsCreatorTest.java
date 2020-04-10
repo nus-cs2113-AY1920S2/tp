@@ -23,7 +23,7 @@ class NewsCreatorTest {
         String url = "https://opensource.googleblog.com/2020/03/webassembly-brings-extensibility-to.html";
         String category = "default";
 
-        Article output = NewsCreator.rawToProcessedNews(input);
+        Article output = NewsCreator.convertToProcessedNews(input);
 
         String urlOutput = output.getUrl();
         String categoryOutput = output.getCategory();

@@ -12,7 +12,7 @@ public class JobsCreator {
      * @param json JSON object representing a news article.
      * @return Article - article representing jsonObject from internet.
      */
-    public static Job rawToProcessedJob(JSONObject json) {
+    public static Job convertToProcessedJob(JSONObject json) {
         String title = json.get("title").toString();
         String timeStamp = json.get("time").toString();
         assert (CommonMethods.checkIsLong(timeStamp)) : "Timestamp should be of long type";

@@ -19,7 +19,7 @@ class ManualNoteCreatorTest {
         String input = "testNote";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualNoteCreator.getNote();
+        String actualOutput = ManualNoteCreator.getNoteTitle();
         assertEquals("testNote", actualOutput);
     }
 
@@ -30,7 +30,7 @@ class ManualNoteCreatorTest {
         String input = "testUrl";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualNoteCreator.getUrl();
+        String actualOutput = ManualNoteCreator.getNoteUrl();
         assertEquals("testUrl", actualOutput);
     }
 
@@ -41,7 +41,7 @@ class ManualNoteCreatorTest {
         String input = "testExtract";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualNoteCreator.getExtract();
+        String actualOutput = ManualNoteCreator.getNoteExtract();
         assertEquals("testExtract", actualOutput);
     }
 
@@ -52,7 +52,7 @@ class ManualNoteCreatorTest {
         String input = "testCategory";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualNoteCreator.getCategory();
+        String actualOutput = ManualNoteCreator.getNoteCategory();
         assertEquals("testCategory", actualOutput);
     }
 }

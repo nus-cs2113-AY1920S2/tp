@@ -10,10 +10,10 @@ public class ManualArticleCreator {
 
     /** Executes the method used to create an article object using user inputs. */
     public static void execute() {
-        String title = getArticle();
-        String url = getUrl();
-        String category = getCategory();
-        String extract = getExtract();
+        String title = getArticleTitle();
+        String url = getArticleUrl();
+        String category = getArticleCategory();
+        String extract = getArticleExtract();
         String epochSecond = CurrentTimeFetcher.execute();
         Article article = new Article(title, url, category);
         article.setTime(epochSecond);
@@ -27,7 +27,7 @@ public class ManualArticleCreator {
      * Function that gets article name from the user.
      * @return String representation of the title from user input.
      */
-    public static String getArticle() {
+    public static String getArticleTitle() {
         System.out.println("Enter the title of the article?");
         return Ui.getCommand();
     }
@@ -36,7 +36,7 @@ public class ManualArticleCreator {
      * Function that gets the URL from the user.
      * @return String representation of url from user input.
      */
-    public static String getUrl() {
+    public static String getArticleUrl() {
         System.out.println("What is the URl of the article (type \"No URL\")?");
         return Ui.getCommand();
     }
@@ -45,7 +45,7 @@ public class ManualArticleCreator {
      * Function that gets category from the user.
      * @return String representation of category from user input.
      */
-    public static String getCategory() {
+    public static String getArticleCategory() {
         System.out.println("What is the category (type \"default\" if you don't know it)");
         return Ui.getCommand();
     }
@@ -54,7 +54,7 @@ public class ManualArticleCreator {
      * Function that asks and gets extract from the user.
      * @return String representation of category from user input.
      */
-    public static String getExtract() {
+    public static String getArticleExtract() {
         System.out.println("Would you like to add any extract?");
         return Ui.getCommand();
     }

@@ -21,7 +21,7 @@ class JobsCreatorTest {
         String title = "Augmented Reality Developer";
         String text = "Its a job of the future";
 
-        Job output = JobsCreator.rawToProcessedJob(input);
+        Job output = JobsCreator.convertToProcessedJob(input);
 
         String textOutput = output.getText();
         String titleOutput = output.getTitle();
