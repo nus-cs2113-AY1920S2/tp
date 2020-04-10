@@ -1,6 +1,7 @@
 package tasks;
 
 import common.Messages;
+import exceptions.AtasException;
 import seedu.atas.Parser;
 
 import java.time.LocalDate;
@@ -11,8 +12,8 @@ import java.util.StringJoiner;
 
 //@@author lwxymere
 public class Event extends Task {
+    protected static final int NUM_OF_ENCODED_FIELDS = 7;
     public static final String EVENT_ICON = "E";
-
     protected String location;
     protected LocalDateTime startDateAndTime;
     protected LocalDateTime endDateAndTime;
@@ -109,13 +110,17 @@ public class Event extends Task {
      * Converts an encoded Event back to an Event object.
      * @param encodedTask Event encoded using encodedTask()
      * @return Event with the correct attributes set
+     * @throws AtasException if there are invalid characters found in the encoded Event
      * @throws DateTimeParseException if encoded startDateAndTime or endDateAndTime cannot be parsed
      * @throws IndexOutOfBoundsException if encodedTask is not a String returned by calling encodeTask() on
      *              an Event
      */
     public static Event decodeTask(String encodedTask)
-            throws DateTimeParseException, IndexOutOfBoundsException {
+            throws AtasException, DateTimeParseException, IndexOutOfBoundsException {
         String[] tokens = encodedTask.split("\\" + STORAGE_DELIMITER);
+        if (tokens.length != NUM_OF_ENCODED_FIELDS) {
+            throw new AtasException(Messages.INCORRECT_STORAGE_FORMAT_ERROR);
+        }
         assert tokens[0].equals(EVENT_ICON);
         boolean isDone = Boolean.parseBoolean(tokens[1]);
         String name = tokens[2];
@@ -123,7 +128,6 @@ public class Event extends Task {
         LocalDateTime startDateAndTime = Parser.parseDate(tokens[4]);
         LocalDateTime endDateAndTime = Parser.parseDate(tokens[5]);
         String comments = tokens[6];
-        assert tokens.length == 7;
         Event event = new Event(name, location, startDateAndTime, endDateAndTime, comments);
         if (isDone) {
             event.setDone();
