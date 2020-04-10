@@ -1320,7 +1320,6 @@ step-by-step command for performance and all-in-one command for event?
 
 ## 7. Command Summary
 
-{Give a 'cheat sheet' of commands here}  
 **Student**
 * Add student list `studentlist add`
 * View student list `studentlist view`
