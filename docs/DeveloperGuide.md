@@ -1,5 +1,5 @@
 # Developer Guide
-- [Design](#1-Design)
+- [Design](#1-design)
 - [Implementation](#2-implementation)
   - [[Proposed] Subject Feature](#21-proposed-subject-feature)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
@@ -12,9 +12,9 @@
 ### Architecture
 <br />
 <p align="center">
-  <img src="images/architecture.jpeg" width="600" alt="Architecture Diagram"/>  
+  <img src="images/architecture.jpeg" width="600" alt="Architecture Diagram"/>
+  <br />Figure 1. Architecture Diagram  
 </p>
-<br />Figure 1. Architecture Diagram
 
 The Duke class is the main class of the product. It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -42,9 +42,9 @@ In these components, cards and subjects have similar structure. Both of them con
 Duke, along with all command class and Parser form the logic box of the product.
 <br />
 <p align="center">
-  <img src="images/logicuml.jpg" width="600" alt="Logic Class Diagram"/>  
+  <img src="images/logicuml.jpg" width="600" alt="Logic Class Diagram"/>
+  <br />Figure 2. Class diagram of Logic Component  
 </p>
-<br />Figure 2. Class diagram of Logic Component
 
 The flow of the logic component is as follows:
 1) Duke uses the Parser class to parse the command
@@ -52,9 +52,9 @@ The flow of the logic component is as follows:
 3) The Command object is then executed by Duke  
 <br />
 <p align="center">
-  <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>  
+  <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>
+  <br />Figure 3. Sequence diagram of Logic Component  
 </p>
-<br />Figure 3. Sequence diagram of Logic Component
 
 <br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
 
@@ -66,17 +66,17 @@ The flow of the logic component is as follows:
 - The Card class contains both a question and an answer to the question.  
 <br />
 <p align="center">
-  <img src="images/modeluml.jpeg" width="600" alt="Model class Diagram"/>  
+  <img src="images/modeluml.jpeg" width="600" alt="Model class Diagram"/>
+  <br />Figure 4. Class diagram of Model Component  
 </p>
-<br />Figure 4. Class diagram of Model Component
 
 <br />Finally, the Storage box, i.e. Storage class will handle reading and writing the content to files.
 <br />The Storage component saves the SubjectList objects in Serializable format and loads it back.
 <br />
 <p align="center">
-  <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>  
+  <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>
+  <br />Figure 5. Class diagram of Storage Component  
 </p>
-<br />Figure 5. Class diagram of Storage Component
 
 ## 2. Implementation
 ### 2.1. [Proposed] Subject Feature
@@ -94,9 +94,9 @@ The following diagram describes how the add subject operation works:
 
 <br />
 <p align="center">
-  <img src="images/addsubject_sequence_diagram.jpeg" width="600" alt="Addsubject Sequence Diagram"/>  
+  <img src="images/addsubject_sequence_diagram.jpeg" width="600" alt="Addsubject Sequence Diagram"/>
+  <br />Figure 6. Sequence diagram for addsubject command  
 </p>
-<br />Figure 6. Sequence diagram for addsubject command
 
 Step 2. The user executes the command ``listsubject`` to view the subjects currently stored in the application.
 
@@ -106,9 +106,9 @@ to add a flashcard into the subject.
 The following diagram describes how the add card operation works:
 <br />
 <p align="center">
-  <img src="images/addcard_sequence_uml.jpeg" width="600" alt="Addcard Sequence Diagram"/>  
+  <img src="images/addcard_sequence_uml.jpeg" width="600" alt="Addcard Sequence Diagram"/>
+  <br />Figure 7. Sequence diagram of addcard command.  
 </p>
-<br />Figure 7. Sequence diagram of addcard command.
 
 #### 2.1.2. Design Considerations
 ##### Aspect: How user can add a flashcard into a subject
@@ -153,9 +153,9 @@ The following diagram describes how the quiz operation works:
 
 <br />
 <p align="center">
-  <img src="images/quiz_sequence_uml.png" width="600" alt="Quiz Sequence Diagram"/>  
+  <img src="images/quiz_sequence_uml.png" width="600" alt="Quiz Sequence Diagram"/>
+  <br />Figure 8. Sequence diagram of quiz command.  
 </p>
-<br />Figure 7. Sequence diagram of quiz command.
 
 Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
 command ``exitquiz``.
@@ -212,9 +212,9 @@ The following diagram describes how the score operation works:
 
 <br />
 <p align="center">
-  <img src="images/scores_sequence_uml.png" width="600" alt="Score Sequence Diagram"/>  
+  <img src="images/scores_sequence_uml.png" width="600" alt="Score Sequence Diagram"/>
+  <br />Figure 9. Sequence diagram of score command  
 </p>
-<br />Figure 8. Sequence diagram of score command
 
 #### 2.3.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -254,9 +254,9 @@ The following diagram describes how the add event operation works:
 
 <br />
 <p align="center">
-  <img src="images/addevent_sequence_uml.png" width="600" alt="Addevent Sequence Diagram"/>  
+  <img src="images/addevent_sequence_uml.png" width="600" alt="Addevent Sequence Diagram"/>
+  <br />Figure 10. Sequence diagram of addevent command  
 </p>
-Figure 9. Sequence diagram of addevent command
 
 Step 2. The user executes the command ``listevent`` to view the events currently stored in the application.
 
@@ -267,9 +267,9 @@ The following diagram describes how the show upcoming operation works:
 
 <br />
 <p align="center">
-  <img src="images/showupcoming_sequence_uml.png" width="600" alt="Showupcoming Sequence Diagram"/>  
+  <img src="images/showupcoming_sequence_uml.png" width="600" alt="Showupcoming Sequence Diagram"/>
+  <br /> Figure 11. Sequence diagram of showupcoming command  
 </p>
-Figure 10. Sequence diagram of showupcoming command
 
 #### 2.4.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
@@ -298,9 +298,9 @@ To deserialize the object after being read from file via `java.io.FileInputStrea
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
 <br />
 <p align="center">
-  <img src="images/storage_sequence_uml.jpg" width="600" alt="Storage Sequence Diagram"/>  
+  <img src="images/storage_sequence_uml.jpg" width="600" alt="Storage Sequence Diagram"/>
+  <br /> Figure 12. Sequence diagram of storage command  
 </p>
-Figure 11. Sequence diagram of storage command
 
 ## Appendix A: Product Scope
 ### Target User Profile
