@@ -18,12 +18,7 @@ package Command {
 Class PatientCommand
 Class AppointmentCommand
 Class PatientRecordCommand
-Class CommandResult
 Class "{abstract}\nCommand" as Command
-}
-
-Interface Logic <<Interface>>
-Class LogicManager
 }
 
 package Model{
@@ -31,9 +26,7 @@ Class HiddenModel #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
-
-LogicManager .up.|> Logic
+HiddenOutside ..> Parser
 
 PatientCommandParser .down.> PatientCommand : creates >
 AppointmentParser ....down.> AppointmentCommand : creates >
@@ -43,17 +36,12 @@ PatientRecordParser ..left[hidden].>PatientCommandParser
 PatientCommandParser ..up|> Parser
 AppointmentParser ..up|> Parser
 PatientRecordParser ..up|> Parser
-LogicManager ..right.> Command : executes >
 
-Logic ..> CommandResult
-CommandResult-left[hidden]-LogicManager
-LogicManager .down.> CommandResult
-Command ..up.> CommandResult
 PatientCommand ......up.|> Command
 AppointmentCommand .up.|> Command
 PatientRecordCommand ....up.|> Command
-CommandResult -[hidden]->Parser
 
-Command .right.> Model
-LogicManager -----> Model
+AppointmentCommand ..> Model
+PatientCommand ..> Model
+PatientRecordCommand ..> Model
 @enduml

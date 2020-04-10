@@ -6,9 +6,6 @@ skinparam classBackgroundColor MODEL_COLOR
 skinparam linetype ortho
 
 Package Model <<Rectangle>>{
-Interface Model <<Interface>>
-Class Model
-Class ModelManager
 
 Package Patient {
 Class Person
@@ -39,10 +36,6 @@ Class VisitDate
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
-
-
-ModelManager .up.|> Model
 
 PatientList o--> "*" Person
 Person *--> Name
@@ -64,10 +57,6 @@ Pr *--> Prescription
 Pr *--> VisitDate
 
 Person *-left-> "*" Pr
-
-Patient ----up-> ModelManager
-Appointment --up-> ModelManager
-PatientRecord --up-> ModelManager
 
 Name --[hidden]right-> Phone
 Phone --[hidden]right-> DOB

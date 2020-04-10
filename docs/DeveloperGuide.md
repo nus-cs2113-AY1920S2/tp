@@ -212,6 +212,7 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 * allergies: `Peanuts`
 
 **Implementation** 
+
 --incorrect add patient----
 The sequence diagram below summarises the process of executing an `add` command.
 ![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
@@ -259,17 +260,17 @@ The following steps explains the sequence of events:
 
 The user can delete a patient from the list of patients currently in the program. The command: 
 
-    delete patient S7777777Z 
+    delete patient S1234567Z 
     
-will delete the patient with NRIC `S7777777Z`, if found. 
+will delete the patient with NRIC `S1234567Z`, if found. 
 
 **Implementation** 
 
-![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.jpg)
+![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.png)
 
 The following steps explains the sequence of events: 
 
-1. The user enters `delete patient S7777777Z`. 
+1. The user enters `delete patient S1234567Z`. 
 
 2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
 
@@ -337,7 +338,7 @@ or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the p
 #### 4.3.1. Add Appointment
 
 The user is able to add appointments into the program to manage the appointment schedule. 
-The command: 
+The command:  
 
     add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
     
