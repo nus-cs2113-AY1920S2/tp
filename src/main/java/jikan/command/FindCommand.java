@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class FindCommand extends Command {
     boolean isFinalCommand;
+    boolean isChained;
     private static final String FILTER = "filter";
     private static final String FIND = "find";
     /**
@@ -24,6 +25,13 @@ public class FindCommand extends Command {
         super(parameters.trim());
         isFinalCommand = true;
     }
+
+    public FindCommand(String parameters, boolean isFinal, boolean hasChaining) {
+        super(parameters.trim());
+        isFinalCommand = isFinal;
+        isChained = hasChaining;
+    }
+
 
     /**
      * Shows the user all past activities that has names which match the keyword queried by the user.
@@ -37,11 +45,16 @@ public class FindCommand extends Command {
         String[] tokenizedParameters = parameters.split(" ;", 2);
 
         if (tokenizedParameters.length > 1) {
+            if (tokenizedParameters[1].length() == 0) {
+                System.out.println("screw you");
+                // throw exception here; to do tmr: reduce duplicate code, add jUnit test and docs for this feature
+            }
             String nextCommand = tokenizedParameters[1].trim();
             isFinalCommand = false;
             parameters = tokenizedParameters[0];
             findSubList();
             callNextCommand(nextCommand, activityList);
+
         } else {
             isFinalCommand = true;
             executeSingleCommand(activityList);
@@ -50,7 +63,7 @@ public class FindCommand extends Command {
 
 
     private void executeSingleCommand(ActivityList activityList) {
-        if (parameters.contains("-s")) {
+        if (parameters.contains("-s") || isChained == true) {
             findSubList();
         } else {
             findFullList(activityList);
@@ -60,19 +73,18 @@ public class FindCommand extends Command {
     private void callNextCommand(String userInput, ActivityList activityList) {
         String[] tokenizedInputs = userInput.split(" ", 2);
         String instruction = tokenizedInputs[0];
-        System.out.println("we here");
         Command command = null;
         switch (instruction) {
         case FIND:
             try {
-                command = new FindCommand(tokenizedInputs[1]);
+                command = new FindCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
             }
             break;
         case FILTER:
             try {
-                command = new FilterCommand(tokenizedInputs[1]);
+                command = new FilterCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
             }
@@ -133,7 +145,7 @@ public class FindCommand extends Command {
     }
 
     private void callPrintResults() {
-        if (isFinalCommand = true) {
+        if (isFinalCommand == true) {
             Ui.printResults(lastShownList);
         }
     }
