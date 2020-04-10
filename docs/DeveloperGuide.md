@@ -344,9 +344,11 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 |v2.0|restaurant owner|list all unserved reservations|I can know what reservations need to be prepared|
 |v2.0|restaurant owner|search a reservation via reservation number|I can know the details about a specific reservation|
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
-|v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
+|v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
+|v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
 |v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
+
 
 
 <a name="nonfunctional-requirement"></a>
