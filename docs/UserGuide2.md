@@ -322,9 +322,9 @@ Retrieve details of the patient with the specified NRIC.
 
  [&#8593; Return to Top](#table-of-content)
  
- ### 3.3. Patient Medical Records 
+### 3.3. Patient Medical Records 
  
- #### 3.3.1. Add Patient Records: `add pr`
+#### 3.3.1. Add Patient Records: `add pr`
  
  Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
  
@@ -337,7 +337,7 @@ Retrieve details of the patient with the specified NRIC.
   </tr>
  </table>
  
- ##### Format:
+##### Format:
  
      add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
      
@@ -359,13 +359,13 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.3.2. List Patient Records: `list pr`
+#### 3.3.2. List Patient Records: `list pr`
  
  Displays all  patient records for the patient using his/her NRIC. Patient's records will be listed with their respective 
  index which is needed for [find pr](#333-find-patient-records-find-pr), 
  [edit pr](#334-edit-patient-records-edit-pr) and [delete pr](#335-delete-patient-records-delete-pr) commands.
  
- ##### Format:
+##### Format:
  
      list pr NRIC
  
@@ -395,12 +395,12 @@ Retrieve details of the patient with the specified NRIC.
   [&#8593; Return to Top](#table-of-content)
   
    
- #### 3.3.3. Find Patient Records: `find pr`
+#### 3.3.3. Find Patient Records: `find pr`
  
  Display detailed information for that particular patient's visit using the NRIC and index of the patient's records 
  which can obtained from the [list pr](#332-list-patient-records-list-pr) command. 
  
- ##### Format:
+##### Format:
  
      find pr NRIC INDEX
  
@@ -429,12 +429,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
   
- #### 3.3.4. Edit Patient Records: `edit pr`
+#### 3.3.4. Edit Patient Records: `edit pr`
  
  Edit patient's past medical record using the index of the patient's records 
  which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
  
- ##### Format:
+##### Format:
  
      edit pr NRIC INDEX /sym<SYMPTOMS> 
                         /diag<DIAGNOSIS> 
@@ -475,12 +475,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
   
- #### 3.3.5. Delete Patient Records: `delete pr`
+#### 3.3.5. Delete Patient Records: `delete pr`
  
  Delete patient's medical records based on the given NRIC and the index of the patient's records 
  which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
  
- ##### Format:
+##### Format:
  
      delete pr NRIC INDEX
  
@@ -511,12 +511,12 @@ Retrieve details of the patient with the specified NRIC.
  
  HappyPills helps to store appointment schedules. 
  
- ####3.4.1. Add Appointment: `add appt`
+####3.4.1. Add Appointment: `add appt`
  
  Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
  patient automatically.
   
- ##### Format:
+##### Format:
   
       add appt /ic NRIC /d DATE /t TIME /r REASON
           
@@ -534,12 +534,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.4.2. Edit Appointment: `edit appt`
+#### 3.4.2. Edit Appointment: `edit appt`
  
  Edit information of the appointment with the specified appointmentID(apptID).
   The appointment should belong to the patient with the specified NRIC. 
   
- ##### Format:  
+##### Format:  
   
       edit appt NRIC apptID [Options][editedInput]
       Options:
@@ -557,11 +557,11 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.4.3. Delete Appointment: `delete appt`
+#### 3.4.3. Delete Appointment: `delete appt`
  
  Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
  
- ##### Format: 
+##### Format: 
  
      delete appt NRIC apptID
      
@@ -575,12 +575,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.4.4. Mark Appointment as Done: `done appt` 
+#### 3.4.4. Mark Appointment as Done: `done appt` 
  
  Mark the appointment with the specified appointmentID(apptID) as done if arrived.
   The appointment should belong to the patient with the specified NRIC. 
   
- ##### Format:
+##### Format:
   
       done appt NRIC apptID
           
@@ -594,12 +594,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.4.5. List All Appointments: `list appt` 
+#### 3.4.5. List All Appointments: `list appt` 
  
  List all the existing appointments in the clinic. 
  This can be used as a method to check for appointmentID.
   
- ##### Format: 
+##### Format: 
   
       list appt
           
@@ -611,12 +611,12 @@ Retrieve details of the patient with the specified NRIC.
  
   [&#8593; Return to Top](#table-of-content)
  
- #### 3.4.6. Find Patient's Appointments: `find appt`
+#### 3.4.6. Find Patient's Appointments: `find appt`
  
  Check all appointments that the patient with the specified NRIC has. 
  This can be used as a method to check for appointmentID.
  
- ##### Format: 
+##### Format: 
   
       find appt NRIC
           
