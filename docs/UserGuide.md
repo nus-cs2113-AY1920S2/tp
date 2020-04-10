@@ -61,9 +61,10 @@ grocery shopping disappear.
 ## Quick Start
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
 [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
-2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `SHOCO.jar` under version 2.0.
-3. Open the command prompt in the directory of the executable SHOCO and type in the following command:
-   `java -jar SHOCO.jar`
+2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `CS2113T-T13-1.Shoco.jar
+` under version 2.1.
+3. Open the command prompt in the directory of the JAR file and type in the following command:
+   `java -jar CS2113T-T13-1.Shoco.jar`
 4. You are now all set to plan your shopping list!
 
 &nbsp;
