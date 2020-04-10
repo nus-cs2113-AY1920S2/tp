@@ -16,7 +16,11 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static common.Messages.*;
+
+import static common.Messages.MESSAGE_WRONG_COMMAND_MEETING;
+import static common.Messages.MESSAGE_WRONG_COMMAND_SCHEDULE;
+import static common.Messages.MESSAGE_WRONG_DATE;
+import static common.Messages.MESSAGE_INVALID_SLOT_RANGE
 
 public class CommandHandler {
 
@@ -212,6 +216,13 @@ public class CommandHandler {
                                        ContactList contactList, int currentWeekNumber) {
 
         try {
+            int dayDiff = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2])
+                    - Integer.parseInt(userInputWords[2]);
+
+            if (dayDiff > 0 && dayDiff < 14) {
+                throw new WfException(MESSAGE_WRONG_DATE);
+            }
+
             if (userInputWords.length < 6) {
                 throw new WfException(MESSAGE_WRONG_COMMAND_SCHEDULE);
             }

@@ -25,4 +25,5 @@ public class Messages {
     public static final String MESSAGE_WRONG_COMMAND_SCHEDULE = "Follow format for schedule command:";
     public static final String MESSAGE_WRONG_COMMAND_DELETE = "Follow format for delete command:";
     public static final String MESSAGE_WRONG_COMMAND_MEETING = "Follow format for meeting command:";
+    public static final String MESSAGE_WRONG_DATE = "Cannot schedule meeting before today.";
 }

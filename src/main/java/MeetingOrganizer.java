@@ -111,9 +111,11 @@ public class MeetingOrganizer {
         TextUI.menuMsg(myLogicManager.getMyContactList().getSize());
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
-            if (userInput.equals("exit")) {
+            if (userInput.toLowerCase().equals("exit")) {
                 break;
             }
+
+            userInput = userInput.replaceAll("\\s+", " ");
 
             String[] userInputWords = userInput.split(" ");
             try {
@@ -139,8 +141,7 @@ public class MeetingOrganizer {
 
 
     private void getWeekNumber() {
-        String[] tempTime = java.util.Calendar.getInstance().getTime().toString().split(" "); //Thu Mar 26 08:22:02 IST 2015
-        String day = tempTime[0];
+        String[] tempTime = java.util.Calendar.getInstance().getTime().toString().split(" "); //Format: Thu Mar 26 08:22:02 IST 2015
         String month = tempTime[1];
         int date = Integer.parseInt(tempTime[2]);
         //week starts on Sunday
