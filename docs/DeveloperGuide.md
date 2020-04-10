@@ -15,16 +15,16 @@ Creators: `Tan Kok Joon`, `Labi Trisha Angelica Vergara`, `Loh Ching Wei, Joshua
 * **[1. Introduction](#1-introduction)**
 * **[2. Overview of the SHOCO application](#2-overview-of-the-shoco-application)**
 * **[3. Implementation](#3-implementation)**
-    + [3.1 View help feature](#310-view-help-feature)
-    + [3.2 Display feature](#36-display-feature)
-    + [3.3 Set budget feature](#37-set-budget-feature)
-    + [3.4 Add feature](#31-add-feature)
-    + [3.5 Edit feature](#32-edit-feature)
-    + [3.6 Mark and Unmark feature](#35-mark-and-unmark-feature)
-    + [3.7 Find feature](#34-find-feature)
-    + [3.8 Delete feature](#33-delete-feature)
+    + [3.1 View help feature](#31-view-help-feature)
+    + [3.2 Display feature](#32-display-feature)
+    + [3.3 Set budget feature](#33-set-budget-feature)
+    + [3.4 Add feature](#34-add-feature)
+    + [3.5 Edit feature](#35-edit-feature)
+    + [3.6 Mark and Unmark feature](#36-mark-and-unmark-feature)
+    + [3.7 Find feature](#37-find-feature)
+    + [3.8 Delete feature](#38-delete-feature)
     + [3.9 Clear list feature](#39-clear-list-feature)
-    + [3.10 Reset budget feature](#38-reset-budget-feature)
+    + [3.10 Reset budget feature](#310-reset-budget-feature)
     + [3.11 Exit program feature](#311-exit-program-feature)
  * **[Appendix A: Product Scope](#appendix-a-product-scope)**
  * **[Appendix B: User Stories](#appendix-b-user-stories)**
