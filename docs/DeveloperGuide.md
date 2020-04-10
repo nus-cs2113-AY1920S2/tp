@@ -325,7 +325,7 @@ or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the p
 #### 4.3.1. Add Appointment
 
 The user is able to add appointments into the program to manage the appointment schedule. 
-The command: 
+The command:  
 
     add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
     
