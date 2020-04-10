@@ -16,8 +16,6 @@ import java.util.Scanner;
  */
 public class ByeCommand extends Command {
 
-    //private Scanner scanner = new Scanner(System.in);
-
     /**
      * Constructor to create a new exit command.
      */
@@ -26,14 +24,14 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Checks for ongoing activities and ask if user wants to save them
-     * before exiting the app.
+     * Exits the app. If there is a ongoing activity, asks the user if the activity
+     * should be saved.
      */
     @Override
     public void executeCommand(ActivityList activityList) {
 
         try {
-            //Parser.parseBye(activityList, Jikan.in);
+            // checks if there was an ongoing activity
             if (Parser.startTime != null) {
                 String line = Parser.activityName + " is still running! If you exit now it will be aborted.\n"
                         + "Would you like to end this activity to save it?";

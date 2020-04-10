@@ -3,7 +3,6 @@ package jikan;
 import jikan.activity.ActivityList;
 import jikan.command.ByeCommand;
 import jikan.command.Command;
-import jikan.command.GoalCommand;
 import jikan.exception.EmptyNameException;
 import jikan.exception.ExtraParametersException;
 import jikan.cleaner.LogCleaner;
@@ -12,7 +11,6 @@ import jikan.storage.Storage;
 import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 

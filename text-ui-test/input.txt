@@ -16,5 +16,6 @@ end
 abort
 hi
 delete
-delete activity 2
+edit activity 2 /en activity 5
+delete activity 5
 bye

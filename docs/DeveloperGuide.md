@@ -81,6 +81,16 @@ _Fig 2.1. Architecture diagram of the Jikan program_
 ### 2.2 Class Diagram
 The high-level class diagram describes the structure of the components
 ![image_info](./pictures/Simplified_Class_Diagram.png)
+
+![image_info](./pictures/ClassDiagram.png)
+_Fig 2.1. Class diagram of the Jikan program_
+
+![image_info](./pictures/Commands.png)
+_Fig 2.2. Commands of Jikan (private methods omitted)_
+
+All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
+
+
 ## 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -166,7 +176,8 @@ The StorageHandler class functions as a support to the main Storage class, allow
 The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
 
 #### 3.4.1 Current Implementation
-The following sequence diagram shows how the edit feature works.
+The current implementation of the edit feature allows the user to edit the activity name as well as its allocated time.
+The following sequence diagram shows how the edit feature works for editing the activity name. The diagram for the editing of allocated time is omitted as the sequence is relatively similar.
 ![image_info](./pictures/EditSequenceDiagram.png)
 The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The `executeCommand()` method of the EditCommand object is called and the specified parameters are updated accordingly.
 
@@ -177,12 +188,12 @@ The order of method calls to edit the activity details is as follows if the spec
 4. The activity with the updated name is returned to the activityList  
 
 #### 3.4.2 Additional Implementations
-The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
+The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
 This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
 
 #### 3.4.3 Design Considerations
-By letting the user edit the name and tags of the activity, it will allow them to correct any mistakes made during the data entry. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
+By letting the user edit the name and allocated time of the activity, it will allow them to correct any mistakes made during the data entry as well as allowing them to update their allocated time for the activity. This ensures that there is an accurate record of activities such as in cases where the user may be trying to record the same activity but has misspelled it, resulting in the program regarding it as a different activity where there would be multiple unnecessary new entries in the activity list, making the analysis of the time spent more tedious and inaccurate.
 
 However, by allowing the user to edit the start date and time, there may be potential inaccuracies in the actual activity recording. This is due to the fact that the time recorded in the program is based on the LocalDateTime. By introducing user input, the dates and time may be recorded incorrectly, defeating the purpose of the time tracking program. 
 
@@ -372,41 +383,42 @@ Allow users to record their daily activities and track their time usage in a use
 
 
 ### Non-Functional Requirements
-
-{Give non-functional requirements}
+* The program should be usable by a novice who has never used a time management application.
+* The program should work on most mainstream OSes. 
+* The program should be portable to other systems. 
 
 ### Glossary
 
-* *glossary item* - Definition
+* *Mainstream OSes:* Windows, MacOS, Linux 
 
 ### Instructions for Manual Testing  
   
-  #### Launch and Shutdown
+#### Launch and Shutdown
   1. Download the jar file and data.csv file.
   2. Copy both into an empty folder.
   3. Create a folder named `data` and put the data.csv file into this folder.
   4. Ensure the folder `data` and `jikan.jar` are in the same folder.
   5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
   
-  It is important to include the data.csv file to have data for testing!
+  It is important to include the data.csv file to have data for testing!  
   
-  #### Listing activities
+#### Listing activities
   Test case: `list month april`
   
   Expected: A list of activities completed in the month of April should be shown.
   
   Test case: `list 25/03/2020`
   
-  Expected: A list of activities completed on 25th March 2020 should be shown.
+  Expected: A list of activities completed on 25th March 2020 should be shown.  
   
-  #### Continuing activities
+#### Continuing activities
   Test case: `continue lab 4 ex2`
   
   Expected: Message "lab 4 ex2 was continued" will be displayed.
   
   Test case: `start lab 4 ex2`
   
-  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.  
   
 
 #### Graphing activities
@@ -422,7 +434,7 @@ Test case: (to be done in succession)
 `list week` then `graph tags`
 
 Expected: List of activities completed this week will be shown. 
-Then a chart of the duration of the tags of these activities will be shown.
+Then a chart of the duration of the tags of these activities will be shown.  
 
 #### Setting tag goals
 Test case: `goal core /g 24:00:00`
