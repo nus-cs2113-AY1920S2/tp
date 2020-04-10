@@ -1,6 +1,7 @@
 package seedu.subjects;
 
 import seedu.duke.UI;
+import seedu.events.Event;
 import seedu.events.EventList;
 import seedu.exception.EscException;
 
@@ -23,7 +24,7 @@ public class SubjectList {
      */
     public SubjectList(ArrayList returnObj) {
         this.subjects = (ArrayList<Subject>) returnObj.get(0);
-        this.events = (EventList) returnObj.get(1);
+        this.events = new EventList((ArrayList<Event>) returnObj.get(1));
     }
 
     public SubjectList(ArrayList<Subject> subjects, EventList events) {

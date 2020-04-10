@@ -61,6 +61,7 @@ public class EventList implements Serializable {
     public void listUpcoming(int... dateRange) {
         if (this.events.size() == 0) {
             System.out.println("No stored events.");
+            return;
         }
         ArrayList<Event> listToShow;
         if (dateRange.length == 0) {
