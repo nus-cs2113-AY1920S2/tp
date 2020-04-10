@@ -75,7 +75,6 @@ public class EditCommand extends Command {
         }
 
         ui.showToUser(Messages.EDIT_PROMPT);
-        ui.showToUser(Messages.DIVIDER);
         String userInput = ui.getUserInput();
         String commandType = userInput.split("\\s+", 2)[0].trim().toLowerCase();
         try {

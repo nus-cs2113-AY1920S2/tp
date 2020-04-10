@@ -103,9 +103,10 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
-        assertEquals(Messages.SAME_TASK_ERROR, feedback);
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
+        assertEquals(Messages.SAME_TASK_ERROR + System.lineSeparator()
+                + Messages.REPEAT_EDITCOMMAND_PROMPT, feedback);
     }
 
 
@@ -131,9 +132,10 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
-        assertEquals(Messages.UNKNOWN_COMMAND_ERROR, feedback);
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
+        assertEquals(Messages.UNKNOWN_COMMAND_ERROR + System.lineSeparator()
+                + Messages.REPEAT_EDITCOMMAND_PROMPT, feedback);
     }
 
     @Test
@@ -159,8 +161,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 
@@ -187,8 +189,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 
@@ -222,8 +224,8 @@ public class EditCommandTest {
             System.setIn(consoleIn);
             System.setOut(consoleOut);
         }
-        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.DIVIDER
-                + lineSeparator + Messages.PROMPT_FOR_USER_INPUT, testOutput.toString());
+        assertEquals(Messages.EDIT_PROMPT + lineSeparator + Messages.PROMPT_FOR_USER_INPUT,
+                testOutput.toString());
         assertEquals(String.format(Messages.EDIT_SUCCESS_MESSAGE, edited), feedback);
     }
 }
