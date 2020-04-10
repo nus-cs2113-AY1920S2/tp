@@ -67,22 +67,20 @@ The users interact with the Jikan software which modifies the local storage data
 Within the Jikan software, there are 5 main components:
 * **Parser Component** - Parses the user inputs and calls the relevant `Command` object to execute the desired
 command.
-* **Ui Component** - Prints to the user the output of the desired commands.
+* **Ui Component** - Prints to the user the output of the desired `Commands`.
 * **Commands Component** - Contains all the `Commands` to be called by the `Parser` based on user inputs.
 * **Activities Component** - Maintains the non-permanent state of all `Activities` in the `Activity List` to be accessed
 by the executing `Commands`.
-* **Storage Component** - Interacts with the local storage file, which contains the state of all activities, lasting
-even when the program terminates. It retrieves this state of activities and populates the `Activity List` at the start
-of each session.
+* **Storage Component** - Interacts with and modifies the local storage file, which contains the permanent (lasting
+even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session.
 
 ![image_info](./pictures/Architecture_Diagram.png)
 _Fig 2.1. Architecture diagram of the Jikan program_
 
 ### 2.2 Class Diagram
 The high-level class diagram describes the structure of the components
-![image_info](./pictures/Simplified_Class_Diagram.png)
 
-![image_info](./pictures/ClassDiagram.png)
+![image_info](./pictures/Simplified_Class_Diagram.png)
 _Fig 2.1. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
@@ -313,7 +311,7 @@ command contains the parameters:
 
 #### 3.7.3 Find Sequence Diagram
 ![image_info](./pictures/Find_Sequence_Diagram.png)
-![image_info](./pictures/Find_Reference_Frame.png)
+![image_info](./pictures/Find_Reference_Frame.PNG)
 
 #### 3.7.4 Additional features (Proposed)
 Developers may include the feature allowing users users to chain multiple queries and multiple commands 
