@@ -486,50 +486,64 @@ closed in the terminal. This is achieved by storing all relevant information in 
 
  The current methods implemented in this class and a brief description of each method:
  - `writeAllToFile` — writes the entire list of object to the specified text file.
- - `addSingleItemToFile` — adds a new object as a single string to the end of specified text file.
+ - `addSingleItemToFile` — appends a new object as a single string to the specified text file.
  - `loadPatientFromFile` — access the patient file and retrieve all information in the file as strings.
  - `parsePatientFileContent` — process line-by-line to create a patient object and add to the shared patient map.
  - `loadAppointmentFromFile` — access the patient file and retrieve all information in the file as strings.
  - `parseAppointmentFileContent` — process line-by-line to create an appointment object and add to the 
                                    shared appointment map.
  - `loadPatientRecordFromFile` — access the patient record file and retrieve all information in the file as strings.
- - `parsePatientRecordFileContent` — process line-by-line to create a patient record object and add to the shared patient map.
+ - `parsePatientRecordFileContent` — process line-by-line to create a patient record object and 
+                                    add to the shared patient map.
 
 **Implementation** 
 
  The following diagram shows how each command interacts with the other classes.
  
  *writeAllToFile*
+ 
+ For illustration purposes, assume the editPatientCommand has called this method.
+   
+  1. editPatientCommand first gets a single formatted string from StorageTextUi.
+  2. StorageTextUi then access the patients in the patientMap one by one to retrieve the a string of the object by the
+     toSave() method. This is a private method that formats a string that contains all the values of the variables.
+     It is constructed with '|' as a divider, and a newline to indicate the end of the object.
+  3. The formatted string is a concatenation of all the toSave() strings of the objects in the list.
+  4. `writeAllToFile` is then called from the editPatientCommand and writes the string into the text file, 
+  overwriting any pre-existing strings in the file.
   
-  This storage method : `writeAllToFile`, gets a single formatted string from TextUi, containing details of all the 
-  objects in a map. Each class object would have a class method to construct a toSave() string, and 
-  each object is stored as a single line within the text file. Hence, the toSave() string is constructed with  
-  '|' as a divider, and a newline to indicate the end of the object. The formatted string is a concatenation of all 
-  the toSave() strings of the objects in the list. `writeAllToFile` then writes the entire string into the text file, 
-  overwriting any existing strings in the file.
-  This is implemented for edit and delete commands as they cannot be appended.
+  This is implemented for edit and delete command of the various object. The process is identical regardless of
+  the object.
   
   ![writing](images/DG/STORAGE/StorageWriteAll.png)
  
  *addSingleItemToFile*
  
- Each class object would have a class method to construct a toSave() string, and each object is stored as a single line
- within the text file. Hence, the toSave() string is constructed with  '|' as a divider, and a newline to indicate 
- the end of the object.  This storage method : addSingleItemToFile, uses the toSave() string of the object 
- it needs to save, by appending it to the back of the text file. 
+ For illustration purposes, assume addPatientCommand has called this method.
+ 
+ 1. The toSave() method formats a string that contains all the values of the variables. 
+ It is constructed with '|' as a divider, and a newline to indicate the end of the object.
+  2. `addSingleItemToFile` is called by addPatientCommand and appends the string to the back of the text file. 
+ 
+ This is implemented for all add command of the various object, and process is identical. 
  This provides improved performance for add commands as compared to using writeAllToFile(), as less strings need 
- to be retrieved.
+ to be retrieved and formatted.
  
  ![saving](images/DG/STORAGE/StorageSave.png)
  
  *loading and parsing file content to HappyPills*
  
 Loading and parsing methods are separated by class types. Each text file in HappyPills represent a single class.
-For example, `loadingPatientsFromFile` retrieves the entire string from the patient file and uses 
-`parsePatientFileContent` to convert each line into a patient object and adds it back to the patient map. 
-`loadAppointmentFromFile` and `parseAppointmentFileContent` does the same with the appointment file.
- 
- ![loading](images/DG/STORAGE/StorageLoad.png)
+
+For illustration purposes, only the load and parse for patient is called. The process is similar for all object.
+1.  `loadPatientsFromFile` retrieves the entire content of the patient file, if any. 
+2. `loadPatientsFromFile` then passes it line by line to `parsePatientFileContent`
+3. `parsePatientFileContent` creates a patient object and adds the details from the single line string into the object.
+4. `parsePatientFileContent` then adds the patient object into the patient map and returns. 
+5. Step 2 - 4  is repeated if there is a next line in the content of the file.
+4. `loadPatient` then returns the whole patientMap to `HappyPills`.
+
+ ![loading](images/DG/STORAGE/StorageLoadPatient.png)
  
 **Design Considerations**
 
@@ -537,22 +551,24 @@ For example, `loadingPatientsFromFile` retrieves the entire string from the pati
 Alternative 1 was chosen as fewer checks means that the program is less prone to exception, especially
 so if the checks are confusing to implement. This would put lesser risk on the user experience for now.
 
-        Alternative 1 (current choice): Single object stored into the same file
+        Alternative 1 (current choice): Save the objects by object type.
           Pros: Fewer checks required to identify class of the string, parsing is easier.
-          Cons: Delete and update operation may take a long time if the string is very long
+          Cons: Delete and update operation may take a long time if there are alot of objects.
 
-        Alternative 2: Store each patient as an individual text file, along with all its relevant class objects. 
+        Alternative 2: Store each patient as an individual text file, along with all its associated objects. 
                        A list with all the patient’s NRIC will also be stored for referencing.
-          Pros: Delete and edit operation on a patient will only affect his/her file, and the referencing list.
-          Cons: More checks are requires to identify class of the string
+          Pros: Delete and edit operation on a patient will only affect the patient's file, and the referencing list.
+          Cons: More checks are requires to identify class of the string in the file.
 
 *Aspect: Updating deletion/edit* 
 
 Alternative 1 was chosen for now as the program is relatively new, and is more likely to be subjected to unexpected exceptions.
 
         Alternative 1 (current choice): Upon every delete/edit operation, update the relevant text file
-          Pros: All deletions are updated in the relevant text files immediately and will not be affected by any unexpected termination of the program.
-          Cons: In the event that there is a large amount of deletion, it could be time-consuming for the user and memory-intensive on the machine.
+          Pros: All deletions are updated in the relevant text files immediately and will not be affected by any 
+          unexpected termination of the program.
+          Cons: In the event that there is a large amount of deletion, it could be time-consuming for the user 
+          and memory-intensive on the machine.
 
         Alternative 2: Saving the delete/edit operation to a list, then process it before the exit of the program
           Pros: Delay deletion time cost so that the use of the program is faster and smoother during time of use.
