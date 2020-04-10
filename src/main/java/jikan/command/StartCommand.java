@@ -381,7 +381,7 @@ public class StartCommand extends Command {
             Parser.startTime = LocalDateTime.now();
             Parser.tags = activityList.get(index).getTags();
             Parser.continuedIndex = index;
-            Ui.printDivider(Parser.activityName + " was continued");
+            Ui.printDivider(Parser.activityName + " was continued.");
             Log.makeFineLog(Parser.activityName + " was continued.");
         } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Parser.activityName = null;
