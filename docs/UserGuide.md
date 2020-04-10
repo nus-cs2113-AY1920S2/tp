@@ -42,7 +42,7 @@ Contents:
 ### 1.2. What are the functions of **ATAS**?
 Besides being able to store your assignment and event details in a text file, **ATAS** allows you to view your assignment deadlines and event dates in a user-friendly calendar format. You can also list down events that are upcoming and assignments that are due in the following week. Furthermore, **ATAS** displays the assignment and event details in an easy-to-read format so that you will not miss out any important details at one glance.
 ### 1.3. How does **ATAS** solve the problem of our target audience?
-University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to manage their time wisely and allocate sufficient time to complete these tasks.
+University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due, to manage their time wisely and allocate sufficient time to complete these tasks.
 ### 1.4. What is this guide for?
 This guide aims to show you how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2. "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
@@ -102,7 +102,7 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 **Command Format**
 
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
-    Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
+    Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used such as `assignment n/user guide draft`.
 
 -   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4. "List Tasks: `list`"](#34-list-tasks-list).   
     Example index of list:  
@@ -110,8 +110,8 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 
 -   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
     Example: 01/03/20 represents the date 1 March 2020.
-    > **Note**: If an invalid date like 34/03/20 (that is not too far off from a legit date) is provided, ATAS will automatically round off 
-    the date to the nearest legit date. In this case, it will round off to 31/03/20.
+    > **Note**: If an invalid date like 34/03/20 (that is not too far off from a genuine date) is provided, **ATAS** will automatically round off 
+    the date to the nearest genuine date. In this case, it will round off to 31/03/20.
     
 -   Time supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
     Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm.
@@ -119,9 +119,8 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
--   Inputs for the various parameters are supposed to be in the English Language. Common Symbols like "@#$%^&*()" are not permitted. 
-    In particular, The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless
-    explicitly required by the command's format.
+-   Inputs for the various parameters are to be in the English Language. Symbols such as "@#$%^&*()" are not permitted. 
+    In particular, the special characters `|` and `/` cannot be used, unless explicitly required by the command's format.
 
 > **Note**: 
 > Don’t worry if all of these seems overwhelming. <br/> 
@@ -195,7 +194,7 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
 > **Note**:
 > Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y`. <br/>
-> `INDEX` of task specified has to be an **event** task. <br/>
+> `INDEX` of task specified has to be an **event** task. 
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
