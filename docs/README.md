@@ -11,5 +11,3 @@ ESC is meant to help students be able to study more effectively using the medium
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
-
-** Do note that for v2.0 release, the program is UNABLE to load your previous session

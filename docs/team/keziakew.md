@@ -27,9 +27,12 @@ https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey
   * Review and handle all pull requests
   * Prepare & upload releases
   * Set up & close milestones
+  * Keep team on track of project progress
+  * Ensure the repo clears CI actions/gradle checks
 * Adds issues where identified in reviews / where appropriate
 * Create & update wiki page of task breakdown
   * https://github.com/AY1920S2-CS2113-T15-2/tp/wiki
+* Maintain ReadMe / AboutUs pages
 
 #### Review / Mentoring Contributions
 Instances where a review was requested OR a review was required (i.e code changes or clarification needed)
