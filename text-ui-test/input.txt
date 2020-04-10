@@ -18,10 +18,6 @@ search dish
 search reservation
 search stock
 add dish; n/pizza; i/cheese, sauce; p/7.00;
-<<<<<<< HEAD
-list dish
-=======
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 list dish;
 add dish; n/rice; i/rice, salt; p/12.00;
 delete dish; n/pizza;

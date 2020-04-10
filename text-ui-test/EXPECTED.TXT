@@ -105,18 +105,12 @@ Dish pizza successfully added.
 
 Input next command:
 
-Name: pizza	 Price: $7.0	 Ingredients: cheese, sauce
+Name: pizza  Price: $7.0     Ingredients: cheese, sauce
 Dishes successfully listed.
 
 Input next command:
 
-Name: pizza     Price: $7.0     Ingredients: cheese, sauce
-Name: rice     Price: $12.0     Ingredients: rice, salt
-Dishes successfully listed.
-
-Input next command:
-
-Dish rice already exists!
+Dish rice successfully added.
 
 Input next command:
 
@@ -124,11 +118,7 @@ Dish pizza successfully removed!
 
 Input next command:
 
-<<<<<<< HEAD
-Name: rice     Price: $12.0     Ingredients: rice, salt
-=======
-Name: rice	 Price: $12.0	 Ingredients: rice, salt
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
+Name: rice   Price: $12.0    Ingredients: rice, salt
 Dishes successfully listed.
 
 Input next command:
@@ -753,6 +743,42 @@ Try the 'help' command for the list of commands
 
 Input next command:
 
+Reservation [1]
+Status: Unserved
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Unserved
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
+
 
 Input next command:
 
@@ -796,6 +822,42 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 
 Input next command:
+
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Unserved
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
 
 
 Input next command:
@@ -930,6 +992,42 @@ Command is of incorrect format
 Try the 'help' command for the list of commands
 
 Input next command:
+
+Reservation [1]
+Status: Invalid
+Contact person: Peter
+Date: 2020-03-12 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98955555
+Comments: No comments
+
+Reservation [2]
+Status: Unserved
+Contact person: Mary
+Date: 2020-03-11 12:00
+Number of guests: 8
+Table size: M
+Contact details: 99998888
+Comments: No comments
+
+Reservation [3]
+Status: Unserved
+Contact person: David
+Date: 2020-03-12 12:00
+Number of guests: 9
+Table size: L
+Contact details: 98887777
+Comments: No comments
+
+Reservation [4]
+Status: Served
+Contact person: Lisa
+Date: 2020-03-13 12:00
+Number of guests: 3
+Table size: S
+Contact details: 98889999
+Comments: no spicy food please
 
 
 Input next command:
