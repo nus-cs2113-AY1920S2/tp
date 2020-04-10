@@ -923,10 +923,139 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Back To Top](#table-of-contents)    
 <br>  
 
-### **Manual Testing**  
-```
-	// To be done.
-```
+### **Instructions for Manual Testing**  
+Given below are instructions to test the app manually.
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing. We also recommand testers to have a stable Internet connection when carrying out the testing so that the application can successfully retrieve the module information from <a href = "https://api.nusmods.com/v2/">NUSMods API</a>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+#### 1. Launch and Shutdown
+
+1. Initial launch
+   1. Download the jar file from the [release page](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases) and copy into an empty folder.
+   2. Launch a terminal and navigate the to folder containing the jar file
+   3. Run the jar file by entering command `java -jar Nuke.jar`  and hit enter(replace `Nuke.jar` by the actual file name you downloaded from the [release page](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases))
+   4. Expected output: **Nuke** startup screen and welcome message is displayed
+2. Shut down of application
+   1. Enter command `bye` and hit enter
+   2. Expected output: **Nuke** program terminates with farewell message displayed.
+
+#### 2. Add Command
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the Add Commands below are assumed to be executed at the root directory.
+</td>
+</tr>
+</tbody></table>
+</div>
+
+1. Add modules
+   1. Correct usage:
+      1. Test case: `addm cs2113t`
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Module CS2113T Software Engineering & Object-Oriented Programming is added.`
+   2. Wrong usage:
+      1. Test case: `addm cs1111`
+      2. Expected: the program will prompt the user with message: `Sorry, the module is not provided by NUS currently.`
+      3. Test case: `addm cs2113t` **after** executing `addm cs2113t` 
+      4. Expected: the program will prompt the user with message: `Sorry, the module already exists.`
+2. Add category
+   1. Correct usage:
+      1. Test case: `addc Project -m cs2113t` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Category Project is created.`
+   2. Wrong usage:
+      1. Test case: `addc Tutorial -m cs2113t` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `Sorry, the category already exists.`
+      3. Test case: `addc Project -m cs3235` **without** adding `cs3235` as *module*
+      4. Expected: the program will prompt the user with message `Sorry, the module is not found.`
+3. Add task
+   1. Correct usage:
+      1. Test case: `addt assignment2 -m cs2113t -c Assignment -d tmr 23:59 -p 15` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Task assignment2 is created.`
+   2. Wrong usage:
+      1. Test case: `addt assignment2` 
+      2. Expected: the program will prompt the use with message: `Sorry, unable to execute the command at the current directory level. Either move to the appropriate directory level, or enter the full directory path.`
+      3. Test case: `addt testingaveryveryveryveryverylongstring -m cs2113t -c Assignment -d tmr 23:59 -p 15` **after** adding `cs2113t` as *module*
+      4. Expected: the program will prompt the user with message: `Sorry, the task description cannot exceed 25 characters.`
+4. Add file
+   1. Correct usage:
+      1. Test case: `addf test.pdf -m cs2113t -c Assignment -t assignment2 -f c:\users\null\downloads\assignment2.pdf` **after** adding an `assignment2` *task* under `Assignment` *category* and `cs2113t` *module*, assuming `c:\users\null\downloads\assignment2.pdf` exists.
+      2. Expected: the program will prompt the user with message: `SUCCESS!! File test.pdf is added.`
+   2. Wrong usage:
+      1. Test case: `addf test.pdf -m cs2113t -c Assignment -t non-exist-task -f c:\users\null\downloads\assignment2.pdf` **without** adding the respective *task*
+      2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
+
+#### 3. Delete Command
+
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the Delete Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+1. Delete modules
+   1. Correct usage:
+      1. Test case: `delm cs2113t`
+      2. Expected: the program will prompt the user with message: `Confirm delete CS2113T Software Engineering & Object-Oriented Programming?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Module(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delm cs1111`
+      2. Expected: the program will prompt the user with message: `Sorry. No modules found.`
+2. Delete category
+   1. Correct usage:
+      1. Test case: `delc Assignment -m cs2113t` 
+      2. Expected: the program will prompt the user with message: `Confirm delete Assignment?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Category(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delc Project -m cs2113t` 
+      2. Expected: the program will prompt the user with message: `Sorry. No categories found.`
+3. Delete task
+   1. Correct usage:
+      1. Test case: `delt assignment2 -m cs2113t -c Assignment` 
+      2. Expected: the program will prompt the user with message: `Confirm delete assignment2?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Task(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delt non-exist-task` 
+      2. Expected: the program will prompt the use with message: `Sorry. No tasks found.`
+4. Add file
+   1. Correct usage:
+      1. Test case: `delf test.pdf -m cs2113t -c Assignment -t assignment2`
+      2. Expected: Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delf non-exist.pdf -m cs2113t -c Assignment -t assignment2` 
+      2. Expected: the program will prompt the user with message: `Sorry. No files found.`
+
+#### 4. List Command
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</td>
+</tr>
+</tbody></table>
+</div>
+
 
 [Back To Top](#table-of-contents)    
 <br>  
