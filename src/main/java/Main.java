@@ -5,16 +5,12 @@ import menu.Menu;
 import report.LoadDish;
 import report.LoadReservation;
 
-import commands.ReservationCommand;
 import exceptions.InvalidFilePathException;
 import exceptions.StockReadWriteException;
-import exceptions.ReservationException;
-import report.LoadReservation;
 import report.LoadStock;
 import reservation.Reservation;
 import reservation.ReservationList;
 import sales.Sales;
-import stock.Stock;
 import stock.Stock;
 import ui.Ui;
 import utils.CommandParser;
@@ -24,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static utils.Constants.LOG_FOLDER;
+import static utils.Constants.DEFAULT_STORAGE_FILEPATH;
 
 /**
  * Entry point of the application.
@@ -53,11 +50,21 @@ public class Main {
     /** Sets up the required objects and shows a welcome message. */
     public void start(String[] args) {
         this.stock = new Stock();
-
-        // this.reservations = new ReservationList();
         this.ui = new Ui();
         this.sales = new Sales();
 
+        // load the Reservations from the "report.txt" file
+        try {
+            this.reservations = new ReservationList(
+                    LoadReservation.getInstance(DEFAULT_STORAGE_FILEPATH).loadFileReservations());
+        } catch (IOException e) {
+            ui.showMessage("Fails to load in the list from the file... Creating a new empty reservation list.");
+            this.reservations = new ReservationList();
+        } catch (ReservationException e) {
+            this.reservations = new ReservationList();
+        }
+
+        // load the Dishes from the "report.txt" file
         try {
             this.menu = LoadDish.getInstance("report.txt").readDishes();
         } catch (InvalidLoadException e) {
@@ -66,24 +73,18 @@ public class Main {
         } catch (FileNotFoundException e) {
             this.menu = new Menu();
         }
-
-
+        
+        // load the Stocks from the "report.txt" file
+        LoadStock ls = Stock.getStockLoader();
         try {
-            this.reservations = new ReservationList(LoadReservation.getInstance("report.txt").loadFileReservations());
-        } catch (IOException e) {
-            ui.showMessage("Fails to load in the list from the file...");
-            this.reservations = new ReservationList();
-        } catch (ReservationException e) {
-            this.reservations = new ReservationList();
+            ls.loadStockData(stock);
+        } catch (InvalidFilePathException | StockReadWriteException e) {
+            ui.showMessage(e.getMessage());
         }
-
-        this.menu = new Menu();
-        this.ui = new Ui();
-        this.sales = new Sales();
 
         // set up the logger
         LoggerUtils.createLogFolder(LOG_FOLDER);
-        
+
         try {
             Ui.setLogger();
             Reservation.setLogger();
@@ -92,26 +93,6 @@ public class Main {
         } catch (IOException e) {
             ui.displayLoggingSetUpFailMessage();
         }
-        
-        
-        // load data from report.txt       
-        try {
-            this.reservations = new ReservationList(
-                    LoadReservation.getInstance("report.txt")
-                    .loadFileReservations());
-        } catch (IOException e) {
-            ui.showMessage("Fails to load in the list from the file...");
-            this.reservations = new ReservationList();
-        } catch (ReservationException e) {
-            this.reservations = new ReservationList();
-        }
-        
-        LoadStock ls = Stock.getStockLoader();
-        try {
-            ls.loadStockData(stock);
-        } catch (InvalidFilePathException | StockReadWriteException e) {
-            ui.showMessage(e.getMessage());
-        } 
         
         ui.showWelcomeMessage();
     }

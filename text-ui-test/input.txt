@@ -146,4 +146,5 @@ clear reservation
 clear reservation;
 clear stock
 clear stock;
+delete dish; n/rice;
 bye
