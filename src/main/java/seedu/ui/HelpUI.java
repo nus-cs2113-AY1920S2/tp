@@ -1,6 +1,6 @@
 package seedu.ui;
 
-public class Help extends UI {
+public class HelpUI extends UI {
 
     public void printGetHelp() {
         StringBuilder output = new StringBuilder(

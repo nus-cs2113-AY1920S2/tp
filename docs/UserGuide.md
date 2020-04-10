@@ -51,7 +51,6 @@
 7. [Command Summary](#7-command-summary)  
 8. [Contact Us](#8-contact-us)
 
-##
 ## 1. Introduction
 
 ### 1.1. What is Pac?
@@ -69,7 +68,6 @@ prefers to use a CLI for managing events and students' data. If you can type fas
 Pac can get your event management tasks done faster than traditional GUI apps. Interested?  
 Jump to [Section 2](#2-setting-up) to get started. Enjoy! 
 
-##
 ## 2. Setting Up
 
 ### 2.1. Requirements 
@@ -87,8 +85,6 @@ or above installed in your Computer.
 1.  You should see this screen if everything is successful:    
     ![screen](images/startup.png "startup screen")
 
-
-##
 ## 3. Quick Start
 
 ### 3.1. Using Pac
@@ -106,14 +102,15 @@ Refer to [“Features”](#4-features) for details of each command.
 
 ## 4. Features 
 
-### 4.1. Student
+### 4.1. Student List
 This section for student related commands is done in chronological order. Please follow the numbering to get
-a clearer understanding on how you can use the commands.
+a clearer understanding on how you can use the commands. Do note that the student list created are stored under
+a student list collection. 
 
-#### 4.1.1. Add New Student List `studentlist add`
+#### 4.1.1. Add New Student List
 
-Creates a student list and adds it to the collection of student list, `studentListCollection` that can be used 
-for adding attendance and performance. 
+Creates a student list and adds it to the student list collection, that can be used for adding attendance and 
+performance. 
 
 Please note the following points when you are using this feature:
 1. Users are NOT allowed to add in duplicated student names or duplicated student list names. 
@@ -127,6 +124,8 @@ Command:
     >>> studentlist add
     
 Examples: 
+
+The following shows a successful case of adding a new student list.
 
     >>> studentlist add
     What is the name of your list?
@@ -149,6 +148,31 @@ Examples:
     |___________|____________________________________________________________________________________|
     | 2         |  Jodi                                                                              |
     |___________|____________________________________________________________________________________|
+    
+The following will occur if there is already an existing student list with the same name. 
+The following will occur if there is already an existing student list with the same name. 
+
+    >>> studentlist add
+    What is the name of your list?
+    
+    >>> CS2113T Tut
+    There is already an existing list name!
+    
+The following will occur if there is already an existing student list with the same name. The student list will not be
+created and if you wish to create the student list, you will need to retype the command `studentlist add`. 
+
+    >>> studentlist add
+    What is the name of your list?
+    
+    >>> CS2040C
+    Please enter a student Name. If you are finished, enter done.
+    
+    >>> John Doe
+    Please enter a student Name. If you are finished, enter done.
+    
+    >>> John Doe
+    Duplicated Student Name found.
+    Student List Add Command Failed.
 
     
 #### 4.1.2 View all existing student lists from the student list collection
@@ -664,7 +688,7 @@ a clearer understanding on how you can use the commands.
 
 Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
-You may wish to use an existing list found in `StudentListCollection`.
+You may wish to use an existing list found in student list collection.
 
 Please note that if there are existing students in the attendance list of the chosen event, it will add to the existing
 students list. If you wish to start a new attendance list of the chosen event, please use `attendance clear` to clear 
@@ -680,8 +704,10 @@ Example:
     >>> CS1010 Tutorial
     
 If the event is found, you can choose to add the student's attendance by manually key in each student, or you may choose
-the alternative provided by Pac: record using an existing name list located under StudentListCollection. 
-Do note that you need to have an existing name list before you are using this shortcut.  
+the alternative provided by Pac: record using an existing name list located under student list collection. 
+Do note that you need to have an existing name list before you are using this shortcut.
+If you choose to create a new attendance list, the new list will be added to the student list collection.
+  
 The following will show a success example of *using an existing name list to add attendance*. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
@@ -707,7 +733,7 @@ The following will show a success example of *using an existing name list to add
     Attendance of Sam Roe (Present) has been taken successfully under event CS1010 Tutorial.
     AttendanceList added
 
-The following will show a success example of *creating a new attendance list* using a multi-line interface.
+The following will show a success example of *creating a new attendance list using a multi-line interface*.
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
@@ -744,7 +770,7 @@ The following will show a success example of *creating a new attendance list* us
     >>> done
     You have successfully added 3 to the attendance list.
     
-The following will show a success example of *creating a new attendance list* using a single line interface.
+The following will show a success example of *creating a new attendance list using a single line interface*.
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
@@ -803,8 +829,6 @@ The following occurs if there is an existing attendance list.
                
         
 The following occurs if there is no existing attendance list.
-    
-Example:
 
         >>> attendance view
         Please key in the name of event.
@@ -851,8 +875,6 @@ The following will show a successful clearing of an existing attendance list.
     
 The following will show the message shown when clearing of an empty attendance list.
 
-Example:
-
     >>> attendance clear
     Please key in the name of event.
     
@@ -869,13 +891,13 @@ Example:
 
 The following shows a successful sort the attendance list by name.
 
-The following occurs if there is no existing attendance list.
-
       >>> attendance sort
       Please key in the name of event.
       
       >>> CS1010 Tutorial
       Please Key in either 'name' or 'status'.
+      
+The following occurs if there is no existing attendance list.
       
       >>> name
       An empty list cannot be sorted

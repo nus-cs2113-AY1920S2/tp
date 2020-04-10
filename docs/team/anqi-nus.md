@@ -76,7 +76,7 @@ when he/she enters `help`.
 
 ### Other contributions:
 #### Testing :
-- I have written unit tests for `PerformanceListTest` and `PerformanceTest`
+- I have written tests for `PerformanceListTest` and `PerformanceTest`
 
 #### Necessary general code enhancements
 - Improved synchronisation of code by checking method and variable
@@ -99,7 +99,11 @@ when he/she enters `help`.
 - Linked these issues to my PRs promptly. 
 
 ### Documentation
-- I have written in the User Guide and Developer Guide all the features/enhancements I have mentioned above.
+- I have written in the User Guide and Developer Guide for all the features/enhancements I have mentioned above.  
+- I have written in the Developer Guide for add, delete, clear and view functions for Student feature.  
+- I have drawn all class diagram and sequence diagram for all the features/enhancements I have mentioned above.  
+- I have drawn sequence diagram for add, delete, clear and view functions for Student feature.  
+- I have drawn class diagram for Student feature.  
 
 ### Community
 - PRs reviewed (with non-trivial comments)  
