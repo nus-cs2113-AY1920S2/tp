@@ -1,7 +1,5 @@
 package seedu.event;
 
-import seedu.ui.UI;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

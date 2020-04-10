@@ -5,11 +5,9 @@ import seedu.command.Command;
 import seedu.command.Help;
 import seedu.event.EventList;
 import seedu.exception.PacException;
-import seedu.ui.UI;
 
 public class CommandInterpreter {
 
-    protected UI ui = new UI();
     protected EventList eventList;
     private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"event", "seminar", 
         "attendance", "performance", "studentlist", "calendar"};
