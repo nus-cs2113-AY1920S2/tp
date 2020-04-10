@@ -222,7 +222,8 @@ Given below is an example how the `Add to available` behaves at each step.
 ##### Step 1:
 When users enter an add to available command, 
 e.g `add id/CS1231 n/Discrete Structures mc/4 pre/`, the command will be parsed in `Parser`
-which will return an `AddToAvailableCommand`. `AddToAvailableCommand` then calls `Command#execute(SemesterList semesterList,
+which will return its parsed Strings to `Controller`. `Controller` takes in the Strings from `Parser` and creates
+a `AddToAvailableCommand` object, which then calls `Command#execute(SemesterList semesterList,
  AvailableModulesList availableModulesList) `, in this context,
 `(AddToAvailableCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`
 
@@ -370,8 +371,9 @@ User launches the application. `SelectedModules` are added to `SemModuleList` th
 2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
 
 #### Step 2:
-User enters a mark as done command e.g. `done id/CS2113 g/A+ `. The command will be parsed in `Parser`, which will then
-returns a `MarkAsDoneCommand`, which calls 
+User enters a mark as done command e.g. `done id/CS2113 g/A+ `. The command will be parsed in `Parser`, 
+which will return its parsed Strings to `Controller`. `Controller` takes in the Strings from `Parser` and creates
+a `MarkAsDoneCommand` object which then calls 
 `Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context, 
 `(MarkAsDoneCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`.
 
@@ -383,6 +385,8 @@ If the module exists in the list, the grade of the module will be passed to the 
 attribute, and the `isDone` attribute of the module will be updated to be `true`. 
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
+ 
+ ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
 
 # 5. Documentation
 ## 5.1 Written documentation  
