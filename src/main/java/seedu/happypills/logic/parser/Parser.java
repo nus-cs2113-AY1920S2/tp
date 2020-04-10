@@ -35,7 +35,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws HappyPillsException {
         fullCommand = fullCommand.trim();
-        String[] userCommand = fullCommand.trim().split(" ", 3); // leading spaces removed
+        String[] userCommand = fullCommand.trim().split("\\s+", 3); // leading spaces removed
         if (userCommand.length == 1) {
             return parseGeneralCommands(fullCommand, userCommand);
         } else if (userCommand[0].equalsIgnoreCase(HELP_TAG)) {
@@ -92,7 +92,7 @@ public class Parser {
         boolean userConfirmation = false;
         System.out.println(output);
         while (!userConfirmation) {
-            String confirmation = promptUser();
+            String confirmation = promptUser().trim();
             System.out.println(TextUi.DIVIDER);
             if (confirmation.equalsIgnoreCase(YES_TAG)) {
                 userConfirmation = true;
