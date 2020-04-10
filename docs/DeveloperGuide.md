@@ -914,11 +914,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Glossary**  
 ##### mainstream OS
-
 ​    Windows, Linux, Unix, OS-X
-
 ##### average typing speed
-
 ​    40 words per minute
 
 
