@@ -25,9 +25,9 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 ## 2. Quick Start
 
 *  Ensure you have Java `11` or above installed in your Computer.
-*  Download the latest `tp.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v2.1).
+*  Download the jar file -`CS2113-T14-2.TechToday.jar` [latest release here!](https://github.com/AY1920S2-CS2113-T14-2/tp/releases/tag/v2.1).
 *  Copy the file to the folder you want to use as the home folder for your Technology Information tracker.
-*  Open command prompt in the directory where the Jar file is stored and type `java -jar tp.jar`.
+*  Open command prompt in the directory where the Jar file is stored and type `java -jar CS2113-T14-2.TechToday.jar`.
 * When the application executes, all possible commands that can help you manage your information are shown.
 *Some example commands you can try:
     * **`view `**`article` : helps you view articles about technolgy from the internet. If the device is not connected to the internet, it loads an existing set of articles pre-loaded into the program.
