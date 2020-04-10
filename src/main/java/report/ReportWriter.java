@@ -25,7 +25,7 @@ public class ReportWriter {
     
     private final String ls = System.lineSeparator();
     private final String indent = "                                                              "
-            + "                               ";
+            + "       ";
     
     /**
      * A convenience constructor of ReportWriter.
