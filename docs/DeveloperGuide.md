@@ -301,7 +301,7 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
     -   Alternatives Considered:  
 
-        1.  Use a 2 seperate classes for `Search` and `Searchd` seperately.
+        1.  Use 2 seperate classes for `Search` and `Searchd` seperately.
 
             -   Pros: Easier to implement as the implementation for the 2 commands can be implemented in 2 different classes.
 
@@ -311,7 +311,7 @@ The following sequence diagram summarizes how the *search* and *searchd* command
 
             -   Pros: Easier to implement.
 
-            -   Cons: Makes the code for `Parser` unnecessarily long, and also makes the code less OOP, affecting the overall code quality
+            -   Cons: Makes the code for `Parser` unnecessarily long and less OOP, affecting the overall code quality
 
 ### 3.3. Clear Task feature
 #### 3.3.1. Current Implementation
