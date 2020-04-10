@@ -37,6 +37,8 @@ public class Messages {
     public static final String MESSAGE_EDIT_ERROR = "    Something went wrong, the edit could not be made.";
     public static final String MESSAGE_INVALID_DATE = "    Invalid date or date format(DD/MM/YYYY).\n";
     public static final String MESSAGE_INVALID_DATE_OF_BIRTH = "    Please ensure that the DATE is in DD/MM/YYYY ";
+    public static final String MESSAGE_INVALID_BLOOD_TYPE =
+            "    Please ensure that the BLOOD TYPE is in [A|B|AB|O][+-] ";
     public static final String MESSAGE_INVALID_TIME = "    Invalid time or time format(HH:MM).\n";
     public static final String MESSAGE_INVALID_PHONE_NUMBER = "    Please ensure that all the phone number is 8 digit";
     public static final String MESSAGE_INVALID_EDIT_APPOINTMENT =

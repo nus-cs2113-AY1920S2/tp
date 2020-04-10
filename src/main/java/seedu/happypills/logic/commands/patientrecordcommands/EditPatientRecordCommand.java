@@ -102,9 +102,9 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     /**
      * Saves the edited patient record details with the information provided by user.
      *
-     * @param patients       Contains the list of patients on which the commands are executed on.
-     * @param patientRecords Contains the list of patient records.
-     * @param output         Contains the boolean to check whether the patient record is updated.
+     * @param patients       The list of patients on which the commands are executed on.
+     * @param patientRecords The list of patient records.
+     * @param output         The boolean to check whether the patient record is updated.
      */
     private void saveEditedInformation(PatientMap patients, PatientRecordMap patientRecords, boolean output) {
         if (output) {
@@ -120,8 +120,8 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     /**
      * Check for invalid input provided by user.
      *
-     * @param patientRecords Contains the list of patient records.
-     * @param content        Contains the updated user input.
+     * @param patientRecords The list of patient records.
+     * @param content        The updated user input.
      * @throws HappyPillsException If the edit field is not valid.
      */
     private PatientRecord checkInvalidInput(PatientRecordMap patientRecords, String content)
@@ -177,8 +177,8 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     /**
      * Edits the date of the patient record with the newly given date.
      *
-     * @param patientRecord Contains the patient record.
-     * @param newDate       Contains the new date given by the user.
+     * @param patientRecord The patient record.
+     * @param newDate       The new date given by the user.
      * @return Boolean to indicate whether the date is edited.
      */
     private Boolean editDate(PatientRecord patientRecord, String newDate) {
@@ -192,8 +192,8 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     /**
      * Edits the time of the patient record with the newly given time.
      *
-     * @param patientRecord Contains the patient record.
-     * @param newTime       Contains the new time given by the user.
+     * @param patientRecord The patient record.
+     * @param newTime       The new time given by the user.
      * @return Boolean to indicate whether the time is edited.
      */
     private Boolean editTime(PatientRecord patientRecord, String newTime) {
@@ -207,9 +207,9 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     /**
      * Finds patient record with the given NRIC and index.
      *
-     * @param nric           Contains the NRIC of patient.
-     * @param index          Contains the index of the given user input.
-     * @param patientRecords Contains the list of patient records.
+     * @param nric           The NRIC of patient.
+     * @param index          The index of the given user input.
+     * @param patientRecords The list of patient records.
      * @return patientRecord If patient record is existing in the patient record list otherwise null.
      */
     private PatientRecord findPatientRecord(String nric, int index, PatientRecordMap patientRecords) {

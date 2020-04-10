@@ -18,8 +18,8 @@ public class FindPatientRecordCommand extends PatientRecordCommand {
     /**
      * Constructor for FindPatientRecordCommand Class.
      *
-     * @param nric  Contains the nric of the patient that is to be retrieved.
-     * @param index Contains the index for the record of the searched patient.
+     * @param nric  The nric of the patient that is to be retrieved.
+     * @param index The index for the record of the searched patient.
      */
     public FindPatientRecordCommand(String nric, int index) {
         this.nric = nric;
@@ -29,9 +29,9 @@ public class FindPatientRecordCommand extends PatientRecordCommand {
     /**
      * Finds the patient record details with the information provided by user.
      *
-     * @param patients       Contains the list of patients on which the commands are executed on.
-     * @param appointments   Contains the list of appointments on which the commands are executed on.
-     * @param patientRecords Contains the list of patient records.
+     * @param patients       The list of patients on which the commands are executed on.
+     * @param appointments   The list of appointments on which the commands are executed on.
+     * @param patientRecords The list of patient records.
      * @throws HappyPillsException If the patient record is not found.
      */
     @Override
