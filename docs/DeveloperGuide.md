@@ -777,16 +777,13 @@ This section contains the user stories for the different versions of our product
             
         Expected: Shows a welcome message from SHOCO.
 
-
    &nbsp;
 
 2. Shutdown
         
       i.    Enter the command <code>BYE</code> to exit the SHOCO application.
-                
-      ii.   Close the command terminal.
-        
-        Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
+
+        Expected: The program is terminated.
   
    &nbsp;
     
