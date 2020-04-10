@@ -34,7 +34,6 @@ public class LogicManager {
     /**
      * Adds a new contact and save it into model component.
      * @param userInputWords User input containing name and nusmods URL (space separated).
-     * @throws WfException
      */
     public void addContact(String[] userInputWords) throws WfException {
         Contact newMember;
@@ -52,7 +51,7 @@ public class LogicManager {
     }
 
     /**
-     * View the timetable of selected team members
+     * View the timetable of selected team members.
      * @param userInputWords User input containing the index of selected team members (space separated)
      * @param currentWeekNumber Assigned to 0 to view only 1 week's worth of timetable.
      */
