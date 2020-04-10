@@ -2,7 +2,6 @@ package seedu.nuke.data;
 
 import seedu.nuke.directory.Category;
 import seedu.nuke.directory.Module;
-import seedu.nuke.directory.Root;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
 import seedu.nuke.exception.DataNotFoundException;
@@ -17,7 +16,7 @@ import java.util.Iterator;
  * A manager that manages all modules.
  * Contains a Module List and performs operations related to modules
  */
-public class ModuleManager implements Iterable<Module> {
+public class ModuleManager {
     private static ArrayList<Module> moduleList;
     private static HashMap<String, String> modulesMap;
 
@@ -197,70 +196,12 @@ public class ModuleManager implements Iterable<Module> {
     }
 
     /**
-     * return an orders lists of all tasks of all modules.
-     * @return an ArrayList of String which represents the ordered list
-     */
-    public static ArrayList<String> checkDeadline() {
-        ArrayList<String> deadlines = new ArrayList<>();
-        ArrayList<Task> allTasks = sortAllTasks();
-        for (Task task: allTasks) {
-            deadlines.add(String.format("%-30s", task.getDescription()) + " "
-                    + String.format("%-8s", task.getParent().getParent().getModuleCode())
-                    + String.format("%-10s", task.getParent().getCategoryName())
-                    + "   deadline: " + task.getDeadline().toShow());
-        }
-        return deadlines;
-    }
-
-    /**
-     * sort all tasks of all modules in ascending order of deadlines.
-     * @return list of sorted tasks
-     */
-    public static ArrayList<Task> sortAllTasks() {
-        ArrayList<Task> allTasks = getAllTasks();
-        allTasks.sort((t1, t2) -> {
-            String t1Deadline = t1.getDeadline().isPresent() ? t1.getDeadline().getDateTimeInSortFormat() : "";
-            String t2Deadline = t2.getDeadline().isPresent() ? t2.getDeadline().getDateTimeInSortFormat() : "";
-            return t1Deadline.compareToIgnoreCase(t2Deadline);
-        });
-        return allTasks;
-    }
-
-    /**
-     * Clears all tasks in list.
-     */
-    public void clear() {
-        moduleList.clear();
-    }
-
-    /**
      * Delete a module to the Module List.
      * @param toDelete
      *  The module to be deleted
      */
     public static void delete(Module toDelete) {
         moduleList.remove(toDelete);
-    }
-
-    /**
-     * Deletes a <b>Module</b> with <code>module code</code> in the <b>Module List</b>.
-     *
-     * @param moduleCode
-     *  The module code of the <b>Module</b> to be deleted
-     * @throws ModuleNotFoundException
-     *  If the module with the specified module code is not found in the <b>Module List</b>
-     * @see Module
-     */
-    public Module delete(String moduleCode) throws ModuleNotFoundException {
-        if (getModuleWithCode(moduleCode) != null) {
-            Module toDelete = getModuleWithCode(moduleCode);
-            getAllTasks().removeIf(task ->
-                    task.getParent().getParent().getModuleCode().toUpperCase().equals(moduleCode));
-            moduleList.removeIf(module -> module.getModuleCode().equalsIgnoreCase(moduleCode));
-            return toDelete;
-        } else {
-            throw new ModuleNotFoundException();
-        }
     }
 
     /**
@@ -286,67 +227,6 @@ public class ModuleManager implements Iterable<Module> {
         String newTitle = modulesMap.get(newModuleCode);
         toEdit.setModuleCode(newModuleCode);
         toEdit.setTitle(newTitle);
-    }
-
-    /* Retrieve a specific Data (Category / Task / File) List. Only 1 list is retrieved */
-
-    /**
-     * Retrieves the Category List of the module with the specified module code.
-     *
-     * @param moduleCode
-     *  The module code of the module to retrieve the Category List from
-     * @return
-     *  The Category List of the found module
-     * @throws ModuleNotFoundException
-     *  If the module with the specified module code is not found in the Module List
-     */
-    public static CategoryManager retrieveList(String moduleCode) throws ModuleNotFoundException {
-        return getModule(moduleCode).getCategories();
-    }
-
-    /**
-     * Retrieves the Task List of the category with the specified name and has its parent module with the
-     * specified module code.
-     *
-     * @param moduleCode
-     *  The module code of the module containing the category to retrieve the Task List from
-     * @param categoryName
-     *  The name of the category to retrieve the Task List from
-     * @return
-     *  The Task List of the found category
-     * @throws ModuleNotFoundException
-     *  If the module with the specified module code is not found in the Module List
-     * @throws CategoryManager.CategoryNotFoundException
-     *  If the category with the specified name is not found in the Category List
-     */
-    public static TaskManager retrieveList(String moduleCode, String categoryName)
-            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException {
-        return retrieveList(moduleCode).retrieveList(categoryName);
-    }
-
-    /**
-     * Retrieves the File List of the task with the specified description, and has its parent category with the
-     * specified name and parent module with the specified module code.
-     *
-     * @param moduleCode
-     *  The module code of the module containing the category to retrieve the File List from
-     * @param categoryName
-     *  The name of the category to retrieve the File List from
-     * @param taskDescription
-     *  The description of the task to retrieve the File List from
-     * @return
-     *  The Task List of the found category
-     * @throws ModuleNotFoundException
-     *  If the module with the specified module code is not found in the Module List
-     * @throws CategoryManager.CategoryNotFoundException
-     *  If the category with the specified name is not found in the Category List
-     * @throws TaskManager.TaskNotFoundException
-     *  If the task with the specified description is not found in the Task List
-     */
-    public static TaskFileManager retrieveList(String moduleCode, String categoryName, String taskDescription)
-            throws ModuleNotFoundException, CategoryManager.CategoryNotFoundException,
-            TaskManager.TaskNotFoundException {
-        return retrieveList(moduleCode, categoryName).retrieveList(taskDescription);
     }
 
     /* Filters for data (module / task / category) that *contains* given keywords (i.e. not exact match)
@@ -555,36 +435,6 @@ public class ModuleManager implements Iterable<Module> {
         return filter(NO_KEYWORD, NO_KEYWORD, NO_KEYWORD);
     }
 
-    @Override
-    public Iterator<Module> iterator() {
-        return moduleList.iterator();
-    }
-
-    //public void addTaskToModule(TaskManager taskManager, Task taskToAdd) throws TaskManager.DuplicateTaskException {
-    //    taskManager.add(taskToAdd);
-    //    allTasks.add(taskToAdd);
-    //}
-    //
-    //public void removeTask(TaskManager taskManager, Task taskToDelete) {
-    //    taskManager.delete(taskToDelete);
-    //    allTasks.remove(taskToDelete);
-    //}
-
-
-    /**
-     * get a module object according to moduleCode.
-     * @param moduleCode the moduleCode of the module
-     * @return a module object that has the moduleCode
-     */
-    public static Module getModuleWithCode(String moduleCode) {
-        for (Module module: moduleList) {
-            if (module.getModuleCode().equals(moduleCode)) {
-                assert module.getModuleCode().equals(moduleCode);
-                return module;
-            }
-        }
-        return null;
-    }
 
     /**
      * return total number of tasks in all modules.

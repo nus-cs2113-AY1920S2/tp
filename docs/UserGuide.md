@@ -1,44 +1,3 @@
-
-<head>  
-    <meta charset="UTF-8">  
-    <title>Nuke User Guide v2.1</title>  
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> </head>  
-  
-<style type="text/css">  
-div {  
-   text-align: justify;  
-}  
-.alert {  
-  padding: 15px;  
-  margin-bottom: 20px;  
-  border: 1px solid transparent;  
-  border-radius: 4px;  
-}  
-.alert-success {  
-  background-color: #dff0d8;  
-  border-color: #d6e9c6;  
-  color: #3c763d;  
-}  
-  
-.alert-info {  
-  background-color: #d9edf7;  
-  border-color: #bce8f1;  
-  color: #31708f;  
-}  
-  
-.alert-warning {  
-  background-color: #fcf8e3;  
-  border-color: #faebcc;  
-  color: #8a6d3b;  
-}  
-  
-.alert-error {  
-  background-color: #f2dede;  
-  border-color: #ebccd1;  
-  color: #a94442;  
-}  
-</style>  
-  
 # **Nuke User Guide** <small>v2.1</small>   
 By: `CS2113T-T13-2` Since: `Feb 2020` <small>    
 [Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/UserGuide.html)</small>     
@@ -59,9 +18,9 @@ By: `CS2113T-T13-2` Since: `Feb 2020` <small>
 &nbsp; &nbsp; &nbsp; &nbsp;  **1. Add** [&#10149;](#1-add)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. Add a Module into your Module List [&#10149;](#a-add-a-module-into-your-module-list)      
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. Add a Category into your Category List [&#10149;](#b-add-a-category-into-your-category-list)      
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Add a Task into your Task List [&#10149;](#c-add-a-task-into-your-task-list)      
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Add a File into your File List [&#10149;](#d-add-a-file-into-your-file-list)      
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. Add a Tag to your Task  [&#10149;](#e-add-a-tag-to-your-task)      
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c. Add a Task into your Task List [&#10149;](#c-add-a-task-into-your-task-list)  
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d. Add a File into your File List [&#10149;](#d-add-a-file-into-your-file-list)  
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e. Add a Tag to your Task  [&#10149;](#e-add-a-tag-to-your-task)    
 &nbsp; &nbsp; &nbsp; &nbsp; **2. List** [&#10149;](#2-list)    
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a. List your Modules [&#10149;](#a-list-your-modules)       
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b. List your Categories [&#10149;](#b-list-your-categories)      
@@ -137,7 +96,7 @@ What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing 
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.    
   
 ### **Nuke Structure**  
-**Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:  
+**Nuke** follows the structure of a **Directory Tree** &#127795; _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:  
   
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
   
@@ -697,17 +656,40 @@ lsf
 <br>  
   
 #### **g. List your Task's Tags**   
-<big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>    
+`lsg` will show your filtered <i>tag(s)</i>.      
+    
+##### **Format**   
+`lsg [ <tag keyword> -m <module keyword> -c <category keyword> -t <task keyword> -e -a ]`  
   
-`lsg` shows *tag*s in your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command. not available now).  
+- `tag keyword` -- The <i>keyword</i> to filter the <i>tags'</i> <i>name</i> by         
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by       
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by       
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by        
   
+##### **Example Usage**     
+```  
+lsg 
+```  
+```  
+lsg urgent  
+```  
+```  
+lsg -m CS -c Lab  
+```  
+```  
+lsg -m cs2113t -c Assignment -t assignment1 
+```  
+  
+##### **Expected Outcome**     
+#picture
+
 [Back To Top](#table-of-contents)  
   
 <br><br>  
   
   
 ### **3. Delete**   
-Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i> or <i>files</i> from their respective lists.     
+Deletes <i>modules</i>, <i>categories</i>,  <i>tasks</i>, <i>files</i> or <i>tags</i> from their respective lists.     
 You will be prompted to either enter `yes` to confirm the deletion <i>or</i> `no` to abort the deletion after entering the <b>Delete</b> command.     
 <br>    
 Like the [<b>Add</b>](#1-add) Command, **Nuke** also supports a generic command for deleting a directory: `rm` <br>     
@@ -870,36 +852,37 @@ delf diag -a
 [Back To Top](#table-of-contents)  
 <br>  
   
-#### **e. Delete Tags from your Task**    
-<big style="color: red"><b>Still under implementation &#128528; Available in v3.0</b></big>    
-  
+#### **e. Delete Tags from your Task**      
 `delg` deletes a _tag_ from your _task_'s **Tag List**. The **Tag List** contains all your added _tags_ to the _task_. (and can be viewed via the List Tag command).   
   
 ##### **Format**       
-`delg <tag info> -m <module code> -c <category name> -t <task description>`   
+`delg [ <tag keywrod> -m <module keyword> -c <category keyword> -t <task keyword> ]`   
    
-- `tag info` -- The _tag_ to be deleted  
-- `module code` -- The _module code_ of the _module_ to contain the _category_ to be added    
-- `category name` -- The _name_ of the _category_ - `task decription` -- The _description_ of the _task_   
+- `tag keyword` -- The <i>keyword</i> to filter the <i>tags'</i> <i>name</i> by         
+- `module keyword` -- The <i>keyword</i> to filter the <i>modules'</i> <i>code</i> by       
+- `category keyword` -- The <i>keyword</i> to filter the <i>categories'</i> <i>name</i> by       
+- `task keyword` -- The <i>keyword</i> to filter the <i>tasks'</i> <i>description</i> by        
    
 ##### **Example Usage**  
 ```  
-delg urgent -m CS2113t -c Lab -t tp  
+delg ur -m CS21 -c L  
 ```  
 ```  
-delg urgent -c Lab -t tp  
-```  
-```  
-delg urgent -t tp  
+delg gen -c Lab 
 ```  
 ```  
 delg urgent  
 ```  
-<br>  
-  
+```  
+delg  
+```  
+   
+##### **Expected Outcome**   
+
+
 [Back To Top](#table-of-contents)  
-  
-<br><br>    
+
+<br>   
   
 ### **4. Edit**    
   

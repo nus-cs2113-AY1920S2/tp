@@ -7,6 +7,7 @@ import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Module;
 import seedu.nuke.directory.Task;
 import seedu.nuke.directory.TaskFile;
+import seedu.nuke.directory.TaskTag;
 import seedu.nuke.util.ListCreator;
 
 import java.io.PrintStream;
@@ -97,6 +98,13 @@ public class Ui {
                     .map(TaskFile.class::cast)
                     .collect(Collectors.toCollection(ArrayList::new));
             listTableToShow = ListCreator.createFileListTable(fileList);
+            break;
+
+        case TAG:
+            ArrayList<TaskTag> tagList = result.getShownList().stream()
+                    .map(TaskTag.class::cast)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            listTableToShow = ListCreator.createTagListTable(tagList);
             break;
 
         case NONE:
