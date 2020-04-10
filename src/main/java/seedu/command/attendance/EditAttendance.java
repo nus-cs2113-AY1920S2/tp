@@ -71,34 +71,28 @@ public class EditAttendance extends Command {
         if (attendanceList.isEmpty()) {
             UI.display("The attendance list is currently empty. Please add attendance instead.");
         } else {
-            attendanceList.displayAttendanceList();
+            attendanceList.displayList();
             getIndex();
             displayAttendance();
-            if (setNewName()) {
-                editName();
-            } else {
-                editStatus();
-            }
-            attendanceList.displayAttendanceList();
+            decideEdit();
+            attendanceList.displayList();
         }
     }
 
     /**
-     * To determine if the user want to set new.
-     * @return True if the user intends to change name.
-     *         False if the user intends to change status.
+     * To determine if the user want to set new name or status.
      */
-    private boolean setNewName() {
+    private void decideEdit() {
         UI.display("Do you wish to change the `name` or change the `status`");
         ui.readUserInput();
         String input = ui.getUserInput();
-        if (input.equals("name")) {
-            return true;
-        } else if (input.equals("status")) {
-            return false;
-        } else {
+        switch(input.toLowerCase().trim()) {
+        case "name":
+            editName();
+        case "status":
+            editStatus();
+        default:
             UI.display("I do not understand your message. Please try again");
-            return setNewName();
         }
     }
 
