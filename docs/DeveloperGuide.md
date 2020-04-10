@@ -24,7 +24,7 @@ Table of Contents
 		- [Design Considerations](#332-design-considerations)
 	- [Repeat event feature](#34-repeat-event-feature)
 		- [Current Implementation](#341-current-implementation)
-		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-impact)
+		- [`Event` and `RepeatEvent` Differences and Impact](#342-event-and-repeatevent-differences-and-their-impact)
 		- [Design Considerations](#343-design-considerations)
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
@@ -48,9 +48,9 @@ Table of Contents
 - [Appendices](#6-appendices)
     - [Product Scope](#61-appendix-a-product-scope)
     - [User Stories](#62-appendix-b-user-stories)
-    - [Use Cases](#63-appendix-c-use-cases)
-    - [Non-Functional Requirements](#64-appendix-d-non-functional-requirements)
-    - [Documentation](#65-appendix-e-documentation)
+    - [Non-Functional Requirements](#63-appendix-c-non-functional-requirements)
+    - [Documentation](#64-appendix-d-documentation)
+    - [Instructions for Manual Testing](#65-appendix-e-instructions-for-manual-testing)
 
 ## 1. Setting up
 This section will guide you on how to set up this project on your own computer.
@@ -876,15 +876,411 @@ Target user profile:
 </tbody>
 </table>
 
-### 6.3. Appendix C: Use Cases
-### 6.4. Appendix D: Non-Functional Requirements
+### 6.3. Appendix C: Non-Functional Requirements
 1.  App should work on Windows, Linux, Unix, OS-X operating systems if Java `11` has been installed.
 
 2.  User with above average typing speed for English text (not coding) should be able to utilize the app to manage tasks more efficiently compared to using a mouse.
 
 3. App should run without any noticeable loss in performance when about 100 tasks are present in the user's list.
 
-### 6.5 Appendix E: Documentation
-Refer to [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/Documentation.html)
+### 6.4 Appendix D: Documentation
+#### 6.4.1 Introduction
+
+We use MarkDown for writing documentation.
+
+> **Note**: <br/>
+> We choose Markdown over asciidoc, although asciidoc provides more flexibility in formatting because Markdown is easier 
+>to master for new developers, and also because it is easier to be deployed on GitHub Pages<br/>
+
+#### 6.4.2 Editing documentation
+
+See [here](https://www.markdownguide.org/getting-started/) to learn the basic syntax for Markdown.
+To preview your changes to your Markdown documents, you could download the Markdown plugin for IntelliJ, that allows 
+you to preview your changes real-time. Alternatively, you could push the changes to `GitHub` and view the changes from 
+your commits. 
+
+#### 6.4.3 Editing diagrams
+
+See [here](https://www.lucidchart.com/blog/getting-started-in-lucidchart) to learn how to use LucidCharts to draw your 
+own diagrams.
+
+#### 6.4.4. Publishing Documentation
+
+1.  Push the new documents to your own repository on github
+
+2.  Make a pull request to [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/pulls) to request for changes to be made to the 
+documentation. (Click [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request))
+to learn how to make a pull request.
+
+3. The moderators will review your change and make a decision if they want to use your changes
+
+### 6.4.5. Converting Documentation to PDF format
+1.  Click [here](https://ay1920s2-cs2113t-m16-1.github.io/tp/) to find the desired guides that you wish to convert to PDF format.
+
+2.  For Google Chrome users:
+    -   Go the `settings` icon and click on `print`
+    ![Print Image](images/print.jpg)
+    -   In the print screen, choose the option `save as pdf` and click `save`
+    ![Save as PDF](images/savepdf.jpg)
+    
+3.  For Windows users:
+    -   Go the `settings` icon and click on `print`
+    ![Print Image](images/windowsprint.jpg)
+    -   In the print screen, choose the option `Microsoft Print to PDF` and click `print`
+    ![Save as PDF](images/windowspdf.jpg)
+    
+### 6.5 Appendix E: Instructions for Manual Testing 
+#### 6.5.1 Launch and Shutdown 
+Launch **ATAS**
+* Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases)
+* Using Terminal, navigate to folder containing **ATAS**
+* Maximise the screen size of terminal
+
+**Test Case**: `java -jar atas-2.0.0.jar`
+
+Expected Output: **ATAS** startup screen is displayed
+
+Exit **ATAS** 
+
+**Test Case**: `exit`
+
+Expected Output: **ATAS** program terminates
+
+#### 6.5.2 Adding `assignment` task type
+
+**Prerequisites**: Issue `list` command, there are no tasks in the list
+
+**Test Case 1**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments`
+
+Expected Output: A success message of adding the `assignment` task will be shown. Entering a `list` command will show 1 
+task in the list. 
+
+**Test Case 2**: `assignment n/assignment one m/cs2113 d/01/05/20 1200 c/No comments` after running the `assignment` command as stated above
+
+Expected Output: An error message indicating that task already exist will be shown. Issuing a `list` command will only
+show 1 `assignment` task in the list.
+
+**Test Case 3**: `assignment n/assignment two`
+
+Expected Output: An error message indicating that a wrong format of `assignment` command is issued. `list` command will 
+not show `assignment two` on the list. 
+
+**Test Case 4**: `assignment n/assignment three m/cs2113 d/01/05/20 12:00 c/No comment`
+
+Expected Output: An error message indicating a wrong format of `assignment` command is issued. This is due to `:` in the
+time entered. 
+
+**Test Case 5**: `assignment n/assignment four m/cs2113 d/40/40/20 1200 c/No comment`
+
+Expected Output: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
+show `assignment four` on the list. 
+
+**Prerequisites**: Prepare **today's** date in `DD/MM/YY` format to enter into `d/`
+
+**Test Case 6**: 
+1. `assignment n/assignment three m/cs2113 d/DD/MM/YY 1200 c/No comment` 
+2. `exit`
+3. `java -jar atas-2.0.0.jar`
+
+Expected Output: `assignment three` will be displayed when **ATAS** is started.
+
+#### 6.5.3 Adding `event` task type
+
+**Test Case 1**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: A success message of adding the `event` task will be shown. Entering a `list` command will show the 
+`meeting one` on the list. 
+
+**Test Case 2**: `event n/meeting one l/com2 d/01/05/20 1200 - 1400 c/No comment` after running the `event` command as stated above
+
+Expected Output: An error message indicating that task already exist will be shown. Issuing a `list` command will not show
+another `meeting one` on the list. 
+
+**Test Case 3**: `event n/meeting two`
+
+Expected Output: An error message indicating that a wrong format of `event` command is issued. `list` command will 
+not show `meeting two` on the list.
+
+**Test Case 4**: `event n/meeting three l/com2 d/01/05/20 12:00-1300 c/none`
+
+Expected Output: An error message indicating a wrong format of `event` command is issued. This is due to `:` in the
+time entered.
+
+**Test Case 5**: `event n/meeting three l/com2 d/40/40/20 1200-1300 c/none`
+
+Expected Output: An error message indicating a wrong format of date or invalid date is issued. `list` command will not
+show `meeting three` on the list.
+
+**Test Case 6**: `event n/meeting four l/com2 d/01/05/20 1300-1200 c/none`
+
+Expected Output: An error message indicating that the end time should come after the start time. `list` command will not
+show `meeting four` on the list. 
+
+**Prerequisites**: Prepare **today's** date in `DD/MM/YY` format to enter into `d/`
+
+**Test Case 7**: 
+1. `event n/meeting four l/com2 d/DD/MM/YY 1200-1300 c/None` 
+2. `exit`
+3. `java -jar atas-2.0.0.jar`
+
+Expected Output: `meeting four` will be displayed when **ATAS** is started.
+
+#### 6.5.4 Setting an `event` task to `repeat`
+
+**Prerequisite**: 
+1. List of tasks contain both `assignment` and `event` tasks 
+2. In this test case, `event` task is listed in index `1` in the list
+3. In this test case, `assignment` task is listed in index `2` in the list
+
+> **Note**:
+> Index of tasks may vary depending on order of adding task. <br/>
+> [A] represents an `assignment` task type. <br/>
+> [E] represents an `event` task type.
+
+**Test Case 1**: `repeat id/1 p/3d`
+
+Expected Output: Success message indicating that `event` message will repeat every `3 days`. Issuing a `list` command will
+show that event changed to a `repeat event` task type with `[R]` to indicate repeat and `[3d]` to indicate `3 days`.
+
+**Test Case 2**: `repeat id/1 p/0`
+
+Expected Output: Success message indicating that `repeat event` will no longer repeat. Issuing a `list` command will 
+show that `repeat event` is changed to `event` task type. 
+
+**Test Case 3**: `repeat id/1 p/3a`
+
+Expected Output: An error message indicating wrong format of `repeat` command is entered. 
+
+**Test Case 4**: `repeat id/2 p/3d`
+
+Expected Output: An error message indicating that chosen task index is an `assignment` task. `repeat` command only works
+for `event` task types. 
+
+**Prerequisite**: List of task is not more than 10
+
+**Test Case 5**: `repeat id/20 p/3d`
+
+Expected Output: An error message indicating the valid range of task index to enter will be displayed. 
+
+
+#### 6.5.5 Listing Tasks
+**Prerequisite**: List is empty
+
+**Test Case 1**: `list`
+
+**Test Case 2**: `list incomplete assignments`
+
+**Test Case 3**: `list upcoming events`
+
+**Test Case 4**: `list today`
+
+**Test Case 5**: `list week`
+
+Expected Output: A message indicating that no tasks were found on the list. 
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. List should contain several `assignment`, `event` and `repeat event` task types occurring on the current date 
+3. List should contain several `event` and `repeat event` task types that are occurring in the next week
+4. List should contain several `assignment` task type that are incomplete
+
+**Test Case 6**: `list`
+
+Expected Output: All tasks that are entered into **ATAS** will be shown in the order in which they are entered. 
+
+> **Note**:
+> This command lists all tasks on the list
+
+**Test Case 7**: `list today`
+
+Expected Output: All tasks that are occurring on current date will be displayed.
+
+**Test Case 8**: `list week`
+
+Expected Output: All tasks that are occurring within the current date and one week from current date will be displayed.
+
+**Test Case 9**: `list upcoming events`
+
+Expected Output: All `event` and `repeat event` task types that are occurring from the current date and time will be displayed.
+
+**Test Case 10**: `list incomplete assignments`
+
+Expected Output: All `assignment` task types that are incomplete will be displayed.
+
+#### 6.5.6 Editing Tasks 
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+3. It is assumed that index `1` contains an `assignment` task type
+4. It is assumed that index `2` contains an `event` task type
+5. It is assumed that index `3` contains a `repeat event` task type
+
+**Test Case 1**: 
+1. `edit 1`
+2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1202 c/No comments` 
+
+Expected Output: Success message indicating that `assignment` task is successfully edited is displayed. `list` command
+shows the newly edited `assignment` task.
+
+**Test Case 2**:
+1. `edit 2`
+2. `event n/edited meeting l/com2 d/01/05/20 1202 - 1402 c/No comment`
+
+Expected Output: Success message indicating that `event` task is successfully edited is displayed. `list` command shows
+the newly edited `event` task. 
+
+> **Note**:
+> Any error in entering `assignment` and `event` types will result in same error as adding `assignment` or `event` task type.
+
+**Test Case 3**: 
+1. `edit 3`
+2. `event n/edited repeat meeting l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: Success message indicating that `repeat event` task is successfully edited is displayed. `list` command shows
+the newly edited `repeat event` task. Task will retain `[R]` to indicate that it is still a `repeat event` task.
+
+**Test Case 4**: `edit 200`
+
+Expected Output: An error message indicating the range of valid task numbers. 
+
+**Test Case 5**:
+1. `edit 1`
+2. `event n/editing event as assignment l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
+**Test Case 6**:
+1. `edit 2`
+2. `assignment n/editing assignment as event one m/cs2113 d/01/05/20 1202 c/No comments`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
+
+#### 6.5.7 Marking Task as Done
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+
+**Test Case 1**: `done 1`
+
+Expected Output: A success message indicating the name of task that is marked done will be displayed. Issuing a `list` 
+command shows that the task marked done will be indicated with `[/]`.
+
+**Test Case 2**: `done 200`
+
+Expected Output: An error message indicating the range of valid task numbers. 
+
+#### 6.5.8 Deleting Task
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+
+**Test Case 1**: `delete 1`
+
+Expected Output: A success message indicating the name of task that is deleted will be displayed. Issuing a `list` 
+command shows that the task is deleted. 
+
+**Test Case 2**: `delete 200`
+
+Expected Output: An error message indicating the range of valid task numbers.
+
+#### 6.5.9 Clearing Task
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. In this test case, it is assumed that task list has no more than 100 tasks
+3. List should contain several `assignment`, `event` and `repeat event` task types that are marked as done
+
+**Test Case 1**: `clear done`
+
+Expected Output: A success message indicating that all done tasks are cleared will be displayed. Issuing a `list` command
+shows that there are no done tasks in the list. All tasks should have a `[x]` indicator. 
+
+**Test Case 2**: 
+1. Issued after above command
+2. `clear done`
+
+Expected Output: An error message indicating that there are no done tasks at the moment is displayed. 
+
+**Test Case 3**: `clear all`
+
+Expected Output: A success message indicating that all tasks are cleared will be displayed. Issuing a `list` command 
+gives a no task is found error because there are no tasks on the list. 
+
+**Test Case 4**:
+1. Issued after above command
+2. `clear all`
+
+Expected Output: An error message indicating there are no tasks at the moment is displayed. 
+
+#### 6.5.10 Searching for Tasks
+
+**Prerequisite**: 
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. It is assumed that there is an `assignment` task type named `assignment one` in the list
+3. It is assumed that there is an `assignment` task type scheduled on the `01/05/20` in the list
+4. It is assumed that there is an `event` task type named `meeting one` in the list
+5. It is assumed that there is an `event` task type scheduled on the `01/05/20` in the list
+
+**Test Case 1**: `search t/assignment n/one`
+
+Expected Output: Success message showing the searched `assignment` task type will be displayed. 
+
+**Test Case 2**: `search t/event n/one`
+
+Expected Output: Success message showing the searched `event` task type will be displayed. 
+
+> **Note**:
+> Search for tasks is case-insensitive. <br/>
+> `search t/event n/One` is a valid search
+
+
+**Test Case 3**: `search t/anything n/one`
+
+Expected Output: Error message displaying invalid search command format will be displayed. 
+
+**Test Case 4**: `search t/assignment n/two`
+
+Expected Output: An error message showing that there is no matching task for the search query is shown.
+
+**Test Case 4**: `searchd t/assignment n/one d/01/05/20`
+
+Expected Output: Success message showing the searched `assignment` task type will be displayed.
+
+**Test Case 5**: `searchd t/event n/one d/01/05/20`
+
+Expected Output: Success message showing the searched `event` task type will be displayed.
+
+**Test Case 6** : `search t/all n/one`
+
+Expected Output: Success message showing *all* the tasks matching the search query will be displayed
+
+**Test Case 7** : `searchd t/all n/one d/01/05/20`
+
+Expected Output: Success message showing *all* the tasks matching the search query and date will be displayed
+
+**Test Case 8**: `search t/assignment n/one d/02/05/20`
+
+Expected Output: An error message showing that there is no matching task for the search query is shown.
+
+
+#### 6.5.11 Calendar View
+
+**Prerequisites**:
+1. List should contain several `assignment`, `event` and `repeat event` task types
+2. Assume that list is populated with the above task types in the month of May
+
+**Test Case 1**: `calendar d/05/20`
+
+Expected Output: Calendar view of all tasks scheduled in May 2020 will be displayed. 
+
+**Test Case 2**: `calendar 05/20`
+
+Expected Output: Error message indicating that incorrect `calendar` command is entered will be displayed.
 
 [Back to Top](#)
