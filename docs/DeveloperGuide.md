@@ -306,4 +306,44 @@ Follow the following steps to manually test the product:
 
 ### 7.3 Feature Testing
 
-#### `create` feature 
+#### `create` 
+
+**Important** Please ensure JSON data files are empty. 
+
+1. Type `create article` 
+
+2. When asked `Enter the title of article?` enter the following: `ManualTestArticle`
+
+3. When asked `What is the URL of the article (type "No URL")?` enter the following: `www.manualtestarticle.com`
+
+4. When asked `What is the the category (type "default" if you don't know it)` enter the following: `test`
+
+5. You should see the following output: 
+
+            Done, we have added the following job to your list of saved jobs
+               Title: ManualTestArticle
+               Date: 2020-Apr-09 Thu 08:10 PM
+               Category: test
+               Url: www.manualtestarticle.com
+               Extract: ...
+            __________________________________________________________________________________________
+
+#### `list` 
+
+1. Type `list article` 
+
+2. The only article in your list should be the article previously created. You should see the following output: 
+
+            _                                   Article List                                   _
+
+
+            1. Title: ManualTestArticle
+               Date: 2020-Apr-09 Thu 08:10 PM
+               Category: test
+               Url: www.manualtestarticle.com
+               Extract: ...
+
+
+            __________________________________________________________________________________________
+
+
