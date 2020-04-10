@@ -1326,8 +1326,8 @@ step-by-step command for performance and all-in-one command for event?
 * View student list `studentlist view`
 * Clear student list collection `studentlist clear`
 * Delete student list `studentlist delete`
-* Find student list `studentlist.find`
-* Sort student list `studentlist.sort`  
+* Find student list `studentlist find`
+* Sort student list `studentlist sort`  
 
 **Event**
 * Add event `event add n/NAME d/DATE t/TIME v/VENUE`
