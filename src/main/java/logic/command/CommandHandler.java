@@ -39,7 +39,9 @@ public class CommandHandler {
         member = new Contact(userInputWords[0]);
         String name = userInputWords[0];
         String url = userInputWords[1];
-
+        if (name.matches("[0-9]+")) {
+            throw new MoException("Name must contain letters.");
+        }
         LessonsGenerator myLessonGenerator;
         myLessonGenerator = new LessonsGenerator(url);
         myLessonGenerator.generate();
