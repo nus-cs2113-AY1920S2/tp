@@ -26,6 +26,6 @@ public class SortStudentListByList extends Command {
     @Override
     public void execute() throws PacException {
         sort();
-        UI.display("StudentList sorted by name within the lists");
+        UI.display("StudentList sorted by name within the lists.");
     }
 }

@@ -2,7 +2,7 @@
 
 ## Professor Assistant Console (Pac)
 
-![PAC](images/Pac.png "Pac ver1")  
+![PAC](images/logo.png "PAC")
 
 ## Content Page  
 1. [Introduction](#1-introduction)  
@@ -48,7 +48,8 @@
 6. [FAQ](#6-faq)  
 7. [Command Summary](#7-command-summary)  
 8. [Contact Us](#8-contact-us)
-  
+
+##
 ## 1. Introduction
 
 ### 1.1. What is Pac?
@@ -66,6 +67,7 @@ prefers to use a CLI for managing events and students' data. If you can type fas
 Pac can get your event management tasks done faster than traditional GUI apps. Interested?  
 Jump to [Section 2](#2-setting-up) to get started. Enjoy! 
 
+##
 ## 2. Setting Up
 
 ### 2.1. Requirements 
@@ -78,10 +80,10 @@ or above installed in your Computer.
 1.  Open your terminal.
 1.  Navigate to the home folder containing Pac.
 1.  cd followed by the file path into the terminal as shown below:  
-    ![cdImage](images/filepath.PNG "filepath")
+    ![cdImage](images/filepath.png "filepath")
 1.  Type `java -jar Pac-2.1.jar` and press **Enter**.
 1.  You should see this screen if everything is successful:    
-    ![screen](images/startup.PNG "startup screen")
+    ![screen](images/startup.png "startup screen")
 
 
 ##
@@ -95,10 +97,10 @@ e.g. typing help then pressing **Enter** will open the help window.
 Some example commands to try:
 * `event list`			List all events
 * `event add n/CS1010` 	Add an event named “CS1010”
-* `student add`         Create a new student list
+* `studentlist add`     Create a new student list
 * `bye`				    Exits the app
 
-Refer to [“Features”](#Features) for details of each command.
+Refer to [“Features”](#4-features) for details of each command.
 
 ## 4. Features 
 
@@ -109,7 +111,14 @@ a clearer understanding on how you can use the commands.
 #### 4.1.1. Add New Student List `studentlist add`
 
 Creates a student list and adds it to the collection of student list that can be used for adding attendance and 
-performance. Please note that you are allowed to add in duplicated names and that all names are CASE-SENSITIVE. 
+performance. 
+
+Please note the following points when you are using this feature:
+1. Users are NOT allowed to add in duplicated student names or duplicated student list names. 
+1. student names and student list names are CASE-INSENSITIVE.
+    1. For example, you will not be able to add in `cs1010` if there is an existing `CS1010` found in the student
+    list collection
+
 
 Command: 
 
@@ -121,16 +130,24 @@ Examples:
     What is the name of your list?
     
     >>> CS2113T Tut
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> John
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> Jodi
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> done
     Student List created, named : CS2113T Tut
+    _________________________________________________________________________________________________
+    | List      |  CS2113T Tut                                                                       |
+    |___________|____________________________________________________________________________________|
+    | 1         |  John                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Jodi                                                                              |
+    |___________|____________________________________________________________________________________|
+
     
 #### 4.1.2 View all existing student lists from the student list collection `studentlist view`
 View all existing students lists from student list collection.
@@ -194,7 +211,7 @@ Command:
 Examples: 
     
     >>> studentlist delete
-    Please state the index of the list you want to delete
+    Please state the index of the list you want to delete.
     
     >>> 1
     Here is the updated Student List Collection
@@ -204,6 +221,8 @@ Examples:
     | 1         |  Alice                                                                             |
     |___________|____________________________________________________________________________________|
     | 2         |  Carl                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Bobby                                                                             |
     |___________|____________________________________________________________________________________|
     
     _________________________________________________________________________________________________
@@ -227,7 +246,36 @@ Command:
 Examples: 
     
     >>> studentlist find
-    Please state the list name you are searching for
+    Displaying all student list: 
+    _________________________________________________________________________________________________
+    | List #1   |  CS2113T Tut                                                                       |
+    |___________|____________________________________________________________________________________|
+    | 1         |  John                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Jodi                                                                              |
+    |___________|____________________________________________________________________________________|
+    _________________________________________________________________________________________________
+    | List #2   |  CS2040C                                                                           |
+    |___________|____________________________________________________________________________________|
+    | 1         |  Alice                                                                             |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Carl                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Bobby                                                                             |
+    |___________|____________________________________________________________________________________|
+    _________________________________________________________________________________________________
+    | List #3   |  CG2028                                                                            |
+    |___________|____________________________________________________________________________________|
+    | 1         |  Ben                                                                               |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Robert                                                                            |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Sam                                                                               |
+    |___________|____________________________________________________________________________________|
+    | 4         |  Fiona                                                                             |
+    |___________|____________________________________________________________________________________|
+    
+    Please state the list name you are searching for.
     
     >>> CS
     You have 2 matched:
@@ -255,7 +303,7 @@ Examples:
 
     
     >>> studentlist find
-    Please state the list name you are searching for
+    Please state the list name you are searching for.
     
     >>> CG
     You have 1 matched:
@@ -275,7 +323,7 @@ Examples:
     |___________|____________________________________________________________________________________|
                 
     >>> studentlist find
-    Please state the list name you are searching for
+    Please state the list name you are searching for.
     
     >>> EG
     Nothing match you description : EG
@@ -323,7 +371,7 @@ Examples:
     Please Key in either 'name' or 'list'.
     
     >>> name
-    Student List is sorted by name within the Student List Collection
+    Student List is sosrted by name within the Student List Collection
     
     >>> studentlist view
     _________________________________________________________________________________________________
@@ -353,13 +401,14 @@ Examples:
     |___________|____________________________________________________________________________________|
     | 2         |  Jodi                                                                              |
     |___________|____________________________________________________________________________________|
+
     
     
-#### 4.1.7 Sort all existing student lists from the student list collection by name `student sort`
+#### 4.1.7 Sort all existing student lists from the student list collection by name `studentlist sort`
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their name.
     
-    >>> studentlist sort
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
     |___________|____________________________________________________________________________________|
@@ -422,7 +471,7 @@ in order, this command will force all existing lists to be sorted by their name.
     |___________|____________________________________________________________________________________|
     | 2         |  John                                                                              |
     |___________|____________________________________________________________________________________|
-    
+   
      
 ### 4.2. Event
 #### 4.2.1. Add New Event
