@@ -17,7 +17,7 @@
 4.1. [Student List](#41-student)  
 4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
 4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
-4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collection)   
+4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collections)   
 4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
 4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection)  
 4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection)  
@@ -196,7 +196,7 @@ The following occurs when there are no existing student list in the student list
     >>> studentlist view
     There is no existing student list.              
                 
-#### 4.1.3 Clear all existing student lists from the student list collectionst
+#### 4.1.3 Clear all existing student lists from the student list collections
 Clear all existing student lists from the student list collection. This is a clear all command. If you wish to delete 
 a specific student list, please use the `studentlist delete` instead.
 
@@ -215,10 +215,10 @@ The following occurs when there are no existing student list in the student list
 
     >>> studentlist clear
     There is no existing student list.
-    
+        
 #### 4.1.4 Clear all existing student lists from the student list collection
 Delete a specific student list from the student list collection base on its index. If you wish to delete all student 
-lists in the student list collection, please use `student.list clear` instead.
+lists in the student list collection, please use `studentlist clear` instead.
 
 Command: 
 
@@ -403,7 +403,7 @@ The following occurs when there is at least one existing student list in the stu
     Please Key in either 'name' or 'list'.
     
     >>> name
-    Student List is sosrted by name within the Student List Collection
+    Student List is sorted by name within the Student List Collection
     
     >>> studentlist view
     _________________________________________________________________________________________________
@@ -663,7 +663,7 @@ a clearer understanding on how you can use the commands.
 
 Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
-You may wish to use an existing list found in StudentListCollection.
+You may wish to use an existing list found in `StudentListCollection`.
 
 Please note that if there are existing students in the attendance list of the chosen event, it will add to the existing
 students list. If you wish to start a new attendance list of the chosen event, please use `attendance clear` to clear 
