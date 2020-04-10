@@ -374,7 +374,13 @@ or
 
 `done id/[module code] g/[grade]`
 
-### 5.6 View
+### 5.6 Find
+
+Command: 
+
+`find [keyword]`
+
+### 5.7 View
 
 Command: 
 
@@ -396,18 +402,18 @@ or
 
 `CAP`
 
-### 5.7 Clear
+### 5.8 Clear
 
 Command:
 
 `clear`
 
-### 5.8 Help  
+### 5.9 Help  
 Command:  
 
 `help`
 
-### 5.9 Bye
+### 5.10 Bye
 
 Command:
 

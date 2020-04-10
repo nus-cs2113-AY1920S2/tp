@@ -21,11 +21,6 @@ In this project, I added the portion of Controller, Person, JUnit test, Logging,
 * Justification: 
 * Highlights: 
 
-##### Person  
-* What it does: 
-* Justification: 
-* Highlights: 
-
 ##### Commands  
 - Mark as Done Command  
 - View Command  
@@ -60,13 +55,14 @@ Glossary section and Instructions for Manual Testing section.([#133](https://git
 [Review of #19](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/19), [Review of #35](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/35),
 [Review of #51](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/51) and 65 others.  
 - Made PRs to teammate's PR to suggest code revision 
-e.g [#51 PR in our team repo](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/51) and 
-[Suggestion PR to teammate's repo](https://github.com/chengTzeNing/tp/pull/4).  
+([#51](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/51), 
+[#4](https://github.com/chengTzeNing/tp/pull/4),
+[#5](https://github.com/chengTzeNing/tp/pull/5))  
 - Helped team mates using windows who had trouble setting up runtest.bat on their personal computers  
 
 ### Contributions beyond the project team
 - Contributed to CS2113/CS2113T forums discussions: ([#30](https://github.com/nus-cs2113-AY1920S2/forum/issues/30), [#93](https://github.com/nus-cs2113-AY1920S2/forum/issues/93))   
-- bugs reported in other team's products: ([Bug reports to CS2113T-T12-3](https://github.com/DeetoMok/ped/issues))  
+- bugs reported in other team's products: [Bug reports to CS2113T-T12-3](https://github.com/DeetoMok/ped/issues)  
 
 
 
