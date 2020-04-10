@@ -75,6 +75,7 @@ public class UI {
                 + "\tdeletesubject s/<INDEX>                    Delete a subject and all its cards\n"
                 + "\n"
                 + "\taddcard s/<INDEX> q/<QUESTION> a/<ANSWER>  Add a card into the specified subject\n"
+                + "\teditcard s/<INDEX> c/<INDEX> q/<QUESTION> a/<ANSWER>  Edit an existing card with new question and answer\n"
                 + "\tlistcard s/<INDEX>                         List all cards in specified subject\n"
                 + "\tdeletecard s/<INDEX> c/<INDEX>             Delete the specified card from the specified subject\n"
                 + "\n"
