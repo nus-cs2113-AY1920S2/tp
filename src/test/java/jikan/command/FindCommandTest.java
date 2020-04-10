@@ -11,7 +11,6 @@ import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,9 +21,16 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FindCommandTest {
+
+    private static final String BASIC_TEST = "quiz";
+    private static final String NULL_RESULTS_TEST = "popquiz";
+    private static final String MULTI_KEYWORD_TEST = "subject2 / final";
+    private static final String FILTER_CHAINING_TEST = "tagC tagD";
+    private static final String CHAINING_TEST = "-s quiz";
+
     ActivityList activities = new ActivityList();
-    HashSet<String> tags1 = new HashSet<>();
-    HashSet<String> tags2 = new HashSet<>();
+    HashSet<String> tagSetVersion1 = new HashSet<>();
+    HashSet<String> tagsSetVersion2 = new HashSet<>();
     ArrayList<Activity> expected = new ArrayList<>();
     Activity activity1;
     Activity activity2;
@@ -38,40 +44,39 @@ class FindCommandTest {
         } catch (FileNotFoundException e) {
             System.out.println("Could not find file.");
         }
-        tags1.add("tagA");
-        tags1.add("tagB");
-        tags2.add("tagC");
-        tags2.add("tagD");
+        tagSetVersion1.add("tagA");
+        tagSetVersion1.add("tagB");
+        tagsSetVersion2.add("tagC");
+        tagsSetVersion2.add("tagD");
         LocalDateTime startTime = LocalDateTime.parse("2020-01-01T08:00:00");
         LocalDateTime endTime =  LocalDateTime.parse("2020-01-01T10:00:00");
         Duration duration = Duration.between(startTime, endTime);
         Duration allocatedTime = Duration.parse("PT0S");
-        activity1 = new Activity("subject1 quiz", startTime, endTime, duration, tags1, allocatedTime);
-        activity2 = new Activity("subject2 quiz", startTime, endTime, duration, tags2, allocatedTime);
-        activity3 = new Activity("subject1 final", startTime, endTime, duration, tags2, allocatedTime);
+        activity1 = new Activity("subject1 quiz", startTime, endTime, duration, tagSetVersion1, allocatedTime);
+        activity2 = new Activity("subject2 quiz", startTime, endTime, duration, tagsSetVersion2, allocatedTime);
+        activity3 = new Activity("subject1 final", startTime, endTime, duration, tagsSetVersion2, allocatedTime);
         activities.add(activity1);
         activities.add(activity2);
         activities.add(activity3);
     }
 
-    void populateExpected1() {
+    void populateExpectedBasic() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
     }
 
-    void populateExpected2() {
+    void populateExpectedNull() {
         expected.clear();
-        expected.add(activity3);
     }
 
-    void populateExpected3() {
+    void populateExpectedMultiKeyword() {
         expected.clear();
         expected.add(activity2);
         expected.add(activity3);
     }
 
-    void populateExpected4() {
+    void populateExpectedChaining() {
         expected.clear();
         expected.add(activity2);
     }
@@ -80,33 +85,27 @@ class FindCommandTest {
     void executeCommand() {
         try {
             populateActivityList();
-            String parameters1 = "quiz";
-            String parameters2 = "final";
-            String parameters3 = "subject2 / final";
-            String filterParameters = "tagC tagD";
-            String parameters4 = "-s quiz";
 
-            Command command1 = new FindCommand(parameters1);
-            command1.executeCommand(activities);
-            populateExpected1();
+            Command basicTest = new FindCommand(BASIC_TEST);
+            basicTest.executeCommand(activities);
+            populateExpectedBasic();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command2 = new FindCommand(parameters2);
-            command2.executeCommand(activities);
-            populateExpected2();
+            Command nullResultsTest = new FindCommand(NULL_RESULTS_TEST);
+            nullResultsTest.executeCommand(activities);
+            populateExpectedNull();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command3 = new FindCommand(parameters3);
-            command3.executeCommand(activities);
-            populateExpected3();
+            Command multiKeywordTest = new FindCommand(MULTI_KEYWORD_TEST);
+            multiKeywordTest.executeCommand(activities);
+            populateExpectedMultiKeyword();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command filter = new FilterCommand(filterParameters);
-            Command command4 = new FindCommand(parameters4);
+            Command filter = new FilterCommand(FILTER_CHAINING_TEST);
+            Command chainingTest = new FindCommand(CHAINING_TEST);
             filter.executeCommand(activities);
-            command4.executeCommand(activities);
-            populateExpected4();
-            System.out.println("sup");
+            chainingTest.executeCommand(activities);
+            populateExpectedChaining();
             assertEquals(Jikan.lastShownList.activities, expected);
 
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {

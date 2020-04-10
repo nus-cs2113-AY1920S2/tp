@@ -22,6 +22,23 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ListCommandTest {
+
+    private static final String DATE_FORMAT_1 = "01/01/2020";
+    private static final String DATE_FORMAT_2 = "2020-01-01";
+    private static final String DATE_RANGE = "01/01/2020 20/02/2020";
+    private static final String DAY_FORMAT_1 = "day";
+    private static final String DAY_FORMAT_2 = "daily";
+    private static final String WEEK_FORMAT_1 = "week";
+    private static final String WEEK_FORMAT_2 = "weekly";
+
+    private static final LocalDateTime START_TIME_1 = LocalDateTime.parse("2020-01-01T08:00:00");
+    private static final LocalDateTime END_TIME_1 =  LocalDateTime.parse("2020-01-01T10:00:00");
+    private static final LocalDateTime START_TIME_2 = LocalDateTime.parse("2020-01-15T08:00:00");
+    private static final LocalDateTime END_TIME_2 =  LocalDateTime.parse("2020-01-15T10:00:00");
+    private static final LocalDateTime START_TIME_3 = LocalDateTime.parse("2020-03-01T08:00:00");
+    private static final LocalDateTime END_TIME_3 =  LocalDateTime.parse("2020-03-01T10:00:00");
+
+
     ActivityList activities = new ActivityList();
     ArrayList<Activity> expected = new ArrayList<>();
     LocalDateTime currentTime = LocalDateTime.now();
@@ -47,20 +64,15 @@ class ListCommandTest {
         tags.add("tagA");
         tags.add("tagB");
 
-        LocalDateTime startTime1 = LocalDateTime.parse("2020-01-01T08:00:00");
-        LocalDateTime endTime1 =  LocalDateTime.parse("2020-01-01T10:00:00");
-        LocalDateTime startTime2 = LocalDateTime.parse("2020-01-15T08:00:00");
-        LocalDateTime endTime2 =  LocalDateTime.parse("2020-01-15T10:00:00");
-        LocalDateTime startTime3 = LocalDateTime.parse("2020-03-01T08:00:00");
-        LocalDateTime endTime3 =  LocalDateTime.parse("2020-03-01T10:00:00");
-        Duration duration = Duration.between(startTime1, endTime1);
+        Duration duration = Duration.between(START_TIME_1, END_TIME_1);
         Duration allocatedTime = Duration.parse("PT0S");
-        activity1 = new Activity("subject1 quiz", startTime1, endTime1, duration, tags, allocatedTime);
-        activity2 = new Activity("subject2 quiz", startTime1, endTime1, duration, tags, allocatedTime);
-        activity3 = new Activity("subject3 final", startTime2, endTime2, duration, tags, allocatedTime);
-        activity4 = new Activity("subject4 final", startTime3, endTime3, duration, tags, allocatedTime);
+        activity1 = new Activity("subject1 quiz", START_TIME_1, END_TIME_1, duration, tags, allocatedTime);
+        activity2 = new Activity("subject2 quiz", START_TIME_1, END_TIME_1, duration, tags, allocatedTime);
+        activity3 = new Activity("subject3 final", START_TIME_2, END_TIME_2, duration, tags, allocatedTime);
+        activity4 = new Activity("subject4 final", START_TIME_3, END_TIME_3, duration, tags, allocatedTime);
         activity5 = new Activity("subject5 quiz", currentTime, currentTime, duration, tags, allocatedTime);
-        activity6 = new Activity("subject6 final", currentTime.plusDays(1), currentTime.plusDays(1), duration, tags, allocatedTime);
+        activity6 = new Activity("subject6 final", currentTime.plusDays(1),
+                currentTime.plusDays(1), duration, tags, allocatedTime);
         activities.add(activity1);
         activities.add(activity2);
         activities.add(activity3);
@@ -70,7 +82,7 @@ class ListCommandTest {
 
     }
 
-    void populateExpected1() {
+    void populateExpectedBasic() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
@@ -80,25 +92,25 @@ class ListCommandTest {
         expected.add(activity6);
     }
 
-    void populateExpected2() {
+    void populateExpectedSingleDate() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
     }
 
-    void populateExpected3() {
+    void populateExpectedDateRange() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
         expected.add(activity3);
     }
 
-    void populateExpected4() {
+    void populateExpectedDay() {
         expected.clear();
         expected.add(activity5);
     }
 
-    void populateExpected5() {
+    void populateExpectedWeek() {
         expected.clear();
         expected.add(activity5);
         if (activity6.getDate().getDayOfWeek() != DayOfWeek.MONDAY) {
@@ -110,52 +122,45 @@ class ListCommandTest {
     void executeCommand() {
         try {
             populateActivityList();
-            String parameters2a = "01/01/2020";
-            String parameters2b = "2020-01-01";
-            String parameters3 = "01/01/2020 20/02/2020";
-            String parameters4a = "day";
-            String parameters4b = "daily";
-            String parameters5a = "week";
-            String parameters5b = "weekly";
 
-            Command command1 = new ListCommand(null);
-            command1.executeCommand(activities);
-            populateExpected1();
+            Command basicTest = new ListCommand(null);
+            basicTest.executeCommand(activities);
+            populateExpectedBasic();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command2a = new ListCommand(parameters2a);
-            command2a.executeCommand(activities);
-            populateExpected2();
+            Command dateFormat1Test = new ListCommand(DATE_FORMAT_1);
+            dateFormat1Test.executeCommand(activities);
+            populateExpectedSingleDate();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command2b = new ListCommand(parameters2b);
-            command2b.executeCommand(activities);
-            populateExpected2();
+            Command dateFormat2Test = new ListCommand(DATE_FORMAT_2);
+            dateFormat2Test.executeCommand(activities);
+            populateExpectedSingleDate();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command3 = new ListCommand(parameters3);
-            command3.executeCommand(activities);
-            populateExpected3();
+            Command dateRangeTest = new ListCommand(DATE_RANGE);
+            dateRangeTest.executeCommand(activities);
+            populateExpectedDateRange();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command4a = new ListCommand(parameters4a);
-            command4a.executeCommand(activities);
-            populateExpected4();
+            Command dayFormat1Test = new ListCommand(DAY_FORMAT_1);
+            dayFormat1Test.executeCommand(activities);
+            populateExpectedDay();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command4b = new ListCommand(parameters4b);
-            command4b.executeCommand(activities);
-            populateExpected4();
+            Command dayFormat2Test = new ListCommand(DAY_FORMAT_2);
+            dayFormat2Test.executeCommand(activities);
+            populateExpectedDay();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command5a = new ListCommand(parameters5a);
-            command5a.executeCommand(activities);
-            populateExpected5();
+            Command weekFormat1Test = new ListCommand(WEEK_FORMAT_1);
+            weekFormat1Test.executeCommand(activities);
+            populateExpectedWeek();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command5b = new ListCommand(parameters5b);
-            command5b.executeCommand(activities);
-            populateExpected5();
+            Command weekFormat2Test = new ListCommand(WEEK_FORMAT_2);
+            weekFormat2Test.executeCommand(activities);
+            populateExpectedWeek();
             assertEquals(Jikan.lastShownList.activities, expected);
 
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {

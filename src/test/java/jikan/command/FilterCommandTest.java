@@ -21,6 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class FilterCommandTest {
+
+    private static final String BASIC_TEST = "tagA";
+    private static final String NULL_RESULTS_TEST = "tagZ";
+    private static final String MULTI_KEYWORD_TEST = "tagA tagC tagD";
+    private static final String FIND_CHAINING_TEST = "subject2 / subject3";
+    private static final String CHAINING_TEST = "-s tagA tagB";
+
     ActivityList activities = new ActivityList();
     HashSet<String> tags1 = new HashSet<>();
     HashSet<String> tags2 = new HashSet<>();
@@ -53,25 +60,24 @@ class FilterCommandTest {
         activities.add(activity3);
     }
 
-    void populateExpected1() {
+    void populateExpectedBasic() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
     }
 
-    void populateExpected2() {
+    void populateExpectedNull() {
         expected.clear();
-        expected.add(activity3);
     }
 
-    void populateExpected3() {
+    void populateExpectedMultiKeyword() {
         expected.clear();
         expected.add(activity1);
         expected.add(activity2);
         expected.add(activity3);
     }
 
-    void populateExpected4() {
+    void populateExpectedChaining() {
         expected.clear();
         expected.add(activity2);
     }
@@ -80,32 +86,27 @@ class FilterCommandTest {
     void executeCommand() {
         try {
             populateActivityList();
-            String parameters1 = "tagA";
-            String parameters2 = "tagC";
-            String parameters3 = "tagA tagC tagD";
-            String findParameters = "subject2 / subject3";
-            String parameters4 = "tag A tag B";
 
-            Command command1 = new FilterCommand(parameters1);
-            command1.executeCommand(activities);
-            populateExpected1();
+            Command basicTest = new FilterCommand(BASIC_TEST);
+            basicTest.executeCommand(activities);
+            populateExpectedBasic();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command2 = new FilterCommand(parameters2);
-            command2.executeCommand(activities);
-            populateExpected2();
+            Command nullResultsTest = new FilterCommand(NULL_RESULTS_TEST);
+            nullResultsTest.executeCommand(activities);
+            populateExpectedNull();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command command3 = new FilterCommand(parameters3);
-            command3.executeCommand(activities);
-            populateExpected3();
+            Command multiKeywordTest = new FilterCommand(MULTI_KEYWORD_TEST);
+            multiKeywordTest.executeCommand(activities);
+            populateExpectedMultiKeyword();
             assertEquals(Jikan.lastShownList.activities, expected);
 
-            Command find = new FindCommand(findParameters);
-            Command command4 = new FilterCommand(parameters4);
+            Command find = new FindCommand(FIND_CHAINING_TEST);
+            Command chainingTest = new FilterCommand(CHAINING_TEST);
             find.executeCommand(activities);
-            command4.executeCommand(activities);
-            populateExpected4();
+            chainingTest.executeCommand(activities);
+            populateExpectedChaining();
             assertEquals(Jikan.lastShownList.activities, expected);
 
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {
