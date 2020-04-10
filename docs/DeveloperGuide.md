@@ -65,9 +65,6 @@ This section will guide you on how to set up this project on your own computer.
 
 2.  IntelliJ IDE
 
-> **Note**: Knowing [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) API from Java 
-> would help in understanding how Date and Time is used in our implementation and [Tests](#4-testing).
-
 ### 1.2. Setting up the project
 1.  Fork this repository, and clone the fork to your computer
 
@@ -206,7 +203,7 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete v2.0.png)
+![delete task](images/delete_v2.0.png)
 
 #### 3.1.1. Design Considerations
 
