@@ -333,6 +333,11 @@ public class Controller {
                 "delete id/ID OR delete n/NAME");
     }
 
+    /**
+     * Checks whether the module code is valid.
+     * @param moduleId module's id.
+     * @return whether the module code is valid.
+     */
     public static boolean isStandardCodeFormat(String moduleId) {
         String pattern = "^[A-Za-z]{2,3}\\d{4}[A-Za-z]?$";
         boolean isMatch = Pattern.matches(pattern, moduleId);

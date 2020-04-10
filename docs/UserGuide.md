@@ -1,4 +1,4 @@
-# Module Manager User Guide]
+# Module Manager - User Guide
 By: `CS2113-T15-3` Since: `2020`  
 
 Table of Contents  
@@ -51,11 +51,11 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 ### 3.1 Command Format
 
 - Words in `[XXX]` are the parameters to be supplied by the user.
-- `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113`
+- `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113` （case insensitive)
 - `[module name]` is to be entered in alpha-numeric characters i.e.`Software Engineering & Object-Oriented Programming`
 - `[semester]` is to be entered in numeric characters between 1-10 i.e.`5`
-- `[credit]` is to be entered in numeric characters i.e. `4`
-- `[grade]` is to be entered in alpha **uppercase** characters i.e. `A+`
+- `[credit]` is to be entered in numeric characters between 1-10 i.e. `4`
+- `[grade]` is to be entered in alpha characters i.e. `A+` （case insensitive）
 
 For example: in `​add id/[module code] s/[semester] mc/[credit]`, `[module code]` is the parameter of a specific 
 module’s code which can be used as `add id/CS2113 s/4 mc/4`.

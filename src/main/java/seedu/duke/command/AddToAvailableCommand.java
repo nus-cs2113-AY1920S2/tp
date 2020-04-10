@@ -26,7 +26,6 @@ public class AddToAvailableCommand extends AddCommand {
 
     /**
      * adds a module to the user's available module list.
-     *
      * @param semesterList : user's current semester list.
      * @param availableModulesList : user's current available modules list.
      */
