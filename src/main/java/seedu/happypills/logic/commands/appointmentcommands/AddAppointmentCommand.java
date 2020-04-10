@@ -33,7 +33,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
      * @param reason reason for appointment.
      */
     public AddAppointmentCommand(String nric, String date, String time, String reason) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.date = date;
         this.time = time;
         this.reason = reason;
@@ -53,7 +53,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
     ) throws HappyPillsException {
         String message = "";
         if (!patients.containsKey(nric)) {
-            message = PatientTextUi.PATIENT_NOT_FOUND_MESSAGE;
+            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
         } else {
             Appointment appointment = new Appointment(nric, reason, date, time);
             appointments.addAppointment(appointment);

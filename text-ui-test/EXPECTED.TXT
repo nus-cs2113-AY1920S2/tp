@@ -24,10 +24,12 @@ What can I do for you today, doctor?
       /p PHONE (Format: 8-digit number starting with 8/9)
       /dob DATE OF BIRTH (Format: DD/MM/YYYY)
       /b BLOOD TYPE (Format: A/B/O/AB with +/-)
+
     To abort, enter "clear"
     =====================================================
     Please input your missing/incorrect detail listed below
       /p PHONE (Format: 8-digit number starting with 8/9)
+
     To abort, enter "clear"
     =====================================================
     @91265432 is not a valid input.
@@ -35,6 +37,7 @@ What can I do for you today, doctor?
     =====================================================
     Please input your missing/incorrect detail listed below
       /p PHONE (Format: 8-digit number starting with 8/9)
+
     To abort, enter "clear"
     =====================================================
     @add is not a valid input.
@@ -51,8 +54,8 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    =====================================================
-    Command has been aborted.
+    The current information is not added.
+    Please add all the details again! Thank you.
     =====================================================
     =====================================================
         Are you sure all the listed details are correct?
@@ -91,6 +94,7 @@ What can I do for you today, doctor?
       /p PHONE (Format: 8-digit number starting with 8/9)
       /dob DATE OF BIRTH (Format: DD/MM/YYYY)
       /b BLOOD TYPE (Format: A/B/O/AB with +/-)
+
     To abort, enter "clear"
     =====================================================
         Are you sure all the listed details are correct?
@@ -104,8 +108,8 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    =====================================================
-    Command has been aborted.
+    The current information is not added.
+    Please add all the details again! Thank you.
     =====================================================
     =====================================================
         Are you sure all the listed details are correct?
@@ -133,12 +137,13 @@ What can I do for you today, doctor?
                                                    (Y/N)?
     =====================================================
     =====================================================
-    =====================================================
-    Command has been aborted.
+    The current information is not added.
+    Please add all the details again! Thank you.
     =====================================================
     =====================================================
     Please input your missing/incorrect detail listed below
       /n NAME
+
     To abort, enter "clear"
     =====================================================
         Are you sure all the listed details are correct?
@@ -198,6 +203,7 @@ What can I do for you today, doctor?
       /diag DIAGNOSIS
       /d DATE (Format: DD/MM/YYYY)
       /t TIME (Format: HH:mm)
+
     To abort, enter "clear"
     =====================================================
     @add pr is not a valid input.
@@ -211,6 +217,7 @@ What can I do for you today, doctor?
       /diag DIAGNOSIS
       /d DATE (Format: DD/MM/YYYY)
       /t TIME (Format: HH:mm)
+
     To abort, enter "clear"
     =====================================================
         Are you sure all the listed details are correct?

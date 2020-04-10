@@ -1,5 +1,6 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
+import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
@@ -58,12 +59,13 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
     @Override
     public String execute(PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords)
             throws HappyPillsException {
-        if (newContent.length() < 3) {
-            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
+        if (newContent.length() < 4) {
+            throw new HappyPillsException(HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE);
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE;
+            throw new HappyPillsException(TextUi.DIVIDER + "/n"
+                    + HelpTextUi.EDIT_PATIENT_RECORD_HELP_MESSAGE);
         }
         String field;
         if (newContent.contains(SYMPTOM_TAG)) {

@@ -58,9 +58,8 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
-        String message;
         if (!patients.containsKey(nric)) {
-            message = Messages.MESSAGE_PATIENT_NOT_FOUND;
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         } else {
             PatientRecord patientRecord = new PatientRecord(nric, symptom, diagnosis, date, time);
             patientRecords.addPersonalRecord(patientRecord, nric);
@@ -69,8 +68,8 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
             } catch (IOException e) {
                 logger.warning(StorageTextUi.FAIL_TO_ADD_PR_MSG);
             }
-            message = Messages.MESSAGE_PATIENT_RECORD_ADDED;
+            String message = Messages.MESSAGE_PATIENT_RECORD_ADDED;
+            return message;
         }
-        return message;
     }
 }
