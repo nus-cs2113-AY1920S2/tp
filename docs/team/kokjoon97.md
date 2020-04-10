@@ -165,7 +165,7 @@ The following sequence diagram below shows how the set budget feature works. Not
 omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](../images/Set_v2.png)
 
-#### 3.3.2 Design considerations
+##### 3.3.2 Design considerations
 
 ##### Aspect: Data structure to support the set budget feature
 
@@ -205,7 +205,7 @@ Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise o
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 ![alt text](../images/Find_SD_v2.png)
 
-#### 3.7.2 Design considerations
+##### 3.7.2 Design considerations
 
 ##### Aspect: Data structure to support the find feature
 
@@ -239,7 +239,7 @@ The following sequence diagram below shows how the delete feature works. Note th
 omitted in the sequence diagram to emphasise on the other classes:
 ![alt text](../images/Delete_v2.png)
 
-#### 3.8.2 Design considerations
+##### 3.8.2 Design considerations
 
 ##### Aspect: Data structure to support the delete feature
 
