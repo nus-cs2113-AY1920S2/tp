@@ -72,7 +72,7 @@ command.
 * **Activities Component** - Maintains the non-permanent state of all `Activities` in the `Activity List` to be accessed
 by the executing `Commands`.
 * **Storage Component** - Interacts with and modifies the local storage file, which contains the permanent (lasting
-even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session of Jikan.
+even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session.
 
 ![image_info](./pictures/Architecture_Diagram.png)
 _Fig 2.1. Architecture diagram of the Jikan program_
@@ -311,7 +311,7 @@ command contains the parameters:
 
 #### 3.7.3 Find Sequence Diagram
 ![image_info](./pictures/Find_Sequence_Diagram.png)
-![image_info](./pictures/Find_Reference_Frame.png)
+![image_info](./pictures/Find_Reference_Frame.PNG)
 
 #### 3.7.4 Additional features (Proposed)
 Developers may include the feature allowing users users to chain multiple queries and multiple commands 
