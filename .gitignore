@@ -4,3 +4,4 @@ build/
 .gradle/
 report.txt
 logs/
+/bin/
