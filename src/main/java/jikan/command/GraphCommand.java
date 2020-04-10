@@ -3,7 +3,6 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.ExtraParametersException;
-import jikan.exception.InvalidGraphCommandException;
 import jikan.exception.MissingParametersException;
 import jikan.ui.Ui;
 
