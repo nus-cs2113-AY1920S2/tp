@@ -30,6 +30,7 @@ Table of Contents
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
 		- [Design Considerations](#352-design-considerations)
+		- [Future Enhancements](#353-future-enhancements)
 	- [View Calendar feature](#36-view-calendar-feature)
 		- [Implementation](#361-implementation)
 		- [Design Considerations](#362-design-considerations)
@@ -1266,14 +1267,14 @@ Expected Output: All `assignment` task types that are incomplete will be display
 
 **Test Case 1**: 
 1. `edit 1`
-2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1200 c/No comments` 
+2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1202 c/No comments` 
 
 Expected Output: Success message indicating that `assignment` task is successfully edited is displayed. `list` command
 shows the newly edited `assignment` task.
 
 **Test Case 2**:
 1. `edit 2`
-2. `event n/edited meeting l/com2 d/01/05/20 1200 - 1400 c/No comment`
+2. `event n/edited meeting l/com2 d/01/05/20 1202 - 1402 c/No comment`
 
 Expected Output: Success message indicating that `event` task is successfully edited is displayed. `list` command shows
 the newly edited `event` task. 
@@ -1291,6 +1292,21 @@ the newly edited `repeat event` task. Task will retain `[R]` to indicate that it
 **Test Case 4**: `edit 200`
 
 Expected Output: An error message indicating the range of valid task numbers. 
+
+**Test Case 5**:
+1. `edit 1`
+2. `event n/editing event as assignment l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
+**Test Case 6**:
+1. `edit 2`
+2. `assignment n/editing assignment as event one m/cs2113 d/01/05/20 1202 c/No comments`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
 
 #### 6.6.7 Marking Task as Done
 
