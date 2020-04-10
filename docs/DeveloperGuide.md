@@ -19,7 +19,7 @@ Table of Contents
 		- [Design Considerations](#312-design-considerations)
 	- [Search task feature](#32-search-task-feature)
 		- [Current Implementation](#321-current-implementation)
-		- [Design Considerations:](#322-design-considerations)
+		- [Design Considerations](#322-design-considerations)
 	- [Clear Task feature](#33-clear-task-feature)
 		- [Current Implementation](#331-current-implementation)
 		- [Design Considerations](#332-design-considerations)
