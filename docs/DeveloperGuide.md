@@ -347,23 +347,26 @@ This will require the implementation of more update methods in the ActivityList 
 
 #### 3.5.3 Design Considerations
 ##### Current Design
-The user is able to edit only the name and allocated time of the activity, which are user input data. 
+The user is able to edit only the name and allocated time of the activity, which are user input data.     
+
 Pros:
 * The user is able to correct any mistake made during the recording of the activity.
 * The user is able to adjust their allocated time for the activity based on their needs.
 * Ensures that the record of activities is accurate and consistent in order for more efficient analysis of the time spent.
 
 Cons: 
-* The user is only able to edit 2 parameters of the activity, which may be restrictive for them.
+* The user is only able to edit 2 parameters of the activity, which may be restrictive for them.  
 
 ##### Possible Design
-The user is able to edit any parameters of the activity, including tags, start and end date/time.  
+The user is able to edit any parameters of the activity, including tags, start and end date/time. 
+ 
 Pros:
 * The user has more flexibility in modifying the record of activities based on their needs.
 
 Cons:  
 * By allowing the user to edit the date and time, there may be potential inaccuracies in the record of activities, defeating the purpose of the time tracking program. 
 * By allowing the user to edit the tags, the tag goals command may become more complicated due to the need to keep track of the presence of the tags.
+
 ### 3.6 Continue Feature
 The continue feature allows the user to continue a previously ended activity.
 
