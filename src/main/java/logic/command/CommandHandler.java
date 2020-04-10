@@ -179,7 +179,8 @@ public class CommandHandler {
         }
     }
 
-    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser, ContactList myContactList, int currentWeekNumber) {
+    public static void deleteMeeting(String[] userInputWords, MeetingList meetingList, Contact mainUser,
+                                     ContactList myContactList, int currentWeekNumber) {
         try {
             int index = Integer.parseInt(userInputWords[1]) - 1;
             Meeting meetingToDelete = meetingList.getMeetingList().get(index);
