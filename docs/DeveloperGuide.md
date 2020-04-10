@@ -73,7 +73,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Current Implementation
 
-![StartCD](./pictures/StartCD.png)
+![StartCD](./pictures/startCD2.png)
 
 With Jikan as the main entry point for our application, 
 
@@ -165,57 +165,115 @@ undesirable.
 
 #### 3.2.1 Current Implementation
 
-The storage cleanup mechanism is stored internally as a StorageCleaner class. The StorageCleaner class has an association with the Storage class and thus it is able to access and edit the datafile which contains the list of activities. 
+Jikan provides a `clean` command where users can automate the cleaning of done activities (i.e activities with duration > allocation) and logging data
+at application startup.
 
-Additionally, when the StorageCleaner class is first initialised, it will create two files, namely a status file and a data file in the “recycled” folder under the “data” folder. The status file keeps track of the activation status of the storage cleaner while the data file serves as a recycle bin for deleted data. 
+![StartCD](./pictures/CleanCD.png)
 
-Moreover, the class also implements the following operations:
+With Jikan as the main entry for our application,
 
-`StorageCleaner#initialiseCleaner - Loads up the status file to decide whether to activate/deactivate the automated cleaner.`
+1. Upon startup, Jikan will initialise a LogCleaner and StorageCleaner object.
+2. Jikan will call upon LogCleaner#autoClean() and StorageCleaner#autoClean() functions.
+3. These two functions will check if the Storage and Log Cleaner are enabled respectively before cleaning.
+4. Thus, by the time the user can interact with Jikan (i.e send commands to Jikan), the activity list and log files would already be cleaned.
+5. Using the `clean` command, users would be able to manage the cleaner's behaviour (switching it on/off, set number of done activities/logging data to clean).
 
-`StorageCleaner#setStatus - Gives the user the freedom to activate/de-activate the cleaner using commands during application runtime.`
+The cleanup mechanism is stored internally as a StorageCleaner and LogCleaner class. 
 
-`StorageCleaner#autoClean - This operation is called whenever the application is executed. Storage cleaning will only be done if the cleaner is activated.`
+These two classes have access to the data files of activity list and logs respectively and thus they are able to 
+directly manipulate the activity list and logging data.
 
-Given below is the example scenario of how the operations work.
+A status.txt file is initialised to keep track of the status (on/off) of the two cleaners and contains information on 
+the number of done activities/logging data for cleaning.
 
-##### initialiseCleaner
+Moreover, the CleanCommand also implements the following operation:
 
-Step 1. Loads up the status file for reading. If the status file is not found, create a new status file and write the character ‘0’ to the first line of the status file.
+* **CleanCommand#setStatus** Switch on/off the two cleaners respectively.
+* **CleanCommand#setValue** Set a value for the number of done activities/logging data to be cleaned.
+* Note: The two cleaners are independent, setting a value/status for one of the cleaner will not affect the other cleaner.
 
-Step 2. Read the first line of the status file, if a character ‘0’ is found, deactivate the automated cleanup. Else if a character ‘1’ is found, activate the automated cleanup.
+**setStatus**
 
-![image_info](./pictures/FlowchartinitCleaner.png)
+![setStatus](./pictures/setStatusSD.png)
 
-##### setStatus
+The diagram above shows how CleanCommand#setStatus function works. This function is a generalized function that is used to
+switch on or off the cleaners by checking the parameters to the `clean` command. Thus, based on the return value of getStatus() and
+getCleaner(), there are four possible scenarios.
 
-Step 1. Read the boolean parameter `status`.
+1. When setStatus() is called, the method will call its own class method getStatus() to check what is the status to set to.
+2. There are two valid return values for getStatus() method which is "on" and "off". The diagram shows the former.
+3. Upon receiving a valid return value from getStatus() which is "on" in the diagram, the setStatus() method will self invoke another
+of its own class method getCleaner().
+4. The return result of the getCleaner() together with getStatus() will then be used to determine which cleaner are we setting and what is
+the status to set to. 
+5. In other words, result of getCleaner() is used to determine whether are we calling StorageCleaner#setStatus or LogCleaner#setStatus while
+the result of getStatus() determines the parameter to setStatus(). (e.g "on" will call setStatus("true") while "off" will call setStatus("false")).
 
-Step 2a. If `status` is equal to true, activate the automated cleanup and write the character ‘1’ to the first line of the status file. (overwrite any existing value at the first line).
+**setValue**
 
-Step 2b. If `status` is equal to false, deactivate the automated cleanup and write the character ‘0’ to the first line of the status file.
+The diagram of setValue is omitted as it is similar to setStatus diagram. This function is a generalized function that is used to 
+set a value for the number of done activities or the number of lines of logging data to be cleaned for the two cleaners respectively.
 
-![image_info](./pictures/FlowchartsetStatus.png)
+1. When setValue() is called, the method will call its own class method getNumber() that will return an integer value corresponding to the number 
+to set to.
+2. Upon receiving a valid return value (non negative), the setValue() method will self invoke another of its own class method getCleaner().
+3. The return result of the getCleaner() together with getNumber() will then be used to determine which cleaner are we setting and what is 
+the value to set to.
+4. In other words, result of getCleaner() is used to determine whether are we calling StorageCleaner#setNumberOfActivitiesToClean or LogCleaner#setNumberOfLogsToClean
+while the result of getNumber determines the parameter to these two functions.
 
-##### autoClean
+Note that steps 2-4 of setValue() are similar to steps 3-5 of setStatus().
 
-Step 1. Check activation status of StorageCleaner through the class level attribute boolean `toClean`.
+On the other hand, the Storage/Log Cleaner class implements the following core operation of `clean` command.
 
-Step 2a. If the attribute `toClean` is equal to `false`, return the operation and give control back to the caller.
+* **Cleaner#autoClean** This operation is called whenever Jikan is executed. Cleaning will only be done to the activity list/logging data if
+the two cleaners are enabled respectively.
 
-Step 2b. If the attribute `toClean` is equal to `true`, access the storage data file and remove some of the activities starting from the oldest. Put these deleted activities into the data file under the ‘recycled’ folder.
+**autoClean**
 
-![image_info](./pictures/SDautoClean.png)
+![autoClean](./pictures/ACSD.png)
+
+The diagram above shows how Cleaner#autoClean function works. This function is called whenever Jikan executes Jikan#main and is used to
+perform cleaning of the activity list and logging data if Storage Cleaner and Log Cleaner are enabled respectively. The number of done activities and
+lines of logging data to clean is set to 5 at default if user did not specify a value for both cleaners.
+
+1. When main() is called, Jikan will first initialise both the StorageCleaner and LogCleaner object using StorageCleaner() and 
+LogCleaner().
+2. Once both objects are initialised, Jikan will first call storageAutoClean() method of the StorageCleaner class.
+3. This method will invoke another method under the StorageCleaner class called checkStatus() which will return a boolean toClean variable.
+4. If toClean == true, the storageAutoClean() method will proceed and clean up the activity list before returning control back to main().
+5. Else, the storageAutoClean() will not do any clean up and will immediately return control back to main().
+6. Steps 2 to 5 will then be repeated when Jikan call logAutoClean() method of the LogCleaner class. 
 
 #### 3.2.2 Additional Implementation
 
-`StorageCleaner#setDeleteQuota - Allows the user to manipulate how much activity is deleted when auto cleanup is activated. Currently only delete the oldest 3 activities.`
+1. Currently, the data that is cleaned up by this command is sent to a recycled folder similar to how Windows recycle bin works. 
 
-`StorageCleaner#setTimeFrame - Set a particular time frame for auto cleanup to activate. (i.e auto cleanup after every 2 weeks etc).`
+    Thus, it would be good to have a feature to restore the data deleted in the event the user wishes to recover some of the activities/logs.
+    
+    On a similar note, it would also be good to have a permanent delete feature built into the recycled folder so that items that are too old (> 6 months old) will
+    deleted away for good.
+    
+2. The automated cleaning does not have a lot of flexibility as the current implementation only cleans up done activities starting from the oldest.
 
-`StorageCleaner#initialiseLogCleaner - Gives the storage cleaner an added functionality of being able to clear log files too.`
+    Thus, it would be good if the `clean` command is expanded to allow users more freedom in specifying what activities to clean.
+    
+    * `clean /n 3 /t CS2113` does cleaning on the 3 oldest done activities with CS2113 tag.
+    * `clean /n 5 /i 1/4/2020 3/4/2020` does cleaning on the 5 oldest done activities with dates between 1 April 2020 and 3 April 2020.
+    
 
 #### 3.2.3 Design Considerations
+
+The current design uses the abstract cleaner class to create dedicated cleaners (i.e Storage and Log Cleaners) to perform
+cleaning for various data files (e.g activity list data file, logging data file).
+
+There are some benefits to this design.
+* Creating an abstract class reduces the amount of repetitive code as common methods between cleaners are abstracted out.
+* Abstract classes produce a more OOP solution as different cleaners will handle different parts of the data.
+
+However there are drawbacks to this design too.
+* There are some very similar methods with key differences that cannot be abstracted out (for e.g different parameters, different printing).
+* This causes the CleanCommand class to have similar and repetitive methods to handle this difference. (for e.g setStorageCleanerOn(), setLogCleanerOn() etc).
 
 ### 3.3 Storage feature
 The Storage class represents the back-end of Jikan, handling the creation, saving and loading of data. 
