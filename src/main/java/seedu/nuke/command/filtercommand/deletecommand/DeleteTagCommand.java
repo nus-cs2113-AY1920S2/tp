@@ -1,9 +1,16 @@
 package seedu.nuke.command.filtercommand.deletecommand;
 
+import seedu.nuke.Executor;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.directory.Directory;
+import seedu.nuke.directory.DirectoryLevel;
+import seedu.nuke.directory.TaskTag;
 
 import java.util.ArrayList;
+
+import static seedu.nuke.util.Message.MESSAGE_NO_TAGS_FOUND;
+import static seedu.nuke.util.Message.messageConfirmDeleteTag;
+import static seedu.nuke.util.Message.messagePromptDeleteTagIndices;
 
 public class DeleteTagCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "delg";
@@ -48,11 +55,26 @@ public class DeleteTagCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute() {
-        return null; //to be implemented in v3.0
+        ArrayList<TaskTag> filteredTagList =
+                createFilteredTagList(moduleCode, categoryName, taskDescription, tag, isExact, isAll);
+        sortTagList(filteredTagList);
+        return executeInitialDelete(new ArrayList<>(filteredTagList));
     }
 
     @Override
-    protected CommandResult executeInitialDelete(ArrayList<Directory> filteredList) {
-        return null; //to be implemented in v3.0
+    protected CommandResult executeInitialDelete(ArrayList<Directory> filteredTagList) {
+        final int fileCount = filteredTagList.size();
+        if (fileCount == 0) {
+            return new CommandResult(MESSAGE_NO_TAGS_FOUND);
+        } else if (fileCount == 1) {
+            Executor.preparePromptConfirmation();
+            Executor.setFilteredList(filteredTagList, DirectoryLevel.TAG);
+            TaskTag toDelete = (TaskTag) filteredTagList.get(0);
+            return new CommandResult(messageConfirmDeleteTag(toDelete));
+        } else {
+            Executor.preparePromptIndices();
+            Executor.setFilteredList(filteredTagList, DirectoryLevel.TAG);
+            return new CommandResult(messagePromptDeleteTagIndices(filteredTagList));
+        }
     }
 }

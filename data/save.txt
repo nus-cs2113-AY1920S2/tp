@@ -1,24 +1,38 @@
 --- MODULE ---
 CS2113T -|||- Software Engineering & Object-Oriented Programming -|||- NIL
 --- CATEGORY ---
-Assignment -|||- 4
---- TASK ---
---- END TASK ---
-Lab -|||- 3
---- TASK ---
---- END TASK ---
 Lecture -|||- 1
 --- TASK ---
 --- END TASK ---
 Tutorial -|||- 2
 --- TASK ---
-do tutorial 1 -|||- N -|||- 11/04/2020 11:59PM -|||- 8
+tutorial 1 -|||- N -|||-  -|||- 2
 --- FILE ---
 --- END FILE ---
+--- TAG ---
+urgent
+--- END TAG ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+lab -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- TAG ---
+--- END TAG ---
 --- END TASK ---
 --- END CATEGORY ---
 CS3230 -|||- Design and Analysis of Algorithms -|||- NIL
 --- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
 Assignment -|||- 4
 --- TASK ---
 --- END TASK ---
@@ -27,72 +41,10 @@ Lab -|||- 3
 lab1 -|||- N -|||-  -|||- 3
 --- FILE ---
 --- END FILE ---
---- END TASK ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
---- END CATEGORY ---
-CS3235 -|||- Computer Security -|||- NIL
---- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
-Assignment -|||- 4
---- TASK ---
---- END TASK ---
-Lab -|||- 3
---- TASK ---
---- END TASK ---
---- END CATEGORY ---
-IFS4103 -|||- Penetration Testing Practice -|||- NIL
---- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
-Assignment -|||- 4
---- TASK ---
---- END TASK ---
-Lab -|||- 3
---- TASK ---
---- END TASK ---
---- END CATEGORY ---
-GEH1036 -|||- Living with Mathematics -|||- NIL
---- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
-Assignment -|||- 4
---- TASK ---
---- END TASK ---
-Lab -|||- 3
---- TASK ---
---- END TASK ---
---- END CATEGORY ---
-CS2101 -|||- Effective Communication for Computing Professionals -|||- NIL
---- CATEGORY ---
-Lecture -|||- 1
---- TASK ---
---- END TASK ---
-Tutorial -|||- 2
---- TASK ---
---- END TASK ---
-Assignment -|||- 4
---- TASK ---
---- END TASK ---
-Lab -|||- 3
---- TASK ---
+--- TAG ---
+ur
+gen
+--- END TAG ---
 --- END TASK ---
 --- END CATEGORY ---
 --- END MODULE ---
