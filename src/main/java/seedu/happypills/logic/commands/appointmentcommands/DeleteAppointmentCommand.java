@@ -31,7 +31,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
      * @param appointmentId The id of the appointment to be deleted.
      */
     public DeleteAppointmentCommand(String nric, String appointmentId) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.appointmentId = appointmentId;
     }
 
@@ -115,17 +115,16 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         String message = "";
         Patient delPatient = findPatient(patients);
         if (delPatient == null) {
-            message = PatientTextUi.PATIENT_NOT_FOUND_MESSAGE;
-            return message;
+            throw new HappyPillsException(PatientTextUi.PATIENT_NOT_FOUND_MESSAGE);
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
-            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE + TextUi.DIVIDER;
-            return message;
+            throw new HappyPillsException(AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE);
         }
         Boolean isSuccess = deleteAppt(appointments, appointmentId) && deleteAppt(delPatient, appointmentId);
         if (isSuccess) {
-            message = "    Appointment has been removed.\n" + TextUi.DIVIDER;
+            message = "    Appointment has been removed.\n"
+                    + TextUi.DIVIDER;
             try {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
                         StorageTextUi.getFormattedApptString(appointments));
@@ -133,7 +132,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
             }
         } else {
-            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE + TextUi.DIVIDER;
+            throw new HappyPillsException(AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE);
         }
         return message;
     }

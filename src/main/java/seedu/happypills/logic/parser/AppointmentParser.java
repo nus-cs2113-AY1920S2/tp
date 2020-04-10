@@ -7,7 +7,6 @@ import seedu.happypills.logic.commands.appointmentcommands.DoneAppointmentComman
 import seedu.happypills.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.happypills.logic.commands.appointmentcommands.DeleteAppointmentCommand;
 import seedu.happypills.logic.commands.appointmentcommands.FindAppointmentCommand;
-import seedu.happypills.logic.commands.appointmentcommands.IncorrectAppointmentCommand;
 import seedu.happypills.logic.commands.appointmentcommands.ListAppointmentCommand;
 
 import seedu.happypills.model.exception.HappyPillsException;
@@ -80,7 +79,7 @@ public class AppointmentParser extends Parser {
             parseInput = parseInput(updates, parseInput);
         }
         if (!loopPrompt(promptConfirmation(parseInput))) {
-            return new IncorrectAppointmentCommand("    Appointment is not added.\n");
+            throw new HappyPillsException("    Appointment is not added.");
         }
         return new AddAppointmentCommand(parseInput[0].toUpperCase().trim(), parseInput[1].trim(),
                 parseInput[2].trim(), parseInput[3].trim());
@@ -115,7 +114,7 @@ public class AppointmentParser extends Parser {
         if (parseInput[3].equalsIgnoreCase("")) {
             System.out.println("      /r [REASONS]");
         }
-        System.out.println("\n    To abort, enter \"clear\"");
+        System.out.println(Messages.MESSAGE_COMMAND_ABORTED);
     }
 
     /**

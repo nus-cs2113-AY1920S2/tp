@@ -204,7 +204,7 @@ public class PatientParser extends Parser {
         }
 
         if (!loopPrompt(promptConfirmation(parseInput))) {
-            throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED); // check
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED); // check
         }
         return new AddPatientCommand(parseInput[0].trim(), parseInput[1].toUpperCase().trim(),
                 Integer.parseInt(parseInput[2].trim()), parseInput[3].trim(), parseInput[4].trim(),

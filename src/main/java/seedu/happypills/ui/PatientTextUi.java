@@ -7,8 +7,7 @@ import java.util.Map;
 
 public class PatientTextUi extends TextUi {
 
-    public static final String PATIENT_NOT_FOUND_MESSAGE = "    The patient cannot be found. Please try again.\n"
-            + DIVIDER;
+    public static final String PATIENT_NOT_FOUND_MESSAGE = "    The patient cannot be found. Please try again.";
     public static final String EMPTY_PATIENT_LIST_MESSAGE = "    There are no patients in the list.\n" + DIVIDER;
 
     /**
@@ -94,7 +93,9 @@ public class PatientTextUi extends TextUi {
      * @param patient The patient to be deleted.
      */
     public static void printDeleteConfirmationAgain(Patient patient) {
-        print("    Please try again. \n");
+        print(DIVIDER);
+        print("    Input is incorrect. Please try again.");
+        print(DIVIDER);
         printDeleteConfirmation(patient);
     }
 
