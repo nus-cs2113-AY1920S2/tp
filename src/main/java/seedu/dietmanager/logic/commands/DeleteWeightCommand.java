@@ -1,34 +1,34 @@
-package seedu.dietmanager.logic.commands.nutritionrecord;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.DescriptionParser;
-import seedu.dietmanager.model.FoodNutritionRecord;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class DeleteFoodCommand extends Command {
+public class DeleteWeightCommand extends Command {
+
     private static final int ARGUMENTS_REQUIRED = 1;
-    private String foodName;
+    private double weightDeleted;
+    private int index;
     private boolean noDescription;
-    private boolean success;
 
     /**
      * Constructs the Command object.
      *
-     * @param command     the command prompt entered by the user.
-     * @param description the description of the command.
+     * @param command the command prompt entered by the user.
      */
 
-    public DeleteFoodCommand(String command, String description) throws InvalidFormatException {
+    public DeleteWeightCommand(String command, String description)
+            throws InvalidFormatException, NumberFormatException, IndexOutOfBoundsException {
         super(command);
         this.noDescription = false;
 
         try {
             String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
-            foodName = descriptionArray[0].toLowerCase();
+            this.index = Integer.parseInt(descriptionArray[0]) - 1;
         } catch (NullPointerException e) {
             this.noDescription = true;
         }
@@ -37,8 +37,8 @@ public class DeleteFoodCommand extends Command {
     @Override
     public Result execute(Profile profile, UI ui) {
         if (!this.noDescription) {
-            FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();
-            this.success = foodInfo.deleteFoodNutritionRecord(foodName);
+            weightDeleted = profile.getWeightRecord().get(index);
+            profile.getWeightRecord().remove(index);
         }
         Result result = getResult(profile);
         return result;
@@ -46,14 +46,12 @@ public class DeleteFoodCommand extends Command {
 
     @Override
     public Result getResult(Profile profile) {
-        if (this.noDescription) {
-            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
-        } else if (!this.success) {
-            this.resultString = "No need to delete! Referred Food doesn't exist in database";
+        if (!this.noDescription) {
+            this.resultString = "Weight Record: " + weightDeleted + "kg " + MessageBank.WEIGHT_DELETED_MESSAGE;
         } else {
-            this.resultString = String.format("You have just deleted %s from the database.", foodName);
+            this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }
         return new Result(this.resultString);
     }
-}
 
+}

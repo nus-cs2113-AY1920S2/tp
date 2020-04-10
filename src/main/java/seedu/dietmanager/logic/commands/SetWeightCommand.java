@@ -1,16 +1,16 @@
-package seedu.dietmanager.logic.commands.profile;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidGenderException;
+import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.parser.GenderParser;
+import seedu.dietmanager.logic.parser.WeightParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
-public class SetGenderCommand extends Command {
+public class SetWeightCommand extends Command {
 
-    private String gender;
+    private double weight;
     private boolean isValidCommand;
     private boolean isValidProfile;
 
@@ -20,13 +20,12 @@ public class SetGenderCommand extends Command {
      * @param command the command prompt entered by the user.
      */
 
-    public SetGenderCommand(String command, String description) {
+    public SetWeightCommand(String command, String description) {
         super(command);
         this.isValidCommand = true;
-
         try {
-            this.gender = GenderParser.parseGender(description);
-        } catch (InvalidGenderException e) {
+            this.weight = WeightParser.parseWeight(description);
+        } catch (InvalidWeightException e) {
             this.isValidCommand = false;
         }
     }
@@ -38,7 +37,7 @@ public class SetGenderCommand extends Command {
             this.isValidCommand = false;
         }
         if (this.isValidCommand) {
-            profile.setGender(this.gender);
+            profile.setWeight(weight);
         }
         Result result = getResult(profile);
         return result;
@@ -49,7 +48,7 @@ public class SetGenderCommand extends Command {
         if (!this.isValidProfile) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (this.isValidCommand) {
-            this.resultString = MessageBank.GENDER_CHANGE_MESSAGE + profile.getGender() + ".";
+            this.resultString = MessageBank.WEIGHT_CHANGE_MESSAGE + String.format("%.2f.", profile.getWeight());
         } else {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         }

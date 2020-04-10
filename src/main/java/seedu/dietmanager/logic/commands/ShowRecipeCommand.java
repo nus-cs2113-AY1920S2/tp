@@ -1,21 +1,15 @@
-package seedu.dietmanager.logic.commands.utility;
+package seedu.dietmanager.logic.commands;
 
-import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.model.Profile;
+import seedu.dietmanager.model.RecipeManager;
 import seedu.dietmanager.ui.UI;
 
-public class HelpCommand extends Command {
-    private boolean isValidCommand;
+public class ShowRecipeCommand extends Command {
+    private static final int ARGUMENTS_REQUIRED = 0;
 
-    /**
-     * Constructs the Command object.
-     *
-     * @param command the command prompt entered by the user.
-     */
-
-    public HelpCommand(String command) {
+    public ShowRecipeCommand(String command) {
         super(command);
     }
 
@@ -27,7 +21,7 @@ public class HelpCommand extends Command {
 
     @Override
     public Result getResult(Profile profile) {
-        this.resultString = MessageBank.FUNCTION_LIST;
+        this.resultString = RecipeManager.getInstance().getRecipe();
         return new Result(this.resultString);
     }
 }
