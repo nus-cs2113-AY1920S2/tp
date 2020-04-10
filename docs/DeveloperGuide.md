@@ -319,11 +319,15 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 ### Target user profile
 
 {Describe the target user profile}
+The Restaurant Daily Report application is designed for restaurant owners, who need a simple way to manage the operation of their business.
+Ideally, the owner would be proficient at using desktop apps and is a quick typer.
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
-
+* Single application to store dishes, stock and reservations
+* Can calculate the daily profit and most popular dish
+* 
 <a name="user-stories"></a>
 
 ## 3. User Stories
@@ -333,6 +337,7 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 |v1.0|restaurant owner|add a newly received reservation|I can record the details about the reservation and make corresponding preparations|
 |v1.0|restaurant owner|mark a reservation as invalid|I can update the status of the reservation if the reservation gets canceled|
 |v1.0|restaurant owner|list all reservations|I can view what reservations the restaurant has currently|
+
 |v2.0|restaurant owner|mark a reservation as served|I can update the status of the reservation|
 |v2.0|restaurant owner|list all served reservations|I can view the achievement of served reservation|
 |v2.0|restaurant owner|list all unserved reservations|I can know what reservations need to be prepared|
