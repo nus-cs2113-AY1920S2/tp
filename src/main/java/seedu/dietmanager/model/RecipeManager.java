@@ -1,5 +1,6 @@
 package seedu.dietmanager.model;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 
@@ -103,7 +104,8 @@ public class RecipeManager {
      */
 
     public boolean buildRecipe(Profile profile, int num, String activityLevel) {
-        CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
+        CheckRequiredCaloriesCommand command =
+                new CheckRequiredCaloriesCommand(MessageBank.CHECK_REQUIRED_CAL_COMMAND_PROMPT);
         double cap = command.getRecommendedCaloriesIntake(profile, activityLevel) / 3;
 
         FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();

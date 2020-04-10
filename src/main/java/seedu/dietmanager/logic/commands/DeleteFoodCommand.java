@@ -49,9 +49,9 @@ public class DeleteFoodCommand extends Command {
         if (this.noDescription) {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (!this.success) {
-            this.resultString = "No need to delete! Referred Food doesn't exist in database";
+            this.resultString = MessageBank.FOOD_TO_DELETE_NOT_EXIST_MESSAGE;
         } else {
-            this.resultString = String.format("You have just deleted %s from the database.", foodName);
+            this.resultString = MessageBank.FOOD_DELETED_MESSAGE + foodName;
         }
         return new Result(this.resultString);
     }

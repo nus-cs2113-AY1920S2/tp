@@ -4,6 +4,8 @@ import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.commands.CheckBmiCommand;
 import seedu.dietmanager.logic.commands.Command;
+import seedu.dietmanager.logic.commands.ClearFoodRecordCommand;
+
 import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
 import seedu.dietmanager.logic.commands.CheckRecordCommand;
 import seedu.dietmanager.logic.commands.RecordMealCommand;
@@ -25,7 +27,6 @@ import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
 import seedu.dietmanager.logic.commands.ShowRecipeCommand;
 import seedu.dietmanager.logic.commands.ExitCommand;
 import seedu.dietmanager.logic.commands.HelpCommand;
-
 import java.util.Optional;
 
 /**
@@ -102,6 +103,9 @@ public class CommandParser {
                 break;
             case "show-recipe":
                 command = Optional.of(new ShowRecipeCommand(commandPrompt.get()));
+                break;
+            case "clear-records":
+                command = Optional.of(new ClearFoodRecordCommand(commandPrompt.get()));
                 break;
             case "help":
                 command = Optional.of(new HelpCommand(commandPrompt.get()));

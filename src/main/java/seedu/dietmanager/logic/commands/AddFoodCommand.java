@@ -59,12 +59,11 @@ public class AddFoodCommand extends Command {
         if (this.noDescription) {
             this.resultString = MessageBank.NO_DESCRIPTION_MESSAGE;
         } else if (this.isInvalidCaloriesInfo) {
-            this.resultString = "Sorry, to add new food to database you must input correct calories info."
-                    + System.lineSeparator() + "It has to be positive Integer or Float";
+            this.resultString = MessageBank.INCORRECT_CALORIES_INFO_MESSAGE;
         } else if (!this.success) {
-            this.resultString = "No need to add! We already have this food in our database!";
+            this.resultString = MessageBank.ADDED_FOOD_ALREADY_EXIST_MESSAGE;
         } else {
-            this.resultString = "You have added a new food into the database:" + System.lineSeparator()
+            this.resultString = MessageBank.NEW_FOOD_ADDED_MESSAGE
                     + "Food: " + foodName + ", Calories: " + calories;
         }
         return new Result(this.resultString);
