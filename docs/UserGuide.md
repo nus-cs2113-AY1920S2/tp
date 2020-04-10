@@ -16,12 +16,12 @@
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
 4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
-4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-studentlist-view)  
-4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-clear)   
-4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-delete)  
-4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-studentlist-find)  
-4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-studentlist-sort)  
-4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
+4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
+4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection)   
+4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
+4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection)  
+4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection)  
+4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name)  
 4.2. [Event](#42-event)  
 4.2.1. [Add New Event](#421-add-new-event)  
 4.2.2. [View Event List](#422-list-events)  
@@ -33,11 +33,11 @@
 4.3. [Calendar](#43-calendar)  
 4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)   
 4.4 [Attendance List](#44-attendance)    
-4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance-attendance-add)    
-4.4.2. [View Attendance List](#442-view-attendance-list-attendance-view)   
-4.4.3. [Clear Attendance](#443-clear-attendance-list-attendance-clear)  
-4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name-attendance-sort)  
-4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status-attendance-sort)  
+4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance)    
+4.4.2. [View Attendance List](#442-view-attendance-list)   
+4.4.3. [Clear Attendance](#443-clear-attendance-list)  
+4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name)  
+4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status)  
 4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
@@ -1143,6 +1143,8 @@ step-by-step command for performance and all-in-one command for event?
 * View attendance list `attendance view`
 * Clear attendance list `attendance clear`
 * Sort attendance list `attendance sort`
+* Edit attendance `attendance edit`
+* Find attendance `attendance find`
 
 **Performance**
 * Add performance `performance add`
