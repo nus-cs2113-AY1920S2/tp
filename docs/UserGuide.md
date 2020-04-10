@@ -32,7 +32,7 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 *Some example commands you can try:
     * **`view `**`article` : helps you view articles about technolgy from the internet. If the device is not connected to the internet, it loads an existing set of articles pre-loaded into the program.
     * **`list `**`article`: Lists all the articles you have saved in your database into the Command Line.
-    * **`delete `**` article 1` : deletes the 1st artile that appears in the article list.
+    * **`delete `**` article 1` : deletes the 1st article that appears in the article list.
     * **`exit`** : exits the app.
 
 
