@@ -1,7 +1,5 @@
 package seedu.dietmanager.commons.core;
 
-import java.security.PublicKey;
-
 public class MessageBank {
 
     public static String LOGO = "  _____   _        _     __  __\n"
@@ -40,6 +38,8 @@ public class MessageBank {
     public static String WEIGHT_CHANGE_MESSAGE = "Your weight has been changed to ";
 
     public static String WEIGHT_GOAL_CHANGE_MESSAGE = "Your weight goal has been changed to ";
+
+    public static String SHOW_PROFILE_MESSAGE = "Your profile information are as follows:";
 
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
@@ -101,7 +101,7 @@ public class MessageBank {
 
     public static String RECORDS_CLEARED_MESSAGE = "You have just cleared all food records in the week!";
 
-    public static String SPLIT_LINE = "----------------------------------------------------------------";
+    public static String LINE_SEPARATOR = "----------------------------------------------------------------";
 
     public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
             + "All girls/boys will now fall for your determination and physique! :)\n"
@@ -111,7 +111,7 @@ public class MessageBank {
 
     public static String INCORRECT_CALORIES_INFO_MESSAGE =
             "Sorry, to add new food to database you must input correct calories info."
-            + System.lineSeparator() + "It has to be positive Integer or Float";
+                    + System.lineSeparator() + "It has to be positive Integer or Float";
 
     public static String ADDED_FOOD_ALREADY_EXIST_MESSAGE =
             "No need to add! We already have this food in our database!";

@@ -2,12 +2,10 @@ package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
 public class ClearFoodRecordCommand extends Command {
-    private static final int ARGUMENTS_REQUIRED = 0;
 
     /**
      * Constructs the Command object.

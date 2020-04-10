@@ -27,9 +27,9 @@ health data.
 
 ### Code Contributed
 
-**__Diet Manager__**:<br>
+**Diet Manager**:<br>
 Link to code on tP Code Dashboard 
-[**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=dejunnn).
+[**here**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=dejunnn).
 
 
 

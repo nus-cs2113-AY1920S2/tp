@@ -2,7 +2,6 @@ package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 
@@ -28,7 +27,7 @@ public class ProfileCommand extends Command {
     @Override
     public Result getResult(Profile profile) {
         if (profile.isProfileExist()) {
-            this.resultString = MessageBank.WELCOME_MESSAGE + System.lineSeparator()
+            this.resultString = MessageBank.SHOW_PROFILE_MESSAGE + System.lineSeparator()
                     + String.format("Name:         %s", profile.getName()) + System.lineSeparator()
                     + String.format("Age:          %d years old", profile.getAge()) + System.lineSeparator()
                     + String.format("Gender:       %s", profile.getGender()) + System.lineSeparator()

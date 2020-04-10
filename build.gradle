@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'seedu.dietmanager'
-version '0.1.0'
+version '2.1.0'
 
 repositories {
     mavenCentral()
@@ -26,7 +26,7 @@ application {
 
 shadowJar {
     archiveBaseName = "DietManager"
-    archiveVersion = "1.0.0"
+    archiveVersion = "2.1.0"
     archiveClassifier = null
     archiveAppendix = null
 }
