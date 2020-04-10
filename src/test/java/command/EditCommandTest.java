@@ -70,13 +70,15 @@ public class EditCommandTest {
     public void editTask_emptyList_failure() {
         TaskList emptyTaskList = new TaskList();
         assertEquals(new EditCommand(1).execute(emptyTaskList,ui).feedbackToUser,
-                Messages.NO_TASKS_MSG);
+                Messages.NO_TASKS_MSG + System.lineSeparator()
+                        + Messages.REPEAT_EDITCOMMAND_PROMPT);
     }
 
     @Test
     public void editTask_filledList_failure() {
         assertEquals(new EditCommand(6).execute(filledTaskList, ui).feedbackToUser,
-                "Please provide a valid task number from 1 to 4");
+                "Please provide a valid task number from 1 to 4" + System.lineSeparator()
+                        + Messages.REPEAT_EDITCOMMAND_PROMPT);
     }
 
     //@@author Keith-JK
