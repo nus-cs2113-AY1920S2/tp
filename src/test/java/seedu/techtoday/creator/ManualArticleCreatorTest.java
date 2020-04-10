@@ -18,7 +18,7 @@ class ManualArticleCreatorTest {
         String input = "TestArticle";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getArticle();
+        String actualOutput = ManualArticleCreator.getArticleTitle();
         assertEquals("TestArticle", actualOutput);
     }
 
@@ -29,7 +29,7 @@ class ManualArticleCreatorTest {
         String input = "www.testarticle.com";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getUrl();
+        String actualOutput = ManualArticleCreator.getArticleUrl();
         assertEquals("www.testarticle.com", actualOutput);
     }
 
@@ -40,7 +40,7 @@ class ManualArticleCreatorTest {
         String input = "default";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getCategory();
+        String actualOutput = ManualArticleCreator.getArticleCategory();
         assertEquals("default", actualOutput);
     }
 
@@ -51,7 +51,7 @@ class ManualArticleCreatorTest {
         String input = "no";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualArticleCreator.getExtract();
+        String actualOutput = ManualArticleCreator.getArticleExtract();
         assertEquals("no", actualOutput);
     }
 }

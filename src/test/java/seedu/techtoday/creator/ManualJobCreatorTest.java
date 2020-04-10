@@ -18,7 +18,7 @@ class ManualJobCreatorTest {
         String input = "testJob";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualJobCreator.getTitle();
+        String actualOutput = ManualJobCreator.getJobTitle();
         assertEquals("testJob", actualOutput);
     }
 
@@ -29,7 +29,7 @@ class ManualJobCreatorTest {
         String input = "Testing text";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualJobCreator.getText();
+        String actualOutput = ManualJobCreator.getJobText();
         assertEquals("Testing text", actualOutput);
     }
 
@@ -40,7 +40,7 @@ class ManualJobCreatorTest {
         String input = "testCategory";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualJobCreator.getCategory();
+        String actualOutput = ManualJobCreator.getJobCategory();
         assertEquals("testCategory", actualOutput);
     }
 
@@ -51,7 +51,7 @@ class ManualJobCreatorTest {
         String input = "testExtract";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        String actualOutput = ManualJobCreator.getExtract();
+        String actualOutput = ManualJobCreator.getJobExtract();
         assertEquals("testExtract", actualOutput);
     }
 

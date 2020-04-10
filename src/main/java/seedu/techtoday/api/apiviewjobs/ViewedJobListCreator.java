@@ -30,7 +30,7 @@ public class ViewedJobListCreator {
             String tailUrl = ".json?print=pretty";
             String finalUrl = headOfUrl + midUrl + tailUrl;
             JSONObject rawJob = UrlJsonParser.readJsonFromUrl(finalUrl);
-            Job processedJob = JobsCreator.rawToProcessedJob(rawJob);
+            Job processedJob = JobsCreator.convertToProcessedJob(rawJob);
             ViewedJobList.viewedJobList.add(processedJob);
         }
     }
