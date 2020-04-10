@@ -71,6 +71,12 @@ public class StorageAvailableModulesList {
         }
     }
 
+    /**
+     * Processes Module information string and loads available modules list.
+     * @param moduleInfo Module information.
+     * @param availableModulesList User's available modules list.
+     * @throws StorageException Storage exception.
+     */
     public static void processModuleInfoString(String moduleInfo,
             AvailableModulesList availableModulesList) throws StorageException {
 
@@ -89,6 +95,11 @@ public class StorageAvailableModulesList {
         }
     }
 
+    /**
+     * Adds modules in CSV file to available modules list.
+     * @param availableModulesList User's available modules list.
+     * @param newModule modules in CSV file.
+     */
     private static void addToAvailableModulesList(AvailableModulesList availableModulesList, NewModule newModule) {
         for (Module module : availableModulesList) {
             boolean hasSameId = newModule.getId().equals(module.getId());

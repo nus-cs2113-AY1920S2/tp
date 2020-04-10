@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SemesterList;
 import seedu.duke.ui.Ui;
 
