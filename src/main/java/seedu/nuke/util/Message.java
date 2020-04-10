@@ -260,6 +260,11 @@ public class Message {
                 + "\nEnter the list number(s) of the tasks to delete.\n";
     }
 
+    /**
+     * Creates the message to prompt user to enter the indices of the tags to be deleted from the list.
+     * @param filteredTasks The filtered list of tags to be deleted
+     * @return The message to prompt the user to enter the indices
+     */
     public static String messagePromptDeleteTagIndices(ArrayList<Directory> filteredTasks) {
         ArrayList<TaskTag> tags = filteredTasks.stream()
                 .map(TaskTag.class::cast)
@@ -274,6 +279,12 @@ public class Message {
                 toDelete.getParent().getDescription());
     }
 
+    /**
+     * Creates the message to confirm deletion of multiple tags.
+     * @param filteredFiles  The filtered list of tags
+     * @param toDeleteIndices The indices of the tags to be deleted from the list
+     * @return the message to confirm deletion
+     */
     public static String messageConfirmDeleteTag(ArrayList<TaskTag> filteredFiles,
                                                   ArrayList<Integer> toDeleteIndices) {
         StringBuilder promptMessage = new StringBuilder();

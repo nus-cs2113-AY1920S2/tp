@@ -29,7 +29,7 @@ public class ListFileCommand extends ListCommand {
     private boolean isAll;
 
     /**
-     * Constructs the command to list tasks.
+     * Constructs the command to list files.
      *
      * @param moduleKeyWord
      *  The keyword to filter the modules

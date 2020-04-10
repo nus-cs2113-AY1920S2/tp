@@ -22,6 +22,8 @@ public class Decoder {
     private static final String END_TASK_INDICATOR = "--- END TASK ---";
     private static final String BEGIN_FILE_INDICATOR = "--- FILE ---";
     private static final String END_FILE_INDICATOR = "--- END FILE ---";
+    private static final String BEGIN_TAG_INDICATOR = "--- TAG ---";
+    private static final String END_TAG_INDICATOR = "--- END TAG ---";
     private static final String DELIMITER = " -|||- ";
     private static final String LINE_BREAK = System.lineSeparator();
 
@@ -113,6 +115,22 @@ public class Decoder {
         return decodedTaskFileList;
     }
 
+    private ArrayList<String> decodeTagList(Task decodedTask) throws IOException, CorruptedFileException {
+        ArrayList<String> decodedTagList = new ArrayList<>();
+        if (!reader.readLine().equals(BEGIN_TAG_INDICATOR)) {
+            throw new CorruptedFileException();
+        }
+        String currentLine;
+        while ((currentLine = reader.readLine()) != null) {
+            if(currentLine.equals(END_TAG_INDICATOR)) {
+                break;
+            }
+            String tag = currentLine;
+            decodedTagList.add(tag);
+        }
+        return decodedTagList;
+    }
+
     private Module decodeModule(String[] moduleInformation)
             throws CorruptedFileException, IOException {
         String moduleCode = moduleInformation[0];
@@ -151,6 +169,7 @@ public class Decoder {
         Task decodedTask = new Task(decodedCategory, taskDescription, deadline, taskPriority);
         decodedTask.setDone(doneStatus);
         decodedTask.getFiles().setFileList(decodeFileList(decodedTask));
+        decodedTask.setTag(decodeTagList(decodedTask));
 
         return decodedTask;
     }

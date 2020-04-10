@@ -28,6 +28,15 @@ public class ListTagCommand extends FilterCommand {
     private boolean isExact;
     private boolean isAll;
 
+    /**
+     * Constructs the command to list tags.
+     * @param moduleKeyword the keyword to filter modules
+     * @param categoryKeyword the keyword to filter categories
+     * @param taskKeyword the keyword to filter tasks
+     * @param tagKeyword the keyword to filter tags
+     * @param isExact checks if tags are to be filtered exactly
+     * @param isAll checks whether to show <b>all</b> tags across modules and categories
+     */
     public ListTagCommand(String moduleKeyword, String categoryKeyword, String taskKeyword, String tagKeyword,
                           boolean isExact, boolean isAll) {
         this.moduleKeyword = moduleKeyword;

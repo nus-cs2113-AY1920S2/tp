@@ -141,12 +141,14 @@ public abstract class FilterCommand extends Command {
         ArrayList<TaskTag> filteredTagList = new ArrayList<>();
         filteredTaskList = createFilteredTaskList(moduleKeyword, categoryKeyword, taskKeyword, isExact, isAll);
 
-        if(filteredTaskList.isEmpty()) return filteredTagList;
+        if (filteredTaskList.isEmpty()) {
+            return filteredTagList;
+        }
 
-        for(Task task: filteredTaskList) {
+        for (Task task: filteredTaskList) {
             int i = 0;
-            for(String tag: task.getTags()) {
-                if((isExact && tag.equalsIgnoreCase(tagKeyword))
+            for (String tag: task.getTags()) {
+                if ((isExact && tag.equalsIgnoreCase(tagKeyword))
                         || (!isExact && tag.toLowerCase().contains(tagKeyword.toLowerCase()))) {
                     filteredTagList.add(new TaskTag(task, tag, i));
                 }

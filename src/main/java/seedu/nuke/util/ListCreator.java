@@ -205,6 +205,11 @@ public class ListCreator {
         return header.toString();
     }
 
+    /**
+     * create a sorted tag list of table from a list of tags.
+     * @param tags the list of tags to be converted into table
+     * @return a sorted list of table of tags
+     */
     public static String createTagListTable(ArrayList<TaskTag> tags) {
         StringBuilder tagListTable = new StringBuilder();
 
