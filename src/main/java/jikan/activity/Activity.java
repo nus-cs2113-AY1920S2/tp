@@ -23,6 +23,7 @@ public class Activity {
     private Duration allocatedTime;
     private LocalDate date;
 
+    public static final int MAXPERCENT = 100;
     /**
      * Constructor for a new activity entry.
      * @param name represents the name of the activity
@@ -103,7 +104,7 @@ public class Activity {
      * @return percent completed
      */
     public double getProgressPercent() {
-        double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * 100;
+        double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * MAXPERCENT;
         return Math.min(percent, 100);
     }
 
