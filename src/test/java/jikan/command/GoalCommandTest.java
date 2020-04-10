@@ -8,7 +8,6 @@ import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
 import jikan.storage.Storage;
-import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
 
@@ -27,9 +26,6 @@ class GoalCommandTest {
     Storage storage = new Storage("data/activityList_test.txt");
     ActivityList activities = new ActivityList(storage);
     HashSet<String> tags = new HashSet<>();
-    Storage tagStorage = new Storage("data/tag_test.txt");
-    private static final String TAG_TEST_FILEPATH = "data/tag_test.txt";
-    StorageHandler tagStorageHandler = new StorageHandler(tagStorage);
     Scanner scanner;
 
     void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
@@ -88,10 +84,12 @@ class GoalCommandTest {
 
     @Test
     void executeGoal() throws IOException {
+        Storage tagStorage = new Storage("data/tag_test.txt");
+        String TAG_TEST_FILEPATH = "data/tag_test.txt";
+        tagStorage.loadFile();
+        assertTrue(tagStorage.dataFile.exists());
         try {
             populateActivityList();
-            tagStorage.loadFile();
-            assertTrue(tagStorage.dataFile.exists());
         } catch (InvalidTimeFrameException e) {
             System.out.println("Invalid time frame.");
         } catch (NameTooLongException e) {
@@ -110,9 +108,9 @@ class GoalCommandTest {
                 found = false;
             }
             assertTrue(found);
-            tagStorage.dataFile.delete();
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         }
+        tagStorage.dataFile.delete();
     }
 }
