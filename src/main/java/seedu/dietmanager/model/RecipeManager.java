@@ -77,8 +77,8 @@ public class RecipeManager {
 
     public String getRecipeHead() {
         String recipeHead = String.format("%1$-10s", " ") + "morning";
-        recipeHead = String.format("%1$-90s", recipeHead) + "afternoon";
-        recipeHead = String.format("%1$-170s", recipeHead) + "night\n";
+        recipeHead = String.format("%1$-80s", recipeHead) + "afternoon";
+        recipeHead = String.format("%1$-150s", recipeHead) + "night\n";
         return recipeHead;
     }
 
