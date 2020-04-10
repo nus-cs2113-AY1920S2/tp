@@ -4,6 +4,7 @@ import jikan.exception.ExtraParametersException;
 import jikan.log.Log;
 import jikan.exception.EmptyNameException;
 import jikan.cleaner.StorageCleaner;
+import jikan.storage.Storage;
 import jikan.ui.Ui;
 
 import jikan.command.AbortCommand;
@@ -48,6 +49,7 @@ public class Parser {
     public static Set<String> tags = new HashSet<>();
     public StorageCleaner cleaner;
     public LogCleaner logcleaner;
+    public Storage tagStorage;
     public static String[] tokenizedInputs;
     String instruction;
     private static Log logger = new Log();
@@ -60,7 +62,7 @@ public class Parser {
      *
      * @param scanner      scanner object which reads user input
      */
-    public Command parseUserCommands(Scanner scanner, File tagFile) throws EmptyNameException,
+    public Command parseUserCommands(Scanner scanner) throws EmptyNameException,
             NullPointerException, ArrayIndexOutOfBoundsException {
         makeInfoLog("Starting to parse inputs.");
 
@@ -164,9 +166,9 @@ public class Parser {
         case "goal":
             try {
                 if (tokenizedInputs.length == 1) {
-                    command = new ViewGoalsCommand(null,tagFile);
+                    command = new ViewGoalsCommand(null, this.tagStorage);
                 } else {
-                    command = new GoalCommand(tokenizedInputs[1], scanner);
+                    command = new GoalCommand(tokenizedInputs[1], scanner, this.tagStorage);
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 Ui.printDivider("Tag name cannot be empty!");
