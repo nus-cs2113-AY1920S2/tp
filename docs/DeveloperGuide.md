@@ -481,7 +481,7 @@ Deleting a reservation while all reservations are listed.
 * Test case: `delete reservation; r/2.3;`
     - Expected: No Reservation is marked as Invalid. An error message shows to remind the user to input a positive integer.
 
-### E.3.4 Marking a reservation
+#### E.3.4 Marking a reservation
 Marking a reservation as Served while all reservations are listed.
 * Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[2] is Unserved.
 * Test case: `mark reservation; r/2;`
@@ -528,14 +528,14 @@ Searching a reservation while all reservations are listed.
 <a name="e5-list-functionality"></a>
 ### E.5 List functionality
 
-### E.5.1 List all dishes in the menu
+#### E.5.1 List all dishes in the menu
 Listing all dishes in the menu.
 * Test case: `list dish;`
     - Expected: All dishes in the menu will be listed. Assuming you have followed up to E.4.1 strictly, there should be no dishes listed in the menu.
 * Test case: `list dish`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.  
 
-### E.5.2 List all ingredients in the stock
+#### E.5.2 List all ingredients in the stock
 Listing all ingredients in the stock.
 * Test case: `list stock;`
     - Expected: All ingredients in the stock will be listed. Assuming that you have followed up to E.4.2 strictly, the only ingredient listed would be
