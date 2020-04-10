@@ -62,6 +62,11 @@
 ![image_info](./pictures/ClassDiagram.png)
 _Fig 2.1. Class diagram of the Jikan program_
 
+![image_info](./pictures/Commands.png)
+_Fig 2.2. Commands of Jikan (private methods omittedd)_
+
+All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
+
 
 ## 3. Implementation
 
