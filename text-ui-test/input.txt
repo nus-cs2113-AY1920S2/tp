@@ -1,3 +1,22 @@
+add
+delete
+list
+search
+random
+keyword
+add dish
+add reservation
+add stock
+delete stock
+delete dish
+delete reservation
+add delete
+1111
+2222
+add delete list search
+search dish
+search reservation
+search stock
 add dish; n/pizza; i/cheese, sauce; p/7.00;
 list dish
 add dish; n/rice; i/rice, salt; p/12.00;
