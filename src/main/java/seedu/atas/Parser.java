@@ -200,7 +200,8 @@ public class Parser {
             date = LocalDate.parse(stringDate, INPUT_DATE_FORMAT);
             return new SearchCommand(taskName, taskType, date);
         } catch (DateTimeParseException | IndexOutOfBoundsException e) {
-            return new IncorrectCommand(Messages.DATE_INCORRECT_OR_INVALID_ERROR);
+            return new IncorrectCommand(String.format(Messages.SEARCHD_DATE_INVALID,
+                    Messages.SEARCHD_DATE_FORMAT_HELP));
         }
     }
 

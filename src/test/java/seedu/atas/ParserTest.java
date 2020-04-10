@@ -363,7 +363,8 @@ public class ParserTest {
                 + "n/test d/13/14/20");
         assertTrue(parsedCommand instanceof IncorrectCommand);
         assertEquals(parsedCommand.execute(new TaskList(), new Ui()).feedbackToUser,
-                String.format(Messages.INCORRECT_COMMAND_ERROR, Messages.DATE_INCORRECT_OR_INVALID_ERROR));
+                String.format(Messages.INCORRECT_COMMAND_ERROR, String.format(Messages.SEARCHD_DATE_INVALID,
+                        Messages.SEARCHD_DATE_FORMAT_HELP)));
     }
 
     @Test

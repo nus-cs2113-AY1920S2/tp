@@ -1,6 +1,7 @@
 package command;
 
 import common.Messages;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.atas.TaskList;
 import seedu.atas.Ui;
@@ -19,33 +20,41 @@ public class ClearCommandTest {
     private static TaskList filledTaskList;
     private static TaskList emptyTaskList;
     private static Ui ui;
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private static final String DATE1 = "13/03/2020 18:00";
+    private static final String DATE2 = "13/03/2020 20:30";
+    private static final String DATE3 = "01/01/2020 00:00";
+    private static final String DATE4 =  "01/01/2020 02:59";
+    private static Assignment testCaseOne;
+    private static Assignment testCaseTwo;
+    private static Assignment testCaseThree;
+    private static Event testCaseFour;
+    private static Event testCaseFive;
+    private static Event testCaseSix;
+    private static LocalDateTime testDateTime1;
+    private static LocalDateTime testDateTime2;
+    private static LocalDateTime testDateTime3;
+    private static LocalDateTime testDateTime4;
 
     /**
-     * Initialize hard-coded test cases for testing purposes.
+     * Initialize variables used for each tests.
      */
-    public ClearCommandTest() {
+    @BeforeEach
+    public void setup() {
         filledTaskList = new TaskList();
         emptyTaskList = new TaskList();
         ui = new Ui();
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        String date1 = "13/03/2020 18:00";
-        String date2 = "13/03/2020 20:30";
-        String date3 = "01/01/2020 00:00";
-        String date4 = "01/01/2020 02:59";
-        LocalDateTime testDateTime1 = LocalDateTime.parse(date1, dateTimeFormatter);
-        LocalDateTime testDateTime2 = LocalDateTime.parse(date2, dateTimeFormatter);
-        LocalDateTime testDateTime3 = LocalDateTime.parse(date3, dateTimeFormatter);
-        LocalDateTime testDateTime4 = LocalDateTime.parse(date4, dateTimeFormatter);
-
-        Assignment testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, " ");
-        Assignment testCaseTwo = new Assignment("OP1", "CS2101", testDateTime3, "15%");
-        Assignment testCaseThree = new Assignment(null,null,null,null);
-        Event testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, " ");
-        Event testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
-        Event testCaseSix = new Event(null,null,null, null,null);
+        testDateTime1 = LocalDateTime.parse(DATE1, dateTimeFormatter);
+        testDateTime2 = LocalDateTime.parse(DATE2, dateTimeFormatter);
+        testDateTime3 = LocalDateTime.parse(DATE3, dateTimeFormatter);
+        testDateTime4 = LocalDateTime.parse(DATE4, dateTimeFormatter);
+        testCaseOne = new Assignment("Assignment 3", "CS2102", testDateTime1, " ");
+        testCaseTwo = new Assignment("OP1", "CS2101", testDateTime3, "15%");
+        testCaseThree = new Assignment(null, null, null, null);
+        testCaseFour = new Event("midterms", "MPSH1A", testDateTime1, testDateTime2, " ");
+        testCaseFive = new Event("Countdown", "TimeSquare", testDateTime3, testDateTime4, "new year new me");
+        testCaseSix = new Event(null,null,null, null,null);
         filledTaskList.addTask(testCaseOne);
         filledTaskList.addTask(testCaseTwo);
         filledTaskList.addTask(testCaseThree);

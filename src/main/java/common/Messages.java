@@ -33,7 +33,7 @@ public class Messages {
     // Help Print Messages
     public static final String DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm";
     public static final String START_END_DATE_FORMAT_HELP = "Date Format: dd/MM/yy HHmm - HHmm";
-
+    public static final String SEARCHD_DATE_FORMAT_HELP = "Date Format: dd/MM/YY";
     // Command Success Messages
     public static final String ADD_SUCCESS_MESSAGE = "Added task:" + System.lineSeparator() + NEWLINE_INDENT
             + "%s" + System.lineSeparator() + "Now you have %d task%s in the list!";
@@ -60,6 +60,8 @@ public class Messages {
             + System.lineSeparator() + DATE_FORMAT_HELP;
     public static final String CALENDAR_DATE_INVALID = "Invalid date provided"
             + System.lineSeparator() + "%s";
+    public static final String SEARCHD_DATE_INVALID = "Invalid date provided"
+            + System.lineSeparator() + "%s";
     public static final String START_END_DATE_INCORRECT_OR_INVALID_ERROR = "Wrong date format or invalid date provided"
             + System.lineSeparator() + START_END_DATE_FORMAT_HELP;
 
@@ -81,6 +83,7 @@ public class Messages {
     public static final String EMPTY_DONE_CLEAR_ERROR = "There are no completed tasks at the moment";
     public static final String REPEAT_ASSIGN_ERROR = "%s is not an event. Please choose an event.";
     public static final String REPEAT_NOT_SET_ERROR = "%s is not set to repeat.";
+    public static final String EDIT_TYPE_ERROR = "Error: New Task Type must match edited Task Type";
     //Saving Error Messages
     public static final String INCORRECT_START_END_TIME_ERROR = "The end time should come after the start time";
     public static final String INCORRECT_STORAGE_FORMAT_ERROR = "The local save file is of an unknown format. "

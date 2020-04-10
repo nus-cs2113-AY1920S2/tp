@@ -2,39 +2,39 @@
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Contents:
-- [Introduction](#1-introduction)
-  * [What is **ATAS**?](#11-what-is-atas)
-  * [What are the functions of **ATAS**?](#12-what-are-the-functions-of-atas)
-  * [How does **ATAS** solve the problem of our target audience?](#13-how-does-atas-solve-the-problem-of-our-target-audience)
-  * [What is this guide for?](#14-what-is-this-guide-for)
-- [Quick Start](#2-quick-start)
-  * [Setting up](#21-setting-up)
-  * [Usage](#22-usage)
-- [Features](#3-features)
-  * [Add Assignments: **`assignment`**](#31-add-assignments-assignment)
-  * [Add Events: **`event`**](#32-add-events-event)
-  * [Repeating Events: **`repeat`**](#33-repeating-events-repeat)
-    + [Set an event to repeat](#331-set-an-event-to-repeat)
-    + [Unset Repeating Event](#332-unset-repeating-event)
-  * [List Tasks: **`list`**](#34-list-tasks-list)
-    + [List All Tasks: **`list`**](#341-list-all-tasks-list)
-    + [List Today’s Tasks: **`list today`**](#342-list-todays-tasks-list-today)
-    + [List Weekly Tasks: **`list week`**](#343-list-weekly-tasks-list-week)
-    + [List Upcoming Events: **`list upcoming events`**](#344-list-upcoming-events-list-upcoming-events)
-    + [List Incomplete Assignments: **`list incomplete assignments`**](#345-list-incomplete-assignments-list-incomplete-assignments)
-  * [Edit Tasks: **`edit`**](#35-edit-tasks-edit)
-  * [Delete Tasks: **`delete`**](#36-delete-tasks-delete)
-  * [Mark Done: **`done`**](#37-mark-done-done)
-  * [Clear Tasks: **`clear`**](#38-clear-tasks-clear)
-    + [Clear All Tasks](#381-clear-all-tasks)
-    + [Clear All Done Tasks](#382-clear-all-done-tasks)
-  * [Search tasks: **`search`**](#39-search-tasks-search)
-    + [Search by Name](#391-search-by-name)
-    + [Search by Name and Date](#392-search-by-name-and-date)
-  * [Calendar View: **`calendar`**](#310-calendar-view-calendar)
-- [Command Summary](#4-command-summary)
-  * [List of available **ATAS** commands](#41-list-of-available-atas-commands)
-- [FAQ](#5-faq)
+1. [Introduction](#1-introduction)
+    * [What is **ATAS**?](#11-what-is-atas)
+    * [What are the functions of **ATAS**?](#12-what-are-the-functions-of-atas)
+    * [How does **ATAS** solve the problem of our target audience?](#13-how-does-atas-solve-the-problem-of-our-target-audience)
+    * [What is this guide for?](#14-what-is-this-guide-for)
+2. [Quick Start](#2-quick-start)
+    * [Setting up](#21-setting-up)
+    * [Usage](#22-usage)
+3. [Features](#3-features)
+    * [Add Assignments: **`assignment`**](#31-add-assignments-assignment)
+    * [Add Events: **`event`**](#32-add-events-event)
+    * [Repeating Events: **`repeat`**](#33-repeating-events-repeat)
+        + [Set an event to repeat](#331-set-an-event-to-repeat)
+        + [Unset Repeating Event](#332-unset-repeating-event)
+    * [List Tasks: **`list`**](#34-list-tasks-list)
+        + [List All Tasks: **`list`**](#341-list-all-tasks-list)
+        + [List Today’s Tasks: **`list today`**](#342-list-todays-tasks-list-today)
+        + [List Weekly Tasks: **`list week`**](#343-list-weekly-tasks-list-week)
+        + [List Upcoming Events: **`list upcoming events`**](#344-list-upcoming-events-list-upcoming-events)
+        + [List Incomplete Assignments: **`list incomplete assignments`**](#345-list-incomplete-assignments-list-incomplete-assignments)
+    * [Edit Tasks: **`edit`**](#35-edit-tasks-edit)
+    * [Delete Tasks: **`delete`**](#36-delete-tasks-delete)
+    * [Mark Done: **`done`**](#37-mark-done-done)
+    * [Clear Tasks: **`clear`**](#38-clear-tasks-clear)
+        + [Clear All Tasks](#381-clear-all-tasks)
+        + [Clear All Done Tasks](#382-clear-all-done-tasks)
+    * [Search tasks: **`search`**](#39-search-tasks-search)
+        + [Search by Name](#391-search-by-name)
+        + [Search by Name and Date](#392-search-by-name-and-date)
+    * [Calendar View: **`calendar`**](#310-calendar-view-calendar)
+4. [Command Summary](#4-command-summary)
+    * [List of available **ATAS** commands](#41-list-of-available-atas-commands)
+5. [FAQ](#5-faq)
 
 ## 1. Introduction
 ### 1.1. What is **ATAS**?
@@ -59,6 +59,8 @@ Interested in cultivating a habit of time management and plan your time more eff
         3.  Navigate to the folder containing downloaded jar file.
 
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
+        > **Note**: Replace `atas.jar` with the filename of the jar file. For example if the file name is `atas-2.0.0.jar`, run command 
+        `java -jar atas-2.0.0.jar`.
 
     2.  For **Mac** Users:
 
@@ -69,6 +71,8 @@ Interested in cultivating a habit of time management and plan your time more eff
         3.  Navigate to the directory containing downloaded jar file.
 
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
+        > **Note**: Replace `atas.jar` with the filename of the jar file. For example if the file name is `atas-2.0.0.jar`, run command 
+        `java -jar atas-2.0.0.jar`.
 
 ### 2.2. Usage
 1.  To use **ATAS**, simply type a valid command into the terminal and press `[Enter]` key  run the command.  
@@ -95,14 +99,18 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 
 -   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
     Example: 01/03/20 represents the date 1st March 2020.
-
+    > **Note**: If an invalid date like 34/03/20 (that is not too far off from a legit date) is provided, ATAS will automatically round off 
+    the date to the nearest legit date. In this case, it will round off to 31/03/20.
+    
 -   Times supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
     Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm.
 
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
--   The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless explicitly required by the command's format.
+-   Inputs for the various parameters are supposed to be in the English Language. Common Symbols like "@#$%^&*()" are not permitted. 
+    In particular, The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless
+    explicitly required by the command's format.
 
 > **Note**: 
 > Don’t worry if all of these seems overwhelming. <br/> 
@@ -138,8 +146,9 @@ Now you have 1 task in the list!
 
 ### 3.2. Add Events: **`event`**
 
-An event is a task that you plan to do at a particular date and time.  
-You can add an event to **ATAS**, containing various details.
+An event is a task that you plan to do at a particular date and time with an end time in mind. Its end time is not supposed to go past
+ midnight.  
+ You can add an event to **ATAS**, containing various details.
 
 Format: `event n/[NAME] l/[LOCATION] d/[DATE] [START_TIME] - [END_TIME] c/[COMMENTS]`
 
@@ -169,14 +178,15 @@ Now you have 2 tasks in the list!
 
 #### 3.3.1. Set an event to repeat
 
-Set an event to repeat indefinitely for every period specified by identifying the period and the event index.
+Set an event or repeating event to repeat indefinitely by a period specified by user.
 
 Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
 > **Note**:
-> Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y` <br/>
+> Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y`. <br/>
 > `INDEX` of task specified has to be an **event** task. <br/>
-> Refer to [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands.
+> Refer to below, [Section 3.4. List Tasks: `list`](#34-list-tasks-list) for usage on the `list` commands on how to obtain the `INDEX` of
+> an event task.
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
@@ -191,9 +201,14 @@ Expected outcome:
 > be shown in a square bracket beside `notes` section. Below is an example:
 > ```
 > Here are the search results:
->  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
->      [3d]  notes: Test
+>  1.[R][X] Online Career Fair (at: NUS TalentConnect | Tue 31 Mar 2020 09:00 - 18:00)
+>      [11m]  notes: false
 > ```
+
+> **Note**:
+> The date of reference for an event to repeat will be based on the **current date** of the event provided when you `list`.
+> In the above example, it will repeat every 11 months from 31 Mar 2020. Setting it to repeat at another interval will also be based on
+> 31 Mar 2020.
 
 #### 3.3.2. Unset Repeating Event
 
@@ -212,13 +227,17 @@ Expected outcome:
 [Online Career Fair] will no longer repeat.
 ```
 > **Note**:
-> The symbol `[R]` will be replaced by `[E]` and there will not be any symbol beside `notes` section. 
+> The symbol `[R]` will be replaced by `[E]` and there will not be any symbol beside `notes` section. More explanation on these symbol
+> will be provided below, at [Section 3.4. List Tasks: `list`](#34-list-tasks-list).
 > Below is an example: 
 > ```
 > Here are the relevant tasks: 
 >  4. [E][X] UG DG peer review (at: Home | Fri 27 Mar 2020 10:00 - 11:35)
 >            notes: false
 > ```
+
+> **Note**: It is perfectly acceptable to place a `[PERIOD TYPE]` value beside 0. For example `repeat id/6 p/0d`. The command will still
+> be accepted. However, placing any other English alphabet will result in an invalid command.
 
 ### 3.4. List Tasks: **`list`**
 
@@ -339,7 +358,8 @@ Format: `edit [INDEX]`
 
 Example: `edit 1`
 
-After issuing the `edit` command, you can input the changes you want to make by entering in the `assignment` or `events` command.
+After issuing the `edit` command, the next line of command should be changes you want to make by entering in the `assignment` or `events` 
+command. Any other variations, including other valid commands, will be treated as an invalid command. 
 Refer to [Section 3.1, "Add Assignments: `assignment`](#31-add-assignments-assignment) or 
 [Section 3.1, "Add Events: `event`"](#32-add-events-event) for usage of the commands.
 
@@ -389,7 +409,7 @@ You can clear **all** tasks in the list if you want to start from a fresh list. 
 
 Format: `clear all`
 
-#### 3.7.2. Clear All Done Tasks
+#### 3.8.2. Clear All Done Tasks
 
 > **Note**:
 > `clear done` command only deletes completed events that is not set to repeat<br/>

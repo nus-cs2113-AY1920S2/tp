@@ -1,19 +1,18 @@
-# ATAS (Amazing Task and Assignment System) Developer Guide
 By: `Team M16-1` Since: `Jan 2020` License: `MIT`
 
 Table of Contents
-- [Setting up](#1-setting-up)
+1. [Setting up](#1-setting-up)
 	- [Prerequisites](#11-prerequisites)
 	- [Setting up the project](#12-setting-up-the-project)
 	- [Verifying the Setup](#13-verifying-the-setup)
-- [Design](#2-design)
+2. [Design](#2-design)
 	- [Architecture](#21-architecture)
 	- [UI Component](#22-ui-component)
 	- [Logic Component](#23-logic-component)
 	- [Model Component](#24-model-component)
 	- [Storage Component](#25-storage-component)
 	- [Atas Component](#26-atas-component)
-- [Implementation](#3-implementation)
+3. [Implementation](#3-implementation)
 	- [Delete Task Feature](#31-delete-task-feature)
 		- [Design Considerations](#311-design-considerations)
 	- [Search task feature](#32-search-task-feature)
@@ -40,15 +39,15 @@ Table of Contents
 			- [Saving the current state of **ATAS** with `Storage#save()`:](#372-saving-the-current-state-of-atas-with-storagesave)
 			- [Loading previously saved `TaskList` data into **ATAS** with `Storage#load()`:](#373-loading-previously-saved-tasklist-data-into-atas-with-storageload)
 		- [Design Considerations](#374-design-considerations)
-- [Testing](#4-testing)
+4. [Testing](#4-testing)
 	- [Using IntelliJ JUnit Tests](#41-using-intellij-junit-tests)
 	- [Using Input-Output Tests](#42-using-input-output-tests)
-- [DevOps](#5-devops)
+5. [DevOps](#5-devops)
     - [Build Automation](#51-build-automation)
     - [Continuous Integration](#52-continuous-integration)
     - [Coverage Reporting](#53-coverage-reporting)
     - [Making a Release](#54-making-a-release)
-- [Appendices](#6-appendices)
+6. [Appendices](#6-appendices)
     - [Product Scope](#61-appendix-a-product-scope)
     - [User Stories](#62-appendix-b-user-stories)
     - [Use Cases](#63-appendix-c-use-cases)
@@ -206,7 +205,7 @@ the `DeleteCommand` class will create a new instance of `CommandResult` class th
 
 The following sequence diagram summarizes how delete command operation works:  
 
-![delete task](images/delete.png)
+![delete task](images/delete v2.0.png)
 
 #### 3.1.1. Design Considerations
 
@@ -361,7 +360,7 @@ are no completed tasks
 
 The following sequence diagram summarizes how the `ClearCommand` operation works:  
 
-![clear command](images/clear command.png)
+![clear command](images/clear.png)
 
 #### 3.3.2. Design Considerations
 
@@ -643,6 +642,10 @@ Given below is an example usage of the `calendar` command. The step by step exec
 **Step 1**  
 The users enters the command `calendar d/05/20`. This is captured by the `Ui` component and is subsequently parsed by the `Parser` component that the main component calls.
 
+> **Note**
+>
+> The arguments specified after the command word `calendar` represents the month and year of the calendar view returned. `d/05/20` refers to May 2020.
+
 **Step 2**  
 The `Parser` will construct a `CalendarCommand` object with the `LocalDate` provided by the user input.
 
@@ -681,10 +684,10 @@ The `CommandResult` object is subsequently passed to `Ui` component which obtain
 -   Duplicating `Task` objects instead of keeping the `RepeatEvent` as a single entity like how it is stored in the `TaskList`.
 
     -   Rationale:  
-        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects, with each `RepeatEvent` being stored as a separate `Task` within the `ArrayList` of `Task` objects. Each `Task` can be removed from the `ArrayList` after it has been printed which makes the task simpler. 
+        By duplicating the `RepeatEvent`, it allows better abstraction by removing the need to constantly differentiate between a normal `Task` and a repeating `Task` during the construction of the final Calendar View. The current implementation allows the `addCalendarBody()` method to obtain all possible `Task` objects within the given month, with each possible `RepeatEvent` being stored as a separate `Task` Each `Task` can subsequently be removed from the `ArrayList` after it has been printed which makes the task simpler and reduces coupling. 
 
     -   Alternatives considered:  
-        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.3, RepeatEvent design considerations](#343-design-considerations))
+        Allowing `TaskList` to accept `Task` with duplicated details. However, this will in turn further complicate design when performing other features that deal with a singular `Task` such as `delete`, `search`, `done`. (See [Section 3.4.4, RepeatEvent design considerations](#344-design-considerations))
 
 -   Truncation of `Task` details instead of extending column size
 
@@ -991,7 +994,7 @@ Target user profile:
 
 4.  The user interface should be intuitive enough for users who are not IT-savvy but understands the basics of a task managing application.
 
-5.  Data inputted in a session should be persistent and carry forward to the next session of use. 
+5.  Data saved in a session should be persistent and carry forward to the next session of use. 
 
 6.  Saved data files should be portable across different instance of application on different devices, meaning one can resume a saved session on another device if he so chooses to. Moving from one OS to another does not create any issues either.
 
