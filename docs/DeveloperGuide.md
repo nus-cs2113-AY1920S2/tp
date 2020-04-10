@@ -19,7 +19,7 @@ Table of Contents
 		- [Design Considerations](#312-design-considerations)
 	- [Search task feature](#32-search-task-feature)
 		- [Current Implementation](#321-current-implementation)
-		- [Design Considerations:](#322-design-considerations)
+		- [Design Considerations](#322-design-considerations)
 	- [Clear Task feature](#33-clear-task-feature)
 		- [Current Implementation](#331-current-implementation)
 		- [Design Considerations](#332-design-considerations)
@@ -294,24 +294,24 @@ The following sequence diagram summarizes how the *search* and *searchd* command
             
             -   Cons: HashMap does not maintain an iteration order so more sorting has to be done to restore the original order, which will incur additional time complexities
 
--   Creating 2 separate classes for `SearchCommand` and `SearchdCommand`
+-   Creating a single class that implements both `Search` and `Searchd` functionalities.
 
     -   Rationale:  
-        To create 2 separate commands so that users can filter their search query more easily.
+        To create 2 separate commands so that users can filter their search query more easily and efficiently.
 
     -   Alternatives Considered:  
 
-        1.  Use a `Search` class that implements both functions of `SearchCommand` and `SearchdCommand`
+        1.  Use 2 seperate classes for `Search` and `Searchd` seperately.
 
-            -   Pros: Reduced coupling. Improved code structure.
+            -   Pros: Easier to implement as the implementation for the 2 commands can be implemented in 2 different classes.
 
-            -   Cons: More difficult to implement
-
-        2.  Create another `SearchdCommand` within the `Parser` class that does the same operations as the `SearchdCommand`.
+            -   Cons: There may be increased coupling as there is a need for the `Parser` class to reference both classes for the 2 `Search` and `Searchd` commands respectively.
+	    
+        2.  Create another method that implements `Searchd` and `Search` functionalities within the `Parser` class.
 
             -   Pros: Easier to implement.
 
-            -   Cons: Makes the code for `Parser` unnecessarily long. Makes the code less OOP.
+            -   Cons: Makes the code for `Parser` unnecessarily long and less OOP, affecting the overall code quality
 
 ### 3.3. Clear Task feature
 #### 3.3.1. Current Implementation
