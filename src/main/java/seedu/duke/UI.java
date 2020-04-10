@@ -91,7 +91,6 @@ public class UI {
                 + "\thelp                                       Displays the help page\n"
                 + "\texit                                       Exits the program";
         //+ "\t> View Answer: ​       answer [INDEX] e.g. answer 1\n"
-        //+ "\tselect <INDEX> Select a subject by subject index\n";
 
         System.out.println(helpMessage);
     }
