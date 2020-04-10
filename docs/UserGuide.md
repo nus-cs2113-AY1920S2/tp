@@ -53,26 +53,6 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 * Loads all possible commands that the user can type.
 * Format: `help`
 
-Examples:
-
-    help
-
-Expected Outcome:
-   
-      __________________________________________________________________________________________
-
-    _                    Your queries can be of the following forms:                   _
-    _                                      1. help                                     _
-    _                              2. view [article / job]                             _
-    _                       3. save [article / job] INDEX_NUMBER                       _
-    _                         4. create [article / job / note]                         _
-    _                          5. list [article / job / note]                          _
-    _                   6. delete [article / job / note] INDEX_NUMBER                  _
-    _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-    _                                      8. exit                                     _
-    _                                                                                  _
-    __________________________________________________________________________________________
-
 ****
 
 
@@ -85,61 +65,6 @@ Expected Outcome:
 [TIP]
 Connect to the internet if you wish to see latest articles. If you use the `view` command more than once in a short period of time, it is highly likely that it will load the same articles/jobs as HackerNews updates information related to articles/jobs once or twice a day only.
 
-Examples:
-
-    view article
-
-
-Expected Outcome:
-
-    __________________________________________________________________________________________
-
-
-    Connecting to the internet and loading information... 
-
-       1. Title: The Global Dollar Short Squeeze
-       Date: 2020-Apr-10 Fri 09:24 AM
-       Category: default
-       Url: https://www.lynalden.com/global-dollar-short-squeeze/
-       Extract: 
-
-
-       2. Title: Take-home vs. whiteboard coding: The problem is bad interviews
-       Date: 2020-Apr-10 Fri 08:48 AM
-       Category: default
-       Url: https://andrewrondeau.com/blog/2020/04/take-home-vs-whiteboard-coding-the-problem-is-bad-interviews
-       Extract: 
-
-
-       3. Title: Ask HN: Has any progress been made on large format E-ink displays?
-       Date: 2020-Apr-10 Fri 06:24 AM
-       Category: default
-       Url: URL Not provided
-       Extract: 
-
-
-       4. Title: Should western museums return colonial cultural artifacts stolen from Africa?
-       Date: 2020-Apr-10 Fri 01:04 PM
-       Category: default
-       Url: https://www.fatumasvoice.org/should-western-museums-return-colonial-cultural-artifacts-from-africa-the-caribbean-and-the-pacific/
-       Extract: 
-
-
-       5. Title: The software industry's greatest sin: hiring
-       Date: 2020-Apr-10 Fri 09:13 AM
-       Category: default
-       Url: https://www.neilwithdata.com/developer-hiring
-       Extract: 
-
-
-       6. Title: Founder's Field Guide for Navigating This Crisis
-       Date: 2020-Apr-10 Fri 03:38 AM
-       Category: default
-       Url: https://firstround.com/review/the-founders-field-guide-for-navigating-this-crisis-advice-from-recession-era-leaders-investors-and-ceos-currently-at-the-helm/
-       Extract: 
-
-
-    __________________________________________________________________________________________
 
 ****
 
@@ -158,6 +83,7 @@ Examples:
 
 Expected Outcome
 
+Saves Viewed article with index number 1
     __________________________________________________________________________________________
 
 
@@ -184,38 +110,6 @@ Examples:
 
     create article
 
-Expected Outcome:
-
-    __________________________________________________________________________________________
-
-
-    Enter the title of the article?
-    New grad vs senior dev
-    __________________________________________________________________________________________
-
-
-    What is the URl of the article (type "No URL")?
-    https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/ 
-    __________________________________________________________________________________________
-
-
-    What is the category (type "default" if you don't know it)
-    Funny
-    __________________________________________________________________________________________
-
-
-    Would you like to add any extract?
-    This article is about the difference of the experienced and newbie developer.
-    __________________________________________________________________________________________
-
-
-    Done, we have added the following article to your list of saved articles
-       Title: New grad vs senior dev
-       Date: 2020-Apr-10 Fri 01:44 PM
-       Category: Funny
-       Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
-       Extract: This article is about the difference of the experienced and newbie developer.
-    __________________________________________________________________________________________
 
 ****
 
@@ -233,28 +127,8 @@ Examples:
     list article
 
 Expected Outcome:
-      
-    __________________________________________________________________________________________
 
-
-    _                                   Article List                                   _
-
-
-       1. Title: The Global Dollar Short Squeeze
-       Date: 2020-Apr-10 Fri 09:24 AM
-       Category: default
-       Url: https://www.lynalden.com/global-dollar-short-squeeze/
-       Extract: 
-
-
-       2. Title: New grad vs senior dev
-       Date: 2020-Apr-10 Fri 01:44 PM
-       Category: Funny
-       Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
-       Extract: This article is about the difference of the experienced and newbie developer.
-
-
-    __________________________________________________________________________________________
+Lists all saved articles.
 
 ****
 
@@ -316,19 +190,6 @@ Expected outcome:
 
 * Exits the program. 
 * Format: `exit`
-
-Examples:
-
-* `exit` 
-
-Expected Outcome:
-
-    __________________________________________________________________________________________
-
-
-    _                                Saving your data...                               _
-    _                           We are exiting the program...                          _
-    _                            Bye. Come back again later.                           _
 
 ****
 
