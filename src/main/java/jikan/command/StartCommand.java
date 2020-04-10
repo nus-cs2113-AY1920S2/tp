@@ -387,7 +387,7 @@ public class StartCommand extends Command {
             Parser.continuedIndex = index;
             Ui.printDivider(Parser.activityName + " was continued");
             Log.makeFineLog(Parser.activityName + " was continued.");
-        } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")){
+        } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Parser.activityName = null;
             Ui.printDivider("Okay then, what else can I do for you?");
         } else {
