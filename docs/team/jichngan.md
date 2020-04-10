@@ -31,7 +31,34 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     the event no longer stays as a `repeat event` and reverts back to just being an `event` task type. This was fixed by adding checks to
     indicate whether task to be edited is a `repeat event` and another method to preserve all the `repeat event` attributes. 
     - Refer to Pull Request [#194](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/194) for bug fix. 
+    - Another bug was also found when we tried to enter in a different task type when editing a task. i.e. Tried to edit 
+    an Assignment task to an event task and vice versa. The program shows a success message but it did not show up in the 
+    task list.
+    - I subsequently fixed the bug by disallow users to edit a task type to a different type. [#213](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/213)  
  
- 
+ - Credits: 
+    - Credit to the team for helping me to catch the bugs related to edit command.
+    
+**Minor Enhancements**:
+- Implemented `list today` and `list command` methods to list tasks [#31](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/31)
+- Implemented method to return `LocalDateTime` object of the Current Date [#31](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/31)
+- Add skeleton code for TaskList class [#25](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/25)
+- Wrote JavaDocs for several methods 
+
+**Code Contributed**: [View on Reposense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=jichngan&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&tabOpen=true&tabType=authorship&tabAuthor=jichngan&tabRepo=AY1920S2-CS2113T-M16-1%2Ftp%5Bmaster%5D)
+
+**Contributions to the User Guide**:
+- Add Commands Summary Section for User Guide [#99](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/99)
+- Add instructions for `EditCommand`
+
+**Contributions to the Developer Guide**:
+- Add `EditCommand` section for Developer Guide [#137](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/137)
+- Add Instructions for Manual Testing for Developer Guide [#208](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/208)
+
+**Contributions to Team-Based Tasks**:
+- Add template for User Guide [#99](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/99)
+- Add template for Developer Guide [#101](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/101)
+- Format User Guide 
+- Manage Issue Tracker on GitHub
     
     
