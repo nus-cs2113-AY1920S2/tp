@@ -78,7 +78,9 @@ of each session.
 ![image_info](./pictures/Architecture_Diagram.png)
 _Fig 2.1. Architecture diagram of the Jikan program_
 
-
+### 2.2 Class Diagram
+The high-level class diagram describes the structure of the components
+![image_info](./pictures/Simplified_Class_Diagram.png)
 ## 3. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -298,8 +300,11 @@ command contains the parameters:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
+#### 3.7.3 Find Sequence Diagram
+![image_info](./pictures/Find_Sequence_Diagram.png)
+![image_info](./pictures/Find_Reference_Frame.png)
 
-#### 3.7.3 Additional features (Proposed)
+#### 3.7.4 Additional features (Proposed)
 Developers may include the feature allowing users users to chain multiple queries and multiple commands 
 in a single user input. Possibly "pipe-lining" the output of one query into the next query with the pipe symbol `|`.
 
