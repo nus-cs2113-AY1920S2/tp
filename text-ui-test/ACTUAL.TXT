@@ -533,6 +533,28 @@ Please specify the keyword using the format 'k/keyword;'
 
 Input next command:
 
+There is no reservation currently in the list.
+
+Input next command:
+
+There is no served reservation currently in the list.
+
+Input next command:
+
+There is no unserved reservation currently in the list.
+
+Input next command:
+
+Command is of incorrect format
+Try the 'help' command for the list of commands
+
+Input next command:
+
+Input Missing: name p/ is missing.
+Try the 'help' command for the list of commands
+
+Input next command:
+
 Reservation[1] has been added into the list
 
 Input next command:

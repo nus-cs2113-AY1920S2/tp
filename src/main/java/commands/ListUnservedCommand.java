@@ -15,12 +15,19 @@ public class ListUnservedCommand extends ReservationCommand {
      */
     @Override
     public void execute(ReservationList reservations, Ui ui) {
+        boolean noUnserved = true;
+        
         for (int i = 1; i <= reservations.getSize(); i++) {
             if (!reservations.getReservation(i).getStatus().equals(NOT_SERVED)) {
                 continue;
             }
 
             ui.showMessage(reservations.getReservation(i).toString());
+            noUnserved = false;
+        }
+        
+        if (noUnserved) {
+            ui.showMessage("There is no unserved reservation currently in the list.");
         }
     }
     
