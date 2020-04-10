@@ -625,7 +625,7 @@ refer to [Section 3. Features](#3-features).
 <td><p>18</p></td>
 <td><p>Calendar View</p></td>
 <td><p><code>calendar d/[MM/YY]</code></p></td>
-<td><p><code>calendar d/01/2020</code></p></td>
+<td><p><code>calendar d/01/20</code></p></td>
 </tr>
 </tbody>
 </table>
