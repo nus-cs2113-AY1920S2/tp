@@ -113,7 +113,11 @@ public class AttendanceList {
         UI.display("Please type the name of the student you are looking for.");
         ui.readUserInput();
         String keyword = ui.getUserInput().trim().toLowerCase();
-        displayList(isMatch(keyword));
+        if (isMatch(keyword).isEmpty()) {
+            ui.display("There is no student named: " + keyword);
+        } else {
+            displayList(isMatch(keyword));
+        }
     }
 
     public ArrayList<Attendance> isMatch(String keyword) {

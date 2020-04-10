@@ -769,7 +769,7 @@ Example:
         >>> attendance view
         Please key in the name of event.
 
-        >>> n
+        >>> CS2113T Tutorial
         Attendance List is empty
     
 #### 4.4.3 Clear attendance list:
@@ -914,6 +914,171 @@ The following occurs if there is no existing attendance list.
       |___________|____________________________________________________|______________________________|
       | 3         |  John Doe                                          |  Present                     |
       |___________|____________________________________________________|______________________________|
+      
+#### 4.4.6 Find attendance:
+Find a student's attendance under a certain event.
+
+Command: `attendance find`
+
+Example:
+
+The following shows a successful find
+
+    >>> attendance view
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Please type the name of the student you are looking for.
+    
+    >>> Mary
+    Search Results
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following occurs when there is no names matching the name that the user inputs.
+
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Please type the name of the student you are looking for.
+    
+    >>> Richard
+    Search Results
+    There is no student named: Richard.
+    
+The following occurs when the attendance list is empty.
+
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    The attendance list is currently empty. Please add attendance instead.
+
+#### 4.4.6 Edit attendance:
+Edit a student's attendance under a certain event. 
+This allows the user to overwrite the student's name or status.
+
+Command: `attendance edit`
+
+Example:
+
+    >>> attendance view
+    Please key in the name of event.
+
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following shows when you want to mark student `Sam Roe` as `Present`.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    Please state the index of the student you wish to edit
+    
+    >>> 1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    Do you wish to change the `name` or change the `status`
+    
+    >>> status
+    What do you want to change the status to? [Y/N]
+    
+    >>> Y
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+
+The following shows when you want to change student's name from `Sam Roe` to `Mary Poppins`.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    Please state the index of the student you wish to edit
+    
+    >>> 1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    Do you wish to change the `name` or change the `status`
+    
+    >>> name
+    What do you want to change the name to?
+    
+    >>> Mary Poppins
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following occurs when there is no existing attendance list.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    The attendance list is currently empty. Please add attendance instead.
     
 ### 4.5. Performance List
 #### 4.5.1. Add Performance List
