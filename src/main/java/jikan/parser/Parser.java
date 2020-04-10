@@ -27,6 +27,7 @@ import java.io.File;
 
 import jikan.cleaner.LogCleaner;
 
+import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -153,12 +154,12 @@ public class Parser {
         case "graph":
             try {
                 command = new GraphCommand(tokenizedInputs[1]);
-            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-                Ui.printDivider("Please input an integer for the time interval.\n"
-                        + "If you'd like to graph by tags, enter the command <graph tags>.");
+            } catch (NumberFormatException e) {
+                Ui.printDivider("Please input an integer for the time interval.");
             } catch (ExtraParametersException e) {
-                Ui.printDivider("Extra parameters or invalid format detected!\n"
-                        + "Use activities / tags / allocations to view the respective graphs.");
+                Ui.printDivider("Extra parameters or invalid format detected!");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
             }
             break;
         case "goal":

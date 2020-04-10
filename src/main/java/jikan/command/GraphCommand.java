@@ -42,20 +42,19 @@ public class GraphCommand extends Command {
                 graphTags();
                 break;
             case "activities":
-                graphDuration();
+                graphActivities();
                 break;
             default:
-                Ui.printDivider("Please specify whether you want to graph activities / tags / targets.");
+                Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
             }
-        } catch (NumberFormatException | InvalidGraphCommandException e) {
+        } catch (NumberFormatException | MissingParametersException e) {
             Ui.printDivider("Please input an integer for the time interval.");
-        } catch (MissingParametersException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
         }
-
     }
 
-    private void graphDuration() throws MissingParametersException {
+    private void graphActivities() throws MissingParametersException {
         if (inputs.length < 2) {
             throw new MissingParametersException();
         } else {
@@ -64,13 +63,13 @@ public class GraphCommand extends Command {
         }
     }
 
-    private void graphTags() throws InvalidGraphCommandException {
+    private void graphTags() throws MissingParametersException {
         HashMap<String, Duration> tags = new HashMap<>();
         for (Activity activity : lastShownList.activities) {
             extractTags(tags, activity);
         }
         if (inputs.length < 2) {
-            throw new InvalidGraphCommandException();
+            throw new MissingParametersException();
         } else {
             int interval = Integer.parseInt(inputs[1]);
             Ui.printTagsGraph(tags, interval);
