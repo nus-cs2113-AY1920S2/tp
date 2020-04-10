@@ -24,6 +24,10 @@ public class UI {
         System.out.println(message);
     }
 
+    public static void displayStudentListCollectionEmpty() {
+        System.out.println("There is no existing student list.");
+    }
+
     /**
      * Advances this scanner past the current line and stores the input that
      * was skipped, excluding any line separator at the end.
@@ -194,7 +198,7 @@ public class UI {
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
-        display("Please key in the attendance status for student " + studentName + "[Y/N]");
+        display("Please key in the attendance status for student " + studentName + " [Y/N]");
         readUserInput();
         return getUserInput();
     }
@@ -266,13 +270,13 @@ public class UI {
     public void addStudent(StudentList studentList) throws PacException {
         String studentName = "";
         do {
-            display("Please enter a student Name. If you are finished, enter done");
+            display("Please enter a student Name. If you are finished, enter done.");
             readUserInput();
             studentName = getUserInput().trim();
             if (studentName.equals("done")) {
                 break;
             } else if (studentList.isDuplicate(studentName)) {
-                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed");
+                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed.");
             } else {
                 studentList.addToList(studentName);
             }
@@ -286,18 +290,14 @@ public class UI {
     }
 
     public void printStudentListCollection() {
-        if (studentListCollection.isEmpty()) {
-            display("The student list collection is currently empty");
-        } else {
-            DisplayTable displayTable = new DisplayTable();
-            for (int i = 0; i < studentListCollection.size(); i++) {
-                displayTable.printHeaderOfTwo("List #" + (i + 1),
-                        studentListCollection.get(i).getListName());
-                int index = 1;
-                for (String name : studentListCollection.get(i).getStudentList()) {
-                    displayTable.printBodyOfTwo(index, name);
-                    index++;
-                }
+        DisplayTable displayTable = new DisplayTable();
+        for (int i = 0; i < studentListCollection.size(); i++) {
+            displayTable.printHeaderOfTwo("List #" + (i + 1),
+                    studentListCollection.get(i).getListName());
+            int index = 1;
+            for (String name : studentListCollection.get(i).getStudentList()) {
+                displayTable.printBodyOfTwo(index, name);
+                index++;
             }
         }
     }

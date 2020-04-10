@@ -68,15 +68,19 @@ public class EditAttendance extends Command {
      * Method to edit the existing attendance.
      */
     private void edit() {
-        attendanceList.displayAttendanceList();
-        getIndex();
-        displayAttendance();
-        if (setNewName()) {
-            editName();
+        if (attendanceList.isEmpty()) {
+            UI.display("The attendance list is currently empty. Please add attendance instead.");
         } else {
-            editStatus();
+            attendanceList.displayAttendanceList();
+            getIndex();
+            displayAttendance();
+            if (setNewName()) {
+                editName();
+            } else {
+                editStatus();
+            }
+            attendanceList.displayAttendanceList();
         }
-        attendanceList.displayAttendanceList();
     }
 
     /**

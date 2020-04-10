@@ -2,7 +2,7 @@
 
 ## Professor Assistant Console (Pac)
 
-![PAC](images/Pac.png "Pac ver1")  
+![PAC](images/logo.png "PAC")
 
 ## Content Page  
 1. [Introduction](#1-introduction)  
@@ -16,12 +16,12 @@
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
 4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
-4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection-studentlist-view)  
-4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-clear)   
-4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection-studentlist-delete)  
-4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection-studentlist-find)  
-4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection-studentlist-sort)  
-4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name-student-sort)  
+4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
+4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collections)   
+4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
+4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection)  
+4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection)  
+4.1.7. [Sort Student List by List](#417-sort-all-existing-student-lists-from-the-student-list-collection-by-name)  
 4.2. [Event](#42-event)  
 4.2.1. [Add New Event](#421-add-new-event)  
 4.2.2. [View Event List](#422-list-events)  
@@ -33,11 +33,13 @@
 4.3. [Calendar](#43-calendar)  
 4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)   
 4.4 [Attendance List](#44-attendance)    
-4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance-attendance-add)    
-4.4.2. [View Attendance List](#442-view-attendance-list-attendance-view)   
-4.4.3. [Clear Attendance](#443-clear-attendance-list-attendance-clear)  
-4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name-attendance-sort)  
-4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status-attendance-sort)  
+4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance)    
+4.4.2. [View Attendance List](#442-view-attendance-list)   
+4.4.3. [Clear Attendance List](#443-clear-attendance-list)  
+4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name)  
+4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status)  
+4.4.6. [Edit Attendance](#446-edit-attendance)    
+4.4.7. [Find Attendance](#447-find-attendance)  
 4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
@@ -48,7 +50,8 @@
 6. [FAQ](#6-faq)  
 7. [Command Summary](#7-command-summary)  
 8. [Contact Us](#8-contact-us)
-  
+
+##
 ## 1. Introduction
 
 ### 1.1. What is Pac?
@@ -66,6 +69,7 @@ prefers to use a CLI for managing events and students' data. If you can type fas
 Pac can get your event management tasks done faster than traditional GUI apps. Interested?  
 Jump to [Section 2](#2-setting-up) to get started. Enjoy! 
 
+##
 ## 2. Setting Up
 
 ### 2.1. Requirements 
@@ -78,10 +82,10 @@ or above installed in your Computer.
 1.  Open your terminal.
 1.  Navigate to the home folder containing Pac.
 1.  cd followed by the file path into the terminal as shown below:  
-    ![cdImage](images/filepath.PNG "filepath")
+    ![cdImage](images/filepath.png "filepath")
 1.  Type `java -jar Pac-2.1.jar` and press **Enter**.
 1.  You should see this screen if everything is successful:    
-    ![screen](images/startup.PNG "startup screen")
+    ![screen](images/startup.png "startup screen")
 
 
 ##
@@ -95,10 +99,10 @@ e.g. typing help then pressing **Enter** will open the help window.
 Some example commands to try:
 * `event list`			List all events
 * `event add n/CS1010` 	Add an event named “CS1010”
-* `student add`         Create a new student list
+* `studentlist add`     Create a new student list
 * `bye`				    Exits the app
 
-Refer to [“Features”](#Features) for details of each command.
+Refer to [“Features”](#4-features) for details of each command.
 
 ## 4. Features 
 
@@ -108,8 +112,15 @@ a clearer understanding on how you can use the commands.
 
 #### 4.1.1. Add New Student List `studentlist add`
 
-Creates a student list and adds it to the collection of student list that can be used for adding attendance and 
-performance. Please note that you are allowed to add in duplicated names and that all names are CASE-SENSITIVE. 
+Creates a student list and adds it to the collection of student list, `studentListCollection` that can be used 
+for adding attendance and performance. 
+
+Please note the following points when you are using this feature:
+1. Users are NOT allowed to add in duplicated student names or duplicated student list names. 
+1. student names and student list names are CASE-INSENSITIVE.
+    1. For example, you will not be able to add in `cs1010` if there is an existing `CS1010` found in the student
+    list collection
+
 
 Command: 
 
@@ -121,18 +132,26 @@ Examples:
     What is the name of your list?
     
     >>> CS2113T Tut
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> John
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> Jodi
-    Please enter a student Name. If you are finished, enter done
+    Please enter a student Name. If you are finished, enter done.
     
     >>> done
     Student List created, named : CS2113T Tut
+    _________________________________________________________________________________________________
+    | List      |  CS2113T Tut                                                                       |
+    |___________|____________________________________________________________________________________|
+    | 1         |  John                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Jodi                                                                              |
+    |___________|____________________________________________________________________________________|
+
     
-#### 4.1.2 View all existing student lists from the student list collection `studentlist view`
+#### 4.1.2 View all existing student lists from the student list collection
 View all existing students lists from student list collection.
     
 Command: 
@@ -140,7 +159,9 @@ Command:
     >>> studentlist view
         
 Examples: 
-    
+
+The following occurs when there is at least one existing student list in the student list collection. 
+
     >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CS2113T Tut                                                                       |
@@ -170,7 +191,12 @@ Examples:
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
                 
-#### 4.1.3 Clear all existing student lists from the student list collection `studentlist clear`
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist view
+    There is no existing student list.              
+                
+#### 4.1.3 Clear all existing student lists from the student list collections
 Clear all existing student lists from the student list collection. This is a clear all command. If you wish to delete 
 a specific student list, please use the `studentlist delete` instead.
 
@@ -179,22 +205,31 @@ Command:
     >>> studentlist clear
         
 Examples: 
-    
+
+The following occurs when there is at least one existing student list in the student list collection.
+
     >>> studentlist clear
     The Student List Collection is cleared
     
-#### 4.1.4 Clear all existing student lists from the student list collection `studentlist delete`
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist clear
+    There is no existing student list.
+        
+#### 4.1.4 Clear all existing student lists from the student list collection
 Delete a specific student list from the student list collection base on its index. If you wish to delete all student 
-lists in the student list collection, please use `student.list clear` instead.
+lists in the student list collection, please use `studentlist clear` instead.
 
 Command: 
 
     >>> studentlist delete
         
 Examples: 
+
+The following occurs when there is at least one existing student list in the student list collection. 
     
     >>> studentlist delete
-    Please state the index of the list you want to delete
+    Please state the index of the list you want to delete.
     
     >>> 1
     Here is the updated Student List Collection
@@ -204,6 +239,8 @@ Examples:
     | 1         |  Alice                                                                             |
     |___________|____________________________________________________________________________________|
     | 2         |  Carl                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Bobby                                                                             |
     |___________|____________________________________________________________________________________|
     
     _________________________________________________________________________________________________
@@ -216,8 +253,13 @@ Examples:
     | 3         |  Sam                                                                               |
     |___________|____________________________________________________________________________________|
                 
+                
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist delete
+    There is no existing student list.               
     
-#### 4.1.5 Find existing student list(s) from the student list collection `studentlist find`
+#### 4.1.5 Find existing student list(s) from the student list collection
 Find existing student list(s) from student list collection base on keyword.
     
 Command: 
@@ -225,9 +267,40 @@ Command:
     >>> studentlist find
         
 Examples: 
+
+The following occurs when there are existing student list in the student list collection.
     
     >>> studentlist find
-    Please state the list name you are searching for
+    Displaying all student list: 
+    _________________________________________________________________________________________________
+    | List #1   |  CS2113T Tut                                                                       |
+    |___________|____________________________________________________________________________________|
+    | 1         |  John                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Jodi                                                                              |
+    |___________|____________________________________________________________________________________|
+    _________________________________________________________________________________________________
+    | List #2   |  CS2040C                                                                           |
+    |___________|____________________________________________________________________________________|
+    | 1         |  Alice                                                                             |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Carl                                                                              |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Bobby                                                                             |
+    |___________|____________________________________________________________________________________|
+    _________________________________________________________________________________________________
+    | List #3   |  CG2028                                                                            |
+    |___________|____________________________________________________________________________________|
+    | 1         |  Ben                                                                               |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Robert                                                                            |
+    |___________|____________________________________________________________________________________|
+    | 3         |  Sam                                                                               |
+    |___________|____________________________________________________________________________________|
+    | 4         |  Fiona                                                                             |
+    |___________|____________________________________________________________________________________|
+    
+    Please state the list name you are searching for.
     
     >>> CS
     You have 2 matched:
@@ -255,7 +328,7 @@ Examples:
 
     
     >>> studentlist find
-    Please state the list name you are searching for
+    Please state the list name you are searching for.
     
     >>> CG
     You have 1 matched:
@@ -275,12 +348,17 @@ Examples:
     |___________|____________________________________________________________________________________|
                 
     >>> studentlist find
-    Please state the list name you are searching for
+    Please state the list name you are searching for.
     
     >>> EG
     Nothing match you description : EG
+    
+The following occurs when there are no existing student list in the student list collection.
 
-#### 4.1.6 Sort all names within the existing student lists from the student list collection `studentlist sort`
+    >>> studentlist find
+    There is no existing student list.        
+
+#### 4.1.6 Sort all names within the existing student lists from the student list collection
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their list name within the student list collection.
 
@@ -289,6 +367,8 @@ Command:
     >>> studentlist sort
         
 Examples:     
+
+The following occurs when there is at least one existing student list in the student list collection.
 
     >>> studentlist view
     _________________________________________________________________________________________________
@@ -355,11 +435,19 @@ Examples:
     |___________|____________________________________________________________________________________|
     
     
-#### 4.1.7 Sort all existing student lists from the student list collection by name `student sort`
+#### 4.1.7 Sort all existing student lists from the student list collection by name
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their name.
+
+Command: 
     
     >>> studentlist sort
+        
+Examples:     
+
+The following occurs when there is at least one existing student list in the student list collection.
+    
+    >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CG2028                                                                            |
     |___________|____________________________________________________________________________________|
@@ -422,7 +510,7 @@ in order, this command will force all existing lists to be sorted by their name.
     |___________|____________________________________________________________________________________|
     | 2         |  John                                                                              |
     |___________|____________________________________________________________________________________|
-    
+   
      
 ### 4.2. Event
 #### 4.2.1. Add New Event
@@ -571,11 +659,11 @@ Example:
 This section for attendance related commands is done in chronological order. Please follow the numbering to get
 a clearer understanding on how you can use the commands.
 
-#### 4.4.1 Add students’ attendance to event: attendance `attendance add`
+#### 4.4.1 Add students’ attendance to event: attendance
 
 Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
-You may wish to use an existing list found in StudentListCollection.
+You may wish to use an existing list found in `StudentListCollection`.
 
 Please note that if there are existing students in the attendance list of the chosen event, it will add to the existing
 students list. If you wish to start a new attendance list of the chosen event, please use `attendance clear` to clear 
@@ -598,65 +686,179 @@ The following will show a success example of *using an existing name list to add
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
     >>> yes
+    _________________________________________________________________________________________________
+    | List #1   |  CS1010 Tutorial                                                                   |
+    |___________|____________________________________________________________________________________|
+    | 1         |  Jodi Doe                                                                          |
+    |___________|____________________________________________________________________________________|
+    | 2         |  Sam Roe                                                                           |
+    |___________|____________________________________________________________________________________|
     Please choose the name list you wish to use by its index.
     
-    >>> 1    
-    Please key in the attendance status for student Jodi Doe [Y/N].
+    >>> 1
+    Please key in the attendance status for student Jodi Doe [Y/N]
     
-    >>>  N
-    Attendance of Jodi Doe (Absent) has been taken successfully under event Event1
-    ...
+    >>> N
+    Attendance of Jodi Doe (Absent) has been taken successfully under event CS1010 Tutorial.
+    Please key in the attendance status for student Sam Roe [Y/N]
+    
+    >>> Y
+    Attendance of Sam Roe (Present) has been taken successfully under event CS1010 Tutorial.
+    AttendanceList added
 
-The following will show a success example of *creating a new attendance list*.
+The following will show a success example of *creating a new attendance list* using a multi-line interface.
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
     >>> no
+    Are you a new user? If so, please type 'yes' 
+    
+    >>> yes
     Please key in student name.
     
     >>> John Doe
-    Please key in the student's attendance status [Y/N].
+    To mark the student as present, please use 'y' or 'Y'.
+    By default the student will be marked as absent, if any other input is given.
     
     >>> Y
-    Attendance of John Doe (Present) has been taken successfully under event Event1
-    ...
+    Attendance of John Doe (Present) has been taken successfully under event CS1010 Tutorial.
+    Please key in student name.
     
-#### 4.4.2 View attendance list: `attendance view`
+    >>> Sam Roe
+    To mark the student as present, please use 'y' or 'Y'.
+    By default the student will be marked as absent, if any other input is given.
+    
+    >>> N
+    Attendance of Sam Roe (Absent) has been taken successfully under event CS1010 Tutorial.
+    Please key in student name.
+    
+    >>> David Chang
+    To mark the student as present, please use 'y' or 'Y'.
+    By default the student will be marked as absent, if any other input is given.
+    
+    >>> Z
+    Attendance of David Chang (Absent) has been taken successfully under event CS1010 Tutorial.
+    Please key in student name.
+    
+    >>> done
+    You have successfully added 3 to the attendance list.
+    
+The following will show a success example of *creating a new attendance list* using a single line interface.
+
+    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
+    >>> no
+    Are you a new user? If so, please type 'yes' 
+    
+    >>> no
+    Please key following format:
+    n/Name p/Status [Y/N]
+    Status will be take as absent if the format above is not followed.
+    
+    >>> n/JohnDoe p/Y
+    Attendance of JohnDoe (Present) has been taken successfully under event CS1010 Tutorial.
+    Please key following format:
+    n/Name p/Status [Y/N]
+    Status will be take as absent if the format above is not followed.
+    
+    >>> n/SamRoe p/N
+    Attendance of SamRoe (Absent) has been taken successfully under event CS1010 Tutorial.
+    Please key following format:
+    n/Name p/Status [Y/N]
+    Status will be take as absent if the format above is not followed.
+    
+    >>> n/DavidChang p/Z
+    Attendance of DavidChang (Absent) has been taken successfully under event CS1010 Tutorial.
+    Please key following format:
+    n/Name p/Status [Y/N]
+    Status will be take as absent if the format above is not followed.
+    
+    >>> done
+    You have successfully added 3 to the attendance list.
+    
+#### 4.4.2 View attendance list:
 
 View the attendance list under a certain event.  
 
-Command:  `attendance list`
+Command:  `attendance view`
+
+Example:
+
+The following occurs if there is an existing attendance list.
+
+        >>> attendance view
+        Please key in the name of event.
+        
+        >>> CS1010 Tutorial
+        _________________________________________________________________________________________________
+        | index     |  Name of Student                                   |  Status                      |
+        |___________|____________________________________________________|______________________________|
+        | 1         |  John Doe                                          |  Present                     |
+        |___________|____________________________________________________|______________________________|
+        | 2         |  Sam Roe                                           |  Present                     |
+        |___________|____________________________________________________|______________________________|
+        | 3         |  David Chang                                       |  Absent                      |
+        |___________|____________________________________________________|______________________________|
+               
+        
+The following occurs if there is no existing attendance list.
     
 Example:
 
-    >>> attendance list
-    Please key in the name of event.
+        >>> attendance view
+        Please key in the name of event.
+
+        >>> CS2113T Tutorial
+        Attendance List is empty
     
-    >>> CS1010 Tutorial
-    _________________________________________________________________________________________________
-    | index     |  Name of Student                    |  Attendance Status                          |
-    |___________|_____________________________________|_____________________________________________|
-    | 1         |  John Doe                           |  Present                                    |
-    |___________|_____________________________________|_____________________________________________|
-    | 2         |  Jodi Doe                           |  Absent                                     |
-    |___________|_____________________________________|_____________________________________________|
-    
-#### 4.4.3 Clear attendance list: `attendance clear`
+#### 4.4.3 Clear attendance list:
 
 Clear the attendance list under a certain event.  Attendance list is cleared regardless whether 
 the attendance list under the event is empty.
 
 Command:  `attendance clear`
-    
+
 Example:
 
-    >>> attendance list
+The following will show a successful clearing of an existing attendance list.
+
+    >>> attendance view
     Please key in the name of event.
     
     >>> CS1010 Tutorial
-    Attendance List cleared for Event: event1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    
+    >>> attendance clear
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Attendance List cleared for Event: CS1010 Tutorial
+    
+    >>> attendance view
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Attendance List is empty
+    
+The following will show the message shown when clearing of an empty attendance list.
+
+Example:
+
+    >>> attendance clear
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Attendance List is already empty
             
-#### 4.4.4 Sort attendance list by name: `attendance sort`
+#### 4.4.4 Sort attendance list by name:
 
 Sort the attendance list by name in alphabetical order under a certain event.  
 
@@ -664,31 +866,258 @@ Command:  `attendance sort`
     
 Example:
 
-    >>> attendance sort
-    Please Key in either 'name' or 'status'.
-    
-    >>> name
-    Please key in the name of event.
-    
-    >>> CS1010 Tutorial
-    Attendance List is sorted by name for Event: event1
-    
-#### 4.4.5 Sort attendance list by status: `attendance sort`
+The following shows a successful sort the attendance list by name.
 
+The following occurs if there is no existing attendance list.
+
+      >>> attendance sort
+      Please key in the name of event.
+      
+      >>> CS1010 Tutorial
+      Please Key in either 'name' or 'status'.
+      
+      >>> name
+      An empty list cannot be sorted
+      
+#### 4.4.5 Sort attendance list by status:
 Sort the attendance list by attendance status under a certain event with student that are absent on the top.  
 
 Command:  `attendance sort`
     
 Example:
 
-    >>> attendance sort
-    Please Key in either 'name' or 'status'.
-    
-    >>> name
+The following shows the existing attendance list under the event CS1010 Tutorial.
+
+    >>> attendance view
     Please key in the name of event.
     
     >>> CS1010 Tutorial
-    Attendance List is sorted by attendance status for Event: event1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+
+The following shows a successful sort the attendance list by status.
+
+    >>> attendance sort
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Please Key in either 'name' or 'status'.
+    
+    >>> name
+    Attendance List is sorted by attendance name for Event:  CS1010 Tutorial
+    
+    >>> attendance view
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+
+
+
+The following occurs if there is no existing attendance list.
+
+      >>> attendance sort
+      Please key in the name of event.
+      
+      >>> CS1010 Tutorial
+      Please Key in either 'name' or 'status'.
+      
+      >>> status
+      An empty list cannot be sorted
+      
+      >>> attendance view
+      Please key in the name of event.
+      
+      >>> CS1010 Tutorial
+      _________________________________________________________________________________________________
+      | index     |  Name of Student                                   |  Status                      |
+      |___________|____________________________________________________|______________________________|
+      | 1         |  Sam Roe                                           |  Absent                      |
+      |___________|____________________________________________________|______________________________|
+      | 2         |  David Chang                                       |  Absent                      |
+      |___________|____________________________________________________|______________________________|
+      | 3         |  John Doe                                          |  Present                     |
+      |___________|____________________________________________________|______________________________|
+      
+#### 4.4.6 Find attendance:
+Find a student's attendance under a certain event.
+
+Command: `attendance find`
+
+Example:
+
+The following shows a successful find
+
+    >>> attendance view
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Please type the name of the student you are looking for.
+    
+    >>> Mary
+    Search Results
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following occurs when there is no names matching the name that the user inputs.
+
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    Please type the name of the student you are looking for.
+    
+    >>> Richard
+    Search Results
+    There is no student named: Richard.
+    
+The following occurs when the attendance list is empty.
+
+    >>> attendance find
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    The attendance list is currently empty. Please add attendance instead.
+
+#### 4.4.7 Edit attendance:
+Edit a student's attendance under a certain event. 
+This allows the user to overwrite the student's name or status.
+
+Command: `attendance edit`
+
+Example:
+
+    >>> attendance view
+    Please key in the name of event.
+
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following shows when you want to mark student `Sam Roe` as `Present`.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    Please state the index of the student you wish to edit
+    
+    >>> 1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    Do you wish to change the `name` or change the `status`
+    
+    >>> status
+    What do you want to change the status to? [Y/N]
+    
+    >>> Y
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+
+The following shows when you want to change student's name from `Sam Roe` to `Mary Poppins`.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    Please state the index of the student you wish to edit
+    
+    >>> 1
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Sam Roe                                           |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    Do you wish to change the `name` or change the `status`
+    
+    >>> name
+    What do you want to change the name to?
+    
+    >>> Mary Poppins
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Status                      |
+    |___________|____________________________________________________|______________________________|
+    | 1         |  Mary Poppins                                      |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 2         |  David Chang                                       |  Absent                      |
+    |___________|____________________________________________________|______________________________|
+    | 3         |  John Doe                                          |  Present                     |
+    |___________|____________________________________________________|______________________________|
+    
+The following occurs when there is no existing attendance list.
+
+    >>> attendance edit
+    Please key in the name of event.
+    
+    >>> CS1010 Tutorial
+    The attendance list is currently empty. Please add attendance instead.
     
 ### 4.5. Performance List
 #### 4.5.1. Add Performance List
@@ -817,8 +1246,6 @@ You can follow the same procedure to sort by result, but change your input from
 
 *Note: All commands above are not case sensitive.*
 
-## FAQ
-
 ## 5. Possible Console Messages and Reasons:  
 1. If you entered a wrong command type, ie. not specifying 
 which category your command belongs to
@@ -843,15 +1270,19 @@ which category your command belongs to
 
 1. If event list is empty:    
         
-       The event list is empty
+       The event list is empty.
        
 1. If student list is empty:
        
        There is no existing student list.
        
+1. If attendance list under an event is empty: *Message may be different*
+      
+       No attendance list under this event.
+       
 1. If performance list under an event is empty:
 
-       No performance list under this event
+       No performance list under this event.
        _________________________________________________________________________________________________
        | index     |  Name of Student                                   |  Result                      |
        |___________|____________________________________________________|______________________________|
@@ -893,14 +1324,13 @@ step-by-step command for performance and all-in-one command for event?
 
 ## 7. Command Summary
 
-{Give a 'cheat sheet' of commands here}  
 **Student**
-* Add student list `student.list add`
-* View student list `student.list view`
-* Clear student list `student.list clear`
-* Delete student list `student.list delete`
-* Find student list `student list.find`
-* Sort student list `student list.sort`  
+* Add student list `studentlist add`
+* View student list `studentlist view`
+* Clear student list collection `studentlist clear`
+* Delete student list `studentlist delete`
+* Find student list `studentlist find`
+* Sort student list `studentlist sort`  
 
 **Event**
 * Add event `event add n/NAME d/DATE t/TIME v/VENUE`
@@ -918,6 +1348,8 @@ step-by-step command for performance and all-in-one command for event?
 * View attendance list `attendance view`
 * Clear attendance list `attendance clear`
 * Sort attendance list `attendance sort`
+* Edit attendance `attendance edit`
+* Find attendance `attendance find`
 
 **Performance**
 * Add performance `performance add`
