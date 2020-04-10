@@ -180,9 +180,7 @@ The user can input as many sales as they like as long as the dish exists in the 
 Step 3. The user can generate the profit by inputting `profit`.
 
 The execution can be viewed in the sequence diagram below.
-<p align="center">
-    <img src="documentations\Ned\GenerateProfitSequenceDiagram.png">
-</p>
+![](https://github.com/nguan1/tp/blob/master/docs/documentations/Ned/GenerateProfitSequenceDiagram.PNG)
 
 #### 1.3.2 Design Considerations
 ##### Aspect: Using a separate class to perform sale commands
