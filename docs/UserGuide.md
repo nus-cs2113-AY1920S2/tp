@@ -483,6 +483,8 @@ You can obtain an calendar overview of all tasks you might have in the specified
 
 Format: `calendar d/[MM/YY]`
 
+Example: `calendar d/05/20`
+
 Expected outcome:
 
 ![calendar.png](images/calendar2.png)
