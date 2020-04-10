@@ -1,7 +1,11 @@
 # Developer Guide
-- [Design](#1-design)
-- [Implementation](#2-implementation)
-  - [[Proposed] Subject Feature](#21-proposed-subject-feature)
+1.  [Design](#1-design)
+2. [Implementation](#2-implementation)
+<br />2.1. [Subject Feature](#21-subject-feature)
+<br />2.2. [Quiz Feature](#22-quiz-feature)
+<br />2.3. [Score Feature](#23-score-feature)
+<br />2.4. [Event Management Feature](#24-event-management-feature)
+<br />2.5. [Save/Load Feature](#25-saveload-feature)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
 - [Appendix B: User Stories](#appendix-b--user-stories)
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
@@ -79,7 +83,7 @@ The flow of the logic component is as follows:
 </p>
 
 ## 2. Implementation
-### 2.1. [Proposed] Subject Feature
+### 2.1. Subject Feature
 #### 2.1.1. Proposed Implementation
 The subject feature is an extension to the existing flashcard feature which allows users to categorise their
 flashcards. This helps users to search for their flashcards more efficiently and also users to quiz by subject. The list of user's subjects are stored inside the SubjectList. It implements the following operations:
