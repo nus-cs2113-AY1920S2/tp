@@ -24,6 +24,7 @@ public class Activity {
     private LocalDate date;
 
     public static final int MAXPERCENT = 100;
+
     /**
      * Constructor for a new activity entry.
      * @param name represents the name of the activity
