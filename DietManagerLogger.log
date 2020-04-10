@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-10T14:08:35.001909600Z</date>
-  <millis>1586527715001</millis>
-  <nanos>909600</nanos>
+  <date>2020-04-10T17:34:25.066342200Z</date>
+  <millis>1586540065066</millis>
+  <nanos>342200</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-10T14:08:35.066932Z</date>
-  <millis>1586527715066</millis>
-  <nanos>932000</nanos>
+  <date>2020-04-10T17:34:25.168575900Z</date>
+  <millis>1586540065168</millis>
+  <nanos>575900</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,22 +26,10 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-10T14:08:35.075865200Z</date>
-  <millis>1586527715075</millis>
-  <nanos>865200</nanos>
+  <date>2020-04-10T17:34:25.192545600Z</date>
+  <millis>1586540065192</millis>
+  <nanos>545600</nanos>
   <sequence>2</sequence>
-  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
-  <level>INFO</level>
-  <class>seedu.dietmanager.commons.core.LogsCentre</class>
-  <method>writeInfoLog</method>
-  <thread>1</thread>
-  <message>Profile Information Invalid, Profile cleared.</message>
-</record>
-<record>
-  <date>2020-04-10T14:08:35.077832300Z</date>
-  <millis>1586527715077</millis>
-  <nanos>832300</nanos>
-  <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
@@ -50,10 +38,10 @@
   <message>Existing Food Nutrition Record found: food-nutrition-record.txt</message>
 </record>
 <record>
-  <date>2020-04-10T14:08:35.084208900Z</date>
-  <millis>1586527715084</millis>
-  <nanos>208900</nanos>
-  <sequence>4</sequence>
+  <date>2020-04-10T17:34:25.198530300Z</date>
+  <millis>1586540065198</millis>
+  <nanos>530300</nanos>
+  <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
@@ -62,21 +50,33 @@
   <message>Existing Recipe file found: recipe.txt</message>
 </record>
 <record>
-  <date>2020-04-10T14:08:35.087855400Z</date>
-  <millis>1586527715087</millis>
-  <nanos>855400</nanos>
+  <date>2020-04-10T17:34:25.204512800Z</date>
+  <millis>1586540065204</millis>
+  <nanos>512800</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
+  <method>writeInfoLog</method>
+  <thread>1</thread>
+  <message>Recipe Information Invalid, Recipe cleared.</message>
+</record>
+<record>
+  <date>2020-04-10T17:34:25.207606Z</date>
+  <millis>1586540065207</millis>
+  <nanos>606000</nanos>
   <sequence>5</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
   <method>writeInfoLog</method>
   <thread>1</thread>
-  <message>No existing food record file found, new file created: daily-food-record.txt</message>
+  <message>Existing food record file found: daily-food-record.txt</message>
 </record>
 <record>
-  <date>2020-04-10T14:08:35.088804500Z</date>
-  <millis>1586527715088</millis>
-  <nanos>804500</nanos>
+  <date>2020-04-10T17:34:25.211460500Z</date>
+  <millis>1586540065211</millis>
+  <nanos>460500</nanos>
   <sequence>6</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -85,3 +85,16 @@
   <thread>1</thread>
   <message>Starting Diet Manager</message>
 </record>
+<record>
+  <date>2020-04-10T17:34:38.783359300Z</date>
+  <millis>1586540078783</millis>
+  <nanos>359300</nanos>
+  <sequence>7</sequence>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
+  <method>logExitProgramme</method>
+  <thread>1</thread>
+  <message>Exiting Diet Manager</message>
+</record>
+</log>

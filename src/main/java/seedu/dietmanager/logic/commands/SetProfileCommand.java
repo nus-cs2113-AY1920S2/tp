@@ -8,7 +8,6 @@ import seedu.dietmanager.commons.exceptions.InvalidHeightException;
 import seedu.dietmanager.commons.exceptions.InvalidNameException;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.AgeParser;
 import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.logic.parser.GenderParser;
