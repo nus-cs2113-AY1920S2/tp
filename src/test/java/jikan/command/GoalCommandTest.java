@@ -85,7 +85,7 @@ class GoalCommandTest {
     @Test
     void executeGoal() throws IOException {
         Storage tagStorage = new Storage("data/tag_test.txt");
-        String TAG_TEST_FILEPATH = "data/tag_test.txt";
+        String testFile = "data/tag_test.txt";
         tagStorage.loadFile();
         assertTrue(tagStorage.dataFile.exists());
         try {
@@ -102,7 +102,7 @@ class GoalCommandTest {
         Command command = new GoalCommand(parameters, scanner, tagStorage);
         try {
             command.executeCommand(activities);
-            if (checkIfExists(tagName, TAG_TEST_FILEPATH) != -1) {
+            if (checkIfExists(tagName, testFile) != -1) {
                 found = true;
             } else {
                 found = false;
