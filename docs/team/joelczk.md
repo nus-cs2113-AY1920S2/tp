@@ -26,7 +26,7 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     planning had to be done before implementing this feature. 
     * The `CLEARING COMPLETED TASKS` enhancement was tedious to implement as there is a need to obtain the original task list and the list of completed tasks.
     Thus, a lot of function calls were required and so, there is a need to consistently keep track of the function calls used during implementation so that the
-    implementation does not introduced incorrect behaviour for the enhancement.
+    implementation does not introduce incorrect behaviour for the enhancement.
     
 **Minor Enhancement** : Implemented the *DELETE* command, wrote the code skeleton for `Assignment`,`Event` and `Task`, 
 wrote the code skeleton for various JUnit Tests (e.g. `AssignmentTest`,`EventTest`,`MarkAsDoneTest`)
