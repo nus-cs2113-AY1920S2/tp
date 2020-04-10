@@ -46,11 +46,8 @@ public class Main {
     public void start(String[] args) {
         this.stock = new Stock();
         this.menu = new Menu();
-        // this.reservations = new ReservationList();
         this.ui = new Ui();
         this.sales = new Sales();
-
-
 
         // set up the logger
         LoggerUtils.createLogFolder(LOG_FOLDER);
