@@ -3,10 +3,8 @@ package seedu.command.performance;
 import seedu.command.Command;
 import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
-import seedu.ui.UI;
 
 public class ViewStudentPerformanceList extends Command {
-    UI ui;
     private PerformanceList performanceList;
 
     /**
@@ -15,7 +13,6 @@ public class ViewStudentPerformanceList extends Command {
      */
     public ViewStudentPerformanceList(PerformanceList performanceList) {
         this.performanceList = performanceList;
-        this.ui = new UI();
     }
 
     @Override

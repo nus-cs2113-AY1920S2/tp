@@ -88,7 +88,7 @@ DisplayList and DisplayTable, to specifically print the list and table interface
 Commands are the main classes to be executed in Pac. All of the specific Command classes inherit the 
 base Command abstract class, and utilize its abstract execute() method.  
 A subclass of Command is created and executed when the professor input a corresponding command.
- 
+
 ### 2.4 Parser component
 *Class diagram of the Parser component*  
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
@@ -113,6 +113,33 @@ On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and
 All `Event` and `StudentList` objects are receiving `Bye` command. If the 
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
+
+### 2.6. Command Interpreter
+![CommandInterpreter](image/CommandInterpreter.png "Sequence diagram of Command Interpreter") 
+*Sequence diagram of Command Interpreter*  
+Command Interpreter is the main interpreter in Pac. It determines which command 
+category the user input belongs to, and creates respective command interpreter 
+correspond to user input.  
+The user input will be further interpreted by corresponding command interpreter, which
+returns Command for execution.
+
+
+#### 2.6.1 Event Command Interpreter
+#### 2.6.2 Attendance Command Interpreter
+#### 2.6.3 Performance Command Interpreter
+Performance Command Interpreter interprets the user input when it belongs to the
+performance category. 
+When user input is passed to Performance Command Interpreter, it extracts the 
+second word in the user input and decides whether that string can be interpreted to a
+valid Command. If valid, the interpreter returns its corresponding Command. 
+If invalid, the interpreter throws PacException to inform the user. 
+Below shows the flow chart and sequence diagram of 
+Performance Command Interpreter. 
+![Flow chart](PerformanceCommandInterpreterFlowChart.png)
+![Sequence diagram](image/PerformanceCommandInterpreterSequenceDiagram.png) 
+
+#### 2.6.4 Seminar Command Interpreter
+#### 2.6.5 Student Command Interpreter
 
 ## 3. Implementation 
 ### 3.1 Event
@@ -167,7 +194,8 @@ Note that:
 it can be implement to truncate longer names to fit nicely
 
 ### 3.4 Performance
-![Performance](images/Performance.png "Class diagram of Performance component")     
+![Performance](images/Performance.png "Class diagram of Performance component")
+    
 *Class diagram of the Performance component*  
 1. When a user enters a performance-related command, the command is analysed by `PerformanceCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the command is created (e.g. AddPerformance, 
