@@ -1,7 +1,9 @@
 import commands.ReservationCommand;
 import exceptions.InvalidFilePathException;
+import exceptions.InvalidLoadException;
 import exceptions.StockReadWriteException;
 import exceptions.ReservationException;
+import report.LoadDish;
 import report.LoadReservation;
 import report.LoadStock;
 import reservation.Reservation;
@@ -13,6 +15,7 @@ import ui.Ui;
 import utils.CommandParser;
 import utils.LoggerUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static utils.Constants.LOG_FOLDER;
@@ -45,7 +48,6 @@ public class Main {
     /** Sets up the required objects and shows a welcome message. */
     public void start(String[] args) {
         this.stock = new Stock();
-        this.menu = new Menu();
         this.ui = new Ui();
         this.sales = new Sales();
 
@@ -72,6 +74,15 @@ public class Main {
             this.reservations = new ReservationList();
         } catch (ReservationException e) {
             this.reservations = new ReservationList();
+        }
+        
+        try {
+            this.menu = LoadDish.getInstance("report.txt").readDishes();
+        } catch (InvalidLoadException e) {
+            ui.showMessage("Error loading from file, creating new menu");
+            this.menu = new Menu();
+        } catch (FileNotFoundException e) {
+            this.menu = new Menu();
         }
         
         LoadStock ls = Stock.getStockLoader();
