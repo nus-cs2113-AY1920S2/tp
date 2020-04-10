@@ -162,6 +162,22 @@ Example output:
 TODO: update image
 ![](images/capture5.png)
 
+<br/>
+
+**Timetable extended view:** Displays up to 2 weeks of timetable.
+
+Format:
+
+    more
+    
+Example of usage:
+
+    more
+    
+Example output:
+
+TODO:update image
+
 [&#8593; Return to list of Features](#features)
 
 <br/>
