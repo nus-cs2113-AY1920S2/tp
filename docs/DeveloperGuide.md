@@ -31,7 +31,7 @@ The design of the project from the point of view of the user can be described as
 
 ![Image of Design](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/images/design.png)
 
-The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Command** component for processing. Depending on the user response, the command can either i) affect existing lists of jobs, news or articles or ii) give user access to new articles through the **API** component or iii) load pre-existing information pieces (articles, jobs) inputted into the program through the **Creator** component. More commands can be called on information pieces loaded through the **API** component or the **Creator** component. At the end, the lists of articles, jobs and notes are stored through the **Storage** component.
+The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Commands** component for processing. Depending on the user response, the commands component can either i) affect existing lists of jobs, news or articles in the **Lists** component or ii) give user access to new articles through the **API** component or iii) load pre-existing information pieces (articles, jobs) inputted into the program through the **Creator** component. More commands can be called on information pieces loaded through the **API** component or the **Creator** component using the **Commands** component. When the program terminates, the lists of articles, jobs and notes are stored through the **Storage** component.
 
 ## 3. Implementation
 
@@ -43,21 +43,21 @@ Note: You will need to create an `article`, `job` or `note` for the feature. It 
      2. create job
      3. create note
                         
-For more information, please refer to the user guide.
+For more information about the `create` feature, please refer to the user guide [here](https://github.com/AY1920S2-CS2113-T14-2/tp/blob/master/docs/UserGuide.md#create-command).
 
 ### `create` feature
 
 **Current Implementation:**
 
-The `InformationCreator` is a standalone class inside the `commands` package. The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them an ArrayList of object types Article, List, or Note, respectively. 
+The `InformationCreator` is a standalone class inside the `commands` package. The `create` feature helps the user create information objects that can be instances of `article`, `note` and `job` classes and automatically add them an ArrayList of object types Article, Job, or Note, respectively. 
 
 Given below is an example usage and how the `CreateCommand` mechanism behaves at each step:
 
 * Step 1:
-The user launches the application and it loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the stored, corresponding JSON files. If the data of these JSON files do not exist in the memory, the application creates new JSON files to store into memory and makes the initial ArrayLists in the application empty. 
+The user launches the application and it loads the `SavedNoteList`, `SavedArticleList` and `SavedJobList` from the storage using the corresponding JSON files("articleList.json", "jobList.json" and "noteList.json"). If even one of these JSON files do not exist in the memory, the application creates entirely new JSON files with empty initial ArrayLists to store articles, jobs and notes. 
 
 * Step 2:
-The user enters a command, `create article`, for instance, into the command line. The`TechToday#executeProgram()` method from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator#execute(userResponse)` method, where `userResponse` is the original command provided by the user.
+The user enters the command, `create article`, for instance, into the command line. The`TechToday#executeProgram()` method from the ProgramExecutor class parses the command provided and takes the first word of the command. Since the first word is `create`, it calls a static  `InformationCreator#execute(userResponse)` method, where `userResponse` is the original command provided by the user.
 
 * Step 3:
 The  `InformationCreator#execute(userResponse)` method again parses the user command to check what kind of information object the user is seeking to create. The three possibilities are `article`, `job` and `note`. The following daigram illustrates what steps are taken for different user responses.
@@ -70,7 +70,7 @@ The  `InformationCreator#execute(userResponse)` method again parses the user com
 As seen from the above diagram, since the user response was `create article`, the static method, `ManualArticleCreator#execute()`, is called.
 
 * Step 5:
-The `ManualArticleCreator#execute()` method asks the user for information including **title**, **url**, **category**, and **extract** of the article by calling the `Ui#getCommand()`. The `ManualArticleCreator#execute()` fetches the current time and creates a timestamp of that time. The timestamp is assigned to a String variable called **epochSecond**. The five afformentioned variables(in bold) are used to create an `article` object, which is then added to the `SavedArticleList` eventually.
+The `ManualArticleCreator#execute()` method asks the user for information including **title**, **url**, **category**, and **extract** of the article by calling `Ui#getArticleTitle()`, `Ui#getArticleUrl()`, `Ui#getArticleCategory()` and `Ui#getArticleExtract()` methods respectively. The `ManualArticleCreator#execute()` fetches the current time and creates a timestamp of that time. The timestamp is assigned to a String variable called **epochSecond**. The five afformentioned variables(in bold) are used to create an `article` object, which is then added to the `SavedArticleList` eventually.
 
 
 *The following sequence diagram summarizes how `create` command works:*
@@ -82,11 +82,14 @@ The `ManualArticleCreator#execute()` method asks the user for information includ
 
 ### Value Proposition
 
-TechToday Information Tracker (TTIT) is for those who want to organise information about technology. It help one add details of articles, questions about jobs, and personal technology notes. TTIT also lets you view latest jobs/articles from HackerNews when you have access to the internet so that you can instantly save interesting ones without having to type details about the viewed job/article. It is important to note that TTIT isn't a news portal but simply an information organiser that helps you organise technology infomration into three forms: article, jobs and notes(miscellaneous). 
+As _lifelong learners of technology brekthroughs, Computer Science and closely related disciplines_, we have access to so many news portals, job portals and we create notes ourselves. Given the sheer volume of information we have, it almost becomes hard for one to manage all that information. TechToday Information Tracker (TTIT) is for who want to organise information about technology. In particular, it helps a user **view** new articles/jobs from HackerNews (or pre-loaded articles in the event of no internet), **save** viewed articles/jobs and **create** information describing not only articles/jobs from other sources but also notes. All in all, TTIT's value stems from being an application to manage your information abot technology so that you can come back to it later rather than being drowned by the sheer volume of publicly available information about technology.
+
+Note thatTTIT utilizes Hacker News [API](https://github.com/HackerNews/API) to give the user the option to view new news articles and jobs and also has a feature to save them. 
+
 
 ### Target user profile
 
-TechToday Information Tracker (TTIT) is targeted to lifelong followers of technology brekthroughs who wish to organise the information that they consume.
+TechToday Information Tracker (TTIT) is targeted at _lifelong followers of technology brekthroughs_ who wish to organise the information that they consume.
 
 ### User Stories
 
@@ -150,30 +153,29 @@ Follow the following steps to manually test the product:
 
 3. Once the program starts, you should get the following output: 
 
-               __________________________________________________________________________________________
+        _ **_____________________________________________________________________________**_
+        _                                                                                  _
+        _                             Hello! Here's TechToday.                             _
+        _            Let me show you some technology news to refresh your mind!            _
+        _ **_____________________________________________________________________________**_
+        _                    Your queries can be of the following forms:                   _
+        _                                      1. help                                     _
+        _                              2. view [article / job]                             _
+        _                       3. save [article / job] INDEX_NUMBER                       _
+        _                         4. create [article / job / note]                         _
+        _                          5. list [article / job / note]                          _
+        _                   6. delete [article / job / note] INDEX_NUMBER                  _
+        _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+        _                                      8. exit                                     _
+        _                                                                                  _
+        _ **_____________________________________________________________________________**_
+             What can I do for you?
 
-                _                                                                                  _
-                _                             Hello! Here's TechToday.                             _
-                _            Let me show you some technology news to refresh your mind!            _
-                _ **_____________________________________________________________________________**_
-                _                    Your queries can be of the following forms:                   _
-                _                                      1. help                                     _
-                _                              2. view [article / job]                             _
-                _                       3. save [article / job] INDEX_NUMBER                       _
-                _                         4. create [article / job / note]                         _
-                _                          5. list [article / job / note]                          _
-                _                   6. delete [article / job / note] INDEX_NUMBER                  _
-                _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-                _                                      8. exit                                     _
-                _                                                                                  _
-                _ **_____________________________________________________________________________**_
-                     What can I do for you?
+        All the required files do not exist. We will create completely new files to save your data.
+        __________________________________________________________________________________________
 
-                No files with your data exits, we will create new files to save your data.
-                __________________________________________________________________________________________
-        
 
-4. **Note** Ensure that it outputs `No files with your data exits, we will create new files to save your data.`
+4. **Note** Ensure that it outputs `All the required files do not exist. We will create completely new files to save your data.`
 
 5. Type `list article` and ensure the initial list is empty. You should get the following output: 
 
@@ -530,8 +532,8 @@ Follow the following steps to manually test the product:
 
 ## 8. Glossary 
 
-* Article - an object that is meant to represent and have characterisitcs of a news/website article 
-* Job - a technology related employment 
+* Article - an object that contains the metadata of a news/website article 
+* Job - an object that contains the metadata about opportunities/questions about technology related jobs.
 * Note - an object that holds additional information about a certain topic that does not fit under article or job description. 
 * Extract - refers to additional information you would like to add to certain article, job, or note object. 
 
