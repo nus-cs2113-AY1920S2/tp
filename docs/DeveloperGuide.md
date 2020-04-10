@@ -180,7 +180,6 @@ This document will cover the structure and software design decisions for the imp
 
 ## **Design**  
 
-
 [Back To Top](#table-of-contents)    
 <br>  
 <br>
@@ -261,13 +260,9 @@ Total modules: 3
    +--------------------------------------------------------------------------------------------------+
 ```
 
-
+![image-20200326014336120](images/Add_Module_Command_Sequence_Diagram.png)
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
-
-```
-	// To do Sequence diagram here
-```
 
 
 
@@ -359,9 +354,9 @@ Total categories: 5
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-```
-to-do: add the sequence diagram
-```
+![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
 
@@ -377,7 +372,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### Feature Implementation  
 
-![Delete Command Class Diagram](images/List_Command_Class_Diagram.png)
+![List Command Class Diagram](images/List_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -422,7 +417,9 @@ After the input is parsed as a **list module** command and executed, the `ListMo
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![Delete Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
+![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>List Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
 
@@ -442,11 +439,12 @@ When the user first requests to execute the <b>delete</b> command to delete a <i
 
 #### **Implementation**  
 <br>
-  
+
 ![delete command class diagram](images/dg_delete_class.png)     
 <span style="color: green"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>   
     
 <br>
+
 <div>
 The <b>delete</b> commands are similar to each other, and targets to delete <i>directories</i> of a specific <i>directory level</i>. For example, the <code>DeleteTaskCommand</code> class will only delete <i>tasks</i> <i>(and not modules, categories or files)</i>.
 <br><br>
@@ -456,10 +454,9 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-     
 ![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
-   
+
 <br> 
 Two <b>prompt</b> commands are involved in the deletion process:<br>  
 <ol>  
@@ -475,8 +472,8 @@ corresponding <code>DeleteCommand</code> and <code>DeleteConfirmationPrompt</cod
 <br>
 The deletion process can thus be broken down into <b>3</b> stages. We provide for you the relevant <i>sequence diagrams</i> to help you to see how each stage works in our current implementation of the <b>delete</b> command.
 </div>  
-   
-  
+
+
 <div>
 <big><big><big><big><big style="color: green">&#10102;</big></big></big></big></big>
 The user, <i>say Peter in this example</i>,  will first request the <i>directory(s)</i> he wishes to be deleted. Assume Peter currently has these <i>modules</i> in his <b>Module List</b>:
@@ -505,7 +502,7 @@ The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</
 </div>
 <br>
 The <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10102;</big></big>:<br>   
- 
+
 ![delete command sequence diagram](images/dg_delete_seq.png)  
  <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 1</b></i></small></span>   
 
@@ -513,7 +510,7 @@ The <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10
 <big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
 Peter receives the following prompt: 
 </div>
-  
+
 ```  
 Multiple matching modules were found.
 +--------------------------------------------------------------------------------------------------+
@@ -582,7 +579,7 @@ SUCCESS!! Module(s) have been deleted.
 and the delete process ends.  
 </div>
 <br>   
-  
+
 [Back To Top](#table-of-contents)    
 
 #### **Design Considerations**     
@@ -640,7 +637,7 @@ Finally, the <b>edit</b> command will perform the <code>edit()</code> method to 
 The <code>Parser</code> class also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
 </div>   
 <br>    
-   
+
 An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>       
 ![edit command sequence diagram](images/dg_edit_seq.png)    
 <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
@@ -759,7 +756,7 @@ Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:
 <div>  
 The <b>info</b> command shows the information of the <i>current directory</i> that the user is in. For example, when in the <b>Module</b> directory, the <b>info</b> command will show the <i>module code</i>, <i>module title</i> and the <i>module</i>'s <i>category list</i> to the user.  
 </div>  
-   
+
 #### **Implementation**     
 <div>
 The implementation of this command is quite straightforward. <br>
@@ -779,7 +776,7 @@ The <i>sequence</i> diagram of what happens when a user executes the <b>info</b>
 <div>
 The <b>undo</b> and <b>redo</b> commands work hand in hand with each other. The <b>undo</b> command undoes a <i>change</i> made to the <b>Directory List</b>. <i>Change</i> here refers to adding, deleting or editing items to the <i>list</i>. The <b>redo</b> command reverts the effect of the <b>undo</b> command.   
 </div>  
-   
+
 #### **Implementation**     
 <div>
 The state of the <i>directories</i> is being maintained by the <code>ScreenShotManager</code> class. This is done via two <b>stacks</b>, one for <b>undo</b>, and the other for <b>redo</b>.  <br><br>
@@ -876,7 +873,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`* *` |student |receive a reminder of expired tasks |I know I passed the deadline |
 
 _{More to be added}_
-
 
 [Back To Top](#table-of-contents)    
 <br>  
