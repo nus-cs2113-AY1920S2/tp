@@ -137,7 +137,7 @@ What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing 
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.    
   
 ### **Nuke Structure**  
-**Nuke** follows the structure of a **Directory Tree** _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:  
+**Nuke** follows the structure of a **Directory Tree** &#127795; _(i.e. folder sub-folder structure)_. This Directory Tree comprises various levels:  
   
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
   

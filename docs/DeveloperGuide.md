@@ -1,5 +1,6 @@
 
 
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -76,12 +77,12 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <br>  
-<big style="color: green">  **Architecture** [&#10149;](#architecture)  </big>  
+<big style="color: green">  **Design** [&#10149;](#design)  </big>  
 <br>    
 <big style="color: green">  **Structure Implementation** [&#10149;](#structure-implementation)  </big>   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory** [&#10149;](#1-directory)    
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Manager** [&#10149;](#2-directory-manager)    
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Traversal** [&#10149;](#3-directory-traversal)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Traverser** [&#10149;](#3-directory-traversal)    
 <br>   
 <big style="color: green"> **Command Implementation** [&#10149;](#command-implementation)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; **1. Add Command** [&#10149;](#1-add-command)    
@@ -136,12 +137,12 @@ This document will cover the structure and software design decisions for the imp
 
 ### **Setting Up**
 
-#### 1.1. Prerequisites
+#### **1.1. Prerequisites**
 
 1. JDK 11
 2. IntelliJ IDE
 
-#### 1.2. Setting up the project
+#### **1.2. Setting up the project**
 1.  Fork [this repository](https://github.com/AY1920S2-CS2113T-T13-2/tp), and clone the fork to your computer
 
 2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
@@ -160,7 +161,7 @@ This document will cover the structure and software design decisions for the imp
 
 7.  Click `OK` to use the default settings provided
 
-#### 1.3. Verifying the Setup
+#### **1.3. Verifying the Setup**
 1.  In an IntelliJ terminal, run `gradlew build`
 
 2.  Navigate to the folder `build` &gt; `libs` by executing  `cd build/libs/` and then run: `java -jar nuke-2.0.jar`
@@ -182,8 +183,124 @@ This document will cover the structure and software design decisions for the imp
 
 
 [Back To Top](#table-of-contents)    
-<br>  
+<br>  <br>  
+
+## **Structure Implementation**  
+<div>
+This section shall discuss about our implementation of the overall structure of the <b>Nuke</b> application. We will highlight <b>three</b> main features of the current structure: <b><a href="#directory">Directory</a></b>, <b><a href="#directory-manager">Directory Manager</a></b> and <b><a href="#directory-traverser">Directory Traverser</a></b>.
+</div>
+
+### **Directory**    
+<div>
+The <b>Nuke</b> application attempts to simulate the structure of a <b>Directory Tree</b> &#127795; <i>(folder sub-folder)</i> structure. This means that there is a hierarchy for different <i>directories</i> in the <b>Tree</b>. Each <i>directory</i> will have a corresponding <i>parent directory</i>, with the exception of the <i>base directory</i>. In <b>Nuke</b>, this <i>base</i> directory is called the <b>Root</b>.
+<br><br>
+There are altogether <b>5</b> levels in the current implementation of <b>Nuke</b>'s <b>Directory Tree</b>:
+</div>
 <br>
+<div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
+  
+| Directory Level | Description                                                                      |  
+|:---------------:|----------------------------------------------------------------------------------|  
+| **Root** | The **base** of the <b>Directory Tree</b>. Only **one** root exists in the entire <b>Tree</b>. |  
+| **Module** | The **second** level of the Directory Tree.                                           |  
+| **Category** | The **third** level of the Directory Tree.                                          |  
+| **Task** | The **fourth** level of the Directory Tree.                                             |  
+| **File** | The **last** level of the Directory Tree.                                               |  
+
+<br>
+<div>
+The <i>parent directory</i> of each <i>directory</i> is the one at the <b>previous</b> level. The <b>Root</b>'s <i>parent</i> is <code>NULL</code>, <i>i.e. nothing</i>. 
+<br><br>  
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+The hierarchy of the <b>Directory Tree</b> set in place has to be followed strictly. That means, their level in the <b>Tree</b> can never be changed.
+</div>   
+<br>
+The basic <i>class diagram</i> of the structure can be shown below. A more detailed <i>class diagram</i> with the attributes for each <i>directory</i> is shown <a href="#???">here</a>.
+</div>   
+  
+![directory class diagram basic](images/dg_directory_class_basic)   
+ <span style="color: green"><small><i>Figure <b>Directory Class Diagram (Basic)</b></i></small></span>   
+ <br>
+
+<div>
+The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</b> each have their own set of attributes. Also, apart from the <b>File</b> directory, each of them have a corresponding <b><a href="#directory-manager">Directory Manager</a></b> class that stores and manages the operations regarding the <i>child directories</i>. For example, a <code>Module</code> has a <code>CategoryManager</code> class that stores the <i>module</i>'s <i>categories</i>, and manages their operations <i>(such as adding and deleting)</i>.
+<br><br>
+We will show a more detailed <i>class diagram</i>, as well as describe each of the <b>Directory</b>'s attributes below: 
+</div>   
+<br>
+
+![directory class diagram](images/dg_directory_class.png)    
+<span style="color: green"><small><i>Figure <b>Directory Class Diagram</b></i></small></span>   
+ <br>
+
+
+#### **Root**    
+<div>
+The <b>Root Directory</b> is the <b>base</b> of the entire <b>Directory Tree</b>. Only <b>one</b> <i>root</i> exists in the entire <b>Tree</b>. The <i>root</i> does not have any attributes, and its parent is <code>NULL</code>.
+</div>
+  
+#### **Module**    
+<div>
+The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree</b>. It corresponds to a <i>module</i>. A <i>module</i> has a <i>module code</i> and <i>title</i>. It also has a <b>Category Manager</b> which stores <i>categories</i> to categorise the user's <i>tasks</i>, such as "Lecture", "Tutorial" and "Assignment". 
+</div>
+<br>
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
+</div>     
+  
+#### **Category**   
+<div>
+The <b>Category Directory</b> is the <b>third</b> level of the <b>Directory Tree</b>. It corresponds to a <i>category</i>. A <i>category</i> consists of a <i>name</i> and a <i>priority</i> to indicate the importance of the <i>tasks</i> in that <i>category</i>. Each <i>category</i> has a <b>Task Manager</b> that stores the user's <i>tasks</i>.  
+</div>
+  
+#### **Task**  
+<div>
+The <b>Task Directory</b> is the <b>fourth</b> level of the <b>Directory Tree</b>. It corresponds to a <i>task</i>. A <i>task</i> has several attributes, namely the <i>description</i>, <i>deadline</i> of the <i>task</i> if any, <i>priority</i> and the <i>done status</i> of the <i>task</i>.  Each <i>task</i> contains a <b>File Manager</b> that stores the <i>task</i>'s <i>files</i>.
+</div>  
+  
+#### **File**  
+<div>
+The <b>File Directory</b> is the <b>last</b> level of the <b>Directory Tree</b>. It corresponds to a <i>file</i>. The <i>file</i> must have a <i>file name</i>, <i>file path</i>, and its <i>original file path</i> It does no have a corresponding <b>Directory Manager</b>.     
+</div>  
+<br>  
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The <i>original file path</i> is the <i>path</i> to where the <i>original file</i> is taken from in the application. In our current implementation, <b>Nuke</b> will then make a copy of the <i>file</i> and save it into a new location, and the <i>path</i> to the new location is stored in the <i>file path</i> attribute.
+</div>     
+
+[Back To Top](#table-of-contents)    
+<br> 
+
+### **Directory Manager**    
+<div>
+The <b>Directory Manager</b> is a collective term used to refer to the <b>Module Manager</b>, <b>Category Manager</b>, <b>Task Manager</b> and <b>File Manager</b>. The <b>Directory Manager</b> manages the storage and operations of the <b>Directory</b> it is managing. For example, the <code>ModuleManager</code> object will manage <code>Module</code> objects. The <b>Directories</b> are stored in an <code>ArrayList</code>.
+<br><br>
+The various <b>Directory Manager</b> classes contain very similar methods to carry out operations regarding its <b>Directories</b>. For example, in the <code>ModuleManager</code> class, there are:
+<ul>
+<li><code>getModule(String: moduleCode)</code> &ndash; Gets a <code>Module</code> object from the <code>ArrayList</code> based on the <code>moduleCode</code> provided</li>
+<li><code>add(Module)</code> &ndash; Adds a <code>Module</code> object into the <code>ArrayList</code> of stored <code>Module</code> objects</li>
+<li><code>delete(Module)</code> &ndash; Remove a <code>Module</code> object from the <code>Array List</code></li>
+<li><code>edit(Module, String: newModuleCode)</code> &ndash; Edits a <code>Module</code> object's <code>moduleCode</code> to a new one</li>
+<li><code>filter(String: moduleKeyword)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>contains</u> the <code>moduleKeyword</code></li>
+<li><code>filterExact(String: moduleKeyword)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
+</ul>
+<br>
+The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
+</div>
+
+[Back To Top](#table-of-contents)    
+<br> 
+
+### **Directory Traverser**    
+<div>
+
+</div>
+
+[Back To Top](#table-of-contents)    
+<br> 
+
 
 ## **Command Implementation**  
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
@@ -192,7 +309,7 @@ This section will describe the significant details of how the commands in <b>Nuk
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-#### 1.1. Add module feature
+#### **1.1. Add Module Command**
 
 The add module feature enable the user to add modules into the Module List.
 
@@ -202,7 +319,7 @@ When the user first requests to execute the `addm` command(*assuming the command
 2. The module specified by the user is already added -- No module will be added.
 3. The module specified by the user is provided by NUS and have not been added -- Module will be added.
 
-#### **Feature Implementation**
+#### **Implementation**
 
 This feature is facilitated by the `AddModuleCommand` class which add the modules specified by the user. It overrides the `execute()` method which extends from the abstract `AddCommand` class which extends from the abstract `Command` class.   The `execute()` method's role is to execute the adding module operation and do necessary checks .
 
@@ -217,7 +334,7 @@ Below are the class-diagram for the involved classes:
 
 <span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
-#### Example Usage
+#### **Example Usage**
 
 The addition of modules will be illustrated as follows.
 
@@ -271,7 +388,7 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 
 
 
-#### 1.2. Add Category and Task Features
+#### **1.2. Add Category and Task Commands**
 
 Since add category and add task feature are implemented in a similar pattern, they can be explained together.
 
@@ -283,7 +400,7 @@ When the user first request to execute the **add** command*(assuming the command
 2. The name of the specified category/task already exist. -- No category/task will be added.
 3. The specified upper parent directory exist and the name of the specified category/task does not exist. -- The specified category/task will be added.
 
-#### Feature Implementation
+#### **Implementation**
 
 This feature is facilitated by the `AddCategoryCommand` and `AddTaskCommand` class which add the corresponding category or task respectively.
 
@@ -302,7 +419,7 @@ Below are the class-diagram for the involved classes:
 to-do: add the class-diagram
 ```
 
-#### Example Usage
+#### **Example Usage**
 
 The addition process for *category* and *task* are similar. In this example, the addition process for *category* will be illustrated as a series of steps.
 
@@ -365,7 +482,7 @@ to-do: add the sequence diagram
 
 <br><br>
 
-### 2. List Command  
+### **2. List Command**  
 
 #### **Overview**  
 
@@ -375,7 +492,7 @@ When the user first requests to execute the **list** command to list out directo
 1. There are **no** matches --  Nothing is listed out.
 2. There are matches -- The list of matches will be shown to the user.
 
-#### Feature Implementation  
+#### **Implementation**  
 
 ![Delete Command Class Diagram](images/List_Command_Class_Diagram.png)
 
@@ -395,7 +512,7 @@ The `ListCommand` class in turn extends the `FilterCommand` abstract class. The 
 
 Lastly, the `FilterCommand` class extends the abstract `Command` class that contains the `execute()` method to execute the actual **list** command.  
 
-#### Example Usage  
+#### **Example Usage**  
 
 The listing process for *modules*, *categories*, *tasks*, *file*s, all *task*s at the specified time period, *task*s of *module* in ascending order of deadline and all undone *task*s sorted by deadline or priority are similar. In this example, the listing process for *modules* will be illustrated as a series of steps.  <br>
 James is a user and wants to list out all of his *modules* with *moduleCode* begin with "CS". Assume that he has the current Module List: 
@@ -470,7 +587,7 @@ Two <b>prompt</b> commands are involved in the deletion process:<br>
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <code>ListNumberPrompt</code> class will only be executed if there are <b>multiple</b> matches. Otherwise, only the 
-corresponding <code>DeleteCommand</code> and <code>DeleteConfirmationPrompt</code> classes will be executed in the deletion process.
+corresponding <code>DeleteCommand</code> and <code>DeleteConfirmationPrompt</code> objects will be executed in the deletion process.
 </div>   
 <br>
 The deletion process can thus be broken down into <b>3</b> stages. We provide for you the relevant <i>sequence diagrams</i> to help you to see how each stage works in our current implementation of the <b>delete</b> command.
@@ -501,10 +618,10 @@ Total modules: 7
 <div>
 Now, Peter wishes to delete <i>modules</i> <b>CS1231</b> and <b>CS2102</b>. He enters <code>delm cs</code> to execute the command.
 <br><br>
-The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</b> command. The <code>DeleteModuleCommand</code> class is instantiated and executed. The class will first filter <i>modules</i> containing the <i>keyword</i> "<b>cs</b>". This is done by the <code>FilterCommand#createFilteredModuleList()</code> method. Then, <code>DeleteModuleCommand</code> will call its own <code>executeInitialDelete(filteredList)</code> method to prepare the prompt to ask Peter to choose which <i>modules</i> he would like to delete. 
+The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</b> command. The <code>DeleteModuleCommand</code> object is instantiated and executed. The object will first filter <i>modules</i> containing the <i>keyword</i> "<b>cs</b>". This is done by the <code>FilterCommand#createFilteredModuleList()</code> method. Then, <code>DeleteModuleCommand</code> will call its own <code>executeInitialDelete(filteredList)</code> method to prepare the prompt to ask Peter to choose which <i>modules</i> he would like to delete. 
 </div>
 <br>
-The <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10102;</big></big>:<br>   
+The <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green">&#10102;</big></big></big>:<br>   
  
 ![delete command sequence diagram](images/dg_delete_seq.png)  
  <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 1</b></i></small></span>   
@@ -530,19 +647,18 @@ Total modules: 5
 
 Enter the list number(s) of the modules to delete.
 ```
-<br>
 <div>
 He then proceeds to enter the corresponding  list numbers <code>1 3</code> to delete  <i>modules</i> <b>CS1231</b> and <b>CS2102</b>.  
 <br>  <br>
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-Since there are <b>multiple</b> matches,  the application will first request for the user to choose the <i>directories</i> he wants to delete. If there is only a <b>single</b> match, this stage is skipped, and the application will continue at <b>stage</b> <big><big style="color: green">&#10104;</big></big>
+Since there are <b>multiple</b> matches,  the application will first request for the user to choose the <i>directories</i> he wants to delete. If there is only a <b>single</b> match, this stage is skipped, and the application will continue at <b>stage</b> <big><big><big style="color: green">&#10104;</big></big></big>
 </div>   
 <br>
-After the <code>Parser</code> has parsed the list numbers, the <code>ListNumberPrompt</code> class is constructed. <code>ListNumberPrompt</code> will prepare the prompt for the delete confirmation, and then calls its <code>executePromptConfirmation(filteredList, MODULE)</code> method.  
+After the <code>Parser</code> has parsed the list numbers, the <code>ListNumberPrompt</code> object is constructed. <code>ListNumberPrompt</code> will prepare the prompt for the delete confirmation, and then calls its <code>executePromptConfirmation(filteredList, MODULE)</code> method.  
 </div>   
 
-This is the <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10103;</big></big>:<br>   
+This is the <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green">&#10103;</big></big></big>:<br>   
 
 ![prompt command sequence diagram](images/dg_prompt_seq.png)  
  <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 2</b></i></small></span>   
@@ -561,10 +677,10 @@ CS2102 Database Systems
 <div>
 He enters <code>yes</code> to confirm the deletion.
 <br><br>
-At the backend, the <code>Parser</code> will parse the confirmation, and constructs the <code>DeleteConfirmationPrompt</code> class. After getting the list of <i>modules</i> to delete, <code>DeleteConfirmationPrompt</code> then calls <code>executeMultipleDelete(filteredList, MODULE)</code> to delete Peter's selected <i>modules</i> from his <b>Module List</b>.  
+At the backend, the <code>Parser</code> will parse the confirmation, and constructs the <code>DeleteConfirmationPrompt</code> object. After getting the list of <i>modules</i> to delete, <code>DeleteConfirmationPrompt</code> then calls <code>executeMultipleDelete(filteredList, MODULE)</code> to delete Peter's selected <i>modules</i> from his <b>Module List</b>.  
 </div>   
 
-Below is the <i>sequence diagram</i> for <b>stage</b> <big><big style="color: green">&#10104;</big></big>:<br>   
+Below is the <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green">&#10104;</big></big></big>:<br>   
 
 ![confirm command sequence diagram](images/dg_confirm_seq.png)  
  <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 3</b></i></small></span>   
@@ -580,9 +696,8 @@ SUCCESS!! Module(s) have been deleted.
 
 <div>
 and the delete process ends.  
-</div>
-<br>   
-  
+</div> 
+   
 [Back To Top](#table-of-contents)    
 
 #### **Design Considerations**     
@@ -602,8 +717,7 @@ and the delete process ends.
 - <b>Alternative 2</b>: Prompts are enabled <b>(current implementation)</b>    
 	- <b>Pros</b>: User has another chance to choose to confirm the deletion. &#128517; This reduce the chance of accidental deletions happening.
 	- <b>Cons</b>: Deletion process is now longer. The user has to go through another layer of confirmation despite being sure that he he deleting the correct <i>directories</i> <small>(but who knows?)</small>. Moreover, we will have a harder time to implement the <b>delete</b> command, since it has now become multi-staged. Considerations have to be made to counter scenarios with <b>zero</b>, <b>one</b> or <b>more</b> matches after filtering. We will also have to consider how the <code>Parser</code> will be able to recognise if the user's input is a regular command, or an input corresponding to a prompt for list number, or a prompt for delete confirmation.  
-  
-  <br>
+   
 [Back To Top](#table-of-contents)    
 
 <br><br>
@@ -637,14 +751,13 @@ Finally, the <b>edit</b> command will perform the <code>edit()</code> method to 
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
-The <code>Parser</code> class also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
+The <code>Parser</code> object also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
 </div>   
 <br>    
    
 An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>       
 ![edit command sequence diagram](images/dg_edit_seq.png)    
 <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
-<br>   
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -667,7 +780,7 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 - <b>Alternative 2</b>: User can edit any number for attributes of a <i>directory</i> at a time <b>(current implementation)</b>        
 	- <b>Pros</b>: The user does not need to keep executing the <b>edit</b> command when editing more than one attribute.    
 	- <b>Cons</b>: Possibly slightly harder to implement. We now have to check if the user has provided at least one attribute to be edited. Also, we need to be able to efficiently extract the individual attributes from the user's input. However, this could be made easier by grouping and matching the attributes using <b>Java</b>'s <b>RegEx</b> patterns.           
-
+   
 [Back To Top](#table-of-contents)    
 <br>  
 <br>  
@@ -720,7 +833,7 @@ The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specif
 <div>
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
 
-The <code>OpenFile</code> class first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
+The <code>OpenFile</code> object first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
 </div><br>   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
@@ -763,7 +876,7 @@ The <b>info</b> command shows the information of the <i>current directory</i> th
 #### **Implementation**     
 <div>
 The implementation of this command is quite straightforward. <br>
-The <code>InfoCommand</code> class will call for the <code>DirectoryTraverser</code> class to get the current <code>Directory</code>. Then, the information of the <code>Directory</code> is obtained by calling <code>Directory#toString()</code>. The <i>list</i> to show is generated by the <code>InfoCommand#getListToShow()</code> method. <br>
+The <code>InfoCommand</code> object will call for the <code>DirectoryTraverser</code> object to get the current <code>Directory</code>. Then, the information of the <code>Directory</code> is obtained by calling <code>Directory#toString()</code>. The <i>list</i> to show is generated by the <code>InfoCommand#getListToShow()</code> method. <br>
 These information will eventually be shown to the user through the <code>Ui</code>.
 </div>  
 
