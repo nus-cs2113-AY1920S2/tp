@@ -31,6 +31,7 @@ Table of Contents
 	- [Edit Task Feature](#35-edit-task-feature)
 		- [Implementation](#351-implementation)
 		- [Design Considerations](#352-design-considerations)
+		- [Future Enhancements](#353-future-enhancements)
 	- [View Calendar feature](#36-view-calendar-feature)
 		- [Implementation](#361-implementation)
 		- [Design Considerations](#362-design-considerations)
@@ -589,6 +590,7 @@ If the user supplies an `assignment` command, the `editAssignment()` method will
 If the user supplies an `event` command, the `editEvent()` method will be invoked. This method extracts the `eventName`, `location`, `startDateTime`, `endDateTime` and `comments` string to return a new instance of the `Event` class.
 
 Afterwards, the task will be checked to see whether it is a `RepeatEvent` task type. If it is not, it will proceed to **Step 6**.
+
 If it is a `RepeatEvent` task, the edited task as well as the task to be edited is passed to a `editRepeatEvent` method to edit the repeated task. 
 In the `editRepeatEvent` method, the `numOfPeriod`, `typeOfPeriod`, `originalDateAndTime` and `periodCounter` will be extracted to be passed into creating a new `RepeatEvent` task. 
 
@@ -611,19 +613,39 @@ The following sequence diagram shows the checking of `RepeatEvent` task type.
 
 -   Placing invocation of new `Assignment` and `Event` class in `EditCommand` class
 
-    -   Rationale:  
+    -   **Rationale**:  
         The `execute()` method of `EditCommand` class has to use the `Ui` class parsed as one of the parameters to get input from user on new details of the task. The new input captured will be then passed to the `editAssignment()` or `editEvent()` method in the `EditCommand` class.
 
-    -   Alternatives Considered:  
+    -   **Alternatives Considered**:  
         The `editAssignment()` and `editEvent()` methods can be placed in the `Parser` class and called in the `prepareEditCommand` method of that class.
 
 -   Using Java’s `ArrayList#set()` method
 
-    -   Rationale:  
+    -   **Rationale**:  
         When a task is selected to be edited, it is logical for the index of the task to not change as the task is being edited. Therefore, the `set()` method of `ArrayList` is used to replace the edited task with the old task.
 
-    -   Alternatives Considered:  
+    -   **Alternatives Considered**:  
         Use the available `add` and `delete` methods, the new task is added into the list and the old task is deleted. However, this is not chosen as it is not intuitive for the user’s task index to shift after editing the task.
+        
+- Editing of `Repeat Event` task types will retain `Repeat Event` task type
+
+    - **Rationale**: <br/>
+    When a `repeat event` task is edited, the `repeat event` task retains the `repeat event` task type. It is only logical in editing that when 
+    a user edits an event, only the details of the event is changed. The task type of the original task should not change. 
+    
+    - **Alternatives Considered**: <br/>
+    Any editing of `repeat event` task will revert task back to `event` task and user will have to issue `repeat` command to 
+    set `event` task to `repeat`. However, this will affect the usability of `editCommand` thus this alternative is not selected. 
+    
+#### 3.5.3 Future Enhancements
+- Allow users to edit `Repeat Event` directly from edit task prompt
+    - Possible Implementation: <br/>
+    Call `RepeatEventCommand` if a `repeat event` task is to be edited to prompt user if they want to edit the `repeat` details
+    of a `repeat event` task. 
+    
+- Notify users if users of edits during exit of ATAS. This helps user keep track of what edits he/she made to existing tasks.
+    - Possible Implementaion: <br/>
+    Keep an ArrayList of tasks which are edited and when user is exiting **ATAS**, notify the user by printing ArrayList.  
 
 ### 3.6. View Calendar feature
 ![Sample output of Calendar Command](images/calendar2.png)
@@ -1246,14 +1268,14 @@ Expected Output: All `assignment` task types that are incomplete will be display
 
 **Test Case 1**: 
 1. `edit 1`
-2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1200 c/No comments` 
+2. `assignment n/edited assignment one m/cs2113 d/01/05/20 1202 c/No comments` 
 
 Expected Output: Success message indicating that `assignment` task is successfully edited is displayed. `list` command
 shows the newly edited `assignment` task.
 
 **Test Case 2**:
 1. `edit 2`
-2. `event n/edited meeting l/com2 d/01/05/20 1200 - 1400 c/No comment`
+2. `event n/edited meeting l/com2 d/01/05/20 1202 - 1402 c/No comment`
 
 Expected Output: Success message indicating that `event` task is successfully edited is displayed. `list` command shows
 the newly edited `event` task. 
@@ -1271,6 +1293,21 @@ the newly edited `repeat event` task. Task will retain `[R]` to indicate that it
 **Test Case 4**: `edit 200`
 
 Expected Output: An error message indicating the range of valid task numbers. 
+
+**Test Case 5**:
+1. `edit 1`
+2. `event n/editing event as assignment l/com2 d/01/05/20 1200 - 1400 c/No comment`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
+**Test Case 6**:
+1. `edit 2`
+2. `assignment n/editing assignment as event one m/cs2113 d/01/05/20 1202 c/No comments`
+
+Expected Output: An error message indicating that newly edited task should have the same task type as task selected to be
+edited. 
+
 
 #### 6.6.7 Marking Task as Done
 
