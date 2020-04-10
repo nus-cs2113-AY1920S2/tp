@@ -245,7 +245,7 @@ combined schedule.
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
 
 The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
-It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
+It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
 
 Given below is an example usage and how the `ScheduleMeeting` command behaves.
 
@@ -330,6 +330,7 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
     
 ### 3.6 Delete a scheduled meeting
 ![DeleteMeeting](images/DeleteMeeting_seq.png)
+
 The figure above shows the sequence diagram of the ```DeleteMeeting``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
 
@@ -342,6 +343,7 @@ Given below is an example usage scenario and how the ```DeleteMeeting``` command
 
 ### 3.7 Delete a contact
 ![DeleteContact](images/DeleteContact_seq.png)
+
 The figure above shows the sequence diagram of the ```DeleteContact``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
 
@@ -355,6 +357,7 @@ Given below is an example usage scenario and how the ```DeleteContact``` command
 
 ### 3.8 List all scheduled meetings
 ![ListMeetings](images/ListMeetings_seq.png)
+
 The figure above shows the sequence diagram of the ```ListMeetings``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
 
