@@ -38,7 +38,7 @@ public class ContinueCommand extends Command {
                 Parser.startTime = LocalDateTime.now();
                 Parser.continuedIndex = index;
                 Ui.printDivider(Parser.activityName + " was continued.");
-                Log.makeInfoLog(Parser.activityName + " was continued");
+                Log.makeInfoLog(Parser.activityName + " was continued.");
             } else {
                 if (parameters.isEmpty()) {
                     throw new EmptyNameException();
