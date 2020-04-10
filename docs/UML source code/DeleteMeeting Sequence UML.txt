@@ -1,0 +1,32 @@
+title DeleteMeeting
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":MeetingList" as MeetingList #lightblue
+participant "mainUser:Contact" as Contact #lightyellow
+
+User->LogicManager:delete meeting
+activate LogicManager
+LogicManager->CommandHandler:delete meeting
+activate CommandHandler
+
+
+
+alt meetingExist
+CommandHandler->Contact:addFreeBlocks()
+activate Contact
+CommandHandler<--Contact:
+deactivate Contact
+CommandHandler->MeetingList:remove(index)
+activate MeetingList
+MeetingList-->CommandHandler:
+deactivate MeetingList
+LogicManager<--CommandHandler:
+else else
+LogicManager<--CommandHandler:show exception message "cannot delete main user"
+deactivate CommandHandler
+
+end
+User<--LogicManager:
+deactivate LogicManager
