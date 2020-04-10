@@ -11,7 +11,6 @@ and budgets, mainly targeting the inconveniences of unplanned grocery shopping.
 
 - **Major enhancements**:
    1. Added the **delete functionality**
-      
       - What it does: Allows the user to remove an existing item from the shopping list.
       - Justification: This feature makes the application more complete as the user might have added an item to the shopping
       list by mistake and the application should allow the user to delete it easily.
@@ -19,14 +18,12 @@ and budgets, mainly targeting the inconveniences of unplanned grocery shopping.
       rejected by the application such as invalid indices like negative numbers.
 
    2. Added the **set budget functionality**
-     
       - What it does: Allows the user to specify a budget amount.
       - Justification: This achieves one of the key objectives of the product which is to help the user stay within budget.
       - Highlights: Careful consideration had to be given to what values to reject as input without restricting the user's freedom, such as negative
       values which are definitely unacceptable.
       
    3. Added the **search functionality**
-     
       - What it does: Allows the user to find items by specifying keywords.
       - Justification: This improves user experience as it can be tedious to find something manually in a
       long list.
@@ -40,7 +37,6 @@ his budget
 - **Other contributions**:
 
   - Documentation:
-  
     - Wrote the sections outlining the use of the find, delete and set budget features (Pull request [#107](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/107))
     - Wrote the introduction segment (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
     - Added more specific instructions on how to run the application (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
@@ -48,25 +44,21 @@ his budget
     - Added a FAQ on restoring lost data (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
 
   - Developer Guide:
-  
     - Wrote appendices A and C (Pull request [#93](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/93))
     - Added a description of the class diagram (Pull request [#140](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/140))
     - Wrote the sections for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
     - Added sequence diagrams for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
     
   - Team-based tasks:
-  
     - Managed release `v1.0` on Github
     - Fixed issue with reading of multiple lines of user input (Pull request [#66](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/66))
     - Fixed issue with failing of CI tests by making changes to runtest file (Pull request [#68](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/68))
     - Setting up of Logger with console and file handlers (Pull request [#70](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/70))
     
   - Review/mentoring contributions:
-   
     - PRs reviewed (with changes suggested): [#35](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/35), [#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38), [#39](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/39), [#40](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/40), [#42](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/42) ,[#139](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/139), [#163](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/163)
 
   - Beyond the project team:
-  
     - Reported bugs and suggestions for other project teams: [Inaccurate documentation](https://github.com/kokjoon97/ped/issues/4), [broken link in UG](https://github.com/kokjoon97/ped/issues/13), [duplication bug](https://github.com/kokjoon97/ped/issues/5), [saving issue](https://github.com/kokjoon97/ped/issues/12)
     
 ## Contributions to the User Guide
@@ -92,8 +84,7 @@ grocery shopping disappear.
 
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
 [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
-2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `CS2113T-T13-1.Shoco.jar
-` under version 2.1.
+2. Download the latest version of `SHOCO` from [here](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases), named `CS2113T-T13-1.Shoco.jar` under version 2.1.
 3. Open the command prompt in the directory of the JAR file and type in the following command:
    `java -jar CS2113T-T13-1.Shoco.jar`
 4. You are now all set to plan your shopping list!
@@ -103,38 +94,32 @@ grocery shopping disappear.
 Sets a budget for the user.
 
 Format: `SET b/AMOUNT`
-
 * The `AMOUNT` can be any decimal number that is between 0 to 5000.
 * The `b/` phrase should be present in the command.  
 
 Example of usage: 
-
 `SET b/3.00`
 
 ### Finding an item: `FIND`
 Filters the shopping list according to a keyword specified by the user.
 
 Format: `FIND KEYWORD`
-
 * The `KEYWORD` can be any word or phrase.
 * The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
-
 `FIND apple`
 
 ### Deleting an item: `DEL`
 Removes an item from the list at the specified index.
 
 Format: `DEL INDEX`
-
 * The `INDEX` should be a **positive whole number**.
 * The `INDEX` should not be out of bounds of the shopping list.
   * Out of bounds indices include negative indices & indices that are greater than the size of the shopping list.
 * Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 
 Example of usage: 
-
 `DEL 3`
 
 ### Additional information
@@ -199,7 +184,7 @@ The process is as follows:
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Set_v1.png)
+![alt text](../images/Set_v2.png)
 
 
 #### 3.3.2 Design considerations
@@ -212,7 +197,6 @@ omitted in the sequence diagram to emphasise on the other classes:
   is treated as a black box
   
   - Cons: Might significantly increase the code base with another class being added
-
 
 - Alternative 2: Implement set budget feature in the <code>Duke</code> class
 
@@ -245,11 +229,11 @@ to check whether the <code>Item</code> at each specified index contains the give
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object.
 Note the <code>Ui</code> class is omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Find_v1.png)
+![alt text](../images/Find_v2.png)
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 
-![alt text](../images/Find_SD_v1.png)
+![alt text](../images/Find_SD_v2.png)
 
 #### 3.7.2 Design considerations
 
@@ -291,7 +275,7 @@ on that user input.
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Delete_v1.png)
+![alt text](../images/Delete_v2.png)
 
 #### 3.8.2 Design considerations
 
