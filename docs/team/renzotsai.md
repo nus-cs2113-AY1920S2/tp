@@ -23,7 +23,8 @@ Exception in our software include three parts: `Input Exception`, `Runtime Excep
 All of them extend from `ModuleManagerException`.
 
 ##### Commands
-- Add to semester command: This command allows users to assign different modules to different semester.
+- Add command: This type of command allows users to assign different modules to different semester or add module 
+to `Available Modules List`.
 
 - View all modules command: This command allows users to view all the available modules in the `Available Modules List`.
 
