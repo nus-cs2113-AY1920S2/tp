@@ -863,14 +863,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |Priority |As a ... |I want to ... |So that I can...|
 |---|---|---|---|
 |`* * *` |new user |see usage instructions |learn about existing features and how can I use them |
-|`* * *` |student |add modules\tasks |I can have track on tasks of different modules |
+|`* * *` |student |add modules\tasks |have track on tasks of different modules |
 |`* * *` |student |delete modules\tasks |remove modules and tasks I do not need to keep on track anymore |
-|`* * *` |student |edit modules\tasks |I can correct or change some attributes |
-|`* * *` |student |constantly check the deadline of tasks in ascending order |I can get tasks done on time |
-|`* * *` |student |receive a reminder of urgent tasks |I know which tasks should be done first |
-|`* * *` |student |sort my tasks in terms of certain criteria |I can view my tasks of highest priorites |
-|`* * *` |student |add tags to tasks |I can filter and view tasks with respect to certain tags|
-|`* *` |student |receive a reminder of expired tasks |I know I passed the deadline |
+|`* * *` |student |count my total tasks |keep track of how many tasks I have left and plan my time better |
+|`* * *` |student |add different priorities to tasks |manage my time and do the most important things first |
+|`* * *` |student |edit modules\tasks |correct or change some attributes |
+|`* * *` |student |constantly check the deadline of tasks in ascending order |get tasks done on time |
+|`* * *` |student |receive a reminder of urgent tasks |know which tasks should be done first |
+|`* * *` |student |sort my tasks in terms of certain criteria |view my tasks of highest priorities |
+|`* * *` |student |add tags to tasks | filter and view tasks with respect to certain tags           |
+|`* *` |student |receive a reminder of expired tasks |know I passed the deadline |
+|`* *` |student |receive a reminder of tasks which are near the deadline |never forget to finish them on time. |
+|`* *` |student |attach files to tasks |open the files from the program when I start on the tasks |
+|`* *` |student |organize my files according modules and tasks |enjoy the ease of picking out relevant files |
+|`* *` |student |filter tasks with certain criteria |easily view what is relevant at the moment |
+|`* *` |student |enter shorter commands |save my time |
+|`*` |student |get the files that will be covered one week ahead |prepare(print) them on weekends |
+|`*` |student |add any custom modules |not restricted to a specific category of task |
 
 _{More to be added}_
 
