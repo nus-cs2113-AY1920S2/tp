@@ -31,7 +31,7 @@ The module is deleted if the module is not a prerequisite of any other modules.
 In the process of doing so, 3 checks are done.
 If the module is in the module plan, it will be deleted from the module plan as well.
 
-#### Contributions to documentation
+### Contributions to documentation
 - Added details on possible expected outputs for different commands to the User Guide
 
 - Viewing module plan  
@@ -46,8 +46,8 @@ If the module is in the module plan, it will be deleted from the module plan as 
  `You have completed this amount of credits:`
   `4`
 
-#### Contributions to the Developer Guide
+### Contributions to the Developer Guide
 - Added explanation and diagrams for the `DeleteFromSemCommand` and `DeleteFromAvailableCommand`
 
-#### Contributions beyond the project team
+### Contributions beyond the project team
 - Reported bugs in releases from other team and gave suggestions to their code: [bugs and suggestions given](https://github.com/chengTzeNing/ped/issues)
