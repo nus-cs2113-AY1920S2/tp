@@ -63,7 +63,7 @@ public class MeetingOrganizer {
         new MeetingOrganizer().run();
     }
 
-    void botResponse(String[] userInputWords, String prevUserInputWord)
+    void botResponse(String[] userInputWords, String prevUserInputWord, String[] prevUserInputWords)
         throws MoException, DateTimeParseException, NumberFormatException {
         String userCommand = userInputWords[0];
 
@@ -76,7 +76,7 @@ public class MeetingOrganizer {
             }
             switch (userCommand) {
             case "more":
-                myLogicManager.viewMoreTimetable(prevUserInputWord, userInputWords, currentWeekNumber);
+                myLogicManager.viewMoreTimetable(prevUserInputWord, prevUserInputWords, currentWeekNumber);
                 break;
             case "edit":
                 myLogicManager.editSchedule(userInputWords, currentWeekNumber);
@@ -110,7 +110,8 @@ public class MeetingOrganizer {
         ContactList myContactList = myLogicManager.getMyContactList();
 
         Scanner in = new Scanner(System.in);
-        String previousUserInput = "";
+        String prevUserInputWord = "";
+        String[] prevUserInputWords = new String[0];
         TextUI.menuMsg(myContactList.getSize());
         while (in.hasNextLine()) {
             String userInput = in.nextLine();
@@ -120,10 +121,11 @@ public class MeetingOrganizer {
 
             String[] userInputWords = userInput.split(" ");
             try {
-                botResponse(userInputWords, previousUserInput);
+                botResponse(userInputWords, prevUserInputWord, prevUserInputWords);
                 storage.updateMeetingListToDisk(myMeetingList.getMeetingList());
                 storage.updateMemberListToDisk(myContactList.getContactList());
-                previousUserInput = userInputWords[0];
+                prevUserInputWord = userInputWords[0];
+                prevUserInputWords = userInputWords;
             } catch (MoException e) {
                 TextUI.errorMsg(e);
             } catch (DateTimeParseException e) {
