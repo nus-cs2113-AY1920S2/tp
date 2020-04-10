@@ -37,7 +37,7 @@ public class EditAppointmentCommand extends AppointmentCommand {
      * @param apptID Contains the id of the appointment that is to be edited
      */
     public EditAppointmentCommand(String nric, String apptID, String newContent) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.newContent = newContent;
         this.apptID = apptID;
     }

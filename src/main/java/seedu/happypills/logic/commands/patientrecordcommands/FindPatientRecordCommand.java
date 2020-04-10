@@ -38,11 +38,14 @@ public class FindPatientRecordCommand extends PatientRecordCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap patientRecords
     ) throws HappyPillsException {
+        if (!patientRecords.containsKey(nric)) {
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
+        }
         assert !nric.isEmpty() : "No NRIC was provided";
         boolean isIndexOutOfBound = patientRecords.get(nric).size() <= index && index > 0;
         if (patients.containsKey(nric)) {
-            if (patientRecords.get(nric) == null) {
-                throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
+            if (patientRecords.get(nric) == null || patientRecords.get(nric).isEmpty()) {
+                throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT_RECORD);
             } else if (isIndexOutOfBound) {
                 throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
             }

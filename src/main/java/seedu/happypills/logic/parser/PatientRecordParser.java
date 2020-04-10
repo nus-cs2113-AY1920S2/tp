@@ -5,13 +5,11 @@ import seedu.happypills.logic.commands.patientrecordcommands.AddPatientRecordCom
 import seedu.happypills.logic.commands.patientrecordcommands.DeletePatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.EditPatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.FindPatientRecordCommand;
-import seedu.happypills.logic.commands.patientrecordcommands.IncorrectPatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.ListPatientRecordCommand;
 import seedu.happypills.logic.commands.patientrecordcommands.PatientRecordCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientRecordTextUi;
-import seedu.happypills.ui.StorageTextUi;
 
 import java.util.logging.Logger;
 
@@ -245,7 +243,7 @@ public class PatientRecordParser extends Parser {
         }
 
         if (!loopPrompt(PatientRecordTextUi.promptConfirmation(parseInput))) {
-            return new IncorrectPatientRecordCommand(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_ADDED);
         }
 
         return new AddPatientRecordCommand(parseInput[0].toUpperCase(), parseInput[1],

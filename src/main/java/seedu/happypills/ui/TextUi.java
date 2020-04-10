@@ -1,15 +1,5 @@
 package seedu.happypills.ui;
 
-import seedu.happypills.model.data.Appointment;
-import seedu.happypills.model.data.AppointmentMap;
-import seedu.happypills.model.data.Patient;
-import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.PatientRecord;
-import seedu.happypills.model.data.PatientRecordMap;
-
-import java.util.ArrayList;
-import java.util.Map;
-
 public class TextUi {
     public static final String DIVIDER = "    =====================================================";
     public static final String NEWLINE = "\n";
@@ -40,8 +30,10 @@ public class TextUi {
     }
 
     //General methods
+
     /**
      * print any string as needed.
+     *
      * @param string print any string to screen
      */
     public static void print(String string) {
@@ -75,10 +67,11 @@ public class TextUi {
 
     /**
      * Constructs a string for incomplete commands, probably missing something.
+     *
      * @param helpString provide the help command that user can use to find the right format
      * @return a string for incomplete commands.
      */
-    public  static String incompleteCommandString(String helpString) {
+    public static String incompleteCommandString(String helpString) {
         String msg = "    Command is incomplete. Please use the " + helpString + " command.";
         return msg;
     }
@@ -87,7 +80,7 @@ public class TextUi {
      * Repeats a string count number of times.
      *
      * @param count the number of times to be repeated.
-     * @param with the string to be repeated.
+     * @param with  the string to be repeated.
      * @return the resulting string.
      */
     public static String repeat(int count, String with) {

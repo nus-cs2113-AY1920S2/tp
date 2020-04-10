@@ -32,7 +32,7 @@ public class DoneAppointmentCommand extends AppointmentCommand {
      * @param apptID Contains the id of the appointment to be marked as done
      */
     public DoneAppointmentCommand(String nric, String apptID) {
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.apptID = apptID;
     }
 

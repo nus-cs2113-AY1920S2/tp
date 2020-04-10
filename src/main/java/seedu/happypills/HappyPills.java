@@ -110,6 +110,7 @@ public class HappyPills {
             logger.info(hpe.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(Messages.MESSAGE_INCOMPLETE_COMMAND);
+            System.out.println(ui.DIVIDER);
         }
         return message;
     }
