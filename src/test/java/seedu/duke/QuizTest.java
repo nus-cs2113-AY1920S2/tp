@@ -27,7 +27,7 @@ public class QuizTest {
     private Subject subject;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws EscException {
         emptyCardList = new CardList();
         filledCardList = new CardList();
         flashcard1 = new Card("What does HTTP stand for?", "HyperText Transfer Protocol");

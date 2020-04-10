@@ -43,7 +43,7 @@ class StorageTest {
     File tempDir;
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() throws IOException, EscException {
         cardList = new CardList();
         Card newCard = new Card("test question", "test answer");
         subject = new Subject("Junit");

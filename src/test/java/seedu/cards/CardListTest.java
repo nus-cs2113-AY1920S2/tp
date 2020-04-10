@@ -30,7 +30,7 @@ public class CardListTest {
     }
 
     @Test
-    void getCards() {
+    void getCards() throws EscException {
         cards.addCard(flashcard1,subject);
         cards.addCard(flashcard2,subject);
         assertTrue(cards.getCards().contains(flashcard1));
@@ -48,7 +48,19 @@ public class CardListTest {
     }
 
     @Test
-    void getCard_indexOutOfRange_exceptionThrown() {
+    void addCard_repeatedQuestion_exceptionThrown() {
+        expectedException = new EscException("This question has already been added.");
+        Card flashcard3 = new Card("What does HTTP stand for?", "High Trippy Turning Pony");
+        try {
+            cards.addCard(flashcard1,subject);
+            cards.addCard(flashcard3,subject);
+        } catch (EscException e) {
+            assertEquals(e.getMessage(),expectedException.getMessage());
+        }
+    }
+
+    @Test
+    void getCard_indexOutOfRange_exceptionThrown() throws EscException {
         cards.addCard(flashcard1,subject);
         expectedException = new EscException("The card item does not exist.");
         int[] getIndexes = {-1,2};
@@ -71,7 +83,7 @@ public class CardListTest {
     }
 
     @Test
-    void addCard_CardSuccessfullyAdded() {
+    void addCard_CardSuccessfullyAdded() throws EscException {
         cards.addCard(flashcard1,subject);
         assertTrue(cards.size() == 1);
         assertTrue(cards.getCards().contains(flashcard1));
@@ -88,7 +100,7 @@ public class CardListTest {
     }
 
     @Test
-    void removeCard_indexOutOfRange_exceptionThrown() {
+    void removeCard_indexOutOfRange_exceptionThrown() throws EscException {
         cards.addCard(flashcard1,subject);
         expectedException = new EscException("The card item does not exist.");
         int[] deleteIndexes = {-1,1};
