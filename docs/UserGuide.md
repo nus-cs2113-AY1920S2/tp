@@ -105,6 +105,21 @@ Screenshot showing deletecard:
 
 ![](images/deletecard.png)
 
+### Editing a Card
+Edits the specified card 
+
+Format: `editcard s/<S-INDEX> c/<C-INDEX> q/<QUESTION> a/<ANSWER>`
+* The `S-INDEX` is based on the index of the subject. This can be found using the `listsubject` command.
+* The `C-INDEX` is based on the index of the card. This can be found using the `listcard s/<S-INDEX>` command.
+
+Example of Usage:
+* `editcard s/1 c/1 q/what is this docunment a/user guide`
+
+Screenshot showing deletecard:
+
+![](images/editcard.png)
+
+
 <hr>
 
 ### Starting a Quiz
