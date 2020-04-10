@@ -246,11 +246,34 @@ Additionally, the user can specify a specific week of month by including a date
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 
-### 3.7 Find Feature
-This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
+### 3.7 Find & Filter Features
 
-#### 3.7.1 Current Implementation
-* This feature is called by the user when the `find` command is entered into the command line. The string following the command is the keyword to match activity names to.
+#### Find Feature
+This command accepts keyword(s) and searches either the entire activity list or the last shown list for activities with 
+names containing each keyword.
+
+#### Filter Feature
+This feature accepts space-separated keyword(s) to search either the entire list or the last shown list 
+for activities with tags matching each keyword. The keywords should be an exact-match with the tag names.
+
+
+#### 3.7.1 Design Considerations
+As the `find` and `filter` commands are important for the user to analyse and eventually graph time-spent on each 
+activity. The user should be allowed to query for all useful combinations of activities in the activity list. 
+This entails:
+* The user should be allowed to match for multiple keywords at once.
+* The user should be allowed to exclude certain activities by limiting his search to a previously shown list as 
+    opposed to the entire activity list.
+    (chaining `list`, `find`, and `filter` commands).
+
+
+  
+
+#### 3.7.2a Current Implementation for Find
+* This feature is called by the user when the `find` command is entered into the command line. 
+The string following the command are the parameters:
+    * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
+    * The remaining parameters are a string of keywords separated by ` / `. 
 * The Parser will create a FindCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
     * The Parser's `lastShownList` will be cleared.
@@ -260,14 +283,11 @@ This command accepts a keyword and searches the activity list for activities wit
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-
-![find seq diagram](https://imgur.com/Icg5rdB.png)
-
-### 3.8 Filter Feature
-This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
-
-#### 3.8.1 Current Implementation
-* This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
+#### 3.7.2b Current Implementation for Filter
+* This feature is called by the user when the `filter` command is entered into the command line. The string following 
+command contains the parameters:
+    * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
+    * The remaining parameters are a string of keywords are space-separated. 
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
 * The Parser's `lastShownList` will be cleared.
@@ -278,13 +298,19 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-![filter seq diagram](https://imgur.com/hybT3R9.png)
 
-### 3.9 Graph Feature
+#### 3.7.3 Additional features (Proposed)
+Developers may include the feature allowing users users to chain multiple queries and multiple commands 
+in a single user input. Possibly "pipe-lining" the output of one query into the next query with the pipe symbol `|`.
+
+**For example:** 
+* `list week | find -s KEYWORD | filter -s TAGNAME` 
+
+### 3.8 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
-#### 3.9.1 Current Implementation
+#### 3.8.1 Current Implementation
 ![graph seq diagram](./pictures/graph.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
 * The Parser will create a GraphCommand object.
@@ -308,7 +334,7 @@ This displays a bar graph of the durations of each activity in the `lastShownLis
 * If the user indicated `activities`, `GraphCommand` will call it's own `graphDuration` method.
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
 
-#### 3.9.2 Additional features
+#### 3.8.2 Additional features
 As graph gets it's data based on the `lastShownList`, users can pair the `graph` command with `find`, `filter`, and `list` to sieve out the activities to be graphed.
 
 
