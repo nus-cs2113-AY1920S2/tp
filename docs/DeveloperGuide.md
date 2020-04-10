@@ -415,6 +415,8 @@ than using the mouse.
 |v2.0|professor|Create repeatable events without having the need to manually add in|easily create occurring events|
 |v2.0|professor|find an event by name|locate an event without having to go through the entire list|
 |v2.0|professor|view calendar of all my events|to see a overview of them|
+|v2.1|professor|edit my student's attendance|update my existing student's attendance|
+|v2.1|professor|find my student's attendance|locate an existing student's attendance|
 
 ## Appendix E: Instructions for Manual Testing
 #### Set up
@@ -452,6 +454,12 @@ folder in command terminal.
 `attendance clear`
 1. View generated table for attendance list by typing  
 `attendance view`  
+1. Sort attendance list by typing
+`attendance sort`  
+1. Find attendance by typing
+`attendance find`  
+1. Edit attendance by typing
+`attendance edit`  
  
 **Performance**
 1. Sort performance list by typing
@@ -469,20 +477,24 @@ folder in command terminal.
 
 **Student name list**
 1. Add name to student name list by typing  
-`student add`
+`studentlist add`
 1. Delete name from student name list by typing  
-`student delete`
+`studentlist delete`
 1. View generated table for student name list by typing  
-`student view` 
+`studentlist view` 
 1. Find a student name in student name list by typing  
-`student find`
+`studentlist find`
 1. Sort student list by typing
-`student sort`
+`studentlist sort`
 
 ## Glossary
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
-* *performance* - a combination of student's name and result
-* *performance list* - a list of student's name and result
+* *student list* - a list of students' name
+* *student list collection* - a collection of list of students' name
+* *attendance* - a combination of student's name and attendance status
+* *attendance list* - a list of students' name and attendance status
+* *performance* - a combination of students' name and result
+* *performance list* - a list of students' name and result
 * *Calendar* - Display columns of event in a chosen semester, each column represents a month 
 in the chosen semester 
