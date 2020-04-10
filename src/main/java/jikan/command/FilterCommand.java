@@ -86,9 +86,14 @@ public class FilterCommand extends Command {
 
     private void populateLastShownList(ActivityList targetList, ActivityList lastShownList, String keyword) {
         for (Activity i : targetList.activities) {
-            if (!lastShownList.activities.contains(i) && i.getTags().contains(keyword)) {
+            // if (!lastShownList.activities.contains(i) && i.getTags().contains(keyword)) {
+            if (!lastShownList.activities.contains(i) && containsIgnoreCase(i.getTagsAsString(), keyword)) {
                 lastShownList.activities.add(i);
             }
         }
+    }
+
+    private boolean containsIgnoreCase(String str, String subString) {
+        return str.toLowerCase().contains(subString.toLowerCase());
     }
 }
