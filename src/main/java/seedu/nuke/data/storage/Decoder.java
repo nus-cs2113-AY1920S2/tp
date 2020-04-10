@@ -122,7 +122,7 @@ public class Decoder {
         }
         String currentLine;
         while ((currentLine = reader.readLine()) != null) {
-            if(currentLine.equals(END_TAG_INDICATOR)) {
+            if (currentLine.equals(END_TAG_INDICATOR)) {
                 break;
             }
             String tag = currentLine;
