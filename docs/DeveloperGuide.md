@@ -68,7 +68,7 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](images/DG/ArchitectureDiagram.PNG "Overview of the Application")
+![Architecture diagram](images/DG/ArchitectureDiagram.png "Overview of the Application")
 
 The **Architecture diagram** above explains the high-level design of HappyPills.
 
@@ -229,7 +229,7 @@ will edit the patient's allergies to `School`.
 
 **Implementation** 
 
-![Edit Patient Sequence Diagram](images/DG/EditPatientSequenceDiagram.jpg)
+![Edit Patient Sequence Diagram](images/DG/EditPatientSequenceDiagram.png)
 
 The following steps explains the sequence of events: 
 
