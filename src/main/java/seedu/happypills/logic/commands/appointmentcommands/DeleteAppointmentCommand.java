@@ -120,12 +120,12 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         }
         Appointment delAppt = findAppointment(appointments);
         if (delAppt == null) {
-            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE;
+            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE + TextUi.DIVIDER;
             return message;
         }
         Boolean isSuccess = deleteAppt(appointments, appointmentId) && deleteAppt(delPatient, appointmentId);
         if (isSuccess) {
-            message = "    Appointment has been removed.\n";
+            message = "    Appointment has been removed.\n" + TextUi.DIVIDER;
             try {
                 Storage.writeAllToFile(Storage.APPOINTMENT_FILEPATH,
                         StorageTextUi.getFormattedApptString(appointments));
@@ -133,7 +133,7 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
                 logger.info(StorageTextUi.FAIL_TO_WRITE_APPOINTMENT_MSG);
             }
         } else {
-            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE;
+            message = AppointmentTextUi.APPOINTMENT_NOT_FOUND_MESSAGE + TextUi.DIVIDER;
         }
         return message;
     }
