@@ -6,7 +6,8 @@ public enum DirectoryLevel {
     MODULE,
     CATEGORY,
     TASK,
-    FILE {
+    FILE,
+    TAG {
         @Override
         public DirectoryLevel next() {
             return NONE;

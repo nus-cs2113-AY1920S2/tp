@@ -7,7 +7,6 @@ import seedu.nuke.command.filtercommand.listcommand.DueCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListCategoryCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListFileCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListModuleCommand;
-import seedu.nuke.command.filtercommand.listcommand.ListModuleTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskCommand;
 import seedu.nuke.command.filtercommand.listcommand.ListTaskSortedCommand;
 import seedu.nuke.command.ExitCommand;
@@ -200,7 +199,6 @@ public class GuiParser {
             break;
 
         case AddTagCommand.COMMAND_WORD:
-        case ListModuleTaskCommand.COMMAND_WORD:
             addText(new Pair<>(parameters, Color.BLUE));
             break;
 

@@ -16,6 +16,8 @@ public class Encoder {
     private static final String END_TASK_INDICATOR = "--- END TASK ---\n";
     private static final String BEGIN_FILE_INDICATOR = "--- FILE ---\n";
     private static final String END_FILE_INDICATOR = "--- END FILE ---\n";
+    private static final String BEGIN_TAG_INDICATOR = "--- TAG ---\n";
+    private static final String END_TAG_INDICATOR = "--- END TAG ---\n";
     private static final String DELIMITER = " -|||- ";
     private static final String LINE_BREAK = System.lineSeparator();
 
@@ -56,6 +58,7 @@ public class Encoder {
         for (Task task : tasks) {
             encodedList.append(getTaskInformation(task)).append(LINE_BREAK);
             encodedList.append(encodeFileList(task.getFiles().getFileList()));
+            encodedList.append(encodeTagList(task.getTags()));
         }
         encodedList.append(END_TASK_INDICATOR);
         return encodedList.toString();
@@ -67,6 +70,15 @@ public class Encoder {
             encodedList.append(getFileInformation(file)).append(LINE_BREAK);
         }
         encodedList.append(END_FILE_INDICATOR);
+        return encodedList.toString();
+    }
+
+    private String encodeTagList(ArrayList<String> tags) {
+        StringBuilder encodedList = new StringBuilder(BEGIN_TAG_INDICATOR);
+        for (String tag : tags) {
+            encodedList.append(tag).append(LINE_BREAK);
+        }
+        encodedList.append(END_TAG_INDICATOR);
         return encodedList.toString();
     }
 

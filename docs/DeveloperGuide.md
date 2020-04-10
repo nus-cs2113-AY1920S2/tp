@@ -1,10 +1,8 @@
-
-
-
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> </head>  
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> 
+</head>  
 
 <style type="text/css">  
 div {  
@@ -96,7 +94,8 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <br>   
 <big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
 <br>   
-<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>  
+<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>   
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Product Scope** [&#10149;](#product-scope)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **User Stories** [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Glossary** [&#10149;](#glossary)   
@@ -180,7 +179,6 @@ This document will cover the structure and software design decisions for the imp
 <br>  
 
 ## **Design**  
-
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
@@ -378,13 +376,9 @@ Total modules: 3
    +--------------------------------------------------------------------------------------------------+
 ```
 
-
+![image-20200326014336120](images/Add_Module_Command_Sequence_Diagram.png)
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
-
-```
-	// To do Sequence diagram here
-```
 
 
 
@@ -476,9 +470,9 @@ Total categories: 5
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-```
-to-do: add the sequence diagram
-```
+![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
 
@@ -494,7 +488,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![Delete Command Class Diagram](images/List_Command_Class_Diagram.png)
+![List Command Class Diagram](images/List_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -539,7 +533,9 @@ After the input is parsed as a **list module** command and executed, the `ListMo
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![Delete Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
+![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
+
+<span style="color: green"><small><i>Figure <b>List Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
 
@@ -559,11 +555,12 @@ When the user first requests to execute the <b>delete</b> command to delete a <i
 
 #### **Implementation**  
 <br>
-  
+
 ![delete command class diagram](images/dg_delete_class.png)     
 <span style="color: green"><small><i>Figure <b>Delete Command Class Diagram</b></i></small></span>   
     
 <br>
+
 <div>
 The <b>delete</b> commands are similar to each other, and targets to delete <i>directories</i> of a specific <i>directory level</i>. For example, the <code>DeleteTaskCommand</code> class will only delete <i>tasks</i> <i>(and not modules, categories or files)</i>.
 <br><br>
@@ -573,10 +570,9 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-     
 ![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
-   
+
 <br> 
 Two <b>prompt</b> commands are involved in the deletion process:<br>  
 <ol>  
@@ -592,8 +588,8 @@ corresponding <code>DeleteCommand</code> and <code>DeleteConfirmationPrompt</cod
 <br>
 The deletion process can thus be broken down into <b>3</b> stages. We provide for you the relevant <i>sequence diagrams</i> to help you to see how each stage works in our current implementation of the <b>delete</b> command.
 </div>  
-   
-  
+
+
 <div>
 <big><big><big><big><big style="color: green">&#10102;</big></big></big></big></big>
 The user, <i>say Peter in this example</i>,  will first request the <i>directory(s)</i> he wishes to be deleted. Assume Peter currently has these <i>modules</i> in his <b>Module List</b>:
@@ -621,6 +617,7 @@ Now, Peter wishes to delete <i>modules</i> <b>CS1231</b> and <b>CS2102</b>. He e
 The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</b> command. The <code>DeleteModuleCommand</code> object is instantiated and executed. The object will first filter <i>modules</i> containing the <i>keyword</i> "<b>cs</b>". This is done by the <code>FilterCommand#createFilteredModuleList()</code> method. Then, <code>DeleteModuleCommand</code> will call its own <code>executeInitialDelete(filteredList)</code> method to prepare the prompt to ask Peter to choose which <i>modules</i> he would like to delete. 
 </div>
 <br>
+
 The <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green">&#10102;</big></big></big>:<br>   
  
 ![delete command sequence diagram](images/dg_delete_seq.png)  
@@ -630,7 +627,7 @@ The <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green"
 <big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
 Peter receives the following prompt: 
 </div>
-  
+
 ```  
 Multiple matching modules were found.
 +--------------------------------------------------------------------------------------------------+
@@ -696,8 +693,8 @@ SUCCESS!! Module(s) have been deleted.
 
 <div>
 and the delete process ends.  
-</div> 
-   
+</div> <br>
+    
 [Back To Top](#table-of-contents)    
 
 #### **Design Considerations**     
@@ -754,7 +751,7 @@ Finally, the <b>edit</b> command will perform the <code>edit()</code> method to 
 The <code>Parser</code> object also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
 </div>   
 <br>    
-   
+
 An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>       
 ![edit command sequence diagram](images/dg_edit_seq.png)    
 <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
@@ -835,6 +832,7 @@ The implementation of the <b>Open File</b> command uses two important <b>Java AP
 
 The <code>OpenFile</code> object first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
 </div><br>   
+
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 If there is an error opening a particular <i>file</i> in the list &#128534;, the opening process will not be terminated immediately. Instead, the application will continue to open the rest of the <i>files</i> in the list. <br>
@@ -842,7 +840,6 @@ After it has gone through the list, it will then show the user the <i>files</i> 
 <br><br>
 This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
 </div> <br>   
-
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
 ![open file command sequence diagram](images/dg_open_file_seq.png)    
  <span style="color: green"><small><i>Figure <b>Open File Command Sequence Diagram</b></i></small></span>   
@@ -872,7 +869,7 @@ Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:
 <div>  
 The <b>info</b> command shows the information of the <i>current directory</i> that the user is in. For example, when in the <b>Module</b> directory, the <b>info</b> command will show the <i>module code</i>, <i>module title</i> and the <i>module</i>'s <i>category list</i> to the user.  
 </div>  
-   
+
 #### **Implementation**     
 <div>
 The implementation of this command is quite straightforward. <br>
@@ -892,7 +889,7 @@ The <i>sequence</i> diagram of what happens when a user executes the <b>info</b>
 <div>
 The <b>undo</b> and <b>redo</b> commands work hand in hand with each other. The <b>undo</b> command undoes a <i>change</i> made to the <b>Directory List</b>. <i>Change</i> here refers to adding, deleting or editing items to the <i>list</i>. The <b>redo</b> command reverts the effect of the <b>undo</b> command.   
 </div>  
-   
+
 #### **Implementation**     
 <div>
 The state of the <i>directories</i> is being maintained by the <code>ScreenShotManager</code> class. This is done via two <b>stacks</b>, one for <b>undo</b>, and the other for <b>redo</b>.  <br><br>
@@ -972,6 +969,21 @@ Below is a <i>sequence diagram</i> of the undo command in action: <br>
 
 ## **Appendix**  
 
+### **Product Scope**  
+
+#### Target user profile:
+
+- is a NUS student
+- has a need to manage a significant number of academic tasks efficiently and tidily
+- willing to keep track of their academic tasks by recording them using an application program
+- prefer desktop apps over other types, and reasonably comfortable with the command line interface
+- able to type fast and prefers typing over mouse input
+
+**Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application which designed specifically for NUS students to manage academic tasks.
+
+[Back To Top](#table-of-contents)    
+<br>  
+
 ### **User Stories**  
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -979,33 +991,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |Priority |As a ... |I want to ... |So that I can...|
 |---|---|---|---|
 |`* * *` |new user |see usage instructions |learn about existing features and how can I use them |
-|`* * *` |student |add modules\tasks |I can have track on tasks of different modules |
+|`* * *` |student |add modules\tasks |have track on tasks of different modules |
 |`* * *` |student |delete modules\tasks |remove modules and tasks I do not need to keep on track anymore |
-|`* * *` |student |edit modules\tasks |I can correct or change some attributes |
-|`* * *` |student |constantly check the deadline of tasks in ascending order |I can get tasks done on time |
-|`* * *` |student |receive a reminder of urgent tasks |I know which tasks should be done first |
-|`* * *` |student |sort my tasks in terms of certain criteria |I can view my tasks of highest priorites |
-|`* * *` |student |add tags to tasks |I can filter and view tasks with respect to certain tags|
-|`* *` |student |receive a reminder of expired tasks |I know I passed the deadline |
-
-_{More to be added}_
-
+|`* * *` |student |count my total tasks |keep track of how many tasks I have left and plan my time better |
+|`* * *` |student |add different priorities to tasks |manage my time and do the most important things first |
+|`* * *` |student |edit modules\tasks |correct or change some attributes |
+|`* * *` |student |constantly check the deadline of tasks in ascending order |get tasks done on time |
+|`* * *` |student |receive a reminder of urgent tasks |know which tasks should be done first |
+|`* * *` |student |sort my tasks in terms of certain criteria |view my tasks of highest priorities |
+|`* * *` |student |add tags to tasks | filter and view tasks with respect to certain tags           |
+|`* *` |student |receive a reminder of expired tasks |know I passed the deadline |
+|`* *` |student |receive a reminder of tasks which are near the deadline |never forget to finish them on time. |
+|`* *` |student |attach files to tasks |open the files from the program when I start on the tasks |
+|`* *` |student |organize my files according modules and tasks |enjoy the ease of picking out relevant files |
+|`* *` |student |filter tasks with certain criteria |easily view what is relevant at the moment |
+|`* *` |student |enter shorter commands |save my time |
+|`*` |student |get the files that will be covered one week ahead |prepare(print) them on weekends |
+|`*` |student |add any custom modules |not restricted to a specific category of task |
 
 [Back To Top](#table-of-contents)    
 <br>  
 
 ### **Non-Functional Requirements**  
-```
-	// To be done.
-```
+1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `11` or above installed.
+2. User with above [average typing speed](#average-typing-speed) for English text (not coding) should be able to utilize the product to manage tasks more efficiently compared to using a mouse.
+3. Data entered by the user should be able to saved and carried forward for the next time usage.
+4. The file containing the saved data should be portable so that the user can transfer to the other machine with any [mainstream OS](#mainstream-os) and continuing using the app without any additional configuration.
+5. The product should be able to run without any noticeable sluggishness in performance for typical usage when dealing with up to 100 academic tasks.
+6. The product should never crash and able to handle any input from the user.
+7. Should work on both 32-bit and 64-bit environments.
+8. Should not exceed 30MB in size given normal usage.
 
 [Back To Top](#table-of-contents)    
 <br>  
 
 ### **Glossary**  
-```
-	// To be done.
-```
+##### mainstream OS
+​    Windows, Linux, Unix, OS-X
+##### average typing speed
+​    40 words per minute
+
+
 
 [Back To Top](#table-of-contents)    
 <br>  
