@@ -310,7 +310,7 @@ work in parallel.
   Also, duplicate items may confuse the user, even though in some specific scenario, duplicate item may be useful to 
   the user.  
  
- Reasons for choosing Alternative 1 over alternative 2: By allowing user to just add the item without price,
+ Reasons for choosing Alternative 1: By allowing user to just add the item without price,
  we can increase the flexibility. For instance, the user wants to buy milk but not sure how much does the milk
  cost and not sure how many milk they want to buy. So they can just add it into the list,
  and edit the price and quantity later when they knew the price and have decided the quantity. 
