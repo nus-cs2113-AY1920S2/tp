@@ -95,7 +95,8 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <br>   
 <big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
 <br>   
-<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>  
+<big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Product Scope** [&#10149;](#product-scope)
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **User Stories** [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Glossary** [&#10149;](#glossary)   
@@ -716,9 +717,9 @@ The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specif
 #### **Implementation**     
 <div>
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
-
 The <code>OpenFile</code> class first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
 </div><br>   
+
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 If there is an error opening a particular <i>file</i> in the list &#128534;, the opening process will not be terminated immediately. Instead, the application will continue to open the rest of the <i>files</i> in the list. <br>
@@ -726,7 +727,6 @@ After it has gone through the list, it will then show the user the <i>files</i> 
 <br><br>
 This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
 </div> <br>   
-
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
 ![open file command sequence diagram](images/dg_open_file_seq.png)    
  <span style="color: green"><small><i>Figure <b>Open File Command Sequence Diagram</b></i></small></span>   
@@ -855,6 +855,21 @@ Below is a <i>sequence diagram</i> of the undo command in action: <br>
 
 
 ## **Appendix**  
+
+### **Product Scope**  
+
+#### Target user profile:
+
+- is a NUS student
+- has a need to manage a significant number of academic tasks efficiently and tidily
+- willing to keep track of their academic tasks by recording them using an application program
+- prefer desktop apps over other types, and reasonably comfortable with the command line interface
+- able to type fast and prefers typing over mouse input
+
+**Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application which designed specifically for NUS students to manage academic tasks.
+
+[Back To Top](#table-of-contents)    
+<br>  
 
 ### **User Stories**  
 
