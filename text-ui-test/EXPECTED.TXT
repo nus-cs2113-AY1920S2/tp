@@ -109,7 +109,7 @@ ________________________________________________________________________________
 Today is Fri Apr 10, week 12.
 Your timetable this week:
 
-Date:  5th   6th   7th   8th   9th   10th  11th    12nd  13rd  14th  15th  16th  17th  18th  
+Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
        SUN   MON   TUE   WED   THU   FRI   SAT     SUN   MON   TUE   WED   THU   FRI   SAT
 0900 +-----+-----+-----+-----+-----+-----+-----+ +-----+-----+-----+-----+-----+-----+-----+
      |     |     |  X  |     |     |     |     | |     |     |  X  |     |     |     |     |
@@ -224,7 +224,7 @@ ________________________________________________________________________________
 Today is Fri Apr 10, week 12.
 Timetable of the selected team member/s this week:
 
-Date:  5th   6th   7th   8th   9th   10th  11th    12nd  13rd  14th  15th  16th  17th  18th  
+Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
        SUN   MON   TUE   WED   THU   FRI   SAT     SUN   MON   TUE   WED   THU   FRI   SAT
 0900 +-----+-----+-----+-----+-----+-----+-----+ +-----+-----+-----+-----+-----+-----+-----+
      |     |     |  X  |     |     |     |     | |     |  X  |  X  |     |     |     |     |
@@ -347,7 +347,7 @@ ________________________________________________________________________________
 Today is Fri Apr 10, week 12.
 Timetable of the selected team member/s this week:
 
-Date:  5th   6th   7th   8th   9th   10th  11th    12nd  13rd  14th  15th  16th  17th  18th  
+Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
        SUN   MON   TUE   WED   THU   FRI   SAT     SUN   MON   TUE   WED   THU   FRI   SAT
 0900 +-----+-----+-----+-----+-----+-----+-----+ +-----+-----+-----+-----+-----+-----+-----+
      |     |     |  X  |     |     |     |     | |     |  X  |  X  |     |     |     |     |
@@ -447,7 +447,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-You now have 1meeting/s in the list.
+You now have 1 meeting(s) in the list.
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
@@ -459,7 +459,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-You now have 2meeting/s in the list.
+You now have 2 meeting(s) in the list.
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
@@ -472,7 +472,7 @@ ________________________________________________________________________________
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
 I have removed:
-1. Wednesday 19:00 to Wednesday 22:00 test_meeting
+1. Wednesday(15th) 19:00 to Wednesday(15th) 22:00 (test_meeting)
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
