@@ -4,7 +4,7 @@
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> </head>  
-  
+
 <style type="text/css">  
 div {  
    text-align: justify;  
@@ -20,19 +20,19 @@ div {
   border-color: #d6e9c6;  
   color: #3c763d;  
 }  
-  
+
 .alert-info {  
   background-color: #d9edf7;  
   border-color: #bce8f1;  
   color: #31708f;  
 }  
-  
+
 .alert-warning {  
   background-color: #fcf8e3;  
   border-color: #faebcc;  
   color: #8a6d3b;  
 }  
-  
+
 .alert-error {  
   background-color: #f2dede;  
   border-color: #ebccd1;  
@@ -134,8 +134,46 @@ This document will cover the structure and software design decisions for the imp
 [Back To Top](#table-of-contents)    
 <br>  
 
-## **Setting Up**  
-Refer to the guide [here](#) to set up.  
+### **Setting Up**
+
+#### 1.1. Prerequisites
+
+1. JDK 11
+2. IntelliJ IDE
+
+#### 1.2. Setting up the project
+1.  Fork [this repository](https://github.com/AY1920S2-CS2113T-T13-2/tp), and clone the fork to your computer
+
+2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
+
+3.  Set up the correct JDK version for Gradle
+
+    1.  Click `Configure` &gt; `Project Defaults` &gt; `Project Structure`
+
+    2.  Click `New...` and find the directory of the JDK
+
+4.  Click on `Import Project`
+
+5.  Locate and select the `build.gradle` file, then click `OK`
+
+6.  Click `Open as Project`
+
+7.  Click `OK` to use the default settings provided
+
+#### 1.3. Verifying the Setup
+1.  In an IntelliJ terminal, run `gradlew build`
+
+2.  Navigate to the folder `build` &gt; `libs` by executing  `cd build/libs/` and then run: `java -jar nuke-2.0.jar`
+
+    1.  To use **Nuke**, type a valid command into the terminal and press the enter key to run the command. 
+        e.g. Typing `help` and pressing the enter key will show the available commands and their respective command usage help messages.
+
+    2.  Some example commands you can try to get familiar with **Nuke**:
+
+        -   `help`: Lists the commands that **Nuke** supports.
+-   `addm cs2113t`: Adds a module with module code cs2113t, **Nuke** will recognize it as the module  *Software Engineering & Object-Oriented Programming* and add it to your Module List.
+        -   `addt assignment2 -m cs2113t -c Assignment -d tmr 23:59 -p 20` : Adds a task named `assignment2` which belongs to *module* `cs2113t` and *category* `Assignment` with a *deadline* `tomorrow 23:59` and *priority* of `20`
+-   `bye`: Exits **Nuke**.
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -507,7 +545,7 @@ Below is a *sequence diagram* to illustrate the above example scenario.
 <div>   
 The <b>edit</b> command edits the attributes of a <i>directory</i>. For example, user can edit a <i>category</i>'s <i>name</i> and <i>priority</i>. For <i>tasks</i>, the user is also able to mark them as done.   
 </div>    
-  
+
 #### **Implementation**     
 <br>
 
@@ -528,18 +566,18 @@ In addition, for <code>EditCategoryCommand</code> and <code>EditTaskCommand</cod
 <br><br>
 Finally, the <b>edit</b> command will perform the <code>edit()</code> method to edit the <code>Directory</code>. 
 </div>    
-   
+
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <code>Parser</code> class also helps to check if the user's input contains attributes of the <i>directory</i> to edit. For example, if a user executes the <b>edit module</b> command, but does not enter a <i>new module code</i> to be edited, the application will prompt the user to enter a <i>new module code</i>.  
 </div>   
 <br>    
-   
+
 An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>
 ![edit command sequence diagram](images/dg_edit_seq.png)    
  <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
 <br>   
-  
+
 [Back To Top](#table-of-contents)    
 <br>  
 
@@ -553,6 +591,7 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 	- <b>Cons</b>: There is one more <i>command word</i> for the user to remember.          
 <br>   
   
+
 <b>Edit Multiple Attributes</b>  
 - <b>Alternative 1</b>: User can only edit one attribute of a <i>directory</i> at a time       
 	- <b>Pros</b>: May be easier to implement. Checking that the user has provided an attribute to edit is also simple <i>(just check if the attribute is empty)</i>.  
@@ -585,10 +624,10 @@ Shown below is the <i>sequence diagram</i> when a user executes the <b>change di
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
  <span style="color: green"><small><i>Figure <b>Change Directory Command Sequence Diagram</b></i></small></span>   
 <br>   
- 
+
 [Back To Top](#table-of-contents)    
 <br>    
-   
+
 #### **Design Considerations**     
 <b>Traversal Method</b>  
 - <b>Alternative 1</b>: User can only traverse one level at a time  <b>(current implementation)</b>    
@@ -601,7 +640,7 @@ Shown below is the <i>sequence diagram</i> when a user executes the <b>change di
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
-  
+
 ### **6. Open File Command**    
 <div>  
 The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specified by the user. User can choose whether to open a single <i>file</i> in the <i>task</i>, or <b>all</b> the <i>files</i> in the <i>task</i>.  
@@ -620,7 +659,7 @@ After it has gone through the list, it will then show the user the <i>files</i> 
 <br><br>
 This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
 </div> <br>   
-    
+
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
 ![open file command sequence diagram](images/dg_open_file_seq.png)    
  <span style="color: green"><small><i>Figure <b>Open File Command Sequence Diagram</b></i></small></span>   
@@ -662,7 +701,7 @@ These information will eventually be shown to the user through the <code>Ui</cod
 The <i>sequence</i> diagram of what happens when a user executes the <b>info</b> command is as illustrated:<br>   
 ![info command sequence diagram](images/dg_info_seq.png)    
  <span style="color: green"><small><i>Figure <b>Info Command Sequence Diagram</b></i></small></span>   
- 
+
 [Back To Top](#table-of-contents)    
 <br>  <br>  
 
@@ -687,25 +726,25 @@ When the application starts, both stacks are empty. After the applications loads
 When a <i>change</i> is made to the <i>list</i> from a successful add, delete or edit command, the <b>new</b> state is  pushed into the <b>undo</b> stack. This is done by the <code>ScreenShotManager</code>'s <code>saveScreenShot()</code> method.  
 <br>The new state is also saved by the application. See <a href="#storage-implementation">here</a> to find out more about the storage implementation.
 </div>  
-         
+
 ![undo command change 1](images/dg_undo_change_1.png)
 <br>   <br>  
 <div>
 If the user calls for the <b>undo</b> command, the top-most state in the <b>undo</b> stack is removed and pushed into the <b>redo</b> stack. Then, the <i>list</i> will reload to the current top-most state in the <b>undo</b> stack, which is actually the previous state. All of these are done by the <code>ScreenShotManager</code>'s <code>undo()</code> method.  
 </div>  
-        
+
 ![undo command undo](images/dg_undo.png)
 <br>   <br>   
 <div>
 Conversely, If the user calls for the <b>redo</b> command, the top-most state in the <b>redo</b> stack is removed and pushed back into the <b>undo</b> stack. Then, the <i>list</i> will reload to the current top-most state in the <b>undo</b> stack, which is actually the state which was previously undone. These are done by the <code>ScreenShotManager</code>'s <code>redo()</code> method.  
 </div>      
-    
+
 ![undo command redo](images/dg_redo.png)
 <br>   <br>  
 <div>
 If another <i>change</i> is made to the <i>list</i>, the <b>redo</b> stack is emptied, and the new current state is added into the <b>undo</b> stack <i>(<code>saveScreenShot()</code>)</i>.
 </div>  
-         
+
 ![undo command change 2](images/dg_undo_change_2.png)
 <br>   <br>  
 <div>
@@ -763,8 +802,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`* * *` |new user |see usage instructions |learn about existing features and how can I use them |
 |`* * *` |student |add modules\tasks |I can have track on tasks of different modules |
 |`* * *` |student |delete modules\tasks |remove modules and tasks I do not need to keep on track anymore |
-|`* * *` |student |edit modules\tasks |I can correct or change some attributes
-|`* * *` |student |constansly check the deadline of tasks in ascending order |I can get tasks done on time |
+|`* * *` |student |edit modules\tasks |I can correct or change some attributes |
+|`* * *` |student |constantly check the deadline of tasks in ascending order |I can get tasks done on time |
 |`* * *` |student |receive a reminder of urgent tasks |I know which tasks should be done first |
 |`* * *` |student |sort my tasks in terms of certain criteria |I can view my tasks of highest priorites |
 |`* * *` |student |add tags to tasks |I can filter and view tasks with respect to certain tags|
