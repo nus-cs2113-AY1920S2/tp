@@ -19,9 +19,8 @@ public class ListEventCommand extends ListCommand {
      * Lists all events currently stored in the application.
      */
     @Override
-    public void execute(SubjectList subjectList) throws EscException {
-        ArrayList<Event> events = subjectList.getEvents();
-        subjectList.listUpcoming(events);
+    public void execute(SubjectList subjectList) {
+        subjectList.listUpcoming();
     }
 
 }
