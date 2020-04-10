@@ -387,9 +387,11 @@ public class StartCommand extends Command {
             Parser.continuedIndex = index;
             Ui.printDivider(Parser.activityName + " was continued");
             Log.makeFineLog(Parser.activityName + " was continued.");
-        } else {
+        } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")){
             Parser.activityName = null;
             Ui.printDivider("Okay then, what else can I do for you?");
+        } else {
+            Ui.printDivider("Incorrect format entered, please only enter yes or no.");
         }
     }
 }
