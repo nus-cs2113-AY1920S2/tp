@@ -14,20 +14,15 @@ and budgets, mainly targeting the inconveniences of unplanned grocery shopping.
       - What it does: Allows the user to remove an existing item from the shopping list.
       - Justification: This feature makes the application more complete as the user might have added an item to the shopping
       list by mistake and the application should allow the user to delete it easily.
-      - Highlights: Much consideration had to be given to the various types of invalid user input that should be 
-      rejected by the application such as invalid indices like negative numbers.
 
    2. Added the **set budget functionality**
       - What it does: Allows the user to specify a budget amount.
       - Justification: This achieves one of the key objectives of the product which is to help the user stay within budget.
-      - Highlights: Careful consideration had to be given to what values to reject as input without restricting the user's freedom, such as negative
-      values which are definitely unacceptable.
       
    3. Added the **search functionality**
       - What it does: Allows the user to find items by specifying keywords.
       - Justification: This improves user experience as it can be tedious to find something manually in a
       long list.
-      - Highlights: To further increase convenience, keywords are case-insensitive.
 
 - **Minor enhancements**: Added a feature to display a warning message to the user if the total cost of the items in his list exceeds
 his budget
@@ -38,16 +33,12 @@ his budget
 
   - Documentation:
     - Wrote the sections outlining the use of the find, delete and set budget features (Pull request [#107](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/107))
-    - Wrote the introduction segment (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
-    - Added more specific instructions on how to run the application (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
-    - Wrote additional information on how the application works (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
-    - Added a FAQ on restoring lost data (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
+    - Added an introduction, instructions on running the application and additional information (Pull request [#132](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/132))
 
   - Developer Guide:
     - Wrote appendices A and C (Pull request [#93](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/93))
     - Added a description of the class diagram (Pull request [#140](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/140))
-    - Wrote the sections for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
-    - Added sequence diagrams for the find, delete and set budget features (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
+    - Wrote the sections for the find, delete and set budget features, with sequence diagrams (Pull request [#165](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/165))
     
   - Team-based tasks:
     - Managed release `v1.0` on Github
@@ -136,15 +127,6 @@ When the total cost of the items in your shopping list exceeds the stored budget
 displayed which states by how much you have overrun your current budget. This message will only
 stop appearing when you increase your budget amount sufficiently or remove enough items from your list to keep within
 your budget.
-
-### FAQ
-
-**Q**: Is it possible to restore a list that I have deleted?
-
-**A**: Unfortunately, we are still working on this feature and there is no such functionality at this
-point in time. It is however, possible to manually backup the `shoppinglist.json` file
-from time to time so that if you unintentionally cleared your list, you can always replace the empty
-`shoppinglist.json` file with your backed up version.
 
 ## Contributions to the Developer Guide
 > *Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation
