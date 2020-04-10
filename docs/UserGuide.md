@@ -38,13 +38,13 @@ Contents:
 
 ## 1. Introduction
 ### 1.1. What is **ATAS**?
-**ATAS** (Amazing Task and Assignment System) is a cross platform Command Line Interface (CLI) program that allows you to track your assignments and events. **ATAS** is catered for students who want to maximise their productivity and cultivate effective time management habits through a desktop application. **ATAS** is optimised for users who prefer to work with the CLI.
+**ATAS** (Amazing Task and Assignment System) is a cross platform Command Line Interface (CLI) programme that allows you to track your assignments and events. **ATAS** is catered for students who want to maximise their productivity and cultivate effective time management habits through a desktop application. **ATAS** is optimised for users who prefer to work with the CLI.
 ### 1.2. What are the functions of **ATAS**?
-Besides being able to store your assignment and event details in a text file, **ATAS** allows you to view your assignment deadlines and event dates in a user-friendly calendar format. You can also list down events that are upcoming and assignments that are due in the following week. Furthermore, **ATAS** displays the assignment and event details in an easy-to-read format so that you would not miss out any important details at one glance.
+Besides being able to store your assignment and event details in a text file, **ATAS** allows you to view your assignment deadlines and event dates in a user-friendly calendar format. You can also list down events that are upcoming and assignments that are due in the following week. Furthermore, **ATAS** displays the assignment and event details in an easy-to-read format so that you will not miss out any important details at one glance.
 ### 1.3. How does **ATAS** solve the problem of our target audience?
-University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due to manage their time wisely and allocate sufficient time to complete these tasks.
+University students often have piles of assignments and events that are difficult to manage and track efficiently. **ATAS** allows students to enter one-liner commands to track these tasks quickly and therefore spend less of their time logging and remembering important dates. Furthermore, students can view their upcoming events and assignments due, to manage their time wisely and allocate sufficient time to complete these tasks.
 ### 1.4. What is this guide for?
-This guide aims to show you on how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
+This guide aims to show you how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2. "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
 ## 2. Quick Start
 ### 2.1. Setting up
@@ -52,9 +52,9 @@ Interested in cultivating a habit of time management and plan your time more eff
 
     1.  For **Windows** Users:
 
-        1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+        1.  Download the **latest** release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
 
-        2.  Open a `cmd` (Command Prompt) window.
+        2.  Open a `cmd` (Command Prompt) window and maximise the window.
 
         3.  Navigate to the folder containing downloaded jar file.
 
@@ -64,16 +64,27 @@ Interested in cultivating a habit of time management and plan your time more eff
 
     2.  For **Mac** Users:
 
-        1.  Download the latest release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+        1.  Download the **latest** release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
 
-        2.  Open up `Terminal`.
+        2.  Open up `Terminal` and maximise the window.
 
         3.  Navigate to the directory containing downloaded jar file.
 
         4.  Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds.
         > **Note**: Replace `atas.jar` with the filename of the jar file. For example if the file name is `atas-2.0.0.jar`, run command 
-        `java -jar atas-2.0.0.jar`.
-
+                `java -jar atas-2.0.0.jar`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                            
+    3. For **Linux** Users:
+        1. Download the **latest** release of **ATAS** [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releases).
+         
+        2. Open up `Terminal` and maximise the window.
+        
+        3. Navigate to the directory containing the downloaded jar file.
+        
+        4. Run the command `java -jar atas.jar`. You will be greeted with the welcome screen of **ATAS** in a few seconds. 
+         > **Note**: Replace `atas.jar` with the filename of the jar file. For example if the file name is `atas-2.0.0.jar`, run command 
+                        `java -jar atas-2.0.0.jar`. 
+                                                                                                                                                                                                                                                                                                                                                                                                               
 ### 2.2. Usage
 1.  To use **ATAS**, simply type a valid command into the terminal and press `[Enter]` key  run the command.  
     e.g. Typing `help` command and pressing `[Enter]` key will list the commands present
@@ -91,26 +102,25 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 **Command Format**
 
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
-    Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used as `assignment n/user guide draft`.
+    Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used such as `assignment n/user guide draft`.
 
--   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4, "List Tasks: `list`"](#34-list-tasks-list).   
+-   The INDEX that is used for various commands is a number used to identify a task within the list. The INDEX of a task is shown on the left of each task whenever a `list` command is used. For more information about `list` commands, refer to [Section 3.4. "List Tasks: `list`"](#34-list-tasks-list).   
     Example index of list:  
     ![Task Index Example](images/task_index_example.png)
 
 -   Dates supplied by the user must follow the format `DD/MM/YY` unless specified otherwise.  
-    Example: 01/03/20 represents the date 1st March 2020.
-    > **Note**: If an invalid date like 34/03/20 (that is not too far off from a legit date) is provided, ATAS will automatically round off 
-    the date to the nearest legit date. In this case, it will round off to 31/03/20.
+    Example: 01/03/20 represents the date 1 March 2020.
+    > **Note**: If an invalid date like 34/03/20 (that is not too far off from a genuine date) is provided, **ATAS** will automatically round off 
+    the date to the nearest genuine date. In this case, it will round off to 31/03/20.
     
--   Times supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
+-   Time supplied by the user must follow the 24h format `HHmm`. '`:`' is not needed.  
     Example: 0259 represents the time 2:59am, and 2300 represents the time 11:00pm.
 
 -   The parameters of a command cannot be reordered.  
     Example: For the `assignment` command, typing `assignment n/Finals c/50% m/CS1231 d/30/10/20 1300` will result in an error as the COMMENTS parameter is in the wrong position.
 
--   Inputs for the various parameters are supposed to be in the English Language. Common Symbols like "@#$%^&*()" are not permitted. 
-    In particular, The special characters `|` and `/` cannot be used in the various parameters that you can pass to commands, unless
-    explicitly required by the command's format.
+-   Inputs for the various parameters are to be in the English Language. Symbols such as "@#$%^&*()" are not permitted. 
+    In particular, the special characters `|` and `/` cannot be used, unless explicitly required by the command's format.
 
 > **Note**: 
 > Don’t worry if all of these seems overwhelming. <br/> 
@@ -184,7 +194,7 @@ Format: `repeat id/[INDEX] p/[PERIOD_NUM][PERIOD_TYPE]`
 
 > **Note**:
 > Available `[PERIOD_TYPE]`: Day `d`, Week `w`, Month `m`, Year `y`. <br/>
-> `INDEX` of task specified has to be an **event** task. <br/>
+> `INDEX` of task specified has to be an **event** task. 
 
 Example: `repeat id/6 p/11m`  
 This command will repeat task of index 6 every 11 months.
@@ -279,7 +289,7 @@ You can view only the tasks you have today.
 
 Format: `list today`
 
-Expected Outcome (Assuming today’s date is 27th March 2020): 
+Expected Outcome (Assuming today’s date is 27 March 2020): 
 ```
 Here are the relevant tasks: 
   3. [A][/] Assignment 2 (by: Fri 27 Mar 2020 23:59 | mod: CS3235)
@@ -312,7 +322,7 @@ Here are the relevant tasks:
 #### 3.4.4. List Upcoming Events: **`list upcoming events`**
 
 You can view **all** your **upcoming events** from the list of tasks regardless of how far it is from today.
-The command will only show **events** that have not occurred and it is time-sensitive.
+The command will only show **events** that have not occurred and is time-sensitive.
 
 Format: `list upcoming events`
 
@@ -359,13 +369,17 @@ Format: `edit [INDEX]`
 Example: `edit 1`
 
 After issuing the `edit` command, the next line of command should be changes you want to make by entering in the `assignment` or `events` 
-command. Any other variations, including other valid commands, will be treated as an invalid command. 
-Refer to [Section 3.1, "Add Assignments: `assignment`](#31-add-assignments-assignment) or 
-[Section 3.1, "Add Events: `event`"](#32-add-events-event) for usage of the commands.
+command. 
+
+Any other variations, including other valid commands, will be treated as an invalid command. You will have to enter the `edit` command again to
+edit your specified task.
 
 > **Note**:
-> This function focuses on editing the details of the `assingment` or `event`. <br/>
-> If you wish to change the repeating period of an event, refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat)
+> Refer to [Section 3.1. "Add Assignments: `assignment`](#31-add-assignments-assignment) for `assignment` command <br/>
+> Refer to [Section 3.1. "Add Events: `event`"](#32-add-events-event) for `event` command
+
+> **Tip**:
+If you wish to change the repeating period of an event, refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat)
 
 
 ### 3.6. Delete Tasks: **`delete`**
@@ -398,7 +412,7 @@ Expected outcome:
 ```
 
 > **Note**: 
-> If a repeating event is marked done, it will automatically be marked undone if the date of the repeatEvent passes today and 
+> If a repeating event is marked done, it will automatically be marked undone if the date of the repeating event passes today and 
 > is updated to the next one. This also applies when you call `repeat` on an event that is marked done. 
 
 ### 3.8. Clear Tasks: **`clear`**
@@ -410,21 +424,18 @@ You can clear **all** tasks in the list if you want to start from a fresh list. 
 Format: `clear all`
 
 #### 3.8.2. Clear All Done Tasks
+You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
+
+Format: `clear done`
 
 > **Note**:
 > `clear done` command only deletes completed events that is not set to repeat<br/>
-
--   You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.  
-
--   Format: `clear done` You can clear all tasks which are marked `done` if you want to view only tasks that are not done in the list. This will also be reflected in the stored list.
-
-Format: `clear done`
 
 ### 3.9. Search tasks: **`search`**
 
 #### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
-The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
+The task types available for searching are `assignment`, `event` and `all`. (They are all case-insensitive.)
 
 > **Tip**:
 > You do not need to key in the full name of the task. **ATAS** recognises partial words and would try to match it to the actual name.
@@ -449,7 +460,7 @@ Here are the search results:
 #### 3.9.2. Search by Name and Date
 
 You can search for tasks in the list by specifying the type, name, and date of the task you might be searching for. However,
-Events classified as repeating events cannot be found using `searchd` command
+events classified as repeating events cannot be found using `searchd` command
 The task types available for searching are `assignment`,`event`,`all` only. (case-insensitive)
 
 > **Tip**: 
@@ -468,15 +479,17 @@ Here are the search results:
 
 ### 3.10. Calendar View: **`calendar`**
 
-You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan for your free time as you can see your free slots at a glance.
+You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan your free time as you can see your free slots at a glance.
 
 Format: `calendar d/[MM/YY]`
+
+Example: `calendar d/05/20`
 
 Expected outcome:
 
 ![calendar.png](images/calendar2.png)
 
-> **Note**: The calendar does not show past repeated events instances and will only show upcoming ones. 
+> **Note**: The calendar does not show past repeated event instances and will only show upcoming ones. 
 
 ### 3.11. Storage
 
@@ -490,7 +503,8 @@ When you run **ATAS** again the next time, you will be able to see the tasks fro
 ## 4. Command Summary
 
 ### 4.1. List of available **ATAS** commands
-
+This table serves as a summary of all the commands available to **ATAS**. To view more information of the commands,
+refer to [Section 3. Features](#3-features). 
 <table>
 <colgroup>
 <col width="10%" />
@@ -624,10 +638,14 @@ A: Yes, you can! To do so, follow the instructions mentioned in the answer below
 Q: How do I transfer my saved data to another computer?  
 A: In the folder where your **ATAS** jar file is located, look for a file named "atasData.txt". Place a copy of this file into the folder where the **ATAS** jar file is located in your new computer.
 
-Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats three days later?  
+Q: If I set a Repeat Period of `3d`, does the event repeat for the next 3 days or the event repeats 3 days later?  
 A: Setting a repeat period of `3d` will mean that the event repeats **3 days later**. The numeric representation of the repeat command indicates the number of days before the event is repeated.  
 e.g. `repeat id/1 p/3d`  
 Given that today’s date is `01/01/20`, the event at index `1` will be repeated again on the `04/01/20`.  
-Refer to [Section 3.3, Repeating Events: `repeat`](#33-repeating-events-repeat).
+Refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
+
+Q: Can I edit my repeated event details using `edit` command? <br/>
+A: The `edit` command is used to edit the details such as `date` or `comments` of `assignment`, `event` or `repeat event`. 
+To change the repeat details for a `repeat event`, please refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
 
 [Back to Top](#)

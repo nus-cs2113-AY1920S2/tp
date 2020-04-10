@@ -63,7 +63,7 @@ public class Storage {
             default:
                 throw new AtasException(Messages.INCORRECT_STORAGE_FORMAT_ERROR);
             }
-        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+        } catch (AtasException | DateTimeParseException | IndexOutOfBoundsException e) {
             throw new AtasException(Messages.INCORRECT_STORAGE_FORMAT_ERROR);
         }
         return task;

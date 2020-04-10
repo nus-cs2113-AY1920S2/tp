@@ -31,7 +31,7 @@ ATAS is catered for students who want to maximise their productivity and cultiva
 **Minor Enhancement** : Implemented the *DELETE* command, wrote the code skeleton for `Assignment`,`Event` and `Task`, 
 wrote the code skeleton for various JUnit Tests (e.g. `AssignmentTest`,`EventTest`,`MarkAsDoneTest`)
 
-**Code Contributed** : [View on RepoSense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=joelczk&tabRepo=AY1920S2-CS2113T-M16-1%2Ftp%5Bmaster%5D)
+**Code Contributed** : [View on RepoSense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=joelczk&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos)
 
 **Contributions to User Guide** : 
 * Updated numberings of sections for User Guide in md format: [#149](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/149/files)
