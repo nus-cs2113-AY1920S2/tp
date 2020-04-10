@@ -194,7 +194,7 @@ public class UI {
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
-        display("Please key in the attendance status for student " + studentName + "[Y/N]");
+        display("Please key in the attendance status for student " + studentName + " [Y/N]");
         readUserInput();
         return getUserInput();
     }
