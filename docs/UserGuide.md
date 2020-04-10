@@ -28,9 +28,10 @@ Table of Contents
     . . 3.5.3 [Viewing module plan](#353-viewing-module-plan)  
     . . 3.5.4 [Viewing completed modules' credit](#354-viewing-completed-modules-credits)  
     . . 3.5.5 [Viewing CAP](#355-viewing-cap)  
-    3.6 [Clear](#36-clear)  
-    3.7 [Help](#37-help) 
-    3.8 [Exit](#38-exit)  
+    3.6 [Find](#36-find)
+    3.7 [Clear](#37-clear)  
+    3.8 [Help](#38-help) 
+    3.9 [Exit](#39-exit)  
 4. [FAQ](#4-faq)  
 5. [Command Summary](#5-command-summary)  
 
@@ -277,17 +278,40 @@ Example of expected output:
 `Your current CAP is:`
 `4.75`
 
-### 3.6 Clear
+### 3.6 Find
+Looks up the module plan and list of available modules for modules that contain the keyword inputted.
+
+Format: `find [keyword]`
+
+Example: 'find cs'
+
+`Okay, this is the list of related modules:`
+ 
+ `List of selected modules:`
+ 
+ `[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+`
+ 
+ `[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1`
+
+
+ `List of available modules`
+ 
+ `ID: CS1010 Name: Programming Methodology | Modular Credit: 4`
+ 
+ `ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010`
+
+
+### 3.7 Clear
 Clears the current module plan
 
 Format: `clear`
 
-### 3.7 Help
+### 3.8 Help
 Display the list of commands that you can input.
 
 Format: `help`
 
-### 3.8 Exit
+### 3.9 Exit
 Exits the app.
 
 Format: `bye`
