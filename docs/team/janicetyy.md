@@ -15,11 +15,12 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 #### Major enhancement: I implemented `storage` to store all patients' details in a text file.
   + What it does:
-    - The storage functions takes a formatted string from the various objects and appends it to the back of the
+    - The storage add function takes a formatted string from the various objects and appends it to the back of the
     corresponding text file, upon every add operation.
-    - The storage function takes a formatted string from TextUi which concatenates all the strings from the objects
+    - The storage write function takes a formatted string from TextUi which concatenates all the strings from the objects
     in a given list and overwrites the content of the corresponding text file, upon every delete and edit operation.
-    - Recover each object from the strings in the corresponding text file, line-by-line, at the start of the program.
+    - Return a map with the corresponding objects obtain from the text file at the start of the program, 
+    using the load and parse function in Storage.
   + Justification:
     - Using append for add instead overwriting with the entire map of objects improves the time taken for the program to
     process the add operation, especially when there is a large amount of objects.
