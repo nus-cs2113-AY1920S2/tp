@@ -109,8 +109,8 @@ class GoalCommandTest {
             } else {
                 found = false;
             }
-            tagStorage.dataFile.delete();
             assertTrue(found);
+            tagStorage.dataFile.delete();
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         }
