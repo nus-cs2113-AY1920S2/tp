@@ -522,7 +522,7 @@ Retrieve details of the patient with the specified NRIC.
           
   **Example:**
       
-     add appt /ic S1234567F /d 01/02/2020 /t 12:00:00 /r sick
+     add appt /ic S1234567F /d 01/02/2020 /t 12:00 /r sick
  
  > ***Expected output:***
  >
@@ -549,7 +549,7 @@ Retrieve details of the patient with the specified NRIC.
           
   **Example:**
       
-     edit appt S1234567F 5 /d 12/02/2020
+     edit appt S1234567F 1 /d 12/02/2020
  
  > ***Expected output:***
  >
@@ -567,7 +567,7 @@ Retrieve details of the patient with the specified NRIC.
      
  **Example:**
  
-     delete appt S1234567F 6
+     delete appt S1234567F 1
  
  > ***Expected output:***
  >
@@ -586,7 +586,7 @@ Retrieve details of the patient with the specified NRIC.
           
   **Example:**
       
-     done appt S1234567F 5 
+     done appt S9473069F 4 
  
  > ***Expected output:***
  >
@@ -622,7 +622,7 @@ Retrieve details of the patient with the specified NRIC.
           
   **Example:**
       
-     find appt S1234567F
+     find appt S9473069F
  
  > ***Expected output:***
  >

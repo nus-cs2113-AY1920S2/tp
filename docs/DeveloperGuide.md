@@ -7,10 +7,10 @@ By: `CS2113T-T12-2` Since: `March 2020`
 
 ## Table of Contents
 
-
 - [1. Introduction](#1-introduction)
     * [1.1. Purpose](#11-purpose)
     * [1.2. Scope](#12-scope)
+    * [1.3.](#13-)
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
@@ -57,10 +57,14 @@ This document contains the architecture and software design specifications for t
 
 This guide is mainly for developers, designers and software engineers that are working on and using HappyPills.
 
+### 1.3.
+`PatientParser` - A mark-up in PascalCase indicates the class used.
+
+`PatientParser#parse()` - The camelCase text after the '#' indicates the method called in the class
+
 ## 2. Setting Up
 
-1. Ensure that you have `Java 11` or later installed in your computer 
-2. Click [here](link to be added later?) to download the latest HappyPills JAR File
+Refer to the guide [here](SettingUp.md).
 
 ## 3. Design 
 
@@ -68,28 +72,38 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](images/DG/ArchitectureDiagram.png "Overview of the Application")
+![Architecture diagram](images/DG/architecture/ArchitectureDiagram.png "Overview of the Application")
 
-The **Architecture diagram** above explains the high-level design of HappyPills.
+The **Architecture diagram** above explains the high-level design of HappyPills. 
+Given below is a quick overview of each component.
 
 Main has one class called `HappyPills`.  
 It is responsible for:  
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components.
 
-The rest of the App consists of four components.
+The rest of the application consists of four other components.
 
-- `TextUi`: The UI of the App.
+- `UI`: The user interface of the application.
 
 - `Logic`: The command executor.
 
 - `Model`: Holds the data of the App in-memory.
 
-- `Storage`: Reads data from and writes data to the text file.
+- `Storage`: Reads data from and writes data to the text file stored on the user's computer.
 
+**How the architecture components interact with each other**  
+
+The Sequence Diagram below shows how the components interact with each other for 
+the scenario where the user issues the command `delete patient NRIC`.  
+
+![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
+
+The sections below give more details of each component.
+
+----- shift down ---
 
 The architecture of HappyPills is broken down into seven main classes:
-* `TextUi`: This class handles the User Interface of the application.
+* `Ui`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
 * `Command`: This class handles all the commands the application has.
 * `Storage`: This class reads and writes data to and from text files for future use.
@@ -97,13 +111,13 @@ The architecture of HappyPills is broken down into seven main classes:
 * `Appointment`: This class manages the data of data type Appointment in memory.
 * `MedicalRecords`: This class manages the data of data type MedicalRecord in memory.
 
-### 3.2. TextUi Component
+### 3.2. Ui Component
 
-The `TextUi` component: 
+The `Ui` component: 
 * Executes user commands using the command component.
 * Listens for changes and outputs messages accordingly from the Command component.
 * Store or generate formatted messages used by the other components, for display to the user.
-* Consist of 6 sub-parts:
+* Consist of 6 classes:
     - PatientTextUi
     - AppointmentTextUi
     - PatientRecordTextUi
@@ -165,25 +179,24 @@ The commands introduced in this feature include : `add`, `edit`, `list`, `delete
 The commands are implemented with HashMap and use NRIC as key and the Patient class as value.
 The patient list feature is facilitated by PatientMap class which implements the following operations: 
 
-    - PatientMap #add(Patient patient) — This command adds the patient object into the patient list using the patient’s nric as key.
+>`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
+>`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
+>`PatientMap #hasKey(String nric)` — This command checks whether the patient object resides in the existing patient list.   
 
-    - PatientMap #remove(String nric) — This command removes the patient object from the existing patient list. 
-
-    - PatientMap #hasKey(String nric) — This command checks whether the patient object resides in the existing patient list. 
+----- insert class diagram -----
     
-    
-** Design Considerations ** 
+**Design Considerations** 
 
 *Aspect: Data Structure of the Patient List* 
 
-        Alternative 1 (current choice): Hash Map
-          Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
-          Cons: Implementation is harder and may result in bugs if not implemented accurately.
+- Alternative 1 (current choice): Hash Map
+  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
+  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
-        Alternative 2: Array List
-          Pros: This would be easier to implement and retrieve the information.
-          Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-                This would cause the deletion to be very slow when there is a large number of patients in the list.
+ - Alternative 2: Array List
+   * Pros: This would be easier to implement and retrieve the information.
+   * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+           This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 #### 4.1.1 Add Patient Details
 
@@ -201,7 +214,8 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 
 **Implementation** 
 
-The activity diagram below summarises the process of executing an `add` command.
+--incorrect add patient----
+The sequence diagram below summarises the process of executing an `add` command.
 ![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
 
 The following steps explains the sequence of events: 
@@ -247,17 +261,17 @@ The following steps explains the sequence of events:
 
 The user can delete a patient from the list of patients currently in the program. The command: 
 
-    delete patient S7777777Z 
+    delete patient S1234567Z 
     
-will delete the patient with NRIC `S7777777Z`, if found. 
+will delete the patient with NRIC `S1234567Z`, if found. 
 
 **Implementation** 
 
-![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.jpg)
+![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.png)
 
 The following steps explains the sequence of events: 
 
-1. The user enters `delete patient S7777777Z`. 
+1. The user enters `delete patient S1234567Z`. 
 
 2. `HappyPills` calls `Parser#parse()` which then calls `PatientParser#parse()`.
 
@@ -325,7 +339,7 @@ or `TextUi.patientNotExists()` if no patient with the given NRIC exists in the p
 #### 4.3.1. Add Appointment
 
 The user is able to add appointments into the program to manage the appointment schedule. 
-The command: 
+The command:  
 
     add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
     
@@ -690,7 +704,9 @@ Step 5: `HappyPills` will execute the command.
 
 ## 5. Documentation 
 
-## 6. Testing 
+## 6. Testing
+
+Refer to the guide [here](Testing.md).
 
 ## 7. Useful links
 
@@ -736,13 +752,13 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ### Appendix C: Non-functional Requirements
 
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+1. Should work on any mainstream OS as long as it has `Java 11` installed.
 
 2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
 
-4. Should be able to display large amount of information quickly. 
+4. Should be able to display large amount of information quickly.
 
 ### Appendix D: Glossary 
 
@@ -763,57 +779,40 @@ Given below are instructions to test the application manually.
  </tr>
 </table>
 
+#### E.1. Launch and Shutdown
+
+1. Initial launch 
+    1. Download the latest jar file [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releaseshttps://github.com/AY1920S2-CS2113T-T12-2/tp/releases)
+     and copy into an empty folder
+    1. Open the terminal and run the JAR file using `java -jar HappyPills.jar` command
+    1. Expected output: **HappyPills** startup screen is displayed
+1. Shut down of application
+    1. Enters `exit`
+    1. Expected output: **HappyPills** programs terminates
+    
+#### E.2. General Patient Information Commands
+
+1. Add patient to the list (Prompting)
+    1. Test case: `add patient /ic S9876543F /n Mallory /p 91265432`.
+    Expected: The program will prompt the user for missing necessary information.  
+    Continuation: `/dob 22/05/1999 /b O-`
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`
+    Expected: A new patient named `Mallory` will be added to the list.
+    1. Test case: `add patient /ic S9888888G /n Eve`  
+    Expected: The program will prompt the user for missing necessary information.  
+    Continuation: `clear`  
+    Expected: The add command will be aborted.
+    1. Test case: `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`.  
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `n`  
+    Expected: The patient named `Bob` will not be added to the list.
+
+#### E.3. Patient Medical Records Commands
+#### E.4. Appointment Scheduling Commands
+
+
+
 ## Useful links:
 * [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)
-
-------
-
-### 4.3. User Prompting 
-    
-#### 4.2.1 Description
-
-When the user adds a patient’s details, the input could be missing a few compulsory fields. Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.
-
-The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details. The add command will only be executed when all the compulsory fields are provided. 
-
-#### 4.2.2 Implementation 
-
-Representing a prompt
-
-The prompting mechanism uses prefix to represent individual 
-
-#### 4.2.3 Design Consideration
-
-##### Representing a prompt
-
-The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual field in patient's information. A list of tags is use to pass to the `Parser` which contains:
-
-        - Parser #addCommandParser(String input) — This method break down user input base on tags such as (/ic, /p)
-
-##### Passing the prompts
-
-Given below is an example scenario where the user command has missing compulsory fields
-
-Step 1: The `HappyPills` pass the user's command to `Parser`, which finds one or more missing compulsory fields.
-
-Step 2: The `Parser` call `Parser#parseAddCommand`, which prompt the corresponding missing field back to the user. And wait for user response
-
-Step 3: The new user input was than check again by `Parser#parseAddCommand` and repeat the process until all the compulsory fields is added correctly.
-
-Step 4: `Parser#parseAddCommand` will ask for conformation before passing the correct input into `AddCommand`.
-
-Step 5: `HappyPills` will execute the command.
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice): The `HappyPill` functions is unaware of prompting. The `Parser` keeps track of the incomplete command and sends back as `addCommand` objects.
-          Pros: Decrease coupling between `HappyPill` and `Parser` components
-          Cons: `HappyPill` has no way to know if it is currently handling prompting, so it cannot abort prompts, `Parser` return IncorrectCommand to act as abort.
-            
-        Alternative 2: The `Parser` componetnt keeps track of the incomplete command and throws an exception containing promts to the `HappyPills`.
-          Pros: Greater flexibility for `HappyPill` to handle prompt, e.g. aborting
-          Cons: A new class is required to keep track of the command entered, rather than simply acting as a bridge between the `Command` and `Parser` sub-component. Increase number of pontential points of failure and decrease maintainability.
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.

@@ -27,7 +27,7 @@ patient automatically.
          
  **Example:**
      
-    add appt /ic S1234567F /d 01/02/2020 /t 12:00:00 /r sick
+    add appt /ic S1234567F /d 01/02/2020 /t 12:00 /r sick
 
 > ***Expected output:***
 >
@@ -54,7 +54,7 @@ Edit information of the appointment with the specified appointmentID(apptID).
          
  **Example:**
      
-    edit appt S1234567F 5 /d 12/02/2020
+    edit appt S1234567F 1 /d 12/02/2020
 
 > ***Expected output:***
 >
@@ -72,7 +72,7 @@ Delete an appointment of a patient as specified by the NRIC and appointmentID(ap
     
 **Example:**
 
-    delete appt S1234567F 6
+    delete appt S1234567F 1
 
 > ***Expected output:***
 >
@@ -91,7 +91,7 @@ Mark the appointment with the specified appointmentID(apptID) as done if arrived
          
  **Example:**
      
-    done appt S1234567F 5 
+    done appt S9473069F 4 
 
 > ***Expected output:***
 >
@@ -127,7 +127,7 @@ This can be used as a method to check for appointmentID.
          
  **Example:**
      
-    find appt S1234567F
+    find appt S9473069F
 
 > ***Expected output:***
 >
