@@ -116,7 +116,7 @@ Sets a budget for the user.
 Format: `SET b/AMOUNT`
 
 * The `AMOUNT` can be any decimal number that is between 0 to 5000.
-* The `b/` substring should be present in the command.  
+* The `b/` phrase should be present in the command.  
 
 Example of usage: 
 
@@ -127,7 +127,7 @@ Filters the shopping list according to a keyword specified by the user.
 
 Format: `FIND KEYWORD`
 
-* The `KEYWORD` can be any character or string.
+* The `KEYWORD` can be any word or phrase.
 * The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
@@ -197,7 +197,7 @@ The process is as follows:
 The following sequence diagram below shows how the delete feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Deletefinal2.png)
+![alt text](../images/Delete_v1.png)
 
 #### 3.3.2 Design considerations
 
@@ -240,11 +240,11 @@ to check whether the <code>Item</code> at each specified index contains the give
 The following sequence diagram below shows how the <code>Duke</code> object creates the <code>FindCommand</code> object. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Findfinal6.png)
+![alt text](../images/Find_v1.png)
 
 This next sequence diagram will show how the <code>FindCommand</code> creates the <code>filteredItems</code> list:
 
-![alt text](../images/Finditemsfinal7.png)
+![alt text](../images/Find_SD_v1.png)
 
 #### 3.4.2 Design considerations
 
@@ -284,7 +284,7 @@ The process is as follows:
 The following sequence diagram below shows how the set budget feature works. Note the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![alt text](../images/Setfinal2.png)
+![alt text](../images/Set_v1.png)
 
 
 #### 3.8.2 Design considerations

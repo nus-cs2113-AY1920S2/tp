@@ -1,10 +1,10 @@
-# SHOCO v2.0 - User Guide
+# SHOCO v2.1 - User Guide
 <!-- @@author Shannonwje -->
 By: `Team SHOCOTech`
 
 Since: `Feb 2020`
 
-Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
+Creators: `Trisha Labi` `Tan Kok Joon` `Phoon Jia Juin` `Joshua Loh` `Shannon Wong`
 <!-- @@author -->
 
 <!-- @@author trishaangelica -->
@@ -48,7 +48,7 @@ grocery shopping disappear.
 &nbsp;
 
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed. Otherwise download it from
@@ -60,7 +60,7 @@ grocery shopping disappear.
 &nbsp;
 <!-- @@author -->
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ## Features 
 
@@ -83,24 +83,24 @@ grocery shopping disappear.
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author jiajuinphoon -->
 ### Adding an item: `ADD`
-Add the specified item in the shopping list.
+Adds an item to the shopping list.
 
 Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 
 * The `DESCRIPTION` must exist.
-* The `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
-* The `[PRICE]` must be in **numerical** form (decimal form accepted).
+* The `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
+* The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
   respective values or omit them. The system will set the price and quantity to 
-  the default values `0.0` and `1` 
-* note that you can rearrange the delimiters (more will shown in the example.)
+  the default values `0.0` and `1` if omitted.
+> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
-Example of usage: 
+Examples of usage: 
 
 1. `ADD i/potato p/5.00 q/3` **OR** `ADD p/5.00 q/3 i/potato`
     * Add the description, price and quantity of this item in the shopping list
@@ -115,7 +115,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide"> &#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide"> &#129053; back to top</a></b>
 <!-- @@author trishaangelica -->
 
 ***
@@ -126,11 +126,12 @@ Edits the specified item in the shopping list.
 Format: `EDIT INDEX [i/DESCRIPTION] [p/PRICE] [q/QUANTITY]`
 
 * Edits the item at the specified `INDEX`. The `INDEX` refers to the index number 
-shown in the displayed shopping list.
-* The `INDEX` and `[QUANTITY]` must be a **positive integer**. *e.g 1, 2, 3 ..*
+shown in the displayed shopping list. 
+* You can view an item's `INDEX` number by using the `DISPLAY` command. More info [here](#displaying-list-and-budget-details-display).
+* The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * **At least one** of the three parameters (description/price/quantity) must be present in the command.
-* i/, p/, q/ delimiters can be in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
 Examples of usage: 
 
@@ -146,7 +147,7 @@ Examples of usage:
     
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -165,7 +166,7 @@ Example of usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -174,7 +175,7 @@ Filters the shopping list according to a keyword specified by the user.
 
 Format: `FIND KEYWORD`
 
-* The `KEYWORD` can be any character or string.
+* The `KEYWORD` can be any word or phrase.
 * The `KEYWORD` field should not be left empty.  
 
 Example of usage: 
@@ -183,7 +184,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
@@ -209,7 +210,7 @@ Example of the usage:
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -235,7 +236,7 @@ Example of the usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -246,7 +247,7 @@ Format: `DISPLAY`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -257,7 +258,7 @@ Sets a budget for the user.
 Format: `SET b/AMOUNT`
 
 * The `AMOUNT` can be any decimal number that is between 0 to 5000.
-* The `b/` substring should be present in the command.  
+* The `b/` phrase should be present in the command.  
 
 Example of usage: 
 
@@ -265,7 +266,7 @@ Example of usage:
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author Shannonwje -->
@@ -276,7 +277,7 @@ Format: `RES`
 <!-- @@author -->
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 <!-- @@author JLoh579 -->
@@ -287,19 +288,19 @@ Format: `CLEAR`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 ***
 <!-- @@author trishaangelica -->
 
 ### Viewing help: `HELP`
-Shows the available commands and how they are to be used.
+Shows the available commands, their purpose and how they are to be used.
 
 Format: `HELP`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 ***
 
@@ -310,7 +311,7 @@ Format: `BYE`
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 <!-- @@author -->
 
 ***
@@ -335,7 +336,7 @@ your budget.
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -359,7 +360,7 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
 
 
 &nbsp;
@@ -384,4 +385,4 @@ from time to time so that if you unintentionally cleared your list, you can alwa
 
 &nbsp;
 
-<b><a href="#shoco-v20---user-guide">&#129053; back to top</a></b>
+<b><a href="#shoco-v21---user-guide">&#129053; back to top</a></b>
