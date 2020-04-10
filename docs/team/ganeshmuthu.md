@@ -9,7 +9,7 @@
     + 2.3 [Developer guide](#dg)
     + 2.4 [User guide](#ug)
     + 2.5 [Team-based tasks](#team)
-   
+
 <a name="overview"></a>
 ### 1. Restaurant daily report
 Restaurant Daily Report is a CLI app that generates a whitepaper, summarizing the internals of a restaurant. It’s aim is to provide restaurant owners a quick overview of how their restaurant is performing daily so that restaurant owners can better manage their business operations.
@@ -24,7 +24,7 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 <a name="enhancements"></a>
 #### 2.2 Enhancements implemented
 
-#####Add dish
+##### Add dish
 1. Basic add dish functionality.
 2. Informs user if they attempt to add a dish that already exists.
     + Custom message: `Dish [dish name] already exists!`
@@ -38,8 +38,8 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 7. Custom dish added message
     + Example: `add dish; n/pizza; i/cheese, sauce, bread; p/6.00`
     + Message: `Dish pizza successfully added.`
-    
-#####Delete dish
+
+##### Delete dish
 1. Basic delete menu item functionality.
 2. Informs user if they attempt to delete a menu item that does not exist.
     + Custom message: `Dish [dish name] does not exist!`
@@ -50,11 +50,11 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
     + Example: `delete dish; n/pizza;`
     + Message: `Dish pizza successfully removed!`
 
-#####List menu item
+##### List menu item
 1. Basic list menu item functionality.
 2. Informs user if there are no items to list.
 
-#####Search menu item
+##### Search menu item
 1. Basic search menu item functionality.
 2. Informs user if no items match the search.
     + Custom message: `There are no dishes that match the keyword [keyword]!`
@@ -62,7 +62,7 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 4. Informs the user if keyword is missing.
 5. Informs the user if input syntax is incorrect (such as a semicolon missing).
 
-#####Dish profit
+##### Dish profit
 1. Basic dish profit functionality.
 2. Throws error if dish profit calculation is attempted for dish made of ingredients not listed in stock.
 3. Throws an error if dish profit calculation is attempted for dish made of ingredients with zero stock.
@@ -92,5 +92,4 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 1. Contributed to brainstorming of project ideas.
 2. Contributed to creation of user stories.
 3. Frequently provided input on project direction throughout process.
-4. 
 

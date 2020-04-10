@@ -1,20 +1,15 @@
 # Joseph Lim Wei Jie - Project Portfolio Page
 
 ## Overview
-
-### 1. Restaurant Daily Report
-
 `Restaurant Daily Report` is a CLI app that generates a whitepaper, summarizing the internals of a restaurant. It’s aim is to provide restaurant owners a quick overview of how their restaurant is performing daily so that restaurant owners can better manage their business operations.
 
-### 2. Summary of Contributions
+### Summary of Contributions
 
-#### 2.1 Code contribution:
-You can view my code contribution for this project [here:](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=josephlimweijie)
+**Code contribution**: You can view my code contribution for this project [here:](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=josephlimweijie)
 
-#### 2.2 Enhancements implemented:
-##### 2.2.1 Stock category:
+**Enhancement added**
 
-###### Add:
+**Add**:
 1. Basic add functionality.
 2. Informs user if the user enters a name that is similar to the existing ingredients in the stock.
 3. Allows flexibility in the ordering of the parameters specified from the user.
@@ -32,7 +27,7 @@ You can view my code contribution for this project [here:](https://nus-cs2113-ay
         <img src= "https://user-images.githubusercontent.com/59989652/78984371-a42d6b80-7b58-11ea-8e88-d9fa8adfdec8.png">
     </p>    
 
-###### Delete:
+**Delete**:
 1. Basic delete functionality.
 2. Allows flexibility in the ordering of the parameters specified from the user.
     + For example: `delete stock; i/tomato; q/10;` and `delete stock; i/tomato;` are both acceptable.
@@ -45,20 +40,20 @@ You can view my code contribution for this project [here:](https://nus-cs2113-ay
     + `delete stock; i/;` will display the message: `"The user's input must specify the ingredient's name!"`
     + `delete stock; i/tomato; q/-10;` will display the message: `"Please enter a positive value for the quantity to be added!"`
     
-###### List:
+**List**
 1. Basic list functionality.
 2. Lists ingredients in the stock from the highest quantity to the lowest quantity.
 
-###### Search:
+**Search**
 1. Basic search functionality.
 2. Takes into account case-sensitivity of the keyword supplied from the user when searching against the stock.
 
-###### Load:
+**Load**
 1. Loads the stock-related data from the `report.txt` file.
 
-#### 2.3 Contributions to documentations:
+**Contributions to documentations:**
 
-###### 2.3.1 User guide contribution:
+**User guide contribution:**
 
 The following sections are where the **content** is contributed by me:
 
@@ -78,24 +73,20 @@ The following sections are where the **content** is contributed by me:
     
 The following sections are where the **content** is contributed by me:
 
-##### 2.4 Developer guide contribution:
+**Developer guide contribution:**
 1. Anchoring using Table of Content at the top of the developer guide.
 2. Design & Implementation:
     Sections:
-    + 1.1 [Proposed] Search stock feature
-    + 1.2 [Proposed] List stock ingredients in descending quantity
+    + 1.1 Search stock feature
+    + 1.2 List stock ingredients in descending quantity
+    + Stock-related in Appendix B
+    + Manual testing instructions for dish and stock in Appendix E.
 
-
-#### 2.5 Contributions to team-based tasks:
-
+**Team-based Task**
 1. Automate testing by incorporating test cases using text-ui-test.
 2. Release `Restaurant Daily Report v2.0`.
 
-
-#### 2.6 Review/Mentoring contributions: 
-
-1. Troubleshoot failing CI-Test in issue #74. 
-
-#### 2.7 Contributions beyond the project team:
+**Review/Mentoring contributions:** 
+1. Troubleshoot failing CI-Test in issue [#74](https://github.com/nus-cs2113-AY1920S2/forum/issues/74)
 
 
