@@ -8,11 +8,11 @@ import jikan.exception.InvalidGoalCommandException;
 import jikan.exception.NegativeDurationException;
 import jikan.exception.NoSuchTagException;
 import jikan.log.Log;
+import jikan.storage.Storage;
+import jikan.storage.StorageHandler;
 import jikan.ui.Ui;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Integer.valueOf;
-import static jikan.Jikan.tagFile;
 
 
 /**
@@ -35,15 +34,19 @@ import static jikan.Jikan.tagFile;
 public class GoalCommand extends Command {
     private static Scanner scanner;
     private static final String TAG_FILE_PATH = "data/tag/tag.csv";
+    public static Storage tagStorage; // Storage the list was loaded from
+    public static StorageHandler tagStorageHandler;
 
     /**
      * Constructor to create a new goal command.
      * @param parameters the parameters of the goal command.
      * @param scanner to read the user input.
      */
-    public GoalCommand(String parameters, Scanner scanner) {
+    public GoalCommand(String parameters, Scanner scanner, Storage tagStorage) {
         super(parameters);
         this.scanner = scanner;
+        this.tagStorage = tagStorage;
+        this.tagStorageHandler = new StorageHandler(tagStorage);
     }
 
     @Override
@@ -58,7 +61,7 @@ public class GoalCommand extends Command {
                 if (tagName.isEmpty()) {
                     throw new EmptyTagException();
                 }
-                index = checkIfExists(tagName);
+                index = checkIfExists(tagName, TAG_FILE_PATH);
                 String tmpTime = parameters.substring(delimiter + 3);
                 if (tmpTime.isEmpty()) {
                     throw new EmptyGoalException();
@@ -79,13 +82,13 @@ public class GoalCommand extends Command {
                     if (!existInActivity(activityList, tagName)) {
                         throw new NoSuchTagException();
                     } else {
-                        addTagLine(tagName + "," + goalTime);
+                        tagStorage.writeToFile(tagName + "," + goalTime);
                         Ui.printDivider("The goal for " + tagName + " has been added.");
                     }
                 }
             } else if (deleteDelim != -1) {
                 tagName = parameters.substring(0, deleteDelim - 1).strip();
-                index = checkIfExists(tagName);
+                index = checkIfExists(tagName, TAG_FILE_PATH);
                 if (index != -1) {
                     Ui.printDivider("The goal for this tag has been deleted.");
                     deleteLine(index);
@@ -118,34 +121,14 @@ public class GoalCommand extends Command {
     }
 
     /**
-     * Creates a new tag file.
-     * @param filePath the filepath of the tag file.
-     * @param tagFile the File object.
-     */
-    public static void createFile(String filePath, File tagFile) {
-        tagFile = new File(filePath);
-        try {
-            if (!tagFile.exists()) {
-                tagFile.getParentFile().mkdirs(); // Create data directory (does nothing if directory already exists)
-                tagFile.createNewFile();
-            }
-        } catch (IOException e) {
-            Ui.printDivider("Error saving tag goal to data file.\n"
-                    + "Your changes have not been saved in the data file.\n"
-                    + "If the data file is open, please close it, restart the app and try again.");
-        }
-    }
-
-
-
-    /**
      * Check that tag exists in the tag list.
      * @param tagName the tag name.
+     * @param filePath the file path of the tag file.
      * @return index the index of the tag in the tag list.
      * @throws IOException when there is an error loading/creating the file.
      */
-    public static int checkIfExists(String tagName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(TAG_FILE_PATH));
+    public static int checkIfExists(String tagName, String filePath) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         int index = 0;
         int status = 0;
         try {
@@ -182,25 +165,12 @@ public class GoalCommand extends Command {
     private static void updateGoal(String userInput, String tagName, Duration goalTime, int index) throws IOException {
         if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
             deleteLine(index);
-            writeToFile(tagName + "," + goalTime);
-            Ui.printDivider("The goal for " + tagName + " was updated.");
+            tagStorage.writeToFile(tagName + "," + goalTime);
+            Ui.printDivider("The goal for " + tagName + " was updated");
         } else if (userInput.equalsIgnoreCase("no") || userInput.equalsIgnoreCase("n")) {
             Ui.printDivider("Okay then, what else can I do for you?");
         } else {
             Ui.printDivider("Incorrect format entered, please only enter yes or no.");
-        }
-    }
-
-    /**
-     * Updates tag file with new tag.
-     *
-     * @param dataLine Line to write to file.
-     */
-    public static void addTagLine(String dataLine) {
-        try {
-            writeToFile(dataLine);
-        } catch (IOException e) {
-            System.out.println("Error saving tag to tag file.");
         }
     }
 
@@ -215,45 +185,22 @@ public class GoalCommand extends Command {
         List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(TAG_FILE_PATH),
                 StandardCharsets.UTF_8));
         fileContent.remove(lineNumber);
-        saveNewTags(fileContent, tagFile);
+        saveNewTags(fileContent);
     }
 
     /**
      * Saves the updated tags to the csv file.
      *
      * @param newList The list containing the updated data.
-     * @param dataFile The file to save to.
      * @throws IOException If an error occurs while writing the new list to file.
      */
-    public static void saveNewTags(List<String> newList, File dataFile) throws IOException {
-        clearFile();
+    public static void saveNewTags(List<String> newList) throws IOException {
+        tagStorage.clearFile();
         FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
 
         for (String s : newList) {
             fw.write(s + System.lineSeparator());
         }
-        fw.close();
-    }
-
-    /**
-     * Clears the data file.
-     * @throws FileNotFoundException If file is not found.
-     */
-    public static void clearFile() throws IOException {
-        FileWriter fw = new FileWriter(TAG_FILE_PATH, false);
-        fw.write("");
-        fw.close();
-    }
-
-    /**
-     * Writes the input string to file.
-     *
-     * @param s The input string.
-     * @throws IOException If an error occurs while writing.
-     */
-    public static void writeToFile(String s) throws IOException {
-        FileWriter fw = new FileWriter(TAG_FILE_PATH, true);
-        fw.write(s + System.lineSeparator());
         fw.close();
     }
 

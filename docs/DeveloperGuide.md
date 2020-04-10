@@ -61,9 +61,34 @@
      * Run the tests and ensure they all pass.
 
 ## 2. Design
-![image_info](./pictures/ClassDiagram.png)
+The section provides a high-level explanation of how the Jikan software is designed.
+
+### 2.1 High-Level Architecture
+The users interact with the Jikan software which modifies the local storage data file.
+
+Within the Jikan software, there are 5 main components:
+* **Parser Component** - Parses the user inputs and calls the relevant `Command` object to execute the desired
+command.
+* **Ui Component** - Prints to the user the output of the desired `Commands`.
+* **Commands Component** - Contains all the `Commands` to be called by the `Parser` based on user inputs.
+* **Activities Component** - Maintains the non-permanent state of all `Activities` in the `Activity List` to be accessed
+by the executing `Commands`.
+* **Storage Component** - Interacts with and modifies the local storage file, which contains the permanent (lasting
+even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session.
+
+![image_info](./pictures/Architecture_Diagram.png)
+_Fig 2.1. Architecture diagram of the Jikan program_
+
+### 2.2 Class Diagram
+The high-level class diagram describes the structure of the components
+
+![image_info](./pictures/Simplified_Class_Diagram.png)
 _Fig 2.1. Class diagram of the Jikan program_
 
+![image_info](./pictures/Commands.png)
+_Fig 2.2. Commands of Jikan (private methods omitted)_
+
+All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
 ## 3. Implementation
 
@@ -300,8 +325,11 @@ The StorageHandler class functions as a support to the main Storage class, allow
 ### 3.5 Edit feature
 The edit feature allows the user to make changes to activities that have been saved in the activity list. This is to allow the user to rectify any mistakes that may have been made during the initial recording of the activity. 
 
+
 #### 3.5.1 Current Implementation
 The following sequence diagram shows how the edit feature works.
+The current implementation of the edit feature allows the user to edit the activity name as well as its allocated time.
+The following sequence diagram shows how the edit feature works for editing the activity name. The diagram for the editing of allocated time is omitted as the sequence is relatively similar.
 ![image_info](./pictures/EditSequenceDiagram.png)
 The current implementation of the edit feature allows the user to edit only the name parameter of the activity. When the user wants to edit an activity using the edit command, the Parser creates a new EditCommand object. The `executeCommand()` method of the EditCommand object is called and the specified parameters are updated accordingly.
 
@@ -310,6 +338,7 @@ The order of method calls to edit the activity details is as follows if the spec
 2. The `get()` method is self-invoked by the ActivityList class to obtain the activity at the given index 
 3. The `setName()` method of the Activity class is called to edit the activity name to the user-specified name
 4. The activity with the updated name is returned to the activityList  
+
 
 #### 3.5.2 Additional Implementations
 The current implementation of the edit feature only allows the user to edit the activity name. Hence, additional implementations of the edit feature should allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
@@ -383,11 +412,34 @@ Additionally, the user can specify a specific week of month by including a date
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
 
-### 3.8 Find Feature
-This command accepts a keyword and searches the activity list for activities with names that contain the keyword.
+### 3.8 Find & Filter Features
 
-#### 3.8.1 Current Implementation
-* This feature is called by the user when the `find` command is entered into the command line. The string following the command is the keyword to match activity names to.
+#### Find Feature
+This command accepts keyword(s) and searches either the entire activity list or the last shown list for activities with 
+names containing each keyword.
+
+#### Filter Feature
+This feature accepts space-separated keyword(s) to search either the entire list or the last shown list 
+for activities with tags matching each keyword. The keywords should be an exact-match with the tag names.
+
+
+#### 3.8.1 Design Considerations
+As the `find` and `filter` commands are important for the user to analyse and eventually graph time-spent on each 
+activity. The user should be allowed to query for all useful combinations of activities in the activity list. 
+This entails:
+* The user should be allowed to match for multiple keywords at once.
+* The user should be allowed to exclude certain activities by limiting his search to a previously shown list as 
+    opposed to the entire activity list.
+    (chaining `list`, `find`, and `filter` commands).
+
+
+  
+
+#### 3.8.2a Current Implementation for Find
+* This feature is called by the user when the `find` command is entered into the command line. 
+The string following the command are the parameters:
+    * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
+    * The remaining parameters are a string of keywords separated by ` / `. 
 * The Parser will create a FindCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
     * The Parser's `lastShownList` will be cleared.
@@ -396,7 +448,6 @@ This command accepts a keyword and searches the activity list for activities wit
     * `printResults()` of the Ui will be called:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
-
 
 ![find seq diagram](https://imgur.com/Icg5rdB.png)
 
@@ -415,7 +466,16 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-![filter seq diagram](https://imgur.com/hybT3R9.png)
+#### 3.7.3 Find Sequence Diagram
+![image_info](./pictures/Find_Sequence_Diagram.png)
+![image_info](./pictures/Find_Reference_Frame.PNG)
+
+#### 3.7.4 Additional features (Proposed)
+Developers may include the feature allowing users users to chain multiple queries and multiple commands 
+in a single user input. Possibly "pipe-lining" the output of one query into the next query with the pipe symbol `|`.
+
+**For example:** 
+* `list week | find -s KEYWORD | filter -s TAGNAME` 
 
 ### 3.10 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
@@ -444,6 +504,7 @@ E.g. if 3 activities in the `lastshownlist` are tagged `CS2113`, the durations o
 This displays a bar graph of the durations of each activity in the `lastShownList`.
 * If the user indicated `activities`, `GraphCommand` will call it's own `graphDuration` method.
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
+
 
 #### 3.10.2 Additional features
 As graph gets it's data based on the `lastShownList`, users can pair the `graph` command with `find`, `filter`, and `list` to sieve out the activities to be graphed.
@@ -479,41 +540,42 @@ Allow users to record their daily activities and track their time usage in a use
 
 
 ### Non-Functional Requirements
-
-{Give non-functional requirements}
+* The program should be usable by a novice who has never used a time management application.
+* The program should work on most mainstream OSes. 
+* The program should be portable to other systems. 
 
 ### Glossary
 
-* *glossary item* - Definition
+* *Mainstream OSes:* Windows, MacOS, Linux 
 
 ### Instructions for Manual Testing  
   
-  #### Launch and Shutdown
+#### Launch and Shutdown
   1. Download the jar file and data.csv file.
   2. Copy both into an empty folder.
   3. Create a folder named `data` and put the data.csv file into this folder.
   4. Ensure the folder `data` and `jikan.jar` are in the same folder.
   5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
   
-  It is important to include the data.csv file to have data for testing!
+  It is important to include the data.csv file to have data for testing!  
   
-  #### Listing activities
+#### Listing activities
   Test case: `list month april`
   
   Expected: A list of activities completed in the month of April should be shown.
   
   Test case: `list 25/03/2020`
   
-  Expected: A list of activities completed on 25th March 2020 should be shown.
+  Expected: A list of activities completed on 25th March 2020 should be shown.  
   
-  #### Continuing activities
+#### Continuing activities
   Test case: `continue lab 4 ex2`
   
   Expected: Message "lab 4 ex2 was continued" will be displayed.
   
   Test case: `start lab 4 ex2`
   
-  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.  
   
 
 #### Graphing activities
@@ -529,7 +591,7 @@ Test case: (to be done in succession)
 `list week` then `graph tags`
 
 Expected: List of activities completed this week will be shown. 
-Then a chart of the duration of the tags of these activities will be shown.
+Then a chart of the duration of the tags of these activities will be shown.  
 
 #### Setting tag goals
 Test case: `goal core /g 24:00:00`

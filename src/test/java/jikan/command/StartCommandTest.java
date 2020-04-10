@@ -71,6 +71,7 @@ class StartCommandTest {
             assertEquals(Parser.activityName, "Activity 3");
             assertEquals(activity3Tags, Parser.tags);
 
+            resetFields();
             // end started activity to test continue feature
             command = new EndCommand(null);
             command.executeCommand(activities);
@@ -82,7 +83,6 @@ class StartCommandTest {
         } catch (ExtraParametersException e) {
             Ui.printDivider("Field error.");
         }
-        resetFields();
     }
 
     @Test

@@ -3,7 +3,6 @@ package jikan;
 import jikan.activity.ActivityList;
 import jikan.command.ByeCommand;
 import jikan.command.Command;
-import jikan.command.GoalCommand;
 import jikan.exception.EmptyNameException;
 import jikan.exception.ExtraParametersException;
 import jikan.cleaner.LogCleaner;
@@ -12,7 +11,6 @@ import jikan.storage.Storage;
 import jikan.cleaner.StorageCleaner;
 import jikan.ui.Ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -27,6 +25,8 @@ public class Jikan {
 
     /** Storage object for data file. */
     private static Storage storage;
+
+    private static Storage tagStorage;
 
     /** Activity list to store current tasks in. */
     private static ActivityList activityList;
@@ -46,20 +46,19 @@ public class Jikan {
 
     public static final Scanner in = new Scanner(System.in);
 
-    public static File tagFile;
-
     /**
      * Main entry-point for the Jikan application.
      */
     public static void main(String[] args) {
         ui.printGreeting();
         storage = new Storage(DATA_FILE_PATH);
+        tagStorage = new Storage(TAG_FILE_PATH);
         storageCleaner = new StorageCleaner(storage);
         try {
             storageCleaner.storageAutoClean();
             logCleaner.logAutoClean();
             activityList = storage.createActivityList();
-            GoalCommand.createFile(TAG_FILE_PATH, tagFile);
+            //GoalCommand.createFile(TAG_FILE_PATH, tagFile);
         } catch (IOException e) {
             Ui.printDivider("Error while preparing application.");
         }
@@ -67,10 +66,11 @@ public class Jikan {
         lastShownList.activities.addAll(activityList.activities);
         parser.cleaner = storageCleaner;
         parser.logcleaner = logCleaner;
+        parser.tagStorage = tagStorage;
 
         while (true) {
             try {
-                Command command = parser.parseUserCommands(in, tagFile);
+                Command command = parser.parseUserCommands(in);
                 if (command == null) {
                     continue;
                 }

@@ -7,7 +7,6 @@ import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
 import jikan.log.Log;
-import jikan.parser.Parser;
 import jikan.storage.Storage;
 import jikan.ui.Ui;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,8 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ContinueCommandTest {
+class EditCommandTest {
+
     Storage storage = new Storage("data/activityList_test.txt");
     ActivityList activities = new ActivityList(storage);
     HashSet<String> tags = new HashSet<>();
@@ -44,37 +44,45 @@ class ContinueCommandTest {
         activities.add(activity3);
     }
 
-    private void resetFields() {
-        Parser.startTime = null;
-        Parser.tags.clear();
-    }
-
     @Test
-    void executeContinue() throws InterruptedException {
+    void executeEditName() {
         try {
             populateActivityList();
-            String parameters = "Activity2";
-            Command command = new ContinueCommand(parameters);
-            command.executeCommand(activities);
-
-            LocalDateTime startTime = LocalDateTime.now();
-            assertEquals(startTime.getMinute(), Parser.startTime.getMinute());
-            final Duration initial = activities.get(1).getDuration();
-            Thread.sleep(2000);
-
-            resetFields();
-            // End Activity2
-            command = new EndCommand(null);
-            command.executeCommand(activities);
-            Duration elapsed = initial.plus(Duration.between(startTime, LocalDateTime.now()));
-            Duration duration = activities.get(1).getDuration();
-            assertEquals(elapsed.toMinutes(), duration.toMinutes());
-        } catch (EmptyNameException | InvalidTimeFrameException | ExtraParametersException e) {
-            System.out.println("Error.");
+        } catch (InvalidTimeFrameException e) {
+            System.out.println("Invalid time frame.");
         } catch (NameTooLongException e) {
             Log.makeInfoLog("Activity name longer than 25 characters");
             Ui.printDivider("Error: activity name is longer than 25 characters.");
         }
+        String parameters = "Activity2 /en Activity4";
+        Command command = new EditCommand(parameters);
+        try {
+            command.executeCommand(activities);
+        } catch (EmptyNameException | ExtraParametersException e) {
+            System.out.println("Field error.");
+        }
+
+        assertEquals(activities.get(1).getName(), "Activity4");
     }
 
+    @Test
+    void executeEditAllocatedTime() {
+        try {
+            populateActivityList();
+        } catch (InvalidTimeFrameException e) {
+            System.out.println("Invalid time frame.");
+        } catch (NameTooLongException e) {
+            Log.makeInfoLog("Activity name longer than 25 characters");
+            Ui.printDivider("Error: activity name is longer than 25 characters.");
+        }
+        String parameters = "Activity2 /ea 10:10:10";
+        Command command = new EditCommand(parameters);
+        try {
+            command.executeCommand(activities);
+        } catch (EmptyNameException | ExtraParametersException e) {
+            System.out.println("Field error.");
+        }
+
+        assertEquals(activities.get(1).getAllocatedTime(), Duration.parse("PT10H10M10S"));
+    }
 }

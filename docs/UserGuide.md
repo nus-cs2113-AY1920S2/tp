@@ -1,5 +1,41 @@
 # User Guide
 
+- [1. Target User Profile](#target-user-profile)
+- [2. Introduction](#introduction)
+- [3. Quick Start](#quick-start)
+- [4. Features](#features)
+    - [4.1 Usage](#usage)
+    - [4.2 Basic Commands](#basic-commands)
+        - [4.2.1. Start Activity](#starting-an-activity-start)
+        - [4.2.2. Continue Activity](#continuing-an-activity-continue)
+        - [4.2.3. End Activity](#ending-an-activity-end)
+        - [4.2.4. Abort Activity](#aborting-an-activity-abort)
+        - [4.2.5. Delete Activity](#delete-an-activity-delete)
+        - [4.2.6. List Activities](#listing-activities-list)
+        - [4.2.7. Edit Activity](#editing-an-activity-edit)
+    - [4.3. Find and Filter Activity](#finding-and-filtering)
+        - [4.3.1. Find Activity by Name](#finding-activities-by-name-find)
+        - [4.3.2. Filter Activity by Tag](#filtering-activities-by-tags-filter)
+        - [4.3.3. Chaining Lists, Find and Filter](#chaining-lists-finds--filters--s)
+    - [4.4. Graphs](#graphs)
+        - [4.4.1. Activity Time Graph](#activity-time-graph-graph-activities)
+        - [4.4.2. Tags Time Graph](#tags-time-graph-graph-tags)
+        - [4.4.3. Activity Targets Graph](#activity-targets-graph-graph-allocations)
+        - [4.4.4. Chaining List, Find, Filter with Graph](#chaining-list-find-and-filter-with-graph-command)
+    - [4.5. Tag Goals](#tag-goals)
+        - [4.5.1. Set Goal](#set-goal-goal-tag_name-g-duration)
+        - [4.5.2. Delete Goal](#delete-goal-goal-tag_name-d)
+        - [4.5.3. View Goal](#view-goals-goal)
+    - [4.6. Automated Cleaning](#automated-cleaning)
+        - [4.6.1. Activate Cleaning](#activate-cleaning-clean-on)
+        - [4.6.2. Deactivate Cleaning](#deactivate-cleaning-clean-off)
+        - [4.6.3. Set Number of Activities to Clean](#set-the-number-of-activities-to-clean-clean-n)
+    - [4.7. Automated Cleaning for Logs](#automated-cleaning-for-logs)
+        - [4.7.1. Activate Log Cleaning](#activate-log-cleaning-clean-log-on)
+        - [4.7.2. Deactivate Log Cleaning](#deactivate-log-cleaning-clean-log-off)
+        - [4.7.3. Set Number of Logs to Clean](#set-the-number-of-logs-to-clean-clean-log-n)
+- [5. Command Guide](#command-guide)
+  
 ## Target user profile
 
 University students with poor time management skills who are struggling to allocate time efficiently for
@@ -159,41 +195,6 @@ By using `find` and `filter` commands, the user can reduce clutter and zoom-in t
 * `filter -s TAGNAME1 TAGNAME2`
 * `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
 
-**Sample Use Case:**
-If the user wants to see how much time he/she spent studying for quizzes of specific modules this month, he/she can
-first `list month`, followed by `find -s 2106 / 1521` and `filter -s quiz`.
-
-```
-list month
-------------------------------------------------------------------------------------------
-Your completed activities:
-   | Name                      | Duration   | Allocation | Date       | Tags
-1  | revise 1521               | 00:00:00   | 03:25:34   | 2020-04-28 | [finals]
-2  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
-3  | revise 2106               | 00:00:00   | 03:00:00   | 2020-04-02 | [finals]
-4  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
-5  | revise ger                | 00:00:00   | 02:14:54   | 2020-04-18 | [finals]
-6  | revise ger                | 00:00:00   | 03:13:14   | 2020-04-19 | [quiz]
-------------------------------------------------------------------------------------------
-find -s 2106 / 1521
-------------------------------------------------------------------------------------------
-Here are the matching activities in your list:
-
-   | Name                      | Duration   | Allocation | Date
-1  | revise 2106               | 00:00:00   | 03:00:00   | 2020-04-02 | [finals]
-2  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
-3  | revise 1521               | 00:00:00   | 03:25:34   | 2020-04-28 | [finals]
-4  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
-------------------------------------------------------------------------------------------
-filter -s quiz
-------------------------------------------------------------------------------------------
-Here are the matching activities in your list:
-
-   | Name                      | Duration   | Allocation | Date
-1  | revise 2106               | 00:00:00   | 01:20:12   | 2020-04-18 | [quiz]
-2  | revise 1521               | 00:00:00   | 06:17:03   | 2020-04-28 | [quiz]
-------------------------------------------------------------------------------------------
-```
 **Example:**  
 If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
 

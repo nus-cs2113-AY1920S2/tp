@@ -25,8 +25,8 @@ public class ContinueCommand extends Command {
     public void executeCommand(ActivityList activityList) {
         try {
             if (Parser.startTime != null) {
-                String line = Parser.activityName + " is ongoing!";
-                Ui.printDivider("Could not continue activity due to already ongoing activity.");
+                Ui.printDivider(Parser.activityName + " is ongoing!");
+                Log.makeInfoLog("Could not continue activity due to ongoing activity.");
                 return;
             }
             //Parser.parseContinue(activityList);
@@ -37,8 +37,8 @@ public class ContinueCommand extends Command {
                 Parser.tags = activityList.get(index).getTags();
                 Parser.startTime = LocalDateTime.now();
                 Parser.continuedIndex = index;
-                String line = Parser.activityName + " was continued";
-                Ui.printDivider(line);
+                Ui.printDivider(Parser.activityName + " was continued.");
+                Log.makeInfoLog(Parser.activityName + " was continued.");
             } else {
                 if (parameters.isEmpty()) {
                     throw new EmptyNameException();
