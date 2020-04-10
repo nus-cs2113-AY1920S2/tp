@@ -60,5 +60,6 @@ ATAS is catered for students who want to maximise their productivity and cultiva
 - Add template for Developer Guide [#101](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/101)
 - Format User Guide 
 - Manage Issue Tracker on GitHub
+- Add project README to GitHub
     
     
