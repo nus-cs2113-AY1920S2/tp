@@ -3,8 +3,11 @@ package jikan.command;
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.EmptyQueryException;
-import jikan.parser.Parser;
 import jikan.ui.Ui;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static jikan.Jikan.lastShownList;
 
@@ -45,6 +48,8 @@ public class FilterCommand extends Command {
             } else {
                 lastShownList.activities.clear();
                 String[] keywords = query.split(" ");
+                keywords = removeBlanks(keywords);
+                //keywords = keywords.filter(boolean);
                 if (keywords.length < 1) {
                     throw new EmptyQueryException();
                 }
@@ -95,5 +100,12 @@ public class FilterCommand extends Command {
 
     private boolean containsIgnoreCase(String str, String subString) {
         return str.toLowerCase().contains(subString.toLowerCase());
+    }
+
+    private String[] removeBlanks(String [] strings) {
+        List<String> list = new ArrayList<>(Arrays.asList(strings));
+        list.removeIf(String::isBlank);
+        strings = list.toArray(new String[0]);
+        return strings;
     }
 }
