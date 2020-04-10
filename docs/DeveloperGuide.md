@@ -108,8 +108,7 @@ This section will describe how the main features of the application are implemen
  3. The <code>Duke</code> class calls the <code>AddCommand#execute()</code> method of the <code>AddCommand</code> object.
  4. In the <code>AddCommand#execute()</code> function, the <code>Item</code> to be added is stored in the <code>ShoppingList</code> 
     object, using <code>Item.add()</code>.
- 5. In the sequence diagram, the AddCommand will add <code>Item</code> if the description is provided and one / both price and 
-    quantity is provided. 
+ 5. In the sequence diagram, the AddCommand will add <code>Item</code> if the description is provided. 
  6. The <code>Item</code> object with its' values is stored into the <code>ShoppingList</code> object.
  
  The following sequence diagram below shows how the add feature works. The details of adding item's values
@@ -327,11 +326,11 @@ also be able to trace functionality bugs more easily if each command class deals
  unmarked as bought in the list.
  
  The process is as follows:
- 1. The <code>Duke</code> class first receives user input from the <code>Ui</code>
- 2. The <code>Duke</code> class then creates a <code>Parser</code> object and calls its
+ 1. <code>Duke</code> first receives user input from <code>Ui</code>
+ 2. <code>Duke</code> creates a <code>Parser</code> object and calls its
  <code>Parser#parseCommand()</code> method to instantiate a <code>MarkCommand</code> / <code>UnmarkCommand</code>
  object based on the user input
- 3. The <code>Duke</code> class then calls the <code>MarkCommand#execute()</code> /
+ 3. <code>Duke</code> then calls the <code>MarkCommand#execute()</code> /
  <code>UnmarkCommand#execute()</code> method. 
  4. The <code>MarkCommand#execute()</code> / <code>UnmarkCommand#execute()</code> calls the
  <code>ShoppingList#markAsBought()</code> / <code>ShoppingList#unmarkAsBought()</code> method with the
@@ -919,7 +918,7 @@ This section contains the user stories for the different versions of our product
        
    i. Test case: <code>UNMARK 5</code> 
 
-         Expected: The fifth item in the list is un-marked as bought, denoted as [X].
+         Expected: The fifth item in the list is marked as not bought yet, denoted as [X].
     
     &nbsp;
 

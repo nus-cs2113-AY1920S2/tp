@@ -236,7 +236,7 @@ Format: `UNMARK INDEX`
 Example of the usage:
 
 1. `UNMARK 3`
-   * This un-marks the 3rd item in your list as unbought.
+   * This marks the 3rd item in your list as not bought yet.
    * The status of the 3rd item is now `[X]`
 <!-- @@author -->
 &nbsp;
