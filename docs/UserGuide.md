@@ -378,8 +378,8 @@ Adding a new contact | `<name> <NUSMODS link>` | `Juan https://nusmods.com/timet
 List all contacts | `contacts` | `contacts`
 Display timetable of selected contacts | `timetable` <br/><br/> `timetable <Member Index>` <br/><br/> `timetable <Member A Index> <Member B Index>` | `timetable` <br/><br/> `timetable 1` <br/><br/> `timetable 0 1 2`
 Schedule a new meeting | `schedule <Meeting Name> <Start Date> <Start Time> <End Date> <End Time>` | `schedule meeting 3 17:00 3 19:00`
-Edit a contact's timetable | `edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` <br/><br/> `edit free <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` | `edit busy 0 2 22:00 2 23:00` <br/><br/> `edit busy 0 2 22:00 2 23:00`
-Delete a meeting | `delete -m <Meeting Index>` | `delete -m 1`
+Edit a contact's timetable | `edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` <br/><br/> `edit free <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` | `edit busy 0 2 22:00 2 23:00` <br/><br/> `edit free 0 2 22:00 2 23:00`
+Delete a meeting | `delete <Meeting Index>` <br/><br/> `delete <Contact Name>` | `delete 1` <br/><br/> `delete alex`
 Delete a contact | `delete -c <Contact Index>` | `delete -c 1`
 List all scheduled meetings | `meetings` | `meetings`
 Exit application | `exit` | `exit`
