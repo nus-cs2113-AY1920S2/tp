@@ -36,15 +36,8 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 * Maintain ReadMe / AboutUs pages
 
 ### Review / Mentoring Contributions
-Instances where a review was requested OR a review was required (i.e code changes or clarification needed)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/129](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/129)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/127](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/127)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/125](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/125)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/120](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/120)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/110](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/110)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/55](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/55)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/27](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/27)
-* [https://github.com/AY1920S2-CS2113-T15-2/tp/pull/11](https://github.com/AY1920S2-CS2113-T15-2/tp/pull/11)
+List of PRs where a review was requested OR a review was required (i.e code changes or clarification needed)
+* [https://github.com/AY1920S2-CS2113-T15-2/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed](https://github.com/AY1920S2-CS2113-T15-2/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed)
 
 Team Help/Guidance Provided
 * Provided git help/debugging
