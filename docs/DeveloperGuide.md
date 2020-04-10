@@ -25,7 +25,7 @@ Table of Contents
     . . 4.2.2 [Delete from Available feature](#422-delete-from-available-feature)  
     4.3 [Others](#43-others)  
     . . 4.3.1 [Calculate CAP feature](#431-calculate-cap-feature)  
-    . . 4.3.2 [Marking module as done](#432-marking-module-as-done)
+    . . 4.3.2 [Marking module as done](#432-marking-module-as-done)  
     . . 4.3.3 [Searching modules with keywords](#433-searching-modules-with-keywords)  
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
@@ -272,7 +272,7 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
+![SequenceDiagram-DeleteFromSemCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_DeleteFromSemCommand.png?raw=true)
 
 ### 4.2.2 `Delete from Available` feature
 
