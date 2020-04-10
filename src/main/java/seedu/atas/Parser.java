@@ -286,9 +286,8 @@ public class Parser {
         return new ClearCommand(tokens[1].replaceAll("\\s+", " ").trim());
     }
 
-    //@@author
+    //@@author Keith-JK
     private static Command prepareExitCommand(String fullCommand) {
-        assert fullCommand.trim().equals(ExitCommand.COMMAND_WORD);
         if (fullCommand.equals(ExitCommand.COMMAND_WORD)) {
             return new ExitCommand();
         } else {
@@ -298,7 +297,6 @@ public class Parser {
     }
 
     private static Command prepareHelpCommand(String fullCommand) {
-        assert fullCommand.trim().equals(HelpCommand.COMMAND_WORD);
         if (fullCommand.equals(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
         } else {
