@@ -56,53 +56,53 @@ public class Parser {
         String command = arguments[0].trim().toLowerCase();
 
         switch (command) {
-            case AddSubjectCommand.COMMAND_WORD:
-                return prepareAddSubject(arguments);
+        case AddSubjectCommand.COMMAND_WORD:
+            return prepareAddSubject(arguments);
 
-            case AddCardCommand.COMMAND_WORD:
-                return prepareAddCard(arguments);
+        case AddCardCommand.COMMAND_WORD:
+            return prepareAddCard(arguments);
 
-            case EditCardCommand.COMMAND_WORD:
-                return prepareEditCard(arguments);
+        case EditCardCommand.COMMAND_WORD:
+            return prepareEditCard(arguments);
 
-            case DeleteSubjectCommand.COMMAND_WORD:
-                return prepareDeleteSubject(arguments);
+        case DeleteSubjectCommand.COMMAND_WORD:
+            return prepareDeleteSubject(arguments);
 
-            case DeleteCardCommand.COMMAND_WORD:
-                return prepareDeleteCard(arguments);
+        case DeleteCardCommand.COMMAND_WORD:
+            return prepareDeleteCard(arguments);
 
-            case ListSubjectCommand.COMMAND_WORD:
-                return new ListSubjectCommand();
+        case ListSubjectCommand.COMMAND_WORD:
+            return new ListSubjectCommand();
 
-            case ListCardCommand.COMMAND_WORD:
-                return prepareListCard(arguments);
+        case ListCardCommand.COMMAND_WORD:
+            return prepareListCard(arguments);
 
-            case QuizCommand.COMMAND_WORD:
-                return prepareQuiz(arguments);
+        case QuizCommand.COMMAND_WORD:
+            return prepareQuiz(arguments);
 
-            case ScoreCommand.COMMAND_WORD:
-                return prepareScore(arguments);
+        case ScoreCommand.COMMAND_WORD:
+            return prepareScore(arguments);
 
-            case AddEventCommand.COMMAND_WORD:
-                return prepareAddEvent(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return prepareAddEvent(arguments);
 
-            case DeleteEventCommand.COMMAND_WORD:
-                return prepareDeleteEvent(arguments);
+        case DeleteEventCommand.COMMAND_WORD:
+            return prepareDeleteEvent(arguments);
 
-            case ListEventCommand.COMMAND_WORD:
-                return new ListEventCommand();
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
 
-            case ShowUpcomingCommand.COMMAND_WORD:
-                return prepareShowUpcoming(arguments);
+        case ShowUpcomingCommand.COMMAND_WORD:
+            return prepareShowUpcoming(arguments);
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+           return new HelpCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+           return new ExitCommand();
 
-            default:
-                throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
+        default:
+           throw new EscException(INCORRECT_COMMAND + HelpCommand.MESSAGE_USAGE);
         }
     }
 
