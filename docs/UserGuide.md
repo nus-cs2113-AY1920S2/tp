@@ -306,35 +306,41 @@ Example of usage:
 * If there is weight loss from beginning:
 
     Expected Output:
+    
     ```
-         check-weight-progress
-         Here is your weight changes record:
-         1. 80.0kg 
-         2. 70.0kg 
-         3. 50.0kg 
-         Great job! You have lost 30.00 kg since the beginning!                                                                                     
+    check-weight-progress
+    Here is your weight changes record:
+    1. 70.0kg
+    2. 60.0kg
+    Overall, you have lost 10.00 kg!
+    5.00 kg more to go to meet your dream girl/boy!                                                                                    
     ```
+  
 * If weight remains the same from beginning:
 
     Expected Output:
-    ```
-  check-weight-progress       
+    
+  ```
+  check-weight-progress
   Here is your weight changes record:
-         1. 80.0kg 
-         No Pain No Gain! You have not lost weight yet! Strive on!
-                                                                                  
-    ```
+  1. 70.0kg
+  There has been no change in your weight!
+  -5.00 kg more to go to meet your dream girl/boy!                                                                
+  ```
+  
 * If there is weight gained from beginning:
 
     Expected Output:
+    
     ```
-         check-weight-progress JOHN
-         Here is your weight changes record:
-         1. 80.0kg 
-         2. 90.0kg 
-         Maintain your diet! You have gained 10.00 kg since the beginning!
-                                                                                  
+    check-weight-progress
+    Here is your weight changes record:
+    1. 70.0kg
+    2. 80.0kg
+    Overall, you have gained 10.00 kg!
+    -15.00 kg more to go to meet your dream girl/boy!                                                                        
     ```  
+  
 
 ## 3.2 Daily Food Record Features
 
