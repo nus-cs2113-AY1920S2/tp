@@ -436,14 +436,14 @@ Example: `search t/event n/te`
 Expected outcome:
 ```
 Here are the search results:
-  1.[R][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
-      [3d]  notes: Test
-  2.[R][X] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00)
-      [1w]  notes: Test2
-  3.[R][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
-      [1m]  notes: Test3
-  4.[R][X] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00)
-      [1m]  notes: Test4
+  1.[E][X] Test (at: test | Fri 24 Apr 2020 11:00 - 12:00)
+      notes: Test
+  2.[E][X] Test2 (at: test2 | Wed 03 Jun 2020 13:00 - 14:00)
+      notes: Test2
+  3.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+      notes: Test3
+  4.[E][X] Test4 (at: test4 | Wed 29 Apr 2020 11:00 - 12:00)
+      notes: Test4
 ```
 
 #### 3.9.2. Search by Name and Date
@@ -462,7 +462,7 @@ Example: `searchd t/event n/te d/01/05/20`
 Expected outcome: 
 ```
 Here are the search results: 
-    1.[R][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
+    1.[E][X] Test3 (at: test3 | Fri 01 May 2020 11:00 - 12:00)
         notes: Test3
 ```
 
