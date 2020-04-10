@@ -96,7 +96,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <big style="color: green"> **Storage Implementation** [&#10149;](#storage-implementation)</big>     
 <br>   
 <big style="color: green"> **Appendix** [&#10149;](#appendix)  </big>   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Product Scope** [&#10149;](#product-scope)
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Product Scope** [&#10149;](#product-scope)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **User Stories** [&#10149;](#user-stories)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Glossary** [&#10149;](#glossary)   
