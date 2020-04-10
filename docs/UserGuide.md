@@ -287,7 +287,7 @@ Format: `RES`
 ***
 <!-- @@author JLoh579 -->
 ### Clearing the list: `CLEAR`
-Clears all items in the shopping list. Automatically resets remaining budget to the user’s set budget.
+Clears all items in the shopping list.
 
 Format: `CLEAR`
 <!-- @@author -->
