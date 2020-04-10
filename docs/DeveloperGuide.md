@@ -10,6 +10,7 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [1. Introduction](#1-introduction)
     * [1.1. Purpose](#11-purpose)
     * [1.2. Scope](#12-scope)
+    * [1.3.](#13-)
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
@@ -48,28 +49,28 @@ By: `CS2113T-T12-2` Since: `March 2020`
 
 ## 1. Introduction
 
-### 1.1 Purpose
+### 1.1. Purpose
 
 This document contains the architecture and software design specifications for the application HappyPills.
 
-### 1.2 Scope
+### 1.2. Scope
 
 This guide is mainly for developers, designers and software engineers that are working on and using HappyPills.
 
-### 1.3 
+### 1.3.
 `PatientParser` - A mark-up in PascalCase indicates the class used.
 
 `PatientParser#parse()` - The camelCase text after the '#' indicates the method called in the class
 
 ## 2. Setting Up
 
-Refer to the guide [here](Testing.md).
+Refer to the guide [here](SettingUp.md).
 
 ## 3. Design 
 
 This section provides a high-level overview of HappyPills.
 
-### 3.1 Architecture
+### 3.1. Architecture
 
 ![Architecture diagram](images/DG/architecture/ArchitectureDiagram.png "Overview of the Application")
 
@@ -703,7 +704,9 @@ Step 5: `HappyPills` will execute the command.
 
 ## 5. Documentation 
 
-## 6. Testing 
+## 6. Testing
+
+Refer to the guide [here](Testing.md).
 
 ## 7. Useful links
 
@@ -749,13 +752,13 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ### Appendix C: Non-functional Requirements
 
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+1. Should work on any mainstream OS as long as it has `Java 11` installed.
 
 2. A user with above average typing speed should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 3. Should be able to hold up to 1000 patients' information without a noticeable sluggishness in performance for typical usage.
 
-4. Should be able to display large amount of information quickly. 
+4. Should be able to display large amount of information quickly.
 
 ### Appendix D: Glossary 
 
@@ -776,57 +779,40 @@ Given below are instructions to test the application manually.
  </tr>
 </table>
 
+#### E.1. Launch and Shutdown
+
+1. Initial launch 
+    1. Download the latest jar file [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releaseshttps://github.com/AY1920S2-CS2113T-T12-2/tp/releases)
+     and copy into an empty folder
+    1. Open the terminal and run the JAR file using `java -jar HappyPills.jar` command
+    1. Expected output: **HappyPills** startup screen is displayed
+1. Shut down of application
+    1. Enters `exit`
+    1. Expected output: **HappyPills** programs terminates
+    
+#### E.2. General Patient Information Commands
+
+1. Add patient to the list (Prompting)
+    1. Test case: `add patient /ic S9876543F /n Mallory /p 91265432`.
+    Expected: The program will prompt the user for missing necessary information.  
+    Continuation: `/dob 22/05/1999 /b O-`
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`
+    Expected: A new patient named `Mallory` will be added to the list.
+    1. Test case: `add patient /ic S9888888G /n Eve`  
+    Expected: The program will prompt the user for missing necessary information.  
+    Continuation: `clear`  
+    Expected: The add command will be aborted.
+    1. Test case: `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`.  
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `n`  
+    Expected: The patient named `Bob` will not be added to the list.
+
+#### E.3. Patient Medical Records Commands
+#### E.4. Appointment Scheduling Commands
+
+
+
 ## Useful links:
 * [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)
-
-------
-
-### 4.3. User Prompting 
-    
-#### 4.2.1 Description
-
-When the user adds a patient’s details, the input could be missing a few compulsory fields. Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.
-
-The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details. The add command will only be executed when all the compulsory fields are provided. 
-
-#### 4.2.2 Implementation 
-
-Representing a prompt
-
-The prompting mechanism uses prefix to represent individual 
-
-#### 4.2.3 Design Consideration
-
-##### Representing a prompt
-
-The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual field in patient's information. A list of tags is use to pass to the `Parser` which contains:
-
-        - Parser #addCommandParser(String input) — This method break down user input base on tags such as (/ic, /p)
-
-##### Passing the prompts
-
-Given below is an example scenario where the user command has missing compulsory fields
-
-Step 1: The `HappyPills` pass the user's command to `Parser`, which finds one or more missing compulsory fields.
-
-Step 2: The `Parser` call `Parser#parseAddCommand`, which prompt the corresponding missing field back to the user. And wait for user response
-
-Step 3: The new user input was than check again by `Parser#parseAddCommand` and repeat the process until all the compulsory fields is added correctly.
-
-Step 4: `Parser#parseAddCommand` will ask for conformation before passing the correct input into `AddCommand`.
-
-Step 5: `HappyPills` will execute the command.
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice): The `HappyPill` functions is unaware of prompting. The `Parser` keeps track of the incomplete command and sends back as `addCommand` objects.
-          Pros: Decrease coupling between `HappyPill` and `Parser` components
-          Cons: `HappyPill` has no way to know if it is currently handling prompting, so it cannot abort prompts, `Parser` return IncorrectCommand to act as abort.
-            
-        Alternative 2: The `Parser` componetnt keeps track of the incomplete command and throws an exception containing promts to the `HappyPills`.
-          Pros: Greater flexibility for `HappyPill` to handle prompt, e.g. aborting
-          Cons: A new class is required to keep track of the command entered, rather than simply acting as a bridge between the `Command` and `Parser` sub-component. Increase number of pontential points of failure and decrease maintainability.
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
