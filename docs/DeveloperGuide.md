@@ -202,7 +202,7 @@ will add a patient with `NRIC` as S7777777Z with the following attributes:
 **Implementation** 
 
 The activity diagram below summarises the process of executing an `add` command.
-![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.jpg)
+![Add Patient Sequence Diagram](images/DG/AddPatientSequenceDiagram.png)
 
 The following steps explains the sequence of events: 
 
@@ -253,7 +253,7 @@ will delete the patient with NRIC `S7777777Z`, if found.
 
 **Implementation** 
 
-![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.jpg)
+![Delete Patient Sequence Diagram](images/DG/DeletePatientSequenceDiagram.png)
 
 The following steps explains the sequence of events: 
 
