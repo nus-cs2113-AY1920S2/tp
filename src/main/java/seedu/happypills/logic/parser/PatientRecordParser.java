@@ -36,7 +36,7 @@ public class PatientRecordParser extends Parser {
      * @throws HappyPillsException If the user input does not conform the expected format.
      */
     public static PatientRecordCommand parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.split(" ", 3);
+        String[] userCommand = fullCommand.split("\\s+", 3);
         boolean isCommandLengthOne = userCommand.length == 1;
 
         userCommand = trimArray(userCommand);
@@ -68,7 +68,7 @@ public class PatientRecordParser extends Parser {
     private static PatientRecordCommand checkDeletePatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
         checkEmptyNric(userCommand, isCommandLengthOne);
-        String[] input = userCommand[2].split(" ", 2);
+        String[] input = userCommand[2].split("\\s+", 2);
         input = trimArray(input);
         checkIndexValidity(input);
         checkNricValidity(input);
@@ -123,7 +123,7 @@ public class PatientRecordParser extends Parser {
     private static PatientRecordCommand checkFindPatientRecord(String[] userCommand, boolean isCommandLengthOne)
             throws HappyPillsException {
         checkEmptyNric(userCommand, isCommandLengthOne);
-        String[] input = userCommand[2].split(" ", 2);
+        String[] input = userCommand[2].split("\\s+", 2);
         input = trimArray(input);
         checkIndexValidity(input);
         checkNricValidity(input);
@@ -186,7 +186,7 @@ public class PatientRecordParser extends Parser {
      * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientRecordCommand checkEditPatientRecord(String fullCommand) throws HappyPillsException {
-        String[] edit = fullCommand.split(" ", 5);
+        String[] edit = fullCommand.split("\\s+", 5);
         if (edit.length < 4) {
             throw new HappyPillsException(Messages.MESSAGE_MISSING_FIELD);
         }

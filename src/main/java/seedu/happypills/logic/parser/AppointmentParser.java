@@ -26,20 +26,19 @@ public class AppointmentParser extends Parser {
      * @throws HappyPillsException throws an exception for invalid commands.
      */
     public static AppointmentCommand parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.trim().split(" ", 3);
-
+        String[] userCommand = fullCommand.trim().split("\\s+", 3);
         if (userCommand[0].equalsIgnoreCase("add")) {
             return parseAddCommand(userCommand[2]);
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
-            String[] detailedCommand = userCommand[2].trim().split(" ", 3);
+            String[] detailedCommand = userCommand[2].trim().split("\\s+", 3);
             if (detailedCommand.length == 3) {
                 return new EditAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim(),
-                        detailedCommand[2]);
+                        detailedCommand[2].trim());
             } else {
                 throw new HappyPillsException(HelpTextUi.incompleteCommandString("help edit appt"));
             }
         } else if (userCommand[0].equalsIgnoreCase("done")) {
-            String[] detailedCommand = userCommand[2].trim().split(" ", 2);
+            String[] detailedCommand = userCommand[2].trim().split("\\s+", 2);
             if (detailedCommand.length == 2) {
                 return new DoneAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {
@@ -48,7 +47,7 @@ public class AppointmentParser extends Parser {
         } else if (userCommand[0].equalsIgnoreCase("list")) {
             return new ListAppointmentCommand();
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
-            String[] detailedCommand = userCommand[2].trim().split(" ", 2);
+            String[] detailedCommand = userCommand[2].trim().split("\\s+", 2);
             if (detailedCommand.length == 2) {
                 return new DeleteAppointmentCommand(detailedCommand[0].trim(), detailedCommand[1].trim());
             } else {

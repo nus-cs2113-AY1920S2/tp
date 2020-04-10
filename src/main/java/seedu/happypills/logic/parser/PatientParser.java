@@ -33,7 +33,7 @@ public class PatientParser extends Parser {
      * @throws HappyPillsException If the wrong command/format is given by the user as an input.
      */
     public static PatientCommand parse(String fullCommand) throws HappyPillsException {
-        String[] userCommand = fullCommand.trim().split(" ", 3);
+        String[] userCommand = fullCommand.trim().split("\\s+", 3);
         boolean isCommandLengthOne = userCommand.length == 1;
 
         userCommand = trimArray(userCommand);
@@ -110,7 +110,7 @@ public class PatientParser extends Parser {
      * @throws HappyPillsException If the user input does not conforms to the expected format.
      */
     private static PatientCommand checkEditCommand(String fullCommand) throws HappyPillsException {
-        String[] edit = fullCommand.split(" ", 4);
+        String[] edit = fullCommand.split("\\s+", 4);
         if (edit.length < 3) {
             throw new HappyPillsException(Messages.MESSAGE_MISSING_FIELD);
         }
