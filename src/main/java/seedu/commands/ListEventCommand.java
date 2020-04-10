@@ -1,6 +1,7 @@
 package seedu.commands;
 
 import seedu.events.Event;
+import seedu.events.EventList;
 import seedu.exception.EscException;
 import seedu.subjects.SubjectList;
 
@@ -20,7 +21,8 @@ public class ListEventCommand extends ListCommand {
      */
     @Override
     public void execute(SubjectList subjectList) {
-        subjectList.listUpcoming();
+        EventList events = subjectList.getEventList();
+        events.listUpcoming();
     }
 
 }

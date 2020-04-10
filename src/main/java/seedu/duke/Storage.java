@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.events.Event;
+import seedu.events.EventList;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -66,6 +67,7 @@ public class Storage {
         ArrayList returnList = new ArrayList<>();
         ArrayList<Subject> loadSubs = new ArrayList<>();
         ArrayList<Event> loadEvent = new ArrayList<>();
+        EventList loadEventList;
 
         if (!saveFile.exists()) {
             ensureFileExists();
@@ -85,10 +87,11 @@ public class Storage {
                 for (int i = 0; i < tempEvent.size(); i++) {
                     loadEvent.add((Event) tempEvent.get(i));
                 }
+                loadEventList = new EventList(loadEvent);
                 objRead.close();
 
                 returnList.add(loadSubs);
-                returnList.add(loadEvent);
+                returnList.add(loadEventList);
             } catch (IOException | ClassNotFoundException e) {
                 throw new EscException("Load error");
             }
