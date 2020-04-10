@@ -762,9 +762,9 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ### Appendix D: Glossary 
 
-*Mainstream OS*
-
-Windows, Linux, Unix, OS-X
+- *Mainstream OS* - Windows, Linux, Unix, OS-X
+- *dob* - date of birth
+- *ic* - 
 
 ### Appendix E: Instructions for Manual Testing
 
@@ -792,22 +792,90 @@ Given below are instructions to test the application manually.
     
 #### E.2. General Patient Information Commands
 
-1. Add patient to the list (Prompting)
-    1. Test case: `add patient /ic S9876543F /n Mallory /p 91265432`.
-    Expected: The program will prompt the user for missing necessary information.  
-    Continuation: `/dob 22/05/1999 /b O-`
+1. Add patient to the list (User Prompting)
+    1. **Test case:** `add patient /ic S9876543F /n Mallory /p 91265432 /dob 22/05/1999 /b O-`.   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
-    Continuation: `y`
-    Expected: A new patient named `Mallory` will be added to the list.
-    1. Test case: `add patient /ic S9888888G /n Eve`  
-    Expected: The program will prompt the user for missing necessary information.  
-    Continuation: `clear`  
-    Expected: The add command will be aborted.
-    1. Test case: `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`.  
+    Continuation: `y`  
+    Expected: A new patient named `Mallory` will be added to the list.  
+ 
+    1. **Test case:** `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`  
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `n`  
-    Expected: The patient named `Bob` will not be added to the list.
+    Expected: The patient named `Bob` will not be added to the list.  
+    
+    1. **Test case:** `add patient /ic S6699999N /p 81234567 /b AB+ /n Alice /rm High Blood Pressure`  
+    Expected: The program will prompt the user for missing DOB  
+    Continuation: `20/20/2020` (or any invalid date)  
+    Expected: An error message will be shown indicating that the input is invalid. The program will continue to prompt the user for missing DOB.  
 
+    1. **Test case:** `add patient /ic S6699999N /p 81234567 /b AB+ /n Alice /rm High Blood Pressure`  
+      Expected: The program will prompt the user for missing DOB  
+      Continuation: `20/2/2020`  
+      Expected: A new patient named `Alice` will be added to the list.  
+        
+    1. **Test case:** `add patient /ic S9888888G /n Eve`  
+    Expected: The program will prompt the user for missing necessary information.    
+    Continuation: `clear`  
+    Expected: A message will be shown indicating that the command has been aborted.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid phone number, NRIC and blood type. Output is expected to be similar 
+       to <code>Test case iii</code> </td>
+     </tr>
+    </table>
+      
+2. Edit patient
+
+    - *Prerequisite: There is no patient in the list.*
+    1. **Test case:** `edit patient S9876543F /p99112233`  
+    Expected: An error message will be shown indicating that the patient is not found in the list.
+    - *Prerequisite: There is a patient in the list with NRIC number S1234567F.*
+    1. **Test case:** `edit patient S1234567F /rm Referred to National Centre for Infectious Diseases`  
+    Expected: The remarks for patient with NRIC `S1234567F` will be edited.
+    1. **Test case:** `edit patient S1234567F /p 911`  
+    Expected: An error message will be shown indicating that the phone number is invalid.  
+    1. **Test case:** `edit patient S1234567F /ic S9876543F`  
+    Expected: An error message will be shown, telling the user to read more about the edit patient command.  
+    1. **Test case:** `edit patient S123F /a Peanuts`  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    1. **Test case:** `edit patient S1234567F`  
+    Expected: An error message will be shown indicating that the command is incomplete.  
+    1. **Test case:** `edit patient`  
+    Expected: An error message will be shown indicating that the command is incomplete.     
+    1. **Test case:** `edit patient S1234567G`  
+    Expected: An error message will be shown indicating that the patient is not found in the list.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid DOB, NRIC and blood type. Output is expected to be similar 
+       to <code>Test case ii</code> </td>
+     </tr>
+    </table>
+    
+ 3. Delete Patient
+    - *Prerequisite: There is no patient in the list.*
+    1. **Test case:** `delete patient S9876543A`  
+    Expected: An error message will be shown indicating that the patient is not found in the list.
+    - *Prerequisite: There is a patient in the list with NRIC number S9876543A.*
+    1. **Test case:** `delete patient S9876543A`  
+    Expected: The patient with NRIC `S9876543A` will be deleted from the list.  
+    1. **Test case:** `delete patient S983A`  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    1. **Test case:** `delete patient`  
+    Expected: An error message will be shown indicating that the command is incomplete. 
+ 
+ 4. list patient
+    - *Prerequisite: There is no patient in the list.*
+    1. **Test case:** `list patient`  
+    Expected: An message will appear indicating that there is no patient in the list.
+    
 #### E.3. Patient Medical Records Commands
 #### E.4. Appointment Scheduling Commands
 
