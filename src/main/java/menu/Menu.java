@@ -25,4 +25,12 @@ public class Menu {
         return dishMap;
     }
 
+    /**
+     * Set dishMap for testing purposes.
+     * @param dishMap hashMap
+     */
+    public static void setDishMap(HashMap<String, Dish> dishMap) {
+        Menu.dishMap = dishMap;
+    }
+
 }

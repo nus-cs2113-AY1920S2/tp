@@ -2,5 +2,5 @@
 build/
 .idea/
 .gradle/
-report.txt
+sampleReportA.txt
 logs/

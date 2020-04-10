@@ -17,7 +17,7 @@ public class DeleteDishCommand extends Menu {
             if (Menu.getDishMap().isEmpty()) {
                 System.out.println("There are no dishes to delete!");
             } else if (!Menu.getDishMap().containsKey(name)) {
-                System.out.println("Dish " + name + " does not exist!");
+                System.out.println("Dish " + name + " does not exist! ");
             } else {
                 Menu.getDishMap().remove(name);
                 System.out.println("Dish " + name + " successfully removed!");
