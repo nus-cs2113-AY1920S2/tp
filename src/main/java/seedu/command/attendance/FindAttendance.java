@@ -7,31 +7,34 @@ import seedu.ui.UI;
 
 /**
  * Class representing an attendance related command to List an attendanceList of a specific event.
+ * Find the matches base on the keyword given by the user.
  */
-public class ViewAttendanceList extends Command {
+public class FindAttendance extends Command {
 
     protected AttendanceList attendanceList;
     protected UI ui;
 
-    public ViewAttendanceList(AttendanceList attendances) {
+    public FindAttendance(AttendanceList attendances) {
         this.attendanceList = attendances;
         this.ui = new UI();
     }
 
     /**
-     * Method To view the existing attendanceList.
-     * If the attendanceList is empty, it will display a message to inform that the attendanceList is empty.
+     * Method To find matches.
+     * If the attendanceList is empty, it will display a message to inform that the attendanceList is empty
+     * and will not attempt to find.
      */
-    private void view() {
+    private void find() {
         if (!attendanceList.isEmpty()) {
-            attendanceList.displayAttendanceList();
+            attendanceList.findAttendance();
         } else {
-            UI.display("Attendance List is empty");
+            UI.display("The attendance list is currently empty. Please add attendance instead.");
         }
     }
 
     @Override
     public void execute() throws PacException {
-        view();
+        find();
     }
 }
+

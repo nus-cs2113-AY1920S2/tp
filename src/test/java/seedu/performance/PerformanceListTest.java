@@ -1,7 +1,6 @@
 package seedu.performance;
 
 import org.junit.jupiter.api.Test;
-import seedu.event.Event;
 import seedu.exception.PacException;
 
 import java.util.ArrayList;

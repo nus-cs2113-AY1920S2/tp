@@ -59,18 +59,21 @@ or above installed in your Computer.
 ### 2.1 Overall Architecture
 This section presents the architecture of PAC. It explains the architecture of main components of PAC.
 
-![Architecture](images/Architecture.png "Architecture of Pac")
-
+![Architecture](images/Architecture.png "Architecture of Pac")              
 *Overall architecture design of Pac*
 
 The `Pac` component contains all other components in the application.
 
 - `UI`: reads user input, and prints output in pre-defined format.
 - `Storage`: loads/stores all events (in EventList) and all student lists (in StudentListCollection).
-- `CommandInterpreter`: Determines user input
-- `EventList`: stores all events during runtime
-- `StudentListCollection`: stores all student lists during runtime
-- `PerformanceList`: Stores all performances during runtime
+- `CommandInterpreter`: Determines category and type of command from user input.
+- Various `Parser`: Breaks down user input to obtain command parameters.
+- Various `Features`: stores their respective objects during runtime.
+    - `EventList`: stores all events during runtime.
+    - `StudentListCollection`: stores all student lists during runtime.
+    - `AttendanceList`: stores all attendances related to an `Event`.
+    - `PerformanceList`: stores all performances related to an `Event`.
+    - `Calendar`: shows all events in calendar form.
 
 ### 2.2 UI component
 ![Ui](images/Ui.png "Class diagram of Ui component")                
@@ -104,7 +107,7 @@ of Pac.
 A Parser class is created when a user input contains data to be stored or used in certain features.    
 
 ### 2.5 Storage component
-![Storage](images/StorageClass.png "Class diagram of Storage component")
+![Storage](images/StorageClass.png "Class diagram of Storage component")            
 *Class diagram of the Storage component*
 
 On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
@@ -114,15 +117,14 @@ All `Event` and `StudentList` objects are receiving `Bye` command. If the
 program crashes (due to unhandled Exception or Interrupt), they *will not* be 
 saved.
 
-### 2.6. Command Interpreter
+### 2.6 Command Interpreter
 ![CommandInterpreter](images/CommandInterpreter.png)   
 *to be added: Sequence diagram of Command Interpreter*  
 Command Interpreter is the main interpreter in Pac. It determines which command 
 category the user input belongs to, and creates respective command interpreter 
 correspond to user input.  
 The user input will be further interpreted by corresponding command interpreter, which
-returns Command for execution.
-
+returns Command for execution.  
 
 #### 2.6.1 Event Command Interpreter
 #### 2.6.2 Attendance Command Interpreter
@@ -143,20 +145,31 @@ Performance Command Interpreter.
 #### 2.6.4 Seminar Command Interpreter
 #### 2.6.5 Student Command Interpreter
 
-## 3. Implementation 
+## 3. Implementation  
 ### 3.1 Event
-![event](images/event.png "Class diagram of Event component")           
+![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
 
 #### Program flow
 1. When a user enters an event-related command, the command is analysed by `EventCommandInterpreter`. 
-1. Once determined, the relevant information (e.g. index, name, time, date, venue) are extracted by 
-`EventParser`.
-1. Then, the relevant class that corresponds to the requested command is 
-created, with the information extracted from the previous step passed into it. 
+1. The first word is extracted by `getFirstWord` to determine the `commandType`.
+1. If this `commandType` requires further arguments, subsequent words are 
+extracted, and parsed by `EventParser` to retrieve the relevant information 
+(e.g. index, name, time, date, venue).
+1. Alternate paths are chosen based on `commandType`, where a corresponding 
+`Command` class is created, with the information extracted from the previous 
+step passed into it. 
     - e.g. Command `event delete i/1` will create a `DeleteEvent` object, with 
     `index=1` as its argument.
-1. These commands are then returned to `Pac.run()` to `execute()`. 
+1. This command is returned to `CommandInterpreter#decideCommand()` which returns to `Pac#run()` to call `Command#execute()`. 
+
+The diagram below illustrates the program flow stated above, with the command 
+`event delete i/1`.
+![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")
+
+In this diagram:
+* Other alternative paths are not shown (e.g. [add], [editEvent], [list], etc.).
+* The details after `Command#execute()` is not shown.
 
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 

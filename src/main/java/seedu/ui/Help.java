@@ -77,29 +77,31 @@ public class Help extends UI {
         display("All attendance list should exist under an existing event."
                 + "Follow step-by-step commands after the following commands are input.");
         display("To add students' attendance, input:\n\t"
-                + "Attendance add\n");
-        display("To delete a student's attendance, input:\n\t"
-                + "Attendance delete\n");
+                + "attendance add\n");
+        display("To clear a student's attendance list, input:\n\t"
+                + "attendance clear\n");
         display("To sort a student's attendance list, input:\n\t"
-                + "Attendance sort\n");
+                + "attendance sort\n");
+        display("To find a student's attendance, input:\n\t"
+                + "attendance find\n");
+        display("To edit a student's attendance, input:\n\t"
+                + "attendance edit\n");
         display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printStudentListHelp() {
         display("To create a new studentList for future events, input:\n\t"
-                + "student.list add\n");
+                + "studentlist add\n");
         display("To delete an existing studentList, input:\n\t"
-                + "student.list delete (index)\n");
+                + "studentlist delete\n");
         display("To clear all existing studentList, input:\n\t"
-                + "student.list clear\n");
+                + "studentlist clear\n");
         display("To find an existing studentList, input:\n\t"
-                + "student.list find\n");
+                + "studentlist find\n");
         display("To list all existing studentList, input:\n\t"
-                + "student.list list\n");
-        display("To sort all existing studentList by their names, input:\n\t"
-                + "student.list sort/by/name\n");
-        display("To sort all name within the existing studentList, input:\n\t"
-                + "student.list sort/by/list\n");
+                + "studentlist view\n");
+        display("To sort all existing studentList, input:\n\t"
+                + "studentlist sort\n");
         display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 }
