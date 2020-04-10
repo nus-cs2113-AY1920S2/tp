@@ -13,7 +13,7 @@ public class MessageBank {
 
     public static String WELCOME_MESSAGE = "Welcome to Diet Manager! How may I assist you today?";
 
-    public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
+    public static String INVALID_COMMAND_MESSAGE = "Sorry, that is an invalid command.";
 
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
 
@@ -41,7 +41,10 @@ public class MessageBank {
 
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
-    public static String PROFILE_NOT_FOUND_MESSAGE = "No existing profile found. To create a new profile, enter:\n"
+    public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
+            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static String BREAKFAST_RECORD_MESSAGE = "You just record the meal in the morning of: ";
@@ -59,11 +62,11 @@ public class MessageBank {
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
 
-    public static String WEIGHT_LOSS_MESSAGE = "\nGreat job! You have lost %.2f kg since the beginning!\n\n";
+    public static String WEIGHT_LOSS_MESSAGE = "\nOverall, you have lost %.2f kg!\n\n";
 
-    public static String WEIGHT_NO_CHANGE_MESSAGE = "\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n";
+    public static String WEIGHT_NO_CHANGE_MESSAGE = "\nThere has been no change in your weight!\n\n";
 
-    public static String WEIGHT_GAIN_MESSAGE = "\nMaintain your diet! You have gained %.2f kg since the beginning!\n\n";
+    public static String WEIGHT_GAIN_MESSAGE = "\nOverall, you have gained %.2f kg!\n\n";
 
     public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
 
@@ -96,17 +99,13 @@ public class MessageBank {
 
     public static String SPLIT_LINE = "----------------------------------------------------------------";
 
-    public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. "
-            + "Please set a new profile using the set-profile command.";
-
     public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n\n"
             + "All girls/boys will now fall for your determination and physique! :)\n\n"
             + "You can also set a new weight goal using set-weight-goal NEW_GOAL\n";
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
-    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
-            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"
