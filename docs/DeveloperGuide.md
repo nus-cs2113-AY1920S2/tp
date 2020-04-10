@@ -29,7 +29,7 @@ Creators: `Trisha Labi` `Tan Kok Joon` `Jia Juin` `Joshua Loh` `Shannon Wong`
  * **[Appendix B: User Stories](#appendix-b-user-stories)**
  * **[Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)**
  * **[Appendix D: Instructions for Manual Testing](#appendix-d-instructions-for-manual-testing)**
-    + [Launch and ShutDown](#launch-and-shutdown)
+    + [Launch and Shutdown](#launch-and-shutdown)
     + [Set and Reset a budget](#set-and-reset-a-budget)
     + [Add and Edit an item](#add-and-edit-an-item)
     + [Mark and Un-Mark an item](#mark-and-un-mark-an-item)
