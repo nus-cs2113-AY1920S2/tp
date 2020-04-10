@@ -94,15 +94,13 @@ SHOCO is a desktop application used for the managing and planning of shopping li
      
  3. `EDIT 3 i/potato chips` **OR** `EDIT 3 p/5.00` **OR** `EDIT 3 q/2`
      * Edits only description / only price / only quantity of the 3rd item in the shopping list
-     
- &nbsp;
+
 
 #### Viewing help: `HELP`
 Shows the available commands, their purpose and how they are to be used.
 
 Format: `HELP`
 
-&nbsp;
 
 #### Command Summary
 
@@ -127,7 +125,6 @@ Format: `HELP`
 > *Given below are sections that I have contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.*
  
-&nbsp;
 ### 3.2 Edit feature
 #### 3.2.1 Current implementation
 
