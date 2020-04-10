@@ -124,6 +124,4 @@ public class LoadDish {
         input = input.trim();
         return Double.parseDouble(input);
     }
-
-
 }

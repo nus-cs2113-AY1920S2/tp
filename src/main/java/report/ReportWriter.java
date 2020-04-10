@@ -58,8 +58,9 @@ public class ReportWriter {
                             + ", ";
                 }
                 ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
-                String writtenString = String.format("%d. %s \t %s " 
-                        + ls, counter, name, ingredientList);
+                double price = menuItems.get(name).getPrice();
+                String writtenString = String.format("%d. Name: %-10s \t Price: $%-10.2f \t Ingredients: %-10s "
+                        + ls, counter, name, price, ingredientList);
                 fw.write(writtenString);
                 counter += 1;
             }

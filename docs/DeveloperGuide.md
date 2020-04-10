@@ -342,6 +342,8 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 * Allows the owner to see an overview of their restaurant
 * Simple and easy to use interface
 
+<a name="user-stories"></a>
+
 ## Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that ...|

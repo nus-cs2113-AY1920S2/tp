@@ -8,6 +8,8 @@ public class HelpCommand {
         deleteCommands();
         listCommands();
         searchCommands();
+        salesCommands();
+        clearCommands();
         quitCommand();
     }
 
@@ -54,6 +56,11 @@ public class HelpCommand {
         System.out.println("Calculate profit: profit");
         System.out.println("Find most popular dish: popular");
         System.out.println("");
+    }
+    
+    private static void clearCommands() {
+        System.out.println("Clear Commands:");
+        System.out.println("Clear all reservations: clear reservation;");
     }
 
     private static void quitCommand() {
