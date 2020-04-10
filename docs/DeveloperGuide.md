@@ -20,7 +20,7 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [3.4. Schedule a new meeting](#34-schedule-a-new-meeting)
 	* [3.5. Edit a contact's timetable](#35-edit-a-contacts-timetable)
 	* [3.6. Delete a scheduled meeting](#36-delete-a-scheduled-meeting)
-	* [3.7. Delete a member](#37-delete-a-member)
+	* [3.7. Delete a contact](#37-delete-a-contact)
 	* [3.8. List all scheduled meetings](#38-list-all-scheduled-meetings)
 * [4. Documentation](#4-documentation)
 * [5. Testing](#5-testing)
@@ -144,7 +144,7 @@ The ```contacts``` component of our application consists of 2 classes: ```TeamMe
 
 ### 2.5. Storage component
 
-![storage component structure](images/storage_uml.png)
+![storage component structure](images/storage_class_diagram.png)
 
 Above image shows the structure of Storage object. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
 
@@ -242,6 +242,24 @@ combined schedule.
 6. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
 
 ### 3.4 Schedule a new meeting
+![ScheduleMeeting](images/ScheduleMeeting.png)
+
+The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
+It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
+
+Given below is an example usage and how the `ScheduleMeeting` command behaves.
+
+1. The user invokes the LogicManager by entering `schedule <meeting name> <start date> <start time> <end date> <end time>`.
+2. The `LogicManager` requests to schedule a new meeting via `CommandHandler`.
+3. If the indicated timeframe is available, 
+	1. a new `Meeting` is instantiated with the meeting name, start date, start time, end date and end time.
+	2. This new `Meeting` object is then added into `MeetingList`.
+	3. Lastly, `CommandHandler` calls `addBusyBlocks()` on `mainUser:Contacts` to mark the indicated timeframe as "busy".
+4. If the indicated timeframe is not available, an exception will be thrown to inform user.
+
+### 3.4.1 Design Considerations
+**Aspect 1: **
+
 
 ### 3.5 Edit a contact's timetable
 ![EditContact](images/EditContact.png)<br>
@@ -304,17 +322,47 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
     "meeting" time block. 
 4. If no  "meeting" time block is detected within the time slot, the edit is valid. The program continues running and 
     editSchedule() will be called.
-5. If a  "meeting" time block is detected within the time slot, the edit is invalid. An invalid exception is thrown by 
+5. If a "meeting" time block is detected within the time slot, the edit is invalid. An invalid exception is thrown by 
     `Contact`, and the user will be informed that the edit is invalid.
     
     NOTE: `TextUI` and `Exception` classes which are involved in generating the exception, and displaying the exception message
     to the user are omitted to keep the sequence diagram concise.
     
 ### 3.6 Delete a scheduled meeting
+![DeleteMeeting](images/DeleteMeeting_seq.png)
+The figure above shows the sequence diagram of the ```DeleteMeeting``` command.
+It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
 
-### 3.7 Delete a member
+Given below is an example usage scenario and how the ```DeleteMeeting``` command behaves.
+
+1. The user running the application invokes the ```LogicManager``` by typing ```delete <meeting index>```.
+2. ```LogicManager```would then request ```CommandHandler``` for deletion.
+3. ```CommandHandler``` will check if target meeting index exists. If it exists, a method call ```addFreeBlocks()``` will be made on the `mainUser:Contact` which will make the indicated timeframe back to "free" again. In addition, `CommandHandler` will also make a method call, `delete()`, on `MeetingList` which will find and remove the meeting at the given index. If it does not exist, an exception will be thrown.
+4. Subsequently, the updated list of meetings and schedule of the mainUser will be saved in the application.
+
+### 3.7 Delete a contact
+![DeleteContact](images/DeleteContact_seq.png)
+The figure above shows the sequence diagram of the ```DeleteContact``` command.
+It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
+
+Given below is an example usage scenario and how the ```DeleteContact``` command behaves.
+
+1. The user running the application invokes the ```LogicManager``` by typing ```delete <contact name>```.
+2. ```LogicManager```would then request ```CommandHandler``` for deletion.
+3. ```CommandHandler``` will check if target contact is the main user. If it is the main user, no contact will be removed and an exception will be thrown to inform user. If it is not the main user, a method call ```remove()``` will be requested on ```ContactList``` which will find and remove the contact with the matching name.
+5. Subsequently, the new list of contacts will be saved in the application.
+
 
 ### 3.8 List all scheduled meetings
+![ListMeetings](images/ListMeetings_seq.png)
+The figure above shows the sequence diagram of the ```ListMeetings``` command.
+It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
+
+Given below is an example usage scenario and how the ```ListMeetings``` command behaves.
+
+1. The user running the application invokes the ```LogicManager``` by typing ```meetings```.
+2. ```LogicManager```would then request ```CommandHandler``` for the list.
+3. ```CommandHandler``` will call ```listMeetings()``` on ```MeetingList```, which will display every scheduled meetings that has been created.
 
 ## Appendix A: Product Scope
 ### A.1. Target user profile
