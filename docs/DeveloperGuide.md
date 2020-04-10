@@ -63,7 +63,7 @@
 _Fig 2.1. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
-_Fig 2.2. Commands of Jikan (private methods omittedd)_
+_Fig 2.2. Commands of Jikan (private methods omitted)_
 
 All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
@@ -341,32 +341,32 @@ Allow users to record their daily activities and track their time usage in a use
 
 ### Instructions for Manual Testing  
   
-  #### Launch and Shutdown
+#### Launch and Shutdown
   1. Download the jar file and data.csv file.
   2. Copy both into an empty folder.
   3. Create a folder named `data` and put the data.csv file into this folder.
   4. Ensure the folder `data` and `jikan.jar` are in the same folder.
   5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
   
-  It is important to include the data.csv file to have data for testing!
+  It is important to include the data.csv file to have data for testing!  
   
-  #### Listing activities
+#### Listing activities
   Test case: `list month april`
   
   Expected: A list of activities completed in the month of April should be shown.
   
   Test case: `list 25/03/2020`
   
-  Expected: A list of activities completed on 25th March 2020 should be shown.
+  Expected: A list of activities completed on 25th March 2020 should be shown.  
   
-  #### Continuing activities
+#### Continuing activities
   Test case: `continue lab 4 ex2`
   
   Expected: Message "lab 4 ex2 was continued" will be displayed.
   
   Test case: `start lab 4 ex2`
   
-  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.
+  Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.  
   
 
 #### Graphing activities
@@ -382,7 +382,7 @@ Test case: (to be done in succession)
 `list week` then `graph tags`
 
 Expected: List of activities completed this week will be shown. 
-Then a chart of the duration of the tags of these activities will be shown.
+Then a chart of the duration of the tags of these activities will be shown.  
 
 #### Setting tag goals
 Test case: `goal core /g 24:00:00`
