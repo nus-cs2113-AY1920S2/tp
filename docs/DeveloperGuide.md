@@ -240,9 +240,10 @@ The features will be presented in the order of sequence diagram, followed by des
 ![AddPerformance](images/AddPerformance.png)
 *Sequence diagram of AddPerformanceList*  
 AddPerformanceList is a subclass of Command. It allows the user to add performances
-by importing a student list, or add manually, to a desired performance list under an Event.  
-The method addToList() calls isImportList() from UI to get a user input. This user input
-decides whether the user will add performances by list or manually. 
+by importing a student list, or add manually, to a desired performance list under an Event.    
+The method execute() calls addToList() from the same class, which then calls 
+isImportList() from UI to get a user input. This user input decides whether 
+the user will add performances by list or manually. 
 The method addByList() or addManually() will then get user input for Performance parameters, 
 which will be parsed by the PerformanceParser and return a Performance.  
 The Performance attained from the parser will be added to a desired performanceList. 
@@ -252,8 +253,9 @@ The Performance attained from the parser will be added to a desired performanceL
 *Sequence diagram of AddPerformance*  
 DeletePerformanceList is a subclass of Command. It allows the user to delete a performance
 from a desired performance list under an Event.  
-The method deleteFromList() calls getPerformance() from itself, which get the user input for 
-Performance parameters of the Performance to be deleted, and return a Performance.  
+The method execute() calls deletePerformance() from the same class, which then calls 
+getPerformance() from itself to get the user input, Performance parameters 
+of the Performance to be deleted, and return a Performance.  
 The Performance attained from getPerformance() will be deleted from a desired performanceList. 
 
 1. Edit performanceList
@@ -261,12 +263,14 @@ The Performance attained from getPerformance() will be deleted from a desired pe
 *Sequence diagram of EditPerformance*  
 EditPerformanceList is a subclass of Command. It allows the user to edit a performance,
 either the student's name or result, from a desired performance list under an Event.  
-The method editPerformanceList() calls getPerformance() from itself, which get the user input for 
-student's name of the Performance to be edited, and return a Performance.  
-It then calls getPerformanceParameter() from UI to get a user input. This user input
-decides whether the user will edit the student's name or result.   
+The method execute() calls editPerformanceList() from the same class, which then calls 
+getPerformance() from itself, to get the user input, student's name of the 
+Performance to be edited, and return a Performance.  
+The method editPerformanceList() then calls getPerformanceParameter() from UI 
+to get a user input. This user input decides whether the user will edit the 
+student's name or result.  
 The new parameter will be attained from the user in method editPerformance(performance, editType) 
-in PerformanceList.
+in PerformanceList.  
 
 1. Sort performanceList
     1. ![SortPerformanceByName](images/SortPerformanceList.png)
@@ -277,10 +281,12 @@ in PerformanceList.
 SortPerformanceListByName and SortPerformanceListByResult are subclasses of Command. 
 They both allow the user to sort a performance list, by student's name or result as their
 name suggest. 
-The two Commands will be discussed together in this section as they have similar behaviour.  
+The two Commands are discussed together in this section as they have similar behaviour.  
+The method execute() calls sortPerformanceByName() or sortPerformanceByResult, 
+according to its class name.   
 The methods sortPerformanceBy...() access a desired performanceList and check whether 
 the list is empty. 
-If empty, it calls display() in UI and inform the user list is empty.  
+If empty, it calls display() in UI and inform the user.  
 Else, it will sort the performanceList by the type mentioned in its method name.  
 
 1. View performanceList  
@@ -288,9 +294,9 @@ Else, it will sort the performanceList by the type mentioned in its method name.
 *Sequence diagram of ViewPerformanceList*  
 ViewPerformanceList is a subclass of Command. It allows the user to view a self
 generated table based on the data in a desired performance list.  
-The method viewList() accesses a desired performanceList of given event, 
-and checks whether the list is empty.  
-If empty, it calls display() in UI and inform the user list is empty.  
+The method execute() calls viewList() from the same class, which accesses a 
+desired performanceList of given event and checks whether that list is empty.  
+If empty, viewList() calls display() in UI and inform the user.  
 Else, it will iterate through the performanceList and print Performance 
 data in a table format.  
 
@@ -305,8 +311,60 @@ data in a table format.
 Note that:
 * studentList-related commands can be executed without the existence of events.
 
+* *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`  
 
-* *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
+1. Add student list
+![AddStudentList](images/addStudentList.png)  
+ *Sequence diagram of AddStudentList*   
+AddStudentList is a subclass of Command. It allows the user to add a student list
+to the studentListCollection.    
+The method execute() calls addToList() from the same class, which then calls 
+getListName() from UI to get a user input for listName.  
+The list name of student list is restricted to one word only, hence the parameter listName 
+is trimmed.  
+StudentList, a new student list is created with list name listName.  
+The method addToList() calls addStudent(studentList) from UI to get user input 
+for student names to be added. The names are added to studentList
+in addStudent(studentList).  
+After user has done input, studentList will be printed, and this new list is
+added to studentListCollection.
+ 
+1. Delete student list  
+![DeleteStudentList](images/DeleteStudentList.png)  
+ *Sequence diagram of DeleteStudentList*  
+DeleteStudentList is a subclass of Command. It allows the user to delete a student list
+from the studentListCollection.    
+If the studentListCollection is empty, execute() calls displayStudentListCollectionEmpty()
+form UI, to inform the user.  
+Else, it calls deleteFromExisting() from the same class and get user input for index, the
+list number to be deleted.  
+The (index-1)th list in studentListCollection is deleted.  
+
+1. Clear student list  
+![ClearStudentList](images/ClearStudentList.png)  
+ *Sequence diagram of ClearStudentList*  
+ClearStudentList is a subclass of Command. It allows the user to clear the 
+studentListCollection.  
+The method execute() calls clear() from the same class. 
+If the studentListCollection is empty, clear() calls displayStudentListCollectionEmpty()
+from UI, to inform the user.  
+Else, it calls clear() from StudentListCollection to clear the collection. 
+The user will get informed when a success clear has been performed. 
+
+1. View student list  
+![ViewStudentList](images/ViewStudentList.png)  
+ *Sequence diagram of ViewStudentList*   
+ViewStudentList is a subclass of Command. It allows the user to view a self 
+generated table based on the data in studentListCollection.  
+The method execute() calls displayStudentList() from the same class. 
+If the studentListCollection is empty, displayStudentList() calls 
+displayStudentListCollectionEmpty() from UI, to inform the user.  
+Else, it calls printStudentListCollection() from UI to print the table. 
+
+1. Edit student list
+
+
+
 
 ### 3.6 Help
 ![Help](images/Help.png)  
