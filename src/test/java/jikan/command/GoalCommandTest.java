@@ -90,6 +90,8 @@ class GoalCommandTest {
     void executeGoal() throws IOException {
         try {
             populateActivityList();
+            tagStorage.loadFile();
+            assertTrue(tagStorage.dataFile.exists());
         } catch (InvalidTimeFrameException e) {
             System.out.println("Invalid time frame.");
         } catch (NameTooLongException e) {
@@ -107,6 +109,7 @@ class GoalCommandTest {
             } else {
                 found = false;
             }
+            tagStorage.dataFile.delete();
             assertTrue(found);
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
