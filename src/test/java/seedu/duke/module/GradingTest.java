@@ -30,4 +30,32 @@ class GradingTest {
         gradeValue = 0.0;
         assertEquals(gradeValue, Grading.F.getPoint());
     }
+
+    @Test
+    void getGradeString() {
+        String gradeString = "A+";
+        assertEquals(gradeString, Grading.APLUS.getGrade());
+        gradeString = "A";
+        assertEquals(gradeString, Grading.A.getGrade());
+        gradeString = "B+";
+        assertEquals(gradeString, Grading.BPLUS.getGrade());
+        gradeString = "B";
+        assertEquals(gradeString, Grading.B.getGrade());
+        gradeString = "B-";
+        assertEquals(gradeString, Grading.BMINUS.getGrade());
+        gradeString = "C+";
+        assertEquals(gradeString, Grading.CPLUS.getGrade());
+        gradeString = "C";
+        assertEquals(gradeString, Grading.C.getGrade());
+        gradeString = "D+";
+        assertEquals(gradeString, Grading.DPLUS.getGrade());
+        gradeString = "D";
+        assertEquals(gradeString, Grading.D.getGrade());
+        gradeString = "CS";
+        assertEquals(gradeString, Grading.CS.getGrade());
+        gradeString = "CU";
+        assertEquals(gradeString, Grading.CU.getGrade());
+        gradeString = "F";
+        assertEquals(gradeString, Grading.F.getGrade());
+    }
 }

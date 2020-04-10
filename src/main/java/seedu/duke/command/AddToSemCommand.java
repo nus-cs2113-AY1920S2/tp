@@ -26,12 +26,30 @@ public class AddToSemCommand extends AddCommand {
         super.execute(semesterList, availableModulesList);
     }
 
+    /**
+     * Adds module to semester list.
+     * @param semesterList semester list.
+     * @throws RuntimeException throws when meets a runtime exception.
+     */
     private void addModule(SemesterList semesterList) throws RuntimeException {
         boolean isModuleExist = checkModuleExist(semesterList);
         if (isModuleExist) {
-            String moduleIdentifier = selectedModule.isIdValid() ? selectedModule.getId() : selectedModule.getName();
-            throw new RuntimeException(String.format("The module <%s> is already exist in your semester list!",
-                    moduleIdentifier));
+            if (selectedModule.isIdValid() && selectedModule.isNameValid()) {
+                throw new RuntimeException(String.format("ID <%s> or name <%s> is already exist in your semester list!",
+                        selectedModule.getId(), selectedModule.getName()));
+            } else if (selectedModule.isIdValid()) {
+                throw new RuntimeException(String.format("ID <%s> is already exist in your semester list!",
+                        selectedModule.getId()));
+            } else if (selectedModule.isNameValid()) {
+                throw new RuntimeException(String.format("Name <%s> is already exist in your semester list!",
+                        selectedModule.getName()));
+            }
+        }
+
+        if (selectedModule.getModuleCredit() <= 0) {
+            throw new RuntimeException("The module should not have non-positive module credit");
+        } else if (selectedModule.getModuleCredit() > 50) {
+            throw new RuntimeException("Are you sure the module is that large? :O");
         }
 
         for (SemModulesList sem: semesterList) {
@@ -46,6 +64,10 @@ public class AddToSemCommand extends AddCommand {
         semesterList.add(sem);
     }
 
+    /**
+     * Checks whether the selected module is in available modules list.
+     * @param selectedModule modules to be added to semester modules list.
+     */
     private void checkAvailableModulesList(SelectedModule selectedModule) {
         for (Module availableModule: AvailableModulesList.availableModulesList) {
             boolean isSameName = availableModule.getName().equals(selectedModule.getName());

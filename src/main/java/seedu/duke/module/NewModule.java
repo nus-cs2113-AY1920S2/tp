@@ -24,6 +24,10 @@ public class NewModule extends Module {
         this.preRequisiteModules = convertFromStringToModuleList(preRequisiteModules);
     }
 
+    /**
+     * converts the array of strings of modules into Modules of ModuleList object.
+     * @param moduleIdentifiers : Array of strings of modules.
+     */
     public static ModuleList convertFromStringToModuleList(String[] moduleIdentifiers) {
         ModuleList modules = new ModuleList();
         for (String moduleIdentifier : moduleIdentifiers) {
@@ -42,10 +46,6 @@ public class NewModule extends Module {
                 id, name, moduleCredit));
         boolean hasPreReqModule = false;
         StringBuilder prereq = new StringBuilder(" | Prerequisites: ");
-        //        for (Module preReqModule : this.preRequisiteModules) {
-        //            prereq.append(" ").append(preReqModule.getId());
-        //            hasPreReqModule = true;
-        //        }
         if (!getPreReqModulesString().equals("None")) {
             hasPreReqModule = true;
         }
