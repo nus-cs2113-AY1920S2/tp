@@ -47,13 +47,20 @@ public class PatientParser extends Parser {
         } else if (userCommand[0].equalsIgnoreCase("edit")) {
             return checkEditCommand(fullCommand);
         } else if (userCommand[0].equalsIgnoreCase("delete")) {
-            if (userCommand.length != 3 || isCommandLengthOne) {
-                throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
-            }
-            return new DeletePatientCommand(userCommand[2]);
+            return checkDeleteCommand(userCommand, isCommandLengthOne);
         } else {
             throw new HappyPillsException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private static PatientCommand checkDeleteCommand(String[] userCommand, boolean isCommandLengthOne) throws HappyPillsException {
+        if (userCommand.length != 3 || isCommandLengthOne) {
+            throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
+        }
+        if (!Checker.isValidNric(userCommand[2].toUpperCase())) {
+            throw new HappyPillsException(Messages.MESSAGE_INVALID_NRIC);
+        }
+        return new DeletePatientCommand(userCommand[2]);
     }
 
     /**

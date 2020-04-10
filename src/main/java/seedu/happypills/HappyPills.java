@@ -3,7 +3,6 @@ package seedu.happypills;
 import seedu.happypills.logic.commands.Command;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
-import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.logic.parser.Parser;
@@ -12,7 +11,6 @@ import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.TextUi;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;

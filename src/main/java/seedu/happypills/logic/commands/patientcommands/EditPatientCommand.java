@@ -159,7 +159,7 @@ public class EditPatientCommand extends PatientCommand {
         }
         Patient editPatient = findPatient(patients);
         if (editPatient == null) {
-            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
         if (content.isEmpty()) {
             throw new HappyPillsException(Messages.MESSAGE_CONTENT_IS_EMPTY);
