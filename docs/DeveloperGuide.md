@@ -130,32 +130,27 @@ Follow the following steps to manually test the product:
 
 3. Once the program starts, you should get the following output: 
 
- __________________________________________________________________________________________
- 
-_                                                                                  _
-_                             Hello! Here's TechToday.                             _
-_            Let me show you some technology news to refresh your mind!            _
-_ **_____________________________________________________________________________**_
-_                    Your queries can be of the following forms:                   _
-_                                      1. help                                     _
-_                              2. view [article / job]                             _
-_                       3. save [article / job] INDEX_NUMBER                       _
-_                         4. create [article / job / note]                         _
-_                          5. list [article / job / note]                          _
-_                   6. delete [article / job / note] INDEX_NUMBER                  _
-_              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-_                                      8. exit                                     _
-_                                                                                  _
-_ **_____________________________________________________________________________**_
-     What can I do for you?
+                   __________________________________________________________________________________________
 
-No files with your data exits, we will create new files to save your data.
-__________________________________________________________________________________________
+                    _                                                                                  _
+                    _                             Hello! Here's TechToday.                             _
+                    _            Let me show you some technology news to refresh your mind!            _
+                    _ **_____________________________________________________________________________**_
+                    _                    Your queries can be of the following forms:                   _
+                    _                                      1. help                                     _
+                    _                              2. view [article / job]                             _
+                    _                       3. save [article / job] INDEX_NUMBER                       _
+                    _                         4. create [article / job / note]                         _
+                    _                          5. list [article / job / note]                          _
+                    _                   6. delete [article / job / note] INDEX_NUMBER                  _
+                    _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
+                    _                                      8. exit                                     _
+                    _                                                                                  _
+                    _ **_____________________________________________________________________________**_
+                         What can I do for you?
 
-****
-
-
-
+                    No files with your data exits, we will create new files to save your data.
+                    __________________________________________________________________________________________
 
 
 
