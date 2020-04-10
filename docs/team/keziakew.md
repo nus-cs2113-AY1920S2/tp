@@ -13,7 +13,8 @@ https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kcubey
  
 #### Contributions to documentation
 * UG layout
-* Majority of UG writeup (except Event-related)
+* Majority of UG writeup 
+  * Exceptions: Event-related commands, Edit card command
 
 #### Contributions to the DG
 * All write ups & diagrams related to the Storage feature
