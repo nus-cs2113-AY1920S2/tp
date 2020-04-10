@@ -6,7 +6,6 @@ import jikan.exception.NameTooLongException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -22,6 +21,8 @@ public class Activity {
     private Duration duration;
     private Duration allocatedTime;
     private LocalDate date;
+
+    public static final int MAX_PERCENT = 100;
 
     /**
      * Constructor for a new activity entry.
@@ -107,7 +108,7 @@ public class Activity {
      * @return percent completed
      */
     public double getProgressPercent() {
-        double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * 100;
+        double percent = ((double)this.duration.toMillis() / this.allocatedTime.toMillis()) * MAX_PERCENT;
         return Math.min(percent, 100);
     }
 
