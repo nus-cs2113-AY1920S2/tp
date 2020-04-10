@@ -21,7 +21,6 @@ public enum Grading {
     }
 
     private String grade;
-
     private double gradePoint;
 
     public String getGrade() {

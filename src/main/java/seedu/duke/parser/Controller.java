@@ -158,7 +158,15 @@ public class Controller {
         }
         semester = moduleDetails[0].trim();
         try {
+            if (Integer.parseInt(semester) < 1 || Integer.parseInt(semester) > 10) {
+                throw new InputException("Semester should be between 1 - 10.");
+            }
+
             int moduleCredit = Integer.parseInt(moduleDetails[1]);
+            if (moduleCredit < 1 || moduleCredit > 10) {
+                throw new InputException("Module credit should be between 1 - 10.");
+            }
+
             if (module.contains("id/")) {
                 String moduleId = module.replace("id/","");
 
@@ -166,6 +174,10 @@ public class Controller {
                 if (moduleId.contains("n/")) {
                     String[] idAndName = moduleId.split("n/");
                     String id = idAndName[0].toUpperCase().trim();
+
+                    if (id.equals("")) {
+                        throw new InputException("invalid add command.");
+                    }
 
                     /* if module code is invalid */
                     if (!isStandardCodeFormat(id)) {
@@ -188,7 +200,7 @@ public class Controller {
                 return new AddToSemCommand(new SelectedModule("name", moduleName, semester, moduleCredit));
             }
         } catch (NumberFormatException e) {
-            Ui.showInputError();
+            throw new InputException("Invalid 'add' command.");
         }
         return null;
     }
@@ -220,6 +232,9 @@ public class Controller {
         moduleWords = moduleWords[1].split(" pre/");
         try {
             int moduleCredit = Integer.parseInt(moduleWords[0]);
+            if (moduleCredit < 1 || moduleCredit > 10) {
+                throw new InputException("Module credit should be between 1 - 10.");
+            }
             if (moduleWords.length < 2) {
                 return new AddToAvailableCommand(new NewModule(moduleId, moduleName, moduleCredit));
             }
@@ -228,9 +243,8 @@ public class Controller {
             checkPreReqValidity(preRequisiteModules, moduleId);
             return new AddToAvailableCommand((new NewModule(moduleId, moduleName, moduleCredit, preRequisiteModules)));
         } catch (NumberFormatException e) {
-            Ui.showInputError();
+            throw new InputException("Invalid 'add' command.");
         }
-        return null;
     }
 
     private static void checkPreReqValidity(String[] preRequisiteModules, String moduleId) throws InputException {

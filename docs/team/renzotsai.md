@@ -2,7 +2,7 @@
 
 ## Overview
 Personal Module Manager is a software that tracks the number of modular credits, modules taken and modules required 
-for its user to graduate. The software is for NUS Students who want to plan their modules per semester in an easy way 
+for its users. The software is for NUS Students who want to plan their modules per semester in an easy way 
 and it is optimized for those who want to type fast with CLI. It is written in Java.
 
 ### Summary of Contributions
@@ -15,27 +15,12 @@ In this project, I design the part of Storage, Exception and some commands.
 
 ##### Storage
 Storage in our software include three parts: `Storage Available Modules List`, `Storage Semester List` and 
-`Storage Person Info`. `Available Modules List` and `Semester List` are stored in CSV file and Person Info is 
-stored in TXT file. And each time the user runs the software, these three file will be loaded.
-
-Each time, after modifying `Available Modules List` and `Semester List`, this software will update their CSV files
-to make sure user's data will not be lost if the software meets a unexpected halt. 
-
-As for Person Info, after several changes to our code, now the Person info in this version keeps the same and will not 
-be changed. But I still keep this part for future enhancements e.g: support multi-user.
-
+`Storage Person Info`. They are all stored in CSV file. Each time the user runs the software, 
+these three file will be loaded and will be store after edit them.
 
 ##### Exception
-Exception in our software include three parts: `Input Exception`, `Runtime Exception` and 
-`Storage Exception`. All of them extend from `ModuleManagerException`.
-
-`Input Exception` is used in handling exception when user's input is a wrong format. `Runtime Exception` is used in 
-handling all the exceptions when execute user's command. And `Storage Exception`is used in handling the exceptions when
-load and store data.
-
-`Input Exception`, `Runtime Exception` will be thrown during parse and execute the command and will be caught in 
-`Duke().run()`. `Storage Exception` will be thrown during load and store and will be caught in `Duke()`. All the exceptions 
-will be recorded in log file.
+Exception in our software include three parts: `Input Exception`, `Runtime Exception` and `Storage Exception`. 
+All of them extend from `ModuleManagerException`.
 
 ##### Commands
 - Add to semester command: This command allows users to assign different modules to different semester.
@@ -46,7 +31,8 @@ will be recorded in log file.
 - Write the Draft of our UG v1.0 and v2.0 and revised them.
 
 #### Contributions to the Developer Guide
-- Write the part of `Add to semseter` and draw a UML diagram to explain this implementation.
+- Write the part of `Storage component` and draw a Class diagram to explain this implementation.
+- Write the part of `Add to semseter` and draw a Sequence diagram to explain this implementation.
 
 #### Contributions to team-based tasks
 

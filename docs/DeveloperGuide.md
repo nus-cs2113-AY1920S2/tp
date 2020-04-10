@@ -1,4 +1,41 @@
-# Developer Guide
+# Module Manager - Developer Guide  
+By: `CS2113-T15-3` Since: `2020`  
+
+Table of Contents  
+1. [Introduction](#1-introduction)  
+    1.1 [Purpose](#11-purpose)  
+    1.2 [Scope](#12-scope)  
+2. [Setting up](#2-setting-up)  
+    2.1 [Prerequisites](#21-prerequisites)  
+    2.2 [Setting up the project in your computer](#22-setting-up-the-project-in-your-computer)  
+    2.3 [Verifying the setup](#23-verifying-the-setup)  
+    2.4 [Configurations to do before writing code](#24-configurations-to-do-before-writing-code)  
+3. [Design](#3-design)  
+    3.1 [Architecture](#31-architecture)  
+    3.2 [UI component](#32-ui-component)  
+    3.3 [Logic component](#33-logic-component)  
+    3.4 [Model component](#34-model-component)  
+    3.5 [Storage component](#35-storage-component)  
+4. [Implementation](#4-implementation)  
+    4.1 [Addition](#41-addition)  
+    4.1.1 [Add to Semester feature](#411-add-to-semester-feature)  
+    . . 4.1.2 [Add to available feature](#412-add-to-available-feature)  
+    4.2 [Deletion](#42-deletion)  
+    . . 4.2.1 [Delete from Semester feature](#421-delete-from-semester-feature)  
+    . . 4.2.2 [Delete from Available feature](#422-delete-from-available-feature)  
+    4.3 [Searching](#43-searching)  
+    4.4 [Others](#44-others)  
+    . . 4.4.1 [Calculate CAP feature](#441-calculate-cap-feature)  
+    . . 4.4.2 [Marking module as done](#442-marking-module-as-done)  
+5. [Documentation](#5-documentation)  
+    5.1 [Written documentation](#51-written-documentation)  
+    5.2 [Diagrams](#52-diagrams)  
+[Appendix A: Product Scope](#appendix-a-product-scope)  
+[Appendix B: User Stories](#appendix-b-user-stories)  
+[Appendix C: Glossary](#appendix-c-glossary)  
+[Appendix D: Instructions for Manual Testing](#appendix-d-instructions-for-manual-testing)  
+[Appendix E: Non-Functional Requirements](#appendix-e-non-functional-requirements)  
+
 
 # 1. Introduction
 ## 1.1 Purpose
@@ -116,7 +153,12 @@ in an ordered fashion. This class is called `SemesterList`, which represents the
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
 * can save the available module list in csv format and read it back
-* can save the semester list in csv format and read it back 
+* can save the semester list in csv format and read it back
+
+Given below are Class Diagram of StoragePersonInfo, StorageAvailableModulesList and StorageSemesterList
+![PI](https://github.com/RenzoTsai/tp/blob/UpdateDG_UG/docs/UML%20img%20folder/StoragePerson.png?raw=true)
+![AML](https://raw.githubusercontent.com/RenzoTsai/tp/UpdateDG_UG/docs/UML%20img%20folder/StorageAML.png)
+![SML](https://github.com/RenzoTsai/tp/blob/UpdateDG_UG/docs/UML%20img%20folder/StorageSML.png?raw=true)
 
 
 # 4. Implementation
@@ -166,9 +208,9 @@ Finally, this new semester list will be added to `semesterList`.
 command has been executed.
 
 The following sequence diagram shows how the `Add to Semester` operation works:
-![Sequence Diagram of Add to Semester](https://github.com/RenzoTsai/tp/blob/Update_DG/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
+![Add to Semester](https://raw.githubusercontent.com/AY1920S2-CS2113-T15-3/tp/master/docs/UML%20img%20folder/Sequence%20Diagram%20of%20Add%20to%20Semester.png)
 
-### 4.1.1 `Add to available` feature 
+### 4.1.2 `Add to available` feature
 The `Add to available` mechanism is facilitated by `AddtoAvailableCommand` which extends from an abstract class 
 `Command`. 
 It allows `ModuleManager` to add a module to the `AvailableModulesList` so that users may access its data or add it
@@ -207,9 +249,9 @@ It allows `ModuleManager` to delete a module from a `SemModulesList`.
 By doing so, the following operations are carried out:
 
 ##### Step 1:
-When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Parser`.
-`Parser` then returns a `DeleteFromSemCommand`, which calls 
-`Command#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+When a user enters a delete from semester command, e.g `delete id/IS4241 s/4`, this command is being parsed in `Controller`.
+`Controller` then returns a `DeleteFromSemCommand`, which calls 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
 `DeleteFromSemCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
 
 ##### Step 2:
@@ -229,9 +271,10 @@ This tells the user the module that has been deleted from the corresponding seme
 
 The sequence diagram below shows the mechanics of `DeleteFromSemCommand`:
 
-![Sequence Diagram](https://github.com/chengTzeNing/tp/blob/DG/docs/images/Sequence%20Diagram.png)
+![SequenceDiagram-DeleteFromSemCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromSemCommand.png)
 
-### 4.2.1 `Delete from Available` feature
+
+### 4.2.2 `Delete from Available` feature
 
 The `Delete from Available` mechanism is facilitated by `DeleteFromAvailableCommand`, 
 which extends from `DeleteCommand`. Whereas `DeleteCommand` extends from the abstract class `Commmand`.
@@ -239,8 +282,40 @@ It allows `ModuleManager` to delete a module from a `AvailableModulesList`.
 By doing so, the following operations are carried out:
 
 ##### Step 1:
+When a user first inputs a `delete` command, eg. `delete id/CS1010`, this command is being parsed in `Controller`.
+`Controller` then returns a `DeleteFromAvailableCommand`, which follows to call 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context,
+`DeleteFromAvailableCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+##### Step 2:
+`DeleteFromAvailableCommand` then proceeds to call its own method `deleteModule(SemesterList selectedModulesList, 
+AvailableModulesList availableModulesList)`.
+In this method, it first calls another method `checkIfModuleAvailable(AvailableModulesList availableModulesList)`,
+which returns a `boolean` value about whether the module inputted is in the list of available modules to choose from.
+If the module is not found in the list of the available modules, it proceeds to throw a `RunTimeException`.
+
+##### Step 3:
+Or else, another method in `DeleleFromAvailableCommand`,
+`checkIfIsPreReq(Module moduleToCheck, AvailableModulesList availableModulesList)` is called.
+If the module selected is a prerequisite to other modules, it will throw a `RuntimeException`.
+
+##### Step 4:
+Or else, `DeleteFromAvailableCommand` then proceeds to call the method `Ui.showDeleteFromAvailableMessage(String module)`.
+This tells the user that the module has been deleted from the list of available modules.
+
+##### Step 5:
+It will call another method `checkIfInModulePlan(String moduleId, SemesterList selectedModulesList)`
+This checks if the module is in the user's module plan.
+If the module is in the user's module plan, the module will be deleted from the module plan.
+`DeleteFromAvailableCommand` will then proceed to call the 
+`Ui.showDeleteFromAvailableFollowUpMessage(String module)` method.
+This show the user that on top of deleting the module from the list of available modules,
+it has also been deleted from the user's module plan.
 
 
+The sequence diagram below shows the mechanics of `DeleteFromAvailableCommand`:
+
+![SequenceDiagram_DeleteFromAvailableCommand](https://raw.githubusercontent.com/chengTzeNing/tp/edit-DG/docs/images/SequenceDiagram_DeleteFromAvailableCommand.png)
 
 
 ## 4.3 Searching
@@ -309,7 +384,16 @@ attribute, and the `isDone` attribute of the module will be updated to be `true`
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
 
-## Product Scope
+# 5. Documentation
+## 5.1 Written documentation  
+The user and developer guide are written and formatted using MarkDown.
+
+## 5.2 Diagrams
+Diagrams are drawn and edited using the tool [draw.io](https://app.diagrams.net/). 
+The tool provides support for a wide range of UML diagrams, 
+such as class, object and sequence diagrams.
+
+## Appendix A: Product Scope
 ### Target user profile
 
 * A computer science undergraduate of NUS with a need to manage modules
@@ -322,7 +406,7 @@ If the module does not exist in the list, a `RuntimeExcption` will be thrown to 
 
 Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app 
 
-## User Stories
+## Appendix B: User Stories
 
 |Priority| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -337,23 +421,90 @@ Manage and plan modules quickly with CLI, faster than a mouse or GUI driven app
 modules|
 
 
-## Non-Functional Requirements
+## Appendix C: Glossary
+
+**Mainstream OS** - Windows, Linux, Unix, OS-X
+
+## Appendix D: Instructions for Manual Testing
+
+The following is a summary of all the commands in Module Manager, and some examples of input. 
+The commands are organised into sections, each relating to a particular feature. 
+There is already some data preloaded into the ArchDuke jar file. 
+You may follow the steps in numerical order to test all the features of ArchDuke.
+
+### Command Summary and Testing Instructions
+#### Module Commands
+
+1. Adding Module to available module list  
+    * Use the following commands to add a module to the available module list  
+        * `add id/[module code] s/[semester] mc/[credit] `  
+        or  
+        * `add n/[module name] s/[semester] mc/[credit]`  
+        or  
+        * `add id/[module code] n/[module name] s/[semester] mc/[credit]`  
+
+2. Adding Module to module plan  
+    * Use this command to add a module from the available module list to your module plan  
+        * `add id/[module code] s/[semester] mc/[credit]`  
+          or  
+        * `add n/[module name] s/[semester] mc/[credit]`  
+          or  
+        * `add id/[module code] n/[module name] s/[semester] mc/[credit] ` 
+
+3. Deleting Module from module plan  
+    * Use any of the following commands to delete a module from your module plan  
+        * `delete id/[module code] s/[semester]`  
+          or  
+        * `delete n/[module name] s/[semester]  `  
+        
+4. Deleting Module from available module list  
+    * Use any of the following commands to delete a module from the available module list  
+        * `delete id/[module code]  `
+        or  
+        * `delete n/[module name]  `
+        
+5. Marking Module as done  
+    * Use this command to mark a module that has been added to your module plan as done  
+        * `done n/[module name] g/[grade]  `
+          or  
+        * `done id/[module code] g/[grade]  `  
+        
+6. View module plan  
+    * Use this command to view your current module plan  
+        * `view`  
+        
+7. View done modules  
+    * Use this command to view modules that are done  
+        * `view /dm`  
+        
+8. View CAP  
+    * Use this command to view your current cap  
+        * `CAP`  
+    
+9. View Completed credits  
+    * Use this command to view the number of module credits you have completed  
+        * `view /cc`  
+    
+10. Clear the module plan  
+    * Use this command to clear your current module plan  
+        * `clear`  
+        
+11. Exit the Program  
+    * Use this command to exit the program  
+        * `bye`  
+        
+12. Display help  
+    * Use this command to display help message  
+        * `help`  
+        
+## Appendix E: Non Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules in the available module list without a noticeable sluggishness in
  performance for typical usage.
- 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
   should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-
-## Glossary
-
-**Mainstream OS** - Windows, Linux, Unix, OS-X
-
-
-
-## Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
+4. Should be secure, to prevent unauthorised modification
+5. Should be smooth and fast to view and edit  
+        
 
