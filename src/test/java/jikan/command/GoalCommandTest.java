@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GoalCommandTest {
@@ -48,40 +49,6 @@ class GoalCommandTest {
         activities.add(activity3);
     }
 
-    /**
-     * Check that tag exists in the tag list.
-     * @param tagName the tag name.
-     * @return index the index of the tag in the tag list.
-     * @throws IOException when there is an error loading/creating the file.
-     */
-    public static int checkIfExists(String tagName, String filePath) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        int index = 0;
-        int status = 0;
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            String[] name;
-            while (line != null) {
-                name = line.split(",");
-                if (name[0].equals(tagName)) {
-                    status = 1;
-                    break;
-                }
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-                index++;
-            }
-        } finally {
-            br.close();
-        }
-        if (status == 0) {
-            index = -1;
-        }
-        return index;
-    }
-
     @Test
     void executeGoal() throws IOException {
         try {
@@ -102,13 +69,17 @@ class GoalCommandTest {
         Command command = new GoalCommand(parameters, scanner, tagStorage);
         try {
             command.executeCommand(activities);
-            if (checkIfExists(tagName, testFile) != -1) {
+            if (GoalCommand.checkIfExists(tagName, testFile) == -1) {
+                found = false;
+                assertFalse(found);
+                tagStorage.dataFile.delete();
+            } else {
                 found = true;
-            } 
-            assertTrue(found);
+                assertTrue(found);
+                tagStorage.dataFile.delete();
+            }
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
         }
-        tagStorage.dataFile.delete();
     }
 }

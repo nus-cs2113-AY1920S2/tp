@@ -123,6 +123,7 @@ public class GoalCommand extends Command {
     /**
      * Check that tag exists in the tag list.
      * @param tagName the tag name.
+     * @param filePath the file path of the tag file.
      * @return index the index of the tag in the tag list.
      * @throws IOException when there is an error loading/creating the file.
      */
