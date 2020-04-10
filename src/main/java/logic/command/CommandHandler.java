@@ -108,7 +108,7 @@ public class CommandHandler {
                 if (userInputWords[1].equals("busy")) {
                     member.addBusyBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
                 } else if (userInputWords[1].equals("free")) {
-                    member.addFreeBlocks(memberName, startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
+                    member.addFreeBlocks(startDay, startTimeString, endDay, endTimeString,thisWeekNumber);
                 }
                 TextUI.showContactEdited(member.getName(),userInputWords[2]);
             } else {
@@ -354,12 +354,12 @@ public class CommandHandler {
                 }
 
                 ScheduleHandler myScheduleHandler = new ScheduleHandler(myScheduleList);
-                Boolean[][][] myMasterSchedule;
-                myMasterSchedule = myScheduleHandler.getMasterSchedule();
+                Boolean[][][] myCombinedSchedule;
+                myCombinedSchedule = myScheduleHandler.getCombinedSchedule();
                 System.out.println("Today is " + todayDate + ", week " + weekNumber + ".");
                 System.out.println("Timetable of the selected team member/s this week:");
                 System.out.println();
-                TextUI.printTimetable(myMasterSchedule, weeksMoreToView, weekNumber);
+                TextUI.printTimetable(myCombinedSchedule, weeksMoreToView, weekNumber);
             } else {
                 System.out.println("Today is " + todayDate + ", week " + weekNumber + ".");
                 System.out.println("Your timetable this week:");

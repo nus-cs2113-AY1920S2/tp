@@ -29,7 +29,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 3. Copy the downloaded .jar file to an empty folder.
 4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder_path>```.
 5. Run the .jar file using ```java -jar <file_name.jar>```.
-
+[NOTE] Please resize the terminal to full screen mode to make full use of our CLI ASCII art.
 You will see this welcome message if you have done the above steps correctly.
 
 TODO: change image
@@ -141,6 +141,7 @@ TODO: update image
 
 **Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in **Contact Index** of 
 each of the selected contacts.
+[NOTE] You can select as many contacts as you wish
    
 Format: 
    
@@ -332,7 +333,11 @@ Example output:
 **Q**: How do I transfer my data to another computer? 
 
 &ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` file in the root directory and paste into the root directory in the other computer.
-   
+
+**Q**: How do I prevent file corruption? 
+
+&ensp;&ensp;&ensp;&ensp;**A**: Ensure that you do not abruptly exit the application and do not delete the data file while application is still running
+
 [&#8593; Return to the top](#whenfree---user-guide)
 
 <br/><br/>

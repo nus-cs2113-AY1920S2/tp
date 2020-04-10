@@ -1,0 +1,44 @@
+title DisplayTimetable
+
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":ScheduleHandler" as ScheduleHandler #lightblue
+participant "c:Contact" as Contact #lightyellow
+participant ":TextUI" as TextUI #lightgrey
+
+User->LogicManager:display timetable
+activate LogicManager
+LogicManager->CommandHandler:display timetable
+activate CommandHandler
+CommandHandler->*ScheduleHandler:ScheduleHandler(ArrayList<contact> contacts)
+activate ScheduleHandler
+loop for(Contact c: contacts)
+ScheduleHandler->Contact:c.getSchedule()
+activate Contact
+ScheduleHandler<--Contact:schedule
+deactivate Contact
+ScheduleHandler->ScheduleHandler:fillCombinedSchedule(schedule)
+activate ScheduleHandler
+ScheduleHandler<--ScheduleHandler:
+deactivate ScheduleHandler
+end
+CommandHandler<--ScheduleHandler:
+deactivate ScheduleHandler
+CommandHandler->ScheduleHandler:getCombinedSchedule()
+activate ScheduleHandler
+CommandHandler<--ScheduleHandler:combinedSchedule
+deactivate ScheduleHandler
+CommandHandler->TextUI:print(combinedSchedule)
+activate TextUI
+LogicManager<--CommandHandler:
+deactivate CommandHandler
+User<--LogicManager:
+deactivate LogicManager
+User<--TextUI:show combined timetable
+deactivate TextUI
+
+
+
+deactivate LogicManager
