@@ -896,23 +896,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`*` |student |get the files that will be covered one week ahead |prepare(print) them on weekends |
 |`*` |student |add any custom modules |not restricted to a specific category of task |
 
-_{More to be added}_
-
 [Back To Top](#table-of-contents)    
 <br>  
 
 ### **Non-Functional Requirements**  
-```
-	// To be done.
-```
+1. Should work on any [mainstream OS](#mainstream os) as long as it has Java `11` or above installed.
+2. User with above [average typing speed](#average typing speed) for English text (not coding) should be able to utilize the product to manage tasks more efficiently compared to using a mouse.
+3. Data entered by the user should be able to saved and carried forward for the next time usage.
+4. The file containing the saved data should be portable so that the user can transfer to the other machine with any [mainstream OS](#mainstream os) and continuing using the app without any additional configuration.
+5. The product should be able to run without any noticeable sluggishness in performance for typical usage when dealing with up to 100 academic tasks.
+6. The product should never crash and able to handle any input from the user.
+7. Should work on both 32-bit and 64-bit environments.
+8. Should not exceed 30MB in size given normal usage.
 
 [Back To Top](#table-of-contents)    
 <br>  
 
 ### **Glossary**  
-```
-	// To be done.
-```
+##### mainstream OS
+
+​    Windows, Linux, Unix, OS-X
+
+##### average typing speed
+
+​    40 words per minute
+
+
 
 [Back To Top](#table-of-contents)    
 <br>  
