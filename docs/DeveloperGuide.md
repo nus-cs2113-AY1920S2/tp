@@ -331,15 +331,23 @@ Step 4. User searches the menu for any dish names containing a keyword. Let the 
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
+|v1.0|restaurant owner|add a new ingredient into the stock|I can keep track of current ingredient quantities|
+|v1.0|restaurant owner|delete an existing ingredient in the stock|I can remove ingredients that are no longer used in the kitchen|
+|v1.0|restaurant owner|list all existing ingredients in the stock|I can view what are the ingredients and their quantities currently|
 |v1.0|restaurant owner|add a newly received reservation|I can record the details about the reservation and make corresponding preparations|
 |v1.0|restaurant owner|mark a reservation as invalid|I can update the status of the reservation if the reservation gets canceled|
 |v1.0|restaurant owner|list all reservations|I can view what reservations the restaurant has currently|
+|v2.0|restaurant owner|search an ingredient by giving a keyword|I can quickly find out the current ingredient's quantity and price|
+|v2.0|restaurant owner|list the reservations in descending quantities|I can find out the ingredients that we have the most quickly|
 |v2.0|restaurant owner|mark a reservation as served|I can update the status of the reservation|
 |v2.0|restaurant owner|list all served reservations|I can view the achievement of served reservation|
 |v2.0|restaurant owner|list all unserved reservations|I can know what reservations need to be prepared|
 |v2.0|restaurant owner|search a reservation via reservation number|I can know the details about a specific reservation|
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
+|v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
+|v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
+
 
 <a name="nonfunctional-requirement"></a>
 
