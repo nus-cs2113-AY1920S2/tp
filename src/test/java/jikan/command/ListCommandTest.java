@@ -25,6 +25,7 @@ class ListCommandTest {
     Activity activity2;
     Activity activity3;
     Activity activity4;
+    Activity activity5;
 
     void populateActivityList() throws InvalidTimeFrameException, NameTooLongException {
         activities.storage = new Storage("data/activityList_test.txt");
@@ -55,6 +56,7 @@ class ListCommandTest {
         activities.add(activity2);
         activities.add(activity3);
         activities.add(activity4);
+        
     }
 
     void populateExpected1() {
