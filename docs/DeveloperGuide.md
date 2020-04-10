@@ -23,6 +23,7 @@ Pac. The following groups are in particular the intended audience of the documen
     3.3 [Calendar](#33-calendar)  
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)
+    3.6 [Help](#36-Help)
 
 [Appendix A: Target User Profile](#appendix-a-target-user-profile)   
 [Appendix B: Value Proposition](#appendix-b-value-proposition)  
@@ -307,6 +308,13 @@ Note that:
 
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
 
+### 3.6 Help
+![Help](images/Help.png)  
+*Sequence diagram for Help*  
+Help function provides a summary of command format for the user.  
+When help command is executed, a menu page is shown at the console. 
+It then calls getStringInput() from UI, to get user input, typeOfHelp, and prints
+corresponding help information to user.  
 
 ## Appendix
 
