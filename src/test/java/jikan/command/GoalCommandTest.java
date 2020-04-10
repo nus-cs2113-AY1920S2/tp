@@ -84,10 +84,6 @@ class GoalCommandTest {
 
     @Test
     void executeGoal() throws IOException {
-        Storage tagStorage = new Storage("data/tag_test.txt");
-        String testFile = "data/tag_test.txt";
-        tagStorage.loadFile();
-        assertTrue(tagStorage.dataFile.exists());
         try {
             populateActivityList();
         } catch (InvalidTimeFrameException e) {
@@ -98,15 +94,17 @@ class GoalCommandTest {
         }
         String parameters = "tag1 /g 10:10:10";
         String tagName = "tag1";
+        Storage tagStorage = new Storage("data/tag_test.txt");
+        String testFile = "data/tag_test.txt";
+        tagStorage.loadFile();
+        assertTrue(tagStorage.dataFile.exists());
         boolean found = false;
         Command command = new GoalCommand(parameters, scanner, tagStorage);
         try {
             command.executeCommand(activities);
             if (checkIfExists(tagName, testFile) != -1) {
                 found = true;
-            } else {
-                found = false;
-            }
+            } 
             assertTrue(found);
         } catch (EmptyNameException | ExtraParametersException e) {
             System.out.println("Field error.");
