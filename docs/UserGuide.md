@@ -377,6 +377,7 @@ browser, you can create a new one. Else, you will be brought to your saved NUSMO
 ![](images/NUSMODS_step2.png)<br>
 3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
 ![](images/NUSMODS_step1.png)<br>
+![](images/capture9.png)
 4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) feature.
 
 [&#8593; Return to the top](#whenfree---user-guide)
