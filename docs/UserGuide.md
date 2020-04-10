@@ -1,4 +1,4 @@
-# Module Manager User Guide]
+# Module Manager - User Guide
 By: `CS2113-T15-3` Since: `2020`  
 
 Table of Contents  
@@ -28,9 +28,10 @@ Table of Contents
     . . 3.5.3 [Viewing module plan](#353-viewing-module-plan)  
     . . 3.5.4 [Viewing completed modules' credit](#354-viewing-completed-modules-credits)  
     . . 3.5.5 [Viewing CAP](#355-viewing-cap)  
-    3.6 [Clear](#36-clear)  
-    3.7 [Help](#37-help) 
-    3.8 [Exit](#38-exit)  
+    3.6 [Find](#36-find)
+    3.7 [Clear](#37-clear)  
+    3.8 [Help](#38-help) 
+    3.9 [Exit](#39-exit)  
 4. [FAQ](#4-faq)  
 5. [Command Summary](#5-command-summary)  
 
@@ -50,11 +51,11 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 ### 3.1 Command Format
 
 - Words in `[XXX]` are the parameters to be supplied by the user.
-- `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113`
+- `[module code]` is to be entered in alpha-numeric uppercase characters i.e.`CS2113` （case insensitive)
 - `[module name]` is to be entered in alpha-numeric characters i.e.`Software Engineering & Object-Oriented Programming`
 - `[semester]` is to be entered in numeric characters between 1-10 i.e.`5`
-- `[credit]` is to be entered in numeric characters i.e. `4`
-- `[grade]` is to be entered in alpha **uppercase** characters i.e. `A+`
+- `[credit]` is to be entered in numeric characters between 1-10 i.e. `4`
+- `[grade]` is to be entered in alpha characters i.e. `A+` （case insensitive）
 
 For example: in `​add id/[module code] s/[semester] mc/[credit]`, `[module code]` is the parameter of a specific 
 module’s code which can be used as `add id/CS2113 s/4 mc/4`.
@@ -277,17 +278,40 @@ Example of expected output:
 `Your current CAP is:`
 `4.75`
 
-### 3.6 Clear
+### 3.6 Find
+Looks up the module plan and list of available modules for modules that contain the keyword inputted.
+
+Format: `find [keyword]`
+
+Example: 'find cs'
+
+`Okay, this is the list of related modules:`
+ 
+ `List of selected modules:`
+ 
+ `[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+`
+ 
+ `[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1`
+
+
+ `List of available modules`
+ 
+ `ID: CS1010 Name: Programming Methodology | Modular Credit: 4`
+ 
+ `ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010`
+
+
+### 3.7 Clear
 Clears the current module plan
 
 Format: `clear`
 
-### 3.7 Help
+### 3.8 Help
 Display the list of commands that you can input.
 
 Format: `help`
 
-### 3.8 Exit
+### 3.9 Exit
 Exits the app.
 
 Format: `bye`
