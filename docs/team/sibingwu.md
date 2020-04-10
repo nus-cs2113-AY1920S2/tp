@@ -23,7 +23,7 @@ daily so that restaurant owners can better manage their business operations.
        
   3. Feature: List the Reservations
       - What it does: Allows the users to input `list reservation` to list all reservations, or input `list served reservation` to list all **served** reservations, or input `list unserved reservation` to list all **unserved** reservations.
-      - Justification: This feature is needed for restaurant to review all reservations currently in the application.
+      - Justification: This feature is needed for restaurant to review all reservations.
       - Highlights: When certain types of reservations are required to be listed, the `ListServedCommand` and `ListUnservedCommand` class will do a linear search among `reservations` list and check the reservation status.
   
   4. Feature: Search the Reservations
@@ -37,9 +37,9 @@ daily so that restaurant owners can better manage their business operations.
       - Highlights: The `LoadReservation` class will be in charge of loading reservations in the txt file into the `reservations` list.
   
   6. Feature: Clear the `reservations` list
-      - What it does: Allows the user to input `clear reservation` to clear all the reservations in the `reservations` list.
+      - What it does: Allows the user to input `clear reservation` to clear all reservations.
       - Justification: This feature exists in case the restaurant really needs it.
-      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly to clear all the `Reservation`s.
+      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly.
   
   7. Adding Logger to the Reservation-related section and Ui
       - What it does: It records down all the `add`, `mark` and `delete` activities which can modify the `reservations` list. A fail to set up the logger will also be recorded.
@@ -51,7 +51,8 @@ daily so that restaurant owners can better manage their business operations.
 
 * **Contributions to the DG:**
   1. Added description for the `Search Reservation` features.
-  2. Added content for Appendix A, C and D, and add reservation-related content to the Appendix B and E.
+  2. Added content for Appendix A, C and D
+  3. Added reservation-related content to Appendix B and E.
 
 * **Contributions to team-based tasks:** Project Management
   1. Creating the milestones v1.0, v2.0, v2.1
