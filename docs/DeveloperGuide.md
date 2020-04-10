@@ -312,11 +312,10 @@ Follow the following steps to manually test the product:
 ### 7.3 Feature Testing
 
 **Important Note** 
+
 ***Please ensure JSON data files are empty for feature testing.*** 
 
 #### `create` 
-
-**Important** Please ensure JSON data files are empty. 
 
 1. Type `create article` 
 
@@ -412,5 +411,98 @@ Follow the following steps to manually test the product:
             __________________________________________________________________________________________
 
 
+#### `view` 
+
+1. Type `view article` 
+
+2. You should see the following output: 
+
+            __________________________________________________________________________________________
 
 
+            Connecting to the internet and loading information... 
+
+               1. Title: The Global Dollar Short Squeeze
+               Date: 2020-Apr-09 Thu 06:24 PM
+               Category: default
+               Url: https://www.lynalden.com/global-dollar-short-squeeze/
+               Extract: 
+
+
+               2. Title: The software industry's greatest sin: hiring
+               Date: 2020-Apr-09 Thu 06:13 PM
+               Category: default
+               Url: https://www.neilwithdata.com/developer-hiring
+               Extract: 
+
+
+               3. Title: Take-home vs. whiteboard coding: The problem is bad interviews
+               Date: 2020-Apr-09 Thu 05:48 PM
+               Category: default
+               Url: https://andrewrondeau.com/blog/2020/04/take-home-vs-whiteboard-coding-the-problem-is-bad-interviews
+               Extract: 
+
+
+               4. Title: Ask HN: Has any progress been made on large format E-ink displays?
+               Date: 2020-Apr-09 Thu 03:24 PM
+               Category: default
+               Url: URL Not provided
+               Extract: 
+
+
+               5. Title: Founder's Field Guide for Navigating This Crisis
+               Date: 2020-Apr-09 Thu 12:38 PM
+               Category: default
+               Url: https://firstround.com/review/the-founders-field-guide-for-navigating-this-crisis-advice-from-recession-                  era-leaders-investors-and-ceos-currently-at-the-helm/
+               Extract: 
+
+
+               6. Title: Ask HN: Recommend me a course on Coursera
+               Date: 2020-Apr-09 Thu 01:15 PM
+               Category: default
+               Url: URL Not provided
+               Extract: 
+
+
+            __________________________________________________________________________________________
+
+
+#### `save` 
+
+1. Type `save article 1` 
+
+2. You should see the following output: 
+
+        __________________________________________________________________________________________
+
+
+        Done, saved the article with the following details:
+           Title: The Global Dollar Short Squeeze
+           Date: 2020-Apr-09 Thu 06:24 PM
+           Category: default
+           Url: https://www.lynalden.com/global-dollar-short-squeeze/
+           Extract: 
+        __________________________________________________________________________________________
+   
+   
+3. To ensure it was added to article list type `list article` 
+
+4. You should see the following output: 
+
+        __________________________________________________________________________________________
+
+
+        _                                   Article List                                   _
+
+
+           1. Title: The Global Dollar Short Squeeze
+           Date: 2020-Apr-09 Thu 06:24 PM
+           Category: default
+           Url: https://www.lynalden.com/global-dollar-short-squeeze/
+           Extract: 
+
+
+        __________________________________________________________________________________________
+
+
+**Additional Note: These manual tests were created just for article objects. Similar commands can be replicated for note and job objects as well.** 
