@@ -65,6 +65,14 @@ TechToday Information Tracker(TTIT) is for those who *prefer to use a desktop ap
 [TIP]
 Connect to the internet if you wish to see latest articles. If you use the `view` command more than once in a short period of time, it is highly likely that it will load the same articles/jobs as HackerNews updates information related to articles/jobs once or twice a day only.
 
+Examples:
+
+    view article 
+
+Expected Outcome:
+
+Shows six articles from the internet/memory.
+
 
 ****
 
@@ -81,9 +89,9 @@ Examples:
 
     save article 1
 
-Expected Outcome
+Expected Outcome:
 
-Saves Viewed article with index number 1
+Saves viewed article with index number 1.
     __________________________________________________________________________________________
 
 
@@ -103,12 +111,16 @@ Saves Viewed article with index number 1
 
 * Helps user manually create  an `article`, `job`, or `note` and add it to the list of saved articles, jobs or notes respectively.
 * Note that a created `article`, `job`, or `note` is saved to the list of saved articles/job/notes and not the one the user sees when she invokes the "view articles" command for example. The saved article/job list is composed of a list of individually *saved* articles from the view list and *created* articles.
-* Format: `create article`
+* Format: `create [article / job / note]`
 
 
-Examples:
+Example:
 
     create article
+    
+Expected Outcome:
+
+Asks user input to create an information piece describing an article.
 
 
 ****
