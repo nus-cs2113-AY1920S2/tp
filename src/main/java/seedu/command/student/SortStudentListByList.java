@@ -18,8 +18,12 @@ public class SortStudentListByList extends Command {
      * Method to sort all student list in studentListCollection alphabetically.
      */
     private void sort() {
-        for (int i = 0; i < studentListCollection.size(); i++) {
-            studentListCollection.get(i).sortAscending();
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            for (int i = 0; i < studentListCollection.size(); i++) {
+                studentListCollection.get(i).sortAscending();
+            }
         }
     }
 

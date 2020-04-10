@@ -24,6 +24,10 @@ public class UI {
         System.out.println(message);
     }
 
+    public static void displayStudentListCollectionEmpty() {
+        System.out.println("The student list collection is currently empty");
+    }
+
     /**
      * Advances this scanner past the current line and stores the input that
      * was skipped, excluding any line separator at the end.
@@ -286,18 +290,14 @@ public class UI {
     }
 
     public void printStudentListCollection() {
-        if (studentListCollection.isEmpty()) {
-            display("The student list collection is currently empty");
-        } else {
-            DisplayTable displayTable = new DisplayTable();
-            for (int i = 0; i < studentListCollection.size(); i++) {
-                displayTable.printHeaderOfTwo("List #" + (i + 1),
-                        studentListCollection.get(i).getListName());
-                int index = 1;
-                for (String name : studentListCollection.get(i).getStudentList()) {
-                    displayTable.printBodyOfTwo(index, name);
-                    index++;
-                }
+        DisplayTable displayTable = new DisplayTable();
+        for (int i = 0; i < studentListCollection.size(); i++) {
+            displayTable.printHeaderOfTwo("List #" + (i + 1),
+                    studentListCollection.get(i).getListName());
+            int index = 1;
+            for (String name : studentListCollection.get(i).getStudentList()) {
+                displayTable.printBodyOfTwo(index, name);
+                index++;
             }
         }
     }

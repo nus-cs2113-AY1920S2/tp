@@ -17,7 +17,7 @@
 4.1. [Student List](#41-student)  
 4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
 4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
-4.1.3. [Clear Student List](#413-clear-all-existing-student-lists-from-the-student-list-collection)   
+4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collection)   
 4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
 4.1.5. [Find Student List](#415-find-existing-student-lists-from-the-student-list-collection)  
 4.1.6. [Sort Student List by Name](#416-sort-all-names-within-the-existing-student-lists-from-the-student-list-collection)  
@@ -112,8 +112,8 @@ a clearer understanding on how you can use the commands.
 
 #### 4.1.1. Add New Student List `studentlist add`
 
-Creates a student list and adds it to the collection of student list that can be used for adding attendance and 
-performance. 
+Creates a student list and adds it to the collection of student list, `studentListCollection` that can be used 
+for adding attendance and performance. 
 
 Please note the following points when you are using this feature:
 1. Users are NOT allowed to add in duplicated student names or duplicated student list names. 
@@ -159,7 +159,9 @@ Command:
     >>> studentlist view
         
 Examples: 
-    
+
+The following occurs when there is at least one existing student list in the student list collection. 
+
     >>> studentlist view
     _________________________________________________________________________________________________
     | List #1   |  CS2113T Tut                                                                       |
@@ -189,7 +191,12 @@ Examples:
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
                 
-#### 4.1.3 Clear all existing student lists from the student list collection
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist view
+    The student list collection is currently empty                
+                
+#### 4.1.3 Clear all existing student lists from the student list collectionst
 Clear all existing student lists from the student list collection. This is a clear all command. If you wish to delete 
 a specific student list, please use the `studentlist delete` instead.
 
@@ -198,9 +205,16 @@ Command:
     >>> studentlist clear
         
 Examples: 
-    
+
+The following occurs when there is at least one existing student list in the student list collection.
+
     >>> studentlist clear
     The Student List Collection is cleared
+    
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist clear
+    The student list collection is currently empty.   
     
 #### 4.1.4 Clear all existing student lists from the student list collection
 Delete a specific student list from the student list collection base on its index. If you wish to delete all student 
@@ -211,6 +225,8 @@ Command:
     >>> studentlist delete
         
 Examples: 
+
+The following occurs when there is at least one existing student list in the student list collection. 
     
     >>> studentlist delete
     Please state the index of the list you want to delete.
@@ -237,6 +253,11 @@ Examples:
     | 3         |  Sam                                                                               |
     |___________|____________________________________________________________________________________|
                 
+                
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist delete
+    The student list collection is currently empty.               
     
 #### 4.1.5 Find existing student list(s) from the student list collection
 Find existing student list(s) from student list collection base on keyword.
@@ -246,6 +267,8 @@ Command:
     >>> studentlist find
         
 Examples: 
+
+The following occurs when there are existing student list in the student list collection.
     
     >>> studentlist find
     Displaying all student list: 
@@ -329,6 +352,11 @@ Examples:
     
     >>> EG
     Nothing match you description : EG
+    
+The following occurs when there are no existing student list in the student list collection.
+
+    >>> studentlist find
+    The student list collection is currently empty.        
 
 #### 4.1.6 Sort all names within the existing student lists from the student list collection
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
@@ -339,6 +367,8 @@ Command:
     >>> studentlist sort
         
 Examples:     
+
+The following occurs when there is at least one existing student list in the student list collection.
 
     >>> studentlist view
     _________________________________________________________________________________________________
@@ -403,12 +433,19 @@ Examples:
     |___________|____________________________________________________________________________________|
     | 2         |  Jodi                                                                              |
     |___________|____________________________________________________________________________________|
-
     
     
 #### 4.1.7 Sort all existing student lists from the student list collection by name
 Sort all existing student lists from the student list collection by name. Regardless whether the lists are 
 in order, this command will force all existing lists to be sorted by their name.
+
+Command: 
+    
+    >>> studentlist sort
+        
+Examples:     
+
+The following occurs when there is at least one existing student list in the student list collection.
     
     >>> studentlist view
     _________________________________________________________________________________________________
@@ -1209,8 +1246,6 @@ You can follow the same procedure to sort by result, but change your input from
 
 *Note: All commands above are not case sensitive.*
 
-## FAQ
-
 ## 5. Possible Console Messages and Reasons:  
 1. If you entered a wrong command type, ie. not specifying 
 which category your command belongs to
@@ -1287,12 +1322,12 @@ step-by-step command for performance and all-in-one command for event?
 
 {Give a 'cheat sheet' of commands here}  
 **Student**
-* Add student list `student.list add`
-* View student list `student.list view`
-* Clear student list `student.list clear`
-* Delete student list `student.list delete`
-* Find student list `student list.find`
-* Sort student list `student list.sort`  
+* Add student list `studentlist add`
+* View student list `studentlist view`
+* Clear student list collection `studentlist clear`
+* Delete student list `studentlist delete`
+* Find student list `studentlist.find`
+* Sort student list `studentlist.sort`  
 
 **Event**
 * Add event `event add n/NAME d/DATE t/TIME v/VENUE`
