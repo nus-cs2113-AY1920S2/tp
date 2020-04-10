@@ -92,6 +92,7 @@ Example:
 Expected Outcome:
 
 Saves viewed article with index number 1.
+
     __________________________________________________________________________________________
 
 
