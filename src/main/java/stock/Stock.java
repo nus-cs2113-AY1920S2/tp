@@ -69,7 +69,7 @@ public class Stock {
         } else {
             if (checkForDuplicateIngredientName(ingredientName)) {
                 printDuplicateIngredientMessage(ingredientName);
-            };
+            }
             stock.put(ingredientName, Pair.of(quantityToAdd, ingredientPrice));
             duplicateIngredientNameSet.add(ingredientName.toLowerCase());
 
@@ -241,7 +241,7 @@ public class Stock {
      * that has the same name as the one that just added.
      */
     private void printDuplicateIngredientMessage(String duplicateIngredientName) {
-        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
+ 
         String outputMessage = ls;
         
         outputMessage += ("Please note that there are other similar ingredient names in the stock."
@@ -257,7 +257,7 @@ public class Stock {
                 + "Here are the ingredients in the stock with similar names:"
                 + ls);
         
-      
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet());
         for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
             String ingredientName = ingredient.getKey();
             if (ingredientName.toLowerCase().equals(duplicateIngredientName.toLowerCase())) {

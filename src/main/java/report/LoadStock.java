@@ -41,8 +41,6 @@ public class LoadStock {
 
     /** 
      * Constructor of a LoadStock retrieved from Path.
-     * 
-     * @param filePath
      * @throws InvalidStorageFilePathException If the report data file does not match
      *                                         a .txt extension.
      */
@@ -54,8 +52,8 @@ public class LoadStock {
         this.path = Paths.get(filePath);
         
         if (!isValidPath(this.path)) {
-        throw new InvalidFilePathException(this.path.toString(),
-                 "The current file does not end with a .txt");
+            throw new InvalidFilePathException(this.path.toString(), 
+                    "The current file does not end with a .txt");
         }
     }
     
