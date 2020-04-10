@@ -222,7 +222,7 @@ public class Stock {
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.entrySet()); 
         boolean hasDuplicateIngredientName = false;
         
-        if (tempList.size() <= 1) {
+        if (tempList.size() < 1) {
             return hasDuplicateIngredientName;
         } else {
             for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
