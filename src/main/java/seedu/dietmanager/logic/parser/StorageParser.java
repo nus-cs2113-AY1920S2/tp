@@ -1,6 +1,5 @@
 package seedu.dietmanager.logic.parser;
 
-import seedu.dietmanager.commons.exceptions.InvalidFoodNameException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.InvalidWeightException;
 
@@ -66,7 +65,7 @@ public class StorageParser {
     public static String[] parseFoodRecordDataLine(String foodRecordDataLine)
             throws InvalidFormatException, NullPointerException {
         int argumentsRequired = 2;
-        String[] descriptionArray = foodRecordDataLine.trim().split(": ",2);
+        String[] descriptionArray = foodRecordDataLine.trim().split(": ", 2);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }
@@ -86,7 +85,7 @@ public class StorageParser {
     public static String[] parseTimeDescription(String timeDescription)
             throws InvalidFormatException, NullPointerException {
         int argumentsRequired = 2;
-        String[] descriptionArray = timeDescription.trim().split("\\s+",argumentsRequired);
+        String[] descriptionArray = timeDescription.trim().split("\\s+", argumentsRequired);
         if (descriptionArray.length != argumentsRequired) {
             throw new InvalidFormatException();
         }

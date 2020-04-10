@@ -53,58 +53,57 @@ public class MessageBank {
 
     public static String DINNER_RECORD_MESSAGE = "You just record the meal in the night of: ";
 
-    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!! "
+    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!!\n"
             + "Choose from: morning/afternoon/night.";
 
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
 
-    public static String WEIGHT_DELETED_MESSAGE = " has been removed successfully!";
+    public static String WEIGHT_DELETED_MESSAGE = "has been removed successfully!";
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
 
-    public static String WEIGHT_LOSS_MESSAGE = "\nOverall, you have lost %.2f kg!\n\n";
+    public static String WEIGHT_LOSS_MESSAGE = "Overall, you have lost %.2f kg!";
 
-    public static String WEIGHT_NO_CHANGE_MESSAGE = "\nThere has been no change in your weight!\n\n";
+    public static String WEIGHT_NO_CHANGE_MESSAGE = "There has been no change in your weight!";
 
-    public static String WEIGHT_GAIN_MESSAGE = "\nOverall, you have gained %.2f kg!\n\n";
+    public static String WEIGHT_GAIN_MESSAGE = "Overall, you have gained %.2f kg!";
 
-    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
+    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:";
 
-    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.\n";
+    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.";
 
     public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
 
     public static String TIME_CALORIES_MESSAGE = "total calculable calories intake: ";
 
-    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.\n";
+    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.";
 
-    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.\n";
+    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.";
 
-    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.\n";
+    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.";
 
-    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.\n";
+    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.";
 
-    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.\n";
+    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.";
 
-    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.\n";
+    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.";
 
-    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.\n";
+    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.";
 
     public static String CALCULATE_CALORIES_MESSAGE = "Your Calories intake during the given period is ";
 
     public static String NO_DESCRIPTION_MESSAGE = "This command must follow by description! Please input again!";
 
-    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}! "
+    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}!\n"
             + "Either uppercase or lowercase is supported!";
 
     public static String SPLIT_LINE = "----------------------------------------------------------------";
 
-    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n\n"
-            + "All girls/boys will now fall for your determination and physique! :)\n\n"
-            + "You can also set a new weight goal using set-weight-goal NEW_GOAL\n";
+    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
+            + "All girls/boys will now fall for your determination and physique! :)\n"
+            + "You can also set a new weight goal using set-weight-goal NEW_GOAL";
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
-
 
 
     public static final String FUNCTION_LIST =

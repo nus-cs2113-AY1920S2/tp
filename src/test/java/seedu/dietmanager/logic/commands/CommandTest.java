@@ -32,7 +32,7 @@ class CommandTest {
         profile.setProfile("John", 20, "Male", 180, 80, 75);
         Command command = new DeleteWeightCommand("delete-weight", "1");
         command.execute(profile, ui);
-        assertEquals("Weight Record: 80.0kg  has been removed successfully!", command.resultString);
+        assertEquals("Weight Record: 80.0kg has been removed successfully!", command.resultString);
     }
 
     @Test
@@ -42,8 +42,8 @@ class CommandTest {
         profile.setProfile("John", 20, "Male", 180, 80, 75);
         Command command = new CheckWeightRecordCommand("check-weight-progress", "John");
         command.execute(profile, ui);
-        assertEquals("\nNo Pain No Gain! You have not lost weight yet! Strive on!\n\n"
-                + "0.00 kg more to go to meet your dream girl/boy!", command.resultString);
+        assertEquals("There has been no change in your weight!0.00 kg more to go to meet your dream girl/boy!",
+                command.resultString);
     }
 
     @Test
@@ -66,8 +66,6 @@ class CommandTest {
         assertEquals(Result.class, command.getResult(profile).getClass());
         assertEquals(MessageBank.INVALID_AGE_MESSAGE, command.getResult(profile).showResult());
     }
-
-
 
 
 }
