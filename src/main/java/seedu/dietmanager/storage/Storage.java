@@ -179,7 +179,6 @@ public class Storage {
 
                 ArrayList<Food> foods = new ArrayList<>();
 
-                System.out.println(date);
                 String[] foodList = foodDescription.split(",");
                 for (String foodInfo : foodList) {
                     int splitIndex = foodInfo.indexOf("(");

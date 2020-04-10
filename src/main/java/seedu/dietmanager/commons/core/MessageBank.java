@@ -1,5 +1,7 @@
 package seedu.dietmanager.commons.core;
 
+import java.security.PublicKey;
+
 public class MessageBank {
 
     public static String LOGO = "  _____   _        _     __  __\n"
@@ -97,6 +99,8 @@ public class MessageBank {
     public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}!\n"
             + "Either uppercase or lowercase is supported!";
 
+    public static String RECORDS_CLEARED_MESSAGE = "You have just cleared all food records in the week!";
+
     public static String SPLIT_LINE = "----------------------------------------------------------------";
 
     public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
@@ -105,6 +109,28 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
+    public static String INCORRECT_CALORIES_INFO_MESSAGE =
+            "Sorry, to add new food to database you must input correct calories info."
+            + System.lineSeparator() + "It has to be positive Integer or Float";
+
+    public static String ADDED_FOOD_ALREADY_EXIST_MESSAGE =
+            "No need to add! We already have this food in our database!";
+
+    public static String NEW_FOOD_ADDED_MESSAGE = "You have added a new food into the database:\n";
+
+    public static String FOOD_TO_DELETE_NOT_EXIST_MESSAGE =
+            "No need to delete! Referred Food doesn't exist in database";
+
+    public static String FOOD_DELETED_MESSAGE = "You have just deleted this food from the database: ";
+
+    public static String INCORRECT_PARAMS_TO_BUILD_RECIPE_MESSAGE = "You have given wrong format for parameters!!!\n"
+            + "First parameter is maximum food types, need to provide an integer.\n"
+            + "Second parameter is activity level, choose from -- low/moderate/high.";
+
+    public static String EXCEEDS_MAX_FOOD_TYPES_MESSAGE = "We support at most 3 kinds of food in a meal, "
+            + "otherwise it's easy to overtake calories and not good for your health!\n\n";
+
+    public static String CHECK_REQUIRED_CAL_COMMAND_PROMPT = "check-required-cal";
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"
