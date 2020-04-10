@@ -1,4 +1,4 @@
-package seedu.dietmanager.logic.commands.recipe;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.logic.commands.Command;

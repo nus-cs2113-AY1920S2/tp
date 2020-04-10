@@ -4,10 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.profile.CheckWeightRecordCommand;
-import seedu.dietmanager.logic.commands.profile.DeleteWeightCommand;
-import seedu.dietmanager.logic.commands.profile.SetAgeCommand;
-import seedu.dietmanager.logic.commands.profile.SetWeightCommand;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 

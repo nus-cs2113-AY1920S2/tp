@@ -41,12 +41,14 @@ The UI consists of the following classes:
 * `UI` - Reads user input and displays system output
 
 The `UI` component
-1) Reads user input and passes it to `Logic` for parsing and execution of the command.
-2) Receives command results from `Logic` and listens 
+1. Reads user input and passes it to `Logic` for parsing and execution of the command.
+2. Receives command results from `Logic` and listens 
 for changes in `Model` to display updated information to the user.
-3) Draws on `Commons` to obtain the relevant messages to be displayed to the user.
+3. Draws on `Commons` to obtain the relevant messages to be displayed to the user.
 
 ### Storage component
+
+![Storage-Component](images/Storage-Component.png)
 
 The `Storage` component is responsible for:
 * Reading data files to update the information in local memory.
@@ -56,38 +58,58 @@ The Storage consists of the following classes:
 * `Storage` - Stores all user profile information in respective data files
 
 The `Storage` component
-1) Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
-2) Receives instructions from `logic` to save and write in-memory information from
+1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
+2. Receives instructions from `logic` to save and write in-memory information from
 `Model` into the relevant data files.
 
 ### Logic component
 
+![Logic-Component](images/Logic-Component.png)
+
 The `Logic` component is responsible for:
-* Arranging the whole workflow
+* Establishing the logic flow.
 * Deciding how functional components interact with each other.
 
-The Logic consists of the following class:
-* DietManager-Arranges the main workflow of the program.
+The Logic consists of the following classes:
+* `AppManager` - Arranges the main workflow of the program.
+* `Result` - Stores the command result in-memory.
+* `CommandParser` - Parses the user input and generates a specific command.
+* `"ABC"Command` - A collection of parser classes which parses a specific input to generate a specific value.
+* `Command` - An abstract class which other command classes inherits from.
+* `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
+
+The `Logic` component
+1. Receives the user input and parses it to generate a specific command.
+2. Executes the command to generate a specific result.
+3. Passes results to `UI` to display system output to the user.
+4. Updates `Storage` to save any changes made to in-memory information to the respective data files.
 
 ### Model component
 
-The `Profile` component is responsible for:
-* Storing all user profile information
+The `Model` component is responsible for:
+* Storing all relevant information in-memory for the application to access.
 
-The Profile consists of the following classes: 
+The Model consists of the following classes: 
 * `Profile` - Stores the personal information of a person including the name, age, gender, height, weight, weight goal, list of food consumed and list of weight changes
 * `DailyFoodRecord` - Keeps a record of the food consumed in a day, comprising morning, afternoon and night
+* `Food` - A food object which contains the relevant food information
+* `FoodNutritionRecord` - Provides a data bank of food items with the food name and calories value
+* `RecipeManager` - Generates and stores recipes depending on user information
+
+The `Model` component
+1. Receives instructions from `Logic` to update in-memory information.
+2. Is not dependent on any of the other components.
 
 ### Commons component
 
-The `Food` component is responsible for:
-* Creating a food Object with a name if food exists in the FoodNutritionInfo class OR
-* Creating a food Object with a name and no calories value if food does not exists in the FoodNutritionInfo class OR
-* Creating a food Object with a name and calories value from user input
+The `Commons` component is responsible for:
+* Consisting of multiple useful classes which are utilised by other components in the application.
 
 The Food consists of the following classes: 
-* `Food` - Create a food Object from the user input
-* `FoodNutritionInfo` - Provides a data bank of food items with the food name and calories value
+* `LogsCentre` - Tracks system through log records and saves them to a log file
+* `MessageBank` - Consists of multiple system output messages
+* `Weekday` - Enumeration class for classifying weekdays
+* `"ABC"Exception` - A collection of exceptions to aid in running of the application.
 
 
 ## Implementation
@@ -141,42 +163,53 @@ And save execution `results` in the `RecordMealCommand` object.
 ### Target user profile
 
 Students that :
-* are too busy with work to carefully monitor their eating habits
-* are concerned about their health.
-* wished to keep track of their weight
+1. are too busy with schoolwork to carefully monitor their eating habits
+2. are concerned about their health
+3. want to keep track of their weight
 
 ### Value proposition
 
 Diet Manager aims to achieve the following:
-* Streamline the diet recording process 
-* Allow users to track and monitor their eating habits
-* Provide personalised information and recommendations for the user
-* Monitor and track user's weight changes to achieve weight goal
+1. Streamline the diet recording process 
+2. Allow users to track and monitor their eating habits
+3. Provide personalised information and recommendations for the user
+4. Monitor and track user's weight changes to achieve weight goal
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
+|v1.0| student|set a profile with personal information|receive personalised information regarding my diet|
 |v1.0| student|record my calories intake|can keep track of my total calorie intake for the week effectively|
+|v1.0| student|record my food intake|see what I ate today|
 |v1.0| student|see my diet history|can track my diet and maintain a balanced and healthy diet lifestyle|
-|v1.0| student|know my intake frequency of certain food types|can reduce the intake of that food|
-|v1.0| student|classify foods into specific food groups|can have a good balance of multiple food types|
-|v1.0| student|monitor my diet|can save money on unnecessary food while still having sufficient nutrition|
-|v1.0| student|select certain food items and retrieve the nutritional value|can retrieve the nutritional values efficiently|
-|v1.0| student|receive meal alerts during meal times|do not miss a meal or skip a mea|
-|v1.0| student|receive dietary alerts|do not over or under eat and keep to my diet|
-|v1.0| student|enter my information|can receive a tailored/recommended food plan for my body type/age/gender|
-|v1.0| student|set the diet I am pursuing |have a framework to pursue|
-|v1.0| student|export my diet history|have a record of my food intake|
-|v1.0| student|import my diet history|have a record of my food intake|
-|v1.0| student|generate a high-protein diet plan|can build up my muscles after workouts|
-|v1.0| student|receive workout advice based on my excess calorie intake for the day|can maintain my calories for the day|
-|v1.0| student|mark some food as ‘dislike’|i wont get the recommendation from the app anymore|
-|v1.0| student|record my weight changes|can see if i am doing well towards my expectation|
+|v1.0| student|set a weight-goal|received feedback on progress regarding my weight goal|
+|v1.1| student|record my weight changes|can see if i am doing well towards my expectation|
+|v1.1| student|check nutritional values of certain foods|can check how much calories i am consuming|
+|v1.1| student|check if I am keeping to my recommended caloric intake|do not over or under eat and maintain my diet|
+|v1.1| student|add food items to the database|do not have to constantly check food nutritional value for common foods|
+|v1.2| student|save my diet history|have a record of my daily food intake|
+|v1.2| student|import my diet history|have access to previous records and be able to progress from there|
+|v1.2| student|receive workout advice based on my excess calorie intake for the day|can maintain my calories for the day|
+|v2.0| student|generate a recommended food plan|know what to eat to meet recommended caloric intake|
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+Device Environment:
+* Must have Java 11 or higher
+* 32-bit or 64-bit environment
+* Command Line Interface
+
+Performance:
+* Function offline, without the need for internet access
+* Quick to launch and use
+* No noticeable lag or delay in performance when running
+* Intuitive and seamless for new users.
+
+Reliability:
+* Data files should be updated constantly and accurately, with no data loss
+* Data records should be retrievable and readable
+* Text inputs should produce similar results if utilised multiple times.
 
 ## Glossary
 

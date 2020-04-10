@@ -1,4 +1,4 @@
-package seedu.dietmanager.logic.commands.recipe;
+package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
