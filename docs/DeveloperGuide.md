@@ -245,7 +245,7 @@ combined schedule.
 ![ScheduleMeeting](images/ScheduleMeeting.png)
 
 The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
-It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
+It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
 
 Given below is an example usage and how the `ScheduleMeeting` command behaves.
 
