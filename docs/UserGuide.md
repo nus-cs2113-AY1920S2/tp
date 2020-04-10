@@ -164,7 +164,7 @@ TODO: update image
 
 <br/>
 
-**Timetable extended view:** Displays up to 2 weeks of timetable.
+**Extended view:** Displays up to 2 weeks of timetable.
 
 Format:
 
@@ -393,6 +393,7 @@ Feature | Format | Example usage
 Adding a new contact | `<name> <NUSMODS link>` | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01`
 List all contacts | `contacts` | `contacts`
 Display timetable of selected contacts | `timetable` <br/><br/> `timetable <Member Index>` <br/><br/> `timetable <Member A Index> <Member B Index>` | `timetable` <br/><br/> `timetable 1` <br/><br/> `timetable 0 1 2`
+Extend view of timetable | `more` | `more`
 Schedule a new meeting | `schedule <Meeting Name> <Start Date> <Start Time> <End Date> <End Time>` | `schedule meeting 3 17:00 3 19:00`
 Edit a contact's timetable | `edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` <br/><br/> `edit free <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` | `edit busy 0 2 22:00 2 23:00` <br/><br/> `edit free 0 2 22:00 2 23:00`
 Delete an item | `delete <Meeting Index>` <br/><br/> `delete <Contact Name>` | `delete 1` <br/><br/> `delete alex`
