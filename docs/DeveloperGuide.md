@@ -9,13 +9,9 @@
     5. [Model component](#model-component)
     6. [Commons component](#commons-component)
 2. [Implementation](#implementation)
-    1. [Record Meal Feature](#1-record-meal-feature)
-        1. [Proposed implementation](#11-proposed-implementation)
-        2. [Step1. Generate command](#step1-generate-command)
-        3. [Step2. Execute and Save Result](#step2-execute-and-save-result)
-        4. [Design Considerations](#12-design-considerations)
-        5. [Aspect: How RecordMealCommand executes and save results](#aspect-how-recordmealcommand-executes-and-save-results)
-        6. [Aspect: Data structure to support the command](#aspect-data-structure-to-support-the-command)
+    1. [Launch Application](#launch-application)
+    2. [Logic Management](#logic-management)
+    1. [Record Meal Feature](#record-meal-feature)
 3. [Product Scope](#product-scope)
     1. [Target user profile](#target-user-profile)
     2. [Value proposition](#value-proposition)
@@ -176,9 +172,81 @@ The Commons consists of the following classes:
 
 ## Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### 1. Record Meal Feature
-#### 1.1 Proposed implementation
+### Launch Application
+
+![Launch Application](images/LaunchApplication.png)
+
+#### Implementation
+
+Upon startup of Diet Manager:
+ 1. `AppManager.launch()` is called.
+ 2. `AppManager` then constructs the relevant object required for the application to function. 
+ These objects include, in the order of construction:
+    * `UI` - User Interface functions
+    * `LogsCentre` - Logging and system tracking functions
+    * `Profile` - Holds user profile data in-memory
+    * `FoodNutritionRecord` - Holds food nutrition data in-memory
+    * `Storage` - Prepares data files for reading, writing and saving of information
+ 3. Once the objects have been created, `Storage` then loads any current data from data files (if any)
+ into local memory for the application to access. If no data files are found, `Storage` creates new data
+ files for future storage.
+ 4. All relevant components have now been initialised and the application is ready to be run.
+
+#### Design and Enhancements
+
+The modular system of initialising the application serves several purposes:
+1. Reducing coupling and dependence between essential components upon startup
+2. Aid in debugging by isolating the components
+3. Future enhancements which might include the construction of additional components
+
+This implementation can be further enhanced by further abstracting initialisation of different components,
+which would be useful in the future when more components are added to enhance this application.
+
+### Logic Management
+
+![Logic Flow](images/LogicFlow.png)
+
+#### Implementation
+
+The logic flow of DietManager was intentionally made to be modular in design, and allow AppManager
+to be the sole handler of all logic-based executions.
+
+Upon running the application:
+1. A check is done for the `ui.exitStatus()` of the application, and exits the loop if the user entered
+ the exit command during the previous iteration.
+2. `UI` calls `readInput()` to read in user input.
+3. The String value of user input then gets passed back to `AppManager`.
+4. The String value then gets parsed through `CommandParser` to generate a specific `Command`.
+5. This command will then be passed back to `AppManager`.
+6. `AppManager` checks if the command is valid using `isCommandValid()`.
+7. If the command is valid, AppManger executes the command using `execute()`.
+8. The command `Result` then gets returned to `AppManager`, where it will be displayed to the user.
+9. The loop then continues, from steps 1 to 9.
+10. If the user exits the application, the application will terminate and all created components will be destroyed.
+
+#### Design and Enhancements
+
+The modular system of running the application serves several purposes:
+1. Reducing coupling and dependence between essential components upon startup
+2. Aid in debugging by isolating the components
+3. Future enhancements which might include the construction of additional components
+
+The design of AppManager was done to prevent the possibility of errors occurring in multiple components
+due to potential bugs, and narrows down the scope of potentially flawed components. 
+
+This aids in testing and debugging of the application, as well as leaves space for future enhancements,
+by allowing other components to interact with the application without having to change multiple different
+ components to achieve this. This allows for greater accessibility and modularity.
+ 
+ This implementation can be further enhanced by abstracting the logic flow of different components into
+ separate classes. Thus each individual class will be responsible for the logic management of a particular component
+ thus would allow for more modularity, testability and expandability.
+
+
+### Record Meal Feature
+
+#### Implementation
+
 The record feature is facilitated by `RecordMealCommand`. It extends `Command` and overrides `execute()` and `saveResults()`
 
 Given below is an example usage scenario and how the record mechanism behaves at each step.
@@ -188,6 +256,7 @@ and returns it. The command type is decided by the `commandPrompt`. The `RecordM
 During the process a new`RecordMealCommand` object will be generated and returned to the `Logic` component.
 
 ### Step1. Generate command
+
 ![Step1. Diagram](images/Record_step1.png)
 
 Step 2.  The `Logic` composition calls the `execute()` method of the `RecordMealCommand` object. 
@@ -201,10 +270,13 @@ If no record of that day is found in profile, it will automatically generate a n
 the method `record.recordMeals()`.
 
 ### Step2. Execute and Save Result
+
 ![Step2. Diagram](images/Record_step2.png)
 
-#### 1.2 Design Considerations
+#### Design Considerations
+
 #### Aspect: How `RecordMealCommand` executes and save results
+
 * Alternative 1 (current choice): Directly operate on the `Profile` object, more specifically, the `DailyFoodRecord` attribute in `Profile` object.
 And save execution `results` in the `RecordMealCommand` object.
     * Pros: Logic is clear and easy to implement.
@@ -214,6 +286,7 @@ And save execution `results` in the `RecordMealCommand` object.
     * Cons: Different types of `Command` need different declarations/interface for `command.execute()` method. 
 
 #### Aspect: Data structure to support the command
+
 * Alternative 1 (current choice): Use a list to store daily food record for a profile.
     * Pros: Easy to implement and understand
     * Cons: The list is maintained by a `Profile` object. Can lead to more duties for a `Profile` object.
@@ -221,7 +294,10 @@ And save execution `results` in the `RecordMealCommand` object.
     * Pros: More OOP.
     * Cons: Makes the execution procedure more complex.
     
+    
+
 ## Product Scope
+
 ### Target user profile
 
 Students that :
