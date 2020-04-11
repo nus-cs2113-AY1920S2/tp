@@ -9,7 +9,7 @@
 ## Summary of Contributions
 
 ### Code Contributed
-Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=melovecarbs)
+Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=synckun)
 
 ### Enhancements implemented:
 * **Major Enhancement:**  
