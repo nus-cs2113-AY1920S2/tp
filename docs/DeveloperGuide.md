@@ -453,8 +453,6 @@ This entails:
     (chaining `list`, `find`, and `filter` commands).
 
 
-  
-
 #### 3.8.2a Current Implementation for Find
 * This feature is called by the user when the `find` command is entered into the command line. 
 The string following the command are the parameters:
@@ -469,20 +467,8 @@ The string following the command are the parameters:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-#### 3.7.3 Sequence Diagram
-The following illustrates the execution sequence of a general use case. Due to the similarities between `find` and 
-`filter` sequences, the sequence diagram of `filter` is omitted.
 
-![image_info](./pictures/Find_Sequence_Diagram.png)
-*Sequence Diagram for Find Command*
-
-![image_info](./pictures/Find_Reference_Frame.PNG)
-*Reference frame for populating last shown list*
-
-### 3.9 Filter Feature
-This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
-
-#### 3.9.1 Current Implementation
+#### 3.8.2b Current Implementation
 * This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
@@ -494,20 +480,34 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
+#### 3.8.3 Sequence Diagram
+The following illustrates the execution sequence of a general use case. 
 
-#### 3.7.4 Additional features
+Note: Due to the sequence similarities between `find` and 
+      `filter`, the sequence diagram for `filter` is omitted.
+
+![image_info](./pictures/Find_Sequence_Diagram.png)
+*Sequence Diagram for Find Command*
+
+![image_info](./pictures/Find_Reference_Frame.PNG)
+*Reference frame for populating last shown list*
+
+
+#### 3.8.4 Additional features
 `find` and `filter` command supports the limiting of searches to activities in the last shown list. This
 is done in 2 ways:
 * The `-s` flag following the command (eg. `find -s keyword`)
 * The `;` delimiter for a combination of `find` and `filter` in a single input (eg. `find KEYWORD ; filter TAGNAME`)
 
- 
+ ![Chaining_Activity_Diagram](./pictures/Chaining_Activity_Diagram.png)
+ *Activity Diagram for Additional Features*
 
-### 3.10 Graph Feature
+### 3.9 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
-#### 3.10.1 Current Implementation
+
+#### 3.9.1 Current Implementation
 ![graph seq diagram](./pictures/graph_seqDiag.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
 * The Parser will create a GraphCommand object.
@@ -532,7 +532,7 @@ This displays a bar graph of the durations of each activity in the `lastShownLis
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
 
 
-#### 3.10.2 Additional features
+#### 3.9.2 Additional features
 As graph gets it's data based on the `lastShownList`, users can pair the `graph` command with `find`, `filter`, and `list` to sieve out the activities to be graphed.
 
 
