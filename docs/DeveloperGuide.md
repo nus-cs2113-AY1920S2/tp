@@ -2,12 +2,27 @@
 
 ## Content
 1. [Design](#design)
+    1. [Architecture](#architecture)
+    2. [UI component](#ui-component)
+    3. [Storage component](#storage-component)
+    4. [Logic component](#logic-component)
+    5. [Model component](#model-component)
+    6. [Commons component](#commons-component)
 2. [Implementation](#implementation)
-2. [Product Scope](#product-scope)
-3. [User Stories](#user-stories)
-4. [Non-Functional Requirements](#non-functional-requirements)
-5. [Glossary](#glossary)
-6. [Instructions for Manual Testing](#instructions-for-manual-testing)
+    1. [Record Meal Feature](#1-record-meal-feature)
+        1. [Proposed implementation](#11-proposed-implementation)
+        2. [Step1. Generate command](#step1-generate-command)
+        3. [Step2. Execute and Save Result](#step2-execute-and-save-result)
+        4. [Design Considerations](#12-design-considerations)
+        5. [Aspect: How RecordMealCommand executes and save results](#aspect-how-recordmealcommand-executes-and-save-results)
+        6. [Aspect: Data structure to support the command](#aspect-data-structure-to-support-the-command)
+3. [Product Scope](#product-scope)
+    1. [Target user profile](#target-user-profile)
+    2. [Value proposition](#value-proposition)
+4. [User Stories](#user-stories)
+5. [Non-Functional Requirements](#non-functional-requirements)
+6. [Glossary](#glossary)
+7. [Instructions for Manual Testing](#instructions-for-manual-testing)
 
 ## Design
 
@@ -21,7 +36,7 @@ The components involved are given below:
 
 * `UI`: The Component responsible for reading user input and displaying command results.
 
-* `Storage`: The Component responsible for reading, writing and saving of data files.
+* `Storage`: The Component responsible for reading, writing and saving of external data files.
 
 * `Logic`: The Component responsible for managing the logic flow of the application and executing commands.
 
@@ -44,21 +59,21 @@ The `UI` component
 1. Reads user input and passes it to `Logic` for parsing and execution of the command.
 2. Receives command results from `Logic` and listens 
 for changes in `Model` to display updated information to the user.
-3. Draws on `Commons` to obtain the relevant messages to be displayed to the user.
+3. Draws on `Commons` to obtain the relevant stored messages to be displayed to the user.
 
 ### Storage component
 
 ![Storage-Component](images/Storage-Component.png)
 
 The `Storage` component is responsible for:
-* Reading data files to update the information in local memory.
+* Reading and loading data files to update the information in local memory during program start up.
 * Writing and saving all data into the relevant data files.
 
 The Storage consists of the following classes: 
 * `Storage` - Stores all user profile information in respective data files
 
 The `Storage` component
-1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
+1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information during start up.
 2. Receives instructions from `logic` to save and write in-memory information from
 `Model` into the relevant data files.
 
@@ -74,7 +89,7 @@ The Logic consists of the following classes:
 * `AppManager` - Arranges the main workflow of the program.
 * `Result` - Stores the command result in-memory.
 * `CommandParser` - Parses the user input and generates a specific command.
-* `"ABC"Command` - A collection of parser classes which parses a specific input to generate a specific value.
+* `"ABC"Parser` - A collection of parser classes which parses a specific input to generate a specific value.
 * `Command` - An abstract class which other command classes inherits from.
 * `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
 
@@ -82,7 +97,7 @@ The `Logic` component
 1. Receives the user input and parses it to generate a specific command.
 2. Executes the command to generate a specific result.
 3. Passes results to `UI` to display system output to the user.
-4. Updates `Storage` to save any changes made to in-memory information to the respective data files.
+4. Updates `Storage` to save any changes made to in-memory information if any to the respective data files.
 
 ### Model component
 
@@ -105,17 +120,17 @@ The `Model` component
 The `Commons` component is responsible for:
 * Consisting of multiple useful classes which are utilised by other components in the application.
 
-The Food consists of the following classes: 
-* `LogsCentre` - Tracks system through log records and saves them to a log file
-* `MessageBank` - Consists of multiple system output messages
-* `Weekday` - Enumeration class for classifying weekdays
-* `"ABC"Exception` - A collection of exceptions to aid in running of the application.
+The Commons consists of the following classes: 
+* `LogsCentre` - Tracks system through log records and saves them into a log file
+* `MessageBank` - Consists of multiple standard system output messages for UI to print
+* `Weekday` - Enumeration class for classifying all 7 possible days in a week
+* `"ABC"Exception` - A collection of exceptions to aid in running of the application
 
 
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### 1. [Proposed] Record Meal Feature
+### 1. Record Meal Feature
 #### 1.1 Proposed implementation
 The record feature is facilitated by `RecordMealCommand`. It extends `Command` and overrides `execute()` and `saveResults()`
 
@@ -151,7 +166,7 @@ And save execution `results` in the `RecordMealCommand` object.
     * Pros: Reduce dependency and potential risks. 
     * Cons: Different types of `Command` need different declarations/interface for `command.execute()` method. 
 
-#### Aspect : Data structure to support the command
+#### Aspect: Data structure to support the command
 * Alternative 1 (current choice): Use a list to store daily food record for a profile.
     * Pros: Easy to implement and understand
     * Cons: The list is maintained by a `Profile` object. Can lead to more duties for a `Profile` object.
@@ -171,9 +186,10 @@ Students that :
 
 Diet Manager aims to achieve the following:
 1. Streamline the diet recording process 
-2. Allow users to track and monitor their eating habits
-3. Provide personalised information and recommendations for the user
-4. Monitor and track user's weight changes to achieve weight goal
+2. Allow users to track food calories intake and monitor their eating habits
+3. Enable users to monitor weight changes across time to work towards their ideal weight goal
+4. Provide personalised information and recommendations for the user
+5. Monitor and track user's weight changes to achieve weight goal
 
 ## User Stories
 
@@ -190,6 +206,7 @@ Diet Manager aims to achieve the following:
 |v1.1| student|add food items to the database|do not have to constantly check food nutritional value for common foods|
 |v1.2| student|save my diet history|have a record of my daily food intake|
 |v1.2| student|import my diet history|have access to previous records and be able to progress from there|
+|v1.2| student|export my diet history|can view my previous records on other devices and never ever lose my progress|
 |v1.2| student|receive workout advice based on my excess calorie intake for the day|can maintain my calories for the day|
 |v2.0| student|generate a recommended food plan|know what to eat to meet recommended caloric intake|
 
