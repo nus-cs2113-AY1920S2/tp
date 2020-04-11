@@ -7,12 +7,15 @@ ESC is a flashcard study program, where you are able to create cards and categor
 
 ESC is meant to help students be able to study more effectively using the medium that they prefer, providing a simple, easy to use interface for the timestrapped student who prefers using CLI based applications and are able to type quickly. 
 
-** Do note that for v2.0 release, the program is UNABLE to load your previous session
-
+**For release v2.1, after adding the cards the user is unable to view the answers when listing cards.
+   They are only able to view the answers when attempting the quiz function.**
+   
 ## Quick Start
 1. Ensure that you have Java 11 or above installed on your computer.
-2. Download the latest version of `ESC` from [here](https://github.com/AY1920S2-CS2113-T15-2/tp/releases/tag/v2.0).
-3. Run ESC on your command terminal using this command: `java -jar <directory>/duke-v2.0.jar`
+2. Download the latest version of `ESC` from [here](https://github.com/AY1920S2-CS2113-T15-2/tp/releases/tag/v2.1).
+3. Run ESC on your command terminal using this command: `java -jar <directory>/duke-v2.1.jar`
+
+The program is best viewed in a maximised window.
 
 ## Quick Use
 1. Create a subject.
@@ -73,8 +76,8 @@ Format: `addcard s/<INDEX> q/<QUESTION> a/<ANSWER>`
 * The `INDEX` is based on the index of the subject. This can be found using the `listsubject` command.
 
 Example of Usage:
-* `addcard s/2 q/What year was NUS established? a/1980`
-* `addcard s/1 q/How many electrons does oxygen have? a/8`
+* `addcard s/1 q/What year was NUS established? a/1980`
+* `addcard s/2 q/How many electrons does oxygen have? a/8`
 ![](images/addcard.png)
 
 ### Listing Cards in a Subject
@@ -239,7 +242,7 @@ Format & Usage: `exit`
 
 **Q**: If I exit the program, will all my existing cards be saved?
 
-**A**: Yes! All your subjects, cards and scores are saved. To ensure that your data is not lost, do not delete the folder called 'data' that is created when you first run the program.
+**A**: Yes! All your subjects, cards, events and scores are saved. To ensure that your data is not lost, do not delete the folder called 'data' that is created when you first run the program.
 
 <hr>
 
@@ -278,20 +281,30 @@ Format & Usage: `exit`
 **A**: This is not supported at the current stage of development, as users are allowed to add open-ended questions
 which cannot be accurately marked automatically.
 
+<hr>
+
+**Q**: How do I transfer my data to another computer/folder? 
+
+**A**: Copy the 'data' folder to the computer/folder that the .JAR file is in.
 
 
 ## Command Summary
 * Add a subject `addsubject s/<SUBJECTNAME>`
 * List all subjects `listsubject`
-* Delete a subject and all its cards `deletesubject s/<INDEX>`                    
+* Delete a subject and all its cards `deletesubject s/<INDEX>`     
+               
 * Add a card into the specified subject `addcard s/<INDEX> q/<QUESTION> a/<ANSWER>`
+* Edit an existing card with new question and answer `editcard s/<INDEX> c/<INDEX> q/<QUESTION> a/<ANSWER>`
 * List all cards in specified subject `listcard s/<INDEX>`
 * Delete the specified card from the specified category `deletecard s/<INDEX> c/<INDEX>`
+
 * Start a quiz from the specified subject `quiz s/<INDEX>`
 * Get previous scores of quizzes from specified subject `score s/<INDEX>`
+
 * Add an event `addevent e/<DESCRIPTION> d/<DATE>`
 * List all events `listevent`
-* Show upcoming events `showupcoming d/<DAYS>`
 * Delete an event `deleteevent e/<INDEX>`
+* Show upcoming events `showupcoming d/<DAYS>`
+
 * Displays the help page `help`
 * Exits the program `exit` 
