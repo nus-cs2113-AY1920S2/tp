@@ -1,6 +1,5 @@
 package seedu.subjects;
 
-import seedu.duke.UI;
 import seedu.events.Event;
 import seedu.events.EventList;
 import seedu.exception.EscException;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 public class SubjectList {
     private ArrayList<Subject> subjects;
     private EventList events;
-    UI ui = new UI();
 
     public SubjectList() {
         this.subjects = new ArrayList<Subject>();
@@ -19,9 +17,10 @@ public class SubjectList {
     }
 
     /**
-     * Constructor for loading SubjectList.
-     * @param returnObj Arraylist of subjects and exams.
+     * Constructor for loading SubjectList from file.
+     * @param returnObj ArrayList of 2 ArrayLists; subjects (0) and events (1).
      */
+    @SuppressWarnings("unchecked")
     public SubjectList(ArrayList returnObj) {
         this.subjects = (ArrayList<Subject>) returnObj.get(0);
         this.events = new EventList((ArrayList<Event>) returnObj.get(1));
@@ -56,7 +55,7 @@ public class SubjectList {
     }
 
     /**
-     *Checks for duplicate subject.
+     * Checks for duplicate subject.
      * @param subject Subject to be checked.
      */
     public boolean checkSubjectDuplicate(Subject subject) {
@@ -70,7 +69,7 @@ public class SubjectList {
     }
 
     /**
-     *Checks for duplicate subject and reminds user of existing subjects.
+     * Checks for duplicate subject and reminds user of existing subjects.
      * @param subject Subject to be checked.
      */
     public void subjectDuplicateRemind(Subject subject) {

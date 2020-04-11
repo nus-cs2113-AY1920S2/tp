@@ -361,8 +361,14 @@ Method : Using IntelliJ JUnit test runner
     
     To run all tests, right-click on the src/test/java/seedu folder to select the part to be tested and run as Junit in IDE.
 
+Method : Using the text-ui-test runtest.bat or runtest.sh script
+    
+    Before running the script, ensure that the data folder found in tp/build/libs is deleted.
+    This is in the event that the user intends to run the script multiple times for checking.
+    Failure to do so will result in the test to fail due to change in behaviour when duplicates are added.
+
 ### Types of Tests
-There have three types of tests:
+There have two types of tests:
 
 Unit tests targeting the lowest level methods/classes.
 * e.g. seedu.cards.CardTest
