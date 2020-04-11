@@ -973,9 +973,9 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ### Appendix D: Glossary 
 
-*Mainstream OS*
-
-Windows, Linux, Unix, OS-X
+- *Mainstream OS* - Windows, Linux, Unix, OS-X
+- *dob* - date of birth
+- *ic* - 
 
 ### Appendix E: Instructions for Manual Testing
 
@@ -993,7 +993,7 @@ Given below are instructions to test the application manually.
 #### E.1. Launch and Shutdown
 
 1. Initial launch 
-    1. Download the latest jar file [here](https://github.com/AY1920S2-CS2113T-M16-1/tp/releaseshttps://github.com/AY1920S2-CS2113T-T12-2/tp/releases)
+    1. Download the latest jar file [here](https://github.com/AY1920S2-CS2113T-T12-2/tp/releases)
      and copy into an empty folder
     1. Open the terminal and run the JAR file using `java -jar HappyPills.jar` command
     1. Expected output: **HappyPills** startup screen is displayed
@@ -1003,25 +1003,492 @@ Given below are instructions to test the application manually.
     
 #### E.2. General Patient Information Commands
 
-1. Add patient to the list (Prompting)
-    1. Test case: `add patient /ic S9876543F /n Mallory /p 91265432`.
-    Expected: The program will prompt the user for missing necessary information.  
-    Continuation: `/dob 22/05/1999 /b O-`
+1. Add patient to the list (User Prompting)
+
+    1. **Test case:** `add patient /ic S9876543F /n Mallory /p 91265432 /dob 22/05/1999 /b O-`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
-    Continuation: `y`
-    Expected: A new patient named `Mallory` will be added to the list.
-    1. Test case: `add patient /ic S9888888G /n Eve`  
-    Expected: The program will prompt the user for missing necessary information.  
-    Continuation: `clear`  
-    Expected: The add command will be aborted.
-    1. Test case: `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`.  
+    Continuation: `y`  
+    Expected: A new patient named `Mallory` will be added to the list.  
+ 
+    1. **Test case:** `add patient /ic S1234567G /p 91234567 /dob 10/03/1998 /b B+ /n Bob`  
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `n`  
-    Expected: The patient named `Bob` will not be added to the list.
+    Expected: The patient named `Bob` will not be added to the list.  
+    
+    1. **Test case:** `add patient /ic S6699999N /p 81234567 /b AB+ /n Alice /rm High Blood Pressure`  
+    Expected: The program will prompt the user for missing DOB.  
+    Continuation: `20/20/2020` (or any invalid date)  
+    Expected: An error message will be shown indicating that the input is invalid. 
+    The program will continue to prompt the user for missing DOB.  
 
+    1. **Test case:** `add patient /ic S6699999N /p 81234567 /b AB+ /n Alice /rm High Blood Pressure`  
+    Expected: The program will prompt the user for missing DOB  
+    Continuation: `20/2/2020`  
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`  
+    Expected: A new patient named `Alice` will be added to the list.  
+        
+    1. **Test case:** `add patient /ic S9888888G /n Eve`  
+    Expected: The program will prompt the user for missing necessary information.    
+    Continuation: `clear`  
+    Expected: A message will be shown indicating that the command has been aborted.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid phone number, NRIC and blood type. Output is expected to be similar 
+       to <code>Test case iii</code> </td>
+     </tr>
+    </table>
+      
+2. Edit patient
+
+    ###### *Prerequisite: There is no patient in the list.*
+    
+    1. **Test case:** `edit patient S9876543F /p 99112233`  
+    Expected: An error message will be shown indicating that the patient does not exists in the list.  
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567F.*
+    
+    1. **Test case:** `edit patient S1234567F /rm Referred to National Centre for Infectious Diseases`  
+    Expected: The remarks for patient with NRIC `S1234567F` will be edited.
+    
+    1. **Test case:** `edit patient S1234567F /p 911`  
+    Expected: An error message will be shown indicating that the phone number is invalid. 
+     
+    1. **Test case:** `edit patient S1234567F /ic S9876543F`  
+    Expected: An error message will be shown, telling the user to read more about the edit patient command.  
+    
+    1. **Test case:** `edit patient S123F /a Peanuts` -- does not exists in the list. ??  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    
+    1. **Test case:** `edit patient S1234567F`  
+    Expected: An error message will be shown indicating that the command is incomplete.  
+    
+    1. **Test case:** `edit patient`  
+    Expected: An error message will be shown indicating that the necessary fields are missing.     
+    
+    1. **Test case:** `edit patient S1234567G /p 91857432`  
+    Expected: An error message will be shown indicating that the patient does not exists in list.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid DOB and blood type. Output is expected to be similar 
+       to <code>Test case ii</code> </td>
+     </tr>
+    </table>
+    
+3. Delete Patient
+ 
+    ###### *Prerequisite: There is no patient in the list.*
+    
+    1. **Test case:** `delete patient S9876543A`  
+    Expected: An error message will be shown indicating that the patient does not exists in the list.  
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S9876543A.*
+    
+    1. **Test case:** `delete patient S9876543A`  
+    Expected: The program will prompt the user for confirmation.  
+    Continuation: `y`  
+    Expected: The patient with NRIC `S9876543A` will be deleted from the list.  
+    
+    1. **Test case:** `delete patient S9876543A`  
+    Expected: The program will prompt the user for confirmation.  
+    Continuation: `n`  
+    Expected: The patient with NRIC `S9876543A` will **not** be deleted from the list.     
+    
+    1. **Test case:** `delete patient S983A`  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    
+    1. **Test case:** `delete patient`  
+    Expected: An error message will be shown indicating that the input format is incorrect.  
+ 
+4. List patient
+
+    ###### *Prerequisite: There is no patient in the list.*
+    
+    1. **Test case:** `list patient`  
+    Expected: An message will appear indicating that there is no patient in the list.
+    
+    ###### *Prerequisite: There are patients in the list.*  
+    
+    1. **Test case:** `list patient`  
+    Expected: The patients' Name and NRIC will be listed down.  
+    
+    1. **Test case:** `list patient 123`  
+    Expected: An error message will be shown indicating that the input format is incorrect.  
+   
+5. Get Patient
+ 
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567F.*  
+  
+   1. **Test case:** `get patient`  
+  Expected: An error message will be shown indicating that the command is incomplete.  
+  
+    1. **Test case:** `get patient S1234567F`  
+  Expected: The detailed information of the patient `S1234567F` will be displayed.  
+
+    1. **Test case:** `get patient S9876543G`  
+  Expected: An error message will be shown indicating that the patient does not exists in the list.  
+  
+    1. **Test case:** `get patient S987G`  --need nric  
+  Expected: An error message will be shown indicating that the patient does not exists in the list.  
+  
 #### E.3. Patient Medical Records Commands
+
+1. Add patient record (User Prompting)
+
+    ###### *Prerequisite: There is no patient in the list.*
+    
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`  
+    Expected: An error message will be shown indicating that the patient does not exists in the list.   
+    
+    ###### *Prerequisite: There is a patient with NRIC number S9876543F in the list.*
+    
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`  
+    Expected: A new patient record for the patient with `S9876543F` will be added.  
+    
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `n`  
+    Expected: The patient record will not be added.
+
+    1. **Test case:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    Expected: The program will prompt the user for valid NRIC.  
+    Continuation: `S9876543F` (valid NRIC of a patient existing in the patient list)
+    Expected: A new patient record for the patient with `S9876543F` will be added.  
+
+    1. **Test case:** `add pr`.   
+    Expected: An error message will be shown indicating that the command is incomplete.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid date and time. Output is expected to be similar 
+       to <code>Test case iii</code> </td>
+     </tr>
+    </table>    
+    
+1. List patient record
+
+    ###### *Prerequisite: There is no patient in the list.*
+    
+    1. **Test case:** `list pr S1234567F`  
+    Expected: An error message will be shown indicating that the patient does not exist.  
+    
+    1. **Test case:** `list pr`  
+    Expected: An error message will be shown indicating that the command is incomplete.      
+    
+    ###### Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have existing patient records.  
+    
+    1. **Test case:** `list pr S9876543F`  
+    Expected: The patient's record summary will be listed down with the ID, Date and Time.  
+    
+    1. **Test case:** `list pr S9999999Z`  
+    Expected: An error message will be shown indicating that the patient does not exist.  
+    
+    1. **Test case:** `list pr S98G`  
+    Expected: An error message will be shown indicating that format of the NRIC is invalid.  
+        
+    ###### Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.  
+    
+    1. **Test case:** `list pr S9876543F`  
+    Expected: An error message will be shown indicating that the patient record is not found.  
+
+1. Find patient record
+
+    ###### Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.  
+    
+    1. **Test case:** `find pr S9876543F 2`  --patient not in list?  
+    Expected: An error message will be shown indicating that the patient record is not found.  
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient have 3 existing patient records.*  
+      
+    1. **Test case:** `find pr S9876543F 5`  
+    Expected: An error message will be shown indicating that there is no patient record found with the given index.      
+
+    1. **Test case:** `find pr S9876543F 2`  
+    Expected: A detailed patient record will be listed down.  
+    
+    1. **Test case:** `find pr S9876543F abc`  
+    Expected: An error message will be shown indicating that the index is invalid. 
+    
+    1. **Test case:** `find pr S98F 1`  
+    Expected: An error message will be shown indicating that the format of the NRIC is invalid.  
+    
+    1. **Test case:** `find pr S9876543F`  
+    Expected: An error message will be shown indicating that the command is incomplete.  
+    
+    1. **Test case:** `find pr`  
+    Expected: An error message will be shown indicating that the command is incomplete.  
+
+1. Edit Patient Record  
+
+    ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
+    
+    1. **Test case:** `edit pr S9876543F 1 /sym Fever`  
+    Expected: An error message will be shown indicating that the patient record is not found.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records.*  
+    1.  **Test case:** `edit pr S9876543F 1 /sym Fever`  
+    Expected: The `symptom` of patient record with index `1` is edited for the patient with NRIC `S9876543F`.   
+    
+    1. **Test case:** `edit pr S9876543F 1 /d 44/0/2020`
+    Expected: An error message will be shown indicating that the date is invalid.  
+    
+    1. **Test case:** `edit pr S9876543F 5 /d 11/04/2020`  
+    Expected: An error message will be shown indicating that the patient record is not found.  
+    
+    1. **Test case:** `edit pr S9876543F -1 /time 12:00`  
+    Expected: An error message will be shown indicating that the index is invalid.  
+    
+    1. **Test case:** `edit pr S9873F 1 /time 12:00`  
+    Expected: An error message will be shown indicating that the format of the NRIC is invalid.  
+    
+    1. **Test case:** `edit pr S9876543F 1`  
+    Expected: An error message will be shown indicating that the command is incomplete.
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid time. Output is expected to be similar 
+       to <code>Test case ii</code> </td>
+     </tr>
+    </table>        
+    
+ 1. Delete Patient Record  
+ 
+     ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
+     
+     1. **Test case:** `delete pr S9876543F 1`    
+     Expected:  An error message will be shown indicating that the patient record is not found.  
+     
+     1. **Test case:** `delete pr S9876543F`  
+     Expected: An error message will be shown indicating that the command is incomplete.  
+     
+     ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records.*  
+     
+     1. **Test case:** `delete pr S9876543F 1`   
+     Expected: The `first` patient record will be deleted for patient `S9876543F`.
+     
+     1. **Test case:** `delete pr S9876543F 5`  
+     Expected: An error message will be shown indicating that no patient record is found with the given index.  
+     
+     1. **Test case:** `delete pr S9876543F abc`  
+     Expected: An error message will be shown indicating that the index is invalid.  
+     
+     1. **Test case:** `delete pr S9876F 1`  
+     Expected: An error message will be shown indicating that the format of the NRIC is invalid.  
+     
+     1. **Test case:** `delete pr 1`  
+     Expected: An error message will be shown indicating that the command is incomplete.  
+     
 #### E.4. Appointment Scheduling Commands
 
+1. Add appointment to the list (User Prompting)
+    
+    ###### *Prerequisite: There is a patient with NRIC S1234567G in the list.*
+    
+    1. **Test case:** `add appt /ic S1234567G /d 02/02/2020`   
+    Expected: The program will prompt the user for missing information.  
+    Continuation: `/t 02/02/2020 /r sick`  
+    Expected: The program will prompt the user for confirmation before saving the inputs.
+    Continuation:`y`
+    Expected: A new appointment will be added to the list.  
+ 
+    ###### *Prerequisite: There is a patient with NRIC S1234567G in the list.*
+    
+    2. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 13:00 /r ill`    
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `n`  
+    Expected: The patient named `Bob` will not be added to the list.  
+    
+    3. **Test case:** `add appt /ic S1234567G /d 20/20/2020 /t 13:00 /r ill`   
+    Expected: An error message will be shown indicating that the date is invalid.  
+
+    4. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 23:60 /r ill`   
+    Expected: An error message will be shown indicating that the time is invalid.
+        
+    5. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 13:00`  
+    Expected: The program will prompt the user for missing information.    
+    Continuation: `clear`  
+    Expected: A message will be shown indicating that the command has been aborted.  
+    
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with other forms of invalid date time. Program is expected to
+       capture and return error message.</td>
+     </tr>
+    </table>
+      
+2. Edit appointment
+
+    ###### *Prerequisite: Patient with stated NRIC not in the patient list.*
+    
+    1. **Test case:** `edit appt S7654321A 1 /d 15/12/2020`  
+    Expected: An error message will be shown indicating that the patient does not exists.  
+    
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    
+    2. **Test case:** `edit appt S1234567G 100 /d 15/12/2020`  
+    Expected: An error message will be shown indicating that the appointment does not exist.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+    
+    3. **Test case:** `edit appt S1234567G 1 /d 15/12/2020`  
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `n`  
+    Expected: The appointment will *not* be edited.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+    
+    4. **Test case:** `edit appt S1234567G 1 /d 15/12/2020`  
+    Expected: The program will prompt the user for confirmation before saving the inputs.  
+    Continuation: `y`  
+    Expected: The appointment will be edited.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+
+    5. **Test case:** `edit appt S1234567G 1 /d 20/20/2020`  
+    Expected: An error message will be shown indicating that the date is invalid. 
+     
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+     
+    6 . **Test case:** `edit appt S1234567G 1 /t 24:00`  
+    Expected: An error message will be shown indicating that the time is invalid.
+     
+    7. **Test case:** `edit appt S1234567G 1 xxx`  
+    Expected: An error message will be shown, telling the user to read more about the edit appt command.    
+    
+    8. **Test case:** `edit appt S1234567G`  
+    Expected: An error message will be shown, telling the user to read more about the edit appt command.   
+    
+    9. **Test case:** `edit patient`  
+    Expected: An error message will be shown indicating that the command is incomplete.
+    
+    10. **Test case:** `edit appt xxx 1 /d 20/20/2020`
+    Expected: An error message will be shown indicating that the NRIC is invalid.    
+  
+    <table>
+      <col width="20">
+      <col width="200">
+     <tr>
+       <td><span> &#8505; </span></td>
+       <td>Testers can conduct tests with invalid date and time. Program is expected to 
+       capture and return error message.</td>
+     </tr>
+    </table>
+    
+3. Delete appointment
+     
+    ###### *Prerequisite: Patient with stated NRIC not in the patient list.*
+       
+    1. **Test case:** `delete appt S7654321A 1`  
+    Expected: An error message will be shown indicating that the patient does not exists.  
+    
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    
+    2. **Test case:** `delete appt S1234567G 100`  
+    Expected: An error message will be shown indicating that the appointment does not exist.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+    
+    3. **Test case:** `delete appt S1234567G 1`  
+    Expected: The appointment will be deleted.
+    
+    4. **Test case:** `delete appt S983A 1`  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    
+    5. **Test case:** `delete patient`  
+    Expected: An error message will be shown indicating that the input format is incorrect.  
+       
+    6. **Test case:** `delete appt S1234567G xxx`  
+    Expected: An error message will be shown indicating appointment does not exist.    
+    
+    7. **Test case:** `delete appt S1234567G`  
+    Expected: An error message will be shown, telling the user to read more about the delete appt command.   
+
+4. List appointment
+
+    ###### *Prerequisite: There is no appointment in the list.*
+    
+    1. **Test case:** `list appt`  
+    Expected: A message will appear indicating that there is no patient in the list.
+    
+    ###### *Prerequisite: There are appointment(s) in the list.*  
+    
+    2. **Test case:** `list appt`  
+    Expected: The patients' Name and NRIC will be listed down.  
+    
+3. Mark appointment as Done
+     
+    ###### *Prerequisite: Patient with stated NRIC does not exist in the patient list.*
+       
+    1. **Test case:** `done appt S7654321A 1`  
+    Expected: An error message will be shown indicating that the patient does not exists.  
+    
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    
+    2. **Test case:** `done appt S1234567G 100`  
+    Expected: An error message will be shown indicating that the appointment does not exist.
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
+    
+    3. **Test case:** `done appt S1234567G 1`  
+    Expected: The appointment will be marked done.
+
+    4. **Test case:** `done appt S983A 1`  
+    Expected: An error message will be shown indicating that the NRIC is invalid.  
+    
+    6. **Test case:** `done patient`  
+    Expected: An error message will be shown indicating that the input format is incomplete.  
+       
+    7. **Test case:** `delete appt S1234567G xxx`  
+    Expected: An error message will be shown indicating appointment cannot be found.    
+    
+    8. **Test case:** `delete appt S1234567G`  
+    Expected: An error message will be shown, telling the user to read more about the edit appt command.   
+
+5. Find appointment
+ 
+    ###### *Prerequisite: There is no patient in the list with NRIC number S1234567B.*  
+   
+   1. **Test case:** `find appt S1234567B`  
+   Expected: An error message will be shown indicating that the patient cannot be found.  
+   
+   ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G.*  
+    
+    1. **Test case:** `find appt`  
+    Expected: An error message will be shown indicating that the command is incomplete.  
+    
+  ###### *Prerequisite: There is a patient with stated NRIC number and there is no appointment for the patient*
+
+  1. **Test case:** `find patient S1234567F`  
+  Expected: TA message will appear indicating that patient has no appointment in the list.  
+
+  ###### *Prerequisite: There is a patient with stated NRIC number and there is an appointment for the patient*
+  1. **Test case:** `find patient S9876543G`  
+  Expected: Appointment for the patient will be displayed  
+  
+  1. **Test case:** `find patient S987G`
+  Expected: An error message will be shown indicating invalid NRIC.  
+  
 
 
 ## Useful links:

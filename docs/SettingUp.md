@@ -16,7 +16,7 @@
   </tr>
  </table>
  
-###2. Setting up the project on your computer
+### 2. Setting up the project on your computer
 1.  Fork this repository, and clone the fork to your computer
  
 2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
