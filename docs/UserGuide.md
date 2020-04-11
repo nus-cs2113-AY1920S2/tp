@@ -377,13 +377,13 @@ to users who are running this application on systems with limited hardware (smal
 * Stop an activity: `end`
 * Continue an activity: `continue ACTIVITY_NAME`
 * List all activities: `list`
-    * List today's activities: `list day` or `list daily`
+    * List today's activities: `list day` or `list daily` or `list today`
+    * List yesterday's activities: `list yesterday`
     * List this week's activities: `list week` or `list weekly`
         * List a specific week's activities by day: `list week DATE` or `list weekly DATE`, 
         where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
     * List this month's activities: `list month` or `list monthly`
-        * List a specific month's activities by day: `list month DATE` or `list monthly DATE`, 
-        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+        * List a specific month's activities by day: `list month MONTH_NAME` where `MONTH_NAME` must be spelled out in full
     * List a specific day's activities: `list DATE`, where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
