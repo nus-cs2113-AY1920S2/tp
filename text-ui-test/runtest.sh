@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # change to script directory
-cd "${0%/*}"
+cd "../build/libs/"
 
 cd ..
 ./gradlew shadowJar

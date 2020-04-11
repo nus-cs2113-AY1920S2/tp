@@ -7,7 +7,7 @@ call gradlew shadowJar
 
 cd build\libs
 for /f "tokens=*" %%a in (
-    'dir /b *.jar'
+    'dir /b duke-0.0.1.jar'
 ) do (
     set jarloc=%%a
 )

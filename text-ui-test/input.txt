@@ -1,1 +1,52 @@
-James Gosling
+ADD
+ADD wrong args format
+ADD p/2.50
+ADD i/apple p/8*wh12
+ADD i/apple p/
+ADD i/apple p/2.45 q/
+ADD i/apple p/2.45 q/1
+ADD i/banana p/3.00 q/3
+ADD i/cherry p/5.60 q/2
+FIND CHERRY
+FIND ChErRY
+FIND cHErry
+FIND cherry
+FIND nothing
+SET
+SET b/ 8*wh12
+SET b/
+SET b/500.00
+EDIT
+EDIT wrong args format
+EDIT i/tomato p/3.40
+EDIT 1 i/p/q/
+EDIT 1 i/apple i/apple
+EDIT 1 i/lollipops i/lollipop
+EDIT 1 p/QWERT
+EDIT 1 p/2 i/banana
+EDIT 2 i/apple
+EDIT 1 i/lollipops p/2.50 q/5
+EDIT 1 p/1
+EDIT 1 q/4
+EDIT 1 q/4 p/5.0 i/candies
+MARK
+MARK 1
+MARK 2
+UNMARK
+UNMARK 1
+UNMARK notAnumber
+UNMARK 8*wh12
+UNMARK 1 2 3 4 5
+DEL notAnumber
+DEL 8*wh12
+DEL 1 2 3 4 5
+DEL 1
+DEL
+unknownCommandWord arguments
+DISPLAY
+RES
+CLEAR
+HELP 1
+HELP
+BYE 1
+BYE
