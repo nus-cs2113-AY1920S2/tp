@@ -450,7 +450,9 @@ Given below is an example usage scenario of how the ```ListMeetings``` command b
 
 
 ### 3.9 [Proposed] Undo/Redo feature
-![undo redo](/images/undoredo_seq.png)
+
+<img src="images/undoredo_seq.png" width="80%">
+
 *Fig 19. Sequence diagram of the implementation of the `Undo/Redo` feature*
 
 Fig 19. shows the sequence diagram of the  `Undo/Redo` feature.
