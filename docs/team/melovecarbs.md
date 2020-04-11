@@ -12,7 +12,8 @@
 Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=melovecarbs)
 
 ### Enhancements implemented:
-* **Major Enhancement:**  Developed the foundation of WhenFree's architecture, ie the ```modulelogic``` component. 
+* **Major Enhancement:**  
+    * Developed the foundation of WhenFree's architecture, ie the ```modulelogic``` component. 
     * This component is responsible for accessing NUSMODS api and parsing user's nusmods URL into the modules the user is taking. After which an algorithm using HashMap and HashSet is used to filter out the specific lesson details the user is taking. 
     * The filter lesson details are an integral part of WhenFree and is called as an API in other logic component.
     * This API call also takes into account the modules that doesn't follow the standard 13-week per semester convention (approximately 200 modules out of ~10,000 modules) and informs user to manually key in the timetable for those modules. 
