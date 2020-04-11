@@ -84,11 +84,6 @@ the scenario where the user issues the command `delete patient NRIC`.
 
 ![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
 
-<<<<<<< HEAD
-=======
-The sections below give more details of each component.
-
->>>>>>> e935f29e89922aa6a3ca32795be2ae9e731af60b
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
