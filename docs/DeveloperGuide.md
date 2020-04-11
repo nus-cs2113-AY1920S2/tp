@@ -90,7 +90,7 @@ which are key to the functionality of the application. The implementation of the
 Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
 
 ### 2.3. Logic component
-![Logic Component](images/logiccomponent.png)<br>
+![Logic Component](images/logiccomponent.png | width=100)<br>
 *Fig 2. Overview of Logic component*
 
 Fig 2. shows an overview of the Logic component. The ```LogicManager``` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
