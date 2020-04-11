@@ -47,11 +47,13 @@ public class MarkAsDoneCommand extends Command {
                 if (isModuleName || isModuleId) {
                     boolean isNotGradeF = (grade != Grading.F);
                     boolean isNotGradeCU = (grade != Grading.CU);
-                    //to add module credit if the module is marked for the first time
+                    /* Add module credit if the module is marked for the first time */
                     boolean isModuleNotDone = !module.getDone();
                     if (isNotGradeF && isNotGradeCU && isModuleNotDone) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
+                    /*Reduce completed credit if the module has already been completed,
+                    but is being changed from passing grade to a failing grade */
                     if (!isModuleNotDone && (!isNotGradeCU || !isNotGradeF)) {
                         Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
                     }
