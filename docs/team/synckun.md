@@ -87,7 +87,7 @@ This command deletes the person and their saved schedule from the app and the di
 	* Wrote `3.6 Delete a scheduled meeting`
 	* Wrote `3.7 Delete a contact`
 	* Wrote `3.8 List all scheduled meetings`
-	* Wrote `3.9 [Proposed] Udo/Redo feature`
+	* Wrote `3.9 [Proposed] Undo/Redo feature`
 	* Contributed to `Appendix B: User Stories`
 	* Contributed to `Appendix C: Use Cases`
 	
