@@ -8,6 +8,6 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 
 
 ## Useful links:
-* [User Guide](UserGuide-Main.md)
+* [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
