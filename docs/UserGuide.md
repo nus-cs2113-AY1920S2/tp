@@ -407,6 +407,7 @@ to users who are running this application on systems with limited hardware (smal
     * optional: `filter TAG1 TAG2` for multiple tags
     * optional: `filter -s TAG_NAME` for more specific filter
 * Set a goal for tags: `goal TAG_NAME /g DURATION`
+* Delete a goal for tags: `goal TAG_NAME /d`
 * View goals for tags: `goal`
 * Display graph by tags: `graph tags`
 * Display graph by duration: `graph INTERVAL`
