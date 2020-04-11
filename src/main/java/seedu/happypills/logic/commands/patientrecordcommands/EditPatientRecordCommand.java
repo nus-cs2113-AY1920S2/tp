@@ -82,8 +82,8 @@ public class EditPatientRecordCommand extends PatientRecordCommand {
         return updateRecord(patients, patientRecords, content, field, editPatientRecord);
     }
 
-    private String updateRecord
-            (PatientMap patients, PatientRecordMap patientRecords, String content,
+    private String updateRecord(
+            PatientMap patients, PatientRecordMap patientRecords, String content,
              String field, PatientRecord editPatientRecord) throws HappyPillsException {
         content = content.trim();
         boolean output;
