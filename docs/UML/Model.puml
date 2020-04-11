@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam linetype ortho
+
+Package Model <<Rectangle>>{
+
+Package Patient {
+Class Person
+Class DOB
+Class BloodType
+Class NRIC
+Class Name
+Class Phone
+Class PatientList
+}
+
+Package Appointment {
+Class ApptList
+Class Appt
+Class Time
+Class ApptDate
+Class Reason
+}
+
+Package PatientRecord {
+Class PatientRecordList
+Class Pr
+Class Allergies
+Class Symptoms
+Class Prescription
+Class VisitDate
+}
+}
+
+Class HiddenOutside #FFFFFF
+
+PatientList o--> "*" Person
+Person *--> Name
+Person *--> Phone
+Person *--> BloodType
+Person *--> DOB
+Person *--> NRIC
+Person *-right-> "*" Appt
+
+ApptList o--> "*" Appt
+Appt *--> Time
+Appt *--> ApptDate
+Appt *--> Reason
+
+PatientRecordList o--> "*" Pr
+Pr *--> Allergies
+Pr *--> Symptoms
+Pr *--> Prescription
+Pr *--> VisitDate
+
+Person *-left-> "*" Pr
+
+Name --[hidden]right-> Phone
+Phone --[hidden]right-> DOB
+DOB --[hidden]right-> BloodType
+
+@enduml

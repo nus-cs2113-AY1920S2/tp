@@ -14,3 +14,10 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
+/text-ui-test/data/
+
+/build/libs/data
+
+# data files
+/data/
+text-ui-test/data/patient.txt

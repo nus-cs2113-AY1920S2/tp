@@ -2,17 +2,24 @@
 setlocal enableextensions
 pushd %~dp0
 
+if exist ..\library del ..\library
+
 cd ..
 call gradlew shadowJar
 
+if exist ..\library del ..\library
+
 cd build\libs
+
+if exist ..\library del ..\library
+
 for /f "tokens=*" %%a in (
     'dir /b *.jar'
 ) do (
     set jarloc=%%a
 )
 
-java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
+java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.txt
 
 cd ..\..\text-ui-test
 

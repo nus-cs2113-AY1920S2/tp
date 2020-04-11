@@ -1,9 +1,269 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+ __   __  _______  _______  _______  __   __  _______  ___   ___      ___      _______
+|  | |  ||   _   ||       ||       ||  | |  ||       ||   | |   |    |   |    |       |
+|  |_|  ||  |_|  ||    _  ||    _  ||  |_|  ||    _  ||   | |   |    |   |    |  _____|
+|       ||       ||   |_| ||   |_| ||       ||   |_| ||   | |   |    |   |    | |_____
+|       ||       ||    ___||    ___||_     _||    ___||   | |   |___ |   |___ |_____  |
+|   _   ||   _   ||   |    |   |      |   |  |   |    |   | |       ||       | _____| |
+|__| |__||__| |__||___|    |___|      |___|  |___|    |___| |_______||_______||_______|
 
-What is your name?
-Hello James Gosling
+What can I do for you today, doctor?
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /n NAME
+      /ic NRIC (Format: [S/T][7-digits][A-Z])
+      /p PHONE (Format: 8-digit number starting with 8/9)
+      /dob DATE OF BIRTH (Format: DD/MM/YYYY)
+      /b BLOOD TYPE (Format: A/B/O/AB with +/-)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /p PHONE (Format: 8-digit number starting with 8/9)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+    @91265432 is not a valid input.
+    @91265432 will not be added
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /p PHONE (Format: 8-digit number starting with 8/9)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+    @add is not a valid input.
+    @add will not be added
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Got it! I've added this patient:
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+    =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
+    =====================================================
+    dob is not a valid input.
+    dob will not be added
+    =====================================================
+    b is not a valid input.
+    b will not be added
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /n NAME
+      /ic NRIC (Format: [S/T][7-digits][A-Z])
+      /p PHONE (Format: 8-digit number starting with 8/9)
+      /dob DATE OF BIRTH (Format: DD/MM/YYYY)
+      /b BLOOD TYPE (Format: A/B/O/AB with +/-)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Eve
+        NRIC : S9876543F
+        Phone Number : 91265432
+        DOB : 22/05/1999
+        Blood Type : O-
+        Allergies : School
+        Remarks : Best Friend with Mallory
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient is already in the list. Please use help command.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /n NAME
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Got it! I've added this patient:
+        Name : Alice
+        NRIC : S9876543G
+        Phone Number : 99999999
+        DOB : 22/09/1989
+        Blood Type : O-
+        Allergies : NIL
+        Remarks : NIL
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    Here is your list of patients:
+    NRIC      | Name
+    S9876543G | Alice
+    S9876543F | Eve
+    =====================================================
+    =====================================================
+    Incorrect input format. Sorry please try again
+    =====================================================
+    =====================================================
+    Command is incomplete. Please use the help command.
+    =====================================================
+    =====================================================
+    Command is invalid. Enter help to know how to use HappyPills.
+    =====================================================
+    =====================================================
+    ic is not a valid input.
+    ic will not be added
+    =====================================================
+    sym is not a valid input.
+    sym will not be added
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /ic NRIC (Format: [S/T][7-digits][A-Z])
+      /sym SYMPTOMS
+      /diag DIAGNOSIS
+      /d DATE (Format: DD/MM/YYYY)
+      /t TIME (Format: HH:mm)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+    @add pr is not a valid input.
+    @add pr will not be added
+    =====================================================
+    sym is not a valid input.
+    sym will not be added
+    =====================================================
+    Please input your missing/incorrect detail listed below
+      /sym SYMPTOMS
+      /diag DIAGNOSIS
+      /d DATE (Format: DD/MM/YYYY)
+      /t TIME (Format: HH:mm)
+
+    To abort, enter "clear"
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : fever
+        Date : 22/02/1992
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    The current information is not added.
+    Please add all the details again! Thank you.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : fever
+        Date : 22/02/1992
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient Record has been added.
+    =====================================================
+    =====================================================
+        Are you sure all the listed details are correct?
+        NRIC : S9876543F
+        Symptom : cough
+        Diagnosis : cough syrup
+        Date : 22/03/2020
+        time : 22:22
+                                                   (Y/N)?
+    =====================================================
+    =====================================================
+    Patient Record has been added.
+    =====================================================
+    =====================================================
+    Thank you for using HappyPills! ^.^
+    See you again!
+    =====================================================

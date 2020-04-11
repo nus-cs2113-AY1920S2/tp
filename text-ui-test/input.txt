@@ -1,1 +1,35 @@
-James Gosling
+add /ic
+add patinet /ic /blah /p 123456 /dob /b
+ add patient /ic
+/ic S9876543F /n Eve /p 9126543 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
+91265432
+add /p91265432
+n
+ add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
+y
+add patient /ic /blah /p 123456 /dob /b
+/ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
+n
+add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory
+y
+add patient /ic S9876543G /p 99999999 /dob 22/09/1989 /b O- /n Alice
+n
+add patient /ic S9876543G /p 99999999 /dob 22/09/1989 /b O-
+/n Alice
+y
+list
+list s9876543
+list s9876543F
+list patient
+list patient -S9876543F
+add pr
+add /ic
+add pr /ic /sym /d 22feb92 /t 2o'clock
+add pr /ic s9876543f /sym /d 22feb92 /t 2o'clock
+/ic S9876543F /sym cough /diag fever /d 22/02/1992 /t 22:22
+n
+add pr /ic S9876543F /sym cough /diag fever /d 22/02/1992 /t 22:22
+y
+add pr /ic S9876543F /sym cough /diag cough syrup /d 22/03/2020 /t 22:22
+y
+exit
