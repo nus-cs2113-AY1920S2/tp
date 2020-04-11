@@ -84,6 +84,46 @@ What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing 
 <hr>  
   
 ## **Setting Up**  
+
+#### **1.1. Prerequisites**
+
+1. JDK 11
+2. IntelliJ IDE
+
+#### **1.2. Setting up the project**
+1.  Fork [this repository](https://github.com/AY1920S2-CS2113T-T13-2/tp), and clone the fork to your computer
+
+2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
+
+3.  Set up the correct JDK version for Gradle
+
+    1.  Click `Configure` &gt; `Project Defaults` &gt; `Project Structure`
+
+    2.  Click `New...` and find the directory of the JDK
+
+4.  Click on `Import Project`
+
+5.  Locate and select the `build.gradle` file, then click `OK`
+
+6.  Click `Open as Project`
+
+7.  Click `OK` to use the default settings provided
+
+#### **1.3. Verifying the Setup**
+1.  In an IntelliJ terminal, run `gradlew build`
+
+2.  Navigate to the folder `build` &gt; `libs` by executing  `cd build/libs/` and then run: `java -jar nuke-2.0.jar`
+
+    1.  To use **Nuke**, type a valid command into the terminal and press the enter key to run the command. 
+        e.g. Typing `help` and pressing the enter key will show the available commands and their respective command usage help messages.
+
+    2.  Some example commands you can try to get familiar with **Nuke**:
+
+        -   `help`: Lists the commands that **Nuke** supports.
+-   `addm cs2113t`: Adds a module with module code cs2113t, **Nuke** will recognize it as the module  *Software Engineering & Object-Oriented Programming* and add it to your Module List.
+        -   `addt assignment2 -m cs2113t -c Assignment -d tmr 23:59 -p 20` : Adds a task named `assignment2` which belongs to *module* `cs2113t` and *category* `Assignment` with a *deadline* `tomorrow 23:59` and *priority* of `20`
+-   `bye`: Exits **Nuke**.
+
   
 [Back To Top](#table-of-contents)  
   
