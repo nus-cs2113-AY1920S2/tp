@@ -77,6 +77,7 @@ Here is a quick overview of each layer/component and the sub-components residing
 * Logic: The main control unit of the application which handles the business logic of the application.
 * Model: Holds the data of the application in memory to be easily accessed by methods that requires it.
 * Storage: Writes data from Model component to hard disk, and reads previously saved data from hard disk into Model component.
+</br>
 
 ### 2.2. UI component
 The UI component represents the Command Line user interface of the application. It serves the purpose of facilitating the 
@@ -93,6 +94,7 @@ These messages enhances the usability rather than the functionality of the appli
 which are key to the functionality of the application. The implementation of these 3 features whose functionality involves the `TextUI` class are described in Section 3 below.
 
 Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
+</br>
 
 ### 2.3. Logic component
 <img src="images/logiccomponent.png" width="80%">
@@ -199,6 +201,7 @@ The ```contacts``` component of our application consists of 2 classes: ```Contac
     * It contains logic to convert time into 30-minute blocks for easy processing and check if a slot is valid for scheduling a meeting or editing.
     * It also contains a private class ```Slot```, not shown in the diagram, used exclusively by ```Contact```. ```Slot``` contains information about a time slot and contains logic to convert its attributes.
 2. ```ContactList``` is a ```ArrayList<Contact>``` which new ```Contact``` are added to. It also contains getter methods not shown in the diagram.
+</br>
 
 ### 2.5. Storage component
 
@@ -211,6 +214,7 @@ Fig 9. shows the structure of Storage. It is created by WhenFree class to handle
 The `Storage` component,
 - can save `Contact` objects in .txt format and read it back.
 - can save scheduled meetings in .txt format and read it back.
+</br>
 
 ### 2.6. Common component
 Classes used by multiple components are in the ```commons``` package. These includes exception classes, information of 
@@ -218,7 +222,7 @@ blacklisted modules as well as output messages to be shown to users when excepti
 
 [&#8593; Return to Table of Contents](#table-of-contents)
 
-<br/>
+<br/></br>
 
 ## 3. Implementation
 This section describes how the main features of our application are implemented.
