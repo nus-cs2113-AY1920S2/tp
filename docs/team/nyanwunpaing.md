@@ -80,7 +80,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)  
+[PatientRecord Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#33-patient-medical-records)  
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
