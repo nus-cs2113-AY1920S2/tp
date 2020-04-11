@@ -42,7 +42,7 @@ The product also contains the following components:
   * Deals with illegal inputs
 
 
-In these components, cards and subjects have similar structure. Both of them contains a Card/Subject class and CardList/SubjectList class.
+In these components, cards, subjects and events have similar structure. All of them contain a Card/Subject/Event class and CardList/SubjectList/EventList class.
 Duke, along with all command class and Parser form the logic box of the product.
 <br />
 <p align="center">
@@ -60,11 +60,12 @@ The flow of the logic component is as follows:
   <br />Figure 3. Sequence diagram of Logic Component  
 </p>
 
-<br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
+<br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, Event, EventList, ScoreList.
 
-- The SubjectList class contains an array the subjects and exams
-- The Event class contains information about the upcoming events.
+- The SubjectList class contains an array the subjects and an eventlist
 - The Subject class contains details such as the subject name, a scorelist and a cardlist.
+- The EventList class contains an array of events.
+- The Event class contains information about the upcoming events.
 - The ScoreList class contains an array of past scores of the quizzes which the user have completed.
 - The CardList class contains an array of cards.
 - The Card class contains both a question and an answer to the question.  
@@ -276,7 +277,7 @@ The following diagram describes how the show upcoming operation works:
 </p>
 
 #### 2.4.2. Design Considerations
-##### Aspect: How to format the score history shown to the user
+##### Aspect: How to implement addition and management of events
 - **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
 does not have to be tied to a pre-existing subject).
   - Pros: 

@@ -145,6 +145,7 @@ public class Parser {
     private static Command prepareEditCard(String[] arguments) throws EscException {
         checkNumberOfArguments(arguments, EditCardCommand.MESSAGE_USAGE);
         arguments[1] = " " + arguments[1];
+
         checkArgumentPrefixes(arguments[1], EditCardCommand.MESSAGE_USAGE, SUBJECT_ARG,
                             CARD_ARG, QUESTION_ARG, ANSWER_ARG);
 
