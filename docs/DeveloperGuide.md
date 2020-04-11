@@ -95,7 +95,7 @@ Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` to disp
 ![Logic Component](images/logiccomponent.png)<br>
 *Fig 2. Overview of Logic component*
 
-Fig 2. shows an overview of the Logic component. The `LogicManager` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
+Fig 2. shows an overview of the Logic component. The ```LogicManager``` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
 
 First, ```command``` sub-component interprets and initializes user commands. 
 Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components via ```CommandHandler``` to enable the generation of common time slots from NUSMODS links.
@@ -105,7 +105,7 @@ which is used to store scheduled meetings.
 #### 2.3.1. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
-The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
+The modulelogic component consists of 4 classes: ```TimetableParser``` ```ModuleApiParser``` ```ModuleHandler``` ```LessonsGenerator```.
 
 1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules.
 2. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module.
@@ -117,7 +117,7 @@ The modulelogic component consists of 4 classes: ```TimetableParser```, ```Modul
 ![logic.modulelogic Component](images/modulelogic.png)<br>
 *Fig 3. Class diagram of the logic.modulelogic component*
 
-The above figure shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
+Fig 3. shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
 1. ```ModuleApiParser``` controls the API fetching logic and instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server via ```parse()```
 2. ```ModuleApiParser ``` is called by ```ModuleHandler``` every time a new module is requested.
 4. Subsequently, ```ModuleHandler``` would clean the data and filter out any blacklisted modules provided by ```ModuleApiParser```, and stores the information into an ```ArrayList<ArrayList<String>>``` data structure to be used by ```LessonsGenerator```.
@@ -129,7 +129,7 @@ the information in a ```Map<String, ArrayList<String>>``` data structure as seen
 ![logic.modulelogic Component](images/LessonsGenerator.jpg)<br>
 *Fig 4. Sequence diagram of the logic.modulelogic component*
 
-The above figure shows a full overview of the UML sequence of the entire logic.modulelogic component.<br>
+Fig 4. shows an overview of the UML sequence of the entire logic.modulelogic component.<br>
 
 ```LessonsGenerator``` collates the returned data structure from both ```ModuleHandler``` and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  
@@ -221,7 +221,7 @@ There are 6 main features: [Add new contact](#31-add-new-contact), [List all con
 ![Add Contact](images/AddContact.png)<br>
 *Fig 10. Sequence diagram of the implementation of the `Add new contact` feature*
 
-Fig. 10 shows the sequence diagram of how a new contact is added.
+Fig 10. shows the sequence diagram of how a new contact is added.
 
 Given below is an example usage scenario of how the `Add new contact` feature behaves.
 
@@ -277,7 +277,7 @@ Given below is an example usage scenario of how the```ListContact``` command beh
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
 *Fig 12. Sequence diagram of the implementation of the `Display timetable of selected contacts` feature*
 
-Fig. 12 shows the sequence diagram of displaying a combined timetable of selected contacts. 
+Fig 12. shows the sequence diagram of displaying a combined timetable of selected contacts. 
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
 
 Given below is an example usage scenario of how the ```DisplayTimetable``` command behaves.
