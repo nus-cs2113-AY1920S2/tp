@@ -11,7 +11,7 @@ WhenFree is a Command Line scheduler chatbot for NUS students to find common fre
 * **Enhancement 2**: added feature **Edit a contact's timetable**
     * What it does: Overwrites a contact’s timetable to “busy” or “free” for a time slot.
     * Justification: This feature enhances the usability of WhenFree as it allows the user to make amendments on top of 
-    their NUSMODS timetable (eg. empty tutorial slots, consultation sessions), allowing them to find free time slots accurately.
+    their NUSMODS timetable (eg. empty tutorial slots, additional consultation sessions), allowing them to find free time slots more accurately.
     * Highlights: This feature prevents overwriting any meetings scheduled.
 * **UG documentation**:
     * Contributed to the [Introduction](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#introduction) and [Quick Start](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#quick-start) sections. 
