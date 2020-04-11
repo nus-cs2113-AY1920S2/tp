@@ -21,6 +21,7 @@ public class FilterCommand extends Command {
     boolean isChained;
     private static final String FILTER = "filter";
     private static final String FIND = "find";
+
     /**
      * Constructor to create a new filter command.
      */
@@ -29,11 +30,15 @@ public class FilterCommand extends Command {
         isFinalCommand = true;
     }
 
+    /**
+     * Constructor to create a new filter command with chaining.
+     */
     public FilterCommand(String parameters, boolean isFinal, boolean hasChaining) {
         super(parameters.trim());
         isFinalCommand = isFinal;
         isChained = hasChaining;
     }
+
     /**
      * Shows the user all past activities that has tags which match the one or more keywords queried by the user.
      * @param activityList the activity list to search for matching activities
@@ -55,10 +60,10 @@ public class FilterCommand extends Command {
 
     private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
         if (tokenizedParameters[1].length() > 0) {
-            String nextCommand = tokenizedParameters[1].trim();
             isFinalCommand = false;
             parameters = tokenizedParameters[0];
             executeSingleCommand(activityList);
+            String nextCommand = tokenizedParameters[1].trim();
             callNextCommand(nextCommand, activityList);
         } else {
             isFinalCommand = true;
@@ -163,6 +168,7 @@ public class FilterCommand extends Command {
             Ui.printResults(lastShownList);
         }
     }
+
     private void populateLastShownList(ActivityList targetList, ActivityList lastShownList, String keyword) {
         for (Activity i : targetList.activities) {
             // if (!lastShownList.activities.contains(i) && i.getTags().contains(keyword)) {

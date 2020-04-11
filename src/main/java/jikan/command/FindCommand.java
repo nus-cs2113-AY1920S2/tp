@@ -18,6 +18,7 @@ public class FindCommand extends Command {
     boolean isChained;
     private static final String FILTER = "filter";
     private static final String FIND = "find";
+
     /**
      * Constructor to create a new find command.
      */
@@ -26,6 +27,9 @@ public class FindCommand extends Command {
         isFinalCommand = true;
     }
 
+    /**
+     * Constructor to create a new find command that has chaining.
+     */
     public FindCommand(String parameters, boolean isFinal, boolean hasChaining) {
         super(parameters.trim());
         isFinalCommand = isFinal;
@@ -54,10 +58,10 @@ public class FindCommand extends Command {
 
     private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
         if (tokenizedParameters[1].length() > 0) {
-            String nextCommand = tokenizedParameters[1].trim();
             isFinalCommand = false;
             parameters = tokenizedParameters[0];
             executeSingleCommand(activityList);
+            String nextCommand = tokenizedParameters[1].trim();
             callNextCommand(nextCommand, activityList);
         } else {
             isFinalCommand = true;
