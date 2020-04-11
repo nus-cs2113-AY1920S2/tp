@@ -164,7 +164,7 @@ Y2S2
 2.[x] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
 
 
 Please input your command:
@@ -177,12 +177,12 @@ Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
 
 
 Please input your command:
 You have completed this amount of credits:
-4
+8
 
 
 Please input your command:
@@ -220,7 +220,16 @@ Y2S2
 2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
+
+
+Please input your command:
+Okay, I've marked the module as done!
+
+
+Please input your command:
+Okay! I have added this module to your semester's module list:
+ID: ACC1004 | Module Credit: 4 | Sem: Y3S1
 
 
 Please input your command:
@@ -239,12 +248,13 @@ Y2S2
 2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] Name: ACC1004 Failed | Module Credit: 4 | Sem: Y3S1 | Grade: F
+2.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
 
 
 Please input your command:
 You have completed this amount of credits:
-4
+8
 
 
 Please input your command:
@@ -253,12 +263,13 @@ Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] Name: ACC1004 Failed | Module Credit: 4 | Sem: Y3S1 | Grade: F
+2.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
 
 
 Please input your command:
 Your current CAP is:
-4.50
+3.17
 
 
 Please input your command:
@@ -277,7 +288,8 @@ Y2S2
 1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] Name: ACC1004 Failed | Module Credit: 4 | Sem: Y3S1 | Grade: F
+2.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
 
 
 Please input your command:
@@ -354,10 +366,30 @@ Y2S2
 1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+1.[v] Name: ACC1004 Failed | Module Credit: 4 | Sem: Y3S1 | Grade: F
+2.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: A
+
+
+Please input your command:
+Your current CAP is:
+2.50
 
 
 Please input your command:
 Please input your command:
+You have completed this amount of credits:
+4
+
+
+Please input your command:
+Okay, this module has been deleted from the corresponding semester
+Module ACC1004 failed has been deleted from semester Y3S1
+
+
+Please input your command:
+You have completed this amount of credits:
+4
+
+
 Please input your command:
 Bye bye! I hope to see you again soon ^.^

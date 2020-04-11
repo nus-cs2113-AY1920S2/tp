@@ -19,7 +19,7 @@ public class CalculateCapCommand extends Command {
 
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         calculateCap(semesterList);
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         String cap = df.format(Person.getTotalCap());
         Ui.showCap(cap);
     }
