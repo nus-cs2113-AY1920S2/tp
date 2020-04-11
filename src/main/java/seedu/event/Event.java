@@ -276,7 +276,7 @@ public class Event {
                 String[] attendanceDetail = attendance.split(": ");
                 assert attendanceDetail.length == 2 : "Name contains ': '";
                 String person = attendanceDetail[0];
-                String isPresent = attendanceDetail[1];
+                String isPresent = Attendance.getSimpleAttendanceStatus(attendanceDetail[1]);
                 Attendance newAttendance = new Attendance(person, isPresent);
 
                 attendanceList.add(newAttendance);

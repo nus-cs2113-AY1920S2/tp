@@ -115,8 +115,9 @@ public class UI {
     public void addPerformanceMessage(String studentName, String taskName) {
         System.out.printf("The result of student %s has been added "
                 + "successfully under event %s.\n", studentName, taskName);
-        System.out.print("Record next student: (format: n/name r/result). ");
-        System.out.print("When you are finished, input 'done'.\n\n ");
+        System.out.print("If you are adding student's result manually, ");
+        System.out.print("record next student: (format: n/name r/result). ");
+        System.out.print("When you are finished, input 'done'. \n\n");
     }
 
     public void deleteEventMessage(String eventType, String eventName) {
@@ -194,7 +195,7 @@ public class UI {
     }
 
     public String getResultOfStudent(String studentName) {
-        display("Please key in the result for student " + studentName);
+        display("Please key in the result for " + studentName + ": ");
         readUserInput();
         return getUserInput();
     }
