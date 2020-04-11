@@ -1,7 +1,6 @@
 package seedu.student;
 
 import seedu.pac.Pac;
-import seedu.ui.UI;
 
 import java.util.ArrayList;
 
