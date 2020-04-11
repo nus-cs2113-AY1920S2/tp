@@ -18,6 +18,7 @@ public class CheckWeightRecordCommand extends Command {
     private double weightDifference;
     private double weightToGoal;
     private double weightGoal;
+    private boolean isInValidCommand = false;
 
     /**
      * Constructs the Command object.
@@ -32,6 +33,7 @@ public class CheckWeightRecordCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
+        testAssertions(isInValidCommand);
         this.weightGoal = profile.getWeightGoal();
         weightRecord = profile.getWeightRecord();
         ui.showMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE);
@@ -83,4 +85,7 @@ public class CheckWeightRecordCommand extends Command {
         }
     }
 
+    public static void testAssertions(boolean isInValidCommand) {
+        assert (!isInValidCommand);
+    }
 }
