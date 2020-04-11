@@ -185,9 +185,9 @@ By using `find` and `filter` commands, the user can reduce clutter and zoom-in t
 * `filter TAGNAME`
 * `filter TAGNAME1 TAGNAME2`
 
-### Chaining Lists, Finds & Filters: `-s`
-**Usage:** Users can provide the `find` and `filter` command on the last shown list by providing the `-s` flag after each
-`find` or `filter` command.
+### Chaining Finds & Filters: `-s`
+**Usage:** Users can provide the `find` and `filter` command on the last shown list (also compatible after a `list` 
+command) by providing the `-s` flag after each `find` or `filter` command.
 
 **Format:** 
 * `find -s KEYWORD`
@@ -200,6 +200,13 @@ If we want to find all CS2106 tutorials, we can first use `filter 2106` to filte
 
 ![chain graph activities](./pictures/filter-find_chain.PNG)
 
+#### Single Input Chaining: `;`
+**Usage:** Users can achieve the same outcome as multiple `-s` chaining with a single input. This is done by separating
+`find` and `filter` commands with ` ; `.
+
+**Examples:**
+* `filter TAGNAME ; find KEYWORD1 ; find KEYWORD2`
+* `filter -s TAGNAME ; find KEYWORD1 ; find KEYWORD2`
 
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 

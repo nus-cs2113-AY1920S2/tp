@@ -7,6 +7,7 @@ import jikan.exception.EmptyNameException;
 import jikan.exception.ExtraParametersException;
 import jikan.exception.InvalidTimeFrameException;
 import jikan.exception.NameTooLongException;
+import jikan.exception.MultipleDelimitersException;
 import jikan.storage.Storage;
 import org.junit.jupiter.api.Test;
 
@@ -111,6 +112,8 @@ class FilterCommandTest {
 
         } catch (InvalidTimeFrameException | EmptyNameException | ExtraParametersException | NameTooLongException e) {
             System.out.println("Field error.");
+        } catch (MultipleDelimitersException e) {
+            System.out.println("Multiple Delimiters");
         }
     }
 }
