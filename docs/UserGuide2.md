@@ -233,6 +233,19 @@ Edit information of the patient with the specified NRIC.
 >
 > <img src="images/UG/PATIENT/EditCommandOutput.PNG" alt="Edit Patient Output" width="600">
 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the patient is not found, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/PATIENT/PatientNoExist.png" alt="Patient Not Found" width="600">
+
 <table>
   <col width="20">
   <col width="200">
@@ -275,12 +288,25 @@ Enter `y` to confirm.
 >    
 > <img src="images/UG/PATIENT/DeleteSuccessful.PNG" alt="Successfully Deleted Output" width="600">
 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the patient is not found, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/PATIENT/PatientNoExist.png" alt="Patient Not Found" width="600">
+
 <table>
   <col width="20">
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon successful deletion, patient's information will not be retrievable again. </td>
+   <td> Upon successful deletion, patient's information will no longer be retrievable. </td>
  </tr>
 </table>
 
@@ -297,6 +323,19 @@ Displays all the patients in the patient list.
 > ***Expected output:***
 >
 > <img src="images/UG/PATIENT/ListPatientOutput.PNG" alt="List Patient Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If there are no patients in the list, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/PATIENT/ListNoPatient.png" alt="No Patients Found" width="600">
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -315,6 +354,19 @@ Retrieve details of the patient with the specified NRIC.
 > ***Expected output:***
 >
 > <img src="images/UG/PATIENT/GetPatientOutput.PNG" alt="Get Patient Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the patient is not found, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/PATIENT/PatientNoExist.png" alt="Patient Not Found" width="600">
 
  [&#8593; Return to Top](#table-of-content)
  
