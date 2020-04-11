@@ -594,7 +594,6 @@ Expected outcome:
 #### 4.2.4. Edit Event Name
 Change the name of an existing event.
 
-
 Format: `event editname i/INDEX n/NEW_NAME`
 * alphabet cases for the command is not important
 
@@ -656,8 +655,8 @@ Expected outcome:
 
 ### 4.3 Calendar 
 #### 4.3.1 View events under a particular time
-View events under a particular semester and academic year in a calendar format. To achieve this, there **should** be 
-existing events that exist in your event list. 
+View events under a particular semester and academic year in a calendar format. In the calendar view, it shows the date of the event, type 
+of the event in brackets, and name of the event. 
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 * Both the semester and academic year should be provided.
@@ -666,7 +665,7 @@ Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
   i.e. ay/07-08, ay/19-20.  
 * Order of the flags *matters*.
 
-Note that your event list should contain existing events to view calendar. The following *steps* will guide you to achieve this:
+Note that your event list **should** contain existing events to view calendar. The following *steps* will guide you to achieve this:
 
 Step 1: Add events with date and time that corresponds to semester 2 of academic year 19/20, similar to the event list shown below. 
 To view the events in a list, type the command below. 

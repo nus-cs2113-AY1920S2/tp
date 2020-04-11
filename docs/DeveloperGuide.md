@@ -197,7 +197,16 @@ The diagram below illustrates the program flow stated above:
  to edit the name of the event.  
  
  Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
- `calendar s/2 ay/19-20`.
+ `calendar s/2 ay/19-20`. A sample view of the calendar is shown below:
+ 
+      ___________________________________________________________________________________________________________________________________ 
+                                                              SEMESTER 2 AY 19/20 
+      ___________________________________________________________________________________________________________________________________ 
+     | JAN                 | FEB                 | MAR                 | APR                 | MAY                 | JUN                 |
+     |_____________________|_____________________|_____________________|_____________________|_____________________|_____________________|
+     |                     |                     |                     |                     | 4th [E]: frisbee    |                     |
+     |_____________________|_____________________|_____________________|_____________________|_____________________|_____________________|
+ 
  
  #### Design considerations
  Aspect: Data Structure used to implement calendar
