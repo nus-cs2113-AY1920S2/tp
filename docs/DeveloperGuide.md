@@ -492,12 +492,13 @@ This feature accepts multiple space-separated keywords to search for activities 
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
-#### 3.7.4 Additional features (Proposed)
-Developers may include the feature allowing users users to chain multiple queries and multiple commands 
-in a single user input. Possibly "pipe-lining" the output of one query into the next query with the pipe symbol `|`.
+#### 3.7.4 Additional features
+`find` and `filter` command supports the limiting of searches to activities in the last shown list. This
+is done in 2 ways:
+* The `-s` flag following the command (eg. `find -s keyword`)
+* The `;` delimiter for a combination of `find` and `filter` in a single input (eg. `find KEYWORD ; filter TAGNAME`)
 
-**For example:** 
-* `list week | find -s KEYWORD | filter -s TAGNAME` 
+ 
 
 ### 3.10 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
