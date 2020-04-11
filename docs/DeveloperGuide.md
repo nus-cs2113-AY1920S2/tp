@@ -95,8 +95,9 @@ Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` to disp
 ![Logic Component](images/logiccomponent.png)<br>
 *Fig 2. Overview of Logic component*
 
-The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
-First, ```command``` sub-component would be initialize to interpret the user commands. 
+Fig 2. shows an overview of the Logic component. The `LogicManager` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
+
+First, ```command``` sub-component interprets and initializes user commands. 
 Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` sub-components via ```CommandHandler``` to enable the generation of common time slots from NUSMODS links.
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
@@ -137,7 +138,7 @@ The information returned from ```LessonsGenerator``` would then be used in ```Co
 #### 2.3.2. logic.schedulelogic component
 
 The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
-The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#Display-timetable-of-selected-contacts) 
+The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#33-Display-timetable-of-selected-contacts) 
 feature to obtain a combined schedule of selected ```Contact```s.
 
 The ```schedulelogic``` component consists of the class ```ScheduleHandler```. The key interactions of `ScheduleHandler ` 
