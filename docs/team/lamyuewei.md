@@ -65,6 +65,7 @@ I contributed to the Developer Guide under the section of profile component and 
 * Added to the list of user story
 * Updated to the value proposition
 * Fix minor typos in the Developer Guide
+* Stated description for all the parsers, commands and exceptions.
 
 ### Contributions to team based tasks
 I have contributed to several of my team based tasks. 
@@ -87,8 +88,12 @@ I have contributed to several of my team based tasks.
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/137), 
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/140), 
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/141), 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/159) and 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/160).
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/159), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/160), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/161), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/162), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/163) and 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/165).
 
 * In addition, I have also provided feedback to my teammates by providing them with insights as to how to go about implementing certain features when they request for help. These helps are essential since it help our team ensure that we are on track with the tasks on hand.<br>
     * For example, I have helped Yu Xiang recently when he asked me for an idea of how to go about creating a class file to monitor weight changes.
