@@ -641,7 +641,7 @@ Given below are instructions to test the app manually.
     > :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
-1. Set up your contacts profile
+1. Set up your contacts profile<br>
     1.Test case: ```Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6``` <br>
     
     Expected: A new main contact will be added. Name: Tommy, with his respective modules.
