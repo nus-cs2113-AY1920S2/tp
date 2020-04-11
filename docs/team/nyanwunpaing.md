@@ -80,13 +80,13 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)
+[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)  
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 [Architecture](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#31-architecture)  
-[Section 4.2] (https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#42-add-features)
-[Section 4.6] (https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#46-delete-features)
-[Section 4.9](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#49-user-prompting) 
+[Section 4.2](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#42-add-features)  
+[Section 4.6](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#46-delete-features)  
+[Section 4.9](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#49-user-prompting)  
