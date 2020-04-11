@@ -729,7 +729,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![ClassDiagramList.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramList.jpg)
+![ClassDiagramList.jpg](images/ClassDiagramList.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -988,7 +988,7 @@ If the attribute String <b>exceeds</b> the length limit, an <b>exception</b> wil
 In addition, for <code>EditCategoryCommand</code> and <code>EditTaskCommand</code>, it will fill in any missing attributes not specified by the user in their input. This is done through the command's <code>fillAttributes()</code> method.  
 <br><br>
 Finally, the <b>edit</b> command will perform the <code>edit()</code> method to edit the <code>Directory</code>. 
-</div><br>    
+</div>    
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
@@ -1285,7 +1285,7 @@ private void runCommandLoopUntilExitCommand() {
 	... ...
 }
 ```
-</div>   
+   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 Notice that the <code>ScreenShotManager#saveScreenShot()</code> is also called after the <code>StorageManager</code> saves the <b>Directory Tree</b>. The <code>ScreenShotManager</code> class is responsible for performing <b>undo</b> and <b>redo</b> operations in the application. 
@@ -1294,7 +1294,7 @@ For more information about the <code>ScreenShotManager</code> class or the <b>un
 </div>
 
 Here is a <i>sequence diagram</i> of what happens during saving after a successful <b>add</b> command: <br>   
-![storage manager sequence diagram](images/dg_save_seq.png)  
+![storage manager sequence diagram](images/dg_storage_seq.png)  
 <span style="color: green"><small><i>Figure <b>Storage Manager Sequence Diagram</b></i></small></span>    
 <br>
 
@@ -1399,6 +1399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ​    40 words per minute
 
 #### Depth First
+To go recursively downwards until the bottom before back-tracking
 
 <br>  
 
