@@ -20,6 +20,7 @@ Table of Contents
     4.1 [Addition](#41-addition)  
     . . 4.1.1 [Add to Semester feature](#411-add-to-semester-feature)  
     . . 4.1.2 [Add to available feature](#412-add-to-available-feature)  
+    . . 4.1.3 [Design Considerations](#413-design-considerations)  
     4.2 [Deletion](#42-deletion)  
     . . 4.2.1 [Delete from Semester feature](#421-delete-from-semester-feature)  
     . . 4.2.2 [Delete from Available feature](#422-delete-from-available-feature)  
@@ -241,6 +242,22 @@ into `AvailableModulesList#add()` method to add it into the `availableModulesLis
 #### Step 3:
 Finally, the `AddToAvailableCommand#checkSemesterList()` method is called to check if the `newModule` object is also
 in the semesterList. If it exists, both its name and id attributes are updated.
+
+### 4.1.3 Design considerations
+
+Aspect: What is the format of add command
+
+Alternative 1 (current choice): Both `Add to Semester` and `Add to Available` use `add` command word.
+
+Pros: Can input command faster.
+
+Cons: May not distinguish these two types of command.
+
+Alternative 2: `Add to Semester` uses `addtosem` while `Add to Available` uses `addtodata`
+
+Pros: Easy to distinguish these two types of command.
+
+Cons: Will lower the typing speed.
 
 ## 4.2 Deletion
 
