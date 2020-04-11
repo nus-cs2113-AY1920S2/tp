@@ -687,6 +687,19 @@ than using the mouse.
 1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
 folder in command terminal.  
  
+#### Saving and loading data
+1. Make sure you have some events and/or student lists to load.  
+    - You can use `event add`, and `studentlist add` to add some.
+1. Close the application using `bye` command.   
+    - `All events are saved.` is shown if there are events to save.
+    - `All student lists are saved.` is shown if there are student lists to save.
+    - They are saved under `data/`.
+1. Delete all commas and pipes under `eventlist.txt` to simulate data corruption.   
+1. Run the application again.
+1. You will see `...Corrupted event found. Only previous events are loaded.`
+1. If you have unmodifed events before the corrupted event, they will be loaded 
+and saved.
+
 #### Follow **all-in-one** command for following commands:  
 **Event**
 1. Add an event by typing  
