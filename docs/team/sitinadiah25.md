@@ -37,10 +37,6 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - The Command classes that I have implemented are essential to the application as it allows the user to 
     add, modify and delete their data. 
     
-+ Highlights:
-
-    - 
-
 **Major enhancement:** I implemented the `Appointment` and `AppointmentMap` class and parts of the Appointment-related commands.
 
 + What it does:
@@ -92,7 +88,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write documentation targeting end-users.
 
 [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Appointment.md)
+[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
