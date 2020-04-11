@@ -486,10 +486,8 @@ The following illustrates the execution sequence of a general use case.
 Note: Due to the sequence similarities between `find` and 
       `filter`, the sequence diagram for `filter` is omitted.
 
-*Sequence Diagram for Find Command*
 ![image_info](./pictures/Find_Sequence_Diagram.png)
 
-*Reference Frame for Populating List*
 ![image_info](./pictures/Find_Reference_Frame.PNG)
 
 
