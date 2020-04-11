@@ -114,6 +114,7 @@ The Model consists of the following classes:
 The `Model` component
 1. Receives instructions from `Logic` to update in-memory information.
 2. Is not dependent on any of the other components.
+3. Contains all the classes that are responsible for database and records of food and user
 
 ### Commons component
 
@@ -180,6 +181,7 @@ And save execution `results` in the `RecordMealCommand` object.
 Students that :
 1. are too busy with schoolwork to carefully monitor their eating habits
 2. are concerned about their health
+3. likes to keep track of their meals/weight habit digitally
 3. want to keep track of their weight
 
 ### Value proposition
@@ -190,6 +192,7 @@ Diet Manager aims to achieve the following:
 3. Enable users to monitor weight changes across time to work towards their ideal weight goal
 4. Provide personalised information and recommendations for the user
 5. Monitor and track user's weight changes to achieve weight goal
+6. Check their BMI as well as the BMI table regardless of user
 
 ## User Stories
 
@@ -213,20 +216,22 @@ Diet Manager aims to achieve the following:
 ## Non-Functional Requirements
 
 Device Environment:
-* Must have Java 11 or higher
+* Must have Java 11 or higher installed in OS
 * 32-bit or 64-bit environment
-* Command Line Interface
+* Command Line Interface or Terminal for Mac
 
 Performance:
 * Function offline, without the need for internet access
 * Quick to launch and use
 * No noticeable lag or delay in performance when running
 * Intuitive and seamless for new users.
+* Ability to export the data into a txt file to load on another OS
 
 Reliability:
 * Data files should be updated constantly and accurately, with no data loss
 * Data records should be retrievable and readable
 * Text inputs should produce similar results if utilised multiple times.
+* Program should run without and forced-close error due to bugs
 
 ## Glossary
 
