@@ -20,6 +20,10 @@ public class Person {
         return totalModuleCreditCompleted;
     }
 
+    public static void clearTotalModuleCreditCompleted() {
+        totalModuleCreditCompleted = 0;
+    }
+
     /**
      * Updates user's total completed module credits.
      */
