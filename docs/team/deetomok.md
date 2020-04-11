@@ -31,11 +31,6 @@ user's data. Some scenarios considered include:
     * User fails a mod, we have to allow them to add the same module again, as in reality they must re-take the module. 
     * User marks a module as done, but entered an incorrect grade, and has to update the done module's grade
 
-##### Controller  
-* What it does: When a user inputs a command line, 
-* Justification: 
-* Highlights: 
-
 ### Contributions to documentation: 
 * Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Command Format, Mark as Done feature, Deleting features, FAQ, Command summary 
