@@ -46,7 +46,7 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
 	* Documented Appendix C of Developer's guide: ```Appendix C: Use Cases```
 	* Documented Appendix D of Developer's guide: ```Appendix D: Non-functional requirement```
 	* Documented Appendix E of Developer's guide: ```Appendix E: Glossary```
-	* Documented Appendix F of Developer's guide: ```Appendix F: Instructions for Manual Testing of Developer Guide```.
+	* Documented Appendix F of Developer's guide: ```Appendix F: Instructions for Manual Testing```
     * Looked through all the issue feedback from PED dry run and fixed major issue that could cause our application to crash. Issues related to user guide are assigned to teammates respectively depending on their roles for this project.
     * Refactor code in WhenFree.java (application's main class) to be more compact.
     
