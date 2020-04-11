@@ -122,7 +122,7 @@ Example of usage:
 
 Example output:
 
-![timetable](images/timetable_op.png)
+![timetable](images/timetable_op.PNG)
     
 A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
 
