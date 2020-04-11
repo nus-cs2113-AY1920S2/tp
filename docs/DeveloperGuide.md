@@ -154,7 +154,7 @@ For future development, any code that requires the parsing of LocalDate can use 
 
 ## 3. Implementation
 
-#### 3.1 List By Category
+#### 3.1 List By Category (Previous implementation)
 ##### 3.1.1 Implementations
 The list by category mechanism is facilitated by ListCommand which extends Command.
 

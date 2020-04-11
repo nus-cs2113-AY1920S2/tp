@@ -38,7 +38,7 @@ remember your tasks.
 
 1. Copy the file to the folder you want to use as the home folder.
 
-1. Run the jar file using `java - jar caf.jar` from your terminal window.
+1. Run the jar file using `java - jar cafs.jar` from your terminal window.
 
 <br/>
 
