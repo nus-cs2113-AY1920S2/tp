@@ -71,7 +71,7 @@ Here is a quick overview of each layer/component and the sub-components residing
 * Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that cannot be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
 * Model: Holds the data of the application in memory to be easily accessed by methods that requires it.
-* Storage: Writes data from Model layer to hard disk, as well as reading previously saved data from hard disk and storing it into Model layer.
+* Storage: Writes data from Model component to hard disk, and reads previously saved data from hard disk into Model component.
 
 ### 2.2. UI component
 The UI component represents the Command Line user interface of the application. It serves the purpose of facilitating the 
