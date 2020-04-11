@@ -194,6 +194,10 @@ parent and child directory
 
 The **Architecture Diagram** given above explains the high-level design of the apllicatoin. Give below is a qucik overview of each component.
 
+![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
+
+<span style="color: green"><small><i>Figure <b>Architecture Diagram</b></i></small></span>
+
 **`Main`** has only one class called **Nuke**. It is responsible for,
 - At launch: Initializes the components in the correct sequences, and connects them up with each other.
 
@@ -231,7 +235,7 @@ For example, the **`Storage`** component defines it's API in several classes inc
 #### How the architecture components interact with each other
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
 
-<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
+<span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
 
 ### UI componenet
 Classes 
