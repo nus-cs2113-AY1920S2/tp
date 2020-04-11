@@ -70,8 +70,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Purpose** [&#10149;](#purpose)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Scope** [&#10149;](#scope)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Definitions** [&#10149;](#definitions)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)    
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <br>  
@@ -118,29 +117,19 @@ This document will cover the structure and software design decisions for the imp
 </span>  
 
 ### **Design Goals**  
+<div>
+We have <b>two</b> main design goals:
+</div>
 
-```
-	// To be done.
-```
+#### <b>Develop a structure that facilitates a more efficient organisation of the user's tasks</b>    
+<div>
+This is the very value proposition of our application. We seek to make <b>Nuke</b> a more powerful and efficient task management system as compared to other similar products in the marketplace. As such, the structure of our application needs to be well-built and be efficient in retrieving tasks and files, as well as perform relevant operations such as adding, deleting and sorting tasks.
+</div>
 
-[Back To Top](#table-of-contents)    
-<br>  
-
-### **Definitions**  
-
-static
-exception
-class
-object
-directory
-directory tree
-abstract
-method
-parent and child directory
-```
-	// To be done.
-```
-
+#### <b>Enhance speed to perform operations</b>    
+<div>
+Another design goal we desire is to implement measures to allow the users to be able to execute their commands quickly. This would mean that the commands have to be short, but still contain the information required for the application to perform the correct command. 
+</div>
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -189,10 +178,71 @@ parent and child directory
 [Back To Top](#table-of-contents)    
 <br>  
 
-## **Design**  
+## **Design**
+### **2.1 Architecture**
+
+![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
+
+<span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
+ <br>
+ 
+The **Architecture Diagram** given above explains the high-level design of the application. Give below is a quick overview of each component.
+
+**`Main`** has only one class called **Nuke**. It is responsible for,
+- At launch: Initialises the components in the correct sequences, and connects them up with each other.
+
+- At running: Invoke UI to Show welcome messages, continuously invokes UI, Logic component to execute commands entered by user. Also invokes storage component to save data after execution of user's commands
+
+- At shut down: Invokes UI component to show exit message.
+
+There are <b>four</b> other components in the <b>Nuke</b> application.
+- **`UI`**:  The UI of the application which complete interactions between **User** and **Nuke**.
+
+- **`Logic`**: The command executor.
+
+- **`Model`**: Holds different data types in the application.
+
+- **`Storage`**: Loads data from, and writes data to, a file in the user's hard disk.
+
+Each of the four components
+- defines its API in several classes
+
+- exposes its functionalitiy by invoking different methods in these classes.
+
+For example, the **`Storage`** component defines it's API in several classes including <code>Encoder</code> and  <code>Decoder</code>, and exposes its functionality by invoking different method in these classes by <code>StorageManager</code>  class.
+<br>
+
+
+#### How the architecture components interact with each other
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
+
+![interactions.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/interactions.jpg)
+
+<span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
+
+### **2.2 UI componenet**
+Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
+
+### **2.3 Logic component**
+Classes used by Logic component are in the [**`seedu.nuke.data`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/data), [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java) in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
+
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+
+![logic component](images/dg_logic.png)
+
+<span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
+<br>
+
+### **2.4 Model Component**
+More information about the <b>Model Component</b> can be found [here](#structure-implementation).
+<br>
+
+### **2.5 Storage Component**
+More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
+<br>
 
 [Back To Top](#table-of-contents)    
-<br>  <br>  
+<br>  
 
 ## **Structure Implementation**  
 <div>
@@ -242,7 +292,6 @@ The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</
 We will show a more detailed <i>class diagram</i>, as well as describe each of the <b>Directory</b>'s attributes below: 
 </div>   
 <br>
-
 <p id="directory-class-diagram"></p>
 
 ![directory class diagram](images/dg_directory_class.png)    
@@ -307,12 +356,12 @@ The <b>Directory Manager</b> classes also contain very similar methods to carry 
 <li><code>filterExact(moduleKeyword: String)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
 </ul>
 <br>
-The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
+The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#implementation"><b>Model component</b></a> of the <b>Nuke</b> application.  
 </div>   
-
+  
 [Back To Top](#table-of-contents)    
 <br>   
-
+  
 #### **Design Considerations**     
 <b>Structure Decision</b>    
 - <b>Alternative 1</b>: No <b>Directory Tree</b> structure; have <b>one</b> Task List</b> which stores all the user's <i>tasks</i>       
@@ -345,7 +394,7 @@ The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> att
 </div>  
 
 #### **Implementation**    
-![directory traverser class diagram](images/dg_traverser_class.png)   
+![directory traverser class diagram](#images/dg_traverser_class.png)   
 <span style="color: green"><small><i>Figure <b>Directory Traverser Class Diagram</b></i></small></span>   
  <br>
 
@@ -359,7 +408,7 @@ The <code>DirectoryTraverser</code> class is a static class which has several pu
 ![directory traverser traverse down](images/dg_traverse_down.png)    
 <span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Down</b></i></small></span>   
  <br>  
-
+ 
 ![directory traverser traverse up](images/dg_traverse_up.png)    
 <span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Up</b></i></small></span>   
  <br>  
@@ -411,7 +460,7 @@ To support the attributes matching feature, <code>DirectoryTraverser</code> has 
 As of the current implementation, the above methods are sufficient for the attributes matching property.
 </div>
 <br>   
-
+  
 [Back To Top](#table-of-contents)    
 <br>   
 
@@ -435,12 +484,18 @@ The commands targeting the <b>File</b> Directroy requires the longest <i>path</i
 
 ## **Command Implementation**  
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
+<br><br>
+Below is a diagram which summarises the commands in the current <b>Nuke</b> application.
+<br>
+![commands](images/dg_command.png)   
+<span style="color: green"><small><i>Figure <b>Nuke Commands</b></i></small></span>
+
 
 ### **1. Add Command**
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-![ClassDiagramAdd.jpg](images/ClassDiagramAdd.jpg)
+![ClassDiagramAdd.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramAdd.jpg)
 
 <span style="color: green"><small><i>Figure <b>Add Command Classes Diagram</b></i></small></span>
 
@@ -462,6 +517,8 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 
 1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
 2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
+
+<span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
 #### **Example Usage**
 
@@ -509,11 +566,9 @@ James receive the following feedback:
    +--------------------------------------------------------------------------------------------------+
 ```
 
-Below is a *sequence diagram* to illustrate the above example scenario.  
-
 ![image-20200326014336120](images/Add_Module_Command_Sequence_Diagram.png)
 
-<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
+Below is a *sequence diagram* to illustrate the above example scenario.  
 
 
 
@@ -544,9 +599,9 @@ The `AddCategoryCommand` and `AddTaskCommand` will first call the `getParentDire
 
 Below are the class-diagram for the involved classes:
 
-![image-20200326014336120](images/Add_Category_Command_Class_Diagram.png)
-
-<span style="color: green"><small><i>Figure <b>Add Category Command Class Diagram</b></i></small></span>
+```
+to-do: add the class-diagram
+```
 
 #### **Example Usage**
 
@@ -594,13 +649,31 @@ Total categories: 5
    SUCCESS!! Category misc is created.
    ```
 
-
 Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 
 ![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
 <span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
+#### **Design Considerations**     
+<b>Character Limit</b>    
+- <b>Alternative 1</b>: Have no character limit to the names of the <b>Directory</b> being added       
+	- <b>Pros</b>: Simple to implement. No need to do any checking and create error messages aside from duplicated names. 
+	- <b>Cons</b>: If the name is too long, it would affect the formatting of the list to be printed in the <b>list</b> command.   
+
+- <b>Alternative 2</b>: Have a character limit <b>(current implementation)</b>         
+	- <b>Pros</b>: The list to be shown to the user in the <b>list</b> command will not run into formatting issues. 
+	- <b>Cons</b>:At times, user may want to have a particularly long name for the <b>Directory</b>. However, they are unable to do so anymore if a word limit is imposed.   
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The word limit that we have implemented in <b>Nuke</b> are the following:
 <br><br>
+<b><i>Module Code</b></i>: No character limit, but has to be an <n>NUS</b> provided <i>module</i><br>
+<b><i>Category Name</b></i>: <b>15</b> characters</i><br>
+<b><i>Task Description</b></i>: <b>25</b> characters</i><br>
+<b><i>File Name</b></i>: <b>30</b> characters</i><br>
+<br>
+These numbers are chosen in view of the realistic length of words a user will usually use for such names. So in most cases, the user should not be exceeding the character limit &#128527;.
+</div> 
 
 ### **2. List Command**  
 
@@ -614,7 +687,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![ClassDiagramList.jpg](images/ClassDiagramList.jpg)
+![ClassDiagramList.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramList.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -660,7 +733,7 @@ After the input is parsed as a **list module** command and executed, the `ListMo
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![list module command sequence diagram](images/List_Module_Command_Sequence_Diagram.png)   
+![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)   
 <span style="color: green"><small><i>Figure <b>List Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
@@ -696,12 +769,12 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-![prompt command class diagram](images/dg_prompt_class.png)   
+     
+![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
 
 <br> 
 Two <b>prompt</b> commands are involved in the deletion process:<br>  
-
 <ol>  
 <li><code>ListNumberPrompt</code> manages the event after the user has input the <i>list numbers</i> of the <i>directories</i> to delete when there are <b>multiple</b> matches.</li>  
 <li><code>DeleteConfirmationPrompt</code> manages the event after the user has responded to the confirmation prompt to delete the <i>directories</i></li>  
@@ -860,7 +933,6 @@ The <b>edit</b> command edits the attributes of a <i>directory</i>. For example,
 ![edit commands class diagram](images/dg_edit_class.png)   
  <span style="color: green"><small><i>Figure <b>Edit Commands Class Diagram</b></i></small></span>   
  <br>  
-
 <div>   
 The <b>edit</b> commands all work in a similar manner. As seen in the <i>class diagram</i> above, each of the <b>edit</b> commands extends from the <i>abstract</i> <code>EditCommand</code> class. The <code>EditCommand</code> class has an <i>abstract</i> method, <code>toEdit(Directory)</code>, which is to be implemented by each of the <b>edit</b> commands. 
 <br><br>
@@ -929,7 +1001,7 @@ If the user want to traverse up from the current <i>directory</i> instead, <code
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
-</div> <br>
+</div>    
 
 Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>      
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
@@ -1105,7 +1177,7 @@ The storage operations, such as saving and loading of data, are implemented thro
 <br><br>
 In our current implementation, the data is saved into a <code>save.txt</code> file in the user's device. 
 </div>  
-
+  
 #### **Implementation**  
 ##### **Encoding and Decoding**  
 ![storage manager class diagram](images/dg_storage_class.png)
@@ -1127,7 +1199,7 @@ The decoded <b>Directory Tree</b> is then loaded into the application by the <co
 <br><br>
 The <code>StorageManager</code>, <code>Encoder</code> and <code>Decoder</code> classes make up the <b>Storage Component</b> of <b>Nuke</b>.
 </div>   
-
+  
 ##### **Saving**  
 <div>
 In our current implementation of <b>Nuke</b>, the <b>Directory Tree</b> is saved every time a <i>change</i> is made. Change here refers to operations that changes the contents in the <b>Directory Tree</b> , such as successful adding, deleting and editing of the <i>directories</i>. 
@@ -1419,7 +1491,7 @@ All the List Commands below are assumed to be executed at the root directory.<br
 <br>  
 
       ![](images/dg_lsf.png)
-
+   
 5. List tags
 
    1. Test case: `lsg -m cs2113t -c Assignment -t assignment2`
