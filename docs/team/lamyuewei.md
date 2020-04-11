@@ -54,8 +54,12 @@ I contributed to the User Guide under the section of check required calories.
 * Provided examples of usages of the command
 * Provided some 3 sample outputs that the user will likely see as the result individuals might see differs since some profile might want to gain weight while others might want to lose weight
 
-I also contributed to the User Guide under the section of set user profile.
+I contributed to the User Guide under the section of set user profile.
 * Added some key information of the units used for the user to take note of when using the command
+
+I contributed to the User Guide under the section of Features.
+* Added the units for some required input (e.g. Activity-Level, etc) in our program
+* Stated which arguments are case-insensitive
 
 ### Contributions to the DG
 I contributed to the Developer Guide under the section of profile component and food component.

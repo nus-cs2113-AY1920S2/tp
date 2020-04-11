@@ -131,7 +131,7 @@ Only the `set-profile`, `help` and `exit` commands are usable upon first start-u
 ## 3 Features 
 
 Note that:
-* Name is restricted to strings with no spaces. Spaces in between names can be replaced by a - instead. 
+* Name is restricted to strings with no spaces. Spaces in between names can be replaced by - instead. 
 * Age is restricted to whole numbers only.
 * Gender is restricted to "male" or "female". Input is case-insensitive.
 * Height has units in centimetres.
