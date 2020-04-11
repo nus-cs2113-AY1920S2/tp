@@ -441,7 +441,7 @@ The **add** feature adds modules, categories, tasks and tags into the Module, Ca
 
 *Class diagram* to illustrate **Add Command** classes:
 
-
+![Class_Diagram_Add.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Class_Diagram_Add.jpg)
 
 #### **1.1. Add Module Command**
 
