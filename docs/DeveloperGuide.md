@@ -915,8 +915,22 @@ Value proposition: Note taking application built for doctors to manage notes fas
 ### Appendix D: Glossary 
 
 - *Mainstream OS* - Windows, Linux, Unix, OS-X
-- *dob* - date of birth
-- *ic* - 
+- *NRIC* → The National Registration Identity Card
+- *pr* → Patient Record
+- *appt* → Appointment
+- *ui* → User Interface
+- */n* → Patient's Name
+- */ic* → Patient's NRIC
+- */p* → Patient's Phone Number
+- */dob* → Patient's Date of birth
+- */b* → Patient's Blood type
+- */a* → Patient's Allergies
+- */rm* → Patient's Remarks
+- */t* → Time of the Patient's appointment
+- */d* → Date of the Patient's appointment
+- */r* → Reason for the Patient's appointment
+- */sym* → Patient's Symptoms
+- */diag* → Patient's Diagnosis
 
 ### Appendix E: Instructions for Manual Testing
 
