@@ -93,14 +93,14 @@ public class AttendanceCommandInterpreter extends CommandInterpreter {
         return eventList.getEvent(eventName).getAttendanceList();
     }
 
-    private String sortType() {
+    private String getSortType() {
         UI.display("Please Key in either 'name' or 'status'.");
         ui.readUserInput();
         return ui.getUserInput().toLowerCase().trim();
     }
 
     private Command sortAttendanceList() throws PacException {
-        switch (sortType()) {
+        switch (getSortType()) {
         case "name":
             return new SortAttendanceListByName(attendances, eventName);
         case "status":

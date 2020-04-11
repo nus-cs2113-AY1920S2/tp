@@ -25,7 +25,7 @@ public class SortStudentListByName extends Command {
         if (studentListCollection.isEmpty()) {
             UI.displayStudentListCollectionEmpty();
         } else {
-            Pac.studentListCollection.sort(listNameComparator);
+            studentListCollection.sortByName();
             UI.display("Student List is sorted by name within the Student List Collection.");
         }
     }

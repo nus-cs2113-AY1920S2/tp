@@ -5,6 +5,7 @@ Pac. The following groups are in particular the intended audience of the documen
 - PAC project managers
 - PAC developers
 - PAC software testers
+
 ## Table of Contents
 1. [Setting Up](#1-setting-up)  
     1.1 [Requirements](#11-requirements)  
@@ -234,9 +235,21 @@ command to modify an event from the event list. This is illustrated in the flowc
 *Calendar management activity diagram*
 
 ### 3.3 Attendance
-![attendance](images/Attendance.png "Class diagram of Attendance component")        
-*Class diagram of the Attendance component*
+![attendance](images/Attendance.png)        
+*Class diagram of the Attendance component*    
 The Attendance features allow users to update and keep track of their students' attendance for a Event.
+
+#### Attendance Command Interpreter
+Attendance Command Interpreter interprets the user input when it belongs to the attendance category.
+When user input is passed to Attendance Command Interpreter, it extracts the second word in the user
+input and decides whether the string can be interpreted as a valid Command. If valid, the interpreter
+returns its corresponding Command. Else, the interpreter will throw PacException to inform the user 
+that the string is interpreted as an invalid Command.
+Below shows the flow chart and sequence diagram of Attendance Command Interpreter.  
+![Flow chart](images/AttendanceCommandInterpreterFlowChart.png)  
+*Flow Chart of Attendance Command Interpreter*  
+![Sequence Diagram](images/AttendanceCommandInterpreterSequenceDiagram.png)  
+*Sequence diagram of Attendance Command Interpreter*  
 
 #### Program flow
 1. When a user enters an attendance-related command, the command is analysed by `AttendanceCommandInterpreter`. 
@@ -245,9 +258,74 @@ The Attendance features allow users to update and keep track of their students' 
 1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
-* `attendance add` command requires a line-by-line insertion of the student attendance data. 
-The user is given an option to either use an existing list stored under StudentListCollection or
-create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
+* `attendance add` command provides to use an existing list stored under `StudentListCollection` or to create 
+a new list. If you choose to use an existing list, you need to ensure that there are existing `StudentList` in
+the `StudentListCollection`. If you choose to create a new list, you will be given an option of a multi-line or 
+single line interaction. If you are a new user, you will be assigned to use the multi-line entering of student
+attendance data. If you are not a new user, you will assigned to use the single line entering of student
+attendance data. `n/` and `p/` flags are used to insert new attendance.
+
+#### Features under Attendance
+There are 6 features for attendance in total, as shown below. 
+The features will be presented in the order of sequence diagram, followed by description.  
+
+1. Add attendanceList  
+![AddAttendanceList](images/AddAttendance.png)    
+*Sequence diagram of AddAttendanceList* 
+`AddAttendanceList` is a subclass of Command. It allows the user to add a new existing `attendanceList` under an Event.
+The method addToList() accesses the `attendanceList` of a given event, and checks whether the list is empty. If there is
+an existing `attendanceList` in the given event, it calls display() in UI and inform the user that the list currently
+exist and needs to be cleared before adding a new attendanceList. Else, it will prompt the user to ask whether the 
+user intends to use an existing `studentList` found in `studentListCollection` or create a new list which will be added
+to `studentListCollection` upon creation with the name of the event as the list name. 
+ 
+1. Clear attendanceList    
+![ClearAttendanceList](images/ClearAttendanceList.png)    
+*Sequence diagram of ClearAttendanceList*
+`ClearAttendanceList` is a subclass of Command. It allows the user to clear an existing `attendanceList` under an Event.  
+The method clear() accesses the desired `attendanceList` of a given event, and checks whether the list is empty.
+If empty, it calls display() in UI and inform the user list is empty. Else, it will clear the existing `attendanceList` 
+stored under the given event.
+
+1. View attendanceList  
+![ViewAttendanceList](images/ViewAttendanceList.png)     
+*Sequence diagram of ViewAttendanceList*    
+`ViewAttendanceList` is a subclass of Command. It allows the user to view a self generated table based on the data 
+in a desired `attendanceList`.  
+The method view() accesses the desired `attendanceList` of given event, and checks whether the list is empty.  
+If empty, it calls display() in UI and inform the user list is empty. Else, it will iterate through the `attendanceList` 
+and print Attendance data in a table format.  
+
+1. Sort attendanceList  
+    1. ![SortAttendanceListByName](images/SortAttendanceListByName.png)   
+    *Sequence diagram of SortAttendanceListByName*    
+    
+    1. ![SortAttendanceListByStatus](images/SortAttendanceListByStatus.png)    
+    *Sequence diagram of SortAttendanceListByStatus*    
+`SortAttendanceListByName` and `SortAttendanceListByStatus` are subclasses of Command. 
+They both allow the user to sort a attendance list by either the student's name or status.
+The two Commands will be discussed together in this section as they have similar behaviour.  
+The methods `SortAttendanceListByName` and `SortAttendanceListByStatus` access a desired `attendanceList` and check 
+whether it is empty. If empty, it calls display() in UI and inform the user list is empty.  
+Else, it will sort the `attendanceList` by the type mentioned in its method name.  
+
+1. Edit attendance  
+![EditAttendance](images/EditAttendance.png)    
+*Sequence diagram of EditAttendance*  
+`EditAttendance` is a subclass of Command. It allows the user to edit an `attendance`,
+either the student's name or status, from a desired `attendanceList` under an Event.  
+The method edit() accesses the desired `attendanceList` of given event, and checks whether the list is empty.
+If empty, it calls display() in UI and inform the user list is empty. Else, it will call decideEdit() from itself.
+The method decideEdit() will call getUserInput() in UI to get the user input and decide whether to call editName() or 
+editStatus() base on the user input.
+
+1. Find attendance  
+![FindAttendance](images/FindAttendanceList.png)  
+*Sequence diagram of FindAttendance*  
+`FindAttendance` is a subclass of Command. It allows the user to find an `attendance`.
+The method find() accesses the desired `attendanceList` of given event, and checks whether the list is empty.
+If empty, it calls display() in UI and inform the user list is empty. Else, it will call findAttendance() from 
+`attendanceList`. findAttendance() will search for attendance with the same name entered and display for the user.
 
 ### 3.4 Performance
 ![Performance](images/Performance.png)
@@ -269,13 +347,13 @@ Performance Command Interpreter.
 
 #### Program flow
 1. When a user enters a performance-related command, the command is analysed by 
-[PerformanceCommandInterpreter](#263-performance-command-interpreter). 
+[PerformanceCommandInterpreter](#-performance-command-interpreter). 
 1. Once determined, the relevant class that corresponds to the command is created (e.g. AddPerformance, 
 DeletePerformance...), and ask for relevant information (e.g. event name, student name, student result) from the user. 
 1. Then, with the information extracted from the previous step passed into it. It modifies PerformanceList` under
 the event class correspond to the input event name.
 1. These commands are then returned to `Pac.run()` to `execute()`. 
-
+ 
 Note that:
 * All PerformanceList class are created under an Event. A PerformanceList cannot exist 
 by its own. 
@@ -310,7 +388,7 @@ of the Performance to be deleted, and return a Performance.
 The Performance attained from getPerformance() will be deleted from a desired performanceList. 
 
 1. Edit performanceList
-![EditPerformance](images/EditPerformance.png)
+![EditPerformance](images/EditPerformance.png)  
 *Sequence diagram of EditPerformance*  
 EditPerformanceList is a subclass of Command. It allows the user to edit a performance,
 either the student's name or result, from a desired performance list under an Event.  
@@ -352,26 +430,43 @@ Else, it will iterate through the performanceList and print Performance
 data in a table format.  
 
 ### 3.5 Student List Collection
+![StudentListCollection](images/StudentList.png)     
+*Class diagram of the Student component* 
+
 The Student list features allow users to store a list of student names, which could be used
 when updating students' attendance and performance data conveniently.  
 
-![Student](images/Student.png "Class diagram of Student component")     
-*Class diagram of the Student component*  
+#### Program Flow   
 1. When a user enters an studentList-related command, the command is analysed by `StudentCommandInterpreter`. 
 1. Once determined, the relevant class that corresponds to the type of command is created.
-1. Then, the class will execute base on its function. It modifies `AttendanceList`.
+1. Then, the class will execute base on its function. It modifies `StudentList`.
 1. These commands are then returned to `Pac.run()` to `execute()`. 
 
 Note that:
 * studentList-related commands can be executed without the existence of events.
 
-* *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`  
+#### Student Command Interpreter
+Student Command Interpreter interprets the user input when it belongs to the
+student category. 
+When user input is passed to Student Command Interpreter, it extracts the second word in the user input 
+and decides whether that string can be interpreted to a valid Command. If valid, the interpreter returns 
+its corresponding Command.  If invalid, the interpreter throws PacException to inform the user. 
+Below shows the flow chart and sequence diagram of Student Command Interpreter.    
+![Flow chart](images/StudentCommandInterpreterFlowChart.png)    
+*Flow Chart of Student Command Interpreter*    
+![Sequence diagram]()   
+*Sequence diagram of Student Command Interpreter*    
+
+#### Features under Student List Collection
+
+There are 6 features for Student in total, as shown below. 
+The features will be presented in the order of sequence diagram, followed by description.  
 
 1. Add student list
 ![AddStudentList](images/addStudentList.png)  
  *Sequence diagram of AddStudentList*   
-AddStudentList is a subclass of Command. It allows the user to add a student list
-to the studentListCollection.    
+`AddStudentList` is a subclass of Command. It allows the user to add a student list
+to the `studentListCollection`.    
 The method execute() calls addToList() from the same class, which then calls 
 getListName() from UI to get a user input for listName.  
 The list name of student list is restricted to one word only, hence the parameter listName 
@@ -380,42 +475,70 @@ StudentList, a new student list is created with list name listName.
 The method addToList() calls addStudent(studentList) from UI to get user input 
 for student names to be added. The names are added to studentList
 in addStudent(studentList).  
-After user has done input, studentList will be printed, and this new list is
-added to studentListCollection.
+After user has done input, `studentList` will be printed, and this new list is
+added to `studentListCollection`.
  
 1. Delete student list  
 ![DeleteStudentList](images/DeleteStudentList.png)  
  *Sequence diagram of DeleteStudentList*  
-DeleteStudentList is a subclass of Command. It allows the user to delete a student list
+`DeleteStudentList` is a subclass of Command. It allows the user to delete a student list
 from the studentListCollection.    
-If the studentListCollection is empty, execute() calls displayStudentListCollectionEmpty()
+If the `studentListCollection` is empty, execute() calls displayStudentListCollectionEmpty()
 form UI, to inform the user.  
 Else, it calls deleteFromExisting() from the same class and get user input for index, the
 list number to be deleted.  
-The (index-1)th list in studentListCollection is deleted.  
+The (index-1)th list in `studentListCollection` is deleted.  
 
 1. Clear student list  
 ![ClearStudentList](images/ClearStudentList.png)  
  *Sequence diagram of ClearStudentList*  
-ClearStudentList is a subclass of Command. It allows the user to clear the 
-studentListCollection.  
+`ClearStudentList` is a subclass of Command. It allows the user to clear the 
+`studentListCollection`.  
 The method execute() calls clear() from the same class. 
-If the studentListCollection is empty, clear() calls displayStudentListCollectionEmpty()
+If the `studentListCollection` is empty, clear() calls displayStudentListCollectionEmpty()
 from UI, to inform the user.  
-Else, it calls clear() from StudentListCollection to clear the collection. 
+Else, it calls clear() from `StudentListCollection` to clear the collection. 
 The user will get informed when a success clear has been performed. 
 
 1. View student list  
 ![ViewStudentList](images/ViewStudentList.png)  
  *Sequence diagram of ViewStudentList*   
-ViewStudentList is a subclass of Command. It allows the user to view a self 
-generated table based on the data in studentListCollection.  
+`ViewStudentList` is a subclass of Command. It allows the user to view a self 
+generated table based on the data in `studentListCollection`.  
 The method execute() calls displayStudentList() from the same class. 
-If the studentListCollection is empty, displayStudentList() calls 
+If the `studentListCollection` is empty, displayStudentList() calls 
 displayStudentListCollectionEmpty() from UI, to inform the user.  
 Else, it calls printStudentListCollection() from UI to print the table. 
 
-1. Edit student list
+1. Find student list   
+![FindStudentList](images/FindStudentList.png)   
+ *Sequence diagram of FindStudentList*   
+`FindStudentList` is a subclass of Command. It allows the user to find a certain `studentList`
+in `studentListCollection`.
+The method execute() calls find() from the same class.
+If the `studentListCollection` is empty, displayStudentList() calls 
+displayStudentListCollectionEmpty() from UI, to inform the user.  
+Else, it calls displayStudentListCollection() from the same class to print the table.
+Next, it will prompt the user for a keyword. Using the keyword, it will iterate through 
+the `studentListCollection` to find a `studentListCollection` listName that equals to the keyword.
+Last, it will call printSearchResults from displayList to display the searchResults found.
+The user will get informed when a success sort has been performed. 
+ 
+1. Sort student list   
+    1. ![SortStudentListByName](images/SortStudentListByName.png)   
+    *Sequence diagram of SortStudentListByName*    
+    
+    1. ![SortStudentListByList](images/SortStudentListByList.png)    
+    *Sequence diagram of SortStudentListByList*    
+`SortStudentListByName` and `SortStudentListByList` are subclasses of Command. 
+They both allow the user to sort a student list by either the student's name within a list or 
+the list name of `studentList` stored within the `studentListCollection`.
+The two Commands will be discussed together in this section as they have similar behaviour.  
+The methods `SortStudentListByName` and `SortStudentListByList` access a desired `studentListCollection` and 
+check whether the collection is empty. 
+If empty, it calls display() in UI and inform the user list is empty.  
+Else, it will sort the `studentListCollection` or `studentList` by the type mentioned in its method name.  
+
 
 ### 3.6 Help
 ![Help](images/Help.png)  
@@ -505,16 +628,14 @@ folder in command terminal.
 `attendance clear`
 1. View generated table for attendance list by typing  
 `attendance view`  
-1. Sort attendance list by typing
+1. Sort attendance list by typing  
 `attendance sort`  
-1. Find attendance by typing
+1. Find attendance by typing  
 `attendance find`  
-1. Edit attendance by typing
+1. Edit attendance by typing  
 `attendance edit`  
  
 **Performance**
-1. Sort performance list by typing
-`performance sort`
 1. Add performance to performance list by typing  
 `performance add`
 1. Delete a performance from performance list by typing  
@@ -523,7 +644,7 @@ folder in command terminal.
 `performance view` 
 1. Edit performance list by typing  
 `performance edit`
-1. Sort performance list by typing
+1. Sort performance list by typing  
 `performance sort`  
 
 **Student name list**
@@ -535,7 +656,7 @@ folder in command terminal.
 `studentlist view` 
 1. Find a student name in student name list by typing  
 `studentlist find`
-1. Sort student list by typing
+1. Sort student list by typing  
 `studentlist sort`
 
 ## Glossary

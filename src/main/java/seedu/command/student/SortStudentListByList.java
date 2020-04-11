@@ -21,15 +21,13 @@ public class SortStudentListByList extends Command {
         if (studentListCollection.isEmpty()) {
             UI.displayStudentListCollectionEmpty();
         } else {
-            for (int i = 0; i < studentListCollection.size(); i++) {
-                studentListCollection.get(i).sortAscending();
-            }
+            studentListCollection.sortByList();
+            UI.display("StudentList sorted by name within the lists.");
         }
     }
 
     @Override
     public void execute() throws PacException {
         sort();
-        UI.display("StudentList sorted by name within the lists.");
     }
 }
