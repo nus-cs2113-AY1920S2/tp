@@ -1238,6 +1238,8 @@ All the Add Commands below are assumed to be executed at the root directory.
 
       1. Test case: `addg urgent -m cs2113t -c Assignment -t non-exist-task`
       2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
+      1. Test case: `addg urgent -t assignment2`
+      2. Expected: the program will promit the user with message: `Sorry, unable to execute the command at the current directory. Either move to the appropriate directory level, or enter the full directory path.`
 
 #### 3. Delete Command
 
@@ -1249,6 +1251,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    1. Correct usage:
       1. Test case: `delm cs2113t`
       2. Expected: the program will prompt the user with message: `Confirm delete CS2113T Software Engineering & Object-Oriented Programming?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Module(s) have been deleted.`
+   
    2. Wrong usage:
       1. Test case: `delm cs1111`
       2. Expected: the program will prompt the user with message: `Sorry. No modules found.`
@@ -1280,7 +1283,9 @@ All the Delete Commands below are assumed to be executed at the root directory.<
 5. Delete tag
    1. Correct usage: 
       1. Test case: `delg urgent -m cs2113t -c Assignment -t assignment2`
-      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Tag(s) have been deleted.`
+      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `y` or `yes`, the program will prompt the user with message: `SUCCESS!! Tag(s) have been deleted.`
+      1. Test case: `delg`
+      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `n` or `no`, the program will prompt the user with message: `The deletion is aborted`
    2. Wrong usage:
       1. Test case: `delg non-exist-tag -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No tasks with the tag found.`
