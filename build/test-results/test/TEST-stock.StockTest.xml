@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="stock.StockTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.07">
+  <properties/>
+  <testcase name="print_printStockWhenIngredientQuantityIsZero_SerialIndexUnchanged()" classname="stock.StockTest" time="0.017"/>
+  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_addNormally()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="searchStock_searchIngredientInStock_ingredientNotFoundOutput()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="deleteIngredient_DeleteIngredientWithoutQuantity_deleteNormally()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="deleteIngredient_DeleteIngredientWithQuantity_deleteNormally()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="addIngredient_AddIngredientWithQuantitySupplied_sumQuantity()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="print_printStockWhenIngredientRemoved_SerialIndexReorder()" classname="stock.StockTest" time="0.004"/>
+  <testcase name="test_equalMap_bothMapsAreEqual()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="clearStock_clearAllIngredientsInStock_emptyStock()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="listStock_listIngredientInDescendingQuantity_listNormally()" classname="stock.StockTest" time="0.015"/>
+  <testcase name="testAdd_CompareAgainstStockCopy_TrueIfSameContent()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="deleteIngredient_DeleteIngredientNotInStock_deleteNormally()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="addIngredient_AddIngredientOfSimilarName_DuplicateIngredientName()" classname="stock.StockTest" time="0.019"/>
+  <testcase name="testDelete_CompareAgainstStockCopy_TrueIfSameContent()" classname="stock.StockTest" time="0.0"/>
+  <testcase name="searchStock_searchIngredientInStock_ingredientIsFoundOutput()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="listStock_ListIngredientInDescendingQuantity_noIngredientFound()" classname="stock.StockTest" time="0.001"/>
+  <testcase name="searchStock_searchIngredientInStock_testCaseSensitivity()" classname="stock.StockTest" time="0.0"/>
+  <system-out><![CDATA[The stock has been cleared.
+
+Please note that there are other similar ingredient names in the stock.
+
+You are currently adding: 'RiCe'
+
+Here are the ingredients in the stock with similar names:
+rice
+
+You may want to remove the unwanted ingredient names if it is a duplicate.
+
+
+Please note that there are other similar ingredient names in the stock.
+
+You are currently adding: 'RICE'
+
+Here are the ingredients in the stock with similar names:
+rice
+RiCe
+
+You may want to remove the unwanted ingredient names if it is a duplicate.
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

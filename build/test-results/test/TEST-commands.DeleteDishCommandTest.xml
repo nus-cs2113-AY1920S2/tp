@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.DeleteDishCommandTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.004">
+  <properties/>
+  <testcase name="deleteDishTestA()" classname="commands.DeleteDishCommandTest" time="0.003"/>
+  <testcase name="deleteDishTestB()" classname="commands.DeleteDishCommandTest" time="0.001"/>
+  <system-out><![CDATA[Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish bacon pizza successfully removed!
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish bacon pizza successfully removed!
+Dish chicken biryani successfully removed!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

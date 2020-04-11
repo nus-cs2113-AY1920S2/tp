@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.VoidReservationCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.008">
+  <properties/>
+  <testcase name="parseInput_inputMissingVoidReservationCommand_exceptionThrown()" classname="commands.VoidReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_invalidReservationNumberVoidReservationCommand_exceptionThrown()" classname="commands.VoidReservationCommandTest" time="0.0"/>
+  <testcase name="parseInput_delimiterMissingVoidReservationCommand_exceptionThrown()" classname="commands.VoidReservationCommandTest" time="0.0"/>
+  <testcase name="execute_normalVoidReservationCommand_success()" classname="commands.VoidReservationCommandTest" time="0.001"/>
+  <system-out><![CDATA[Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Successfully void Reservation[1]
+]]></system-out>
+  <system-err><![CDATA[Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList voidReservation
+INFO: Void Reservation[1] as Invalid.
+]]></system-err>
+</testsuite>

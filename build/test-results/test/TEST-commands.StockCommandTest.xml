@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.StockCommandTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.008">
+  <properties/>
+  <testcase name="parse_parseIngredientQuantity_quantityIsNotInteger()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_blankIngredientPriceSupplied()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientName_parseNormally()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientQuantity_parseNormally()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_priceIsDouble()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientPrice_priceIsIntger()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientQuantity_quantityIsTypeDouble()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="execute_executeStockCommand_throwsException()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_RandomUserInputSupplied()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientQuantity_blankIngredientQuantitySupplied()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientPrice_parseNormally()" classname="commands.StockCommandTest" time="0.001"/>
+  <testcase name="parse_parseIngredientName_blankIngredientNameSupplied()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientQuantity_quantityIsNegative()" classname="commands.StockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIngredientPrice_priceIsNegative()" classname="commands.StockCommandTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

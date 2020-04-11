@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.MarkReservationCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.006">
+  <properties/>
+  <testcase name="parseInput_delimiterMissingMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.001"/>
+  <testcase name="parseInput_inputMissingMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.0"/>
+  <testcase name="parseInput_invalidReservationNumberMarkReservationCommand_exceptionThrown()" classname="commands.MarkReservationCommandTest" time="0.001"/>
+  <testcase name="execute_normalMarkReservationCommand_success()" classname="commands.MarkReservationCommandTest" time="0.001"/>
+  <system-out><![CDATA[Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Reservation[1] has been added into the list
+Successfully mark Reservation[1] as served.
+]]></system-out>
+  <system-err><![CDATA[Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
+INFO: Add Reservation[1] to the list.
+Apr 10, 2020 8:27:06 PM reservation.ReservationList markReservationAsServed
+INFO: Mark Reservation[1] as Served.
+]]></system-err>
+</testsuite>

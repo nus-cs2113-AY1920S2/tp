@@ -1,1 +1,150 @@
-James Gosling
+add
+delete
+list
+search
+random
+keyword
+add dish
+add reservation
+add stock
+delete stock
+delete dish
+delete reservation
+add delete
+1111
+2222
+add delete list search
+search dish
+search reservation
+search stock
+add dish; n/pizza; i/cheese, sauce; p/7.00;
+list dish;
+add dish; n/rice; i/rice, salt; p/12.00;
+delete dish; n/pizza;
+list dish;
+add stock; i/tomato; q/10; p/0.40;
+add stock; p/0.40; q/10; i/tomato;
+add stock; i/tomato; p/0.40; q/10;
+add stock; i/tomato; q/10; p/0.50;
+add stock;
+add stock; i/tomato;
+add stock; q/10;
+add stock; p/0.50;
+add stock; q/10; p/0.50;
+add stock; i/tomato; p/0.50;
+add stock; i/tomato; q/10;
+add stock; i/tomato; q/LOL; p/0.50;
+add stock; i/tomato; q/10; p/0.5;
+add stock; i/tomato; q/-10; p/0.50;
+add stock; i/tomato; q/10; p/-0.50;
+add stock; i/tomato; q/10; p/LOL;
+add stock; tomato; q/10; p/0.50;
+add stock; i/tomato; 10; p/0.50;
+add stock; i/tomato; q/10; 0.50;
+add stock; i/rice; q/11; p/0.40;
+add stock; i/salt; q/20; p/0.20;
+add stock; i/vege; q/10; p/0.40;
+add stock; i/greenie; q/0; p/0.40;
+add stock; i/toxic greens; q/1; p/0.40;
+add stock; i/curry; q/0; p/$0.40;
+add stock; curry; q/0; p/0.40;
+add stock; i/curry; 0; p/0.40;
+add stock; i/curry; q/0; 0.40;
+add stock; curry; 0; p/0.40;
+add stock; i/curry; 0; 0.40;
+add stock; curry; 0; 0.40;
+add stock; i/CuRrY; q/10; p/1.40;
+add stock; i/pepper; q/10; p/1.00;
+add stock; i/PePPer; q/10; p/1.00;
+add stock; i/PEPPER; q/10; p/1.00;
+add stock; i/; q/10; p/1.00;
+add stock; i/water; q/; p/1.00;
+add stock; i/water; q/10; p/;
+add stock; i/water; q/10; p/$$$$;
+list stock
+list stock;
+delete stock; i/tomato; q/1;
+delete stock; q/1; i/tomato;
+delete stock; i/tomato; q/9;
+list stock
+list stock;
+delete stock; green
+delete stock; i/tomato;
+delete stock;
+delete stock; q/10;
+delete stock; i/tomato; q/LOL;
+delete stock; i/tomato; q/-10;
+delete stock; tomato; q/1;
+delete stock; i/tomato; 1;
+list stock;
+search stock;      
+search stock; tomato
+search stock; rice
+search stock; o
+search stock; k/tomato;
+search stock; k/tomato
+search stock; k/GReeNie;
+search stock; k/toxic greens;
+search stock; toxic greensk/;
+search stock; k/   
+search stock; k/
+search stock; k  
+search stock; q/e
+search stock; /e
+list reservation;
+list served reservation;
+list unserved reservation;
+add reservation
+add reservation;
+add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;
+add reservation; p/Mary; d/2020-03-11 12:00; n/8; c/99998888;
+add reservation; p/David; d/2020-03-12 12:00; n/9; c/98887777;
+add reservation; p/Lisa; m/no spicy food please; d/2020-03-13 12:00; n/3; c/98889999;
+add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;
+add reservation; p/David; d/2020-03-12 12:00; c/98887777;
+add reservation; p/David; d/2020-03-1 12:00; n/3; c/98887777;
+add reservation; p/David; d/2020-03-10 12:00; n/0; c/98887777;
+add reservation; p/; d/2020-03-12 12:00    ; n/1; c/;
+add reservation; p/Peter; d/2020-03-12 12:00    ; n/1; c/;
+list reservation
+list reservation;
+delete reservation; r/;
+delete reservation; r/0;
+delete reservation; r/1.0;
+delete reservation; r/1.2;
+delete reservation; r/1;
+delete reservation; r/1;
+delete reservation; r/1
+delete reservation; r/-1;
+delete reservation; r/5;
+list reservation
+list reservation;
+search reservation; r/1.3;
+search reservation; r/1;
+search reservation; r/1; d/2020-03-13;
+search reservation; d/2020-03-12
+search reservation; d/2020-03-12;
+search reservation; r/5;
+search reservation;
+mark reservation; r/2.3;
+mark reservation; r/5;
+mark reservation; r/-1;
+mark reservation; r/4;
+mark reservation; r/0;
+mark reservation; r/1;
+delete reservation; r/4;
+list served reservation
+list served reservation;
+list unserved reservation
+list unserved reservation;
+list reservation
+list reservation;
+sell dish; d/rice; q/5;
+profit
+popular
+clear reservation
+clear reservation;
+clear stock
+clear stock;
+delete dish; n/rice;
+bye

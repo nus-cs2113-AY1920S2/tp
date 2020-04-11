@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="commands.SearchDishCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.026">
+  <properties/>
+  <testcase name="searchDishTestA()" classname="commands.SearchDishCommandTest" time="0.02"/>
+  <testcase name="searchDishTestB()" classname="commands.SearchDishCommandTest" time="0.002"/>
+  <testcase name="searchDishTestC()" classname="commands.SearchDishCommandTest" time="0.001"/>
+  <testcase name="searchDishTestD()" classname="commands.SearchDishCommandTest" time="0.001"/>
+  <system-out><![CDATA[Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
+Here are the dishes that match your keyword:
+Name: chicken biryani; Ingredients: chicken, rice, chili; Price: $10.0;
+Name: pasta with chicken; Ingredients: chicken, pasta, sauce; Price: $7.0;
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
+Here are the dishes that match your keyword:
+Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
+Name: bacon flatbread; Ingredients: flatbread, bacon, cheese; Price: $3.0;
+Here are the dishes that match your keyword:
+Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
+Name: bacon flatbread; Ingredients: flatbread, bacon, cheese; Price: $3.0;
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
+There are no dishes that match the keyword cheese!
+Dish bacon pizza successfully added.
+Dish chicken biryani successfully added.
+Dish pasta with chicken successfully added.
+Dish bacon flatbread successfully added.
+Here are the dishes that match your keyword:
+Name: bacon pizza; Ingredients: cheese, bacon; Price: $5.0;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
