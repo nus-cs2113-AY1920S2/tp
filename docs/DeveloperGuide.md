@@ -90,16 +90,16 @@ The Logic consists of the following classes:
 * `Result` - Stores the command result in-memory.
 * `CommandParser` - Parses the user input and generates a specific command.
 * `"ABC"Parser` - A collection of parser classes which parses a specific input to generate a specific value.
-    * `AgeParser`
-    * `CaloriesParser`
-    * `CommandParser`
-    * `DescriptionParser`
-    * `FoodNameParser`
-    * `GenderParser`
-    * `HeightParser`
-    * `NameParser`
-    * `StorageParser`
-    * `WeightParser`
+    * `AgeParser` - Parses the user input and generates the user's age as an integer value between 0 to 150 years old.
+    * `CaloriesParser` - Parses the user input and generates the calories value as a non-negative double.
+    * `CommandParser` - Parse the user input and generates the equivalent Command Object to be processed.
+    * `DescriptionParser` - Parse the user input and generates the String description required by Command.
+    * `FoodNameParser` - Parse the user input and generates the name of the food in lower case for Food Object to process.
+    * `GenderParser` - Parse the user input and generates the profile's gender as "male" or "female" regardless of upper or lower case input.
+    * `HeightParser` - Parse the user input and generates the profile's height as a double value between 0 and 300 centimeters.
+    * `NameParser` - Parse the user input and generates the profile's name as a String.
+    * `StorageParser` - Parse the stored inputs from various data file to generate the user profile, Recipe, Food Record, Time, Weight List and Food Nutrition Record.
+    * `WeightParser` - Parse the user input and generates the profile's weight as a double between 0 and 500 kilograms.
 * `Command` - An abstract class which other command classes inherits from.
 * `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
     * `AddFoodCommand`
