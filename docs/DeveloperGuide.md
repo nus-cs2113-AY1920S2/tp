@@ -388,25 +388,23 @@ Given below are instructions to test the app manually.
     **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
    
 
-> :information_source: The test cases below are provided such that it should be executable without showing any errors if follow sequentially.
+> :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
-    1. Test case: Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
-    
+    1. Test case: Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6 <br>
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
     > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
     
-    2. Test case: Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1
-                  Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01
-                  Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1
-    
+    2. Test case: Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1 <br>
+                  Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01 <br>
+                  Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1 <br>
     **Expected: 3 new contacts will be added, with their respective modules.**
     
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
-    1. Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
+    1. Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
     2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
     3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
     4. Test case: ```schedule test_meeting startDate startTime endDate endTime```
@@ -415,6 +413,12 @@ Given below are instructions to test the app manually.
  
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
-    1. Type ```meetings``` to list down all meetings in the main user's timetable.
-    2. Test case: 
+    1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
+    2. Test case: ```delete 1```. <br>
+    **Expected: The meeting scheduled previously in F.3 is deleted.**
+
+### F.5. Editing a particular timetable
+1. Editing main user's timetable
+    1. You 
+  
 ### F.2. Saving data
