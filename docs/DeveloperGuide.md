@@ -1,4 +1,3 @@
-
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -74,6 +73,11 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)    
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
+&nbsp; &nbsp; &nbsp; &nbsp; **1. Architecture** [&#10149;](#1-architecture)    
+&nbsp; &nbsp; &nbsp; &nbsp; **2. UI Component** [&#10149;](#2-ui-component)    
+&nbsp; &nbsp; &nbsp; &nbsp; **3. Logic Component** [&#10149;](#3-logic-component)    
+&nbsp; &nbsp; &nbsp; &nbsp; **4. Model Component** [&#10149;](#4-model-component)    
+&nbsp; &nbsp; &nbsp; &nbsp; **5. Storage Component** [&#10149;](#5-storage-component)   
 <br>  
 <big style="color: green">  **Design** [&#10149;](#design)  </big>  
 <br>    
@@ -135,14 +139,14 @@ Another design goal we desire is to implement measures to allow the users to be 
 [Back To Top](#table-of-contents)    
 <br>  
 
-### **Setting Up**
+## **Setting Up**
 
-#### **1.1. Prerequisites**
+### **1.1. Prerequisites**
 
 1. JDK 11
 2. IntelliJ IDE
 
-#### **1.2. Setting up the project**
+### **1.2. Setting up the project**
 1.  Fork [this repository](https://github.com/AY1920S2-CS2113T-T13-2/tp), and clone the fork to your computer
 
 2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
@@ -161,7 +165,7 @@ Another design goal we desire is to implement measures to allow the users to be 
 
 7.  Click `OK` to use the default settings provided
 
-#### **1.3. Verifying the Setup**
+### **1.3. Verifying the Setup**
 1.  In an IntelliJ terminal, run `gradlew build`
 
 2.  Navigate to the folder `build` &gt; `libs` by executing  `cd build/libs/` and then run: `java -jar nuke-2.0.jar`
@@ -180,9 +184,9 @@ Another design goal we desire is to implement measures to allow the users to be 
 <br>  
 
 ## **Design**
-### **2.1 Architecture**
+### **1. Architecture**
 
-![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
+![Architecture.jpg](images/Architecture.jpg)
 
 <span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
  <br>
@@ -221,10 +225,10 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 <span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
 
-### **2.2 UI componenet**
+### **2. UI Component**
 Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
 
-### **2.3 Logic component**
+### **3. Logic Component**
 Classes used by Logic component are in the [**`seedu.nuke.data`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/data), [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java) in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
 
 The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
@@ -234,11 +238,11 @@ The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> applicatio
 <span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
 <br>
 
-### **2.4 Model Component**
+### **4. Model Component**
 More information about the <b>Model Component</b> can be found [here](#structure-implementation).
 <br>
 
-### **2.5 Storage Component**
+### **5. Storage Component**
 More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 <br>
 
@@ -395,7 +399,7 @@ The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> att
 </div>  
 
 #### **Implementation**    
-![directory traverser class diagram](#images/dg_traverser_class.png)   
+![directory traverser class diagram](images/dg_traverser_class.png)   
 <span style="color: green"><small><i>Figure <b>Directory Traverser Class Diagram</b></i></small></span>   
  <br>
 
@@ -496,7 +500,7 @@ Below is a diagram which summarises the commands in the current <b>Nuke</b> appl
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-![ClassDiagramAdd.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramAdd.jpg)
+![ClassDiagramAdd.jpg](images/ClassDiagramAdd.jpg)
 
 <span style="color: green"><small><i>Figure <b>Add Command Classes Diagram</b></i></small></span>
 
@@ -519,7 +523,9 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
 2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
 
-<span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
+<br>
+
+[Back To Top](#table-of-contents)
 
 #### **Example Usage**
 
@@ -567,10 +573,16 @@ James receive the following feedback:
    +--------------------------------------------------------------------------------------------------+
 ```
 
+
+
+Below is a *sequence diagram* to illustrate the above example scenario.  <br>
+
 ![image-20200326014336120](images/Add_Module_Command_Sequence_Diagram.png)
+<span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
+<br>
 
-Below is a *sequence diagram* to illustrate the above example scenario.  
 
+[Back To Top](#table-of-contents)
 
 
 #### **1.2. Add Category and Task Commands**
@@ -1547,3 +1559,6 @@ If you have any further inquiries, or if you found any <b>bugs</b> <i class="fa 
 
 We are currently still at the development stage of the <b>Nuke</b> application. Any feedback you give is welcomed as they can help us to improve <b>Nuke</b> even further! &#128516;
 </div>
+<br>
+
+[Back To Top](#table-of-contents)
