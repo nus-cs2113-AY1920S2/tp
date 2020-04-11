@@ -381,7 +381,7 @@ quick access to the information in either a list or a calendar view.
 
 1. Should work on any mainstream OS as long as it has 
 [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed.
-1. Should be able to hold up to 100 events without a noticeable sluggishness in performance for 
+1. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for 
 typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not 
 system admin commands) should be able to accomplish most of the tasks faster using commands 
@@ -484,6 +484,7 @@ way which is more related to their daily life.
 
 ## Glossary
 
+* *mainstream OS* - Windows, Linux, Unix, OS-X
 * *flag* - anything that takes the form of  `?/`, e.g. `n/`, `i/`
 * *student list* - a list of students' name
 * *student list collection* - a collection of list of students' name
