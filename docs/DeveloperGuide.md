@@ -171,7 +171,7 @@ This document will cover the structure and software design decisions for the imp
 <br>  
 
 ## **Design**
-### **2.1Architecture
+### **2.1 Architecture**
 
 ![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
 
@@ -212,10 +212,10 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 <span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
 
-### UI componenet
+### **2.2 UI componenet**
 Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
 
-### Logic component
+### **2.3 Logic component**
 Classes used by Logic component are in the **`seedu.nuke.data`** package, [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java)** in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
 
 The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
@@ -225,11 +225,11 @@ The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> applicatio
 <span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
 <br>
 
-### Model Component
+### **2.4 Model Component**
 More information about the <b>Model Component</b> can be found [here](#structure-implementation).
 <br>
 
-### Storage Component
+### **2.5 Storage Component**
 More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 <br>
 
