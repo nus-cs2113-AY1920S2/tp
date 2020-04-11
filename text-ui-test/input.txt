@@ -14,6 +14,6 @@ schedule test_meeting 15 19:00 15 22:00
 schedule test_meeting2 16 19:00 16 23:30
 delete 1
 meetings
-edit free 0 10 11:30 10 15:00
+edit free 0 11 11:30 11 15:00
 timetable
 exit

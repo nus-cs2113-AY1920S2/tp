@@ -3,7 +3,7 @@ package model.meeting;
 import java.time.LocalTime;
 
 /**
- * TESTING SUMMARY DOC.
+ * This class contains information of a meeting scheduled by the user.
  */
 public class Meeting {
     private String meetingName;
