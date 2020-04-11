@@ -53,14 +53,13 @@ public class Quiz {
     public static void quizQuestion(Subject subject, int numToQuiz) throws EscException {
         HashSet<Card> set = new HashSet<>();
         CardList cards = subject.getCardList();
-        ScoreList scores = subject.getScoreList();
+
         if (cards.size() == 0) {
             throw new EscException("No questions for this subject.");
         }
         int checkedNumToQuiz = checkNumber(numToQuiz, cards.size());
         // To check that checkedNumToQuiz is less than the stored number of questions.
         assert checkedNumToQuiz <= cards.size() : "number to quiz should be less than or equal to number of cards";
-
         int attempted = 0;
         double score = 0;
         while (attempted < checkedNumToQuiz) {
@@ -78,6 +77,7 @@ public class Quiz {
         }
         double percentage = score / attempted;
         double percentageScore = (double) Math.round(percentage * 10000) / 100;
+        ScoreList scores = subject.getScoreList();
         scores.add(percentageScore);
         System.out.println("Quiz Finished!");
         System.out.println("You Scored: " + percentageScore + "%");
@@ -92,7 +92,8 @@ public class Quiz {
     public static int checkNumber(int numToQuiz, int cardListSize) {
         if (numToQuiz > cardListSize) {
             System.out.println("Insufficient stored questions for this subject.");
-            System.out.println("Setting number of questions to all stored questions: " + cardListSize + " question(s).");
+            System.out.println("Setting number of questions to all stored questions: "
+                    + cardListSize + " question(s).");
             return cardListSize;
         } else if (numToQuiz == -1) {
             return cardListSize;
