@@ -498,7 +498,6 @@ is done in 2 ways:
 * The `;` delimiter for a combination of `find` and `filter` in a single input (eg. `find KEYWORD ; filter TAGNAME`)
 
  ![Chaining_Activity_Diagram](./pictures/Chaining_Activity_Diagram.png)
- *Activity Diagram for Additional Features*
 
 ### 3.9 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
