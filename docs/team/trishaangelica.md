@@ -25,16 +25,16 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
 * **Other contributions:** 
     * Project Management:
         * Closed milestones v1.0 and v2.1 on GitHub
-        * Assigned bugs and PRs to respective team members on GitHub. (Issues <ins>[#146-#162](https://github.com/AY1920S2-CS2113T-T13-1/tp/issues?q=is%3Aissue+is%3Aclosed+PE-D)</ins>)
+        * Assigned bugs and PRs to respective team members on GitHub. (Issues <ins>[#145-#162](https://github.com/AY1920S2-CS2113T-T13-1/tp/issues?q=is%3Aissue+is%3Aclosed+PE-D)</ins>)
     
     * Enhancements to existing features:
-        * Included test cases for all commands in input.txt file (Pull Request <ins>[#69](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/69/files#diff-cc5b0804a9a39fce149b1b64e58378db)</ins>)
-        * Added SHOCO logo for the application (Pull request <ins>[#88](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/88/files)</ins>)
-        * Changed original list display to pretty-printing in a table (*Reused code from logicbig*) (Pull request <ins>[#54](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/54/files#diff-f5a2a66f3d795321ea951828c239db70)</ins>)
+        * Included test cases for all commands in input.txt file (Pull Request <ins>[#69](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/69)</ins>)
+        * Added SHOCO logo for the application (Pull request <ins>[#88](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/88)</ins>)
+        * Changed original list display to pretty-printing in a table (*Reused code from logicbig*) (Pull request <ins>[#54](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/54)</ins>)
         
     * Documentation:
-        * Added a navigable table of contents and "back to top" links for both SHOCO user guide and developer guide: <ins>[#111]((https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111))</ins> , <ins>[#112](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/112/files)</ins> , <ins>[#122](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/122/files)</ins>
-        * Organized the "skeletal" base of the DG in order to provide the team with allocated sections for easier collaboration <ins>[#114](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/114/files)</ins>
+        * Added a navigable table of contents and "back to top" links for both SHOCO user guide and developer guide: <ins>[#111](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111)</ins> , <ins>[#112](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/112)</ins> , <ins>[#122](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/122)</ins>
+        * Organized the "skeletal" base of the DG in order to provide the team with allocated sections for easier collaboration <ins>[#114](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/114)</ins>
         * Standardized colour and font of all diagrams in the DG for comprehensibility <ins>[#191](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/191)</ins> , <ins>[#210](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/210)</ins>
         * Added the Manual Testing Section of the DG <ins>[#204](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/204)</ins>
            
@@ -81,7 +81,7 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
  * The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
  * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
  * **At least one** of the three parameters (description/price/quantity) must be present in the command.
- > :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: Note: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
  
  Examples of usage: 
  
@@ -116,8 +116,6 @@ Format: `HELP`
 * Clear list `CLEAR`
 * View help `HELP`
 * Exit program `BYE`
-
-&nbsp;
 
 ---
 
@@ -222,7 +220,7 @@ of usage.
 The following sequence diagram below shows how the help feature works. Note, the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![Help Feature](../images/Help_v1.png)
+![Help Feature](../images/Help_v1_PPP.png)
 
 ##### 3.10.2 Design considerations
 
@@ -248,9 +246,9 @@ Reason for choosing alternative 1: By abstracting out different command types as
 &nbsp;
 
 #### Appendix D: Instructions for Manual Testing
-> :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
+> :information_source: Note: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
-##### Launch and Shutdown
+#### Launch and Shutdown
 1. Initial launch 
     
       i.    Download the [latest](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) version of `SHOCO`, named <code>CS2113T-T13-1.Shoco.jar</code> under version 2.1.
@@ -275,7 +273,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
   
    &nbsp;
    
-##### Set and Reset a budget
+#### Set and Reset a budget
 
 1. Set a budget
        
@@ -318,7 +316,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
     
-##### Add and Edit an item
+#### Add and Edit an item
 
 1. Add an item 
         
@@ -375,7 +373,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
     
   
-##### Find and Delete an item
+#### Find and Delete an item
 
 1. Find an item based on keyword
        
@@ -408,7 +406,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
 
-##### Display and Clear the shopping list
+#### Display and Clear the shopping list
 
 1. List all items in the shopping list
             
