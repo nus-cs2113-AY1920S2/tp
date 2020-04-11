@@ -849,7 +849,7 @@ There are two ways to run tests.
    <tr>
      <td><span> &#8505; </span></td>  
      <td> See <a href="https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/tutorials/gradleTutorial.md">Gradle Tutorial</a> 
-     for more info on how to run tests using Gradle. </td>
+     for more info on how to run tests using Gradle.
      </td>
    </tr>
   </table>
@@ -914,7 +914,7 @@ Value proposition: Note taking application built for doctors to manage notes fas
 
 ### Appendix D: Glossary 
 
-- *Mainstream OS* - Windows, Linux, Unix, OS-X
+- *Mainstream OS* → Windows, Linux, Unix, OS-X
 - *NRIC* → The National Registration Identity Card
 - *pr* → Patient Record
 - *appt* → Appointment
@@ -1119,7 +1119,7 @@ Given below are instructions to test the application manually.
 
     - **Test case 4:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`   
     Expected: The program will prompt the user for valid NRIC.  
-    Continuation: `S9876543F` (valid NRIC of a patient existing in the patient list)
+    Continuation: `S9876543F` (valid NRIC of a patient existing in the patient list)  
     Expected: A new patient record for the patient with `S9876543F` will be added.  
 
     - **Test case 5:** `add pr`.   
@@ -1273,14 +1273,14 @@ Given below are instructions to test the application manually.
     
     - **Test case:** `add appt /ic S1234567G /d 20/20/2020 /t 13:00 /r ill`   
     Expected: An error message will be shown indicating that the date is incorrect or missing.
-    Continuation: `clear` 
+    Continuation: `clear`  
     Expected: The program will prompt that command is aborted.
     
     - **Test case:** `add appt /ic S1234567G /d 20/20/2020 /t 13:00 /r ill`   
     Expected: An error message will be shown indicating that the date is incorrect or missing.
-    Continuation: `/d 21/12/2020` 
+    Continuation: `/d 21/12/2020`  
     Expected: The program will prompt the user for confirmation before saving the inputs.
-    Continuation: `n`
+    Continuation: `n`  
     Expected: The appointment is *not* added to the list. 
     
     <table>
