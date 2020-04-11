@@ -653,12 +653,12 @@ Expected outcome:
 ### 4.3 Calendar 
 #### 4.3.1 View events under a particular time : `calendar s/2 ay/19-20`  
 View existing events under a particular semester and academic year in a calendar format.
-Semester refers to a numerical number, i.e. 1 or 2, while academic year refers 
-to any 2 consecutive years with a hyphen separating them. Each year should be entered in a 2 digit format,
-i.e. ay/07-08.
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 * Both the semester and academic year should be provided.
+* Semester refers to a numerical number, i.e. 1 or 2
+* Academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
+  i.e. ay/07-08.  
 * Order of the flags *matters*.
 
 Command: 

@@ -170,11 +170,9 @@ Below shows the sequence diagram of `CalendarCommandInterpreter`:
 *Diagram of CalendarCommandInterpreter*
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
-1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object is created. 
-1. `EventSeperator` extends `Command`, therefore, the object created is a command too. 
+1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object which extends `Command` is created.  
 1. This command is then returned `CalendarCommandInterpreter#decideCommand` which returns to `Pac#run` to call `Command#execute`.
 1. If the command is invalid, the interpreter throws PacException to inform the user. 
-
 
 #### Program flow
 1. When the user enters the calendar-related command, the command is analysed by CalendarCommandInterpreter and 
