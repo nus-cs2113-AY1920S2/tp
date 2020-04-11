@@ -41,6 +41,7 @@ ATAS is catered for students who want to maximise their productivity and cultiva
 * Contributions to team-based tasks:
     * Managed issue tracker
     * Introduced major improvement to general code coverage [#204](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/204), [#205](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/205)
+    * Managed and produced demo video
     
 * Community:
     * Reviewed and provided improvements for team member's code, in particular refactored logic of Clear Done tasks. [#72](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/72)
