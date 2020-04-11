@@ -425,6 +425,21 @@ In the `execute(SemesterList semesterList, AvailableModulesList availableModules
 is passed into a switch statement to decide the kind of data to show the user. The respective method will then be called
 to print the data that the user has requested to see. 
 
+*Design Considerations*  
+* Alternative 1 (current choice): Determine user's argument using Java contain() method
+
+|   |   |
+|---|---|
+|Pro|Easy to determine the argument and match it to user's intention|
+|Cons|Easy to misunderstand what is the user's true intention if there is mis-spelling|
+
+* Alternative 2 : Determine user's argument using Java equal() method  
+
+|   |   |
+|---|---|
+|Pro|Accurate in determining the user's intentions based on the argument received|
+|Cons|Requires users to enter precise keywords which could result in inconvenience|
+
 # 5. Documentation
 ## 5.1 Written documentation  
 The user and developer guide are written and formatted using MarkDown.

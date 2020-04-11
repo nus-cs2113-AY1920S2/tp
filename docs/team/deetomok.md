@@ -15,7 +15,8 @@ For all the code that I have contributed to Module Manager, click here:
 
 #### Enhancements implemented  
 In this project, other than helping implement all other classes, I implemented the portion of Controller, Person, 
-JUnit test, Logging, some commands (Mark as Done, View, Helping and Clear) and some exception classes.  
+JUnit test, Logging, some commands (Mark as Done, View, Helping and Clear) and some exception classes. Furthermore,
+I adjusted the programme to accept commands from user irrespective of upper or lower case characters.  
 
 ##### Mark as Done Command  
 * What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,
