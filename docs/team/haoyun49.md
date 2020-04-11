@@ -44,7 +44,7 @@ Added **help** command which will show a simple user guide to enable users find 
   - Modify codes and add JavaDoc (includes mine and others) to pass CI on _GitHub_ regularly.
   
 - Enhancements to existing features:
-  - Wrote a majority of JunitTests for existing features to increase coverage to a greate extent
+  - Wrote a majority of JunitTests for existing features to increase coverage to a greate extent ([#78](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/78/files), [#173](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/173), [#176](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/176), [#177](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/176), [#180](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/180))
 
 - Documentation
   - User Guide:
@@ -59,6 +59,4 @@ Added **help** command which will show a simple user guide to enable users find 
     - Documented Arichitecture Diagram and Component Interactions Diagram -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/8973f3a786d2510e878e2e08e1dc37089e31725f#diff-2fff7a74a4bc5eedf2b5dfeb29633018), [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/93c4d6284eaf3d127716372dabf3255df76c2f55#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
 
 - Community
-  - PRs reviewd (with non-trivial review comments: reported bugs during the PE-Dry run)
-
-
+  - PRs reviewd (with non-trivial 7 review comments: reported bugs during the PE-Dry run) ([#1](https://github.com/HAOYUN49/ped/issues/1), [#2](https://github.com/HAOYUN49/ped/issues/2), [#3](https://github.com/HAOYUN49/ped/issues/3), [#4](https://github.com/HAOYUN49/ped/issues/4), [#5](https://github.com/HAOYUN49/ped/issues/5), [#6](https://github.com/HAOYUN49/ped/issues/6), [#7](https://github.com/HAOYUN49/ped/issues/7))
