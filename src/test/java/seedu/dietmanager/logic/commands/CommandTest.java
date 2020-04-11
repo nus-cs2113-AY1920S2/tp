@@ -40,7 +40,7 @@ class CommandTest {
     }
 
     @Test
-    void checkBmiCommand(){
+    void checkBmiCommand() {
         Profile profile = new Profile();
         UI ui = new UI();
         profile.setProfile("John", 20, "Male", 180, 80, 75);
