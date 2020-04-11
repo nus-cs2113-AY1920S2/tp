@@ -17,7 +17,7 @@ Users can set tags and goals for their entries, ultimately being able to keep tr
     * Added some more test cases to the Junit for StartCommand.
 
 * User interface
-    * Sourced and implemented the existing Jikan logo that greets the user upon execution
+    * Sourced and implemented the existing Jikan logo that greets the user upon execution.
     * Created a standard template to print lines to stdout. This feature is used to print error, acknowledgement and 
     reply messages from Jikan to the user.
     * Implemented the `bye` command which makes use of Ui to exit from the application.
@@ -55,7 +55,7 @@ Users can set tags and goals for their entries, ultimately being able to keep tr
 
 ### Review/mentoring contributions
 * Provided feedback to peers on how certain features can be improved (e.g progress message for activities,
- store tag goals in separate data file so as to not overload the main data file for activities)
+ store tag goals in separate data file so as to not overload the main data file for activities).
 
 ### Contributions beyond the project team
 * Provided feedback to the developer guide of another team.
