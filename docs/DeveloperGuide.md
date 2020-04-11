@@ -439,9 +439,9 @@ This section will describe the significant details of how the commands in <b>Nuk
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-*Class diagram* to illustrate **Add Command** classes:
+![ClassDiagramAdd.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramAdd.jpg)
 
-
+<span style="color: green"><small><i>Figure <b>Add Command Classes Diagram</b></i></small></span>
 
 #### **1.1. Add Module Command**
 
@@ -622,7 +622,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![list command class diagram](images/List_Command_Class_Diagram.png)
+![ClassDiagramList.jpg](images/ClassDiagramList.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
