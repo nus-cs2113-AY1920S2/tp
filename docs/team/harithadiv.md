@@ -77,5 +77,6 @@ in most of the classes.
 - PRs reviewed (with non-trivial comments)
 [#29](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/29)
 [#160](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/160)
+[#178](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/178)
 
 
