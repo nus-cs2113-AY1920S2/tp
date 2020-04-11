@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -64,6 +65,10 @@ div {
 By: `CS2113T-T13-2`      Since: `Feb 2020`    
 <small>[Go to Webpage](https://ay1920s2-cs2113t-t13-2.github.io/tp/DeveloperGuide.html)</small>
 
+<br>    
+
+
+<hr>  
 
 ## **Table of Contents**  
 
@@ -106,7 +111,11 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Manual Testing** [&#10149;](#manual-testing)    
 <br>
 <big style="color: green"> **Contact Us** [&#10149;](#contact-us)  </big>   
-<br>   
+
+<br>    
+
+
+<hr>  
 
 ## **Introduction**  
 
@@ -137,7 +146,11 @@ Another design goal we desire is to implement measures to allow the users to be 
 </div>
 
 [Back To Top](#table-of-contents)    
-<br>  
+
+<br>    
+
+
+<hr>  
 
 ## **Setting Up**
 
@@ -181,12 +194,16 @@ Another design goal we desire is to implement measures to allow the users to be 
 -   `bye`: Exits **Nuke**.
 
 [Back To Top](#table-of-contents)    
-<br>  
+
+<br>    
+
+
+<hr>  
 
 ## **Design**
 ### **1. Architecture**
 
-![Architecture.jpg](images/Architecture.jpg)
+![Architecture](images/dg_arch.png)
 
 <span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
  <br>
@@ -218,12 +235,17 @@ For example, the **`Storage`** component defines it's API in several classes inc
 <br>
 
 
-#### How the architecture components interact with each other
+**How the architecture components interact with each other**
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
 
-![interactions.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/interactions.jpg)
+![interactions.jpg](images/interactions.jpg)
 
 <span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
+<br>
+
+[Back To Top](#table-of-contents)    
+
+<br>
 
 ### **2. UI Component**
 Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
@@ -231,7 +253,7 @@ Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://gi
 ### **3. Logic Component**
 Classes used by Logic component are in the [**`seedu.nuke.data`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/data), [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java) in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
 
-The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br><br> 
 
 ![logic component](images/dg_logic.png)
 
@@ -247,11 +269,15 @@ More information about the <b>Storage Component</b> can be found [here](#storage
 <br>
 
 [Back To Top](#table-of-contents)    
-<br>  
+
+<br>    
+
+
+<hr>    
 
 ## **Structure Implementation**  
 <div>
-This section shall discuss about our implementation of the overall structure of the <b>Nuke</b> application. We will highlight <b>three</b> main features of the current structure: <b><a href="#directory">Directory</a></b>, <b><a href="#directory-manager">Directory Manager</a></b> and <b><a href="#directory-traverser">Directory Traverser</a></b>.
+This section shall discuss about our implementation of the overall structure of the <b>Nuke</b> application. We will highlight <b>three</b> main features of the current structure: <b><a href="#1-directory">Directory</a></b>, <b><a href="#2-directory-manager">Directory Manager</a></b> and <b><a href="#3-directory-traverser">Directory Traverser</a></b>.
 </div>
 
 ### **1. Directory**    
@@ -261,7 +287,7 @@ The <b>Nuke</b> application attempts to simulate the structure of a <b>Directory
 <br><br>
 There are altogether <b>5</b> levels in the current implementation of <b>Nuke</b>'s <b>Directory Tree</b>:
 </div>
-<br>
+
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
 
 | Directory Level | Description                                                                      |
@@ -292,7 +318,7 @@ The basic <i>class diagram</i> of the structure is shown below. A more detailed 
  <br>
 
 <div>
-The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</b> each have their own set of attributes. Also, apart from the <b>File</b> directory, each of them have a corresponding <b><a href="#directory-manager">Directory Manager</a></b> class that stores and manages the operations regarding the <i>child directories</i>. For example, a <code>Module</code> has a <code>CategoryManager</code> class that stores the <i>module</i>'s <i>categories</i>, and manages their operations <i>(such as adding and deleting)</i>.
+The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</b> each have their own set of attributes. Also, apart from the <b>File</b> directory, each of them have a corresponding <b><a href="#2-directory-manager">Directory Manager</a></b> class that stores and manages the operations regarding the <i>child directories</i>. For example, a <code>Module</code> has a <code>CategoryManager</code> class that stores the <i>module</i>'s <i>categories</i>, and manages their operations <i>(such as adding and deleting)</i>.
 <br><br>
 We will show a more detailed <i>class diagram</i>, as well as describe each of the <b>Directory</b>'s attributes below: 
 </div>   
@@ -312,10 +338,10 @@ The <b>Root Directory</b> is the <b>base</b> of the entire <b>Directory Tree</b>
 #### **Module**    
 <div>
 The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree</b>. It corresponds to a <i>module</i>. A <i>module</i> has a <i>module code</i> and <i>title</i>. It also has a <b>Category Manager</b> which stores <i>categories</i> to categorise the user's <i>tasks</i>, such as "Lecture", "Tutorial" and "Assignment". 
-</div>
+</div><br>
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
-In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
+In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are "Lecture", "Tutorial", "Assignment" and "Lab". These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
 </div>     
 
 #### **Category**   
@@ -331,7 +357,7 @@ The <b>Task Directory</b> is the <b>fourth</b> level of the <b>Directory Tree</b
 #### **File**  
 <div>
 The <b>File Directory</b> is the <b>last</b> level of the <b>Directory Tree</b>. It corresponds to a <i>file</i>. The <i>file</i> must have a <i>file name</i>, <i>file path</i>, and its <i>original file path</i> It does no have a corresponding <b>Directory Manager</b>.     
-</div>   
+</div><br>   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <i>original file path</i> is the <i>path</i> to where the <i>original file</i> is taken from in the application. In our current implementation, <b>Nuke</b> will then make a copy of the <i>file</i> and save it into a new location, and the <i>path</i> to the new location is stored in the <i>file path</i> attribute.
@@ -393,7 +419,7 @@ The <b>Directories</b> and <b>Directory Managers</b> together make up the <a hre
 ### **3. Directory Traverser**    
 #### **Overview**    
 <div>
-The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
+The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#1-directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
 <br><br>
 The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> attributes in various commands by using the information from the <i>current</i> and <i>parent</i> <b>Directories</b>. For example, if a user is at the <b>Module</b> level, with <i>module code</i> <b>CS2100</b>, and wants to add a <i>category</i>, he does not have to enter the <i>directory path</i>  to the <i>module</i> in the command as such: <code>addc toAdd -m cs2100</code>. Instead, he can just type <code>addc toAdd</code>. This also works when the user is at the <b>Category</b>, <b>Task</b> and <b>File</b> levels.
 </div>  
@@ -484,8 +510,11 @@ The commands targeting the <b>File</b> Directroy requires the longest <i>path</i
 	- <b>Cons</b>: A lot harder to implement &#128551;. There are many considerations to be made for the correct implementation of this feature such as how missing attributes can be derived and the correct matching of attributes.   
 
 [Back To Top](#table-of-contents)    
-<br> 
 
+<br>    
+
+
+<hr>   
 
 ## **Command Implementation**  
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
@@ -553,27 +582,27 @@ James will simply enter the command `addm cs3235`
 <big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
 James receive the following feedback:
 ```
-   root :
-   addm cs3235
-   SUCCESS!! Module CS3235 Computer Security has been added.
+ root :
+ addm cs3235
+ SUCCESS!! Module CS3235 Computer Security has been added.
    
-   root :
-   lsm
-   Here are what you are looking for...
+ root :
+ lsm
+ Here are what you are looking for...
    
-   +--------------------------------------------------------------------------------------------------+
-    NO |  MODULE CODE   |                                 MODULE TITLE
-   +--------------------------------------------------------------------------------------------------+
-    1  |     CS1231     |                             Discrete Structures
-    2  |     CS2100     |                            Computer Organisation
-    3  |     CS2113     |              Software Engineering & Object-Oriented Programming
-    4  |     CS3235     |                              Computer Security
-   +--------------------------------------------------------------------------------------------------+
-   Total modules: 4
-   +--------------------------------------------------------------------------------------------------+
+ +--------------------------------------------------------------------------------------------------+
+  NO |  MODULE CODE   |                                 MODULE TITLE
+ +--------------------------------------------------------------------------------------------------+
+  1  |     CS1231     |                             Discrete Structures
+  2  |     CS2100     |                            Computer Organisation
+  3  |     CS2113     |              Software Engineering & Object-Oriented Programming
+  4  |     CS3235     |                              Computer Security
+ +--------------------------------------------------------------------------------------------------+
+ Total modules: 4
+ +--------------------------------------------------------------------------------------------------+
 ```
 
-
+<br>
 
 Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 
@@ -700,7 +729,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![ClassDiagramList.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramList.jpg)
+![ClassDiagramList.jpg](images/ClassDiagramList.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -959,7 +988,7 @@ If the attribute String <b>exceeds</b> the length limit, an <b>exception</b> wil
 In addition, for <code>EditCategoryCommand</code> and <code>EditTaskCommand</code>, it will fill in any missing attributes not specified by the user in their input. This is done through the command's <code>fillAttributes()</code> method.  
 <br><br>
 Finally, the <b>edit</b> command will perform the <code>edit()</code> method to edit the <code>Directory</code>. 
-</div><br>    
+</div>    
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
@@ -1047,14 +1076,14 @@ The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specif
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
 
 The <code>OpenFile</code> object first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
-</div><br>   
+</div>   
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 If there is an error opening a particular <i>file</i> in the list &#128534;, the opening process will not be terminated immediately. Instead, the application will continue to open the rest of the <i>files</i> in the list. <br>
 After it has gone through the list, it will then show the user the <i>files</i> that were not opened due to an error.
 <br><br>
-This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
+This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of <i>file names</i> as the message.
 </div> <br>   
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
 
@@ -1180,7 +1209,11 @@ Below is a <i>sequence diagram</i> of the undo command in action: <br>
 	- <b>Cons</b>: Need to ensure correct implementation of the <code>undo</code> method, and consider scenarios if the command fails to execute.
 
 [Back To Top](#table-of-contents)    
-<br><br>
+
+<br>    
+
+
+<hr>  
 
 ## **Storage Implementation**   
 
@@ -1252,7 +1285,7 @@ private void runCommandLoopUntilExitCommand() {
 	... ...
 }
 ```
-</div>   
+   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 Notice that the <code>ScreenShotManager#saveScreenShot()</code> is also called after the <code>StorageManager</code> saves the <b>Directory Tree</b>. The <code>ScreenShotManager</code> class is responsible for performing <b>undo</b> and <b>redo</b> operations in the application. 
@@ -1261,7 +1294,7 @@ For more information about the <code>ScreenShotManager</code> class or the <b>un
 </div>
 
 Here is a <i>sequence diagram</i> of what happens during saving after a successful <b>add</b> command: <br>   
-![storage manager sequence diagram](images/dg_save_seq.png)  
+![storage manager sequence diagram](images/dg_storage_seq.png)  
 <span style="color: green"><small><i>Figure <b>Storage Manager Sequence Diagram</b></i></small></span>    
 <br>
 
@@ -1294,7 +1327,11 @@ However, for future implementations of the application, we are looking towards e
 </div>
 
 [Back To Top](#table-of-contents)    
-<br><br>
+
+<br>    
+
+
+<hr>  
 
 ## **Appendix**  
 
@@ -1362,6 +1399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ​    40 words per minute
 
 #### Depth First
+To go recursively downwards until the bottom before back-tracking
 
 <br>  
 
@@ -1375,7 +1413,7 @@ Given below are instructions to test the application manually.
 These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing. We also recommend testers to have a stable Internet connection when carrying out the testing so that the application can successfully retrieve the module information from <a href = "https://api.nusmods.com/v2/">NUSMods API</a>
 </div>
 
-#### 1. Launch and Shutdown
+#### **1. Launch and Shutdown**
 
 1. Initial launch
    1. Download the jar file from the [release page](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases) and copy into an empty folder.
@@ -1386,7 +1424,7 @@ These instructions only provide a starting point for testers to work on; testers
    1. Enter command `bye` and hit enter
    2. Expected output: **Nuke** program terminates with farewell message displayed.
 
-#### 2. Add Command
+#### **2. Add Command**
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 All the Add Commands below are assumed to be executed at the root directory.
@@ -1438,7 +1476,7 @@ All the Add Commands below are assumed to be executed at the root directory.
       1. Test case: `addg urgent -t assignment2`
       2. Expected: the program will promit the user with message: `Sorry, unable to execute the command at the current directory. Either move to the appropriate directory level, or enter the full directory path.`
 
-#### 3. Delete Command
+#### **3. Delete Command**
 
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
@@ -1487,7 +1525,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
       1. Test case: `delg non-exist-tag -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No tasks with the tag found.`
 
-#### 4. List Command
+#### **4. List Command**
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>, with a <i>tag</i> <code>urgent</code>
@@ -1503,7 +1541,7 @@ All the List Commands below are assumed to be executed at the root directory.<br
 [Back To Top](#table-of-contents)    
 <br>  
 
-      ![](images/dg_lsf.png)
+![list file](images/dg_lsf.png)
    
 5. List tags
 
@@ -1511,7 +1549,7 @@ All the List Commands below are assumed to be executed at the root directory.<br
 
    2. Expected: the program display a table containing all the tags of the *task* `assignment2` under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
 
-      ![](images/dg_lsg.png)
+![list tag](images/dg_lsg.png)
 
 1. Correct Usage:
    1. Test case: enter `cd cs2113t`
@@ -1520,7 +1558,7 @@ All the List Commands below are assumed to be executed at the root directory.<br
    1. Test case: enter `cd ..`
    2. Expected: the program prompt the user with message: `Unable to traverse further.`
 
-#### 8. Info Command
+#### **5. Info Command**
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 For Info Command below are assumed to be executed at the root directory.<br> And user has added a <i>module</i> <code>cs2113t</code>
@@ -1530,9 +1568,9 @@ For Info Command below are assumed to be executed at the root directory.<br> And
 
 2. Expected: the program will display the information about the current *directory* to the user as shown below:
 
-   ![](images/dg_info.png)
+![info](images/dg_info.png)
 
-#### 9. Open File Command
+#### **6. Open File Command**
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
@@ -1542,6 +1580,10 @@ All the List Commands below are assumed to be executed at the root directory.<br
 
 [Back To Top](#table-of-contents)
 
+<br>    
+
+
+<hr>  
 
 ## **Contact Us**   
 <div>
@@ -1550,7 +1592,7 @@ If you have any further inquiries, or if you found any <b>bugs</b> <i class="fa 
 <div style="text-align: center">
 <i class="fa fa-facebook-square fa-lg" style="color:blue"></i> <a href="https://www.facebook.com/nukeproject/"><b>Facebook</b></a> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nukeproject@gmail.com"><b>Gmail</b></a>
+<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nusnuke2019@gmail.com"><b>Gmail</b></a>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 <i class="fa fa-yahoo fa-lg" style="color: purple"></i> <a href="mailto:nukeproject@yahoo.com"><b>Yahoo! Mail</b></a> 
 </div>
