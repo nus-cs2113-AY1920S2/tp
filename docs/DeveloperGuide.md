@@ -288,7 +288,7 @@ attendance data. `n/` and `p/` flags are used to insert new attendance.
 There are 6 features for attendance in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
 
-##### Add attendanceList  
+#### Add attendanceList  
 ![AddAttendanceList](images/AddAttendance.png)    
 *Sequence diagram of AddAttendanceList*
      
@@ -299,7 +299,7 @@ exist and needs to be cleared before adding a new attendanceList. Else, it will 
 user intends to use an existing `studentList` found in `studentListCollection` or create a new list which will be added
 to `studentListCollection` upon creation with the name of the event as the list name. 
  
-##### Clear attendanceList    
+#### Clear attendanceList    
 ![ClearAttendanceList](images/ClearAttendanceList.png)    
 *Sequence diagram of ClearAttendanceList*  
 
@@ -308,7 +308,7 @@ The method clear() accesses the desired `attendanceList` of a given event, and c
 If empty, it calls display() in UI and inform the user list is empty. Else, it will clear the existing `attendanceList` 
 stored under the given event.
 
-##### View attendanceList  
+#### View attendanceList  
 ![ViewAttendanceList](images/ViewAttendanceList.png)     
 *Sequence diagram of ViewAttendanceList*    
 
@@ -318,7 +318,7 @@ The method view() accesses the desired `attendanceList` of given event, and chec
 If empty, it calls display() in UI and inform the user list is empty. Else, it will iterate through the `attendanceList` 
 and print Attendance data in a table format.  
 
-##### Sort attendanceList 
+#### Sort attendanceList 
 
 -
 ![SortAttendanceListByName](images/SortAttendanceListByName.png)     
@@ -335,7 +335,7 @@ The methods `SortAttendanceListByName` and `SortAttendanceListByStatus` access a
 whether it is empty. If empty, it calls display() in UI and inform the user list is empty.  
 Else, it will sort the `attendanceList` by the type mentioned in its method name.  
 
-##### Edit attendance  
+#### Edit attendance  
 ![EditAttendance](images/EditAttendance.png)    
 *Sequence diagram of EditAttendance*  
 
@@ -346,7 +346,7 @@ If empty, it calls display() in UI and inform the user list is empty. Else, it w
 The method decideEdit() will call getUserInput() in UI to get the user input and decide whether to call editName() or 
 editStatus() base on the user input.
 
-##### Find attendance  
+#### Find attendance  
 ![FindAttendance](images/FindAttendanceList.png)  
 *Sequence diagram of FindAttendance*  
 
@@ -398,7 +398,7 @@ prompting instructions and correct command format.
 There are 5 features for Performance in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
  
-##### Add performanceList
+#### Add performanceList
 ![AddPerformance](images/AddPerformance.png)  
 *Sequence diagram of AddPerformanceList*  
 
@@ -412,7 +412,7 @@ The method addByList() or addManually() will then get user input for Performance
 which will be parsed by the PerformanceParser and return a Performance.  
 The Performance attained from the parser will be added to a desired performanceList. 
 
-##### Delete performanceList
+#### Delete performanceList
 ![DeletePerformance](images/DeletePerformance.png)  
 *Sequence diagram of AddPerformance*  
 
@@ -424,7 +424,7 @@ getPerformance() from itself to get the user input, Performance parameters
 of the Performance to be deleted, and return a Performance.  
 The Performance attained from getPerformance() will be deleted from a desired performanceList. 
 
-##### Edit performanceList
+#### Edit performanceList
 ![EditPerformance](images/EditPerformance.png)  
 *Sequence diagram of EditPerformance*  
 
@@ -440,7 +440,7 @@ student's name or result.
 The new parameter will be attained from the user in method editPerformance(performance, editType) 
 in PerformanceList.  
 
-##### Sort performanceList  
+#### Sort performanceList  
 
 - 
 ![SortPerformanceByName](images/SortPerformanceList.png)    
@@ -461,7 +461,7 @@ the list is empty.
 If empty, it calls display() in UI and inform the user.  
 Else, it will sort the performanceList by the type mentioned in its method name.  
 
-##### View performanceList  
+#### View performanceList  
 ![ViewPerformance](images/ViewPerformanceList.png)  
 *Sequence diagram of ViewPerformanceList*  
 
@@ -509,7 +509,7 @@ Below shows the flow chart and sequence diagram of Student Command Interpreter.
 There are 6 features for Student in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
 
-##### Add student list
+#### Add student list
 ![AddStudentList](images/addStudentList.png)  
  *Sequence diagram of AddStudentList*   
  
@@ -527,7 +527,7 @@ in addStudent(studentList).
 After user has done input, `studentList` will be printed, and this new list is
 added to `studentListCollection`.
  
-##### Delete student list  
+#### Delete student list  
 ![DeleteStudentList](images/DeleteStudentList.png)  
  *Sequence diagram of DeleteStudentList*  
  
@@ -540,7 +540,7 @@ Else, it calls deleteFromExisting() from the same class and get user input for i
 list number to be deleted.  
 The (index-1)th list in `studentListCollection` is deleted.  
 
-##### Clear student list  
+#### Clear student list  
 ![ClearStudentList](images/ClearStudentList.png)   
  *Sequence diagram of ClearStudentList*  
  
@@ -553,7 +553,7 @@ from UI, to inform the user.
 Else, it calls clear() from `StudentListCollection` to clear the collection.  
 The user will get informed when a success clear has been performed.  
 
-##### View student list  
+#### View student list  
 ![ViewStudentList](images/ViewStudentList.png)  
  *Sequence diagram of ViewStudentList*   
  
@@ -565,7 +565,7 @@ If the `studentListCollection` is empty, displayStudentList() calls
 displayStudentListCollectionEmpty() from UI, to inform the user.  
 Else, it calls printStudentListCollection() from UI to print the table. 
 
-##### Find student list   
+#### Find student list   
 ![FindStudentList](images/FindStudentList.png)   
  *Sequence diagram of FindStudentList*   
  
@@ -581,7 +581,7 @@ the `studentListCollection` to find a `studentListCollection` listName that equa
 Last, it will call printSearchResults from displayList to display the searchResults found.  
 The user will get informed when a success sort has been performed.  
  
-##### Sort student list   
+#### Sort student list   
 
 -    
 ![SortStudentListByName](images/SortStudentListByName.png)      
