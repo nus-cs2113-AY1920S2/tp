@@ -378,6 +378,7 @@ attribute, and the `isDone` attribute of the module will be updated to be `true`
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
  
+The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
 ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
 
  
