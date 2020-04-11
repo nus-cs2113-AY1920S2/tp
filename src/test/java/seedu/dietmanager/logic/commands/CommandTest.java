@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CommandTest {
 
     @Test
-    void AddFoodCommand() throws InvalidFormatException {
+    void addFoodCommand() throws InvalidFormatException {
         Profile profile = new Profile();
         UI ui = new UI();
         profile.setProfile("John", 20, "Male", 180, 80, 75);
@@ -31,7 +31,7 @@ class CommandTest {
     }
 
     @Test
-    void CheckRequiredCaloriesCommand() throws InvalidFormatException {
+    void checkRequiredCaloriesCommand() throws InvalidFormatException {
         Profile profile = new Profile();
         UI ui = new UI();
         Command command = new CheckRequiredCaloriesCommand("check-required-cal", "monday low");
@@ -40,7 +40,7 @@ class CommandTest {
     }
 
     @Test
-    void CheckBmiCommand(){
+    void checkBmiCommand(){
         Profile profile = new Profile();
         UI ui = new UI();
         profile.setProfile("John", 20, "Male", 180, 80, 75);
@@ -72,7 +72,7 @@ class CommandTest {
     }
 
     @Test
-    void RecordMealCommand() throws InvalidFormatException {
+    void recordMealCommand() throws InvalidFormatException {
         Profile profile = new Profile();
         UI ui = new UI();
         profile.setProfile("John", 20, "Male", 180, 80, 75);
