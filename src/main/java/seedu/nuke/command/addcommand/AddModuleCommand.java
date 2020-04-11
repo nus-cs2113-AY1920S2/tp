@@ -54,8 +54,8 @@ public class AddModuleCommand extends AddCommand {
      * @see Module
      * @see CommandResult
      */
-    @Override
-    public CommandResult execute() {
+        @Override
+        public CommandResult execute() {
         Logger logger = NukeLogger.getLogger();
         //logger.log(Level.INFO, "Add command is being executed.");
 

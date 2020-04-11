@@ -28,12 +28,16 @@ public class Encoder {
     }
 
     /**
-     * Encodes the Module List to be saved into a file.
+     * Encodes the Directory List to be saved into a file.
      *
      * @return
-     *  The encoded Module List
+     *  The encoded Directory List
      */
     public String encode() {
+        return encodeModuleList();
+    }
+
+    private String encodeModuleList() {
         StringBuilder encodedList = new StringBuilder(BEGIN_MODULE_INDICATOR);
         for (Module module : moduleList) {
             encodedList.append(getModuleInformation(module)).append(LINE_BREAK);
