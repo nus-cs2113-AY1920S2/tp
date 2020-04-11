@@ -1,11 +1,5 @@
 # Tan De Jun (@dejunnn) - Project Portfolio Page
 
-## Content
-1. [Overview](#overview)
-2. [Summary of Contributions](#summary-of-contributions)
-3. [Contributions to the User Guide](#contributions-to-the-user-guide)
-4. [Contributions to the Developer Guide](#contributions-to-the-developer-guide)
-
 ## Overview
 
 Diet Manager is an personal text-based chat-bot application used for managing an individual's diet.
