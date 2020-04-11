@@ -575,3 +575,22 @@ Clear all reservations in the list while all reservations are listed.
     - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
 * Test case: `clear reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+
+### E.7 Sales Functionality
+#### E.7.1 Add a sales
+Adding sold dishes
+* Prerequisites: dishes and ingredients for the dish must exist 
+* Test case: `sell dish; d/pasta; q/10;`
+    - Expected: Command is successful and 10 pastas will be added to sales
+* Test case: `sell dish; d/pasta;` or `sell dish; q/20`
+    - Expected: Error with command format will be shown
+
+#### E.7.2 Calculating Profit
+* Prerequisites: Sales must be added
+* Test case: `profit`
+    - Expected: The profit will be calculated and be outputted
+
+#### E.7.3 Finding the most popular dish
+* Prerequisites: Sales must be added
+* Test case: `popular`
+  -  Expected: Most popular dish with its sales will be outputted
