@@ -94,10 +94,14 @@ public class AddPerformanceList extends Command {
      */
     private void addByList() throws PacException {
         StudentList studentList = getList();
+        int studentNumber = 0;
         for (String studentName : studentList.getStudentList()) {
             performanceList.addToList(new Performance(studentName,
                     ui.getResultOfStudent(studentName)), eventName);
+            studentNumber++;
         }
+        UI.display("You have successfully added "
+                + studentNumber + " result(s) to the performance list.");
     }
 
     /**

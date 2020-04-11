@@ -29,11 +29,16 @@ public class EditPerformanceList extends Command {
             performanceList.editPerformance(performance, "name");
         } else if (editType.toLowerCase().trim().equals("result")) { // edit result
             performanceList.editPerformance(performance, "result");
+        } else {
+            throw new PacException("Wrong type of parameter chosen.");
         }
     }
 
     @Override
     public void execute() throws PacException {
+        if (performanceList.isEmpty()) {
+            throw new PacException("No performance list under this event.");
+        }
         editPerformance();
     }
 }

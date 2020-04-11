@@ -17,8 +17,8 @@ public class DeleteEvent extends Command {
     public void execute() throws PacException {
         if (eventList.getSize() == 0) {
             throw new PacException("List is empty, unable to delete any items.");
-        } else if (index > eventList.getSize()) {
-            throw new PacException("Index not found");
+        } else if (index >= eventList.getSize()) {
+            throw new PacException("Index cannot be found. Check your index from the list.");
         }
         eventList.delete(index);
     }

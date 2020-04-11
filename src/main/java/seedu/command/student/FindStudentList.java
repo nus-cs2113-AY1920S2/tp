@@ -34,7 +34,7 @@ public class FindStudentList extends Command {
             String name = ui.getUserInput();
             searchResults = studentListCollection.search(name);
             if (searchResults.isEmpty()) {
-                UI.display("Nothing match you description : " + name);
+                UI.display("Nothing match your description : " + name);
             } else {
                 UI.display("You have " + searchResults.size() + " matches:");
                 displayList.printSearchResults(searchResults);

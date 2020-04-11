@@ -24,10 +24,14 @@ public class EditAttendance extends Command {
     /**
      * To determine the index of the attendance the user wishes to edit.
      */
-    private void getIndex() {
-        UI.display("Please state the index of the student you wish to edit");
-        ui.readUserInput();
-        this.index = Integer.parseInt(ui.getUserInput()) - 1;
+    private void getIndex() throws PacException {
+        try {
+            UI.display("Please state the index of the student you wish to edit");
+            ui.readUserInput();
+            this.index = Integer.parseInt(ui.getUserInput()) - 1;
+        } catch (Exception e) {
+            throw new PacException("Wrong format entered.");
+        }
     }
 
     /**
@@ -45,8 +49,8 @@ public class EditAttendance extends Command {
     private void editName() {
         UI.display("What do you want to change the name to?");
         ui.readUserInput();
-        String studentName = ui.getUserInput();
-        if (attendanceList.isDuplicate(studentName)) {
+        String studentName = ui.getUserInput().trim();
+        if (attendanceList.isDuplicate(studentName) || studentName.equals("")) {
             UI.display("Duplicate name found. Please try again.");
             editName();
         } else {
@@ -67,15 +71,19 @@ public class EditAttendance extends Command {
     /**
      * Method to edit the existing attendance.
      */
-    private void edit() {
+    private void edit() throws PacException {
         if (attendanceList.isEmpty()) {
             UI.display("The attendance list is currently empty. Please add attendance instead.");
         } else {
             attendanceList.displayList();
             getIndex();
-            displayAttendance();
-            decideEdit();
-            attendanceList.displayList();
+            if (this.index >= attendanceList.getAttendanceList().size() || this.index < 0) {
+                throw new PacException("The index you have chosen is out of bound.");
+            } else {
+                displayAttendance();
+                decideEdit();
+                attendanceList.displayList();
+            }
         }
     }
 
