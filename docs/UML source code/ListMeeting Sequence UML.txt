@@ -4,6 +4,7 @@ actor User
 participant ":LogicManager" as LogicManager #pink
 participant ":CommandHandler" as CommandHandler #lightgreen
 participant ":MeetingList" as MeetingList #lightblue
+participant ":Ui" as Ui #lightgrey
 
 User->LogicManager:list meetings
 activate LogicManager
@@ -11,6 +12,14 @@ LogicManager->CommandHandler:list meetings
 activate CommandHandler
 CommandHandler->MeetingList:listMeetings()
 activate MeetingList
+loop for(Meeting m: MeetingList)
+MeetingList->Ui: printMeeting()
+activate Ui
+MeetingList<--Ui:
+deactivate Ui
+end
+
+
 CommandHandler<--MeetingList:
 deactivate MeetingList
 LogicManager<--CommandHandler:
