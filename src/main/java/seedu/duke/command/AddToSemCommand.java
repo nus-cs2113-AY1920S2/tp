@@ -4,7 +4,6 @@ import seedu.duke.exception.RuntimeException;
 import seedu.duke.data.AvailableModulesList;
 
 import seedu.duke.data.SemesterList;
-import seedu.duke.module.Grading;
 import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 
@@ -33,8 +32,8 @@ public class AddToSemCommand extends AddCommand {
      * @throws RuntimeException throws when meets a runtime exception.
      */
     private void addModule(SemesterList semesterList) throws RuntimeException {
-        boolean doesModuleExistAndNotFailed = checkModuleExistAndNotFailed(semesterList);
-        if (doesModuleExistAndNotFailed) {
+        boolean doesModuleExist = checkModuleExist(semesterList);
+        if (doesModuleExist) {
             if (selectedModule.isIdValid() && selectedModule.isNameValid()) {
                 throw new RuntimeException(String.format("ID <%s> or name <%s> is already exist in your semester list!",
                         selectedModule.getId(), selectedModule.getName()));
@@ -86,22 +85,16 @@ public class AddToSemCommand extends AddCommand {
      * @param semesterList user's semester list
      * @return boolean value of true if the module is in the user's semester list, and false otherwise
      */
-    private boolean checkModuleExistAndNotFailed(SemesterList semesterList) {
+    private boolean checkModuleExist(SemesterList semesterList) {
         for (SemModulesList sem: semesterList) {
             for (SelectedModule module: sem) {
                 boolean hasSameModuleId = module.getId().equals(selectedModule.getId());
                 boolean hasSameModuleName = module.getName().equals(selectedModule.getName());
                 if (hasSameModuleId || hasSameModuleName) {
-                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
-                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
-                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
-                    if (hasModuleFailed) {
-                        return false;
-                    }
                     return true;
+                    }
                 }
             }
-        }
         return false;
     }
 }
