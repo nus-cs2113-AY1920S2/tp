@@ -189,11 +189,11 @@ public class EditAppointmentCommand extends AppointmentCommand {
             return TextUi.appendDivider(TextUi.INVALID_APPTID_MESSAGE);
         }
         if (newContent.length() < 3) {
-            return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE;
+            return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE + TextUi.DIVIDER;
         }
         String content = newContent.substring(2).trim();
         if (content.length() == 0) {
-            return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE;
+            return HelpTextUi.EDIT_APPOINTMENT_HELP_MESSAGE + TextUi.DIVIDER;
         }
         String field = newContent.substring(0,2).trim();
         Patient editPatient = findPatient(patients);
