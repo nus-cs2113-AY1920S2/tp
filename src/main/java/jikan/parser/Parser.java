@@ -1,6 +1,7 @@
 package jikan.parser;
 
 import jikan.exception.ExtraParametersException;
+import jikan.exception.MultipleDelimitersException;
 import jikan.log.Log;
 import jikan.cleaner.StorageCleaner;
 import jikan.storage.Storage;
@@ -131,6 +132,8 @@ public class Parser {
                 command = new FindCommand(tokenizedInputs[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         case FILTER:
@@ -138,6 +141,8 @@ public class Parser {
                 command = new FilterCommand(tokenizedInputs[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         case EDIT:

@@ -2,9 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.EmptyNameException;
-import jikan.exception.EmptyQueryException;
-import jikan.exception.ExtraParametersException;
+import jikan.exception.*;
 import jikan.ui.Ui;
 
 import static jikan.Jikan.lastShownList;
@@ -22,18 +20,28 @@ public class FindCommand extends Command {
     /**
      * Constructor to create a new find command.
      */
-    public FindCommand(String parameters) {
+    public FindCommand(String parameters) throws MultipleDelimitersException{
         super(parameters.trim());
         isFinalCommand = true;
+        this.parameters = parameters.replaceAll("\\s+", " ");
+        this.parameters = parameters.trim();
+        if (parameters.contains(";;") || parameters.contains("; ;")) {
+            throw new MultipleDelimitersException();
+        }
     }
 
     /**
      * Constructor to create a new find command that has chaining.
      */
-    public FindCommand(String parameters, boolean isFinal, boolean hasChaining) {
+    public FindCommand(String parameters, boolean isFinal, boolean hasChaining) throws MultipleDelimitersException{
         super(parameters.trim());
         isFinalCommand = isFinal;
         isChained = hasChaining;
+        this.parameters = parameters.replaceAll("\\s+", " ");
+        this.parameters = parameters.trim();
+        if (parameters.contains(";;") || parameters.contains("; ;")) {
+            throw new MultipleDelimitersException();
+        }
     }
 
 
@@ -43,10 +51,14 @@ public class FindCommand extends Command {
      */
     @Override
     public void executeCommand(ActivityList activityList) {
-        parameters = parameters.replaceAll("\\s+", " ");
-        parameters = parameters.trim();
         // remove the magic number later
         String[] tokenizedParameters = parameters.split(" ;", 2);
+        try {
+            checkForInvalidChaining();
+        } catch (MultipleDelimitersException e) {
+            Ui.printDivider("Please only use one ';' between each command.");
+            return;
+        }
 
         if (tokenizedParameters.length > 1) {
             executeChainedCommand(activityList, tokenizedParameters);
@@ -56,13 +68,23 @@ public class FindCommand extends Command {
         }
     }
 
-    private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
+    private void checkForInvalidChaining() throws MultipleDelimitersException{
+        if (parameters.contains(";;") || parameters.contains("; ;")) {
+            throw new MultipleDelimitersException();
+        }
+    }
+
+    private void executeChainedCommand (ActivityList activityList, String[] tokenizedParameters) {
         if (tokenizedParameters[1].length() > 0) {
             isFinalCommand = false;
             parameters = tokenizedParameters[0];
             executeSingleCommand(activityList);
             String nextCommand = tokenizedParameters[1].trim();
-            callNextCommand(nextCommand, activityList);
+            try {
+                callNextCommand(nextCommand, activityList);
+            } catch (InvalidCommandException e) {
+                Ui.printDivider("Please chain find or filter commands only");
+            }
         } else {
             isFinalCommand = true;
             parameters = tokenizedParameters[0];
@@ -79,7 +101,7 @@ public class FindCommand extends Command {
         }
     }
 
-    private void callNextCommand(String userInput, ActivityList activityList) {
+    private void callNextCommand(String userInput, ActivityList activityList) throws InvalidCommandException {
         String[] tokenizedInputs = userInput.split(" ", 2);
         String instruction = tokenizedInputs[0];
         Command command = null;
@@ -89,6 +111,8 @@ public class FindCommand extends Command {
                 command = new FindCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         case FILTER:
@@ -96,10 +120,12 @@ public class FindCommand extends Command {
                 command = new FilterCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         default:
-            Ui.printDivider("Please chain find or filter commands only");
+            throw new InvalidCommandException();
         }
 
         try {

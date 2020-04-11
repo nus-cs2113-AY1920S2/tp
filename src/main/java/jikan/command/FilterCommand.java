@@ -2,9 +2,7 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.EmptyNameException;
-import jikan.exception.EmptyQueryException;
-import jikan.exception.ExtraParametersException;
+import jikan.exception.*;
 import jikan.ui.Ui;
 
 import java.util.ArrayList;
@@ -25,18 +23,28 @@ public class FilterCommand extends Command {
     /**
      * Constructor to create a new filter command.
      */
-    public FilterCommand(String parameters) {
+    public FilterCommand(String parameters) throws MultipleDelimitersException {
         super(parameters);
         isFinalCommand = true;
+        this.parameters = parameters.replaceAll("\\s+", " ");
+        this.parameters = parameters.trim();
+        if (parameters.contains(";;") || parameters.contains("; ;")) {
+            throw new MultipleDelimitersException();
+        }
     }
 
     /**
      * Constructor to create a new filter command with chaining.
      */
-    public FilterCommand(String parameters, boolean isFinal, boolean hasChaining) {
+    public FilterCommand(String parameters, boolean isFinal, boolean hasChaining) throws MultipleDelimitersException {
         super(parameters.trim());
         isFinalCommand = isFinal;
         isChained = hasChaining;
+        this.parameters = parameters.replaceAll("\\s+", " ");
+        this.parameters = parameters.trim();
+        if (parameters.contains(";;") || parameters.contains("; ;")) {
+            throw new MultipleDelimitersException();
+        }
     }
 
     /**
@@ -45,11 +53,8 @@ public class FilterCommand extends Command {
      */
     @Override
     public void executeCommand(ActivityList activityList) {
-        parameters = parameters.replaceAll("\\s+", " ");
-        parameters = parameters.trim();
         // remove the magic number later
-        String[] tokenizedParameters = parameters.split(" ;", 2);
-
+        String[] tokenizedParameters = parameters.split(";", 2);
         if (tokenizedParameters.length > 1) {
             executeChainedCommand(activityList, tokenizedParameters);
         } else {
@@ -64,7 +69,11 @@ public class FilterCommand extends Command {
             parameters = tokenizedParameters[0];
             executeSingleCommand(activityList);
             String nextCommand = tokenizedParameters[1].trim();
-            callNextCommand(nextCommand, activityList);
+            try {
+                callNextCommand(nextCommand, activityList);
+            } catch (InvalidCommandException e) {
+                Ui.printDivider("Please chain find or filter commands only");
+            }
         } else {
             isFinalCommand = true;
             parameters = tokenizedParameters[0];
@@ -80,7 +89,7 @@ public class FilterCommand extends Command {
         }
     }
 
-    private void callNextCommand(String userInput, ActivityList activityList) {
+    private void callNextCommand(String userInput, ActivityList activityList) throws InvalidCommandException {
         String[] tokenizedInputs = userInput.split(" ", 2);
         String instruction = tokenizedInputs[0];
         Command command = null;
@@ -90,6 +99,8 @@ public class FilterCommand extends Command {
                 command = new FindCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         case FILTER:
@@ -97,10 +108,12 @@ public class FilterCommand extends Command {
                 command = new FilterCommand(tokenizedInputs[1], false, true);
             } catch (ArrayIndexOutOfBoundsException e) {
                 Ui.printDivider("No keyword was given.");
+            } catch (MultipleDelimitersException e) {
+                Ui.printDivider("Please only use one ';' between each command.");
             }
             break;
         default:
-            Ui.printDivider("Please chain find or filter commands only");
+            throw new InvalidCommandException();
         }
 
         try {
