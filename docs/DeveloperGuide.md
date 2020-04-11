@@ -243,7 +243,7 @@ in the semesterList. If it exists, both its name and id attributes are updated.
 
 ### 4.1.3 Design considerations
 
-Aspect: What is the add command format
+Aspect: What is the format of add command
 
 Alternative 1 (current choice): Both `Add to Semester` and `Add to Available` use `add` command word.
 

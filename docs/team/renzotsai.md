@@ -33,7 +33,7 @@ to `Available Modules List`.
 
 #### Contributions to the Developer Guide
 - Write the part of `Storage component` and draw a Class diagram to explain this implementation.
-- Write the part of `Add to semseter` and draw a Sequence diagram to explain this implementation.
+- Write the part of `Add` and draw a Sequence diagram to explain this implementation.
 
 #### Contributions to team-based tasks
 
