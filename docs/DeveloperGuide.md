@@ -84,6 +84,11 @@ the scenario where the user issues the command `delete patient NRIC`.
 
 ![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
 
+<<<<<<< HEAD
+=======
+The sections below give more details of each component.
+
+>>>>>>> e935f29e89922aa6a3ca32795be2ae9e731af60b
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
@@ -132,6 +137,16 @@ The diagram above shows the logic flow of HappyPills.
 ### 3.4. Model Component
 
 ![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
+
+The Model component consists of `Patient`, `PatientMap`, `PatientRecord`, `PatientRecordMap`, `Appointment` and
+`AppointmentMap`, which stores the user's data according to their input. 
+
++ `Patient`: Stores information about a patient
++ `PatientMap`: Stores all patient information
++ `PatientRecord`: Stores all medical-related information about a patient
++ `PatientRecordMap`: Stores all patient records
++ `Appointment`: Stores information about an appointment
++ `AppointmentMap`: Stores all scheduled appointments
 
 ### 3.5. Storage Component
 
@@ -786,7 +801,7 @@ Refer to the guide [here](Testing.md).
 
 ## 6. Useful links
 
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
 
 ## Appendices 
@@ -1344,5 +1359,5 @@ Given below are instructions to test the application manually.
 
 
 ## Useful links:
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)

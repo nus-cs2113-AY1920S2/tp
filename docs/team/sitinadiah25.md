@@ -13,10 +13,31 @@ to store all information in a single place and users can always have quick acces
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-**Major enhancement:** I implemented the `EditPatientCommand`
+**Major enhancement:** I implemented two `PatientCommand` and three `AppointmentCommand` classes.
 
++ What it does:
 
-**Major enhancement:** I implemented the `Appointment` and `AppointmentMap` class and parts of the Appointment-related commands
+    - The two `PatientCommand` classes that I implemented is `EditPatientCommand` and `ListPatientCommand`. 
+    
+        - `EditPatientCommand` allows the user to edit the `name`, `date of birth`, `phone number`, `blood type`, `allergies` and `remarks` of a patient.
+        
+        - `ListPatientCommand` displays all the patient's `nric` and `name`.
+        
+    - The three `AppointmentCommand` classes that I implemented is `AddAppointmentCommand`, `ListAppointmentCommand` and 
+    `DeleteAppointmentCommand`.
+    
+        - `AddAppointmentCommand` allows the user to add a schedule appointment into the program.
+        
+        - `ListAppointmentCommand` displays all the appointments that the user has added.
+        
+        - `DeleteAppointmentCommand` deletes an appointment according to the patient's NRIC and appointment ID. 
+        
++ Justification:
+
+    - The Command classes that I have implemented are essential to the application as it allows the user to 
+    add, modify and delete their data. 
+    
+**Major enhancement:** I implemented the `Appointment` and `AppointmentMap` class and parts of the Appointment-related commands.
 
 + What it does:
     
@@ -26,8 +47,6 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - The AppointmentMap class uses a HashMap from Java Collection framework to store the Appointment objects. 
         
     - The AppointmentMap maps the AppointmentID of an Appointment object to the object itself.   
-        
-    - Commands that I implemented includes Add Appointment, Delete Appointment and List Appointment. 
         
 + Justification: 
     
@@ -69,7 +88,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write documentation targeting end-users.
 
 [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Appointment.md)
+[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
