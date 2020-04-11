@@ -1,29 +1,29 @@
-# Project Portfolio -- Hao Yun
-## Project Nuke <small>v2.1</small>
+## Project Portfolio -- Hao Yun
+### Project Nuke <small>v2.1</small>
 
-## Overview
+### Overview
 **Nuke** is a simply yet powerful task management application that targets towards _NUS students_ and aims to facilitate record, classification, management and navigation of their acdemical tasks. The users can interact with **Nuke** using both a _Command Line Interface (CLI)_ and a complementary _Graphical User Interface (GUI)_. **Nuke** is written in Java, and has about 17000 lines of code.
 
 
 
-## Summary of Contributions
+### Summary of Contributions
 
-### Code Contributed
+#### Code Contributed
 
 [Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=HAOYUN49&sort=totalCommits%20dsc&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByNone&tabOpen=true&tabType=authorship&tabAuthor=HAOYUN49&tabRepo=AY1920S2-CS2113T-T13-2%2Ftp%5Bmaster%5D) from _GitHub RepoSense_ 
 
 
 
-### Major Enhancement
+#### Major Enhancement
 
-#### Implemented List Sorted Taks Features
+##### Implemented List Sorted Taks Features
 - What it does: allows the user to check their _task_s of different _module_s or all _module_s in the ascending order of _deadline_ or descending order of _priority_.
 
 - Justification: these features improve filtering function of the product and benefit the user greatly because a user can see the most urgent task and the least urgent task and then determine which task to complete right after.
 
 - Highlights: the implementation mainly consists of two parts include integrating all tasks from different categories of different modules as user-added tasks are stored in a multitude of seperated lists and sorting the all these tasks in terms of deadine or priority. As users may simplify commands by omitting prefix or only type into keywords, the implementation need to deal with different situations and filter tasks correctly which is challenging.
 
-#### Implemented Tag Features
+##### Implemented Tag Features
 - What it does: allows the user to add, delete several tags to every task to give more customized descriptions to their tasks and then list tasks out based on different tags.
 
 - Justification: these features will improve filtering function of the application significantly. Users can use customized tags to describe tasks and filter tasks according to these tags to find tasks catering to their needs well.
@@ -32,11 +32,11 @@
 
 
 
-### Minor Enhancement
+#### Minor Enhancement
 - Added **help** command which will show a simple user guide to enable users find valid commands and corresponding format when using **Nuke**.
 - Added **Data Manager** which is a base class used to realize some commands. 
 
-### Other Contributions
+#### Other Contributions
 - Project managment:
   - Necessary general code enhancements
   
