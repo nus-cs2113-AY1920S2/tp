@@ -118,10 +118,9 @@ This document will cover the structure and software design decisions for the imp
 </span>  
 
 ### **Design Goals**  
-
-```
-	// To be done.
-```
+<span style="text-align: justify; display: block">
+<b>Nuke</b> is designed aiming to facilitate task organisation, classfication, management and navigation of <b>NUS students</b>. <b>NUS students</b> can organise their <b>modules</b>, <b>tasks</b> and <b>files</b> with <b>NUKE</b> efficiently and orderly so that they can save time and efforting on managing their school works.
+</span>
 
 [Back To Top](#table-of-contents)    
 <br>  
