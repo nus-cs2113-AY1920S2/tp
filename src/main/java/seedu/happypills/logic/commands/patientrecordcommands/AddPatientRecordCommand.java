@@ -62,7 +62,7 @@ public class AddPatientRecordCommand extends PatientRecordCommand {
             throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         } else {
             PatientRecord patientRecord = new PatientRecord(nric, symptom, diagnosis, date, time);
-            patientRecords.addPersonalRecord(patientRecord, nric);
+            patientRecords.add(patientRecord, nric);
             try {
                 Storage.addSingleItemToFile(Storage.PATIENT_RECORD_FILEPATH, patientRecord.toSave());
             } catch (IOException e) {

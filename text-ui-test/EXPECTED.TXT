@@ -206,6 +206,7 @@ What can I do for you today, doctor?
 
     To abort, enter "clear"
     =====================================================
+    =====================================================
     @add pr is not a valid input.
     @add pr will not be added
     =====================================================
@@ -219,6 +220,7 @@ What can I do for you today, doctor?
       /t TIME (Format: HH:mm)
 
     To abort, enter "clear"
+    =====================================================
     =====================================================
         Are you sure all the listed details are correct?
         NRIC : S9876543F

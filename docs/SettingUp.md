@@ -37,7 +37,7 @@
  
 ### 3. Verifying the Setup
 1.  In Intellij, run `seedu.happypills.HappyPills` and try a few commands.
-    1. Commands that you can try to get familiar with HappyPills:
+    * Commands that you can try to get familiar with HappyPills:
         - `help`: list all the available commands in HappyPills
         - `add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory`:
         Add patient's information in HappyPills.

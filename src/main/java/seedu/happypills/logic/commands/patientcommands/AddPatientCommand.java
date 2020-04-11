@@ -46,7 +46,7 @@ public class AddPatientCommand extends PatientCommand {
     public AddPatientCommand(String name, String nric, int phoneNumber, String dateOfBirth,
                              String bloodType, String allergies, String remarks) {
         this.name = name;
-        this.nric = nric;
+        this.nric = nric.toUpperCase();
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
