@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -126,6 +127,16 @@ This document will cover the structure and software design decisions for the imp
 <br>  
 
 ### **Definitions**  
+
+static
+exception
+class
+object
+directory
+directory tree
+abstract
+method
+parent and child directory
 ```
 	// To be done.
 ```
@@ -189,6 +200,7 @@ This section shall discuss about our implementation of the overall structure of 
 </div>
 
 ### **Directory**    
+#### **Overview**   
 <div>
 The <b>Nuke</b> application attempts to simulate the structure of a <b>Directory Tree</b> &#127795; <i>(folder sub-folder)</i> structure. This means that there is a hierarchy for different <i>directories</i> in the <b>Tree</b>. Each <i>directory</i> will have a corresponding <i>parent directory</i>, with the exception of the <i>base directory</i>. In <b>Nuke</b>, this <i>base</i> directory is called the <b>Root</b>.
 <br><br>
@@ -211,13 +223,16 @@ The <i>parent directory</i> of each <i>directory</i> is the one at the <b>previo
 <br><br>  
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-The hierarchy of the <b>Directory Tree</b> set in place has to be followed strictly. That means, their level in the <b>Tree</b> can never be changed.
+The hierarchy of the <b>Directory Tree</b> set in place has to be followed strictly. That means, their levels in the <b>Tree</b> can never be changed.
 </div>   
-<br>
-The basic <i>class diagram</i> of the structure can be shown below. A more detailed <i>class diagram</i> with the attributes for each <i>directory</i> is shown <a href="#???">here</a>.
-</div>   
+</div>
 
-![directory class diagram basic](images/dg_directory_class_basic)   
+#### **Implementation**    
+<div>
+The basic <i>class diagram</i> of the structure is shown below. A more detailed <i>class diagram</i> with the attributes for each <i>directory</i> is shown <a href="#directory-class-diagram">here</a>.
+</div>   
+  
+![directory class diagram basic](images/dg_directory_class_basic.png)   
  <span style="color: green"><small><i>Figure <b>Directory Class Diagram (Basic)</b></i></small></span>   
  <br>
 
@@ -227,6 +242,7 @@ The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</
 We will show a more detailed <i>class diagram</i>, as well as describe each of the <b>Directory</b>'s attributes below: 
 </div>   
 <br>
+<p id="directory-class-diagram"></p>
 
 ![directory class diagram](images/dg_directory_class.png)    
 <span style="color: green"><small><i>Figure <b>Directory Class Diagram</b></i></small></span>   
@@ -242,7 +258,6 @@ The <b>Root Directory</b> is the <b>base</b> of the entire <b>Directory Tree</b>
 <div>
 The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree</b>. It corresponds to a <i>module</i>. A <i>module</i> has a <i>module code</i> and <i>title</i>. It also has a <b>Category Manager</b> which stores <i>categories</i> to categorise the user's <i>tasks</i>, such as "Lecture", "Tutorial" and "Assignment". 
 </div>
-<br>
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
@@ -261,21 +276,27 @@ The <b>Task Directory</b> is the <b>fourth</b> level of the <b>Directory Tree</b
 #### **File**  
 <div>
 The <b>File Directory</b> is the <b>last</b> level of the <b>Directory Tree</b>. It corresponds to a <i>file</i>. The <i>file</i> must have a <i>file name</i>, <i>file path</i>, and its <i>original file path</i> It does no have a corresponding <b>Directory Manager</b>.     
-</div>  
-<br>  
+</div>   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <i>original file path</i> is the <i>path</i> to where the <i>original file</i> is taken from in the application. In our current implementation, <b>Nuke</b> will then make a copy of the <i>file</i> and save it into a new location, and the <i>path</i> to the new location is stored in the <i>file path</i> attribute.
-</div>     
+</div>
+<br>     
 
 [Back To Top](#table-of-contents)    
 <br> 
 
-### **Directory Manager**    
+### **Directory Manager**   
+#### **Overview**     
 <div>
-The <b>Directory Manager</b> is a collective term used to refer to the <b>Module Manager</b>, <b>Category Manager</b>, <b>Task Manager</b> and <b>File Manager</b>. The <b>Directory Manager</b> manages the storage and operations of the <b>Directory</b> it is managing. For example, the <code>ModuleManager</code> object will manage <code>Module</code> objects. The <b>Directories</b> are stored in an <code>ArrayList</code>.
+The <b>Directory Manager</b> is a collective term used to refer to the <b>Module Manager</b>, <b>Category Manager</b>, <b>Task Manager</b> and <b>File Manager</b>. The <b>Directory Manager</b> manages the storage and operations of the <b>Directory</b> it is managing. For example, the <code>ModuleManager</code> object will manage <code>Module</code> objects. 
+</div>
+
+#### **Implementation**    
+<div>
+The <b>Directories</b> in the <b>Directory Manager</b> are stored in an <code>ArrayList</code>.
 <br><br>
-The various <b>Directory Manager</b> classes contain very similar methods to carry out operations regarding its <b>Directories</b>. For example, in the <code>ModuleManager</code> class, there are:
+The <b>Directory Manager</b> classes also contain very similar methods to carry out operations regarding its <b>Directories</b>. For example, in the <code>ModuleManager</code> class, there are:
 <ul>
 <li><code>getModule(String: moduleCode)</code> &ndash; Gets a <code>Module</code> object from the <code>ArrayList</code> based on the <code>moduleCode</code> provided</li>
 <li><code>add(Module)</code> &ndash; Adds a <code>Module</code> object into the <code>ArrayList</code> of stored <code>Module</code> objects</li>
@@ -285,16 +306,36 @@ The various <b>Directory Manager</b> classes contain very similar methods to car
 <li><code>filterExact(String: moduleKeyword)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
 </ul>
 <br>
-The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
+The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
 </div>
+<br>
 
 [Back To Top](#table-of-contents)    
 <br> 
 
 ### **Directory Traverser**    
+#### **Overview**    
 <div>
-
+The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
+<br><br>
+The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> attributes in various commands by using the information from the <i>current</i> and <i>parent</i> <b>Directories</b>. For example, if a user is at the <b>Module</b> level, with <i>module code</i> <b>CS2100</b>, and wants to add a <i>category</i>, he does not have to enter the <i>directory path</i>  to the <i>module</i> in the command as such: <code>addc toAdd -m cs2100</code>. Instead, he can just type <code>addc toAdd</code>. This also works when the user is at the <b>Category</b>, <b>Task</b> and <b>File</b> levels.
+</div>  
+  
+#### **Implementation**    
+![directory traverser class diagram](#images/dg_traverser_class.png)
+<div>
+The <code>DirectoryTraverser</code> class is a static class which has several public static methods. That means other classes can use the <code>DirectoryTraverser</code> class's methods without having to instantiate a <code>DirectoryTraverser</code> object. 
+<br><br>
+As described <a href="#overview-2">above</a>, the <code>DirectoryTraverser</code> class has <b>two</b> main functions:
+<br><br>
+<b><u>Traversal</u></b>
+<br>
+The <code>DirectoryTraverser</code> class contains methods used to traverse up and down <b>Directories</b>. 
+<br><br>
+<b><u>Attributes Matching</u></b>
+<br>
 </div>
+<br>
 
 [Back To Top](#table-of-contents)    
 <br> 
@@ -570,6 +611,7 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
+
 ![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
 
@@ -593,7 +635,7 @@ The deletion process can thus be broken down into <b>3</b> stages. We provide fo
 <div>
 <big><big><big><big><big style="color: green">&#10102;</big></big></big></big></big>
 The user, <i>say Peter in this example</i>,  will first request the <i>directory(s)</i> he wishes to be deleted. Assume Peter currently has these <i>modules</i> in his <b>Module List</b>:
-</div>
+</div><br>
 
 ```
 +--------------------------------------------------------------------------------------------------+
@@ -684,16 +726,17 @@ Below is the <i>sequence diagram</i> for <b>stage</b> <big><big><big style="colo
 
 <br>
 <div>
-Peter receives the final message:<br>  
+Peter receives the final message:<br><br>    
 </div>
 
 ```
 SUCCESS!! Module(s) have been deleted.
 ```
-
-<div>
+   
+<div>    
 and the delete process ends.  
-</div> <br>
+</div>
+    
 
 [Back To Top](#table-of-contents)    
 
@@ -727,7 +770,7 @@ The <b>edit</b> command edits the attributes of a <i>directory</i>. For example,
 </div>    
 
 #### **Implementation**     
-<br>
+<br>   
 
 ![edit commands class diagram](images/dg_edit_class.png)   
  <span style="color: green"><small><i>Figure <b>Edit Commands Class Diagram</b></i></small></span>   
@@ -756,8 +799,9 @@ The <code>Parser</code> object also helps to check if the user's input contains 
 An example <i>sequence diagram</i> is shown below when a user requests to edit a <i>category</i>:<br>       
 ![edit command sequence diagram](images/dg_edit_seq.png)    
 <span style="color: green"><small><i>Figure <b>Edit Command Sequence Diagram</b></i></small></span>   
+<br>   
 
-[Back To Top](#table-of-contents)    
+[Back To Top](#table-of-contents)     
 <br>  
 
 #### **Design Considerations**     
@@ -795,7 +839,7 @@ The <b>change directory</b> command traverses the user up and down the <b>Direct
 The <b>change directory</b> command uses various methods from the <code>DirectoryTraverser</code> class in its execution. <br><br>
 If the user wants to traverse down to a <i>directory</i>, the <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#findNextDirectory(nextDirectoryName)</code> to get the <code>Directory</code> to traverse to. Then, <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#ftraverseDown(nextDirectory)</code> to move the user to that <i>directory</i>.<br><br>
 If the user want to traverse up from the current <i>directory</i> instead, <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#traverseUp()</code> to bring the user back to the <i>parent directory</i>.   
-</div>     <br>  
+</div>  
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
@@ -817,7 +861,6 @@ Shown below is the <i>sequence diagram</i> when a user executes the <b>change di
 - <b>Alternative 2</b>: User can traverse more than one level at a time, similar to Linux Shell.     
 	- <b>Pros</b>: Saves user time from having to possibly execute the <b>change directory</b> command multiple times. User can simply enter <code>cd directory1/directory2/directory3</code> and move four <i>directory levels</i> down.      
 	- <b>Cons</b>: Much harder to implement as we need to consider how the split the String into individual <i>directory names</i>. Furthermore, we have to consider the case if the provided <i>directory name</i> contains <code>/</code>, and how we will implement a method to differentiate the <code>/</code> in the <i>name</i> from a <code>/</code> in the <i>directory path</i>.      
-
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
@@ -843,10 +886,10 @@ After it has gone through the list, it will then show the user the <i>files</i> 
 This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
 </div> <br>   
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
+
 ![open file command sequence diagram](images/dg_open_file_seq.png)    
  <span style="color: green"><small><i>Figure <b>Open File Command Sequence Diagram</b></i></small></span>   
-
-<br>
+   
 
 [Back To Top](#table-of-contents)    
 <br>  
