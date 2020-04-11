@@ -4,16 +4,16 @@
 WhenFree is a Command Line scheduler chatbot for NUS students to find common free time among them and their friends, using just the NUSMODS links to their school timetable.
 
 ## Summary of Contributions
-* *Code contributed*: https://github.com/AY1920S2-CS2113T-T12-1/tp/pulls?q=is%3Apr+author%3Alowxizhi
-* *Enhancement 1*: added feature **Display timetable of selected contacts**
+* [**Code contributed**](https://github.com/AY1920S2-CS2113T-T12-1/tp/pulls?q=is%3Apr+author%3Alowxizhi)
+* **Enhancement 1**: added feature **Display timetable of selected contacts**
     * What it does: Generates and displays a combined timetable from several contacts’ timetable. 
     * Justification: This feature is key to the functionality of WhenFree as it allows the user to see his/her common free slots with other contacts.
-* *Enhancement 2*: added feature **Edit a contact's timetable**
+* **Enhancement 2**: added feature **Edit a contact's timetable**
     * What it does: Overwrites a contact’s timetable to “busy” or “free” for a time slot.
     * Justification: This feature enhances the usability of WhenFree as it allows the user to make amendments on top of 
-    their NUSMODS timetable (eg. empty tutorial slots, consultation sessions), allowing them to find free time slots accurately.
+    their NUSMODS timetable (eg. empty tutorial slots, additional consultation sessions), allowing them to find free time slots more accurately.
     * Highlights: This feature prevents overwriting any meetings scheduled.
-* *UG documentation*:
+* **UG documentation**:
     * Contributed to the [Introduction](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#introduction) and [Quick Start](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#quick-start) sections. 
     * Wrote the main description as well as detailed notes for these features: [List all contacts](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#list-all-contacts-contacts), 
     [Display timetable of selected contacts](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#display-timetable-of-selected-contacts-timetable),
@@ -22,23 +22,23 @@ WhenFree is a Command Line scheduler chatbot for NUS students to find common fre
     [Edit a contact's timetable](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#edit-a-contacts-timetable-edit)
     * Contributed to [FAQ](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#faq) for obtaining NUSMODS link from NUSMODS website.
     * Contributed to [Command Summary](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md#command-summary). 
-* *DG documentation*:
-    * Framework: Made the framework for the [Design](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#2-design) and [Implementation](3. Implementation) sections.
+* **DG documentation**:
+    * Framework: Made the framework for the [Design](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#2-design) and [Implementation](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#3-implementation) sections.
     * Design Section: Wrote the [UI component](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#22-ui-component) and the logic.schedulelogic component(of [Logic component](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#23-logic-component)), including class diagram Fig 5. 
     * Implementation Section: Wrote the [Display timetable of selected contacts](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#33-display-timetable-of-selected-contacts) and [Edit a contact's timetable features](https://github.com/AY1920S2-CS2113T-T12-1/tp/blob/master/docs/DeveloperGuide.md#35-edit-a-contacts-timetable), including sequence diagrams  Fig 12. Fig 14. Fig 15. 
     * Edited architecture diagram and class diagrams to be neat and consistent (labelling, colour-coding, aligning), captioned all diagrams, edited text referring to the diagrams to be consistent and edited the sentence structure to ensure flow of the Design and Implementation sections.
-* *Team-based tasks*:
+* **Team-based tasks**:
     * Refactor all commands into a single CommandHandler class.
     * Refactor overlapping code in “Schedule a new meeting” and “Edit a contact's timetable” features.
     * Raised issues to bugs found in team members’ code.
     * Allocating sections of UG and DG to be written by team members.
-* *Review/mentoring:
+* **Review/mentoring**:
     * Suggested to a team member a better implementation of his "Delete a contact" feature, which he eventually used.
     * Pointed a team member to resources to write assertions.
     * Pointed out errors in team members’ class diagrams.
-* Contributions beyond the project team:
+* **Contributions beyond the project team**:
     * Asked a [question in the forum](https://github.com/nus-cs2113-AY1920S2/forum/issues/78) clarifying a module’s concept 
-    * Raised issues to bugs in other team’s project (eg. https://github.com/lowxizhi/ped/issues/10 , https://github.com/lowxizhi/ped/issues/5)
+    * Raised issues to bugs in other team’s project. [Example 1](https://github.com/lowxizhi/ped/issues/10) [Example 2](https://github.com/lowxizhi/ped/issues/5)
 
 ## Example Contributions to the User Guide:
 ### Edit a contact's timetable: `edit`
