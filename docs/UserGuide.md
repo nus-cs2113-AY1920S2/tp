@@ -16,11 +16,11 @@
     - [4.3. Find and Filter Activity](#finding-and-filtering)
         - [4.3.1. Find Activity by Name](#finding-activities-by-name-find)
         - [4.3.2. Filter Activity by Tag](#filtering-activities-by-tags-filter)
-        - [4.3.3. Chaining Lists, Find and Filter](#chaining-lists-finds--filters--s)
+        - [4.3.3. Chaining Lists, Find and Filter](#chaining-finds--filters--s)
     - [4.4. Graphs](#graphs)
         - [4.4.1. Activity Time Graph](#activity-time-graph-graph-activities)
         - [4.4.2. Tags Time Graph](#tags-time-graph-graph-tags)
-        - [4.4.3. Activity Targets Graph](#activity-targets-graph-graph-allocations)
+        - [4.4.3. Activity Allocation Graph](#activity-allocation-graph-graph-allocations)
         - [4.4.4. Chaining List, Find, Filter with Graph](#chaining-list-find-and-filter-with-graph-command)
     - [4.5. Tag Goals](#tag-goals)
         - [4.5.1. Set Goal](#set-goal-goal-tag_name-g-duration)
@@ -49,10 +49,9 @@ This user guide will show you how to use the program effectively.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the jar file of the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
-3. Download the data.csv file.
-4. Create an empty folder and put the Jikan.jar file inside.
-6. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
+2. Download the jar file of the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
+3. Create an empty folder and put the Jikan.jar file inside.
+4. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
 
 Features 
 =======
@@ -148,13 +147,14 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 * `TIME_PERIOD` can either be a specific date or over a range.  
   
 **Example:**  
-* `list` List all activities.    
-* `list month april` Lists all activities in April.  
-* `list week` or `list weekly` List all activities in the current week.  
+* `list` lists all activities.    
+* `list month april` lists all activities in April.  
+* `list week` or `list weekly` lists all activities in the current week.  
 * `list week 01/01/2020` lists all activities in the week of 01/01/2020.  
-* `list day` or `list daily` List all activities in the current day.  
-* `list 01/01/2020` or `list 2020-01-01` List all activities on 1 Jan 2020.  
-* `list 01/01/2020 20/02/2020` List all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
+* `list day` or `list daily` lists all activities in the current day.  
+* `list yesterday` lists all activities completed the day before.
+* `list 01/01/2020` or `list 2020-01-01` lists all activities completed on 1 Jan 2020.  
+* `list 01/01/2020 20/02/2020` lists all activities than fall within 1 Jan 2020 and 20 Feb 2020.  
   
 ### Editing an activity: `edit`
 **Usage:** Edits the name or allocated time of an activity in the activity list.
@@ -225,8 +225,7 @@ The parameter `SCALE` refers to the number of minutes represented by each point 
 
 Note: As the units of `SCALE` is minutes, if your activity is less than a minute, graph function will not show anything.
 
-**Format:**   
-`graph activities SCALE`
+**Format:**    `graph activities SCALE`
 
 **Example:**    
 `graph activities 10`    
@@ -246,8 +245,7 @@ Adding up the durations for each tag, we get 10 mins for `tag1` and 5 mins for `
 
 As tags can be used to group activities of a similar nature together (i.e. same module), this feature can be used to easily see what type of activity took up the most time.
 
-**Format:**   
-`graph tags SCALE`
+**Format:** `graph tags SCALE`
 
 **Example:**    
 `graph tags 1` 
@@ -267,8 +265,7 @@ For example, if we `graph allocations` for the activity list above, we will get 
 The percentage shown in the graph represents the activity's progress relative to their allocated time. (`activity 4` have a duration of 2 seconds while its allocated time was 5 seconds, 2/5 * 100% = 40%. Thus the progress of `activity 4` is 40%
 as shown in the graph)
 
-**Format:**   
-`graph allocations`
+**Format:** `graph allocations`
 
 ### Chaining `list`, `find` and `filter` with `graph` command:
 Using `list`, `find` and `filter` commands you can sieve out the information you wish to be graphed.
@@ -409,8 +406,8 @@ to users who are running this application on systems with limited hardware (smal
 * Set a goal for tags: `goal TAG_NAME /g DURATION`
 * Delete a goal for tags: `goal TAG_NAME /d`
 * View goals for tags: `goal`
-* Display graph by tags: `graph tags`
-* Display graph by duration: `graph INTERVAL`
+* Display graph by tags: `graph tags INTERVAL`
+* Display graph by duration: `graph activities INTERVAL`
 * Display graph by targets: `graph targets`
 * Clean data files: `clean [command]`
     * Activate auto data cleaner: `clean on`

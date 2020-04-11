@@ -7,7 +7,7 @@
     - [3.1.1 Current Implementation](#311-current-implementation)
     - [3.1.2 Additional Implementation](#312-additional-implementation)
     - [3.1.3 Design Considerations](#313-design-considerations)
-  - [3.2 Clean Feature](#31-automated-storage-cleanup-feature)
+  - [3.2 Clean Feature](#32-clean-feature)
     - [3.2.1 Current Implementation](#311-current-implementation)
     - [3.2.2 Additional Implementation](#322-additional-implementation)
     - [3.2.3 Design Considerations](#323-design-considerations)
@@ -19,14 +19,17 @@
     - [3.5.3 Design Considerations](#353-design-considerations)
   - [3.6 Continue Feature](#36-continue-feature)
     - [3.6.1 Current Implementation](#361-current-implementation)
-    - [3.6.2 Design Considerations](#362-design-considerations)
-    - [3.6.3 Additional Features](#363-additional-features)
+    - [3.6.3 Additional Implementations](#362-additional-implementations)
+    - [3.6.2 Design Considerations](#363-design-considerations)
   - [3.7 List feature](#37-list-feature)
-    - [3.7.1 Current implementation](#371-current-implementation-1)
-  - [3.8 Find Feature](#38-find-feature)
-    - [3.8.1 Current Implementation](#381-current-implementation)
-  - [3.9 Filter Feature](#39-filter-feature)
+    - [3.7.1 Current implementation](#371-current-implementation)
+  - [3.8 Find and Filter Features](#38-find--filter-features)
+    - [3.8.1 Design Considerations](#381-design-considerations)
+    - [3.8.2a Current Implementation for Find](#382a-current-implementation-for-find)
+    - [3.8.2b Current Implementation for Filter](#382b-current-implementation-for-filter)
+  - [3.9 Graph Feature](#39-graph-feature)
     - [3.9.1 Current Implementation](#391-current-implementation)
+    - [3.9.2 Additional features](#392-additional-features)
 - [4. Appendix](#4-appendix)
   - [Product Scope](#product-scope)
     - [Target user profile](#target-user-profile)
@@ -38,7 +41,6 @@
     - [Launch and Shutdown](#launch-and-shutdown)
     - [Listing activities](#listing-activities)
     - [Continuing activities](#continuing-activities)
-    - [Editing activities](#editing-activities)
     - [Graphing activities](#graphing-activities)
     - [Setting tag goals](#setting-tag-goals)
 
@@ -391,7 +393,11 @@ The continue feature allows the user to continue a previously ended activity.
 * The elapsed time is added with the previous duration of the activity to get the `newDuration` using the `plus()` method of Duration class.
 * `updateDuration()` method is called to update the `duration` attribute of the continued activity in the `activityList` as well as the `data.csv` file.
 
-#### 3.6.2 Design Considerations
+#### 3.6.2 Additional Implementations
+As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, they will be given the option to continue the stated activity.
+![decision flowchart](./pictures/continue_flowchart.PNG)
+
+#### 3.6.3 Design Considerations
 
 **Execution:**
  * Continue by activity name (current implementation)
@@ -403,10 +409,6 @@ The continue feature allows the user to continue a previously ended activity.
    * **Pros:** Can reuse activity names.
  
 Although the current implementation of the continue feature disallows users to have multiple activities with the same name, we felt that the versatility of this choice outweighed the cons. Firstly because if the activityList got too big, it would be hard for the user to get the index of the task they wanted to continue. Also, the index would constantly be changing when changes are made to the list.
-
-#### 3.6.3 Additional Features
-As users can only have activities with unique names, when a user wants to start an activity which already exists in the activityList, they will be given the option to continue the stated activity.
-![decision flowchart](./pictures/continue_flowchart.PNG)
 
 ### 3.7 List feature
 This feature is used to list activities within a range specified by the user.
@@ -468,7 +470,7 @@ The string following the command are the parameters:
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
 
-#### 3.8.2b Current Implementation
+#### 3.8.2b Current Implementation for Filter 
 * This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
