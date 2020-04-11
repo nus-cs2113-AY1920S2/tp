@@ -117,8 +117,6 @@ Format: `HELP`
 * View help `HELP`
 * Exit program `BYE`
 
-&nbsp;
-
 ---
 
 ## Contributions to the Developer Guide
@@ -250,7 +248,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
 #### Appendix D: Instructions for Manual Testing
 > :information_source: Note: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
-##### Launch and Shutdown
+#### Launch and Shutdown
 1. Initial launch 
     
       i.    Download the [latest](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) version of `SHOCO`, named <code>CS2113T-T13-1.Shoco.jar</code> under version 2.1.
@@ -275,7 +273,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
   
    &nbsp;
    
-##### Set and Reset a budget
+#### Set and Reset a budget
 
 1. Set a budget
        
@@ -318,7 +316,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
     
-##### Add and Edit an item
+#### Add and Edit an item
 
 1. Add an item 
         
@@ -375,7 +373,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
     
   
-##### Find and Delete an item
+#### Find and Delete an item
 
 1. Find an item based on keyword
        
@@ -408,7 +406,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
      &nbsp;
 
 
-##### Display and Clear the shopping list
+#### Display and Clear the shopping list
 
 1. List all items in the shopping list
             
