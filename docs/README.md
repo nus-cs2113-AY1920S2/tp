@@ -1,4 +1,4 @@
-# Duke
+# Retaurant Daily Report
 
 Restaurant Daily Report is a CLI app that generates a whitepaper, 
 summarizing the internals of a restaurant. It’s aim is to provide 
