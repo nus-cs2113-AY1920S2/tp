@@ -181,7 +181,7 @@ public class Parser {
             break;
         case GOAL:
             try {
-                if (tokenizedInputs.length == 1) {
+                if (tokenizedInputs.length == 1 || tokenizedInputs[1].isBlank() || tokenizedInputs[1] == null) {
                     command = new ViewGoalsCommand(null, this.tagStorage);
                 } else {
                     command = new GoalCommand(tokenizedInputs[1], scanner, this.tagStorage);
