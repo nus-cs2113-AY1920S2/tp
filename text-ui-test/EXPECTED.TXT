@@ -182,7 +182,7 @@ Y3S1
 
 Please input your command:
 You have completed this amount of credits:
-4
+8
 
 
 Please input your command:

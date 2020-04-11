@@ -1,11 +1,14 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
+import seedu.duke.module.Grading;
+import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 
@@ -46,10 +49,18 @@ public class DeleteFromSemCommand extends DeleteCommand {
                     moduleIdentifier, semester));
         }
 
-        Module module;
+        SelectedModule module;
         for (SemModulesList semModulesList : selectedModulesList) {
             if (semester.equals(semModulesList.getSem())) {
                 module = semModulesList.getModule(moduleIdentifier);
+                if (module.getDone()) {
+                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
+                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
+                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
+                    if (!hasModuleFailed) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
+                }
                 semModulesList.remove(module);
                 break;
             }
