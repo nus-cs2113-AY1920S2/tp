@@ -18,7 +18,7 @@
 ## Introduction
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/79043735-a9abb400-7c33-11ea-9e08-06b1ac8d7fd7.png">
+  <img src="https://user-images.githubusercontent.com/59989652/79045324-19726c80-7c3d-11ea-8556-b1d00c140d94.png">
 </p>
 
 Restaurant Daily Report is a CLI app that generates a whitepaper, 
@@ -61,7 +61,7 @@ Add menu items, ingredients, and reservations.
   + Expected: 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/79043768-eecfe600-7c33-11ea-85ba-d3b2da941569.png">
+  <img src="https://user-images.githubusercontent.com/59989652/79045366-4a52a180-7c3d-11ea-9114-6e48a1ca70ae.png">
 </p>
   
   + Expected error message if wrong format: 
@@ -187,7 +187,7 @@ List items in the menu, stock and reservations.
   + Expected: 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/79044331-17a5aa80-7c37-11ea-98db-5ad1bc17db2a.png">
+  <img src="https://user-images.githubusercontent.com/59989652/79045420-96054b00-7c3d-11ea-8a98-87c87e975b00.png">
 </p>
       
   + Expected error message if wrong format:
@@ -326,7 +326,7 @@ Add daily sales and calculate profit
 
 
 #### Generate Profit : calculate profit
-Calculates the net profit from all the sold dishes. **Do ensure that the ingredients in the dishes are also in the stock as well.**
+Calculates the net profit from all the sold dishes. **DO ENSURE that the ingredients in the dishes ARE ALSO in the stock as well.**
 * Format: `profit`
   + Expected: 
 <p align="center">
@@ -375,7 +375,7 @@ Clear the stock or reservation list.
 * Format: `clear reservation;`
   + Expected: 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59989652/79044942-dd3e0c80-7c3a-11ea-8131-ece27dad0236.png)">
+  <img src="https://user-images.githubusercontent.com/59989652/79045473-e67ca880-7c3d-11ea-81f2-370518f6aa87.png">
 </p>
       
   + Expected error message if wrong format:
