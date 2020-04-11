@@ -2,7 +2,7 @@
 
 By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT`      Course: `CS2113`
 
-1. [Introduction](#1-Introduction)
+1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
     1. [Command Format](#command-format)
