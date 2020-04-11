@@ -30,6 +30,7 @@ Table of Contents
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
     5.2 [Diagrams](#52-diagrams)  
+    
 [Appendix A: Product Scope](#appendix-a-product-scope)  
 [Appendix B: User Stories](#appendix-b-user-stories)  
 [Appendix C: Glossary](#appendix-c-glossary)  
@@ -135,7 +136,7 @@ such as displaying help to the user.
 
 #### 3.4 Model component
 
-![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
+![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component(1).png)
 
 The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
 component. 
@@ -378,6 +379,7 @@ attribute, and the `isDone` attribute of the module will be updated to be `true`
 If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
  exist in the user's module plan.
  
+The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
 ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
 
  
