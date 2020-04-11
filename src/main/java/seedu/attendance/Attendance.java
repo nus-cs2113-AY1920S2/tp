@@ -2,8 +2,6 @@ package seedu.attendance;
 
 import java.util.Comparator;
 
-import seedu.exception.PacException;
-
 /**
  * Class representing attendance of a student.
  */
