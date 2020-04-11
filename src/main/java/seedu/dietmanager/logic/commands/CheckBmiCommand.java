@@ -1,9 +1,7 @@
 package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
 

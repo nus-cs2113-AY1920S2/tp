@@ -1,7 +1,6 @@
 package seedu.dietmanager.logic.commands;
 
 import seedu.dietmanager.commons.core.MessageBank;
-import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.ui.UI;
@@ -19,6 +18,7 @@ public class CheckWeightRecordCommand extends Command {
     private double weightDifference;
     private double weightToGoal;
     private double weightGoal;
+    private boolean isInValidCommand = false;
 
     /**
      * Constructs the Command object.
@@ -33,11 +33,12 @@ public class CheckWeightRecordCommand extends Command {
 
     @Override
     public Result execute(Profile profile, UI ui) {
+        testAssertions(isInValidCommand);
         this.weightGoal = profile.getWeightGoal();
         weightRecord = profile.getWeightRecord();
         ui.showMessage(MessageBank.CHECK_WEIGHT_RECORD_MESSAGE);
         for (int i = 0; i < weightRecord.size(); i++) {
-            ui.showMessage(i + 1 + ". " + weightRecord.get(i) + "kg ");
+            ui.showMessage(i + 1 + ". " + weightRecord.get(i) + "kg");
         }
 
         Result result = getResult(profile);
@@ -68,10 +69,10 @@ public class CheckWeightRecordCommand extends Command {
         } else if (weightDifference == 0) {
             if (currentWeight == weightGoal) {
                 this.resultString = String.format(MessageBank.WEIGHT_NO_CHANGE_MESSAGE + System.lineSeparator()
-                        + MessageBank.WEIGHT_GOAL_ACHIEVED_MESSAGE,  weightToGoal);
+                        + MessageBank.WEIGHT_GOAL_ACHIEVED_MESSAGE, weightToGoal);
             } else {
                 this.resultString = String.format(MessageBank.WEIGHT_NO_CHANGE_MESSAGE + System.lineSeparator()
-                        + MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE,  weightToGoal);
+                        + MessageBank.WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE, weightToGoal);
             }
         } else if (weightDifference < 0) {
             if (currentWeight == weightGoal) {
@@ -84,4 +85,7 @@ public class CheckWeightRecordCommand extends Command {
         }
     }
 
+    public static void testAssertions(boolean isInValidCommand) {
+        assert (!isInValidCommand);
+    }
 }

@@ -12,6 +12,14 @@ Welcome to Diet Manager! How may I assist you today?
 |____________________________________________________________|________________________________________________|
 |   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
 |   profile                                                  |  View user profile details                     |
+|   set-name USER_NAME                                       |  Set the user's name                           |
+|   set-age USER_AGE                                         |  Set the user's age                            |
+|   set-height USER_HEIGHT                                   |  Set the user's height                         |
+|   set-weight USER_WEIGHT                                   |  Set/Update weight in user profile             |
+|   check-weight-progress                                    |  List index of weight progress                 |
+|   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+|   set-weight-goal WEIGHT_GOAL                              |  Set the user's new weight goal                |
+|   check-bmi                                                |  Show user's BMI and BMI table                 |
 |   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
 |   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
 |   calculate DATE                                           |  Calculate Calorie intake for the day          |
@@ -19,14 +27,201 @@ Welcome to Diet Manager! How may I assist you today?
 |   list-food                                                |  Lists all foods info in database.             |
 |   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
 |   delf FOOD_NAME                                           |  Delete food info from database                |
-|   set-weight                                               |  Set/Update weight in user profile             |
-|   check-weight-progress NAME                               |  List index of weight progress                 |
-|   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
 |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
 |   show-recipe                                              |  Show recommended recipe to user               |
+|   check-required-cal                                       |  Check amount of calories required/day         |
+|   clear-records                                            |  Clear the records in the database             |
 |   help                                                     |  Show this function help table                 |
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
-Please key in your command: 
+Please key in your command:
+Please create a profile before using this command. Enter:
+set-profile {name} {age} {gender} {height} {weight} {weight goal}
+Sorry, that is an invalid command.
+Sorry, that is an invalid command.
+Sorry, that is an invalid command.
+Sorry, that is an invalid command.
+Sorry, that is an invalid command.
+Your profile has been successfully updated.
+Your profile information are as follows:
+Name:         John
+Age:          20 years old
+Gender:       male
+Height:       180.00 centimetres
+Weight        80.00 kilograms
+Weight Goal:  75.00 kilograms
+Your username has been changed to Jane.
+Your age has been changed to 18.
+Your gender has been changed to female.
+Your height has been changed to 170.00.
+Your weight has been changed to 65.00.
+Your weight goal has been changed to 65.00.
+Here is your weight changes record:
+1. 80.0kg
+2. 65.0kg
+Overall, you have lost 15.00 kg!
+YOU DID IT! You have achieved your weight goal!
+All girls/boys will now fall for your determination and physique! :)
+You can also set a new weight goal using set-weight-goal NEW_GOAL
+Weight Record: 80.0kg has been removed successfully!
+Your current BMI : 22.49
+
+You can check your height and weight against this table to see which category you fall into.
+Check weight first then height.
+
+LEGEND for BMI Table:
+1: UNDERWEIGHT       2: HEALTHY      3: OVERWEIGHT      4: OBESE      5: EXTREMELY OBESE
+ ___________________________________________________________________________________________________________________________________
+|        |                                                      WEIGHT in KG                                                        |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        |         | 41 | 45 | 50 | 54 | 59 | 64 | 68 | 73 | 77 | 82 | 86 | 91 | 95 | 100 | 104 | 109 | 113 | 118 | 122 | 127 | 132 |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 142.2   | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 144.7   | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 147.3   | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 149.8   | 1  | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 152.4   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 154.9   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 157.4   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 160.0   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 162.5   | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 165.1   | 1  | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 167.6   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 170.1   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 172.7   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+| HEIGHT | 175.2   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |
+|   in   |--------------------------------------------------------------------------------------------------------------------------|
+|   CM   | 177.8   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 180.3   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 182.8   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 185.4   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 187.9   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 190.5   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 193.0   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 195.5   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 198.1   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 200.6   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 203.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 205.7   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 208.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+|        |--------------------------------------------------------------------------------------------------------------------------|
+|        | 210.8   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+|________|__________________________________________________________________________________________________________________________|
+
+Your profile information are as follows:
+Name:         Jane
+Age:          18 years old
+Gender:       female
+Height:       170.00 centimetres
+Weight        65.00 kilograms
+Weight Goal:  65.00 kilograms
+SATURDAY Morning:
+Oops, you have no record for this meal.
+For morning, there are no calculable calories data.
+You just record the meal in the morning of: SATURDAY.
+SATURDAY Morning:
+Food: steak, Calories: 500.00cal
+Food: fries, Calories: No value found.
+For morning, total calculable calories intake: 500.00cal.
+
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for low activity level: 2009.56cal.
+Well done!!! You have consumed sufficient calories.
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for moderate activity level: 2265.33cal.
+Well done!!! You have consumed sufficient calories.
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for high activity level: 2521.09cal.
+Well done!!! You have consumed sufficient calories.
+You just record the meal in the morning of: MONDAY.
+MONDAY is ahead of SATURDAY, so only calories from SATURDAY to SUNDAY is calculated
+Your Calories intake during the given period is 500.00.
+Your Calories intake during the given period is 400.00.
+You have just cleared all food records in the week!
+These are the foods stored in our database:Food: chicken-rice, Calories: 702.00cal
+Food: fried-rice, Calories: 508.00cal
+Food: chicken-curry, Calories: 450.00cal
+Food: prawn-noodles, Calories: 459.00cal
+Food: fishball-noodles, Calories: 330.00cal
+Food: cheeseburger, Calories: 300.00cal
+Food: white-bread, Calories: 77.00cal
+Food: french-fries, Calories: 450.00cal
+Food: orange-juice, Calories: 80.00cal
+Food: soft-drink, Calories: 120.00cal
+Food: fresh-milk, Calories: 163.00cal
+
+You have added a new food into the database:
+Food: beef-noodles, Calories: 400.0
+These are the foods stored in our database:Food: chicken-rice, Calories: 702.00cal
+Food: fried-rice, Calories: 508.00cal
+Food: chicken-curry, Calories: 450.00cal
+Food: prawn-noodles, Calories: 459.00cal
+Food: fishball-noodles, Calories: 330.00cal
+Food: cheeseburger, Calories: 300.00cal
+Food: white-bread, Calories: 77.00cal
+Food: french-fries, Calories: 450.00cal
+Food: orange-juice, Calories: 80.00cal
+Food: soft-drink, Calories: 120.00cal
+Food: fresh-milk, Calories: 163.00cal
+Food: beef-noodles, Calories: 400.00cal
+
+You have just deleted this food from the database: beef-noodles
+No need to delete! Referred Food doesn't exist in database
+ _____________________________________________________________________________________________________________
+|                          Functions:                        |                 Descriptions:                  |
+|____________________________________________________________|________________________________________________|
+|   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
+|   profile                                                  |  View user profile details                     |
+|   set-name USER_NAME                                       |  Set the user's name                           |
+|   set-age USER_AGE                                         |  Set the user's age                            |
+|   set-height USER_HEIGHT                                   |  Set the user's height                         |
+|   set-weight USER_WEIGHT                                   |  Set/Update weight in user profile             |
+|   check-weight-progress                                    |  List index of weight progress                 |
+|   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+|   set-weight-goal WEIGHT_GOAL                              |  Set the user's new weight goal                |
+|   check-bmi                                                |  Show user's BMI and BMI table                 |
+|   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
+|   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
+|   calculate DATE                                           |  Calculate Calorie intake for the day          |
+|   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  |
+|   list-food                                                |  Lists all foods info in database.             |
+|   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
+|   delf FOOD_NAME                                           |  Delete food info from database                |
+|   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
+|   show-recipe                                              |  Show recommended recipe to user               |
+|   check-required-cal                                       |  Check amount of calories required/day         |
+|   clear-records                                            |  Clear the records in the database             |
+|   help                                                     |  Show this function help table                 |
+|   exit                                                     |  Exit the application                          |
+|____________________________________________________________|________________________________________________|
+Please key in your command:
 You are now exiting the application.
 Thanks for using Diet Manager! See you again soon. :)

@@ -1,7 +1,5 @@
 package seedu.dietmanager.logic;
 
-import seedu.dietmanager.commons.core.MessageBank;
-
 /**
  * Result is the public class responsible for storing results derived from execution of the Command.
  */
