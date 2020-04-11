@@ -60,7 +60,7 @@ Verifying Setup
 ### 2.1. Architecture
 ![Architecture Diagram](images/architecture.png)<br>
 
-The architecture diagram above shows an overview of the high-level design of MeetingOrganizer. Meeting Organizer
+The architecture diagram above shows an overview of the high-level design of WhenFree. Meeting Organizer
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
 Here is a quick overview of each layer and the components residing in it.
 * UI: The CLI user interface of the application.
@@ -146,7 +146,7 @@ The ```contacts``` component of our application consists of 2 classes: ```TeamMe
 
 ![storage component class structure](images/storage_class_diagram.png)
 
-Above image shows the structure of Storage. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
+Above image shows the structure of Storage. It is created by WhenFree class to handle the loading and saving of scheduled meetings and member schedules.
 
 The `Storage` component,
 - can save `Contact` objects in .txt format and read it back.
@@ -369,7 +369,7 @@ Given below is an example usage scenario and how the ```ListMeetings``` command 
 
 ## Appendix A: Product Scope
 ### A.1. Target user profile
-Our application, MeetingOrganizer, is for NUS students and teaching assistants looking to save time finding
+Our application, WhenFree, is for NUS students and teaching assistants looking to save time finding
 free-slots for their project meetings, consultations etc. It allow users to add their team members and tutees respectively, and
 finding a time-slot where everyone would be free.
 Target user profile:

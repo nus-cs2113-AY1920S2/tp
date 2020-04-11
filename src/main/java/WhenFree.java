@@ -15,14 +15,14 @@ import java.util.Scanner;
 /**
  * Main application containing an instance of LogicManager and storage component.
  */
-public class MeetingOrganizer {
+public class WhenFree {
     public static final int RECESS_WEEK = 14;
     public static final int FREE_WEEK = 15;
     public static Storage storage;
     private LogicManager myLogicManager;
     private int currentWeekNumber;
 
-    public MeetingOrganizer() {
+    public WhenFree() {
         MeetingList myMeetingList;
         ContactList myContactList;
         Contact mainUser = null;
@@ -60,7 +60,7 @@ public class MeetingOrganizer {
     }
 
     public static void main(String[] args) {
-        new MeetingOrganizer().run();
+        new WhenFree().run();
     }
 
     void botResponse(String[] userInputWords, String prevUserInputWord, String[] prevUserInputWords)
