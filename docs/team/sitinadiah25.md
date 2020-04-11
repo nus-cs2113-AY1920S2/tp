@@ -4,7 +4,7 @@
 
 ## About the project
 Our team consists of 4 software engineering students were tasked to build a basic command line interface desktop 
-application for our Software Engineering project.
+application for our Software Engineering project. 
 
 Our team chose to develop a note management application called HappyPills. HappyPills is specially designed for 
 Doctors to record patient's details, past medical records and future appointments. HappyPills allows users
