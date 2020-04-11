@@ -6,23 +6,28 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ## Summary of Contributions
 ### Code Contributed
-You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=nguan1)\
+You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=nguan1)
 
 ### Enhancements implemented
 #### Command Parser
 * Ensures that each command is passed through correctly and calls the correct command to be executed
 * Provides an error when users enter the incorrect command
+
 #### Report Writer
 * Writes the dishes, stock and reservations to 'report.txt'
+
 #### Sales class
+
 ##### Add sales
 * Adds a dish that has been sold
 * Includes error handling if the dish does not exist, command has incorrect formatting or if quantity is not an integer
 * Informs the user if the dish has been successfully added or if there was an error
+
 ##### Calculate Profit
 * Calculates the total profit of all the dishes sold
 * Includes error handling if stock doesn't exist or the profit is negative
 * Prints out the total profit for the day
+
 ##### Find most popular dish
 * Determines the most popular dish out of all sold items
 * Includes error handling if there are no dishes
