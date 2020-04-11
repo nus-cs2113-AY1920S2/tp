@@ -552,14 +552,18 @@ current time (e.g. event_1586607776).
 Examples: 
 
     >>> event add n/dinner with collegue
+    
     >>> event add n/World Cup d/2022-11-21 t/0000
+    
     >>> event add n/soccer match v/Kallang d/2020-01-23 t/1900
     
 Expected outcome:
 
     Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
     New Event: dinner with collegue was added successfully to your Event list.
+    
     New Event: World Cup was added successfully to your Event list.
+    
     New Event: soccer match was added successfully to your Event list.
 
 Examples of bad input:
@@ -600,7 +604,6 @@ Expected outcome:
     
 #### 4.2.4. Edit Event Name
 Change the name of an existing event.
-
 
 Format: `event editname i/INDEX n/NEW_NAME`
 * alphabet cases for the command is not important
@@ -663,14 +666,36 @@ Expected outcome:
 
 ### 4.3 Calendar 
 #### 4.3.1 View events under a particular time
-View existing events under a particular semester and academic year in a calendar format.
+View events under a particular semester and academic year in a calendar format. In the calendar view, it shows the date of the event, type 
+of the event in brackets, and name of the event. 
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 * Both the semester and academic year should be provided.
-* Semester refers to a numerical number, i.e. 1 or 2
-* Academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
-  i.e. ay/07-08.  
+* Valid semester numbers can only be 1 or 2. 
+* Valid academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
+  i.e. ay/07-08, ay/19-20.  
 * Order of the flags *matters*.
+
+Note that your event list **should** contain existing events to view calendar. The following *steps* will guide you to achieve this:
+
+Step 1: Add events with date and time that corresponds to semester 2 of academic year 19/20, similar to the event list shown below. 
+To view the events in a list, type the command below. 
+
+Command: 
+
+    >>> event list 
+    
+Example:
+
+    >>> Here are all the Events in your list.
+       1. Event: orientation, time: Mon, Jan 13 2020 0800
+       2. Event: presentation, time: Sat, Feb 01 2020 1230
+       3. Event: midterms, time: Fri, Mar 13 2020 1000
+       4. Seminar: covid19, time: Sat, Apr 04 2020 1500
+       5. Event: birthday, time: Sun, Apr 05 2020 1900
+       6. Event: finals, time: Mon, May 04 2020 0930
+
+Step 2: To view the events above in a calendar format, type the command below.
 
 Command: 
     
@@ -1393,7 +1418,11 @@ detected flag will be used:
            
        Event is not found in the list.
        
-1. If there are no events under a calendar for a particular semester in its academic year:
+1. If you added an event with no date and time:
+
+       Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
+       
+1. If there are no events in your event list under a particular semester and academic year:
 
        Unable to find any events for this time period.
 

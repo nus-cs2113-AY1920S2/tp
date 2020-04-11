@@ -163,18 +163,15 @@ either by complete match, or fuzzy match.
 * Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar program flow. 
 
 ### 3.2 Calendar
-![Calendar](images/Calendar.png "Class diagram of Calendar component")  
- *Class diagram of the Calendar component*  
- 
-The calendar feature allows users to view their schedule by semester and academic year. Since our target
-user is professor, this feature allows the professor to manage their events in a way that is more related to their
-work life schedule. 
+![Calendar](images/Calendar.png "Class diagram of Calendar component")
+ *Class diagram of the Calendar component*
+ The calendar feature allows users to view their schedule by semester and academic year. Since our target
+ user is professor, this feature allows the professor to manage their events in accordance to their work schedule.
  
 #### Calendar Command Interpreter
-Below shows the sequence diagram of `CalendarCommandInterpreter`:  
-![CalendarCommandInterpreter](images/CalendarCommandInterpreter.png "Command Interpreter")  
-*Diagram of CalendarCommandInterpreter*  
-
+Below shows the sequence diagram of `CalendarCommandInterpreter`:
+![CalendarCommandInterpreter](images/CalendarCommandInterpreter.png "Command Interpreter")
+*Diagram of CalendarCommandInterpreter*
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object which extends `Command` is created.  
@@ -202,33 +199,43 @@ Assuming that it is currently semester 2 of the academic year 19-20, this event 
 Step 2: The user realises that the name of the event is wrong and decides to `edit` the name of the event. First, they input
 `event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
 to edit the name of the event.  
-
-Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
-`calendar s/2 ay/19-20`.
-
-### Design considerations
-Aspect: Data Structure used to implement calendar
-- Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
-  - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
-  the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
-  - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
-  ArrayLists.
-
+ 
+ Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
+ `calendar s/2 ay/19-20`. A sample view of the calendar is shown below:
+ 
+      ___________________________________________________________________________________________________________________________________ 
+                                                              SEMESTER 2 AY 19/20 
+      ___________________________________________________________________________________________________________________________________ 
+     | JAN                 | FEB                 | MAR                 | APR                 | MAY                 | JUN                 |
+     |_____________________|_____________________|_____________________|_____________________|_____________________|_____________________|
+     |                     |                     |                     |                     | 4th [E]: frisbee    |                     |
+     |_____________________|_____________________|_____________________|_____________________|_____________________|_____________________|
+ 
+ 
+ #### Design considerations
+ *Aspect: Data Structure used to implement calendar*
+ - Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
+   - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
+   the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
+   - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
+   ArrayLists.
+   
 - Alternative 2: Save the events as a sorted tree map 
   - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
   - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
   every new addition, deletion or editing.  
-
-Aspect: How addition, deletion and editing of events affects calendar execution  
-Alternative 1(current choice): Implement a class specifically to interact with the calendar
-  - Pros: Calendar class can support different interactions to modify calendar content
-  - Cons: Many new methods to be implemented, which affects code readability.
-  
+ 
+ *Aspect: How addition, deletion and editing of events affects calendar execution*  
+ - Alternative 1(current choice): Implement a class specifically to interact with the calendar
+   - Pros: Calendar class can support different interactions to modify calendar content
+   - Cons: Many new methods to be implemented, which affects code readability.
+   
 - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
   - Pros: Does not require instantiation of new object to modify the calendar contents.
   - Cons: Many new methods to be implemented, which affects code readability.
 
 **Note that**:
+* Event list should contain existing events with date and time to view the calendar. 
 * Input of the both academic years should be double digit, e.g ay/07-08, ay/19-20. 
 * `acadamic year` is parsed in `CalendarParser` and only one year is returned to `CalendarCommandInterpreter` according 
 to the semester input by the user, i.e s/1 ay/19-20 would return year = 19, s/2 ay/19-20 would return year = 20.
