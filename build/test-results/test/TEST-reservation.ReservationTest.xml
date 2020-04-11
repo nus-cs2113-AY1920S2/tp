@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="reservation.ReservationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:00" hostname="Ganeshs-MacBook-Pro.local" time="0.03">
+<testsuite name="reservation.ReservationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.029">
   <properties/>
-  <testcase name="testGetterandSetter_normalInput_success()" classname="reservation.ReservationTest" time="0.03"/>
+  <testcase name="testGetterandSetter_normalInput_success()" classname="reservation.ReservationTest" time="0.029"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

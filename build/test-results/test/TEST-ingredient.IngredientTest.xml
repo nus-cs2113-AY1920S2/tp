@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ingredient.IngredientTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:01" hostname="Ganeshs-MacBook-Pro.local" time="0.002">
+<testsuite name="ingredient.IngredientTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.003">
   <properties/>
-  <testcase name="print_IngredientToString_toStringIsIngredientName()" classname="ingredient.IngredientTest" time="0.0"/>
-  <testcase name="getName_GetIngredientNameNameOfIngredient()" classname="ingredient.IngredientTest" time="0.001"/>
+  <testcase name="print_IngredientToString_toStringIsIngredientName()" classname="ingredient.IngredientTest" time="0.001"/>
+  <testcase name="getName_GetIngredientNameNameOfIngredient()" classname="ingredient.IngredientTest" time="0.0"/>
   <testcase name="test_IsQuantitySpecified_TrueWhenQuantitySpecified()" classname="ingredient.IngredientTest" time="0.0"/>
-  <testcase name="getPrice_GetIngredientPrice_PriceOfIngredient()" classname="ingredient.IngredientTest" time="0.001"/>
+  <testcase name="getPrice_GetIngredientPrice_PriceOfIngredient()" classname="ingredient.IngredientTest" time="0.0"/>
   <testcase name="getQuantity_GetIngredientQuantity_QuantityOfIngredient()" classname="ingredient.IngredientTest" time="0.0"/>
   <testcase name="test_Equals_TrueIfIngredientsHaveSameName()" classname="ingredient.IngredientTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

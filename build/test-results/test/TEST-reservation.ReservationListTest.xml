@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="reservation.ReservationListTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:00" hostname="Ganeshs-MacBook-Pro.local" time="0.012">
+<testsuite name="reservation.ReservationListTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.018">
   <properties/>
   <testcase name="voidReservation_servedReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="addReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.0"/>
-  <testcase name="getSize_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="markReservationAsServed_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="voidReservation_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.001"/>
-  <testcase name="voidReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
+  <testcase name="addReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.001"/>
+  <testcase name="getSize_normalInput_success()" classname="reservation.ReservationListTest" time="0.0"/>
+  <testcase name="markReservationAsServed_normalInput_success()" classname="reservation.ReservationListTest" time="0.002"/>
+  <testcase name="voidReservation_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.002"/>
+  <testcase name="voidReservation_normalInput_success()" classname="reservation.ReservationListTest" time="0.002"/>
   <testcase name="markReservationAsServed_invalidReservation_exceptionThrown()" classname="reservation.ReservationListTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+  <system-err><![CDATA[Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList markReservationAsServed
+Apr 10, 2020 8:27:06 PM reservation.ReservationList markReservationAsServed
 INFO: Mark Reservation[1] as Served.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList markReservationAsServed
+Apr 10, 2020 8:27:06 PM reservation.ReservationList markReservationAsServed
 INFO: Mark Reservation[1] as Served.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList voidReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList voidReservation
 INFO: Void Reservation[1] as Invalid.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList voidReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList voidReservation
 INFO: Void Reservation[1] as Invalid.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList addReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList addReservation
 INFO: Add Reservation[1] to the list.
-Apr 09, 2020 7:59:00 PM reservation.ReservationList voidReservation
+Apr 10, 2020 8:27:06 PM reservation.ReservationList voidReservation
 INFO: Void Reservation[1] as Invalid.
 ]]></system-err>
 </testsuite>
