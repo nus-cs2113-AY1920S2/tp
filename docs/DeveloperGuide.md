@@ -803,14 +803,11 @@ Step 5: `HappyPills` will execute the command.
         P.S subject to change in v2.
 
 
-
-## 5. Documentation 
-
-## 6. Testing
+## 5. Testing
 
 Refer to the guide [here](Testing.md).
 
-## 7. Useful links
+## 6. Useful links
 
 * [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)

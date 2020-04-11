@@ -114,7 +114,7 @@ public class AppointmentParser extends Parser {
         if (parseInput[3].equalsIgnoreCase("")) {
             System.out.println("      /r [REASONS]");
         }
-        System.out.println(Messages.MESSAGE_COMMAND_ABORTED);
+        System.out.println(Messages.MESSAGE_CLEAR_COMMAND);
     }
 
     /**
