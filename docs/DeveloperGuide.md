@@ -27,10 +27,12 @@ Table of Contents
     . . 4.3.1 [Calculate CAP feature](#431-calculate-cap-feature)  
     . . 4.3.2 [Marking module as done](#432-marking-module-as-done)  
     . . 4.3.3 [Searching modules with keywords](#433-searching-modules-with-keywords)  
+    . . 4.3.4 [Viewing modules](#434-viewing-modules)  
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
     5.2 [Diagrams](#52-diagrams)  
 6. [General Design Considerations](#6-general-design-considerations)
+
 [Appendix A: Product Scope](#appendix-a-product-scope)  
 [Appendix B: User Stories](#appendix-b-user-stories)  
 [Appendix C: Glossary](#appendix-c-glossary)  
@@ -111,6 +113,7 @@ The other components involved are:
 
 
 #### 3.2 UI component
+Given below is the structure of the Ui component:
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
 
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
@@ -121,7 +124,7 @@ The `UI` component,
 *   Executes user commands using the `Logic` component
 
 #### 3.3 Logic component
-
+Given below is the object diagram of the Logic Component
 ![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
@@ -135,8 +138,8 @@ All these command classes inherits from the abstract `Command` class.
 such as displaying help to the user.
 
 #### 3.4 Model component
-
-![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component.png)
+Given below is the class diagram of the Model Component:
+![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component(1).png)
 
 The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
 component. 
@@ -147,9 +150,7 @@ The responsibilities of the `Model` component includes
 * All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
 in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
 
-
 #### 3.5 Storage component
-
 
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
@@ -372,16 +373,68 @@ a `MarkAsDoneCommand` object which then calls
 
 #### Step 3:
 `MarkAsDoneCommand#execute()` then calls self method `MarkAsDone#markAsDone()` which iterates through the 
-`semesterList` to check all `SemModulesList` and compare module name and id to see if the module that has
-been marked as done exists in the `semesterList`. 
-If the module exists in the list, the grade of the module will be passed to the `Module` object to update the grade
-attribute, and the `isDone` attribute of the module will be updated to be `true`. 
-If the module does not exist in the list, a `RuntimeExcption` will be thrown to tell the user that the module does not
- exist in the user's module plan.
+`semesterList` to check all `SemModulesList` and compare module name or id to see if the module that is being
+ marked as done exists in the `semesterList`.  
+If the module exists in the list, the method will proceed to step 4. If the module does not exist in the list, 
+a `RuntimeExcption` will be thrown to tell the user that the module does not exist in the user's module plan.
+
+#### Step 4:
+Once corresponding module is found, the method will check the grade being assigned to module as well as whether
+the module has already been marked as done.  
+If the module is being assigned a passing grade and has not been marked done, 
+`personPerson.addTotalModuleCreditCompleted()` is called to add the number of module credit of the module to the user's
+`totalModuleCreditCompleted` attribute.  
+If the module is being assigned a failing grade but has already been marked as done, 
+`personPerson.minusTotalModuleCreditCompleted()` is called to reduce the number of module credit of the module 
+from the user's `totalModuleCreditCompleted` attribute. This conditional step is for the case when user wants to change 
+the grade of a module from a passing grade to failing grade.  
+
+#### Step 5:
+The grade of the module will be passed to the `Module` object to update the grade attribute, 
+and the `isDone` attribute of the module will be updated to be `true`.
+
+#### Step 6:
+If the grade being assigned is a failing grade, self method will be `appendFailString` called. `appendFailString` will 
+construct a new `StringBuilder` and check if the module has an `id` attribute by calling `module.isIdValid()` method. 
+If the method has an id, the module's id will be appended to the `StringBuilder`. If the module does not have an `id` 
+attribute, the method will check if the module has a `name` attribute by calling `module.isNameValid()` method. The
+module's name will then be appended to the `StringBuilder`. After appending the module's id or name, `" Failed"` string 
+will be appended to the `StringBuilder`.  
+
+#### Step 7:
+A new `SelectedModule` will be constructed using the String derived from `StringBuilder.toString()`, the Semester of 
+the module called from the module's `getSem()` method and the number of module credits called from the module's
+`getModuleCredit()` method.  
+Once the new `SelectedModule` has been constructed, the module that is being assigned a failing grade will be removed
+from the `SemModuleList`.  
+
+#### Step 8:
+The new `SelectedModule` will be updated by updating its `isDone` attribute to `true` and updated with the `grade` that 
+was supposed to be assigned using the `SetAsDone`. It will then be added to the same `SemModuleList` as the removed
+module.
  
+The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
 ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
 
- 
+#### Design Consider:
+- Alternative 1 (current choice): Marked the module with a failing grade without `appendFailString` method. 
+
+|||
+---|---
+|**Pros**|Shows the failed module details clearly|
+|**Cons**|User has to manually add a module using another Id or Name when adding the same module as the failed module.|
+|   |A module will also be added into AvailableModuleList when user manually adds a module|
+
+- Alternative 2 (current choice): Delete the original module marked being assigned a failing grade and add a placeholder
+ `SelectedModule` assigned with same failing grade.
+
+|||
+---|---
+|**Pros**|Allows user to add using the original name/id as the module that has been failed|
+|**Cons**|User may not know the name of the placeholder module and do not know how to delete it|
+
+
+
 ### 4.3.3 Searching modules with keywords
 The `FindCommand` allows users to look up commands using keywords. It then displays a list of related modules in
 the module plan and the list of available modules.
@@ -408,6 +461,36 @@ relevant modules from the both the module plan and the list of available modules
 The sequence diagram below shows the mechanics of `FindCommand`:
 ![SequenceDiagram_FindCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_FindCommand.png)
 
+### 4.3.4 Viewing modules
+The `ViewCommand` allows users to see different kinds of data that has been added or updated by the user. Depending on
+the subsequent string of command entered by the user, the programme will display different kinds of information to the
+user.
+
+#### Step 1:
+When a user enters the `view` keyword, the command is being parsed in `Controller`.
+`Controller` then returns a `ViewCommand`, which proceeds to call 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, or in this context,
+`ViewCommand.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+#### Step 2:
+In the `execute(SemesterList semesterList, AvailableModulesList availableModulesList)` method, the parsed argument
+is passed into a switch statement to decide the kind of data to show the user. The respective method will then be called
+to print the data that the user has requested to see. 
+
+*Design Considerations*  
+* Alternative 1 (current choice): Determine user's argument using Java contain() method
+
+|   |   |
+|---|---|
+|Pro|Easy to determine the argument and match it to user's intention|
+|Cons|Easy to misunderstand what is the user's true intention if there is mis-spelling|
+
+* Alternative 2 : Determine user's argument using Java equal() method  
+
+|   |   |
+|---|---|
+|Pro|Accurate in determining the user's intentions based on the argument received|
+|Cons|Requires users to enter precise keywords which could result in inconvenience|
 
 # 5. Documentation
 ## 5.1 Written documentation  
