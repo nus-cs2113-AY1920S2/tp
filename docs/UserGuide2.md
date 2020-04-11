@@ -167,7 +167,9 @@ You can also add a new patient with the specified parameters in any order.
     
 **Example:**
 
-    add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
+```diff
++ add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
+```
 
 >***Expected output:***
 >
@@ -329,36 +331,36 @@ Retrieve details of the patient with the specified NRIC.
  
 #### 3.3.1. Add Patient Records: `add pr`
  
- Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
+Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
  
- <table>
-   <col width="20">
-   <col width="200">
-  <tr>
-    <td><span> &#9888; </span></td>
-    <td> Patient's records can only be added if the patient information exists in the database. </td>
-  </tr>
- </table>
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> Patient's records can only be added if the patient information exists in the database. </td>
+ </tr>
+</table>
  
 ##### Format:
  
-     add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
+    add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
      
  **Example:**
      
-     add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22
+    add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/AddPR.PNG" alt="Add PR Output" width="600">
- >
+> ***Expected output:***
+>
+> <img src="images/UG/PR/AddPR.PNG" alt="Add PR Output" width="600">
+>
  
- > Enter `y` to confirm.
+> Enter `y` to confirm.
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/addprcfm.PNG" alt="Confirm Add PR" width="600">
- >
+> ***Expected output:***
+>
+> <img src="images/UG/PR/addprcfm.PNG" alt="Confirm Add PR" width="600">
+>
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -370,16 +372,16 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format:
  
-     list pr NRIC
+    list pr NRIC
  
  **Example:**
      
-     list pr S9876543F
+    list pr S9876543F
      
- > ***Expected output:***
- >
- > <img src="images/UG/PR/listpr.PNG" alt="List PR Output" width="600">
- >
+> ***Expected output:***
+>
+> <img src="images/UG/PR/listpr.PNG" alt="List PR Output" width="600">
+>
  
  <table>
    <col width="20">
@@ -390,10 +392,10 @@ Retrieve details of the patient with the specified NRIC.
   </tr>
  </table>
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/listprfail.PNG" alt="List PR not found" width="600">
- >
+> ***Expected output:***
+>
+> <img src="images/UG/PR/listprfail.PNG" alt="List PR not found" width="600">
+>
  
   [&#8593; Return to Top](#table-of-content)
   
@@ -405,16 +407,16 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format:
  
-     find pr NRIC INDEX
+    find pr NRIC INDEX
  
  **Example:**
  
-     find pr S9876543F 2
+    find pr S9876543F 2
  
- > ***Expected output:***
- >
- >
- > <img src="images/UG/PR/findpr.PNG" alt="Find PR Output" width="600">
+> ***Expected output:***
+>
+>
+> <img src="images/UG/PR/findpr.PNG" alt="Find PR Output" width="600">
  
  <table>
    <col width="20">
@@ -425,10 +427,10 @@ Retrieve details of the patient with the specified NRIC.
   </tr>
  </table>
  
- > ***Expected output:***
- >
- >
- > <img src="images/UG/PR/prEmpty.PNG" alt="PR not found" width="600">
+> ***Expected output:***
+>
+>
+> <img src="images/UG/PR/prEmpty.PNG" alt="PR not found" width="600">
  
   [&#8593; Return to Top](#table-of-content)
   
@@ -439,10 +441,10 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format:
  
-     edit pr NRIC INDEX /sym<SYMPTOMS> 
-                        /diag<DIAGNOSIS> 
-                        /d<DATE> 
-                        /t<TIME>
+    edit pr NRIC INDEX /sym<SYMPTOMS> 
+                       /diag<DIAGNOSIS> 
+                       /d<DATE> 
+                       /t<TIME>
                         
  <table>
    <col width="20">
@@ -456,11 +458,11 @@ Retrieve details of the patient with the specified NRIC.
      
  **Example:**
  
-     edit pr S9876543F 2 /t12:00
+    edit pr S9876543F 2 /t12:00
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/editprsuccess.PNG" alt="Edit PR Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/PR/editprsuccess.PNG" alt="Edit PR Output" width="600">
  
  <table>
    <col width="20">
@@ -471,10 +473,10 @@ Retrieve details of the patient with the specified NRIC.
   </tr>
  </table>
  
- > ***Expected output:***
- >
- >
- > <img src="images/UG/PR/prEmpty.PNG" alt="Help Output" width="600">
+> ***Expected output:***
+>
+>
+> <img src="images/UG/PR/prEmpty.PNG" alt="Help Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
   
@@ -485,15 +487,15 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format:
  
-     delete pr NRIC INDEX
+    delete pr NRIC INDEX
  
  **Example:**
  
-     delete pr S9876543F 1
+    delete pr S9876543F 1
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/deleteprsuccess.PNG" alt="Delete PR Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/PR/deleteprsuccess.PNG" alt="Delete PR Output" width="600">
  
  <table>
    <col width="20">
@@ -504,36 +506,45 @@ Retrieve details of the patient with the specified NRIC.
   </tr>
  </table>
  
- > ***Expected output:***
- >
- > <img src="images/UG/PR/prEmpty.PNG" alt="Delete PR not found" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/PR/prEmpty.PNG" alt="Delete PR not found" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
 ### 3.4. Appointment Scheduling Commands 
  
- HappyPills helps to store appointment schedules. 
+HappyPills helps to store appointment schedules. 
  
 ####3.4.1. Add Appointment: `add appt`
  
  Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
  patient automatically.
+ 
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#9888; </span></td>
+     <td> Appointments can only be added for a patient if the patient exists in the database. </td>
+   </tr>
+  </table>
   
 ##### Format:
   
-      add appt /ic NRIC /d DATE /t TIME /r REASON
+    add appt /ic NRIC /d DATE /t TIME /r REASON
           
   **Example:**
       
-     add appt /ic S1234567F /d 01/02/2020 /t 12:00 /r sick
+    add appt /ic S1234567F /d 01/02/2020 /t 12:00 /r sick
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/AddAppt.png" alt="Add Appt Output" width="600">
- >
- >Confirm appointment details are correct by typing "y" or "Y"
- >
- > <img src="images/UG/APPT/confirmAddAppt.png" alt="Confirm Add Appt" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/AddAppt.png" alt="Add Appt Output" width="600">
+>
+>Confirm appointment details are correct by typing "y" or "Y"
+>
+> <img src="images/UG/APPT/confirmAddAppt.png" alt="Confirm Add Appt" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -544,19 +555,17 @@ Retrieve details of the patient with the specified NRIC.
   
 ##### Format:  
   
-      edit appt NRIC apptID [Options][editedInput]
-      Options:
-          /d edit date
-          /t edit time
-          /r edit reason
+    edit appt NRIC apptID /d <DATE>
+                          /t <TIME>
+                          /r <REASON>
           
   **Example:**
       
-     *edit appt S1234567F 1 /d 12/02/2020*
+    edit appt S1234567F 1 /d 12/02/2020
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/EditAppt.png" alt="Edit Appt Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/EditAppt.png" alt="Edit Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -566,15 +575,15 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format: 
  
-     delete appt NRIC apptID
+    delete appt NRIC apptID
      
  **Example:**
  
-     delete appt S1234567F 1
+    delete appt S1234567F 1
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/DeleteAppt.png" alt="Delete Appt Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/DeleteAppt.png" alt="Delete Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -585,15 +594,15 @@ Retrieve details of the patient with the specified NRIC.
   
 ##### Format:
   
-      done appt NRIC apptID
+    done appt NRIC apptID
           
-  **Example:**
+**Example:**
       
-     done appt S9473069F 4 
+    done appt S9473069F 4 
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/DoneAppt.png" alt="Done Appt Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/DoneAppt.png" alt="Done Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -604,13 +613,13 @@ Retrieve details of the patient with the specified NRIC.
   
 ##### Format: 
   
-      list appt
+    list appt
           
   **Example:**
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/ListAppt.png" alt="List Appt Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/ListAppt.png" alt="List Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -621,15 +630,15 @@ Retrieve details of the patient with the specified NRIC.
  
 ##### Format: 
   
-      find appt NRIC
+    find appt NRIC
           
   **Example:**
       
-     find appt S9473069F
+    find appt S9473069F
  
- > ***Expected output:***
- >
- > <img src="images/UG/APPT/FindAppt.png" alt="Find Appt Output" width="600">
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/FindAppt.png" alt="Find Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
 
@@ -640,7 +649,7 @@ Retrieve details of the patient with the specified NRIC.
 **Command** | **Format**
 --------|----------
 Add a patient's information | `add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]`
-Edit a patient's information |  `edit patient NRIC /n<NAME> or /p<PHONE_NUMBER> or /dob<DOB> or /b<BLOOD_TYPE> or /a<ALLERGIES> or /rm<REMARKS>`
+Edit a patient's information |  `edit patient NRIC /n <NAME> or /p <PHONE_NUMBER> or /dob <DOB> or /b <BLOOD_TYPE> or /a <ALLERGIES> or /rm <REMARKS>`
 list all patients | `list patient`
 Retrieve a patient's information | `get patient NRIC`
 
@@ -651,7 +660,7 @@ Retrieve a patient's information | `get patient NRIC`
  Add a Patient Record |`add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME`
  List all Patient Records |`list pr NRIC`
  Find a Patient Record|`find pr NRIC INDEX`
- Edit a Patient Record |`edit pr NRIC INDEX /sym<SYMPTOMS> or /diag<DIAGNOSIS> or /d<DATE> or /t<TIME>`
+ Edit a Patient Record |`edit pr NRIC INDEX /sym <SYMPTOMS> or /diag <DIAGNOSIS> or /d <DATE> or /t<TIME>`
  Delete a Patient Record | `delete pr NRIC INDEX`
 
 #### Appointments
@@ -659,7 +668,7 @@ Retrieve a patient's information | `get patient NRIC`
 **Command** | **Format**
 --------|----------
 Add an appointment | `add appt /ic NRIC /d DATE /t TIME /r REASON`
-Edit an appointment | `edit appt NRIC /d DATE /t TIME /r REASON`
+Edit an appointment | `edit appt NRIC /d <DATE> /t <TIME> /r <REASON>`
 Delete an appointment | `delete appt NRIC APPT_ID`
 Mark an appointment as done | `done appt NRIC APPT_ID`
 List all appointments | `list appt`
