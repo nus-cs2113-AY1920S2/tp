@@ -59,6 +59,7 @@ This section provides a high-level overview of HappyPills.
 ### 3.1. Architecture
 
 ![Architecture diagram](images/DG/architecture/ArchitectureDiagram.png "Overview of the Application")
+<img src="images/DG/architecture/ArchitectureDiagram.png" alt="Overview of the Application" width="800">
 
 The **Architecture diagram** above explains the high-level design of HappyPills. 
 Given below is a quick overview of each component.
@@ -83,6 +84,7 @@ The Sequence Diagram below shows how the components interact with each other for
 the scenario where the user issues the command `delete patient NRIC`.  
 
 ![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
+<img src="images/DG/architecture/ArchitectureSequence.png" alt="Architecture Sequence Diagram" width="800">
 
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
@@ -96,6 +98,7 @@ The architecture of HappyPills is broken down into seven main classes:
 ### 3.2. Ui Component
 
 ![Ui Diagram](images/DG/architecture/UiClassDiagram.png)
+<img src="images/DG/architecture/UiClassDiagram.png" alt="Ui Class Diagram" width="800">
 
 The `Ui` component: 
 * Executes user commands using the command component.
@@ -121,6 +124,7 @@ the usage of the commands.
 ### 3.3. Logic Component
 
 ![Logic Diagram](images/DG/architecture/LogicClassDiagram.png)
+<img src="images/DG/architecture/LogicClassDiagram.png" alt="Logic Class Diagram" width="800">
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -132,6 +136,7 @@ The diagram above shows the logic flow of HappyPills.
 ### 3.4. Model Component
 
 ![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
+<img src="images/DG/architecture/ModelClassDiagram.png" alt="Model Class Diagram" width="800">
 
 The Model component consists of `Patient`, `PatientMap`, `PatientRecord`, `PatientRecordMap`, `Appointment` and
 `AppointmentMap`, which stores the user's data according to their input. 
@@ -247,6 +252,7 @@ The `AddAppointmentCommand` extends the `AppointmentCommand` which implements th
 The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
 ![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
+<img src="images/DG/AddAppointmentSequenceDiagram.png" alt="Add Appt Sequence Diagram" width="800">
 
 1. The user enters `add appt /ic S1234566A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
 class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
@@ -334,6 +340,7 @@ The `ListAppointmentCommand` extends the `AppointmentCommand` which implements t
 The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
 
 ![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png "list sequence diagram")
+<img src="images/DG/ListAppointmentSequenceDiagram.png" alt="List Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
 
@@ -404,6 +411,7 @@ initialises the `nric` and `index` in its constructor.
 The following sequence diagram summarises how the `FindPatientRecordCommand` operation works: 
 
 ![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
+<img src="images/DG/FindAppointmentSequenceDiagram.png" alt="Find Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `FindPatientRecordCommand` class behaves: 
 
@@ -466,6 +474,7 @@ The `EditPatientRecordCommand` extends the `PatientRecordCommand` which implemen
 The following sequence diagram summarises how the `EditPatientRecordCommand` operation works: 
 
 ![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
+<img src="images/DG/EditAppointmentSequenceDiagram.png" alt="Edit Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
 
@@ -569,6 +578,7 @@ the `nric` and `index` in its constructor.
 The following sequence diagram summarises how the `DeletePatientRecordCommand` operation works: 
 
 ![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
+<img src="images/DG/DeleteAppointmentSequenceDiagram.png" alt="Delete Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
 
@@ -617,6 +627,7 @@ The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements t
 The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
 
 ![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
+<img src="images/DG/DoneAppointmentSequenceDiagram.png" alt="Done Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
 
@@ -708,6 +719,7 @@ For illustration purposes, only the load and parse for patient is called. The pr
 4. `loadPatient` then returns the whole patientMap to `HappyPills`.
 
  ![loading](images/DG/STORAGE/StorageLoadPatient.png)
+ <img src="images/DG/STORAGE/StorageLoadPatient.png" alt="Loading" width="800">
  
 #### Design Considerations
 
@@ -759,6 +771,7 @@ The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual fie
 *Passing the prompts*
 
 ![PromptSequenceDiagram](images/DG/PromptSequenceDiagram.png)
+ <img src="images/DG/PromptSequenceDiagram.png" alt="Prompt Sequence Diagram" width="800">
 
 Given below is an example scenario where the user command has missing compulsory fields
 
