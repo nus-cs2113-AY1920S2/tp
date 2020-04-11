@@ -27,10 +27,12 @@ What can I do for you today, doctor?
 
     To abort, enter "clear"
     =====================================================
+    =====================================================
     Please input your missing/incorrect detail listed below
       /p PHONE (Format: 8-digit number starting with 8/9)
 
     To abort, enter "clear"
+    =====================================================
     =====================================================
     @91265432 is not a valid input.
     @91265432 will not be added
@@ -39,6 +41,7 @@ What can I do for you today, doctor?
       /p PHONE (Format: 8-digit number starting with 8/9)
 
     To abort, enter "clear"
+    =====================================================
     =====================================================
     @add is not a valid input.
     @add will not be added
@@ -97,6 +100,7 @@ What can I do for you today, doctor?
 
     To abort, enter "clear"
     =====================================================
+    =====================================================
         Are you sure all the listed details are correct?
         Name : Eve
         NRIC : S9876543F
@@ -145,6 +149,7 @@ What can I do for you today, doctor?
       /n NAME
 
     To abort, enter "clear"
+    =====================================================
     =====================================================
         Are you sure all the listed details are correct?
         Name : Alice

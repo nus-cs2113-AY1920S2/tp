@@ -235,10 +235,10 @@ public class PatientRecordParser extends Parser {
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = promptUser().trim();
-            System.out.println(TextUi.DIVIDER);
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
+            System.out.println(TextUi.DIVIDER);
             String[] updates = splitInput(input);
             updates = trimArray(updates);
             parseInput(updates, parseInput);

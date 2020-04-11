@@ -9,6 +9,7 @@ import seedu.happypills.logic.commands.patientcommands.PatientCommand;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.TextUi;
 
 //@@author NyanWunPaing
 
@@ -212,6 +213,7 @@ public class PatientParser extends Parser {
             if (input.equalsIgnoreCase(CLEAR_TAG)) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
+            System.out.println(TextUi.DIVIDER);
             String[] updates = splitInput(input);
             updates = trimArray(updates);
             parseInput(updates, parseInput);
