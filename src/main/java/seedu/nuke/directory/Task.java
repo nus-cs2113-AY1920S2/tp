@@ -142,6 +142,14 @@ public class Task extends Directory implements Tag {
         this.tags.addAll(tagNames);
     }
 
+    public void addTag(String tagNames) {
+        this.tags.add(tagNames);
+    }
+
+    public String getLastTag() {
+        return tags.get(tags.size()-1);
+    }
+
     @Override
     public void removeTag(String tag) {
         tags.remove(tag);

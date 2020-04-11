@@ -1,6 +1,5 @@
 package seedu.nuke.command.addcommand;
 
-import seedu.nuke.command.Command;
 import seedu.nuke.command.CommandResult;
 import seedu.nuke.data.CategoryManager;
 import seedu.nuke.data.ModuleManager;
@@ -9,7 +8,6 @@ import seedu.nuke.directory.DirectoryTraverser;
 import seedu.nuke.directory.Task;
 import seedu.nuke.exception.IncorrectDirectoryLevelException;
 
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import static seedu.nuke.parser.Parser.CATEGORY_PREFIX;
@@ -19,9 +17,9 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_CATEGORY_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
-import static seedu.nuke.util.Message.MESSAGE_TAG_ADDED;
+import static seedu.nuke.util.Message.messageAddTagSuccess;
 
-public class AddTagCommand extends Command {
+public class AddTagCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addg";
     public static final String FORMAT = COMMAND_WORD
@@ -38,7 +36,7 @@ public class AddTagCommand extends Command {
             + "(?<taskDescription>(?:\\s+" + TASK_PREFIX + "(?:\\s+\\w\\S*)+)?)"
             + "(?<invalid>.*)"
     );
-    private final ArrayList<String> tagNames;
+    private String tagName;
     private String taskDescription;
     private String moduleCode;
     private String categoryName;
@@ -46,17 +44,17 @@ public class AddTagCommand extends Command {
     /**
      * Constructs an Add Tag Command.
      *
-     * @param tagNames
+     * @param tagName
      *  The tag info
-     * @param taskDescription
-     *  The description of the task
      * @param moduleCode
      *  The module code of the parent module
      * @param categoryName
      *  The name of the parent category
+     * @param taskDescription
+     *  The description of the task
      */
-    public AddTagCommand(ArrayList<String> tagNames, String moduleCode, String categoryName, String taskDescription) {
-        this.tagNames = tagNames;
+    public AddTagCommand(String tagName, String moduleCode, String categoryName, String taskDescription) {
+        this.tagName = tagName;
         this.taskDescription = taskDescription;
         this.moduleCode = moduleCode;
         this.categoryName = categoryName;
@@ -65,11 +63,11 @@ public class AddTagCommand extends Command {
     protected CommandResult executeAdd() {
         try {
             Task toAddTag = DirectoryTraverser.getTaskDirectory(moduleCode, categoryName, taskDescription);
-            toAddTag.setTag(tagNames);
-            for (String tag : tagNames) {
-                assert toAddTag.getTags().contains(tag) : "tag have been successfully added";
-            }
-            return new CommandResult(MESSAGE_TAG_ADDED);
+            toAddTag.addTag(tagName);
+
+            assert toAddTag.getLastTag().equals(tagName) : "tag have been successfully added";
+
+            return new CommandResult(messageAddTagSuccess(tagName));
         } catch (ModuleManager.ModuleNotFoundException e) {
             return new CommandResult(MESSAGE_MODULE_NOT_FOUND);
         } catch (CategoryManager.CategoryNotFoundException e) {
