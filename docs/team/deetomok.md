@@ -11,7 +11,7 @@ other peers.
 
 #### Code contributed  
 For all the code that I have contributed to Module Manager, click here:
-[code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
+[code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=deetomok&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos).  
 
 #### Enhancements implemented  
 In this project, other than helping implement all other classes, I implemented the portion of Controller, Person, 
