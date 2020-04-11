@@ -1312,7 +1312,11 @@ which category your command belongs to
            
        Event is not found in the list.
        
-1. If there are no events under a calendar for a particular semester in its academic year:
+1. If you added an event with no date and time:
+
+       Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
+       
+1. If there are no events in your event list under a particular semester and academic year:
 
        Unable to find any events for this time period.
 

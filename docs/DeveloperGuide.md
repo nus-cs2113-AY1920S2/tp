@@ -152,6 +152,7 @@ In this diagram:
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
 and `time`, which corresponds to `d/` and `t/` flag respectively.
+* adding `datetime` to events is an optional feature. 
 * `editDate` or `editTime` commands are not available. Only `editDateTime` is available to change the 
 `date` and/or `time` of an `Event` object.
 * `delete(Event)` method is currently not in use, but can be used to implement delete by event name, 
@@ -625,7 +626,6 @@ folder in command terminal.
 `event editvenue i/INDEX v/VENUE`  
 
 **Calender**
-1. Add events with date and time 
 1. Display calendar by entering  
 `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
 
