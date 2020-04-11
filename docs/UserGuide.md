@@ -154,6 +154,7 @@ Expected output:
 `Module Discrete Structure has been deleted from semester Y2S2`
 
 #### 3.3.2 Delete a specific module from available module list
+If the module you delete also in module plan, it will also be removed in module plan.
 
 #### 3.3.2.1 Based on module name
 Format: `delete id/[module code]`
@@ -230,10 +231,13 @@ Format: ​`view /dm`
 Example of expected output:
 
 `Okay! Here are your completed modules:`
+
  `Y2S1`
+ 
 `1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+`
  
  `Y2S2`
+ 
  `1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-`
 
 #### 3.5.3 Viewing module plan
