@@ -22,18 +22,21 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 
 ### Contributions to the DG
 * All write ups & diagrams related to the Storage feature
+* runtest.sh/bat description
 
 ### Contributions to team-based tasks
 * Role: Leader / Code Reviewer-Maintainer
   * Review and handle all pull requests
   * Prepare & upload releases
   * Set up & close milestones
+  * Maintain issue tracker
   * Keep team on track of project progress
   * Ensure the repo clears CI actions/gradle checks
 * Adds issues where identified in reviews / where appropriate
 * Create & update wiki page of task breakdown
   * [https://github.com/AY1920S2-CS2113-T15-2/tp/wiki](https://github.com/AY1920S2-CS2113-T15-2/tp/wiki)
 * Maintain ReadMe / AboutUs pages
+* Grammar/spellchecker
 
 ### Review / Mentoring Contributions
 List of PRs where a review was requested OR a review was required (i.e code changes or clarification needed)
