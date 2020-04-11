@@ -74,9 +74,43 @@ The Logic consists of the following classes:
 * `AppManager` - Arranges the main workflow of the program.
 * `Result` - Stores the command result in-memory.
 * `CommandParser` - Parses the user input and generates a specific command.
-* `"ABC"Command` - A collection of parser classes which parses a specific input to generate a specific value.
+* `"ABC"Parser` - A collection of parser classes which parses a specific input to generate a specific value.
+    * `AgeParser`
+    * `CaloriesParser`
+    * `CommandParser`
+    * `DescriptionParser`
+    * `FoodNameParser`
+    * `GenderParser`
+    * `HeightParser`
+    * `NameParser`
+    * `StorageParser`
+    * `WeightParser`
 * `Command` - An abstract class which other command classes inherits from.
 * `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
+    * `AddFoodCommand`
+    * `BuildNewRecipeCommand`
+    * `CalculateCaloriesCommand`
+    * `CheckBmiCommand`
+    * `CheckRecordCommand`
+    * `CheckRequiredCaloriesCommand`
+    * `CheckWeightRecordCommand`
+    * `ClearFoodRecordCommand`
+    * `DeleteFoodCommand`
+    * `DeleteWeightCommand`
+    * `ExitCommand`
+    * `HelpCommand`
+    * `ListFoodDatabaseCommand`
+    * `ProfileCommand`
+    * `RecordMealCommand`
+    * `SetAgeCommand`
+    * `SetGenderCommand`
+    * `SetHeightCommand`
+    * `SetNameCommand`
+    * `SetProfileCommand`
+    * `SetWeightCommand`
+    * `SetWeightGoalCommand`
+    * `ShowRecipeCommand`
+
 
 The `Logic` component
 1. Receives the user input and parses it to generate a specific command.
@@ -85,6 +119,8 @@ The `Logic` component
 4. Updates `Storage` to save any changes made to in-memory information to the respective data files.
 
 ### Model component
+
+![Model-Component](images/Model-Component.png)
 
 The `Model` component is responsible for:
 * Storing all relevant information in-memory for the application to access.
@@ -189,9 +225,12 @@ Diet Manager aims to achieve the following:
 |v1.1| student|check if I am keeping to my recommended caloric intake|do not over or under eat and maintain my diet|
 |v1.1| student|add food items to the database|do not have to constantly check food nutritional value for common foods|
 |v1.2| student|save my diet history|have a record of my daily food intake|
+|v1.2| student|save my profile|do not have to constantly set a new profile|
 |v1.2| student|import my diet history|have access to previous records and be able to progress from there|
-|v1.2| student|receive workout advice based on my excess calorie intake for the day|can maintain my calories for the day|
+|v1.2| student|receive dietary advice based on my excess calorie intake for the day|can maintain my calories for the day|
 |v2.0| student|generate a recommended food plan|know what to eat to meet recommended caloric intake|
+|v2.0| student|save and export my food plan|print it out or bring it with me|
+
 
 ## Non-Functional Requirements
 
@@ -213,11 +252,23 @@ Reliability:
 
 ## Glossary
 
-* *glossary item* - Definition
+* *NAME* - Standard form for name is a String value with no spaces
+* *FOOD-NAME* - Standard form for food name is a String value with no spaces
+* *AGE* - Standard form for age is an int value more than 0 and less than 150
+* *GENDER* - Standard form for gender is a String value of "male" or "female"
+* *HEIGHT* - Standard form for height is a double value more than 0 and less than 300, standard unit kilograms
+* *WEIGHT* - Standard form for weight is a double value more than 0 and less than 500, standard unit centimetres
+* *CALORIES* - Standard form for calories is a double value more than 0, standard unit kilocalories
+* *DATE* - Standard form for date is restricted to the range of MONDAY to SUNDAY
+* *ACTIVITY-LEVEL* - Standard form for activity level is LOW, MODERATE, HIGH
+* *profile.txt* - Data file containing user profile information
+* *daily-food-record.txt* - Data file containing user daily food record information
+* *food-nutrition-record.txt* - Data file containing food nutrition record database
+* *recipe.txt* - Data file containing user generated recipe list
 
 ## Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
 
 
 Click [here](README.md) to go back to the main page.
