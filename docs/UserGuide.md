@@ -129,7 +129,7 @@ Example output:
 
 ![timetable](images/timetable_op.PNG)
     
-A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
+> :information_source: A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
 
 <br/>
 
@@ -300,7 +300,7 @@ Example output:
 
 ### Delete an item: `delete`
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
-> :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
+> :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings). <br>
 > :bulb: You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
 
 **Use case 1:** Deletes a **meeting** from the meeting list. You will need to key in **Meeting Index** of the meeting you wish to delete.
