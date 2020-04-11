@@ -77,8 +77,8 @@ Here is a quick overview of each layer/component and the sub-components residing
 The UI component represents the Command Line user interface of the application. It serves the purpose of facilitating the 
 usage of the application and providing information requested by the user.
 
-The UI component consists of the `TextUI` class. `TextUI` is called by 2 classes, `WhenFree` and `CommandHandler` to display
-messages in the user's console using the Java method ```System.out.println```. 
+The UI component consists of the `TextUI` class. `TextUI` is called by 2 classes, `WhenFree` and `CommandHandler` to print
+messages in the user's console. 
 
 `TextUI` is called by the main class `WhenFree` which runs the application, to display the welcome message, menu message and exit message. 
 These messages enhances the usability rather than the functionality of the application.
