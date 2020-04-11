@@ -1,7 +1,14 @@
 package jikan.command;
 
 import jikan.activity.ActivityList;
-import jikan.exception.*;
+import jikan.exception.NoSuchActivityException;
+import jikan.exception.NameTooLongException;
+import jikan.exception.ActivityIsRunningException;
+import jikan.exception.InvalidTimeFrameException;
+import jikan.exception.NegativeDurationException;
+import jikan.exception.EmptyNameException;
+import jikan.exception.InvalidEditFormatException;
+import jikan.exception.ExistingNameException;
 import jikan.log.Log;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
