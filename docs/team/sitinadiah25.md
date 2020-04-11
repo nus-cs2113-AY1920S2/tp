@@ -94,6 +94,6 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 + [Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#3-design)  
-+ [Section 4.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-appointment-scheduling-feature)  
-+ Sequence diagrams for Implementation
++ [Section 4](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#4-Implementation)  
++ Sequence diagrams for Implementation and Appointment-related explanation
 + Class diagrams for Design
