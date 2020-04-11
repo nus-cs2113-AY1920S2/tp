@@ -34,13 +34,13 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [G.2. Saving data](#g2-saving-data)
 
 ## 1. Setting up
-Prerequisites<br>
+### 1.1 Prerequisites<br>
 1. Ensure Java Development Kit(JDK) is 11 or above.
 2. IDE of your choice. <br>
     > :bulb: We recommend IntelliJ IDE since this project is built upon the features of IntelliJ
 3. The setting up of this project would assume that Intellij IDE is your preferred choice of IDE.
 
-Setting up the project<br>
+### 1.2 Setting up the project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
 2. Open Intellij (if you are not in the welcome screen, click File > Close Project to close the existing project dialog first)
 3. Set up the correct JDK version
@@ -50,7 +50,7 @@ Setting up the project<br>
     4. Click Import Project
     > :information_source:  IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
-Verifying Setup
+### 1.3 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
 2. Try out a few commands as shown on the CLI menu.
 
