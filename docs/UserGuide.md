@@ -219,7 +219,7 @@ Example of usage:
 
 Example output:
 
-![schedule meeting 11 17:00 11 19:00](images/schedule_meeting_11_1700_11_1900_op.png | width=50)
+![schedule meeting 11 17:00 11 19:00](images/schedule_meeting_11_1700_11_1900_op.png)
 
 [&#8593; Return to list of Features](#features)
 
