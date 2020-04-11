@@ -303,11 +303,12 @@ command, to generate ```ArrayList<Contact>```.
 
     >:information_source: This step is omitted in the sequence diagram to keep it concise.
 3. The ```CommandHandler``` calls the ScheduleHandler constructor ```ScheduleHandler(ArrayList<Contacts>)```.
-4. For each ```Contact```, ```ScheduleHandler``` retrieves its schedule by calling ```getSchedule()```. ```ScheduleHandler``` 
+4. For each ```Contact```, ```ScheduleHandler``` retrieves its schedule by calling ```Contact#getSchedule()```. ```ScheduleHandler``` 
 then uses the retrieved schedule to fill a combined schedule, adding all "busy" time blocks of the retrieved schedule into the
 combined schedule.
-5. ```CommandHandler``` retrieves the final combined schedule and calls ```TextUI``` to print the combined schedule.
-6. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
+5. ```CommandHandler``` retrieves the final combined schedule by calling ```ScheduleHandler#getCombinedSchedule```.
+6. ``CommandHandler``` calls ```TextUI``` to print the combined schedule.
+7. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
 
 ### 3.4 Schedule a new meeting
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
