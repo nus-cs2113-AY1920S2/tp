@@ -70,8 +70,8 @@ public class AddToSemCommand extends AddCommand {
      */
     private void checkAvailableModulesList(SelectedModule selectedModule) {
         for (Module availableModule: AvailableModulesList.availableModulesList) {
-            boolean isSameName = availableModule.getName().equals(selectedModule.getName());
-            boolean isSameId = availableModule.getId().equals(selectedModule.getId());
+            boolean isSameName = availableModule.getName().equalsIgnoreCase(selectedModule.getName());
+            boolean isSameId = availableModule.getId().equalsIgnoreCase(selectedModule.getId());
             if (isSameName || isSameId) {
                 this.selectedModule.setModuleConfig(availableModule);
             }

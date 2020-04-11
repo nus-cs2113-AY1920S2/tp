@@ -42,8 +42,8 @@ public class MarkAsDoneCommand extends Command {
     private void markAsDoneCommand(SemesterList semesterList) throws RuntimeException {
         for (SemModulesList sem: semesterList) {
             for (SelectedModule module: sem) {
-                boolean isModuleName = module.getName().equals(description);
-                boolean isModuleId = module.getId().equals(description);
+                boolean isModuleName = module.getName().equalsIgnoreCase(description);
+                boolean isModuleId = module.getId().equalsIgnoreCase(description);
                 if (isModuleName || isModuleId) {
                     boolean isNotGradeF = (grade != Grading.F);
                     boolean isNotGradeCU = (grade != Grading.CU);
