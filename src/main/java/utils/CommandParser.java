@@ -51,13 +51,13 @@ public class CommandParser {
             new QuitCommand().execute();
         } else if (command.equals("help")) {
             new HelpCommand().execute();
-            successfulCommand();
+
         } else if (command.equals("profit")) {
             sales.calculateProfit();
-            successfulCommand();
+
         } else if (command.equals("popular")) {
             sales.mostPopularDish();
-            successfulCommand();
+
         } else if (commands.length < 2 || splitCommands.length < 2) {
             errorCommand();
         } else if (splitCommands[0].equals("add")) {
@@ -139,9 +139,8 @@ public class CommandParser {
             } else {
                 errorCommand();
             }
-        } else if (splitCommands[0].equals("sell")) {
+        } else if (splitCommands[0].equals("sell") && splitCommands[1].equals("dish")) {
             sales.addSale(commands[1]);
-            successfulCommand();
         } else if (splitCommands[0].equals("clear")) {
             if (splitCommands[1].equals("reservation")) {
                 new ClearReservationCommand().execute(reservations, ui);
@@ -171,8 +170,5 @@ public class CommandParser {
         System.out.println("");
     }
 
-    public static void successfulCommand() {
-        System.out.println("The command has been successfully executed.");
-    }
 }
 
