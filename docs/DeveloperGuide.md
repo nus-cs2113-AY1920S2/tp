@@ -91,6 +91,7 @@ Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes
 
 ### 2.3. Logic component
 <img src="images/logiccomponent.png" width="80%">
+
 *Fig 2. Overview of Logic component*
 
 Fig 2. shows an overview of the Logic component. The ```LogicManager``` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
@@ -118,6 +119,7 @@ The modulelogic component consists of 4 classes: ```TimetableParser``` ```Module
 <br>
 
 <img src="images/modulelogic.png" width="80%">
+
 *Fig 3. Class diagram of the logic.modulelogic component*
 
 Fig 3. shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
@@ -129,7 +131,8 @@ Fig 3. shows the interaction between the 4 classes in ```logic.modulelogic``` su
 the information in a ```Map<String, ArrayList<String>>``` data structure as seen from the figure. 
 4. This sub-component also depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 
-<img src="images/LessonsGenerator.jpg" width="80%">
+<img src="images/LessonsGenerator.jpg">
+
 *Fig 4. Sequence diagram of the logic.modulelogic component*
 
 Fig 4. shows an overview of the UML sequence of the entire logic.modulelogic component.<br>
@@ -147,8 +150,8 @@ feature to obtain a combined schedule of selected ```Contact```s.
 The ```schedulelogic``` component consists of the class ```ScheduleHandler```. The key interactions of `ScheduleHandler ` 
 with 2 classes, ```CommandHandler``` and ```Contact```, are explained in the class 
 diagram and description below.
+<img src="images/schedulelogic.png" width="80%">
 
-![logic.schedulelogic Component](images/schedulelogic.png)
 *Fig 5. Class diagram of the logic.schedulelogic component*
 
 A `ScheduleHandler` object can be created by the `CommandHandler` class with the `ScheduleHandler()` constructor, and is passed an ArrayList of `Contact`s.
@@ -162,14 +165,16 @@ implementation of the [`Display timetable of selected contacts`](#33-display-tim
 <br>
 
 ### 2.4. Model component
-![Model Component](images/modelcomponent.png)<br>
+<img src="images/modelcomponent.png" width="50%">
+
 *Fig 6. Overview diagram of the Model component*
 
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
 #### 2.4.1. model.meetings component
-![Meetings Component](images/meetingscomponent.png)<br>
+<img src="images/meetingscomponent.png" width="50%">
+
 *Fig 7. Class diagram of the model.meetings component*
 
 The ```meetings``` component of our application consists of 2 classes: ```Meeting``` and ```MeetingList```.
@@ -179,7 +184,8 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 <br>
 
 #### 2.4.2. model.contacts component
-![Contacts Component](images/contactscomponent.png)<br>
+<img src="images/contactscomponent.png" width="50%">
+
 *Fig 8. Class diagram of the model.contacts component*
 
 The ```contacts``` component of our application consists of 2 classes: ```Contact``` and ```ContactList```.
