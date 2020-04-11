@@ -195,7 +195,6 @@ Expected Outcome:
 
 Lists all saved articles. 
 
-Example of list has been created for the User Guide. 
 
 ****
 
@@ -241,10 +240,10 @@ Expected Outcome:
 
     Done, the article description now looks like the following 
 
-       Title: New grad vs senior dev
-       Date: 2020-Apr-10 Fri 01:44 PM
-       Category: Funny
-       Url: https://ericlippert.com/2020/03/27/new-grad-vs-senior-dev/
+       Title: ArticleForUserGuide
+       Date: 2020-Apr-10 Fri 04:11 PM
+       Category: user guide
+       Url: www.articleforug.com
        Extract: It turns out that yes, fresh grads and keener interns do complain to senior developers about asympto...
     __________________________________________________________________________________________
 
