@@ -55,7 +55,7 @@ public class Dictionary {
     /**
      * This method finds a mapping from User input to a either StudyArea's name, address, or faculty.
      * @param key this is the User input.
-     * @return either StudyArea's name, address, or faculty if mapping is found, else return null.
+     * @return either StudyArea's name, address, or faculty if mapping is found, else will return null.
      */
 
     public static String parseKey(String key) { //this method will be used within String.contains() method
