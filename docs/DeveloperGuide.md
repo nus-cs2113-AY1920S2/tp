@@ -29,10 +29,14 @@ By: `AY1920S2-CS2113T-T12-1`
 * [Appendix C: Use Cases](#appendix-c-use-cases)
 * [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
 * [Appendix E: Glossary](#appendix-e-glossary)
-* [Appendix F: Product Survey](#appendix-f-product-survey)
-* [Appendix G: Instructions for Manual Testing](#appendix-g-instructions-for-manual-testing)
-	* [G.1. Launch and Shutdown](#g1-launch-and-shutdown)
-	* [G.2. Saving data](#g2-saving-data)
+* [Appendix F: Instructions for Manual Testing](#appendix-g-instructions-for-manual-testing)
+	* [F.1. Launch and Shutdown](#f1-launch-and-shutdown)
+	* [F.2. Setting up profile](#f2-setting-up-profile)
+	* [F.3. Scheduling a meeting](#f3-scheduling-a-meeting)
+	* [F.4. Deleting a meeting](#f4-deleting-a-meeting)
+	* [F.5. Deleting a contact](#f5-deleting-a-contact)
+	* [F.6. Editing a schedule](#f6-editing-a-schedule)
+	* [F.7. Saving data](#f7-saving-data)
 
 ## 1. Setting up
 Prerequisites<br>
@@ -397,9 +401,102 @@ meetings into account when scheduling a common timeslot timetable.
 |v2.0| As a TA | I want to use this to schedule consults and marking sessions without sacrificing my tutorial/lecture slots | so that I can get the best TA award and maintain my grades at the same time. |
 |v2.0| As a lazy student | I want to use this application to automatically sync my previous meeting onto a new schedule profile | so that I can automatically block out dates instead of typing it manually. |
 |v2.0| As a student | I want to see the list of upcoming meeting dates  | so that i can remind myself which meetings i have to go for in the coming week. |
-|v2.0| a | a | a |
 ## Appendix C: Use Cases
+(For all use cases below, the **System** is WhenFree and the **Actor** is the ```user```, unless otherwise stated.)
+```$xslt
+Use case: Add contacts
+MSS:
+1) User has a group of team mates for a certain project.
+2) User wants to add the timetable of his/her teammates to schedule a common time-slot.
+3) User keys in the member's name and timetables into application .
+4) System adds the nusmods timetable of team members.
+Use case ends.
 
+Extensions:
+* System detects invalid name containing all numbers - System catches it and use case resumes from step 3.
+* System detects invalid nusmods URL - System catches it and use case resumes from step 3.
+```
+```$xslt
+Use case: Delete contacts
+MSS: 
+1) User wants to delete the members of a particular project since the project has finished.
+2) User keys in the command together with the name of the contact.
+3) System deletes the contact from the user's storage.
+Use case ends.
+
+Extensions:
+* System detects an invalid name - System catches it and use case resumes from step 2.
+```
+```$xslt
+Use case: List contacts
+MSS:
+1) User wants to see the current list of saved contacts he/she has previously keyed.
+2) User keys in the command without any additional paramters.
+3) System lists the contact from the user's storage.
+Use case ends
+```
+```$xslt
+Use case: Schedule meetings
+MSS:
+1) User has a common time-slot chosen via our application and wants to schedule it into his/her timetable.
+2) User keys in the command together with the start and end date, start and end time.
+3) System stores the scheduled meeting.
+4) System blocks out the scheduled meeting in his/her timetable.
+Use case ends.
+
+Extensions:
+* System detects start date later than end date - System catches it and use case resumes from step 2.
+* System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
+* System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
+```
+```$xslt
+Use case: Edit timetable slots
+MSS:
+1) User realised lecturer has cancelled a particular lecture time-slot and is free during that time.
+2) User keys in the command, with the start/end date, start/end time that he/she is free.
+3) System free up the timetable slots.
+Use case ends.
+
+Extensions:
+* System detects start date later than end date - System catches it and use case resumes from step 2.
+* System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
+* System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
+* System detects that user did not specify if he/she wants to free or block the slot/s - System catches it and use case resume from step 2.
+```
+```$xslt
+Use case: List meetings
+MSS:
+1) User wants to see the current list of saved meetings he/she has previously keyed.
+2) User keys in the command without any additional paramters.
+3) System lists the meetings from the user's storage.
+Use case ends
+```
+```$xslt
+Use case: Delete meetings
+MSS:
+1) User has an urgent stuff on a particular scheduled meeting slot and wish to delete the scheduled meeting in application.
+2) User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.
+3) System deletes the meeting and reflects it in user's timetable.
+Use case ends.
+
+Extensions:
+* System detects an invalid index - System catches it and use case resumes from step 2.
+```
+```$xslt
+Use case: Show(more) timetable/s
+MSS:
+1) User wants to see the common timeslots together with 3 of his/her contacts to schedule a common meeting timeslot.
+2) User keys in the command together with the index of the contacts.
+3) System generates a dynamic timetable for this week.
+4) User wants to see next weeks timetable with all the common timeslots among his contacts as well.
+5) User types in the command "more".
+6) System generates two timetable side by side, each representing this week and next week's timetable.
+Use case ends.
+
+Extension:
+* System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
+* System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
+```
 ## Appendix D: Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 SDK or above installed.
@@ -496,7 +593,7 @@ Given below are instructions to test the app manually.
                                                                                                                                                                                                                                     
     > :bulb: Type ```delete``` to see the required format.
 
-### F.6. Editing a contact's timetable
+### F.6. Editing a schedule 
 1. Editing main user's timetable
     1. Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
     2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
