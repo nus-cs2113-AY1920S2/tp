@@ -17,7 +17,7 @@ daily so that restaurant owners can better manage their business operations.
   2. Feature: Mark a Reservation
       - What it does: Allows users to input `delete reservation` to mark a reservation as **invalid** or input `mark reservation` to mark a reservation as **served**.
       - Justification: This feature is needed for restaurant to update the status of a reservation when they finish serving it or the reservation is canceled.
-      - Highlights: The `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. 
+      - Highlights: The `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. <br/>
           Marking the reservation is handled by `ReservationList` class. Some restriction is set to follow the common sense: a invalid reservation cannot be marked as served or invalid again; a served reservation cannot be marked as invalid.<br/>
        
   3. Feature: List the Reservations
@@ -28,7 +28,7 @@ daily so that restaurant owners can better manage their business operations.
   4. Feature: Search the Reservations
       - What it does: Allows the users to input `search reservation` to search for a specific reservation or all reservations in a certain day.
       - Justification: This feature is needed for restaurant to look at the details of a specific reservation or review all the reservations in a specific day.<br/>
-      - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list to find the matched reservations.
+      - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list to find the matched reservations.<br/>
   
   5. Feature: Load the `Reservation` from the **"report.txt"** file to the `reservations` list
       - What it does: The reservations in the txt file will be automatically loaded into the `reservations` list when the program is started.
@@ -45,8 +45,8 @@ daily so that restaurant owners can better manage their business operations.
       - Justification: The restaurant need to keep track of the log of its reservations.<br/>
 
 * **Contributions to documentation:**
-  1. Updated User Guide for all reservation-related features.
-  2. Added the legend for command format of `Features` section in User Guide.
+  1. Updated User Guide for all reservation-related features.<br/>
+  2. Added the legend for command format of `Features` section in User Guide.<br/>
 
 * **Contributions to the DG:**
   1. Added description for the `Search Reservation` features.
