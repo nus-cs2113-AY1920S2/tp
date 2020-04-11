@@ -45,28 +45,33 @@ public class FindCommand extends Command {
         String[] tokenizedParameters = parameters.split(" ;", 2);
 
         if (tokenizedParameters.length > 1) {
-            if (tokenizedParameters[1].length() == 0) {
-                System.out.println("screw you");
-                // throw exception here; to do tmr: reduce duplicate code, add jUnit test and docs for this feature
-            }
-            String nextCommand = tokenizedParameters[1].trim();
-            isFinalCommand = false;
-            parameters = tokenizedParameters[0];
-            findSubList();
-            callNextCommand(nextCommand, activityList);
-
+            executeChainedCommand(activityList, tokenizedParameters);
         } else {
             isFinalCommand = true;
             executeSingleCommand(activityList);
         }
     }
 
+    private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
+        if (tokenizedParameters[1].length() > 0) {
+            String nextCommand = tokenizedParameters[1].trim();
+            isFinalCommand = false;
+            parameters = tokenizedParameters[0];
+            executeSingleCommand(activityList);
+            callNextCommand(nextCommand, activityList);
+        } else {
+            isFinalCommand = true;
+            parameters = tokenizedParameters[0];
+            searchSubList();
+        }
+    }
+
 
     private void executeSingleCommand(ActivityList activityList) {
         if (parameters.contains("-s") || isChained == true) {
-            findSubList();
+            searchSubList();
         } else {
-            findFullList(activityList);
+            searchFullList(activityList);
         }
     }
 
@@ -104,7 +109,7 @@ public class FindCommand extends Command {
      * Find activities which has names containing the keywords from the entire list.
      * @param activityList full like of activities
      */
-    private void findFullList(ActivityList activityList) {
+    private void searchFullList(ActivityList activityList) {
         try {
             if (parameters.length() < 1) {
                 throw new EmptyQueryException();
@@ -124,7 +129,7 @@ public class FindCommand extends Command {
     /**
      * Find activities which has names containing the keywords from the last shown list.
      */
-    private void findSubList() {
+    private void searchSubList() {
         try {
             String query = parameters.replace("-s ", "");
             ArrayList<Activity> prevList = new ArrayList<>();

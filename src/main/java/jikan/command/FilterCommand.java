@@ -26,6 +26,7 @@ public class FilterCommand extends Command {
      */
     public FilterCommand(String parameters) {
         super(parameters);
+        isFinalCommand = true;
     }
 
     public FilterCommand(String parameters, boolean isFinal, boolean hasChaining) {
@@ -45,22 +46,32 @@ public class FilterCommand extends Command {
         String[] tokenizedParameters = parameters.split(" ;", 2);
 
         if (tokenizedParameters.length > 1) {
-            String nextCommand = tokenizedParameters[1].trim();
-            isFinalCommand = false;
-            parameters = tokenizedParameters[0];
-            filterSubList();
-            callNextCommand(nextCommand, activityList);
+            executeChainedCommand(activityList, tokenizedParameters);
         } else {
             isFinalCommand = true;
             executeSingleCommand(activityList);
         }
     }
 
+    private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
+        if (tokenizedParameters[1].length() > 0) {
+            String nextCommand = tokenizedParameters[1].trim();
+            isFinalCommand = false;
+            parameters = tokenizedParameters[0];
+            executeSingleCommand(activityList);
+            callNextCommand(nextCommand, activityList);
+        } else {
+            isFinalCommand = true;
+            parameters = tokenizedParameters[0];
+            searchSubList();
+        }
+    }
+
     private void executeSingleCommand(ActivityList activityList) {
         if (parameters.contains("-s") || isChained == true) {
-            filterSubList();
+            searchSubList();
         } else {
-            filterFullList(activityList);
+            searchFullList(activityList);
         }
     }
 
@@ -98,7 +109,7 @@ public class FilterCommand extends Command {
      * Filters activities by tags from the entire list of activities.
      * @param activityList the full list of activities
      */
-    private void filterFullList(ActivityList activityList) {
+    private void searchFullList(ActivityList activityList) {
         try {
             String query = parameters;
             if (query.length() < 1) {
@@ -124,7 +135,7 @@ public class FilterCommand extends Command {
     /**
      * Filter activities by tags based on the last shown list.
      */
-    private void filterSubList() {
+    private void searchSubList() {
         try {
             String query = parameters.replace("-s ", "");
             ActivityList prevList = new ActivityList();
