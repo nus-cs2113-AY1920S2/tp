@@ -49,7 +49,7 @@ Setting up the project<br>
     2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
     3. Click OK
     4. Click Import Project
-    > :information-source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
+    > :information_source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
@@ -159,17 +159,30 @@ The ```commands``` component interprets the user command and call the ```modulel
 The ```commands``` consists of the class ```CommandHandler```.
 
 ### 2.4. Model component
+![Model Component](images/modelcomponent.png)<br>
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
-it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contacts```
+it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
 ### 2.4.1. Model.meetings component
-The ```meetings``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
+![Meetings Component](images/meetingscomponent.png)<br>
+
+The ```meetings``` component of our application consists of 2 classes: ```Meeting``` and ```MeetingList```.
+
+1. ```Meeting``` is used to represent a meeting that the user has scheduled. It contains the name, start and end date, day and time of the meeting. It also contains getter methods, not shown in the diagram, which are used to access its attributes.
+2. ```MeetingList``` is used to store a list of all meetings. It contains a ```ArrayList<Meeting>``` which is updated every time the user adds or deletes a meeting. There are also getter methods not shown in the diagram.
 <br>
 
 ### 2.4.2. Model.contacts component
-The ```contacts``` component of our application consists of 2 classes: ```TeamMember```, ```TeamMemberList```
-1. ```TeamMember``` consists of information of a member's name and schedule.
-2. ```TeamMemberList``` is a ```Arraylist<TeamMember> ``` which new ```TeamMember``` can be added to.
+![Contacts Component](images/contactscomponent.png)<br>
+
+The ```contacts``` component of our application consists of 2 classes: ```Contact``` and ```ContactList```.
+
+1. ```Contact``` consists of information of a member's name and schedule.
+    * The information of a contact's schedule is stored in blocks of 30 minutes interval for 13 weeks and 7 days a week.
+    * By default, the first ```Contact``` added will be the main user of the application.
+    * It contains logic to convert time into 30-minute blocks for easy processing and check if a slot is valid for scheduling a meeting or editing.
+    * It also contains a private class ```Slot```, not shown in the diagram, used exclusively by ```Contact```. ```Slot``` contains information about a time slot and contains logic to convert its attributes.
+2. ```ContactList``` is a ```ArrayList<Contact>``` which new ```Contact``` are added to. It also contains getter methods not shown in the diagram.
 
 ### 2.5. Storage component
 
@@ -230,7 +243,7 @@ blacklisted modules every semester. <br>
     1. **Pros**: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
     2. **Cons**: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
        Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
-
+* Ultimately we decided to go with **Alternative 1** since it is the most user-friendly as our targeted users do not have to download another file and just downloading the jar would do. On the developer side, updates would still be required every semester, but our focus is to make the application as user-centric as possible.
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
 ######Fig 7. Sequence diagram of the implementation of the `List all contacts` feature
@@ -437,7 +450,8 @@ meetings into account when scheduling a common timeslot timetable.
 |v2.0| As a TA | I want to use this to schedule consults and marking sessions without sacrificing my tutorial/lecture slots | so that I can get the best TA award and maintain my grades at the same time. |
 |v2.0| As a lazy student | I want to use this application to automatically sync my previous meeting onto a new schedule profile | so that I can automatically block out dates instead of typing it manually. |
 |v2.0| As a student | I want to see the list of upcoming meeting dates  | so that i can remind myself which meetings i have to go for in the coming week. |
-|v2.0| a | a | a |
+|v2.1| As a  | a | a |
+
 ## Appendix C: Use Cases
 
 ## Appendix D: Non-Functional Requirements
@@ -452,7 +466,6 @@ meetings into account when scheduling a common timeslot timetable.
 ## Appendix E: Glossary
 
 * **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
-<br>
 * **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
 
 ## Appendix F: Instructions for Manual Testing
@@ -567,7 +580,7 @@ Given below are instructions to test the app manually.
 3. Loading previously stored contacts.
     1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
     2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
-    3. Expected: The stored contacts would be shown in application via ```contacts``.
+    3. Expected: The stored contacts would be shown in application via ```contacts```.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
