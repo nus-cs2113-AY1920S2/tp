@@ -13,13 +13,13 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
-    * [3.2. TextUi Component](#32-textui-comonent)
+    * [3.2. TextUi Component](#32-ui-component)
     * [3.3. Logic Component](#33-logic-component)
     * [3.4. Model Component](#34-model-component)
     * [3.5. Storage Component](#35-storage-component)
 - [4. Implementation](#4-implementation)
     * [4.1. Data Structure](#41-data-structure)
-    * [4.2. Add Feature](#42-add-feature)
+    * [4.2. Add Feature](#42-add-features)
     * [4.3. List Feature](#43-list-features)
     * [4.4. Find/Get Feature](#44-findget-feature)
     * [4.5. Edit Features](#45-edit-features)
@@ -30,7 +30,7 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [5. Testing](#5-testing)
 - [6. Useful Links](#6-useful-links)
 - [Appendices](#appendices)
-    * [Appendix A: Product Scope](#qppendix-a-product-scope)
+    * [Appendix A: Product Scope](#appendix-a-product-scope)
     * [Appendix B: User Stories](#appendix-b-user-stories)
     * [Appendix C: Non-functional Requirements](#appendix-c-non-functional-requirements)
     * [Appendix D: Glossary](#appendix-d-glossary)
@@ -920,12 +920,12 @@ Given below are instructions to test the application manually.
       
 2. Edit patient
 
-    ###### *Prerequisite: There is no patient in the list.*
+    **_Prerequisite: There is no patient in the list._**
     
     1. **Test case:** `edit patient S9876543F /p 99112233`  
     Expected: An error message will be shown indicating that the patient does not exists in the list.  
     
-    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567F.*
+    **_Prerequisite: There is a patient in the list with NRIC number S1234567F._**
     
     1. **Test case:** `edit patient S1234567F /rm Referred to National Centre for Infectious Diseases`  
     Expected: The remarks for patient with NRIC `S1234567F` will be edited.
@@ -960,12 +960,12 @@ Given below are instructions to test the application manually.
     
 3. Delete Patient
  
-    ###### *Prerequisite: There is no patient in the list.*
+    **_Prerequisite: There is no patient in the list._**
     
     1. **Test case:** `delete patient S9876543A`  
     Expected: An error message will be shown indicating that the patient does not exists in the list.  
     
-    ###### *Prerequisite: There is a patient in the list with NRIC number S9876543A.*
+    **_Prerequisite: There is a patient in the list with NRIC number S9876543A._**
     
     1. **Test case:** `delete patient S9876543A`  
     Expected: The program will prompt the user for confirmation.  
@@ -985,12 +985,12 @@ Given below are instructions to test the application manually.
  
 4. List patient
 
-    ###### *Prerequisite: There is no patient in the list.*
+    **_Prerequisite: There is no patient in the list._**
     
     1. **Test case:** `list patient`  
     Expected: An message will appear indicating that there is no patient in the list.
     
-    ###### *Prerequisite: There are patients in the list.*  
+    **_Prerequisite: There are patients in the list.*  
     
     1. **Test case:** `list patient`  
     Expected: The patients' Name and NRIC will be listed down.  
@@ -1000,7 +1000,7 @@ Given below are instructions to test the application manually.
    
 5. Get Patient
  
-    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567F.*  
+    **_Prerequisite: There is a patient in the list with NRIC number S1234567F._**
   
    1. **Test case:** `get patient`  
   Expected: An error message will be shown indicating that the command is incomplete.  
@@ -1018,14 +1018,14 @@ Given below are instructions to test the application manually.
 
 1. Add patient record (User Prompting)
 
-    ###### *Prerequisite: There is no patient in the list.*
+    **_Prerequisite: There is no patient in the list._**
     
     1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `y`  
     Expected: An error message will be shown indicating that the patient does not exists in the list.   
     
-    ###### *Prerequisite: There is a patient with NRIC number S9876543F in the list.*
+    **_Prerequisite: There is a patient with NRIC number S9876543F in the list._**
     
     1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
@@ -1057,7 +1057,7 @@ Given below are instructions to test the application manually.
     
 1. List patient record
 
-    ###### *Prerequisite: There is no patient in the list.*
+    **_Prerequisite: There is no patient in the list._**
     
     1. **Test case:** `list pr S1234567F`  
     Expected: An error message will be shown indicating that the patient record is not found.  
@@ -1065,7 +1065,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `list pr`  
     Expected: An error message will be shown indicating that the command is incomplete.      
     
-    ###### Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have existing patient records.  
+    **_Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have existing patient records._**  
     
     1. **Test case:** `list pr S9876543F`  
     Expected: The patient's record summary will be listed down with the ID, Date and Time.  
@@ -1076,19 +1076,19 @@ Given below are instructions to test the application manually.
     1. **Test case:** `list pr S98G`  
     Expected: An error message will be shown indicating that format of the NRIC is invalid.  
         
-    ###### *Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.*  
+    **_Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records._**
     
     1. **Test case:** `list pr S9876543F`  
     Expected: An error message will be shown indicating that the patient record is not found.  
 
 1. Find patient record
 
-    ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
+    **_Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records._**
     
     1. **Test case:** `find pr S9876543F 2`  
     Expected: An error message will be shown indicating that the patient record is not found.  
     
-    ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient have 3 existing patient records.*  
+    **_Prerequisite: There is a patient in the list with NRIC S9876543F and the patient have 3 existing patient records._**
       
     1. **Test case:** `find pr S9876543F 5`  
     Expected: An error message will be shown indicating that there is no patient record found with the given index.      
@@ -1110,12 +1110,12 @@ Given below are instructions to test the application manually.
 
 1. Edit Patient Record  
 
-    ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
+    **_Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records._**
     
     1. **Test case:** `edit pr S9876543F 1 /sym Fever`  
     Expected: An error message will be shown indicating that the patient record is not found.
     
-    ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records.*  
+    **_Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records._**
     1.  **Test case:** `edit pr S9876543F 1 /sym Fever`  
     Expected: The `symptom` of patient record with index `1` is edited for the patient with NRIC `S9876543F`.   
     
@@ -1146,7 +1146,7 @@ Given below are instructions to test the application manually.
     
  1. Delete Patient Record  
  
-     ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
+     **_Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records._**  
      
      1. **Test case:** `delete pr S9876543F 1`    
      Expected:  An error message will be shown indicating that the patient record is not found.  
@@ -1154,7 +1154,7 @@ Given below are instructions to test the application manually.
      1. **Test case:** `delete pr S9876543F`  
      Expected: An error message will be shown indicating that the command is incomplete.  
      
-     ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records.*  
+     **_Prerequisite: There is a patient in the list with NRIC S9876543F and the patient has 3 existing patient records._**  
      
      1. **Test case:** `delete pr S9876543F 1`   
      Expected: The `first` patient record will be deleted for patient `S9876543F`.
