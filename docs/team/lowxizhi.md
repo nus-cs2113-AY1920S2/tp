@@ -71,7 +71,7 @@ Example of usage:
         
 Example output:
 
-![edit busy 0 11 09:00 11 10:00](images/edit_busy_0_11_0900_11_1000_op.png)
+![edit busy 0 11 09:00 11 10:00](../images/edit_busy_0_11_0900_11_1000_op.png)
 
 <br/>
 
