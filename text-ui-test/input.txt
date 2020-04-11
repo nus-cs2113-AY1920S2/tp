@@ -1,1 +1,21 @@
-James Gosling
+start activity 1 /t tag
+end
+start activity 2 /t tag
+end
+start activity 3 /t tag1
+start activity 4
+end
+continue activity 1
+end
+start activity 1
+yes
+end
+graph
+start
+end
+abort
+hi
+delete
+edit activity 2 /en activity 5
+delete activity 5
+bye

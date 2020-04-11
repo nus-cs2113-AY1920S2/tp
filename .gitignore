@@ -1,3 +1,13 @@
+# data files
+/data/
+
+# build/libs files
+/build/libs
+
+# text-ui-test data files
+/text-ui-test/data/
+/text-ui-test/ACTUAL.txt
+
 # IDEA files
 /.idea/
 /out/
@@ -12,5 +22,3 @@ src/main/resources/docs/
 .DS_Store
 *.iml
 bin/
-
-/text-ui-test/ACTUAL.txt
