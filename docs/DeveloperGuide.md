@@ -162,6 +162,16 @@ The Commons consists of the following classes:
 * `MessageBank` - Consists of multiple standard system output messages for UI to print
 * `Weekday` - Enumeration class for classifying all 7 possible days in a week
 * `"ABC"Exception` - A collection of exceptions to aid in running of the application
+    * `InvalidAgeException`
+    * `InvalidCaloriesException`
+    * `InvalidCommandException`
+    * `InvalidFoodNameException`
+    * `InvalidFormatException`
+    * `InvalidGenderException`
+    * `InvalidHeightException`
+    * `InvalidNameException`
+    * `InvalidWeightException`
+    * `NegativeNumberException`
 
 
 ## Implementation
@@ -223,12 +233,11 @@ Students that :
 ### Value proposition
 
 Diet Manager aims to achieve the following:
-1. Streamline the diet recording process 
+1. Streamline the diet recording and monitoring process
 2. Allow users to track food calories intake and monitor their eating habits
-3. Enable users to monitor weight changes across time to work towards their ideal weight goal
-4. Provide personalised information and recommendations for the user
-5. Monitor and track user's weight changes to achieve weight goal
-6. Check their BMI as well as the BMI table regardless of user
+3. Enable users to monitor weight changes over time and work towards their ideal weight goal
+4. Provide personalised health information and dietary recommendations for the user
+6. Check their BMI as well against the BMI table regardless of user
 
 ## User Stories
 
@@ -280,8 +289,11 @@ Reliability:
 * *GENDER* - Standard form for gender is a String value of "male" or "female"
 * *HEIGHT* - Standard form for height is a double value more than 0 and less than 300, standard unit kilograms
 * *WEIGHT* - Standard form for weight is a double value more than 0 and less than 500, standard unit centimetres
+* *WEIGHT-GOAL* - Standard form for weight goal is a double value more than 0 and less than 500, standard unit centimetres
 * *CALORIES* - Standard form for calories is a double value more than 0, standard unit kilocalories
+* *INDEX* - Standard form for index is an int value, depending on the size of the corresponding list
 * *DATE* - Standard form for date is restricted to the range of MONDAY to SUNDAY
+* *TIME-PERIOD* - Standard form for time period is MORNING, AFTERNOON, NIGHT
 * *ACTIVITY-LEVEL* - Standard form for activity level is LOW, MODERATE, HIGH
 * *profile.txt* - Data file containing user profile information
 * *daily-food-record.txt* - Data file containing user daily food record information
@@ -290,7 +302,58 @@ Reliability:
 
 ## Instructions for Manual Testing
 
+For manual testing, developers can follow the instructions listed out in the [UserGuide](UserGuide.md)
+* Detailed input and output examples are displayed for cross checking.
 
+Alternatively, they can also follow the following steps to test out the respective commands, 
+upon downloading the jar file, while adhering to the specified restrictions in Glossary:
+
+1. `set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`
+    * Creates a new profile
+2. `profile`
+    * View user profile details
+3. `set-name NAME`
+    * Update name in profile.
+4. `set-age AGE`
+    * Update age in profile.
+5. `set-age GENDER`
+    * Update gender in profile.
+6. `set-height HEIGHT`
+    * Update height in profile.
+7. `set-weight-goal WEIGHT-GOAL`
+    * Update weight-goal in profile.
+8. `set-weight WEIGHT`
+    * Update weight in profile.
+9. `delete-weight INDEX`
+    * Delete a specific weight record.
+10. `check-weight-progress`
+    * Check user weight record progression.
+11. `check-bmi`
+    * Check user BMI and BMI classification.
+12. `record-meal DATE TIMEPERIOD /FOOD1 {-- 10.0} /FOOD2 {-- 6.00} /...`
+    * Record a meal
+13. `check-meal DATE TIMEPERIOD`
+    * Check a meal 
+14. `clear-records`
+    * Clear all food records
+15. `check-required-cal DATE ACTIVITYLEVEL` 
+    * Check calories required based on user's activity level
+16. `calculate {DATE1}->{DATE2}` 
+    * Calculates calories intake on a day or during a time period
+17. `list-food` 
+    * List all foods recorded in the database 
+18. `addf FOODNAME --CALORIES` 
+    * Add a new food into database
+19. `delf FOODNAME` 
+    * Delete a food from the database
+20. `new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL` 
+    * Create a recommended recipe for user
+21. `show-recipe` 
+    * Show the recipe recommended for user
+22. `help`
+    * Show the help function table with supported commands.
+23. `exit`
+    * Terminates and exits the application.
 
 
 Click [here](README.md) to go back to the main page.
