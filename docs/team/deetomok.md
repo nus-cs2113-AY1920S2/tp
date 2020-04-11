@@ -253,62 +253,6 @@ in an ordered fashion. This class is called `SemesterList`, which represents the
 The Marking as done mechanism is executed by `MarkAsDoneCommand`.
 `MarkAsDoneCommand` is extended from the abstract class `Command`, and this implementation marks the module that has
 been added to a `SemModuleList` in the `SemesterList` as done, and updates the respective grade to the `Module` object.  
-
-Given below is the behaviour of the Marking module as done mechanism at each step:
-
-#### Step 1:
-User launches the application. `SelectedModules` are added to `SemModuleList` through either of the following methods:
-1) Imported from `semesterList.csv` using `StorageSemesterList.load()`
-2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
-
-#### Step 2:
-User enters a mark as done command e.g. `done id/CS2113 g/A+ `. The command will be parsed in `Parser`, 
-which will return its parsed Strings to `Controller`. `Controller` takes in the Strings from `Parser` and creates
-a `MarkAsDoneCommand` object which then calls 
-`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context, 
-`(MarkAsDoneCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`.
-
-#### Step 3:
-`MarkAsDoneCommand#execute()` then calls self method `MarkAsDone#markAsDone()` which iterates through the 
-`semesterList` to check all `SemModulesList` and compare module name or id to see if the module that is being
- marked as done exists in the `semesterList`.  
-If the module exists in the list, the method will proceed to step 4. If the module does not exist in the list, 
-a `RuntimeExcption` will be thrown to tell the user that the module does not exist in the user's module plan.
-
-#### Step 4:
-Once corresponding module is found, the method will check the grade being assigned to module as well as whether
-the module has already been marked as done.  
-If the module is being assigned a passing grade and has not been marked done, 
-`personPerson.addTotalModuleCreditCompleted()` is called to add the number of module credit of the module to the user's
-`totalModuleCreditCompleted` attribute.  
-If the module is being assigned a failing grade but has already been marked as done, 
-`personPerson.minusTotalModuleCreditCompleted()` is called to reduce the number of module credit of the module 
-from the user's `totalModuleCreditCompleted` attribute. This conditional step is for the case when user wants to change 
-the grade of a module from a passing grade to failing grade.  
-
-#### Step 5:
-The grade of the module will be passed to the `Module` object to update the grade attribute, 
-and the `isDone` attribute of the module will be updated to be `true`.
-
-#### Step 6:
-If the grade being assigned is a failing grade, self method will be `appendFailString` called. `appendFailString` will 
-construct a new `StringBuilder` and check if the module has an `id` attribute by calling `module.isIdValid()` method. 
-If the method has an id, the module's id will be appended to the `StringBuilder`. If the module does not have an `id` 
-attribute, the method will check if the module has a `name` attribute by calling `module.isNameValid()` method. The
-module's name will then be appended to the `StringBuilder`. After appending the module's id or name, `" Failed"` string 
-will be appended to the `StringBuilder`.  
-
-#### Step 7:
-A new `SelectedModule` will be constructed using the String derived from `StringBuilder.toString()`, the Semester of 
-the module called from the module's `getSem()` method and the number of module credits called from the module's
-`getModuleCredit()` method.  
-Once the new `SelectedModule` has been constructed, the module that is being assigned a failing grade will be removed
-from the `SemModuleList`.  
-
-#### Step 8:
-The new `SelectedModule` will be updated by updating its `isDone` attribute to `true` and updated with the `grade` that 
-was supposed to be assigned using the `SetAsDone`. It will then be added to the same `SemModuleList` as the removed
-module.
  
 The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
 ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
