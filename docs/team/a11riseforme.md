@@ -20,7 +20,17 @@
 - Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
 - Highlights: This enhancement does not affects existing commands, but it required an in-depth analysis of the data formation of the current project. The implementation too was challenging as it required to add in a middle step in the main function of the program. I have to make sure that it won't go wrong and adversely affects the main program.
 
-###### 2. Implement the generic Linux filesystem associated command `ls`, `mkdir` and `rm`
+###### 2. Added the ability to preload the information of all modules provided by NUS
+
+- What it does: Preloads the information of all modules provided by NUS, including module codes and module titles.
+- Justification: This feature makes our product more targeted at our intended user(NUS students) more, it also enables the auto-complete features when users are adding their modules by entering module codes, which enhances usability.
+- Highlights: This enhancement is based on the json file which is retrieved from the [NUSMods](https://api.nusmods.com/v2/) API, and it has to deal with the case when there is no relevant json file on the disk, then the program needs to fetch the content from [NUSMods](https://api.nusmods.com/v2/) API, and if the user has no network connection(which is a very rare case), the program also needs to be compatible with such extreme case and compromises to allow the user to add any modules, even not provided by NUS
+- Credits: 
+  - [NUSMods](https://api.nusmods.com/v2/) API: For providing the API to retrieve the information of all the modules provided by NUS.
+  - [FastJson](https://github.com/alibaba/fastjson) library: For parsing the json file.
+  - [Commons IO](http://commons.apache.org/proper/commons-io/) from Apache: For downloading the json file from [NUSMods](https://api.nusmods.com/v2/) API.
+
+###### 3. Implement the generic Linux filesystem associated command `ls`, `mkdir` and `rm`
 
 - What it does: Allow the user to execute the Linux filesystem associated command `ls` to list out directories, `mkdir` to create directories, and `rm` to remove directories.
 - Justification: This feature improves the user experience for the user with prior experience on Linux significantly because it reduces a lot of work for the users to remember other commands. 
