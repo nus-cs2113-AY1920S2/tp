@@ -21,7 +21,7 @@ It works alongside the score feature, in order to further enhance the user's rev
 + What it does: Allows users to view their score after each quiz, and also a list of their past quiz scores for the selected subject.
 
 + Justification: The feature improves on the quiz feature, by allowing the user to view his/her performance after each quiz. It also allows
-him/her to check their past score history to track their improvement over time.
+him/her to check the past score history to track the improvement over time.
 
 + Highlights: This enhancement works alongside the quiz feature to provide a user-friendly and meaningful score history. It also tracks scores for
 quizzes that were ended prematurely, by only taking into account the questions asked before termination.
@@ -30,7 +30,7 @@ quizzes that were ended prematurely, by only taking into account the questions a
 + What it does: Allows users to add, delete and view upcoming events.
 
 + Justification: Being able to keep track of upcoming events/deadlines such as exams/project deadlines is helpful to the user as
-it allows him/her to plan their revision accordingly.
+it allows him/her to plan his/her revision accordingly.
 
 + Highlights: This enhancement is not tied to the subject class, meaning that the user has the flexibility to add any events that are
 deemed important, even those not related to any of the stored subjects. The event feature also allows the user to select the number of days range
