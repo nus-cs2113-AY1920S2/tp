@@ -1,8 +1,7 @@
 # Project Portfolio Page (PPP)  
 ## Project overview  
 **Jikan** is a CLI time-tracker built in Java that aims to help manage tasks and projects.  
-Users can set tags and goals for their entries,  
-ultimately being able to keep track of what's left to do and maintain an overview of how time was spent.  
+Users can set tags and goals for their entries, ultimately being able to keep track of what's left to do and maintain an overview of how time was spent.  
 
 ## Summary of contributions  
 ### Code contributed  
