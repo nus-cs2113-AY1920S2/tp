@@ -27,12 +27,13 @@ public class DisplayList extends UI {
         display("Please choose one of the following list.");
         for (StudentList studentList: studentListCollection) {
             UI.display(index + ". " + studentList.getListName());
+            index++;
         }
         return Integer.parseInt(getStringInput());
     }
 
     public void printSearchResults(ArrayList<StudentList> searchResults) throws PacException {
-        UI.display("Here's the Search Results");
+        UI.display("Here's the Search Result(s)");
         try {
             int index = 1;
             for (StudentList studentList : searchResults) {

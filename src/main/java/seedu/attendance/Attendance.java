@@ -90,4 +90,18 @@ public class Attendance {
             return listName1.compareTo(listName2);
         }
     };
+
+    /**
+     * Converts "Present" or "Absent" to "Y" and "N" respectively.
+     * @return "Y" if Present, "N" if absent or otherwise
+     */
+    public static String getSimpleAttendanceStatus(String input) {
+        if (input.equals("Present")) {
+            return "Y";
+        } else if (input.equals("Absent")) {
+            return "N";
+        } else {
+            return "N";
+        }
+    }
 }

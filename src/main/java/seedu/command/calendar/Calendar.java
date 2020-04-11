@@ -14,9 +14,11 @@ public class Calendar {
     private static final String EMPTY_YEAR_LIST_ERROR_MESSAGE = "Unable to find any events for this time period.";
     private static final String MONTH_NOT_FOUND_ERROR_MESSAGE = "Month not found.";
     private UI ui;
+    private DisplayTable displayTable;
 
     public Calendar() {
         this.ui = new UI();
+        this.displayTable = new DisplayTable();
     }
 
     /**
@@ -228,21 +230,13 @@ public class Calendar {
         }
     }
 
-    private ArrayList<ArrayList<String>> initializeMonthList() {
-        ArrayList<ArrayList<String>> list = new ArrayList<>(NO_OF_MONTHS);
-        for (int k = 0; k < NO_OF_MONTHS; k++) {
-            list.add(new ArrayList<>());
-        }
-        return list;
-    }
-
     private void displayCalendar(ArrayList<ArrayList<String>> monthList, int year, int semester) {
         if (semester == 1) {
             ui.printCalendarHeader(year, year + 1, semester);
         } else {
             ui.printCalendarHeader(year - 1, year, semester);
         }
-        printMonths(monthList);
+        displayMonths(monthList);
     }
 
     /**
@@ -250,7 +244,7 @@ public class Calendar {
      *
      * @param monthList 2d ArrayList that does not have a equal number of rows and columns.
      */
-    private void printMonths(ArrayList<ArrayList<String>> monthList) {
+    private void displayMonths(ArrayList<ArrayList<String>> monthList) {
         ArrayList<String> eventDescriptionList = initializeDescriptionList();
         int maxNumberOfEvents = getMaxNumberOfEvents(monthList);
         monthList = make2DArray(monthList, maxNumberOfEvents);
@@ -274,7 +268,7 @@ public class Calendar {
                     eventDescriptionList.add(j, monthList.get(j).get(k));
                 }
             }
-            DisplayTable.printBodyOfSix(eventDescriptionList);
+            displayTable.printBodyOfSix(eventDescriptionList);
             eventDescriptionList = removePreviousElements(eventDescriptionList);
         }
     }
@@ -293,6 +287,14 @@ public class Calendar {
             }
         }
         return maxNumberOfEvents;
+    }
+
+    private ArrayList<ArrayList<String>> initializeMonthList() {
+        ArrayList<ArrayList<String>> list = new ArrayList<>(NO_OF_MONTHS);
+        for (int k = 0; k < NO_OF_MONTHS; k++) {
+            list.add(new ArrayList<>());
+        }
+        return list;
     }
 
     private ArrayList<String> initializeDescriptionList() {

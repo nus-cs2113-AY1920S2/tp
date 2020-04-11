@@ -35,7 +35,14 @@ public class DisplayTable extends UI {
         printSplitOfThree();
     }
 
-    public static void printBodyOfSix(ArrayList<String> description) {
+    public void printBodyOfSix(ArrayList<String> description) {
+        String columnOfSix = ("| %-20s| %-20s| %-20s| %-20s| %-20s| %-20s|%n");
+        System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
+                description.get(4), description.get(5));
+        printSplitOfSix();
+    }
+
+    public static void printMonths(ArrayList<String> description) {
         String columnOfSix = ("| %-20s| %-20s| %-20s| %-20s| %-20s| %-20s|%n");
         System.out.printf(columnOfSix, description.get(0), description.get(1), description.get(2), description.get(3),
                 description.get(4), description.get(5));

@@ -15,7 +15,7 @@
     3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
-4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
+4.1.1. [Add New Student List](#411-add-new-student-list)        
 4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
 4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collections)   
 4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
@@ -31,15 +31,15 @@
 4.2.6. [Edit Event -venue](#426-edit-event-venue)  
 4.2.7. [Edit Event](#427-edit-event)    
 4.3. [Calendar](#43-calendar)  
-4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)   
+4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time)   
 4.4 [Attendance List](#44-attendance)    
-4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance)    
+4.4.1. [Add New Attendance](#441-add-students-attendance-to-event)    
 4.4.2. [View Attendance List](#442-view-attendance-list)   
 4.4.3. [Clear Attendance List](#443-clear-attendance-list)  
 4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name)  
 4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status)  
-4.4.6. [Edit Attendance](#446-edit-attendance)    
-4.4.7. [Find Attendance](#447-find-attendance)  
+4.4.6. [Find Attendance](#446-find-attendance)  
+4.4.7. [Edit Attendance](#447-edit-attendance)    
 4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
@@ -149,7 +149,6 @@ The following shows a successful case of adding a new student list.
     | 2         |  Jodi                                                                              |
     |___________|____________________________________________________________________________________|
     
-The following will occur if there is already an existing student list with the same name. 
 The following will occur if there is already an existing student list with the same name. 
 
     >>> studentlist add
@@ -355,7 +354,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> CG
-    You have 1 matched:
+    You have 1 matches:
     Here's the Search Result(s)
     
     [1]
@@ -375,7 +374,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> EG
-    Nothing match you description : EG
+    Nothing match your description : EG
     
 The following occurs when there are no existing student list in the student list collection.
 
@@ -542,23 +541,39 @@ Add a new event to the event list.
 
 Format: `event add n/NAME [d/DATE t/TIME] [v/VENUE]`
 
-* Name and Venue accepts input with spaces.
-* Date and Time must either be provided together, or not provided at all. 
+* `Name` and `Venue` accepts input with spaces.
+* `Date` and `Time` must either be provided together, or not provided at all. 
 * The Date should be in the format: yyyy-mm-dd.  
 * The Time should be in the 24-hour format: HHmm.
 * Flags can be arranged in any order.
+* If only `Venue` is provided, `Name` will be set to a default value based on 
+current time (e.g. event_1586607776).
  
 Examples: 
 
     >>> event add n/dinner with collegue
+    
     >>> event add n/World Cup d/2022-11-21 t/0000
+    
     >>> event add n/soccer match v/Kallang d/2020-01-23 t/1900
     
 Expected outcome:
 
+    Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
     New Event: dinner with collegue was added successfully to your Event list.
+    
     New Event: World Cup was added successfully to your Event list.
+    
     New Event: soccer match was added successfully to your Event list.
+
+Examples of bad input:
+
+    >>> event add n/NS [d/2020-02-01 t/0000] [v/Tekong]
+
+Expected outcome of bad input:
+
+    Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
+    New Event: NS [d/2020-02-01 was added successfully to your Event list.
 
 #### 4.2.2. List Events
 List all events.
@@ -589,7 +604,6 @@ Expected outcome:
     
 #### 4.2.4. Edit Event Name
 Change the name of an existing event.
-
 
 Format: `event editname i/INDEX n/NEW_NAME`
 * alphabet cases for the command is not important
@@ -651,15 +665,37 @@ Expected outcome:
 
 
 ### 4.3 Calendar 
-#### 4.3.1 View events under a particular time : `calendar s/2 ay/19-20`  
-View existing events under a particular semester and academic year in a calendar format.
-Semester refers to a numerical number, i.e. 1 or 2, while academic year refers 
-to any 2 consecutive years with a hyphen separating them. Each year should be entered in a 2 digit format,
-i.e. ay/07-08.
+#### 4.3.1 View events under a particular time
+View events under a particular semester and academic year in a calendar format. In the calendar view, it shows the date of the event, type 
+of the event in brackets, and name of the event. 
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 * Both the semester and academic year should be provided.
+* Valid semester numbers can only be 1 or 2. 
+* Valid academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
+  i.e. ay/07-08, ay/19-20.  
 * Order of the flags *matters*.
+
+Note that your event list **should** contain existing events to view calendar. The following *steps* will guide you to achieve this:
+
+Step 1: Add events with date and time that corresponds to semester 2 of academic year 19/20, similar to the event list shown below. 
+To view the events in a list, type the command below. 
+
+Command: 
+
+    >>> event list 
+    
+Example:
+
+    >>> Here are all the Events in your list.
+       1. Event: orientation, time: Mon, Jan 13 2020 0800
+       2. Event: presentation, time: Sat, Feb 01 2020 1230
+       3. Event: midterms, time: Fri, Mar 13 2020 1000
+       4. Seminar: covid19, time: Sat, Apr 04 2020 1500
+       5. Event: birthday, time: Sun, Apr 05 2020 1900
+       6. Event: finals, time: Mon, May 04 2020 0930
+
+Step 2: To view the events above in a calendar format, type the command below.
 
 Command: 
     
@@ -684,7 +720,7 @@ Example:
 This section for attendance related commands is done in chronological order. Please follow the numbering to get
 a clearer understanding on how you can use the commands.
 
-#### 4.4.1 Add students’ attendance to event: attendance
+#### 4.4.1 Add students’ attendance to event
 
 Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
@@ -771,6 +807,8 @@ The following will show a success example of *creating a new attendance list usi
     You have successfully added 3 to the attendance list.
     
 The following will show a success example of *creating a new attendance list using a single line interface*.
+Please note that the name provided must be connected. "John Doe" is not accepted. If you wish to add in name
+with spaces, please use the other method. Future releases will allow names like "John Doe" to be added. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
@@ -803,7 +841,7 @@ The following will show a success example of *creating a new attendance list usi
     >>> done
     You have successfully added 3 to the attendance list.
     
-#### 4.4.2 View attendance list:
+#### 4.4.2 View attendance list
 
 View the attendance list under a certain event.  
 
@@ -836,7 +874,7 @@ The following occurs if there is no existing attendance list.
         >>> CS2113T Tutorial
         Attendance List is empty
     
-#### 4.4.3 Clear attendance list:
+#### 4.4.3 Clear attendance list
 
 Clear the attendance list under a certain event.  Attendance list is cleared regardless whether 
 the attendance list under the event is empty.
@@ -881,7 +919,7 @@ The following will show the message shown when clearing of an empty attendance l
     >>> CS1010 Tutorial
     Attendance List is already empty
             
-#### 4.4.4 Sort attendance list by name:
+#### 4.4.4 Sort attendance list by name
 
 Sort the attendance list by name in alphabetical order under a certain event.  
 
@@ -902,7 +940,7 @@ The following occurs if there is no existing attendance list.
       >>> name
       An empty list cannot be sorted
       
-#### 4.4.5 Sort attendance list by status:
+#### 4.4.5 Sort attendance list by status
 Sort the attendance list by attendance status under a certain event with student that are absent on the top.  
 
 Command:  `attendance sort`
@@ -977,14 +1015,14 @@ The following occurs if there is no existing attendance list.
       | 3         |  John Doe                                          |  Present                     |
       |___________|____________________________________________________|______________________________|
       
-#### 4.4.6 Find attendance:
+#### 4.4.6 Find attendance
 Find a student's attendance under a certain event.
 
 Command: `attendance find`
 
 Example:
 
-The following shows a successful find
+The following shows a successful find.
 
     >>> attendance view
     Please key in the name of event.
@@ -1024,7 +1062,7 @@ The following occurs when there is no names matching the name that the user inpu
     
     >>> Richard
     Search Results
-    There is no student named: Richard.
+    There is no student named: Richard
     
 The following occurs when the attendance list is empty.
 
@@ -1034,7 +1072,7 @@ The following occurs when the attendance list is empty.
     >>> CS1010 Tutorial
     The attendance list is currently empty. Please add attendance instead.
 
-#### 4.4.7 Edit attendance:
+#### 4.4.7 Edit attendance
 Edit a student's attendance under a certain event. 
 This allows the user to overwrite the student's name or status.
 
@@ -1144,7 +1182,14 @@ The following occurs when there is no existing attendance list.
     
 ### 4.5. Performance List
 #### 4.5.1. Add Performance List
-Add a student’s result to the performance list.  
+Add new students' result to an empty or existing performance list. Pac offers 
+you the absolute freedom to add students' result in any form, i.e. mark or grade.  
+
+You are allowed to add the student's result by importing a student list or manually key
+in students' performance. This section will demonstrate two ways of adding a performance 
+list.  
+Do note that you have to have an existing name list before you are using the alternative method.  
+
 This is a step by step command and you may follow the instructions given by the console. 
 
 Format: `performance add`
@@ -1154,29 +1199,60 @@ Step by step guide:
     >>> performance add
     Please key in the name of event that you wish to access to its student's performance. 
     
-    >>> event
-    
-If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
-the alternative provided by Pac: record using a current name list. Do note that you have to have an existing name list 
-before you are using this short cut.  
+    >>> Event
+
 The following will show a success example of using a current name list to add performance. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
     >>> yes
-    Please choose the name list you wish to use. (shows a list of list names)
+    Please choose the name list you wish to use. 
+    (shows a list of list names)
     
     >>> 1
-    Please key in the result for student (student1 name)
+    Please key in the result for (student1 name) 
     
     >>> A
-    The result of student (student name) has been added successfully under event (event name)
-    Please key in the result for student (student2 name)
-    ...
-*Note: All commands above are not case sensitive.*
+    The result of student (student name) has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'.
+    
+    Please key in the result for (student2 name)
+    
+    >>> A
+    
+    >>> The result of student (student2 name) has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+
+    You have successfully added 2 result(s) to the performance list.
+    
+The following will show a success example of adding performance list manually. 
+    
+    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
+    >>> nooo
+    Please key in the performance you want to add in this format: n/name r/result
+    When you are finished, input 'done' 
+    
+    >>> n/Student1 r/A
+    The result of student Student1 has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+    
+    >>> n/Student2 r/B
+    The result of student Student2 has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+    
+    >>> done
+    You have successfully added 2 result(s) to the performance list.
+        
+*Note:*  
+*1. All commands above are not case sensitive.*  
+*2. Student name is restricted to one word only for manual add, i.e. `n/Student Name r/A` is an invalid input.*  
+*3. However, you may import an existing student list for multiple word names.* 
 
 #### 4.5.2. Delete Performance List
-Delete a student’s result to the performance list.  
+Delete a student’s result to the performance list. You are able to select the performance
+list under any existing Event and delete a student's data under that list.  
+
 This is a step by step command and you may follow the instructions given by the console.  
 
 Format: `performance delete`
@@ -1191,11 +1267,22 @@ Step by step guide:
     
     >>> name
     The result of student (name) has been deleted successfully under event event.
-    
+
+If you are trying to delete a performance from an empty performance list, an error message
+will be shown as below:
+
+    >>> performance delete
+    Please key in the name of event that you wish to access to its student's performance. 
+        
+    >>> event
+    No performance list under this event.
+        
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.3. View Performance List
-View the list of students' result under a certain event.  
+View the list of students' result under a certain event. Pac will generate a nice 
+looking table containing the performance data you wish to view automatically.  
+
 This is a step by step command and you may follow the instructions given by the console. 
 
 Format: `performance view`
@@ -1212,12 +1299,21 @@ Step by step guide:
     |___________|_____________________________________|_____________________________________________|
     | 1         |  XX                                 |  A                                          |
     |___________|_____________________________________|_____________________________________________|
+
+If the performance list you wish to view is empty, you will see the following message:
+
+     No performance list under this event
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Result                      |
+    |___________|____________________________________________________|______________________________|
+
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.4. Edit Performance List
-Edit the list of students' result under a certain event.  
+Edit the list of students' result under a certain event. You are allowed to edit 
+either student's name or result.  
+
 This is a step by step command and you may follow the instructions given by the console. 
-During the process, you can choose to edit either student's name or result.
 
 Format: `performance edit`
     
@@ -1237,20 +1333,43 @@ Step by step guide to edit name:
     
     >>> Carl
     The student name has been changed to Carl successfully.
+
+
+Step by step guide to edit result: 
+
+    >>> performance edit
+    Please key in the name of event that you wish to access to its student's performance.
     
-You can follow the same procedure to edit result, but change your input from
-`name` to `result` at the `***` line.
+    >>> event
+    Please key in the name of student that you wish to edit his/her performance 
+    
+    >>> Alice
+    Please key in the type of performance parameter you want to edit: name / result
+    
+    >>> result
+    Please key in the student's new result
+    
+    >>> A
+    The student result has been changed to student successfully.
+
+If you have selected a wrong performance parameter, i.e. anything but 'name' or 'result', 
+an error message will be shown as below:
+    
+    Please key in the type of performance parameter you want to edit: name / result
+        
+    >>> type
+    Wrong type of parameter chosen.
 
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.5. Sort Performance List
-Sort the list of students' result under a certain event.  
+Sort the list of students' result under a certain event by either student's name or result.  
+
 This is a step by step command and you may follow the instructions given by the console. 
-During the process, you can choose to sort by either student's name or result.
 
 Format: `performance sort`
     
-Step by step guide to edit name: 
+Step by step guide to sort performance list by name: 
 
     >>> performance sort
     Please key in the name of event that you wish to access to its student's performance.
@@ -1264,10 +1383,15 @@ Step by step guide to edit name:
     >>> name ***
     Performance List is sorted by Performance name for Event:  event
     
-You can follow the same procedure to sort by result, but change your input from
+You should follow the same procedure to sort by result, while changing your input from
 `name` to `result` at the `***` line.  
+- Result in grade will be sorted from highest to lowest.  
+- Result in mark will be sorted from smallest to largest by its most significant digit.  
+- If the students' result are of different form in the same list, ie some are in grades,
+while some are in marks, result will be sorted in the order of mark, followed by grades.   
 
 *Note: All commands above are not case sensitive.*
+
 
 ## 5. Possible Console Messages and Reasons:  
 1. If you entered a wrong command type, ie. not specifying 
@@ -1278,6 +1402,13 @@ which category your command belongs to
 1. If you entered two flags, i.e. n/work n/presentation:
 
        Please provide only 1 name flag.
+       
+1. If you entered two similar flag for a Performance command, e.g. adding performance list to event
+named Event.  
+When prompted to input student's name and result, given input: `n/Name1 n/Name2 r/A`, data after the latest 
+detected flag will be used:
+
+        The result of student name2 has been added successfully under event Event.
 
 1. If you did not enter any flag, ie. event add: 
 
@@ -1287,7 +1418,11 @@ which category your command belongs to
            
        Event is not found in the list.
        
-1. If there are no events under a calendar for a particular semester in its academic year:
+1. If you added an event with no date and time:
+
+       Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
+       
+1. If there are no events in your event list under a particular semester and academic year:
 
        Unable to find any events for this time period.
 

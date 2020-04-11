@@ -124,18 +124,34 @@ public class Event {
         this.venue = venue;
     }
 
+    /**
+     * Returns the attendanceList of the event.
+     * @return the attendanceList of the event
+     */
     public AttendanceList getAttendanceList() {
         return attendanceList;
     }
 
+    /**
+     * Sets the attendanceList of the event.
+     * @param attendanceList the new attendanceList for the event
+     */
     public void setAttendanceList(AttendanceList attendanceList) {
         this.attendanceList = attendanceList;
     }
 
+    /**
+     * Returns the performanceList of the event.
+     * @return the performanceList of the event
+     */
     public PerformanceList getPerformanceList() {
         return performanceList;
     }
 
+    /**
+     * Sets the performanceList of the event.
+     * @param performanceList the new performanceList for the event
+     */
     public void setPerformanceList(PerformanceList performanceList) {
         this.performanceList = performanceList;
     }
@@ -260,7 +276,7 @@ public class Event {
                 String[] attendanceDetail = attendance.split(": ");
                 assert attendanceDetail.length == 2 : "Name contains ': '";
                 String person = attendanceDetail[0];
-                String isPresent = attendanceDetail[1];
+                String isPresent = Attendance.getSimpleAttendanceStatus(attendanceDetail[1]);
                 Attendance newAttendance = new Attendance(person, isPresent);
 
                 attendanceList.add(newAttendance);

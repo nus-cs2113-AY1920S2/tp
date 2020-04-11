@@ -62,7 +62,7 @@ public class AttendanceList {
         attendanceList.add(attendance);
     }
 
-    public void displayList(ArrayList<Attendance> attendanceList) {
+    public void displayAttendanceList(ArrayList<Attendance> attendanceList) {
         int index = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
         for (Attendance attendance : attendanceList) {
@@ -78,7 +78,7 @@ public class AttendanceList {
         if (attendanceList.isEmpty()) {
             UI.display("Attendance List is empty");
         } else {
-            displayList(attendanceList);
+            displayAttendanceList(attendanceList);
         }
     }
 
@@ -118,14 +118,14 @@ public class AttendanceList {
         ui.readUserInput();
         String keyword = ui.getUserInput().trim().toLowerCase();
         if (isMatch(keyword).isEmpty()) {
-            ui.display("There is no student named: " + keyword);
+            UI.display("There is no student named: " + keyword);
         } else {
-            displayList(isMatch(keyword));
+            UI.display("Search Result(s): ");
+            displayAttendanceList(isMatch(keyword));
         }
     }
 
     public ArrayList<Attendance> isMatch(String keyword) {
-        UI.display("Search Results");
         ArrayList<Attendance> searchResults = new ArrayList<>();
         for (Attendance attendance: this.attendanceList) {
             if (attendance.getStudentName().toLowerCase().contains(keyword.toLowerCase())) {
