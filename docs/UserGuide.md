@@ -23,7 +23,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
         + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
     
-    * [3.4. Appointments](#34-appointment-scheduling-commands)
+    * [3.4. Appointment Scheduling](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
         + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
         + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
@@ -60,7 +60,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 
 ## 3. Features
 
-HappyPills have three main features: `General Patient Information`, `Patient Medical Records` and `Appointment`. 
+HappyPills have three main features: `General Patient Information`, `Patient Medical Records` and `Appointment Scheduling`. 
 
 `General Patient Information` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
 blood type and allergies).
@@ -68,7 +68,7 @@ blood type and allergies).
 `Patient Medical Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
 (e.g. patient's symptoms, diagnosis and date/time of the medical treatment).
 
-`Appointment` helps the you schedule appointments with your patients (e.g. appointment date, time and 
+`Appointment Scheduling` helps the you schedule appointments with your patients (e.g. appointment date, time and 
 reason for appointment). 
 
 These features come together to help you easily manage your patients' information. You can now provide your patients 
