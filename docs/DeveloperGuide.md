@@ -154,7 +154,7 @@ The `ScheduleHandler` object retrieves the schedule of each `Contact` using `Con
 schedule to fill up its private class variable, combinedSchedule. `CommandHandler` can retrieve the combined schedule generated 
 by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule()`.
 
-[Section 3.3](#Display-timetable-of-selected-contacts) below explains in detail how the ```schedulelogic``` component is used in the 
+[Section 3.3](#3-implementation) below explains in detail how the ```schedulelogic``` component is used in the 
 implementation of the [`Display timetable of selected contacts`](#33-display-timetable-of-selected-contacts) feature.
 <br>
 
