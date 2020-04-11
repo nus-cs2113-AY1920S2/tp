@@ -44,7 +44,7 @@ public class Seminar extends Event {
     public String toString() {
         String output = "Seminar: " + getName();
 
-        if (!getDatetime().equals("yyyy-MM-dd HHmm")) {
+        if (!getDatetime().equals("")) {
             output += (", time: " + getDatetime());
         }
         if (!getVenue().equals("")) {

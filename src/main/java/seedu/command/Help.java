@@ -1,14 +1,13 @@
 package seedu.command;
 
 import seedu.exception.PacException;
-import seedu.ui.UI;
-
+import seedu.ui.HelpUI;
 
 public class Help extends Command {
-    seedu.ui.Help help;
+    HelpUI helpUI;
 
     public Help() {
-        this.help = new seedu.ui.Help();
+        this.helpUI = new HelpUI();
     }
 
     /**
@@ -16,29 +15,29 @@ public class Help extends Command {
      * be displayed by type of command.
      */
     public void selectHelpMessage() {
-        help.printGetHelp();
-        String typeOfHelp = help.getStringInput();
+        helpUI.printGetHelp();
+        String typeOfHelp = helpUI.getStringInput();
         while (!typeOfHelp.equals("back")) {
             switch (typeOfHelp) {
             case "1":
-                help.printStudentListHelp();
+                helpUI.printStudentListHelp();
                 break;
             case "2":
-                help.printEventHelp();
+                helpUI.printEventHelp();
                 break;
             case "3":
-                help.printCalendarHelp();
+                helpUI.printCalendarHelp();
                 break;
             case "4":
-                help.printAttendanceHelp();
+                helpUI.printAttendanceHelp();
                 break;
             case "5":
-                help.printPerformanceHelp();
+                helpUI.printPerformanceHelp();
                 break;
             default:
-                help.printGetHelp();
+                helpUI.printGetHelp();
             }
-            typeOfHelp = help.getStringInput();
+            typeOfHelp = helpUI.getStringInput();
         }
     }
 
