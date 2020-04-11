@@ -372,7 +372,7 @@ The <code>DirectoryTraverser</code> class contains <b>three</b> main methods to 
 <ol>
 <li><code>findNextDirectory(nextDirectoryName: String)</code> &ndash; Finds a present <code>Directory</code> in the next <b>Directory</b> level with the matching <code>nextDirectoryName</code></li>
 <li><code>traverseDown(nextDirectory: Directory)</code> &ndash; Traverses down to the <code>nextDirectory</code> by pushing the <code>nextDirectory</code> into the <code>directoryStack</code></li>
-<li><code>traverseUp()</code> &ndash; Traverses  up to the <i>parent</i> <b>Directory</b> by popping the top <code>Directory</code> from the <code>directoryStack<code></li>
+<li><code>traverseUp()</code> &ndash; Traverses  up to the <i>parent</i> <b>Directory</b> by popping the top <code>Directory</code> from the <code>directoryStack</code></li>
 </ol>
 <br>
 <div class="alert alert-info">  
