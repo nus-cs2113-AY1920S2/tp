@@ -16,26 +16,24 @@
 
 ### Major Enhancement
 
-#### Implemented List Deadline Features
-- What it does: allows the user to check their tasks of different modules or all modules in terms of the deadline.
+#### Implemented List Sorted Taks Features
+- What it does: allows the user to check their _task_s of different _module_s or all _module_s in the ascending order of _deadline_ or descending order of _priority_.
 
 - Justification: these features improve filtering function of the product and benefit the user greatly because a user can see the most urgent task and the least urgent task and then determine which task to complete right after.
 
-- Highlights: the implementation mainly consists of two parts include integrating all tasks from different categories of different modules as user-added tasks are stored in a multitude of seperated lists and sorting the all these tasks in the ascending order of deadline. As users may simplify commands by omitting prefix if they are in the current directory or check tasks of another module in current directory, the implementation need to deal with different situations and filter tasks correctly.
+- Highlights: the implementation mainly consists of two parts include integrating all tasks from different categories of different modules as user-added tasks are stored in a multitude of seperated lists and sorting the all these tasks in terms of deadine or priority. As users may simplify commands by omitting prefix or only type into keywords, the implementation need to deal with different situations and filter tasks correctly which is challenging.
 
 #### Implemented Tag Features
 - What it does: allows the user to add, delete several tags to every task to give more customized descriptions to their tasks and then list tasks out based on different tags.
 
 - Justification: these features will improve filtering function of the application significantly. Users can use customized tags to describe tasks and filter tasks according to these tags to find tasks catering to their needs well.
 
-- Highlights: This enhancement provides a new criteria for users to manage and navigate their tasks. The implementation includes adding a new attribute to existing object, filtering tasks of differnt categories of different modules in terms of tags which users can choose to use exact tag or keyword of tag to filter tasks leading t o changes to existing commands.
+- Highlights: This enhancement provides a new criteria for users to manage and navigate their tasks. The implementation is challenging as a new attribute is added to Task object which means all operations on this new attributes need to be implemented. Therefore, a lot of other classes and components is modified and connected to realize new features of tag.
 
 
 
 ### Minor Enhancement
 Added **help** command which will show a simple user guide to enable users find valid commands and corresponding format when using **Nuke**.
-
-
 
 ### Other Contributions
 - Project managment:
@@ -43,14 +41,24 @@ Added **help** command which will show a simple user guide to enable users find 
   
   - Maintaing the issue tracker
   
+  - Modify codes and add JavaDoc (includes mine and others) to pass CI on _GitHub_ regularly.
+  
 - Enhancements to existing features:
   - Wrote a majority of JunitTests for existing features to increase coverage to a greate extent
 
 - Documentation
+  - User Guide:
+    - Documented Add Tag/ List Tag/ Delete Tag. -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/19c7a70cce7e9fa5ad4e896f60704da4406dbaf0#diff-e3e2a9bfd88566b05001b02a3f51d286)
+    - Documented Add File/Add Task/List Sorted Tasks. -- [#commit](https://github.com/HAOYUN49/tp/commit/d3d542b81d2474459d570576b182ab026c99f7cd#diff-572f9bedcb201b96c74241fb42e29fcf)
+    
+  - Developer Guide
+    - Documented User Stories Section of Appendix Section. -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/37d6f8373731cdc34af91d98e1a713c1eb0e0048#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
+    - Documented Class Diagrams of Add Command Classes and List Command Classes. -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/4d6011dd18122f897b17964a0f1c0e1064b5671f#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
+    - Added up more test cases of Tag features in Manul Testing Section -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/f5bccec92b600f2709ac457bd600da017a2ca2ba#diff-2fff7a74a4bc5eedf2b5dfeb29633018) 
+    - Documented Design Section -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/51b6430a509a876b5e5de816b99c8c72f18d59c1#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
+    - Documented Arichitecture Diagram and Component Interactions Diagram -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/8973f3a786d2510e878e2e08e1dc37089e31725f#diff-2fff7a74a4bc5eedf2b5dfeb29633018), [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/93c4d6284eaf3d127716372dabf3255df76c2f55#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
 
 - Community
-  - PRs reviewed (with non-trivial review comments)
-  
-  - Reported bugs and suggestions for other teams using CaTcher (with non-trivial issues)
+  - PRs reviewd (with non-trivial review comments: reported bugs during the PE-Dry run)
 
 
