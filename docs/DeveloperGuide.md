@@ -540,7 +540,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User wants to see next weeks timetable with all the common timeslots among his contacts as well.<br>
     * User types in the command "more".<br>
     * System generates two timetable side by side, each representing this week and next week's timetable.<br>
-    **e case ends.<br>
+    * Use case ends.<br>
 
     Extension:
     * System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
@@ -553,7 +553,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User wants to add the timetable of his/her teammates to schedule a common time-slot.<br>
     * User keys in the member's name and timetables into application .<br>
     * System adds the nusmods timetable of team members.<br>
-    *Use case ends.
+    * Use case ends.
 
     Extensions:
     * System detects invalid name containing all numbers - System catches it and use case resumes from step 3.
@@ -581,10 +581,10 @@ meetings into account when scheduling a common timeslot timetable.
     
 5. Use case: Schedule meetings <br>
     MSS:<br>
-    *  User has a common time-slot chosen via our application and wants to schedule it into his/her timetable.<br>
-    *  User keys in the command together with the start and end date, start and end time.<br>
-    *  System stores the scheduled meeting.<br>
-    *  System blocks out the scheduled meeting in his/her timetable.<br>
+    * User has a common time-slot chosen via our application and wants to schedule it into his/her timetable.<br>
+    * User keys in the command together with the start and end date, start and end time.<br>
+    * System stores the scheduled meeting.<br>
+    * System blocks out the scheduled meeting in his/her timetable.<br>
     * Use case ends.<br>
 
     Extensions:
@@ -595,9 +595,9 @@ meetings into account when scheduling a common timeslot timetable.
     
 6. Use case: Edit timetable slots <br>
     MSS:<br>
-    *  User realised lecturer has cancelled a particular lecture time-slot and is free during that time.<br>
-  * *  User keys in the command, with the start/end date, start/end time that he/she is free.<br>
-    *  System free up the timetable slots.<br>
+    * User realised lecturer has cancelled a particular lecture time-slot and is free during that time.<br>
+    * User keys in the command, with the start/end date, start/end time that he/she is free.<br>
+    * System free up the timetable slots.<br>
     * Use case ends.
 
     Extensions:
@@ -609,17 +609,17 @@ meetings into account when scheduling a common timeslot timetable.
     
 7. Use case: List meetings <br>
     MSS: <br>
-    *  User wants to see the current list of saved meetings he/she has previously keyed. <br>
-    *  User keys in the command without any additional paramters.<br>
-    *  System lists the meetings from the user's storage.<br>
+    * User wants to see the current list of saved meetings he/she has previously keyed. <br>
+    * User keys in the command without any additional paramters.<br>
+    * System lists the meetings from the user's storage.<br>
     * Use case ends
     
     
 8. Use case: Delete meetings <br>
     MSS:<br>
-    *  User has an urgent stuff on a particular scheduled meeting slot and wish to delete the scheduled meeting in application.<br>
-    *  User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.<br>
-    *  System deletes the meeting and reflects it in user's timetable.<br>
+    * User has an urgent stuff on a particular scheduled meeting slot and wish to delete the scheduled meeting in application.<br>
+    * User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.<br>
+    * System deletes the meeting and reflects it in user's timetable.<br>
     * Use case ends.
 
     Extensions:
