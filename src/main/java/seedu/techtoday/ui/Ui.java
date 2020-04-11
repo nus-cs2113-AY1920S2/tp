@@ -5,6 +5,7 @@ import seedu.techtoday.objects.Article;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@@author melylopez99
 /**
  * Class for User Interface objects and interacting with user commands.
  */
