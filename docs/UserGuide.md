@@ -68,6 +68,7 @@ You can do so using the module code or the module name.
 The module to be added could be in the existing list of available modules or not.\
 If you add a module which is in the list of available modules, then when you input code or name, the output
 will show both code and name of this module.\
+You can add modules whose grades are `F` or `CU` to a specific semester again.
 
 ##### 3.2.2 Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
@@ -181,9 +182,38 @@ Expected output:
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
 This can be done based on a module code or module name.\
+If your grade of one module is F or CU, this module will be converted to a failed form.\
 If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
-#### 3.4.1 Based on module code
+
+The following Table shows the Grades available for input and the category of the Grades.
+
+|Passing Grades|Failing Grades|
+|---|---|
+A+|F |
+A|CU
+A-|
+B+|
+B|
+B-|
+C+|
+C|
+D+|
+D|
+CS|
+
+#### 3.4.1 Marked with Passing Grades
+
+##### 3.4.1.1 Based on module code
+Format:​ `done n/[module name] g/[grade]`
+
+Example:​ `done n/Software Engineering & Object-Oriented Programming g/A+`
+
+Example of expected output:
+
+`Okay, I've marked the module as done!`
+
+##### 3.4.1.2 Based on module name
 Format:​ `done id/[module name] g/[grade]`
 
 Example:​ `done id/Software Engineering & Object-Oriented Programming g/A+`
@@ -192,15 +222,49 @@ Example of expected output:
 
 `Okay, I've marked the module as done!`
 
-#### 3.4.2 Based on module name
+#### 3.4.2 Marked with Failing Grades
 
-Format: `done n/[module code] g/[grade]`
+A placeholder module will be created to replace the current module being marked with a Failing grade.
+This will allow you to add the same module into your module plan when you retake the failed module.  
+*Note: "Failed" will be added to the Module ID or name of the original module.*
 
-Example:​ `done n/CS2113 g/CU`
+##### 3.4.2.1 Based on module code
+Format: `done id/[module code] g/[grade]`
+
+Example:​ `done id/CS2113 g/F`
 
 Example of expected output:
 
 `Okay, I've marked the module as done!`
+
+When your module plan is displayed using `view` function:
+
+`[✓] Name: CS2113 Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
+
+##### 3.4.2.1 Based on module name
+Format:​ `done n/[module name] g/[grade]`
+
+Example:​ `done n/Software Engineering & Object-Oriented Programming g/F`
+
+Example of expected output:
+
+`Okay, I've marked the module as done!`
+
+When your module plan is displayed using `view` function, there will be one of the 2 outcome:
+
+1. If your module has an Module ID:
+
+`[✓] Name: CS2113 Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
+
+*note: Module ID has been converted to Name. use "delete n/CS2113 Failed" when deleting the placeholder module*
+
+1. If your module does not have an Module ID:
+
+`[✓] Name: Software Engineering & Object-Oriented Programming Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
+
+#### 3.4.2 Based on module name
+
+
 
 ### 3.5 Viewing modules: view
 
