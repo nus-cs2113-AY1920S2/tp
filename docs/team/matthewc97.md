@@ -4,7 +4,7 @@
 
 ##  Overview
 
-WhenFree is a command line based application capable of finding common time-slots among team members and schedule meetings accordingly. It also have additional features such as add/delete/edit meetings and can save the data onto hard-disk for future use.
+WhenFree is a command-line interface (CLI) application for NUS students to find common free time among them and their friends, using just the [NUSMODS](https://nusmods.com) links to their school timetables. It also offers additional features such as add/delete/edit meetings and saves the data onto hard-disk for future use.
 
 ## Summary of Contributions
 
