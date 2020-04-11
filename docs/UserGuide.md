@@ -112,7 +112,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
  
 **Discouraged Names:**
  * The following strings are used as parameters for other commands, and hence should be avoided in the `ACTIVITY_NAME` and `TAGS` as it may interfere with Jikan running smoothly:
-    *  `/`,`;`, `/a`, `/t`,`/a`,`-s`,`/en`,`/ea`, `/d`, `/n`
+    *  `/`,`;`, `/a`, `/t`,`/a`,`-s`,`/en`,`/ea`, `/d`, `/n`, `/g`
     
 ### Continuing an activity: `continue`  
 **Usage:** Continues recording the time of an activity that you have previously started.  
