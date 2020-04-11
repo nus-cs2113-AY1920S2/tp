@@ -1,1 +1,132 @@
-James Gosling
+clear
+Y
+event
+event /d /s /e /p
+event  /d 2021-05-05 /s 12:00 /e 13:00 /p 1
+event    /d 2021-05-05 /s 12:00 /e 13:00 /p 1
+event # /d 2021-05-05 /s 12:00 /e 13:00 /p 1
+event meeting /d  /s 12:00 /e 13:00 /p 1
+event meeting /d 2021-15-05 /s 12:00 /e 13:00 /p 1
+event meeting /d 2021-05-05 /s 32:00 /e 13:00 /p 1
+event meeting /d 2021-05-05 /s  /e 13:00 /p 1
+event meeting /d 2021-05-05 /s 12:00 /e 43:00 /p 1
+event meeting /d 2021-05-05 /s 12:00 /e  /p 1
+event meeting /d 2021-05-05 /s 12:00 /e 13:00 /p one
+event meeting /d 2021-05-05 /s 12:00 /e 13:00 /p
+event meeting /d 2021-05-05 /s /p 1
+event meeting# /d 2021-05-05 /s 12:00 /e 13:00 /p 1
+event meeting /d 2021-05-05 /st 12:00 /e 13:00 /p 1
+event meeting /d 2021-05-05 /s 12:00 /end 13:00 /p 1
+event meeting /d 2021-05-05 /s 12:00 /e 13:00 /pri 1
+event meeting /d 2021-05-05 /t 12:00 /e 13:00 /p 1
+event meeting /d 2021-05-05 /t 12:00 /e 13:00 /p 1.1
+event meeting /d 2021-05-05 /t 12:00 /e 13:00 /p 1.1.1
+event meeting /d 2021-05-05 /s 12:00 /e 13:00 /p 1
+view
+deadline
+deadline  /d 2021-05-02 /t 14:00 /p 2
+deadline     /d 2021-05-02 /t 14:00 /p 2
+deadline  /n /d 2021-05-02 /t 14:00 /p 2
+deadline  #   /d 2021-05-02 /t 14:00 /p 2
+deadline assignment# /d 2021-05-02 /t 14:00 /p 2
+deadline assignment /d  /t 14:00 /p 2
+deadline assignment /d 05-02-2021 /t 14:00 /p 2
+deadline assignment /d 2021/05/02 /t 14:00 /p 2
+deadline assignment /d 2021-05-02 /t 25:00 /p 2
+deadline assignment /d 2021-05-02 /t  /p 2
+deadline assignment /d 2021-05-02 /t 14:00 /p
+deadline assignment /d 2021-05-02 /t 14:00 /p two
+deadline assignment /d 2021-05-02 /e 14:00 /p 2
+deadline assignment /d 2021-05-02 /t 14:00 /pr 2
+deadline assignment /d 2021-05-02 /t 14:00
+deadline assignment /d 2021-05-02 /t 14:00 /p 2
+priority_view
+view
+search
+
+priority
+done 1
+
+done 2
+search hi
+done -1
+done 1.1
+done -1.1
+done one
+
+countdownView
+search meet
+search
+search ####
+delete 0
+delete -1
+delete 1.1
+delete 1.1.1
+delete 1,1
+delete -1.1
+delete one
+search homework
+delete 3
+event team meeting
+delete one
+view
+done 0
+search
+edit -1.1
+edit 1.1
+edit one
+edit first event
+edit -1
+delete -1
+edit 2
+6
+-1
+1
+##
+#
+
+
+team meeting
+view
+view commands
+help
+edit 2
+2
+2020-01-01
+######
+2020-06-06
+edit 1
+6
+1
+
+#
+#/
+hi#
+
+hel##
+#####
+assignment
+event
+view list
+done 2
+done -1
+done 5
+countdown view
+study
+
+help
+erc
+src
+sbux
+-i -i
+-i -o
+-i
+-p
+-s
+-s wegf
+-s 8
+-s 1
+-i -
+-qef
+bye
+bye

@@ -1,0 +1,40 @@
+@startuml
+
+mainframe sd invoke isAvailStudyArea() over each flag in\n String Array flags and update isAvail
+box "study area package\n" #white
+participant ":StudyAreaList" as StudyAreaList
+participant ":StudyArea" as StudyArea
+end box
+    StudyAreaList -> StudyAreaList: isAvailStudyArea()
+    activate StudyAreaList
+      alt ports_flag
+        StudyAreaList -> StudyArea : getHasPorts()
+        activate StudyArea
+        StudyArea --> StudyAreaList : isAvail
+        deactivate StudyArea
+      else indoor_flag
+        StudyAreaList -> StudyArea : getIsIndoor()
+        activate StudyArea
+        StudyArea --> StudyAreaList : isAvail
+       deactivate StudyArea
+      else outdoor_flag
+        StudyAreaList -> StudyArea : getIsIndoor()
+        activate StudyArea
+        StudyArea --> StudyAreaList : isAvail
+        deactivate StudyArea
+      else size_flag
+        StudyAreaList -> StudyArea : isSizeCapable()
+        activate StudyArea
+        StudyArea --> StudyAreaList : isAvail
+        deactivate StudyArea
+      else default
+        StudyAreaList -> StudyArea : containsSearchKey()
+        activate StudyArea
+        StudyArea --> StudyAreaList : isAvail
+        deactivate StudyArea
+      end
+      StudyAreaList --> StudyAreaList: isAvail
+deactivate StudyAreaList
+|||
+hide footbox
+@enduml

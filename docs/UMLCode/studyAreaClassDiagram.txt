@@ -1,0 +1,46 @@
+
+@startuml
+
+skinparam classAttributeIconSize 0
+left to right direction
+
+class "StudyAreaList" as sL
+class "Dictionary" as d
+class "StudyArea" as sA
+
+class sL {
+ - availStudyAreas : ArrayList<StudyArea>
+
+  + searchList()
+  + getFlagsInfo()
+  + isAvailStudyArea()
+}
+
+class sA {
+    - name: String
+    - address: String
+    - faculty: String
+    - hasPort: boolean
+    - isIndoor: boolean
+    - maxPax: int
+    - boolean isAvail:
+
+  + containsSearchKey()
+  + getHasPort()
+  + getIsIndoor()
+  + isSizeCapable()
+}
+
+class d {
+
+  - dictionary : HashMap<String, String>
+
+  + loadDictionary()
+  + parseKey()
+  }
+
+sL -> sA
+sL ..> d
+
+hide circle
+@enduml

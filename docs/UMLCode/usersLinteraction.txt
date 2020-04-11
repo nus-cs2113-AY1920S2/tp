@@ -1,0 +1,35 @@
+@startuml
+
+Actor User
+
+participant ":Duke" as d
+participant ":StudyAreaCommand" as sC
+participant ":StudyAreaList" as sL
+participant ":StudyArea" as sA
+
+User -> d : "study"
+
+
+create sC
+d -> sC : executeStudyCommand()
+activate sC
+
+d --> User : "enter search key"
+User -> d : "EA -p"
+d -> sC : "EA -p"
+sC -> sL : searchList("EA -p")
+ref over sL, sA
+searchList() iterates through
+studyAreaList to get ArrayList
+of StudyArea, availStudyAreas
+end ref
+activate sL
+sL --> sC : availStudyAreas
+deactivate sL
+
+sC --> d : availStudyAreas
+deactivate sC
+
+d --> User : "Here is a list of available study areas"
+hide footbox
+@enduml
