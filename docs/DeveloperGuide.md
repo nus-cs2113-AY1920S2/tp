@@ -705,8 +705,10 @@ folder in command terminal.
 `event editvenue i/INDEX v/VENUE`  
 
 **Calender**
+1. Add an event with date and time 
+`event add n/work d/2020-04-05 t/1230`
 1. Display calendar by entering  
-`calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
+`calendar s/2 ay/19-20`  
 
 #### Follow **step-by-step** command in console for following commands:  
 
