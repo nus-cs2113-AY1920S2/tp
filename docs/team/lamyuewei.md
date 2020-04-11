@@ -3,9 +3,13 @@
 ## Content
 1. [Overview](#overview)
 2. [Summary of Contributions](#summary-of-contributions)
-3. [Contributions to the User Guide](#contributions-to-the-user-guide)
-4. [Contributions to the Developer Guide](#contributions-to-the-developer-guide)
-
+    1. [Code Contributed](#Code-contributed)
+    2. [Enhancements implemented](#Enhancements-implemented)
+    3. [Contributions to documentation](#Contributions-to-documentation)
+    4. [Contributions to the DG](#Contributions-to-the-DG)
+    5. [Contributions to team based tasks](#Contributions-to-team-based-tasks)
+    6. [Review/mentoring contributions](#Review/mentoring-contributions)
+    7. [Contributions beyond the project team](#Contributions-beyond-the-project-team)
 
 ## Overview
 Diet Manager is an personalized chat-bot application used for managing an individual's diet.
@@ -58,17 +62,35 @@ I contributed to the Developer Guide under the section of profile component and 
 * Stated the responsibility of the 2 component
 * Provided a description for the classes that the 2 component consists of
 
-### Contributions to team-based tasks
-To be completed...
+### Contributions to team based tasks
+I have contributed to several of my team based tasks. 
+* I have helped to brainstorm and note down several user stories for the team project.
+* I have to implement several enhancement for my team project including but not limited to listing of food in database, recording food with the nutrition value, listing of food consumed with the nutrition value and check of required calories, etc.
+* I have helped to resolved couple of bugs, especially bugs provided by other individuals during the mock PE.
+* My entire team helped during the setting up of project repo by going through the steps together.
+* I have helped by open issues in github for implementation of functions or features that are useful for my team project.
+* I have helped to maintain the issue tracker by helping to keep track of the tasks that has been completed by myself or my teammates and helping to close those issues.
+* I have helped to update the user guide.
+* I have helped to update the developer guide.
+* I have helped to review codes written my by group mates prior to approval.
 
 ### Review/mentoring contributions
-To be completed...
+* I have contributed to the teams especially in helping to review codes prior to approval. <br>
+    * While the list is not exhaustive, some of the most recent reviews I have done can be found:
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/133), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/134), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/136), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/137), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/140) and 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/141).
+
+* In addition, I have also provided feedback to my teammates by providing them with insights as to how to go about implementing certain features when they request for help. These helps are essential since it help our team ensure that we are on track with the tasks on hand.<br>
+    * For example, I have helped Yu Xiang recently when he asked me for an idea of how to go about creating a class file to monitor weight changes.
 
 ### Contributions beyond the project team
-To be completed...
+I have helped a number of other peers in cs2113 along the way in my cs2113 journey.
 
-## Contributions to the User Guide
-To be completed...
+* At the start of the semester, I would often offer to coach Yu Xiang in java programming as he is new to java  whereas I had previously learn the basics in cs2040. I would spend time to explain to him the concept of Object Oriented Programming which might seem daunting at the start. I would also help explain to him the idea behind the codes required for him to complete his repl questions.
 
-## Contributions to the Developer Guide
-To be completed...
+* Another help that I have offered was to a fellow peer in cs2113 by the name of Tze Ning. I remember she needed help as her Duke cannot be ran in the IntelliJ during the Individual Project. She had posted this issue on the forum but the technical support she received was to no avail. <br>
+I then reached out to her and tried to fork her Duke using a second account to run it on my com to ascertain that her Duke code was not the reason for the issue. Next, I skyped her to teach her step by step how to close her project, reimport the project and run her Duke program in the right way. With that, her IntelliJ issue was resolved.

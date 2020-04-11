@@ -2,12 +2,27 @@
 
 ## Content
 1. [Design](#design)
+    1. [Architecture](#architecture)
+    2. [UI component](#ui-component)
+    3. [Storage component](#storage-component)
+    4. [Logic component](#logic-component)
+    5. [Model component](#model-component)
+    6. [Commons component](#commons-component)
 2. [Implementation](#implementation)
-2. [Product Scope](#product-scope)
-3. [User Stories](#user-stories)
-4. [Non-Functional Requirements](#non-functional-requirements)
-5. [Glossary](#glossary)
-6. [Instructions for Manual Testing](#instructions-for-manual-testing)
+    1. [Record Meal Feature](#1-record-meal-feature)
+        1. [Proposed implementation](#11-proposed-implementation)
+        2. [Step1. Generate command](#step1-generate-command)
+        3. [Step2. Execute and Save Result](#step2-execute-and-save-result)
+        4. [Design Considerations](#12-design-considerations)
+        5. [Aspect: How RecordMealCommand executes and save results](#aspect-how-recordmealcommand-executes-and-save-results)
+        6. [Aspect: Data structure to support the command](#aspect-data-structure-to-support-the-command)
+3. [Product Scope](#product-scope)
+    1. [Target user profile](#target-user-profile)
+    2. [Value proposition](#value-proposition)
+4. [User Stories](#user-stories)
+5. [Non-Functional Requirements](#non-functional-requirements)
+6. [Glossary](#glossary)
+7. [Instructions for Manual Testing](#instructions-for-manual-testing)
 
 ## Design
 
@@ -21,7 +36,7 @@ The components involved are given below:
 
 * `UI`: The Component responsible for reading user input and displaying command results.
 
-* `Storage`: The Component responsible for reading, writing and saving of data files.
+* `Storage`: The Component responsible for reading, writing and saving of external data files.
 
 * `Logic`: The Component responsible for managing the logic flow of the application and executing commands.
 
@@ -51,14 +66,14 @@ for changes in `Model` to display updated information to the user.
 ![Storage-Component](images/Storage-Component.png)
 
 The `Storage` component is responsible for:
-* Reading data files to update the information in local memory.
+* Reading and loading data files to update the information in local memory during program start up.
 * Writing and saving all data into the relevant data files.
 
 The Storage consists of the following classes: 
 * `Storage` - Stores all user profile information in respective data files
 
 The `Storage` component
-1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information.
+1. Reads data files (if present) using `Logic` and updates `Model` with the relevant information during start up.
 2. Receives instructions from `logic` to save and write in-memory information from
 `Model` into the relevant data files.
 
@@ -135,23 +150,24 @@ The Model consists of the following classes:
 The `Model` component
 1. Receives instructions from `Logic` to update in-memory information.
 2. Is not dependent on any of the other components.
+3. Contains all the classes that are responsible for database and records of food and user
 
 ### Commons component
 
 The `Commons` component is responsible for:
 * Consisting of multiple useful classes which are utilised by other components in the application.
 
-The Food consists of the following classes: 
-* `LogsCentre` - Tracks system through log records and saves them to a log file
-* `MessageBank` - Consists of multiple system output messages
-* `Weekday` - Enumeration class for classifying weekdays
-* `"ABC"Exception` - A collection of exceptions to aid in running of the application.
+The Commons consists of the following classes: 
+* `LogsCentre` - Tracks system through log records and saves them into a log file
+* `MessageBank` - Consists of multiple standard system output messages for UI to print
+* `Weekday` - Enumeration class for classifying all 7 possible days in a week
+* `"ABC"Exception` - A collection of exceptions to aid in running of the application
 
 
 ## Implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-### 1. [Proposed] Record Meal Feature
+### 1. Record Meal Feature
 #### 1.1 Proposed implementation
 The record feature is facilitated by `RecordMealCommand`. It extends `Command` and overrides `execute()` and `saveResults()`
 
@@ -187,7 +203,7 @@ And save execution `results` in the `RecordMealCommand` object.
     * Pros: Reduce dependency and potential risks. 
     * Cons: Different types of `Command` need different declarations/interface for `command.execute()` method. 
 
-#### Aspect : Data structure to support the command
+#### Aspect: Data structure to support the command
 * Alternative 1 (current choice): Use a list to store daily food record for a profile.
     * Pros: Easy to implement and understand
     * Cons: The list is maintained by a `Profile` object. Can lead to more duties for a `Profile` object.
@@ -201,15 +217,18 @@ And save execution `results` in the `RecordMealCommand` object.
 Students that :
 1. are too busy with schoolwork to carefully monitor their eating habits
 2. are concerned about their health
-3. want to keep track of their weight
+3. likes to keep track of their meals/weight habit digitally
+4. want to keep track of their weight
 
 ### Value proposition
 
 Diet Manager aims to achieve the following:
 1. Streamline the diet recording process 
-2. Allow users to track and monitor their eating habits
-3. Provide personalised information and recommendations for the user
-4. Monitor and track user's weight changes to achieve weight goal
+2. Allow users to track food calories intake and monitor their eating habits
+3. Enable users to monitor weight changes across time to work towards their ideal weight goal
+4. Provide personalised information and recommendations for the user
+5. Monitor and track user's weight changes to achieve weight goal
+6. Check their BMI as well as the BMI table regardless of user
 
 ## User Stories
 
@@ -228,6 +247,7 @@ Diet Manager aims to achieve the following:
 |v1.2| student|save my profile|do not have to constantly set a new profile|
 |v1.2| student|import my diet history|have access to previous records and be able to progress from there|
 |v1.2| student|receive dietary advice based on my excess calorie intake for the day|can maintain my calories for the day|
+|v1.2| student|export my diet history|can view my previous records on other devices and never ever lose my progress|
 |v2.0| student|generate a recommended food plan|know what to eat to meet recommended caloric intake|
 |v2.0| student|save and export my food plan|print it out or bring it with me|
 
@@ -235,7 +255,7 @@ Diet Manager aims to achieve the following:
 ## Non-Functional Requirements
 
 Device Environment:
-* Must have Java 11 or higher
+* Must have Java 11 or higher installed in OS
 * 32-bit or 64-bit environment
 * Command Line Interface
 
@@ -244,11 +264,13 @@ Performance:
 * Quick to launch and use
 * No noticeable lag or delay in performance when running
 * Intuitive and seamless for new users.
+* Ability to export the data into a txt file to load on another OS
 
 Reliability:
 * Data files should be updated constantly and accurately, with no data loss
 * Data records should be retrievable and readable
 * Text inputs should produce similar results if utilised multiple times.
+* Program should run without any forced-close error due to bugs
 
 ## Glossary
 

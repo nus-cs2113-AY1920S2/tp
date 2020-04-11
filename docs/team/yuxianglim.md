@@ -82,19 +82,33 @@ I also contributed to the User Guide under the section of command summary
 * Updated the table of functions available currently available
 
 ### Contributions to the DG
-I contributed to the Developer Guide under the section of ...
+I contributed to the Developer Guide under the section of user-stories component
+* Provided the table to the user stories
 
-### Contributions to team-based tasks
-To be completed...
-
-### Review/mentoring contributions
-To be completed...
-
-### Contributions beyond the project team
-To be completed...
+### Contributions to team based tasks
+I have contributed to my team based tasks in:
+* initial brainstorming for type of program and user stories 
+* implementing enhancements for my team project such as
+    * Weight editing
+    * Deletion of weight
+    * Weight Tracking
+    * Help functions
+    * Streamlined some of the print line process
+    * BMI calculations
+    * BMI table
+* Reviewing codes written my by group mates prior to approval.
+* Resolving some bugs regarding weight functions.
+* My entire team helped during the setting up of project repo by going through the steps together.
+* Opening some issues in github for implementation of functions or enhancements.
+* Updating the user guide
+* Update some minor parts of developer guide and proofread it
 
 ## Contributions to the User Guide
-To be completed...
-
-## Contributions to the Developer Guide
-To be completed...
+* Added functions guides such as
+    * set-weight
+    * delete-weight
+    * check-weight-progress
+    * help
+    * check-bmi
+* Updated list of summary of commands
+* Updated content table
