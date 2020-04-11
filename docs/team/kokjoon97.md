@@ -27,7 +27,7 @@ and budgets, mainly targeting the inconveniences of unplanned grocery shopping.
 - **Minor enhancements**: Added a feature to display a warning message to the user if the total cost of the items in his list exceeds
 his budget
      
-- **Code contributed**: [[Functional code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=kokjoon97&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false)]
+- **Code contributed**: [[Functional and test code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=kokjoon97&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos)]
 
 - **Other contributions**:
 
@@ -42,6 +42,7 @@ his budget
     
   - Team-based tasks:
     - Managed release `v1.0` on Github
+    - Resolved Checkstyle violations in parts of the code (Pull request [#44](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/44))
     - Fixed issue with reading of multiple lines of user input (Pull request [#66](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/66))
     - Fixed issue with failing of CI tests by making changes to runtest file (Pull request [#68](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/68))
     - Setting up of Logger with console and file handlers (Pull request [#70](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/70))
