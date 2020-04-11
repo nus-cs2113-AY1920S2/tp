@@ -19,8 +19,8 @@ Pac. The following groups are in particular the intended audience of the documen
     2.6 [Command Interpreter component](#26-command-interpreter-component)  
 3. [Implementation](#3-implementation)  
     3.1 [Event](#31-event)  
-    3.2 [Attendance](#32-attendance)  
-    3.3 [Calendar](#33-calendar)  
+    3.2 [Calendar](#32-calendar) 
+    3.3 [Attendance](#33-attendance)   
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)
 
@@ -101,7 +101,7 @@ of Pac.
 | Parser                    | Created in                                                    |
 |---------------------------|---------------------------------------------------------------|
 | EventParser               | EventCommandInterpreter                                       | 
-| CalenderParser            | EventCommandInterpreter                                       | 
+| CalenderParser            | CalendarCommandInterpreter                                       | 
 | PerformanceParser         | Step-by-step command at performance-related command classes   |  
 | AttendanceParser          | Step-by-step command at attendance-related command classes    |  
 
@@ -181,7 +181,30 @@ and `time`, which corresponds to `d/` and `t/` flag respectively.
 either by complete match, or fuzzy match.
 * Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar program flow. 
 
-### 3.2 Attendance
+### 3.2 Calendar
+Below is a class diagram showing how the calendar component of the program works.
+![Calendar](images/Calendar.png "Class diagram of Calendar component")
+ *Class diagram of the Calendar component*
+
+#### Program flow
+1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
+1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
+1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object is created. 
+1. `EventSeperator` extends `Command`, therefore, the object created is a command too. 
+1. This command is then returned `CalendarCommandInterpreter#decideCommand` which returns to `Pac#run` to call `Command#execute`.
+1. This can be seen in the diagram below:   
+1. 
+ 
+
+Note that:
+* `acadamic year` is parsed in `CalendarParser` and only one year is returned to `CalendarCommandInterpreter` according 
+to the semester input by the user.
+* Calendar view of the whole year is not available. Only semester 1 or 2 of an academic year can be viewed at a time. This is due to 
+the optimization of calendar view in accordance to the professor's schedule.
+* Event name size must be less than 10 characters to be displayed neatly (current implementation), however
+it can be implemented in the future to truncate longer names to fit nicely in the calendar. 
+
+### 3.3 Attendance
 ![attendance](images/Attendance.png "Class diagram of Attendance component")        
 *Class diagram of the Attendance component*
 
@@ -195,23 +218,6 @@ Note that:
 * `attendance add` command requires a line-by-line insertion of the student attendance data. 
 The user is given an option to either use an existing list stored under StudentListCollection or
 create a new attendance list. `n/` and `p/` flags are used to insert new attendance.
-
-### 3.3 Calendar
-
-*Figure 2: Class diagram of the Calendar component*
-
-#### Program flow
-1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
-1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
-1. Then, either AddFirstSemester or AddSecondSemester class that corresponds the semester number is created. 
-1. Subsequently, it separates events by the required month and year in `Calendar`
-1. These commands are then returned to `Pac.run()` to `execute()`. 
-
-Note that:
-* `acadamic year` is parsed into corresponding to only one year according to the semester in `EventParser` class.
-* Calendar view of the whole year is not available. Only semester 1 or 2 of an academic year can be viewed at a time.
-* Event name size must be less than 10 characters to be displayed neatly (current implementation), however
-it can be implement to truncate longer names to fit nicely
 
 ### 3.4 Performance
 ![Performance](images/Performance.png)
