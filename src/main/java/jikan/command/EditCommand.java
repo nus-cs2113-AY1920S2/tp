@@ -1,11 +1,7 @@
 package jikan.command;
 
 import jikan.activity.ActivityList;
-import jikan.exception.EmptyNameException;
-import jikan.exception.InvalidEditFormatException;
-import jikan.exception.InvalidTimeFrameException;
-import jikan.exception.NegativeDurationException;
-import jikan.exception.NoSuchActivityException;
+import jikan.exception.*;
 import jikan.log.Log;
 import jikan.parser.Parser;
 import jikan.ui.Ui;
@@ -29,6 +25,10 @@ public class EditCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
+            Log.makeInfoLog("Activity could not be edited as there is an ongoing activity");
+            if (Parser.startTime != null) {
+                throw new ActivityIsRunningException();
+            }
             int delimiter = parameters.indexOf("/en");
             int allocDelim = parameters.indexOf("/ea");
 
@@ -43,6 +43,13 @@ public class EditCommand extends Command {
                 if (newName.isEmpty()) {
                     Ui.printDivider("New activity name cannot be empty.");
                     throw new EmptyNameException();
+                }
+                if (newName.length() > 25) {
+                    throw new NameTooLongException();
+                }
+                // existing activity of the same name is found
+                if (activityList.findActivity(newName) != -1) {
+                    throw new ExistingNameException();
                 }
             //edit allocated time
             } else if (allocDelim != -1) {
@@ -104,6 +111,12 @@ public class EditCommand extends Command {
         } catch (NumberFormatException e) {
             Ui.printDivider("Please enter integers in the format HH:MM:SS.");
             Log.makeInfoLog("Edit command failed as an incorrect format for the target time was provided.");
+        } catch (NameTooLongException e) {
+            Ui.printDivider("Activity name must be shorter than 25 characters.");
+        } catch (ActivityIsRunningException e) {
+            Ui.printDivider("Cannot edit an activity if there is a current activity running.");
+        } catch (ExistingNameException e) {
+            Ui.printDivider("There is already an activity with that name. ");
         }
     }
 
