@@ -21,7 +21,6 @@ public class AbortCommand extends Command {
     @Override
     public void executeCommand(ActivityList activityList) {
         try {
-            // Parser.parseAbort();
             if (Parser.startTime == null) {
                 throw new NoSuchActivityException();
             } else {

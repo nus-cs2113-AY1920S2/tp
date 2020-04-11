@@ -14,6 +14,8 @@ import jikan.ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 /**
  * Represents the Jikan time tracker.
  */
@@ -58,9 +60,10 @@ public class Jikan {
             storageCleaner.storageAutoClean();
             logCleaner.logAutoClean();
             activityList = storage.createActivityList();
-            //GoalCommand.createFile(TAG_FILE_PATH, tagFile);
         } catch (IOException e) {
-            Ui.printDivider("Error while preparing application.");
+            Ui.printDivider("Error while preparing application.\n"
+                    + "If any data files are open, please close them and try again.");
+            exit(0);
         }
 
         lastShownList.activities.addAll(activityList.activities);
