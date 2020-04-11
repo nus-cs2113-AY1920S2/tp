@@ -21,7 +21,7 @@ Pac. The following groups are in particular the intended audience of the documen
     3.2 [Attendance](#32-attendance)  
     3.3 [Calendar](#33-calendar)  
     3.4 [Performance](#34-performance)  
-    3.5 [Student List Collection](#35-student-list-collection)
+    3.5 [Student List Collection](#35-student-list-collection)  
     3.6 [Help](#36-help)
 
 
@@ -377,7 +377,7 @@ Our application will reduce the stress of the professor by allowing them to easi
 their work schedule as well as their students' records. After storing the data, the Professor can have
 quick access to the information in either a list or a calendar view. 
 
-## Appendix C: Non-Functional Requirements
+### Appendix C: Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has 
 [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed.
@@ -389,7 +389,7 @@ than using the mouse.
 
 {More to be added in future revisions}
 
-## Appendix D: User Stories
+### Appendix D: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -409,7 +409,7 @@ than using the mouse.
 |v2.1|professor|edit my student's attendance|update my existing student's attendance|
 |v2.1|professor|find my student's attendance|locate an existing student's attendance|
 
-## Appendix E: Instructions for Manual Testing
+### Appendix E: Instructions for Manual Testing
 #### Set up
 1. Download the jar file and copy it into an empty folder.
 1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
