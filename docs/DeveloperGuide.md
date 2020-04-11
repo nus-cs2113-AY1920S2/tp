@@ -1,4 +1,3 @@
-
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -118,10 +117,19 @@ This document will cover the structure and software design decisions for the imp
 </span>  
 
 ### **Design Goals**  
+<div>
+We have <b>two</b> main design goals:
+</div>
 
-```
-	// To be done.
-```
+#### <b>Develop a structure that facilitates a more efficient organisation of the user's tasks</b>    
+<div>
+This is the very value proposition of our application. We seek to make <b>Nuke</b> a more powerful and efficient task management system as compared to other similar products in the marketplace. As such, the structure of our application needs to be well-built and be efficient in retrieving tasks and files, as well as perform relevant operations such as adding, deleting and sorting tasks.
+</div>
+
+#### <b>Enhance speed to perform operations</b>    
+<div>
+Another design goal we desire is to implement measures to allow the users to be able to execute their commands quickly. This would mean that the commands have to be short, but still contain the information required for the application to perform the correct command. 
+</div>
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -333,7 +341,7 @@ The <b>Directory Manager</b> classes also contain very similar methods to carry 
 <li><code>filterExact(moduleKeyword: String)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
 </ul>
 <br>
-The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
+The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#implementation"><b>Model component</b></a> of the <b>Nuke</b> application.  
 </div>   
   
 [Back To Top](#table-of-contents)    
@@ -461,6 +469,12 @@ The commands targeting the <b>File</b> Directroy requires the longest <i>path</i
 
 ## **Command Implementation**  
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
+<br><br>
+Below is a diagram which summarises the commands in the current <b>Nuke</b> application.
+<br>
+![commands](images/dg_command.png)   
+<span style="color: green"><small><i>Figure <b>Nuke Commands</b></i></small></span>
+
 
 ### **1. Add Command**
 #### **Overview**
@@ -620,14 +634,31 @@ Total categories: 5
    SUCCESS!! Category misc is created.
    ```
 
-
-
 Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 
 ![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
 <span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
+#### **Design Considerations**     
+<b>Character Limit</b>    
+- <b>Alternative 1</b>: Have no character limit to the names of the <b>Directory</b> being added       
+	- <b>Pros</b>: Simple to implement. No need to do any checking and create error messages aside from duplicated names. 
+	- <b>Cons</b>: If the name is too long, it would affect the formatting of the list to be printed in the <b>list</b> command.   
+
+- <b>Alternative 2</b>: Have a character limit <b>(current implementation)</b>         
+	- <b>Pros</b>: The list to be shown to the user in the <b>list</b> command will not run into formatting issues. 
+	- <b>Cons</b>:At times, user may want to have a particularly long name for the <b>Directory</b>. However, they are unable to do so anymore if a word limit is imposed.   
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The word limit that we have implemented in <b>Nuke</b> are the following:
 <br><br>
+<b><i>Module Code</b></i>: No character limit, but has to be an <n>NUS</b> provided <i>module</i><br>
+<b><i>Category Name</b></i>: <b>15</b> characters</i><br>
+<b><i>Task Description</b></i>: <b>25</b> characters</i><br>
+<b><i>File Name</b></i>: <b>30</b> characters</i><br>
+<br>
+These numbers are chosen in view of the realistic length of words a user will usually use for such names. So in most cases, the user should not be exceeding the character limit &#128527;.
+</div> 
 
 ### **2. List Command**  
 
