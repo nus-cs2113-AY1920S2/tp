@@ -53,11 +53,13 @@ public class DeleteFromSemCommand extends DeleteCommand {
         for (SemModulesList semModulesList : selectedModulesList) {
             if (semester.equals(semModulesList.getSem())) {
                 module = semModulesList.getModule(moduleIdentifier);
-                boolean isModuleGradeF = module.getGrade().equals(Grading.F);
-                boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
-                boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
-                if (module.getDone() && !hasModuleFailed) {
-                    Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                if (module.getDone()) {
+                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
+                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
+                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
+                    if (!hasModuleFailed) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
                 }
                 semModulesList.remove(module);
                 break;
