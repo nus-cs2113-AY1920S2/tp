@@ -28,13 +28,8 @@ Welcome to Diet Manager! How may I assist you today?
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
 Please key in your command: 
-Your profile information are as follows:
-Name:         Jane
-Age:          18 years old
-Gender:       female
-Height:       170.00 centimetres
-Weight        65.00 kilograms
-Weight Goal:  65.00 kilograms
+Please create a profile before using this command. Enter:
+set-profile {name} {age} {gender} {height} {weight} {weight goal}
 Sorry, that is an invalid command.
 Sorry, that is an invalid command.
 Your profile has been successfully updated.
@@ -139,6 +134,45 @@ Gender:       female
 Height:       170.00 centimetres
 Weight        65.00 kilograms
 Weight Goal:  65.00 kilograms
+Sorry, that is an invalid command.
+SATURDAY Morning:
+Oops, you have no record for this meal.
+For morning, there are no calculable calories data.
+You just record the meal in the morning of: SATURDAY.
+SATURDAY Morning:
+Food: steak, Calories: 500.00cal
+Food: fries, Calories: No value found.
+For morning, total calculable calories intake: 500.00cal.
+
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for low activity level: 2009.56cal.
+Well done!!! You have consumed sufficient calories.
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for moderate activity level: 2265.33cal.
+Well done!!! You have consumed sufficient calories.
+Calories Intake and Requirement for SATURDAY:
+Total calculable calories intake for the entire day: 500.00cal.
+NOTE: There are foods without calculable calories.Calories requirement for high activity level: 2521.09cal.
+Well done!!! You have consumed sufficient calories.
+You just record the meal in the morning of: MONDAY.
+MONDAY is ahead of SATURDAY, so only calories from SATURDAY to SUNDAY is calculated
+Your Calories intake during the given period is 500.00.
+You have just cleared all food records in the week!
+These are the foods stored in our database:Food: chicken-rice, Calories: 702.00cal
+Food: fried-rice, Calories: 508.00cal
+Food: chicken-curry, Calories: 450.00cal
+Food: prawn-noodles, Calories: 459.00cal
+Food: fishball-noodles, Calories: 330.00cal
+Food: cheeseburger, Calories: 300.00cal
+Food: white-bread, Calories: 77.00cal
+Food: french-fries, Calories: 450.00cal
+Food: orange-juice, Calories: 80.00cal
+Food: soft-drink, Calories: 120.00cal
+Food: fresh-milk, Calories: 163.00cal
+
+Sorry, that is an invalid command.
 Sorry, that is an invalid command.
 You are now exiting the application.
 Thanks for using Diet Manager! See you again soon. :)
