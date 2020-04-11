@@ -849,7 +849,7 @@ There are two ways to run tests.
    <tr>
      <td><span> &#8505; </span></td>  
      <td> See <a href="https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/tutorials/gradleTutorial.md">Gradle Tutorial</a> 
-     for more info on how to run tests using Gradle. </td>
+     for more info on how to run tests using Gradle.
      </td>
    </tr>
   </table>
