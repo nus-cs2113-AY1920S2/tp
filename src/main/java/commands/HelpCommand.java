@@ -28,7 +28,7 @@ public class HelpCommand {
         System.out.println("Delete Stock (with quantity): delete stock; i/INGREDIENT; q/QUANTITY;");
         System.out.println("Delete Stock (without quantity): delete stock; i/INGREDIENT;");
         System.out.println("Void Reservation: delete reservation; r/NUMBER_OF_RESERVATION;");
-        System.out.println("Mark Reservation as Served: mark reservation; r/NUMBER_OF_RESERVATION");
+        System.out.println("Mark Reservation as Served: mark reservation; r/NUMBER_OF_RESERVATION;");
         System.out.println("");
     }
 
@@ -45,7 +45,7 @@ public class HelpCommand {
     private static void searchCommands() {
         System.out.println("Search Commands:");
         System.out.println("Search dish: search dish; k/KEYWORD;");
-        System.out.println("Search Stock: search stock; keyword");
+        System.out.println("Search Stock: search stock; k/keyword;");
         System.out.println("Search Reservation: search reservation; {r/NUMBER_OF_RESERVATION; | d/DATE;}");
         System.out.println("");
     }

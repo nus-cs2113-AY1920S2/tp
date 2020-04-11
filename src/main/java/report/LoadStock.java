@@ -169,7 +169,7 @@ public class LoadStock {
                     + "converted to a double.");
         } catch (StringIndexOutOfBoundsException siofbe) {
             throw new StockReadWriteException("The price in report.txt is not"
-                    + "indented correctly.");
+                    + " indented correctly.");
         }
     }
     
@@ -194,7 +194,7 @@ public class LoadStock {
                     + "be converted to an integer.");
         } catch (StringIndexOutOfBoundsException siofbe) {
             throw new StockReadWriteException("The quantity in report.txt is not"
-                    + "indented correctly.");
+                    + " indented correctly.");
         }
     }
     

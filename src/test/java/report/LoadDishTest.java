@@ -1,4 +1,4 @@
-package dish;
+package report;
 
 import exceptions.InvalidLoadException;
 import menu.Menu;
