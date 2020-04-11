@@ -106,7 +106,7 @@ TechToday Information Tracker (TTIT) is targeted at _lifelong learners of techno
 |v1.0|student of technology|list all my jobs|keep track all the jobs I have saved so far.|
 |v1.0|student of technology|add an extract to a note|add more ideas to an exiting note.|
 |v2.0|student of technology|add an extract to an article|also add a short opinion I have about it.|
-|v2.0|student of technology|add an extract to a job|also skills I require to get the job.|
+|v2.0|student of technology|add an extract to a job|also add skills I require to get the job.|
 |v2.0|student of technology|add an extract to an article|also add a short opinion I have about it.|
 |v2.0|student of technology|create my own custom article|save interesting articles I find from various sources.|
 |v2.0|student of technology|create my own custom job|save interesting job I find from various sources.|
