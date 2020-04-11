@@ -13,7 +13,7 @@ to store all information in a single place and users can always have quick acces
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-#### Major enhancement: I implemented `storage` to store all patients' details in a text file.
+#### Major enhancement: Implemented `storage` to store all patients' details in a text file.
   + What it does:
     - The storage add function takes a formatted string from the various objects and appends it to the back of the
     corresponding text file, upon every add operation.
@@ -25,9 +25,10 @@ This section shows a summary of my coding, documentation, and other helpful cont
     - Using append for add instead overwriting with the entire map of objects improves the time taken for the program to
     process the add operation, especially when there is a large amount of objects.
   + Highlights:
-    - 
+    - Almost all storage related documentation and code are done by me, unless there are minor issues, of which I would
+    provide solution which the team member can help to modify quickly.
     
-#### Major enhancement: I implemented three of the appointment commands and made significant changes to the delete.
+#### Major enhancement: Implemented three of the appointment commands and made significant changes to the delete.
   + What it does:
     - The `Done appt NRIC ApptID` command will mark an appointment with the specified index for the specific
     patient as done.
@@ -44,10 +45,20 @@ This section shows a summary of my coding, documentation, and other helpful cont
   + Justification:
     - In the case of appointments, the appointment ID is allocated by the program and hence the find function
     is important to carry out the basic edit and delete operations.
+    - Added extensive checks to identify cause of error message such as invalid nric, invalid date time or 
+    patient/appointment does not exist, so as to improve user feedback.
   + Highlights:
     - The assignment of the ID is done by incrementing the count of the appointment object, along with every creation
     of an appointment object. This prevents the appointment object from changing after every delete operation, which 
     user have to find the appointment's ID using the find function repeatedly.
+
+#### Minor enhancement: Implemented get patient command
++ What it does:
+    - The `get patient NRIC` command will return a patient's detailed information.
+  + Justification:
+    - It is a minor implementation as the retrieval process of the patient is trivial.
+    - Added a minor check on the NRIC to check if NRIC is invalid or does not exist, for better user feedback. 
+
         
 **Code contributed:** [Reposense Report](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=janicetyy&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false)  
 
@@ -78,15 +89,12 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write documentation targeting end-users.
 
 [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Appointment.md)
-
-I have also broken down the user guide into smaller sections for the ease of viewing the various
-section.
+[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#35-storage-component) 
-[Section 4.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-appointment-scheduling-feature)
+[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#35-storage-component)    
 [Storage](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-storage)   
+[Appendix E.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#E4-Appointment-Scheduling-Commands)

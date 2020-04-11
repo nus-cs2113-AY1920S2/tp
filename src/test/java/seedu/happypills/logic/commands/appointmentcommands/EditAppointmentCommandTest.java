@@ -10,6 +10,7 @@ import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.AppointmentTextUi;
+import seedu.happypills.ui.TextUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -63,7 +64,8 @@ class EditAppointmentCommandTest {
                 + "      edit appt NRIC APPT_ID /t [HH:MM] to edit appointment's time,\n"
                 + "      edit appt NRIC APPT_ID /r [REASON] to edit appointment's reason\"\n"
                 + "    Do note that editing the patient's records will overwrite any previous information.\n"
-                + "    The apptID can be found using \"find appt NRIC\"\n";
+                + "    The apptID can be found using \"find appt NRIC\"\n"
+                + TextUi.DIVIDER;
         String message = new EditAppointmentCommand("S1234567A", "2", "/r ").execute(
                 newPatientMap, newAppointmentMap, newPatientRecordMap);
         assertEquals(expectedOutputMissingInput, message);

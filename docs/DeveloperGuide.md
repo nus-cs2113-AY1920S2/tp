@@ -14,30 +14,22 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
-    * [3.2. TextUi Component](#32-textui-component)
+    * [3.2. TextUi Component](#32-textui-comonent)
     * [3.3. Logic Component](#33-logic-component)
     * [3.4. Model Component](#34-model-component)
     * [3.5. Storage Component](#35-storage-component)
 - [4. Implementation](#4-implementation)
-    * [4.1. Patient Details Feature](#41-patient-details-feature)
-        + [4.1.1. Add Patient Details](#411-add-patient-details)
-        + [4.1.2. Edit Patient Details](#412-edit-patient-details)
-        + [4.1.3. Delete Patient Details](#413-delete-patient-details)
-        + [4.1.4. List Patients](#414-list-patients)
-        + [4.1.5. Retrieve Patient Details](#415-retrieve-patient-details)
-    * [4.2. Patient Medical Records Feature](#42-patient-medical-records-feature)
-    * [4.3. Appointment Scheduling Feature](#43-appointment-scheduling-feature)
-        + [4.3.1. Add Appointment](#431-add-appointment)
-        + [4.3.2. Edit Appointment](#432-edit-appointment)
-        + [4.3.3. Delete Appointment](#433-delete-appointment)
-        + [4.3.4. Mark Appointment as Done](#434-mark-appointment-as-done)
-        + [4.3.5. List Appointments](#435-list-appointments)
-        + [4.3.6. Find Appointments of Patient](#436-find-appointments-of-patient)
-    * [4.4 Storage](#44-storage)
-    * [4.5 User Prompting](#45-user-prompting)
-- [5. Documentation](#5-documentation)
-- [6. Testing](#6-testing)
-- [7. Useful Links](#7-useful-links)
+    * [4.1. Data Structure](#41-data-structure)
+    * [4.2. Add Feature](#42-add-feature)
+    * [4.3. List Feature](#43-list-features)
+    * [4.4. Find/Get Feature](#44-findget-feature)
+    * [4.5. Edit Features](#45-edit-features)
+    * [4.6. Delete Features](#46-delete-features)
+    * [4.7. Done Appointment Feature](#47-done-appointment-feature)
+    * [4.8 Storage](#48-storage)
+    * [4.9 User Prompting](#49-user-prompting)
+- [5. Testing](#5-testing)
+- [6. Useful Links](#6-useful-links)
 - [Appendices](#appendices)
     * [Appendix A: Product Scope](#qppendix-a-product-scope)
     * [Appendix B: User Stories](#appendix-b-user-stories)
@@ -188,43 +180,47 @@ down into nine main features: `Data Structure`, `Add Details Feature`, `List Fea
 
 The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
 
->`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
->`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
->`PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
->`PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
->`PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
->`PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
->`AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
->`AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
->`AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
+- `PatientMap#add(Patient patient)` — Adds the patient object into the patient list using the patient’s Nric as key.  
+- `PatientMap#remove(String nric)` — Removes the patient object from the existing patient list.  
+- `PatientMap#get(String nric)` — Get the patient object resides in the existing patient list. 
+- `PatientRecordMap#add(Patient patient)` — Adds the patient's record object into the patient's record list using the patient’s Nric as key.  
+- `PatientRecordMap#remove(String nric)` — Removes the patient's record object from the existing patient's record list.  
+- `PatientRecordMap#get(String nric)` — Get the patient's record object resides in the existing patient's record list.
+- `AppointmentMap#add(Patient patient)` — Adds the appointment object into the appointment list using the patient’s Nric as key.  
+- `AppointmentMap#remove(String nric)` — Removes the appointment object from the existing appointment list.  
+- `AppointmentMap#get(String nric)` — Get the appointment object resides in the existing appointment list.  
     
 **Design Considerations** 
 
 *Aspect: Data Structure of the Patient List* 
 
-- Alternative 1 (current choice): Hash Map
+- **Alternative 1 (current choice): Hash Map**
   * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
   * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
- - Alternative 2: Array List
-   * Pros: This would be easier to implement and retrieve the information.
-   * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-           This would cause the deletion to be very slow when there is a large number of patients in the list.
+- Alternative 2: Array List
+  * Pros: This would be easier to implement and retrieve the information.
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+          This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
-### 4.2. Add Feature
+### 4.2. Add Features
 
 The user is able to add patient details, patient's record and appointment details into the program to keep track of the patient. 
 
 **Implementation** 
 
+Add patient details, patient's record and appointment details use similar implementation with minor difference in the usage of tags when parsing the command.  
+
+Below is an example of adding patient's appointment.
+
 The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric`, `date`, `time`, and `reason` in its constructor. 
 
+The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
+
 ![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
 
-
-The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
 1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
 class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
@@ -246,15 +242,30 @@ subsequently call the `AddAppointmentCommand#execute()` method.
 	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
 	and displays the `AppointmentID` associated to the `Appointment` object created. 
 
-The following sequence diagram summarises how the `AddAppointmentCommand` operation works: 
-
-#### 4.2.1 Add Patient Details
-
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+##### Aspect: Key-value for adding
 
-        Alternative 1 (current choice):
+>        Alternative 1 (current choice): Use Nric as Key for all
+>          Pros: Universal checking would be easy  
+>                Ease of use as the user can access all information with one NRIC 
+>                
+>          Cons: NRIC is lenghty
+>            
+>        Alternative 2: Use Index as Key for all
+>          Pros: Shorter key
+>          Cons: Hard to remeber unique index for each patient.
+>                Increase coupling between component.
+>        
+>        Alternative 3: Different index as key for all
+>          Pros: Reduce coupling between components.
+>          Cons: It require the user to remember all different 
+>          
+>        Alternative 1 was chosen as NRIC is unique and it decrease coupling between components (PatientMap, PatientRecordMap, AppointmentMap).  
+
+##### Aspect: Add Patient Details
+
+        Alternative 1 (current choice): 
           Pros: 
           Cons: 
             
@@ -264,28 +275,7 @@ The following sequence diagram summarises how the `AddAppointmentCommand` operat
         Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
         P.S subject to change in v2.
 
-#### 4.2.2 Add Patient Record Details
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
-
-#### 4.2.3. Add Appointment Details 
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
+##### Aspect: Add Patient Record Details
 
         Alternative 1 (current choice):
           Pros: 
@@ -300,146 +290,201 @@ The following sequence diagram summarises how the `AddAppointmentCommand` operat
 
 ### 4.3 List Features 
 
-short description 
-                 
-    example
+The list features implemented in HappyPills allow users to view a list of **_patients_, _patient's records_** and 
+**_appointments_**. 
 
-**Implementation**
+The list commands used in HappyPills are listed as follows: 
+    
+    1. list patient
+    2. list pr NRIC
+    3. list appt
 
-![Image]()
+The `list patient` will list all the existing patients in the patient list.  
+The `list pr NRIC` will list all the existing patient records for a particular searched patient (identified by the NRIC).    
+The `list appt` will list all the existing appointments in the appointment list.  
+        
+**Implementation** 
 
-The following steps explains the sequence of events:
-1.
-1.
-1.
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the list commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>list appt</code> command which can be generalise to other 
+   list commands.
+   </td>
+ </tr>
+</table>
+
+The `ListAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class.
+
+The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
+
+![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png "list sequence diagram")
+
+The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
+
+1. The user enters `list appt` into the application. The `HappyPills` class then calls the `Parser#parse()` to parse the 
+user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` method. 
+
+2. `AppointmentParser#parse()` will then split the user input and calls the `ListAppointmentCommand` class. 
+
+3. `HappyPills` will then call the `ListAppointmentCommand#execute()` method. 
+
+4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. 
+
+5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap#getAppointments()` 
+and displays all the appointments. Otherwise, the user will receive a message saying that the there is no appointments in the list. 
 
 #### 4.3.1. List Patients
+
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+_Aspect: Information needed to be displayed_
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
+- Alternative 1 **(current choice)**: Display only NRIC and NAME of the patient
+  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
+  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+- Alternative 2: Array List
+  * Pros: This would be easier to implement and retrieve the information.
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+          This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
 #### 4.3.2 List Patient's Records
 
-**Design Considerations**
 
-##### Aspect: Prompt handling method
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 #### 4.3.3 List Appointments 
 
-**Design Considerations**
 
-##### Aspect: Prompt handling method
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 ### 4.4. Find/Get Feature
 
-short description 
-                 
-    example
+The find/get features implemented in HappyPills allow users to view detailed information of **_patient's particulars_, 
+_a specified patient record_** and **_appointment for a particular patient_**. 
+
+The find/get commands used in HappyPills are listed as follows: 
+    
+    1. get patient NRIC
+    2. find pr NRIC INDEX
+    3. find appt NRIC
+
+The `get patient NRIC` will retrieve all basic information related to the searched patient.
+The `find pr NRIC INDEX` will display detailed information of a particular patient record identified by the NRIC and INDEX.
+The `find appt NRIC` will find all the appointments that the patient with the specified NRIC has.
 
 **Implementation**
 
-![Image]()
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the find/get commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>find appt NRIC</code> command which can be generalise to other 
+   find/get commands.
+   </td>
+ </tr>
+</table>
 
-The following steps explains the sequence of events:
-1.
-1.
-1.
+The `FindAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`patientNric` in its constructor. 
+
+The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
+
+![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
+
+The following steps below is an example of how the `FindAppointmentCommand` class behaves: 
+
+1. The user enters `find appt S1234567Z` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
+method. 
+
+2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
+
+3. `HappyPills` will then call the `FindAppointmentCommand#execute()` method. 
+
+4. `FindAppointmentCommand#execute()` first checks the validity of the nric given. It then checks if a patient exists in the 
+`PatientMap`. 
+
+5. If it exists, it gets the list of appointments by calling `PatientMap.getAppointments()` and displays all the appointments 
+belonging to the patient, otherwise it displays that there is no patient with the given nric that exists. 
 
 #### 4.4.1. Get Patient Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+_Aspect: Information needed to be displayed_
 
 
 #### 4.4.2. Find Patient Record Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+_Aspect: Information needed to be displayed_
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 
 #### 4.4.3. Find Appointment Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+_Aspect: Information needed to be displayed_
 
 
-### 4.5. Edit Feature
-short description 
-                 
-    example
+### 4.5. Edit Features
+
+The edit features implemented in HappyPills allow users to view detailed information of **_patient's particulars_, 
+_a specified patient record_** and **_appointment for a particular patient_**. 
+
+The edit commands used in HappyPills are listed as follows: 
+    
+    1. edit patient NRIC 
+    2. edit pr NRIC INDEX 
+    3. edit appt NRIC APPT_ID 
+
+The user can edit an appointment from the list of appointments currently in the program. The command:
+
+    edit appt S1234567Z 1 /d 04/04/2020
+
+will edit the date of the appointment with appointment id `1`, to `04/04/2020`, if found. 
 
 **Implementation**
 
-![Image]()
+The `EditAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
+`nric`, `apptId` and `newContent` in its constructor. 
 
-The following steps explains the sequence of events:
-1.
-1.
-1.
+The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
+
+![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
+
+The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
+
+1. The user enters `edit appt S1234567Z 1 /d 04/04/2020` into the application. The `HappyPills` class then calls the 
+`Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls 
+the `AppointmentParser#parse()` method. 
+
+2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
+
+
+    **Warning**: If the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
+
+3. `HappyPills` will then call the `EditAppointmentCommand#execute()` method. 
+
+4. In `EditAppointmentCommand#execute()`, does two things: 
+
+	+ If the patient and/or appointment does not exist, the `HappyPillsException()` will be thrown.
+
+	+ `EditAppointmentCommand#execute()` checks for which parameter is to be edited, `date`, `time` or `reason`. 
+	Afterwards, the method calls both `AppointmentMap` and `PatientMap` to edit the appropriate details. `Storage#writeAllToFile()` 
+	will then be called to update the storage of the newly edited appointment. 
+
+5. A display message will be shown to the user to indicate whether or not the edit was successful. 
 
 #### 4.5.1. Edit Patient Detail
 
@@ -492,19 +537,39 @@ The following steps explains the sequence of events:
         P.S subject to change in v2.
 
 
-### 4.6. Delete Feature
-short description 
-                 
-    example
+### 4.6. Delete Features
 
-**Implementation**
+The user can delete an appointment from the list of appointments currently in the program. The command: 
 
-![Image]()
+    delete appt S1234567Z 1 
+    
+will delete the appointment with appointment ID `1`, if found. 
 
-The following steps explains the sequence of events:
-1.
-1.
-1.
+**Implementation** 
+
+The `DeleteAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises 
+the `nric` and `apptId` in its constructor. 
+
+The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
+
+1. The user enters `delete appt S1234567Z 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the 
+`AppointmentParser#parse()` method. 
+
+2. `AppointmentParser#parse()` will then split the user input and calls the `DeleteAppointmentCommand` class. 
+
+
+	**Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+	
+3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method.  
+
+4. In `DeleteAppointmentCommand#execute()`, if the patient and/or appointment does not exist, the `HappyPillsException()` 
+will be thrown. Otherwise, `DeleteAppointmentCommand#execute()` will call `Storage#writeAllToFile()` and remove the 
+appointment from the program. A display message will be shown to the user to indicate that the deletion have been successful. 
+
+The following sequence diagram summarises how the `DeleteAppointmentCommand` operation works: 
+
+![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
 
 #### 4.6.1. Delete Patient Detail
 **Design Considerations**
@@ -555,7 +620,7 @@ The following steps explains the sequence of events:
         P.S subject to change in v2.
 
 
-### 4.7. Done Appoint Feature
+### 4.7. Done Appointment Feature
 The user can mark an appointment as done from the list of appointments currently in the program. The command: 
 
     done appt S1234567Z 1
@@ -589,197 +654,6 @@ message to the user. Otherwise the `HappyPillsException()` will be thrown accord
 
 The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
 
----------------------------------------
----------------------------------------
-### 4.3. Appointment Scheduling Feature 
-
-#### 4.3.1. Add Appointment
-
-The user is able to add appointments into the program to manage the appointment schedule. 
-The command:  
-
-    add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup 
-    
-will add an appointment with `NRIC` as S1234567A with the following attributes: 
-* appointment date: `04/04/2020`
-* appointment time: `10:30`
-* reason for appointment: `Checkup`
-
-An `appointmentId` will also be given when an appointment is successfully added. 
-
-**Implementation** 
-
-The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`nric`, `date`, `time`, and `reason` in its constructor. 
-
-The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
-
-1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
-class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
-`Parser` then calls the `AppointmentParser#parse()` method. 
-
-2. `AppointmentParser#parse()` will then call the `parseAddCommand` in the same class to parse all the arguments of the user input. 
-
-3. A new instance of `AddAppointmentCommand` with the given arguments initialised will be created. `HappyPills` will 
-subsequently call the `AddAppointmentCommand#execute()` method. 
-
-4. The `AddAppointmentCommand#execute()` method will do 2 things: 
-
-	+ If there is no patients in the `PatientMap` with the given nric, the method returns a string to notify the user 
-	that the patient does not exist. 
-	
-	+ If the patient with the given nric exists in `PatientMap`, a new Appointment object with the given arguments 
-	(nric, date, time and reason) are created and added into the `AppointmentMap` and into the ArrayList of Appointment 
-	objects in the Patient object mapped with the nric given. The `Appointment` object is stored in the storage by calling `Storage#writeAllToFile()`. 
-	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
-	and displays the `AppointmentID` associated to the `Appointment` object created. 
-
-The following sequence diagram summarises how the `AddAppointmentCommand` operation works: 
-
-![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
-
-#### 4.3.2. Edit Appointment 
-
-The user can edit an appointment from the list of appointments currently in the program. The command:
-
-    edit appt S1234567Z 1 /d 04/04/2020
-
-will edit the date of the appointment with appointment id `1`, to `04/04/2020`, if found. 
-
-**Implementation**
-
-The `EditAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`nric`, `apptId` and `newContent` in its constructor. 
-
-The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
-
-1. The user enters `edit appt S1234567Z 1 /d 04/04/2020` into the application. The `HappyPills` class then calls the 
-`Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls 
-the `AppointmentParser#parse()` method. 
-
-2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
-
-
-    **Warning**: If the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
-
-3. `HappyPills` will then call the `EditAppointmentCommand#execute()` method. 
-
-4. In `EditAppointmentCommand#execute()`, does two things: 
-
-	+ If the patient and/or appointment does not exist, the `HappyPillsException()` will be thrown.
-
-	+ `EditAppointmentCommand#execute()` checks for which parameter is to be edited, `date`, `time` or `reason`. 
-	Afterwards, the method calls both `AppointmentMap` and `PatientMap` to edit the appropriate details. `Storage#writeAllToFile()` 
-	will then be called to update the storage of the newly edited appointment. 
-
-5. A display message will be shown to the user to indicate whether or not the edit was successful. 
-
-The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
-
-![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
-
-#### 4.3.3. Delete Appointment 
-
-The user can delete an appointment from the list of appointments currently in the program. The command: 
-
-    delete appt S1234567Z 1 
-    
-will delete the appointment with appointment ID `1`, if found. 
-
-**Implementation** 
-
-The `DeleteAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises 
-the `nric` and `apptId` in its constructor. 
-
-The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
-
-1. The user enters `delete appt S1234567Z 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
-to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the 
-`AppointmentParser#parse()` method. 
-
-2. `AppointmentParser#parse()` will then split the user input and calls the `DeleteAppointmentCommand` class. 
-
-
-	**Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
-	
-3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method.  
-
-4. In `DeleteAppointmentCommand#execute()`, if the patient and/or appointment does not exist, the `HappyPillsException()` 
-will be thrown. Otherwise, `DeleteAppointmentCommand#execute()` will call `Storage#writeAllToFile()` and remove the 
-appointment from the program. A display message will be shown to the user to indicate that the deletion have been successful. 
-
-The following sequence diagram summarises how the `DeleteAppointmentCommand` operation works: 
-
-![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
-
-#### 4.3.5. List Appointments 
-
-The user is able to get a list of all the appointments currently in the program.
-The command: 
-    
-    list appt
-    
-will list all the appointments in the `AppointmentMap`. 
-
-**Implementation** 
-
-The `ListAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class.
-
-The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
-
-1. The user enters `list appt` into the application. The `HappyPills` class then calls the `Parser#parse()` to parse the 
-user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` method. 
-
-2. `AppointmentParser#parse()` will then split the user input and calls the `ListAppointmentCommand` class. 
-
-3. `HappyPills` will then call the `ListAppointmentCommand#execute()` method. 
-
-4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. 
-
-5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap.getAppointments()` 
-and displays all the appointments. Otherwise, the user will receive a message saying that the there is no appointments in the list. 
-
-The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
-
-![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png)
-
-#### 4.3.6. Find Appointments of Patient
-
-The user is able to find all the appointments a specific patient has.
-The command: 
-    
-    find appt S7777777Z
-    
-will list all the appointments that the patient with NRIC S7777777Z has. 
-
-**Implementation**
-
-The `FindAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`patientNric` in its constructor. 
-
-The following steps below is an example of how the `FindAppointmentCommand` class behaves: 
-
-1. The user enters `find appt S1234567Z` into the application. The `HappyPills` class then calls the `Parser#parse()` 
-to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
-method. 
-
-2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
-
-3. `HappyPills` will then call the `FindAppointmentCommand#execute()` method. 
-
-4. `FindAppointmentCommand#execute()` first checks the validity of the nric given. It then checks if a patient exists in the 
-`PatientMap`. 
-
-5. If it exists, it gets the list of appointments by calling `PatientMap.getAppointments()` and displays all the appointments 
-belonging to the patient, otherwise it displays that there is no patient with the given nric that exists. 
-
-The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
-
-![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
-
-
----------------------------------------------------------
-----------------------------------------------------------
 ### 4.8. Storage
 
 This is an internal feature of the program, implemented to allow users to recover information even after HappyPills is 
@@ -924,16 +798,13 @@ Step 5: `HappyPills` will execute the command.
         P.S subject to change in v2.
 
 
-
-## 5. Documentation 
-
-## 6. Testing
+## 5. Testing
 
 Refer to the guide [here](Testing.md).
 
-## 7. Useful links
+## 6. Useful links
 
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
 
 ## Appendices 
@@ -1073,7 +944,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `edit patient S1234567F /ic S9876543F`  
     Expected: An error message will be shown, telling the user to read more about the edit patient command.  
     
-    1. **Test case:** `edit patient S123F /a Peanuts` -- does not exists in the list. ??  
+    1. **Test case:** `edit patient S123F /a Peanuts`  
     Expected: An error message will be shown indicating that the NRIC is invalid.  
     
     1. **Test case:** `edit patient S1234567F`  
@@ -1148,8 +1019,8 @@ Given below are instructions to test the application manually.
     1. **Test case:** `get patient S9876543G`  
   Expected: An error message will be shown indicating that the patient does not exists in the list.  
   
-    1. **Test case:** `get patient S987G`  --need nric  
-  Expected: An error message will be shown indicating that the patient does not exists in the list.  
+    1. **Test case:** `get patient S987G`  
+  Expected: An error message will be shown indicating that the NRIC is invalid.  
   
 #### E.3. Patient Medical Records Commands
 
@@ -1157,24 +1028,24 @@ Given below are instructions to test the application manually.
 
     ###### *Prerequisite: There is no patient in the list.*
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `y`  
     Expected: An error message will be shown indicating that the patient does not exists in the list.   
     
     ###### *Prerequisite: There is a patient with NRIC number S9876543F in the list.*
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `y`  
     Expected: A new patient record for the patient with `S9876543F` will be added.  
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `n`  
     Expected: The patient record will not be added.
 
-    1. **Test case:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    1. **Test case:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`   
     Expected: The program will prompt the user for valid NRIC.  
     Continuation: `S9876543F` (valid NRIC of a patient existing in the patient list)
     Expected: A new patient record for the patient with `S9876543F` will be added.  
@@ -1197,7 +1068,7 @@ Given below are instructions to test the application manually.
     ###### *Prerequisite: There is no patient in the list.*
     
     1. **Test case:** `list pr S1234567F`  
-    Expected: An error message will be shown indicating that the patient does not exist.  
+    Expected: An error message will be shown indicating that the patient record is not found.  
     
     1. **Test case:** `list pr`  
     Expected: An error message will be shown indicating that the command is incomplete.      
@@ -1213,16 +1084,16 @@ Given below are instructions to test the application manually.
     1. **Test case:** `list pr S98G`  
     Expected: An error message will be shown indicating that format of the NRIC is invalid.  
         
-    ###### Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.  
+    ###### *Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.*  
     
     1. **Test case:** `list pr S9876543F`  
     Expected: An error message will be shown indicating that the patient record is not found.  
 
 1. Find patient record
 
-    ###### Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.  
+    ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
     
-    1. **Test case:** `find pr S9876543F 2`  --patient not in list?  
+    1. **Test case:** `find pr S9876543F 2`  
     Expected: An error message will be shown indicating that the patient record is not found.  
     
     ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient have 3 existing patient records.*  
@@ -1316,7 +1187,7 @@ Given below are instructions to test the application manually.
     
     1. **Test case:** `add appt /ic S1234567G /d 02/02/2020`   
     Expected: The program will prompt the user for missing information.  
-    Continuation: `/t 02/02/2020 /r sick`  
+    Continuation: `/t 12:00 /r sick`  
     Expected: The program will prompt the user for confirmation before saving the inputs.
     Continuation:`y`
     Expected: A new appointment will be added to the list.  
@@ -1326,25 +1197,26 @@ Given below are instructions to test the application manually.
     2. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 13:00 /r ill`    
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `n`  
-    Expected: The patient named `Bob` will not be added to the list.  
+    Expected: The appointment will not be added to the list.  
     
     3. **Test case:** `add appt /ic S1234567G /d 20/20/2020 /t 13:00 /r ill`   
-    Expected: An error message will be shown indicating that the date is invalid.  
-
-    4. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 23:60 /r ill`   
-    Expected: An error message will be shown indicating that the time is invalid.
-        
-    5. **Test case:** `add appt /ic S1234567G /d 02/02/2020 /t 13:00`  
-    Expected: The program will prompt the user for missing information.    
-    Continuation: `clear`  
-    Expected: A message will be shown indicating that the command has been aborted.  
+    Expected: An error message will be shown indicating that the date is incorrect or missing.
+    Continuation: `clear` 
+    Expected: The program will prompt that command is aborted.
+    
+    4. **Test case:** `add appt /ic S1234567G /d 20/20/2020 /t 13:00 /r ill`   
+    Expected: An error message will be shown indicating that the date is incorrect or missing.
+    Continuation: `/d 21/12/2020` 
+    Expected: The program will prompt the user for confirmation before saving the inputs.
+    Continuation: `n`
+    Expected: The appointment is *not* added to the list. 
     
     <table>
       <col width="20">
       <col width="200">
      <tr>
        <td><span> &#8505; </span></td>
-       <td>Testers can conduct tests with other forms of invalid date time. Program is expected to
+       <td>Testers can conduct tests with other forms of missing/invalid date, time or reason. Program is expected to
        capture and return error message.</td>
      </tr>
     </table>
@@ -1356,7 +1228,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `edit appt S7654321A 1 /d 15/12/2020`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `edit appt S1234567G 100 /d 15/12/2020`  
     Expected: An error message will be shown indicating that the appointment does not exist.
@@ -1364,37 +1236,23 @@ Given below are instructions to test the application manually.
     ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
     
     3. **Test case:** `edit appt S1234567G 1 /d 15/12/2020`  
-    Expected: The program will prompt the user for confirmation before saving the inputs.  
-    Continuation: `n`  
-    Expected: The appointment will *not* be edited.
-    
-    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
-    
-    4. **Test case:** `edit appt S1234567G 1 /d 15/12/2020`  
-    Expected: The program will prompt the user for confirmation before saving the inputs.  
-    Continuation: `y`  
     Expected: The appointment will be edited.
     
     ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
 
     5. **Test case:** `edit appt S1234567G 1 /d 20/20/2020`  
-    Expected: An error message will be shown indicating that the date is invalid. 
+    Expected: An error message will be shown indicating that the date is invalid.
      
-    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
-     
-    6 . **Test case:** `edit appt S1234567G 1 /t 24:00`  
-    Expected: An error message will be shown indicating that the time is invalid.
-     
-    7. **Test case:** `edit appt S1234567G 1 xxx`  
+    6. **Test case:** `edit appt S1234567G 1 xxx`  
     Expected: An error message will be shown, telling the user to read more about the edit appt command.    
     
-    8. **Test case:** `edit appt S1234567G`  
+    7. **Test case:** `edit appt S1234567G`  
     Expected: An error message will be shown, telling the user to read more about the edit appt command.   
     
-    9. **Test case:** `edit patient`  
+    8. **Test case:** `edit appt`  
     Expected: An error message will be shown indicating that the command is incomplete.
     
-    10. **Test case:** `edit appt xxx 1 /d 20/20/2020`
+    9. **Test case:** `edit appt xxx 1 /d 20/20/2020`
     Expected: An error message will be shown indicating that the NRIC is invalid.    
   
     <table>
@@ -1402,7 +1260,7 @@ Given below are instructions to test the application manually.
       <col width="200">
      <tr>
        <td><span> &#8505; </span></td>
-       <td>Testers can conduct tests with invalid date and time. Program is expected to 
+       <td>Testers can conduct tests with missing/invalid date, time or reason. Program is expected to 
        capture and return error message.</td>
      </tr>
     </table>
@@ -1414,7 +1272,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `delete appt S7654321A 1`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `delete appt S1234567G 100`  
     Expected: An error message will be shown indicating that the appointment does not exist.
@@ -1452,23 +1310,23 @@ Given below are instructions to test the application manually.
      
     ###### *Prerequisite: Patient with stated NRIC does not exist in the patient list.*
        
-    1. **Test case:** `done appt S7654321A 1`  
+    1. **Test case:** `done appt S7654321A 2`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `done appt S1234567G 100`  
     Expected: An error message will be shown indicating that the appointment does not exist.
     
     ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G and appointment id is valid.*
     
-    3. **Test case:** `done appt S1234567G 1`  
+    3. **Test case:** `done appt S1234567G 2`  
     Expected: The appointment will be marked done.
 
-    4. **Test case:** `done appt S983A 1`  
+    4. **Test case:** `done appt S983A 2`  
     Expected: An error message will be shown indicating that the NRIC is invalid.  
     
-    6. **Test case:** `done patient`  
+    6. **Test case:** `done appt`  
     Expected: An error message will be shown indicating that the input format is incomplete.  
        
     7. **Test case:** `delete appt S1234567G xxx`  
@@ -1480,29 +1338,29 @@ Given below are instructions to test the application manually.
 5. Find appointment
  
     ###### *Prerequisite: There is no patient in the list with NRIC number S1234567B.*  
-   
-   1. **Test case:** `find appt S1234567B`  
-   Expected: An error message will be shown indicating that the patient cannot be found.  
-   
-   ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G.*  
     
-    1. **Test case:** `find appt`  
+    1. **Test case:** `find appt S1234567B`  
+    Expected: An error message will be shown indicating that the patient cannot be found.  
+    
+    ###### *Prerequisite: There is a patient in the list with NRIC number S1234567G.*  
+    
+    2. **Test case:** `find appt`  
     Expected: An error message will be shown indicating that the command is incomplete.  
     
-  ###### *Prerequisite: There is a patient with stated NRIC number and there is no appointment for the patient*
-
-  1. **Test case:** `find patient S1234567F`  
-  Expected: TA message will appear indicating that patient has no appointment in the list.  
-
-  ###### *Prerequisite: There is a patient with stated NRIC number and there is an appointment for the patient*
-  1. **Test case:** `find patient S9876543G`  
-  Expected: Appointment for the patient will be displayed  
-  
-  1. **Test case:** `find patient S987G`
-  Expected: An error message will be shown indicating invalid NRIC.  
+    ###### *Prerequisite: There is a patient with stated NRIC number and there is no appointment for the patient.*
+    
+    3. **Test case:** `find appt S1234567G`  
+    Expected: TA message will appear indicating that patient has no appointment in the list.  
+    
+    ###### *Prerequisite: There is a patient with stated NRIC number and there is an appointment for the patient.*
+    4. **Test case:** `find patient S9876543G`  
+    Expected: Appointment for the patient will be displayed  
+    
+    5. **Test case:** `find patient S987G`
+    Expected: An error message will be shown indicating invalid NRIC.  
   
 
 
 ## Useful links:
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
