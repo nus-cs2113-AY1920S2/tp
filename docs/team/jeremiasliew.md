@@ -15,7 +15,7 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 needed for the exam, as practice makes perfect.
 
 + Highlights: This enhancement quizzes questions in random order, allows the user to select the number of questions to quiz, and allows the user to quit the quiz prematurely.
-It works alongside the side score feature, in order to further enhance the user's revision (elaborated below).
+It works alongside the score feature, in order to further enhance the user's revision (elaborated below).
 
 #### Added the Score feature
 + What it does: Allows users to view their score after each quiz, and also a list of their past quiz scores for the selected subject.

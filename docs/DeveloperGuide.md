@@ -277,7 +277,7 @@ The following diagram describes how the show upcoming operation works:
 </p>
 
 #### 2.4.2. Design Considerations
-##### Aspect: How to format the score history shown to the user
+##### Aspect: How to implement addition and management of events
 - **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
 does not have to be tied to a pre-existing subject).
   - Pros: 
