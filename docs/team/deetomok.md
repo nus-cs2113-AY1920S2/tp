@@ -133,7 +133,7 @@ Expected output:
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
 
 
-### Contributions to the Developer Guide (Which sections did you contribute to the DH? Which UML Diagrams did u add/update)
+### Contributions to the Developer Guide
 This section describes my contributions to the Developer Guide of Module Manager. I implemented the Table of Contents, 
 Introduction section and Setting up section. In addition, I implemented the Design section excluding Storage. 
 I designed the entire Architecture Design for Module Manager and wrote the implementation document for Addition  
