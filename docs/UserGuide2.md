@@ -52,7 +52,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](images/UG/StartOfApplication.PNG =600)
+![Start of Application](images/UG/StartOfApplication.PNG)
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
