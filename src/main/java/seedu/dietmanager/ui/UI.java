@@ -2,6 +2,7 @@ package seedu.dietmanager.ui;
 
 import java.util.Scanner;
 
+import static seedu.dietmanager.commons.core.MessageBank.CREATE_PROFILE_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.EXIT_APP_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.FILE_ERROR_MESSAGE;
 import static seedu.dietmanager.commons.core.MessageBank.FUNCTION_LIST;
@@ -18,6 +19,8 @@ import static seedu.dietmanager.commons.core.MessageBank.WELCOME_MESSAGE;
 
 public class UI {
 
+    private Scanner sc;
+
     /**
      * The exit status determining whether to close the application.
      */
@@ -30,6 +33,7 @@ public class UI {
 
     public UI() {
         this.exitStatus = false;
+        this.sc = new Scanner(System.in);
     }
 
     /**
@@ -37,49 +41,39 @@ public class UI {
      */
 
     public void displayWelcomeMessage() {
-        showMessage(
-                LOGO,
-                WELCOME_MESSAGE);
+        showMessage(LOGO, WELCOME_MESSAGE);
     }
 
     public void displayHelpMenu() {
-        showMessage(
-                FUNCTION_LIST);
+        showMessage(FUNCTION_LIST);
     }
 
     public void displayExitMessage() {
-        showMessage(
-                EXIT_APP_MESSAGE);
+        showMessage(EXIT_APP_MESSAGE);
     }
 
     public void displayFileErrorMessage() {
-        showMessage(
-                FILE_ERROR_MESSAGE);
+        showMessage(FILE_ERROR_MESSAGE);
     }
 
     public void displayInvalidCommandMessage() {
-        showMessage(
-                INVALID_COMMAND_MESSAGE);
+        showMessage(INVALID_COMMAND_MESSAGE);
     }
 
     public void displayInvalidFormatMessage() {
-        showMessage(
-                INVALID_FORMAT_MESSAGE);
+        showMessage(INVALID_FORMAT_MESSAGE);
     }
 
     public void displayIndexOutOfBoundMessage() {
-        showMessage(
-                INVALID_INDEX);
+        showMessage(INVALID_INDEX);
     }
 
     public void displayInvalidGenderMessage() {
-        showMessage(
-                INVALID_GENDER_MESSAGE);
+        showMessage(INVALID_GENDER_MESSAGE);
     }
 
-    public void showExecutionResult(String result) {
-        showMessage(
-                result);
+    public void displayCreateProfileMessage() {
+        showMessage(CREATE_PROFILE_MESSAGE);
     }
 
     /**
@@ -109,8 +103,11 @@ public class UI {
      */
 
     public String readInput() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        return this.sc.nextLine();
+    }
+
+    public boolean hasInput() {
+        return this.sc.hasNextLine();
     }
 
     /**
@@ -118,6 +115,7 @@ public class UI {
      *
      * @param message String of message to be shown to user
      */
+
     public void showMessage(String... message) {
         for (String m : message) {
             System.out.println(m);

@@ -45,7 +45,6 @@ public class LogsCentre {
      */
 
     public void initialiseConsoleHandler() {
-        //Console Handler - What appears in the console
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.INFO);
         logger.addHandler(consoleHandler);
@@ -66,7 +65,6 @@ public class LogsCentre {
     public void writeSevereLog(String message) {
         this.logger.log(Level.SEVERE, message);
     }
-
 
     public void logExecuteProgramme() {
         this.logger.log(Level.INFO, "Starting Diet Manager");

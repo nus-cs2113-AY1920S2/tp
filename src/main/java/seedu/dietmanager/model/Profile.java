@@ -32,6 +32,7 @@ public class Profile {
         this.setAge(age);
         this.setGender(gender);
         this.setHeight(height);
+        weightRecord.clear();
         this.setWeight(weight);
         this.setWeightGoal(weightGoal);
         this.setProfileExist(true);
@@ -75,6 +76,10 @@ public class Profile {
         DailyFoodRecord record = new DailyFoodRecord(date);
         personalFoodRecord.add(record);
         return record;
+    }
+
+    public void clearAllFoodRecords() {
+        personalFoodRecord.clear();
     }
 
     public List<Double> getWeightRecord() {

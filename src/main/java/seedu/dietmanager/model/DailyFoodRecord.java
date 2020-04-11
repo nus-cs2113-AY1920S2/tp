@@ -140,7 +140,7 @@ public class DailyFoodRecord {
     }
 
     public boolean isDate(String date) {
-        return this.date.equals(date);
+        return this.date.toLowerCase().equals(date.toLowerCase());
     }
 
     /**
@@ -264,13 +264,13 @@ public class DailyFoodRecord {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-70s", message);
+        message = String.format("%1$-80s", message);
 
         for (Food food : afternoon) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-130s", message);
+        message = String.format("%1$-150s", message);
 
         for (Food food : night) {
             message = message + food.getPair();

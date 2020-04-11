@@ -1,9 +1,15 @@
 package seedu.dietmanager;
 
+import seedu.dietmanager.logic.AppManager;
+
+/**
+ * DietManager is the main class responsible for launching the application.
+ */
+
 public class DietManager {
 
     /**
-     * Begins the application and creates the relevant objects required for the application to function.
+     * Launches the Diet Manager application.
      */
 
     public static void main(String[] args) {
