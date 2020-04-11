@@ -13,7 +13,7 @@ public class MessageBank {
 
     public static String WELCOME_MESSAGE = "Welcome to Diet Manager! How may I assist you today?";
 
-    public static String INVALID_COMMAND_MESSAGE = "Sorry, the command you have entered is invalid.";
+    public static String INVALID_COMMAND_MESSAGE = "Sorry, that is an invalid command.";
 
     public static String INVALID_FORMAT_MESSAGE = "Sorry, that is an invalid command format.";
 
@@ -23,7 +23,7 @@ public class MessageBank {
 
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
-    public static String EXIT_COMMAMD_MESSAGE = "Thank you and see you again soon!";
+    public static String EXIT_COMMAND_MESSAGE = "You are now exiting the application.";
 
     public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
 
@@ -39,9 +39,14 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_CHANGE_MESSAGE = "Your weight goal has been changed to ";
 
+    public static String SHOW_PROFILE_MESSAGE = "Your profile information are as follows:";
+
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
-    public static String PROFILE_NOT_FOUND_MESSAGE = "No existing profile found. To create a new profile, enter:\n"
+    public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
+            + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
+
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static String BREAKFAST_RECORD_MESSAGE = "You just record the meal in the morning of: ";
@@ -50,58 +55,82 @@ public class MessageBank {
 
     public static String DINNER_RECORD_MESSAGE = "You just record the meal in the night of: ";
 
-    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!! "
+    public static String MEAL_TYPE_ERROR = "You have given wrong description of time!!!\n"
             + "Choose from: morning/afternoon/night.";
-
-    public static String WEIGHT_UPDATE_MESSAGE = "Your weight changes has been stored. Current weight is: ";
 
     public static String CHECK_WEIGHT_RECORD_MESSAGE = "Here is your weight changes record:";
 
-    public static String DUMMY_MESSAGE = "No pain no gain! Continue striving on!";
-
-    public static String WEIGHT_DELETED_MESSAGE = " has been removed successfully!";
+    public static String WEIGHT_DELETED_MESSAGE = "has been removed successfully!";
 
     public static String INVALID_INDEX = "Invalid index of weight! Please check and try again.";
 
-    public static String WEIGHT_LOSS_MESSAGE = "Great job! You have lost %.2f kg since the beginning!";
+    public static String WEIGHT_LOSS_MESSAGE = "Overall, you have lost %.2f kg!";
 
-    public static String WEIGHT_NO_CHANGE_MESSAGE = "No Pain No Gain! You have not lost weight yet! Strive on!";
+    public static String WEIGHT_NO_CHANGE_MESSAGE = "There has been no change in your weight!";
 
-    public static String WEIGHT_GAIN_MESSAGE = "Maintain your diet! You have gained %.2f kg since the beginning!";
+    public static String WEIGHT_GAIN_MESSAGE = "Overall, you have gained %.2f kg!";
 
-    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:\n";
+    public static String FOOD_DATABASE_MESSAGE = "These are the foods stored in our database:";
 
-    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.\n";
+    public static String INVALID_FOOD_FORMAT_ERROR = "Some food/foods are not added due to invalid calories info.";
 
     public static String CALORIES_MESSAGE = "Total calculable calories intake for the entire day: ";
 
     public static String TIME_CALORIES_MESSAGE = "total calculable calories intake: ";
 
-    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.\n";
+    public static String MISSING_CALORIES_MESSAGE = "NOTE: There are foods without calculable calories.";
 
-    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.\n";
+    public static String NO_CALORIES_MESSAGE = "There are no calculable calories data for the entire day.";
 
-    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.\n";
+    public static String NO_TIME_CALORIES_MESSAGE = "there are no calculable calories data.";
 
-    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.\n";
+    public static String INVALID_CALORIES_REQUIREMENT_ERROR = "You have given invalid activity level.";
 
-    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.\n";
+    public static String SUFFICIENT_CALORIES_MESSAGE = "Well done!!! You have consumed sufficient calories.";
 
-    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.\n";
+    public static String INSUFFICIENT_CALORIES_MESSAGE = "Ohh no!!! You have consumed too little calories.";
 
-    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.\n";
+    public static String EXCESS_CALORIES_MESSAGE = "Ohh no!!! You have consumed too much calories.";
 
     public static String CALCULATE_CALORIES_MESSAGE = "Your Calories intake during the given period is ";
 
     public static String NO_DESCRIPTION_MESSAGE = "This command must follow by description! Please input again!";
 
-    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}! "
+    public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}!\n"
             + "Either uppercase or lowercase is supported!";
 
-    public static String SPLIT_LINE = "----------------------------------------------------------------";
+    public static String RECORDS_CLEARED_MESSAGE = "You have just cleared all food records in the week!";
 
-    public static String INVALID_PROFILE_MESSAGE = "Invalid profile detected. "
-            + "Please set a new profile using the set-profile command.";
+    public static String LINE_SEPARATOR = "----------------------------------------------------------------";
+
+    public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
+            + "All girls/boys will now fall for your determination and physique! :)\n"
+            + "You can also set a new weight goal using set-weight-goal NEW_GOAL";
+
+    public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
+
+    public static String INCORRECT_CALORIES_INFO_MESSAGE =
+            "Sorry, to add new food to database you must input correct calories info."
+                    + System.lineSeparator() + "It has to be positive Integer or Float";
+
+    public static String ADDED_FOOD_ALREADY_EXIST_MESSAGE =
+            "No need to add! We already have this food in our database!";
+
+    public static String NEW_FOOD_ADDED_MESSAGE = "You have added a new food into the database:\n";
+
+    public static String FOOD_TO_DELETE_NOT_EXIST_MESSAGE =
+            "No need to delete! Referred Food doesn't exist in database";
+
+    public static String FOOD_DELETED_MESSAGE = "You have just deleted this food from the database: ";
+
+    public static String INCORRECT_PARAMS_TO_BUILD_RECIPE_MESSAGE = "You have given wrong format for parameters!!!\n"
+            + "First parameter is maximum food types, need to provide an integer.\n"
+            + "Second parameter is activity level, choose from -- low/moderate/high.";
+
+    public static String EXCEEDS_MAX_FOOD_TYPES_MESSAGE = "We support at most 3 kinds of food in a meal, "
+            + "otherwise it's easy to overtake calories and not good for your health!\n\n";
+
+    public static String CHECK_REQUIRED_CAL_COMMAND_PROMPT = "check-required-cal";
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"
@@ -145,4 +174,139 @@ public class MessageBank {
                     + "|____________________________________________________________|"
                     + "________________________________________________|\n"
                     + "Please key in your command: ";
+
+    public static final String BMI_TABLE_MESSAGE = "You can check your height and weight against this table"
+            + " to see which category you fall into.\n"
+            + "Check weight first then height.\n";
+
+    public static final String BMI_TABLE_LEGEND = "\nLEGEND for BMI Table:\n"
+            + "1: UNDERWEIGHT       2: HEALTHY      3: OVERWEIGHT      "
+            + "4: OBESE      5: EXTREMELY OBESE\n";
+
+    public static final String BMI_TABLE =
+            " _______________________________________________________________________________________"
+                    + "____________________________________________\n"
+                    + "|        |                                                      WEIGHT in KG             "
+                    + "                                           |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        |         | 41 | 45 | 50 | 54 | 59 | 64 | 68 | 73 | 77 | 82 | 86 | 91 | 95 | 100"
+                    + " | 104 | 109 | 113 | 118 | 122 | 127 | 132 |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 142.2   | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 144.7   | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 147.3   | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 149.8   | 1  | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 152.4   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 154.9   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 157.4   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  5 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 160.0   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  4 "
+                    + " |  5  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 162.5   | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4 "
+                    + " |  4  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 165.1   | 1  | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4 "
+                    + " |  4  |  5  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 167.6   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4 "
+                    + " |  4  |  4  |  5  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 170.1   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4 "
+                    + " |  4  |  4  |  4  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 172.7   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4 "
+                    + " |  4  |  4  |  4  |  5  |  5  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "| HEIGHT | 175.2   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4 "
+                    + " |  4  |  4  |  4  |  4  |  5  |  5  |  5  |\n"
+                    + "|   in   |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|   CM   | 177.8   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  |  4 "
+                    + " |  4  |  4  |  4  |  4  |  4  |  5  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 180.3   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 3  |  4 "
+                    + " |  4  |  4  |  4  |  4  |  4  |  4  |  5  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 182.8   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  4 "
+                    + " |  4  |  4  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 185.4   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  3 "
+                    + " |  4  |  4  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 187.9   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3 "
+                    + " |  4  |  4  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 190.5   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3 "
+                    + " |  3  |  4  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 193.0   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3 "
+                    + " |  3  |  3  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 195.5   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3 "
+                    + " |  3  |  3  |  4  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 198.1   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3 "
+                    + " |  3  |  3  |  3  |  4  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 200.6   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3 "
+                    + " |  3  |  3  |  3  |  3  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 203.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  2 "
+                    + " |  3  |  3  |  3  |  3  |  4  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 205.7   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2 "
+                    + " |  3  |  3  |  3  |  3  |  3  |  4  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 208.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2 "
+                    + " |  2  |  3  |  3  |  3  |  3  |  3  |  4  |\n"
+                    + "|        |-------------------------------------------------------------------------------"
+                    + "-------------------------------------------|\n"
+                    + "|        | 210.8   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  |  2 "
+                    + " |  2  |  3  |  3  |  3  |  3  |  3  |  4  |\n"
+                    + "|________|_______________________________________________________________________________"
+                    + "___________________________________________|\n";
+
+    public static final String USER_BMI_MESSAGE = "Your current BMI : %.2f\n";
+
 }

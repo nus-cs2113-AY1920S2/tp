@@ -1,6 +1,0 @@
-Name: dj
-Age: 20
-Gender: male
-Height: 180.0
-Weight: 80.0
-Weight-Goal: 83.0

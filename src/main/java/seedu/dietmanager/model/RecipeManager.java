@@ -1,14 +1,15 @@
 package seedu.dietmanager.model;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
-import seedu.dietmanager.logic.commands.profile.CheckRequiredCaloriesCommand;
+import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 
 import java.util.ArrayList;
 
 public class RecipeManager {
     private ArrayList<DailyFoodRecord> recipe;
     private static RecipeManager theOnlyOne = null;
-    private static final int MAX_FOOD_TYPES = 4;
+    private static final int MAX_FOOD_TYPES = 3;
 
     private RecipeManager() {
         recipe = new ArrayList<>();
@@ -33,13 +34,21 @@ public class RecipeManager {
         return theOnlyOne;
     }
 
-    private void setRecipe(String date, String mealType, ArrayList<Food> foodList) {
+    /**
+     * Sets a meal into the recipe.
+     *
+     * @param date     the date of this meal
+     * @param mealType the type of this meal
+     * @param foodList foods recommended for this meal
+     */
+
+    public void setRecipe(String date, String mealType, ArrayList<Food> foodList) {
         Weekday weekday = Weekday.valueOf(date.toUpperCase());
-        int index = weekday.getIndex();
+        int index = weekday.getIndex() - 1;
         recipe.get(index).recordMeals(mealType, foodList);
     }
 
-    private void setRecipe(int index, String mealType, ArrayList<Food> foodList) {
+    public void setRecipe(int index, String mealType, ArrayList<Food> foodList) {
         recipe.get(index).clearRecords(mealType);
         recipe.get(index).recordMeals(mealType, foodList);
     }
@@ -52,14 +61,39 @@ public class RecipeManager {
      */
 
     public String getRecipe() {
-        String recipeTable = String.format("%1$-10s", " ") + "morning";
-        recipeTable = String.format("%1$-70s", recipeTable) + "afternoon";
-        recipeTable = String.format("%1$-130s", recipeTable) + "night\n";
+        String recipeTable = this.getRecipeHead();
 
         for (DailyFoodRecord record : recipe) {
             recipeTable = recipeTable + record.getRecipeEntry() + System.lineSeparator();
         }
         return recipeTable;
+    }
+
+    /**
+     * Returns the head of the recipe.
+     *
+     * @return the head of the recipe.
+     */
+
+    public String getRecipeHead() {
+        String recipeHead = String.format("%1$-10s", " ") + "morning";
+        recipeHead = String.format("%1$-80s", recipeHead) + "afternoon";
+        recipeHead = String.format("%1$-150s", recipeHead) + "night\n";
+        return recipeHead;
+    }
+
+    /**
+     * Returns the body part of the recipe.
+     *
+     * @return the body of the recipe.
+     */
+
+    public String getRecipeBody() {
+        String recipeBody = "";
+        for (DailyFoodRecord record : recipe) {
+            recipeBody = recipeBody + record.getRecipeEntry() + System.lineSeparator();
+        }
+        return recipeBody;
     }
 
     /**
@@ -70,8 +104,9 @@ public class RecipeManager {
      */
 
     public boolean buildRecipe(Profile profile, int num, String activityLevel) {
-        CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
-        double cap = command.getRecommendedCaloriesIntake(profile, activityLevel);
+        CheckRequiredCaloriesCommand command =
+                new CheckRequiredCaloriesCommand(MessageBank.CHECK_REQUIRED_CAL_COMMAND_PROMPT);
+        double cap = command.getRecommendedCaloriesIntake(profile, activityLevel) / 3;
 
         FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();
         int maxNum = foodInfo.getListSize();
