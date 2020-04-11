@@ -687,6 +687,30 @@ than using the mouse.
 1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
 folder in command terminal.  
 
+#### Adding an event
+
+- Prerequisite: None
+- Test case: `event add n/1 v/2 d/2000-01-01 t/0000`    
+  Expected: An event is added with name, venue and datetime.
+- Test case: `event add n/1 v/2`    
+  Expected: An event is added without datetime. A warning message about unknown 
+  datetime is shown.
+- Test case: `event add n/1 d/2000-01-01 t/0000`    
+  Expected: An event is added without venue.
+- Test case: `event add n/1`    
+  Expected: An event is added with only name. A warning message about unknown 
+  datetime is shown.
+- Test case: `event add v/2`    
+  Expected: An event is added with default name and no datetime. A warning message 
+  about unknown datetime is shown.
+- Test case: `event add d/2000-01-01 t/0000` (no name and venue)    
+  Expected: No event is added. Error details shown.
+- Test case: `event add n/` (only flag, no parameter)     
+  Expected: No event is added. Error details shown.
+- Other incorrect commands to try:  
+    - either date or time, but not both, is given
+    - adding something before flag
+
 #### Deleting an event
 
 - Prerequisites: At least one event must be added beforehand.
