@@ -353,7 +353,7 @@ public class Parser {
         String topicString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
 
         if (topicString.trim().isEmpty()) {
-            throw new EscException("The event topic is required");
+            throw new EscException("The event description is required.");
         }
 
         return topicString;
@@ -365,8 +365,7 @@ public class Parser {
      * @throws EscException if the event index is absent or non-integer.
      */
     private static int getEventIndex(String argument) throws EscException {
-        String argWithoutPrefixes = argument.split(EVENT_ARG)[1];
-        String eventIndexString = argWithoutPrefixes.replace(EVENT_ARG,"").trim();
+        String eventIndexString = argument.replace(EVENT_ARG,"").trim();
 
         if (eventIndexString.trim().isEmpty()) {
             throw new EscException("The event index is required.");
@@ -411,14 +410,21 @@ public class Parser {
         String dateRangeString = argument.replace(DATE_ARG,"").trim();
 
         if (dateRangeString.trim().isEmpty()) {
-            throw new EscException("The date range is required");
+            throw new EscException("The date range is required.");
         }
-
+        int dateRange;
         try {
-            return Integer.parseInt(dateRangeString);
+            dateRange = Integer.parseInt(dateRangeString.split(" ")[0]);
         } catch (NumberFormatException  e) {
             throw new EscException("The date range has to be an integer.");
         }
+
+        if (dateRange < 0) {
+            throw new EscException("The date range has to be a positive integer.");
+        } else if (dateRangeString.split(" ").length > 1) {
+            throw new EscException("Too many inputs. " + ShowUpcomingCommand.MESSAGE_USAGE);
+        }
+        return dateRange;
     }
 
     /**

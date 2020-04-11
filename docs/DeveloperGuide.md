@@ -28,6 +28,7 @@ The product also contains the following components:
   * Cards: Holds the data in the type of Card and relative operations
   * Subjects: Holds the data in the type of Subject and relative operations
   * Score: Holds the data in the type of Score and relative operations
+  * Event: Holds the data in the type of Event and relative operations
 * Logic:
   * Commands: Deals with user input and communicate CLI to relative methods
   * Parser: Convert CLI inputs into command keywords
@@ -73,8 +74,8 @@ The flow of the logic component is as follows:
   <br />Figure 4. Class diagram of Model Component  
 </p>
 
-<br />Finally, the Storage box, i.e. Storage class will handle reading and writing the content to files.
-<br />The Storage component saves the SubjectList objects in Serializable format and loads it back.
+<br />Finally, the Storage box, i.e. Storage class will handle reading and writing of the contents to a file.
+<br />The Storage component saves and loads the SubjectList objects using Serializable.
 <br />
 <p align="center">
   <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>
@@ -295,14 +296,29 @@ does not have to be tied to a pre-existing subject).
 The save/load process is facilitated with the `java.io.Serializable` interface, which converts the given object to a byte stream and back.
 Writing and reading from the file uses the `java.io.FileOutputStream` and `java.io.FileInputStream` classes respectively.
 
+The choice of the `java.io.Serializable` interface as a save/load function is because it maintains the object structure. 
+In addition, the implementation of the interface is easy and simple to understand as does not require much code, and does not require manipulation of raw data. 
+This ensures that it is easy to modify the Storage methods if other elements/objects are added to the structure.
+
 To serialize the object to be written to file via `java.io.FileOutputStream`, it makes use of the `java.io.ObjectOutputStream#writeObject` method.
 To deserialize the object after being read from file via `java.io.FileInputStream`, it uses the `java.io.ObjectInputStream#readObject()` method.
 
 The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
+
+`Storage#loadSubs()` is run on initialisation of the program. 
+It first checks if there is a preexisting saved file:
+* If there is a save file, the previous session is loaded into the program.
+* If there is no save file, a new save file is created and the default structure is initialised.
+
+`Storage#saveSubs()` is run after every command execution. 
+This ensures that if the program is force-exited or suddenly crashes, the last instruction has been saved.
+Once run, it will first check if the save file exists, in the event that the file has been deleted during the program. 
+If so, it will create the file, then the method will continue on to save the latest SubjectList structure into the save file. 
+
 <br />
 <p align="center">
   <img src="images/storage_sequence_uml.jpg" width="600" alt="Storage Sequence Diagram"/>
-  <br /> Figure 12. Sequence diagram of storage command  
+  <br /> Figure 12. Sequence diagram of Storage class  
 </p>
 
 ## Appendix A: Product Scope
