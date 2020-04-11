@@ -48,7 +48,7 @@ Setting up the project<br>
     2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
     3. Click OK
     4. Click Import Project
-> :information-source: IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
+> :information-source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
@@ -429,14 +429,14 @@ Given below are instructions to test the app manually.
    
     **Expected: The CLI application would be running with our logo: WhenFree.**
     
-    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
+    > :bulb: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
     
 2. Shutting down
     1. Type ```exit``` followed by kbd:[enter] key to exit.
     
     **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
 
-> :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
+    > :loudspeaker: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
@@ -444,7 +444,7 @@ Given below are instructions to test the app manually.
     
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
-    > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
+    > :bulb: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
      
     2. Test case: ```Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1``` <br>
        Test case: ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
@@ -465,11 +465,12 @@ Given below are instructions to test the app manually.
     3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
     4. Test case: ```schedule test_meeting startDate startTime endDate endTime``` <br>
     
-    > :information_source: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
+    
+    > :bulb: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     > :information_source: startTime and endTime should strictly be in 30minutes blocks, startDay and endDay should strictly follow the date given in ```timetable```  command.
                        
-    > :loudspeaker: TIP: Type ```schedule``` to see the required format.
+    > :bulb:Type ```schedule``` to see the required format.
              
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
@@ -518,11 +519,13 @@ Given below are instructions to test the app manually.
     2. The text file stores every meeting in each line, and it contains information of the meeting name, start/end date, start/end time.
     3. Expected: The stored meetings would be shown in the application via ```meetings``` command and is also reflected in the ```timetable``` command.
     
+    
     > :information_source: Note that you can't manually add meeting simply by editing ```/data/meeting_list.txt``` since the meetings generated would also be reflected in the main user's timetable. Editing it manually would corrupt the timetable schedule.
     
 3. Loading previously stored contacts.
     1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
     2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
     3. Expected: The stored contacts would be shown in application via ```contacts``.
+    
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
