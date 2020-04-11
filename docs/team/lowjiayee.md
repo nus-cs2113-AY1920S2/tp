@@ -4,7 +4,8 @@
 
 Pac is a event scheduler which helps to keep track of events. 
 Attendance and performance of students can be tracked under each event. 
-The user interacts with it using a Command Line Interface (CLI).
+The user interacts with it using a Command Line Interface (CLI). 
+It is written in Java, and has about 8k lines of code (LOC).
 
 # Summary of Contribution
 
@@ -58,6 +59,9 @@ as `add`, `delete`, `edit` and `list`.
 ### Documentation
 
 I have written in the User Guide and Developer Guide all the features/enhancements I have mentioned above.
+
+Besides that, I have also written descriptions and drawn diagrams for Architecture, 
+Command, Storage, Event (class) and Event (sequence).
 
 ### Community
 
