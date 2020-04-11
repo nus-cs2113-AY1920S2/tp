@@ -50,7 +50,48 @@ This guide is mainly for developers, designers and software engineers that are w
 
 ## 2. Setting Up
 
-Refer to the guide [here](SettingUp.md).
+### Prerequisites
+ 
+1.  JDK 11 or above
+ 
+2.  IntelliJ IDE
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>IntelliJ by default has Gradle and JavaFx plugins installed. Do not disable them. 
+    If you have disabled them, go to <code>File</code> > <code>Settings</code> > 
+    <code>Plugins</code> to re-enable them.</td>
+  </tr>
+ </table>
+ 
+### Setting up the project on your computer
+1.  Fork this repository, and clone the fork to your computer
+ 
+2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
+ 
+3.  Set up the correct JDK version for Gradle
+ 
+    1.  Click `Configure` &gt; `Project Defaults` &gt; `Project Structure`
+ 
+    2.  Click `New...` and find the directory of the JDK
+ 
+4.  Click on `Import Project`
+ 
+5.  Locate and select the `build.gradle` file, then click `OK`
+ 
+6.  Click `Open as Project`
+ 
+7.  Click `OK` to use the default settings provided
+ 
+### Verifying the Setup
+1.  In Intellij, run `seedu.happypills.HappyPills` and try a few commands.
+    * Commands that you can try to get familiar with HappyPills:
+        - `help`: list all the available commands in HappyPills
+        - `add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory`:
+        Add patient's information in HappyPills.
+        - `list patient`: list all the patients stored in HappyPills.
 
 ## 3. Design 
 
@@ -58,7 +99,7 @@ This section provides a high-level overview of HappyPills.
 
 ### 3.1. Architecture
 
-![Architecture diagram](images/DG/architecture/ArchitectureDiagram.png "Overview of the Application")
+<img src="images/DG/architecture/ArchitectureDiagram.png" alt="Overview of the Application" width="800">
 
 The **Architecture diagram** above explains the high-level design of HappyPills. 
 Given below is a quick overview of each component.
@@ -82,7 +123,7 @@ The rest of the application consists of four other components.
 The Sequence Diagram below shows how the components interact with each other for 
 the scenario where the user issues the command `delete patient NRIC`.  
 
-![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
+<img src="images/DG/architecture/ArchitectureSequence.png" alt="Architecture Sequence Diagram" width="800">
 
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
@@ -95,7 +136,7 @@ The architecture of HappyPills is broken down into seven main classes:
 
 ### 3.2. Ui Component
 
-![Ui Diagram](images/DG/architecture/UiClassDiagram.png)
+<img src="images/DG/architecture/UiClassDiagram.png" alt="Ui Class Diagram" width="800">
 
 The `Ui` component: 
 * Executes user commands using the command component.
@@ -120,7 +161,7 @@ the usage of the commands.
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/DG/architecture/LogicClassDiagram.png)
+<img src="images/DG/architecture/LogicClassDiagram.png" alt="Logic Class Diagram" width="800">
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -131,7 +172,7 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
+<img src="images/DG/architecture/ModelClassDiagram.png" alt="Model Class Diagram" width="800">
 
 The Model component consists of `Patient`, `PatientMap`, `PatientRecord`, `PatientRecordMap`, `Appointment` and
 `AppointmentMap`, which stores the user's data according to their input. 
@@ -233,7 +274,7 @@ The `add appt` will add the appointments into the appointment list.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td><p>The implementation of all the add commands in HappyPills utilises <code>similar implementation</code> 
+   <td><p>The implementation of all the add commands in HappyPills utilises <b>similar implementation</b> 
    with minor difference in the usage of tags when parsing the command.</p>
    The following section will elaborate more on the <code>add appt</code> command behaves which can be generalise to other 
    add commands.
@@ -246,7 +287,7 @@ The `AddAppointmentCommand` extends the `AppointmentCommand` which implements th
 
 The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
-![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
+<img src="images/DG/AddAppointmentSequenceDiagram.png" alt="Add Appt Sequence Diagram" width="800">
 
 1. The user enters `add appt /ic S1234566A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
 class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
@@ -322,7 +363,7 @@ The `list appt` will list all the existing appointments in the appointment list.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the list commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the list commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>list appt</code> command which can be generalise to other 
    list commands.
    </td>
@@ -333,7 +374,7 @@ The `ListAppointmentCommand` extends the `AppointmentCommand` which implements t
 
 The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
 
-![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png "list sequence diagram")
+<img src="images/DG/ListAppointmentSequenceDiagram.png" alt="List Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
 
@@ -391,7 +432,7 @@ The `find appt` will find all the appointments that the patient with the specifi
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the find/get commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the find/get commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>find pr NRIC INDEX</code> command which can be generalise 
    to other find/get commands.
    </td>
@@ -403,7 +444,7 @@ initialises the `nric` and `index` in its constructor.
 
 The following sequence diagram summarises how the `FindPatientRecordCommand` operation works: 
 
-![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
+<img src="images/DG/FindAppointmentSequenceDiagram.png" alt="Find Patient Record Sequence Diagram" width="800">
 
 The following steps below is an example of how the `FindPatientRecordCommand` class behaves: 
 
@@ -438,7 +479,7 @@ The edit commands used in HappyPills are listed as follows:
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Users can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>.</td>
+   <td> Users can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>.</td>
  </tr>
 </table>
 
@@ -453,7 +494,7 @@ The `edit appt` will edit a single field in the Appointment object with the give
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the edit commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the edit commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>edit pr NRIC INDEX</code> command which can be generalise 
    to other edit commands.
    </td>
@@ -465,7 +506,7 @@ The `EditPatientRecordCommand` extends the `PatientRecordCommand` which implemen
 
 The following sequence diagram summarises how the `EditPatientRecordCommand` operation works: 
 
-![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
+<img src="images/DG/EditAppointmentSequenceDiagram.png" alt="Edit Patient Record Sequence Diagram" width="800">
 
 The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
 
@@ -556,7 +597,7 @@ The `delete appt` will delete a Appointment object with the given NRIC and apptI
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the delete commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the delete commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>delete pr NRIC INDEX</code> command which can be generalise 
    to other delete commands.
    </td>
@@ -568,7 +609,7 @@ the `nric` and `index` in its constructor.
 
 The following sequence diagram summarises how the `DeletePatientRecordCommand` operation works: 
 
-![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
+<img src="images/DG/DeleteAppointmentSequenceDiagram.png" alt="Delete Patient Record Sequence Diagram" width="800">
 
 The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
 
@@ -616,7 +657,7 @@ The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements t
 
 The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
 
-![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
+<img src="images/DG/DoneAppointmentSequenceDiagram.png" alt="Done Appt Sequence Diagram" width="800">
 
 The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
 
@@ -679,7 +720,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
   the object. It is also implemented in the exitCommand for all the objects, to ensure a final save of the current state
   of the program.
   
-  ![writing](images/DG/STORAGE/StorageWriteAll.png)
+  <img src="images/DG/STORAGE/StorageWriteAll.png" alt="Writing" width="800">
  
  *addSingleItemToFile*
  
@@ -693,7 +734,7 @@ closed in the terminal. This is achieved by storing all relevant information in 
  This provides improved performance for add commands as compared to using writeAllToFile(), as less strings need 
  to be retrieved and formatted.
  
- ![saving](images/DG/STORAGE/StorageSave.png)
+ <img src="images/DG/STORAGE/StorageSave.png" alt="Saving" width="800">
  
  *loading and parsing file content to HappyPills*
  
@@ -707,7 +748,7 @@ For illustration purposes, only the load and parse for patient is called. The pr
 5. Step 2 - 4  is repeated if there is a next line in the content of the file.
 4. `loadPatient` then returns the whole patientMap to `HappyPills`.
 
- ![loading](images/DG/STORAGE/StorageLoadPatient.png)
+ <img src="images/DG/STORAGE/StorageLoadPatient.png" alt="Loading" width="800">
  
 #### Design Considerations
 
@@ -758,7 +799,7 @@ The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual fie
 
 *Passing the prompts*
 
-![PromptSequenceDiagram](images/DG/PromptSequenceDiagram.png)
+ <img src="images/DG/PromptSequenceDiagram.png" alt="Prompt Sequence Diagram" width="800">
 
 Given below is an example scenario where the user command has missing compulsory fields
 
@@ -792,7 +833,32 @@ Alternative 1 was chosen for our current implementation because it decrease coup
 
 ## 5. Testing
 
-Refer to the guide [here](Testing.md).
+### Running Tests
+There are two ways to run tests.
+
+#### Method 1 : Using IntelliJ JUnit Tests
+- To run all test, right-click on `src/test/java` folder and choose `Run 'Tests in HappyPills'`
+- To run a subset of tests, you can right-click on a test package, test class, or a test and choose `Run 'TEST'`.
+ 
+#### Method 2 : Using Gradle
+- To run all test using Gradle: Open a terminal and run the command `gradlew clean test` 
+(Mac/Linux: `./gradlew clean test`)  
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#8505; </span></td>  
+     <td> See <a href="https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/tutorials/gradleTutorial.md">Gradle Tutorial</a> 
+     for more info on how to run tests using Gradle. </td>
+     </td>
+   </tr>
+  </table>
+  
+### Using Input-Output Tests
+- Right-click on `text-ui-test` folder and choose `Open in terminal` 
+- Enters `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) in the terminal to run the script.
+- This will run HappyPills with the commands given in the `input.txt` and compare its output in the `ACTUAL.txt` 
+with the `EXPECTED.txt`.
 
 ## 6. Useful links
 
@@ -1350,8 +1416,6 @@ Given below are instructions to test the application manually.
     
     5. **Test case:** `find patient S987G`
     Expected: An error message will be shown indicating invalid NRIC.  
-  
-
 
 ## Useful links:
 * [User Guide](UserGuide.md)
