@@ -49,7 +49,7 @@ public class SubjectList {
             subjectDuplicateRemind(subject);
         } else {
             subjects.add(subject);
-            System.out.println(subject.getSubject() + " has been added.");
+            System.out.println(subject.getSubject() + " has been added.\n");
             listSubjects(subjects);
         }
     }

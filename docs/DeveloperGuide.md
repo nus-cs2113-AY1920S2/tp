@@ -21,105 +21,105 @@
 
 The Duke class is the main class of the product. It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes storage method where necessary.	
+* At shut down: Shuts down the components.	
 
 The product also contains the following components:
-* Model:
-  * Cards: Holds the data in the type of Card and relative operations
-  * Subjects: Holds the data in the type of Subject and relative operations
-  * Score: Holds the data in the type of Score and relative operations
-  * Event: Holds the data in the type of Event and relative operations
-* Logic:
-  * Commands: Deals with user input and communicate CLI to relative methods
-  * Parser: Convert CLI inputs into command keywords
-* Storage:
-  * Manages the data stored in the application.
-* UI:
+* Model
+  * Cards: Holds the data in the type of Card and relative operations.
+  * Subjects: Holds the data in the type of Subject and relative operations.
+  * Score: Holds the data in the type of Score and relative operations.
+  * Event: Holds the data in the type of Event and relative operations.
+* Logic
+  * Commands: Deals with user input and communicate CLI to relative methods.
+  * Parser: Convert CLI inputs into command keywords.
+* Storage
+  * Deals with data management of the data entered by the user.
+* UI
   * Deals with the input from the user and the output to the user.
-* Quiz:
+* Quiz
   * Deals with selection of quiz questions and update of scores.  
-* Exceptions: 
-  * Deals with illegal inputs
+* Exceptions
+  * Deals with illegal inputs.
 
 
 In these components, cards, subjects and events have similar structure. All of them contain a Card/Subject/Event class and CardList/SubjectList/EventList class.
-Duke, along with all command class and Parser form the logic box of the product.
+Duke, along with all command classes and Parser, form the Logic box of the product.
 <br />
 <p align="center">
   <img src="images/logicuml.jpg" width="600" alt="Logic Class Diagram"/>
-  <br />Figure 2. Class diagram of Logic Component  
+  <br />Figure 2. Class diagram of Logic component  
 </p>
 
-The flow of the logic component is as follows:
-1) Duke uses the Parser class to parse the command
-2) The corresponding Command object is created and passed to Duke
-3) The Command object is then executed by Duke  
+The flow of the Logic component is as follows:
+1) Duke uses the Parser class to parse the command.
+2) The corresponding Command object is created and passed to Duke.
+3) The Command object is then executed by Duke.
 <br />
 <p align="center">
   <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>
-  <br />Figure 3. Sequence diagram of Logic Component  
+  <br />Figure 3. Sequence diagram of Logic component  
 </p>
 
 <br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, Event, EventList, ScoreList.
 
-- The SubjectList class contains an array the subjects and an eventlist
-- The Subject class contains details such as the subject name, a scorelist and a cardlist.
+- The SubjectList class contains an array the subjects and an eventList
+- The Subject class contains details such as the subject name, a scoreList and a cardList.
 - The EventList class contains an array of events.
-- The Event class contains information about the upcoming events.
+- The Event class contains information about upcoming events.
 - The ScoreList class contains an array of past scores of the quizzes which the user have completed.
 - The CardList class contains an array of cards.
 - The Card class contains both a question and an answer to the question.  
 <br />
 <p align="center">
-  <img src="images/modeluml.jpeg" width="600" alt="Model class Diagram"/>
-  <br />Figure 4. Class diagram of Model Component  
+  <img src="images/modeluml.png" width="600" alt="Model Class Diagram"/>
+  <br />Figure 4. Class diagram of Model component  
 </p>
 
 <br />Finally, the Storage box, i.e. Storage class will handle reading and writing of the contents to a file.
-<br />The Storage component saves and loads the SubjectList objects using Serializable.
+<br />The Storage component saves and loads the SubjectList objects using the Serializable interface.
 <br />
 <p align="center">
   <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>
-  <br />Figure 5. Class diagram of Storage Component  
+  <br />Figure 5. Class diagram of Storage component  
 </p>
 
 ## 2. Implementation
 ### 2.1. Subject Feature
 #### 2.1.1. Proposed Implementation
-The subject feature is an extension to the existing flashcard feature which allows users to categorise their
+The subject feature is an extension to the existing flashcard feature, which allows users to categorise their
 flashcards. This helps users to search for their flashcards more efficiently and also users to quiz by subject. The list of user's subjects are stored inside the SubjectList. It implements the following operations:
 
 - ``SubjectList#addSubject()`` - Adds a new subject to the subject list.
 - ``SubjectList#removeSubject()`` - Removes an existing subject from the subject list.
 - ``SubjectList#listSubjects()`` - List the subjects in the subject list.
 
-Step 1. Before the user decides to add a flashcard, he/she can create a subject to store the flashcard using
+Step 1. Before the user decides to add a flashcard, he/she must first create a subject to store the flashcard, using
 the command ``addsubject s/SUBJECTNAME``.
 The following diagram describes how the add subject operation works:
 
 <br />
 <p align="center">
   <img src="images/addsubject_sequence_diagram.jpeg" width="600" alt="Addsubject Sequence Diagram"/>
-  <br />Figure 6. Sequence diagram for addsubject command  
+  <br />Figure 6. Sequence diagram for 'addsubject' command  
 </p>
 
 Step 2. The user executes the command ``listsubject`` to view the subjects currently stored in the application.
 
-Step 3. Once the user has chosen a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
+Step 3. Once the user has decided on a subject, he/she can execute the command ``addcard s/SUBJECTINDEX q/QUESTION a/ANSWER``
 to add a flashcard into the subject. 
 
 The following diagram describes how the add card operation works:
 <br />
 <p align="center">
   <img src="images/addcard_sequence_uml.jpeg" width="600" alt="Addcard Sequence Diagram"/>
-  <br />Figure 7. Sequence diagram of addcard command.  
+  <br />Figure 7. Sequence diagram of 'addcard' command.  
 </p>
 
 #### 2.1.2. Design Considerations
-##### Aspect: How user can add a flashcard into a subject
+##### Aspect: How a user can add a flashcard into a subject
 - **Alternative 1 (current choice)**: Include the subject index in the command.
   - Pros: 
-    - Simple implementation without involving states
+    - Simple implementation without involving states.
   - Cons: 
     - The user will have to list the subjects first to determine the subject index.
   
@@ -129,12 +129,12 @@ The following diagram describes how the add card operation works:
   - Cons:
     - Multiple states will be involved.
     - The application will become more complex as different states use different commands.
-    - The application can also become more difficult to use as users can be unclear about the states.
+    - The application can also become more difficult to use as users may be unclear about the states.
 
 ### 2.2. Quiz Feature
 #### 2.2.1. Implementation
-The quiz feature now incorporates random testing, builds upon the subject feature to allows users to set how many questions to quiz for a selected subject. 
-This helps users to quiz by subject, and get a score at the end of each quiz. 
+The quiz feature incorporates random testing, and builds upon the subject feature to allow users to set how many questions to quiz for a selected subject. 
+This allows users to quiz by subject, and get a score at the end of each quiz. 
 
 As of the current version, the quiz feature does not support automatic marking, and the user will have to mark their 
 own answers for each question. Automatic marking may be added in future versions.
@@ -143,7 +143,7 @@ The quiz feature implements the following operations:
 
 - ``Quiz#quizQuestion()`` - Outputs a random question to the user that has not been tested before in this quiz session.
 - ``Quiz#quizNext()`` - Retrieves a random question from the available questions for that subject.
-- ``Quiz#markCorrectness()`` - Marks user answer as correct or wrong based on user's judgement.
+- ``Quiz#markCorrectness()`` - Marks the user's answer as correct or wrong based on user's judgement.
 
 Given below is an example usage scenario and how the quiz mechanism behaves at each step.
 
@@ -159,7 +159,7 @@ The following diagram describes how the quiz operation works:
 <br />
 <p align="center">
   <img src="images/quiz_sequence_uml.png" width="600" alt="Quiz Sequence Diagram"/>
-  <br />Figure 8. Sequence diagram of quiz command.  
+  <br />Figure 8. Sequence diagram of 'quiz' command.  
 </p>
 
 Step 3: The quiz will end upon completion of the specified number of questions, or by stopping the quiz using the
@@ -218,31 +218,31 @@ The following diagram describes how the score operation works:
 <br />
 <p align="center">
   <img src="images/scores_sequence_uml.png" width="600" alt="Score Sequence Diagram"/>
-  <br />Figure 9. Sequence diagram of score command  
+  <br />Figure 9. Sequence diagram of 'score' command  
 </p>
 
 #### 2.3.2. Design Considerations
 ##### Aspect: How to format the score history shown to the user
-- **Alternative 1 (current choice)**: Show all scores in chronological order and in percentages of number of correct answers / number of
- questions asked. Also show the average percentage score of all the scores.
+- **Alternative 1 (current choice)**: Show all scores in chronological order, and in the percentage of number of correct answers divided by the number of
+ questions asked (i.e. mathematically: Correct answers/Asked questions). Also show the average percentage score of all the scores.
   - Pros: 
-    - Users can easily keep track of their progress and if they have been improving.
+    - Users can easily keep track of their progress and see if they have been improving.
     - A percentage score allows users to compare quiz results even if a different amount of questions were chosen to be quizzed in the quiz sessions.
   - Cons: 
     - More complex implementation.
-    - If the user attempts the quiz many times, showing every quiz score may clutter up the ui, and might be too much
+    - If the user attempts the quiz many times, showing every quiz score may clutter the UI, and might be too much
     information for the user to take in.
   
 - **Alternative 2**: Show just the average score, and number of attempts taken.
   - Pros:
-    - Clean ui, no clutter.
+    - Clean UI, no clutter.
     - Simple implementation.
   - Cons:
     - User will be unable to track his progress.
     
 ### 2.4. Event Management Feature
 #### 2.4.1 Implementation
-The event feature builds on the quiz feature by adding another aid to the user when preparing for an exam/event.
+The event feature builds on the program feature by aiding the user when preparing for an exam or keeping track of events.
 This feature allows the user to add and keep track of upcoming events, such as exams/tests. It implements the following operations:
 
 - ``SubjectList#addEvent()`` - Adds a new event.
@@ -260,7 +260,7 @@ The following diagram describes how the add event operation works:
 <br />
 <p align="center">
   <img src="images/addevent_sequence_uml.png" width="600" alt="Addevent Sequence Diagram"/>
-  <br />Figure 10. Sequence diagram of addevent command  
+  <br />Figure 10. Sequence diagram of 'addevent' command  
 </p>
 
 Step 2. The user executes the command ``listevent`` to view the events currently stored in the application.
@@ -273,7 +273,7 @@ The following diagram describes how the show upcoming operation works:
 <br />
 <p align="center">
   <img src="images/showupcoming_sequence_uml.png" width="600" alt="Showupcoming Sequence Diagram"/>
-  <br /> Figure 11. Sequence diagram of showupcoming command  
+  <br /> Figure 11. Sequence diagram of 'showupcoming' command  
 </p>
 
 #### 2.4.2. Design Considerations
@@ -304,7 +304,10 @@ This ensures that it is easy to modify the Storage methods if other elements/obj
 To serialize the object to be written to file via `java.io.FileOutputStream`, it makes use of the `java.io.ObjectOutputStream#writeObject` method.
 To deserialize the object after being read from file via `java.io.FileInputStream`, it uses the `java.io.ObjectInputStream#readObject()` method.
 
-The reading and writing functions can be found in the `Storage#loadSubs()` and `Storage#saveSubs()` methods respectively.
+The Storage feature implements the following operations:
+* `Storage#loadSubs()` - Reads the preexisting session from file.
+* `Storage#saveSubs()` - Writes and saves the current session to file.
+These operations are executed automatically by the program and do not require user interaction.
 
 `Storage#loadSubs()` is run on initialisation of the program. 
 It first checks if there is a preexisting saved file:
@@ -325,10 +328,13 @@ If so, it will create the file, then the method will continue on to save the lat
 ## Appendix A: Product Scope
 ### Target User Profile
 The product is intended for students preparing for exams. Students can store practice question and model answers in the product.
-Also, the product offers students to quiz themselves to practice for exams
+Also, the product offers students to quiz themselves to practice for exams.
 
 ### Value Proposition
-The product aims to provide students with more convenient way of doing revision. By using the product students can categorize questions into different subjects and practice more effectively.
+The product aims to provide students with more convenient way of doing revision. 
+By using the product students can categorize questions into different subjects and practice more effectively.
+As such, in release v2.1, after adding the cards the user is unable to view the answers when listing cards.
+This feature may be improved on in later releases. 
 
 ## Appendix B: User Stories
 

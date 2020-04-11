@@ -36,6 +36,7 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 * Create & update wiki page of task breakdown
   * [https://github.com/AY1920S2-CS2113-T15-2/tp/wiki](https://github.com/AY1920S2-CS2113-T15-2/tp/wiki)
 * Maintain ReadMe / AboutUs pages
+* Review UG/DG
 * Grammar/spellchecker
 
 ### Review / Mentoring Contributions

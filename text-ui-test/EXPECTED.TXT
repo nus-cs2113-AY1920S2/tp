@@ -10,16 +10,76 @@ ______________________
 Enter command: 
 [Command entered: addsubject s/biology]
 biology has been added.
+
 Here is the list of subjects.
 1. biology
 ______________________
 Enter command: 
 [Command entered: addcard s/1 q/question a/answer]
-Q:question
-A:answer
+Q: question
+A: answer
 A new card has been added to subject {biology}
+
 Here is the list of questions.
 1. question
+______________________
+Enter command: 
+[Command entered: addcard s/1 q/question2 a/answer2]
+Q: question2
+A: answer2
+A new card has been added to subject {biology}
+
+Here is the list of questions.
+1. question
+2. question2
+______________________
+Enter command: 
+[Command entered: listcard s/1]
+Here is the list of questions.
+1. question
+2. question2
+______________________
+Enter command: 
+[Command entered: deletecard s/1 c/1]
+The card [Q: question A: answer] has been deleted
+______________________
+Enter command: 
+[Command entered: editcard s/1 c/1 q/newQuestion a/newAnswer]
+The selected card has been edited
+Q: newQuestion / A: newQuestion
+______________________
+Enter command: 
+[Command entered: addevent e/CS2113T exam d/2/5/2020]
+CS2113T exam has been added.
+
+Here is the list of events.
+1. CS2113T exam: 2020-05-02
+______________________
+Enter command: 
+[Command entered: addevent e/GE4214 final proj presentation d/16-04-2020]
+GE4214 final proj presentation has been added.
+
+Here is the list of events.
+1. CS2113T exam: 2020-05-02
+2. GE4214 final proj presentation: 2020-04-16
+______________________
+Enter command: 
+[Command entered: listevent]
+Here is the list of events.
+1. CS2113T exam: 2020-05-02
+2. GE4214 final proj presentation: 2020-04-16
+______________________
+Enter command: 
+[Command entered: showupcoming d/30]
+Here is the list of upcoming events within 30 day(s).
+1. GE4214 final proj presentation: 2020-04-16
+2. CS2113T exam: 2020-05-02
+______________________
+Enter command: 
+[Command entered: deleteevent e/1]
+CS2113T exam has been removed.
+Here is the list of events.
+1. GE4214 final proj presentation: 2020-04-16
 ______________________
 Enter command: 
 [Command entered: exit]

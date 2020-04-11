@@ -31,7 +31,7 @@ public class EventList {
      */
     public void addEvent(Event event) throws EscException {
         events.add(event);
-        System.out.println(event.getTopic() + " has been added.");
+        System.out.println(event.getTopic() + " has been added.\n");
         listUpcoming();
     }
 

@@ -1,3 +1,12 @@
 addsubject s/biology
 addcard s/1 q/question a/answer
+addcard s/1 q/question2 a/answer2
+listcard s/1
+deletecard s/1 c/1
+editcard s/1 c/1 q/newQuestion a/newAnswer
+addevent e/CS2113T exam d/2/5/2020
+addevent e/GE4214 final proj presentation d/16-04-2020
+listevent
+showupcoming d/30
+deleteevent e/1
 exit
