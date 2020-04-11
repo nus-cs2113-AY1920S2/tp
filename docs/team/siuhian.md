@@ -40,7 +40,7 @@ Users can set tags and goals for their entries, ultimately being able to keep tr
 * Edited the command summary and usage section to ensure consistency with the features under my implementation.
 
 ### Contributions to the DG
-* Explained the implementation of the start feature (Under Section 3.1) using a mixture of sequence diagrams with class diagrams
+* Explained the implementation of the start feature (Under Section 3.1) using a mixture of sequence diagrams with class diagrams.
 * Explained the implementation of the clean feature (Under Section 3.2) using a mixture of sequence diagram with class diagrams.
 
 ### Contributions to team-based tasks
