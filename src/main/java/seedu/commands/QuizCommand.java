@@ -30,15 +30,6 @@ public class QuizCommand extends Command {
     @Override
     public void execute(SubjectList subjectList) throws EscException {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
-        int numQuestions = chosenSubject.getCardList().size();
-        if (numToQuiz > numQuestions) {
-            System.out.println("Insufficient stored questions for this subject.");
-            System.out.println("Setting number of questions to all stored questions (" + numQuestions + " questions).");
-            Quiz.quizQuestion(chosenSubject, numQuestions);
-        } else if (numToQuiz == -1) {
-            Quiz.quizQuestion(chosenSubject, numQuestions);
-        } else {
-            Quiz.quizQuestion(chosenSubject, numToQuiz);
-        }
+        Quiz.quizQuestion(chosenSubject, numToQuiz);
     }
 }
