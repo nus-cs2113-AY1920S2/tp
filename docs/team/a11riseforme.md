@@ -10,7 +10,7 @@
 
 ## Summary of Contributions
 
-### **Code contributed**: \[[Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=a11riseforme)\]
+### Code contributed: \[[Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=a11riseforme)\]
 
 ### Major enhancement:
 
@@ -62,11 +62,11 @@ Managed releases `v1.0` ,  `v2.0` (2 releases) on GitHub
 
 #### Contributions to team-based tasks :
 
-- Modify the code  to make sure it passes CI on GitHub regularly.
+- Fix the code  to make sure it passes CI on GitHub regularly.
 - Handled part of the issues/bugs raised during the PE-Dry run.
 
 #### Community:
 
 -   Reviewed other course member's tP and reported 6 bugs during the PE-Dry run. -- [#1](https://github.com/A11riseforme/ped/issues/1) [#2](https://github.com/A11riseforme/ped/issues/2) [#3](https://github.com/A11riseforme/ped/issues/3) [#4](https://github.com/A11riseforme/ped/issues/4) [#5](https://github.com/A11riseforme/ped/issues/5) [#6](https://github.com/A11riseforme/ped/issues/6) 
--   Reported bugs on the course website. -- [#3](https://github.com/nus-cs2113-AY1920S2/forum/issues/3)
--   Helped other course member on the forum. -- [#10](https://github.com/nus-cs2113-AY1920S2/forum/issues/10#issuecomment-576370349) [#16](https://github.com/nus-cs2113-AY1920S2/forum/issues/16#issuecomment-578772535) [#17](https://github.com/nus-cs2113-AY1920S2/forum/issues/17#issuecomment-579072279) [#24](https://github.com/nus-cs2113-AY1920S2/forum/issues/24#issuecomment-581422244) [#41](https://github.com/nus-cs2113-AY1920S2/forum/issues/41#issuecomment-591348850) [#51](https://github.com/nus-cs2113-AY1920S2/forum/issues/51#issuecomment-592957231) [#106](https://github.com/nus-cs2113-AY1920S2/forum/issues/106#issuecomment-612346406)
+-   Reported 8 bugs on the course website. -- [#3](https://github.com/nus-cs2113-AY1920S2/forum/issues/3)
+-   Helped other course member on the forum. -- [#10](https://github.com/nus-cs2113-AY1920S2/forum/issues/10#issuecomment-576370349) [#16](https://github.com/nus-cs2113-AY1920S2/forum/issues/16#issuecomment-578772535) [#17](https://github.com/nus-cs2113-AY1920S2/forum/issues/17#issuecomment-579072279) [#24](https://github.com/nus-cs2113-AY1920S2/forum/issues/24#issuecomment-581422244) [#41](https://github.com/nus-cs2113-AY1920S2/forum/issues/41#issuecomment-591348850) [#51](https://github.com/nus-cs2113-AY1920S2/forum/issues/51#issuecomment-592957231) [#106](https://github.com/nus-cs2113-AY1920S2/forum/issues/106#issuecomment-612346406) [#110](https://github.com/nus-cs2113-AY1920S2/forum/issues/110#issuecomment-612439623)
