@@ -209,10 +209,6 @@ ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisit
 
 
 Please input your command:
-Okay! I have added this module to your semester's module list:
-ID: ACC1004 | Module Credit: 4 | Sem: Y3S1
-
-
 Please input your command:
 Okay! Here is your module plan:
 Y2S1
@@ -224,7 +220,7 @@ Y2S2
 2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[x] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
@@ -248,7 +244,7 @@ Y3S1
 
 Please input your command:
 You have completed this amount of credits:
-4
+8
 
 
 Please input your command:
