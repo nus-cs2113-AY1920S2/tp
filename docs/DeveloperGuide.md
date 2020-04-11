@@ -805,7 +805,7 @@ Refer to the guide [here](Testing.md).
 
 ## 6. Useful links
 
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)
 
 ## Appendices 
@@ -1363,5 +1363,5 @@ Given below are instructions to test the application manually.
 
 
 ## Useful links:
-* [User Guide](UserGuide.md)
+* [User Guide](UserGuide-Main.md)
 * [About Us](AboutUs.md)

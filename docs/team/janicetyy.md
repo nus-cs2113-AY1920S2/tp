@@ -89,7 +89,7 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write documentation targeting end-users.
 
 [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Appointment.md)
+[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 

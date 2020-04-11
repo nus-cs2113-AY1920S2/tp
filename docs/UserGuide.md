@@ -7,10 +7,29 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
 - [3. Features](#3-features)
     * [3.1. General Commands](#31-general-commands)
         + [3.1.1. View help: `help`](#311-view-help-help)
-        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)        
-    * [3.2. General Patient Information Commands](UserGuide-Patient.md) 
-    * [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
-    * [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
+        + [3.1.2. Exit program: `exit`](#312-exit-program-exit)
+        
+    * [3.2. General Patient Information](#32-general-patient-information)
+        + [3.2.1. Add Patient: `add patient`](#321-add-patient-add-patient)
+        + [3.2.2. Edit Patient: `edit patient`](#322-edit-patient-edit-patient)
+        + [3.2.3. Delete Patient: `delete patient`](#323-delete-patient-delete-patient)
+        + [3.2.4. List All Patients: `list patient`](#324-list-all-patients-list-patient)
+        + [3.2.5. Retrieve a Patient's Information: `get patient`](#325-retrieve-a-patients-information-get-patient)
+        
+    * [3.3. Patient Medical Records](#33-patient-medical-records)
+        + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
+        + [3.3.2. Edit Patient Records : `edit pr`](#332-list-patient-records-list-pr)
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-find-patient-records-find-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-edit-patient-records-edit-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-delete-patient-records-delete-pr)
+    
+    * [3.4. Appointments](#34-appointment-scheduling-commands)
+        + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
+        + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
+        + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
+        + [3.4.4. Mark Appointment as Done: `done appt`](#344-mark-appointment-as-done-done-appt)
+        + [3.4.5. List All Appointments: `list appt`](#345-list-all-appointments-list-appt)
+        + [3.4.6. Find Patient's Appointments: `find appt`](#346-find-patients-appointments-find-appt)
 - [4. Command Summary](#4-command-summary)
 - [5. Useful Links](#5-useful-links)
 
@@ -127,11 +146,489 @@ Format: `exit`
 
  [&#8593; Return to Top](#table-of-content)
 
-### [3.2. General Patient Information Commands](UserGuide-Patient.md) 
+### 3.2. General Patient Information
 
-### [3.3. Patient Medical Records Commands](UserGuide-Records.md)    
+HappyPills can help users to manage their patients' information easily. 
 
-### [3.4. Appointment Scheduling Commands](UserGuide-Appointment.md)
+#### 3.2.1. Add Patient: `add patient`
+
+This feature allows you to add more patients into the existing patients' list.
+ 
+HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+you will only need to fill in the couple of fields you missed.
+You can also add a new patient with the specified parameters in any order.
+
+###### Format:   
+
+    add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
+    
+**Example:**
+
+    add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
+
+>***Expected output:***
+>
+>![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Output")
+>
+> 
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>HappyPills will prompt you for any missing inputs that are necessary.</td>
+ </tr>
+</table>
+
+Enter `/p 91265432` to add the missing field.
+
+> ***Expected output:***
+>
+>   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Output")
+>
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> Entering <code>n</code> will abort the command and HappyPills will not save the patients' information.</td>
+    <!--This is a comment. Patient's information will be discarded if <code>n</code> is entered.-->
+ </tr>
+</table>
+
+Enter `y` to confirm.
+
+> ***Expected output:***
+>    
+>  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Output")
+
+ [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.2.2. Edit Patient: `edit patient`
+
+Edit information of the patient with the specified NRIC. 
+
+##### Format: 
+ 
+    edit patient NRIC /n<NAME> 
+                      /p<PHONE_NUMBER> 
+                      /dob<DOB> 
+                      /b<BLOOD_TYPE> 
+                      /a<ALLERGIES> 
+                      /rm<REMARKS>
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <code>no spaces</code> between the tag and the edited information.</td>
+ </tr>
+</table>
+
+**Example:**
+
+    edit patient S9876543F /p99112233
+
+> ***Expected output:***
+>
+> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Output")
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> NRIC <code>cannot</code> be edited because it is used to uniquely identify the patient.</td>
+ </tr>
+</table>
+
+ [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.2.3. Delete Patient: `delete patient`
+
+Delete a patient as specified by the NRIC. 
+
+##### Format: 
+
+    delete patient NRIC
+    
+**Example:**
+
+    delete patient S1234567F
+
+> ***Expected output:***
+>
+> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Output")
+>
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> HappyPills will <code>prompt for confirmation</code> before deleting patient in the patient list. </td>
+ </tr>
+</table>
+
+Enter `y` to confirm.
+
+> ***Expected output:***
+>    
+>  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Output")
+
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> Upon <code>successful deletion</code>, patient's information will not be able to be retrieved again. </td>
+ </tr>
+</table>
+
+ [&#8593; Return to Top](#table-of-content)
+
+#### 3.2.4. List All Patients: `list patient`
+
+Displays all the patients in the patient list. 
+
+##### Format: 
+
+    list patient
+    
+> ***Expected output:***
+>
+> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Output")  
+
+ [&#8593; Return to Top](#table-of-content)
+
+#### 3.2.5. Retrieve a Patient's Information: `get patient`
+
+Retrieve details of the patient with the specified NRIC.
+
+##### Format: 
+
+    get patient NRIC
+    
+**Example:**
+
+    get patient T9999999N
+    
+> ***Expected output:***
+>
+> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Output")
+
+ [&#8593; Return to Top](#table-of-content)
+ 
+### 3.3. Patient Medical Records 
+ 
+#### 3.3.1. Add Patient Records: `add pr`
+ 
+ Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
+ 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#9888; </span></td>
+    <td> Patient's records can only be added if the patient information exists in the database. </td>
+  </tr>
+ </table>
+ 
+##### Format:
+ 
+     add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
+     
+ **Example:**
+     
+     add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22
+ 
+ > ***Expected output:***
+ >
+ > ![addPR](images/UG/PR/AddPR.PNG "addPR")
+ >
+ 
+ > Enter `y` to confirm.
+ 
+ > ***Expected output:***
+ >
+ > ![cfmAddPR](images/UG/PR/addprcfm.PNG "cfmAddPR")
+ >
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.3.2. List Patient Records: `list pr`
+ 
+ Displays all  patient records for the patient using his/her NRIC. Patient's records will be listed with their respective 
+ index which is needed for [find pr](#333-find-patient-records-find-pr), 
+ [edit pr](#334-edit-patient-records-edit-pr) and [delete pr](#335-delete-patient-records-delete-pr) commands.
+ 
+##### Format:
+ 
+     list pr NRIC
+ 
+ **Example:**
+     
+     list pr S9876543F
+     
+ > ***Expected output:***
+ >
+ > ![listPR](images/UG/PR/listpr.PNG "list PR output")
+ >
+ 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the patient have no past medical records. The message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+ > ***Expected output:***
+ >
+ > ![listPR not found](images/UG/PR/listprfail.PNG "list PR not found")
+ >
+ 
+  [&#8593; Return to Top](#table-of-content)
+  
+   
+#### 3.3.3. Find Patient Records: `find pr`
+ 
+ Display detailed information for that particular patient's visit using the NRIC and index of the patient's records 
+ which can obtained from the [list pr](#332-list-patient-records-list-pr) command. 
+ 
+##### Format:
+ 
+     find pr NRIC INDEX
+ 
+ **Example:**
+ 
+     find pr S9876543F 2
+ 
+ > ***Expected output:***
+ >
+ >
+ >![findPR](images/UG/PR/findpr.PNG "find PR output")
+ 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If no record is found with the given NRIC, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+ > ***Expected output:***
+ >
+ >
+ >![PR not found](images/UG/PR/prEmpty.PNG "PR not found")
+ 
+  [&#8593; Return to Top](#table-of-content)
+  
+#### 3.3.4. Edit Patient Records: `edit pr`
+ 
+ Edit patient's past medical record using the index of the patient's records 
+ which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
+ 
+##### Format:
+ 
+     edit pr NRIC INDEX /sym<SYMPTOMS> 
+                        /diag<DIAGNOSIS> 
+                        /d<DATE> 
+                        /t<TIME>
+                        
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#9888; </span></td>
+    <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
+    There should <code>no spaces</code> between the tag and the edited information.</td>
+  </tr>
+ </table>
+     
+ **Example:**
+ 
+     edit pr S9876543F 2 /t12:00
+ 
+ > ***Expected output:***
+ >
+ > ![EditPR](images/UG/PR/editprsuccess.PNG "edit pr output")
+ 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the record is not found with the given input. The message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+ > ***Expected output:***
+ >
+ >
+ >![prEmpty](images/UG/PR/prEmpty.PNG "help output")
+ 
+  [&#8593; Return to Top](#table-of-content)
+  
+#### 3.3.5. Delete Patient Records: `delete pr`
+ 
+ Delete patient's medical records based on the given NRIC and the index of the patient's records 
+ which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
+ 
+##### Format:
+ 
+     delete pr NRIC INDEX
+ 
+ **Example:**
+ 
+     delete pr S9876543F 1
+ 
+ > ***Expected output:***
+ >
+ > ![Delete PR](images/UG/PR/deleteprsuccess.PNG "Delete PR output")
+ 
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the record is not found with the given input. The message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+ > ***Expected output:***
+ >
+ >![PR not found](images/UG/PR/prEmpty.PNG "Delete PR not found")
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+### 3.4. Appointment Scheduling Commands 
+ 
+ HappyPills helps to store appointment schedules. 
+ 
+####3.4.1. Add Appointment: `add appt`
+ 
+ Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
+ patient automatically.
+  
+##### Format:
+  
+      add appt /ic NRIC /d DATE /t TIME /r REASON
+          
+  **Example:**
+      
+     add appt /ic S1234567F /d 01/02/2020 /t 12:00 /r sick
+ 
+ > ***Expected output:***
+ >
+ >![addSuccess](images/UG/APPT/AddAppt.png)
+ >
+ >Confirm appointment details are correct by typing "y" or "Y"
+ >
+ >![addConfirmSuccess](images/UG/APPT/confirmAddAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.4.2. Edit Appointment: `edit appt`
+ 
+ Edit information of the appointment with the specified appointmentID(apptID).
+  The appointment should belong to the patient with the specified NRIC. 
+  
+##### Format:  
+  
+      edit appt NRIC apptID [Options][editedInput]
+      Options:
+          /d edit date
+          /t edit time
+          /r edit reason
+          
+  **Example:**
+      
+     edit appt S1234567F 1 /d 12/02/2020
+ 
+ > ***Expected output:***
+ >
+ >![editSuccess](images/UG/APPT/EditAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.4.3. Delete Appointment: `delete appt`
+ 
+ Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
+ 
+##### Format: 
+ 
+     delete appt NRIC apptID
+     
+ **Example:**
+ 
+     delete appt S1234567F 1
+ 
+ > ***Expected output:***
+ >
+ > ![deleteSuccess](images/UG/APPT/DeleteAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.4.4. Mark Appointment as Done: `done appt` 
+ 
+ Mark the appointment with the specified appointmentID(apptID) as done if arrived.
+  The appointment should belong to the patient with the specified NRIC. 
+  
+##### Format:
+  
+      done appt NRIC apptID
+          
+  **Example:**
+      
+     done appt S9473069F 4 
+ 
+ > ***Expected output:***
+ >
+ >![doneSuccess](images/UG/APPT/DoneAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.4.5. List All Appointments: `list appt` 
+ 
+ List all the existing appointments in the clinic. 
+ This can be used as a method to check for appointmentID.
+  
+##### Format: 
+  
+      list appt
+          
+  **Example:**
+ 
+ > ***Expected output:***
+ >
+ >![ListSuccess](images/UG/APPT/ListAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
+ 
+#### 3.4.6. Find Patient's Appointments: `find appt`
+ 
+ Check all appointments that the patient with the specified NRIC has. 
+ This can be used as a method to check for appointmentID.
+ 
+##### Format: 
+  
+      find appt NRIC
+          
+  **Example:**
+      
+     find appt S9473069F
+ 
+ > ***Expected output:***
+ >
+ >![findSuccess](images/UG/APPT/FindAppt.png)
+ 
+  [&#8593; Return to Top](#table-of-content)
 
 ## 4. Command Summary
 
