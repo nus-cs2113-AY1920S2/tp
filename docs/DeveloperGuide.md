@@ -374,8 +374,8 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ## Appendix C: Non-Functional Requirements
 
-* Should work on any [mainstream OS](#mainstream-os) as long as it has `Java 11` or above installed.
-* A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* Should work on any [mainstream OS](#mainstream-os) as long as it has `Java 11` or above installed.<br/>
+* A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.<br/>
 * Commands should be intuitive and follow a logical order
 * Information should be displayed in a easy to read format
 
@@ -383,17 +383,17 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ## Appendix D: Glossary
 <a name="mainstream-os"></a>
-* *Mainstream OS* - Windows, Linux, Unix, OS-X
+* *Mainstream OS* - Windows, Linux, Unix, OS-X<br/>
 
 <a name="manual-test"></a>
 ## Appendix E: Instructions for Manual Testing
 Given below are instructions to test the program manually.
 
 <a name="e1-launch-and-shutdown"></a>
-### E.1. Launch and Shutdown
-1. Download the jar file and copy into an empty folder.
-2. Open a Terminal in that folder.
-3. Run the command `java -jar [CS2113-T14-4][RestaurantDailyReport].jar`. The CLI should appear in a few seconds. It should be a welcome page.
+### E.1. Launch and Shutdown<br/>
+1. Download the jar file and copy into an empty folder.<br/>
+2. Open a Terminal in that folder.<br/>
+3. Run the command `java -jar [CS2113-T14-4][RestaurantDailyReport].jar`. The CLI should appear in a few seconds. It should be a welcome page.<br/>
 
 
 <a name="e2-add-functionality"></a>
@@ -428,17 +428,17 @@ Adding an ingredient into stock.
     - Adding `add stock; i/apple; q/10; p/0.50` and then `add stock; i/apple; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
     **This is intentional.**
 
-#### E.2.3. Adding a reservation
-Adding a reservation to an empty list.
-* Prerequisite: Clear the `reservations` list using `clear reservation;` command to ensure the empty list.
-* Test case: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`
-    - Expected: An unserved Reservation with reservation number [1] is added into the `reservations` list. Details of the added Reservation are displayed.
-* Test case: `add reservation; p/David; d/2020-03-12 12:00; c/98887777;`
-    - Expected: No Reservation is added. An error message shows to remind the user that "number of guests n/" is missing.
-* Test case: `add reservation`
-    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
-* Other incorrect add commands to try: `add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;`, `add reservation;`...
-    - Expected: No Reservation is added. Error messages for input missing displays.
+#### E.2.3. Adding a reservation<br/>
+Adding a reservation into an empty list.<br/>
+* Prerequisite: Clear the `reservations` list using `clear reservation;` command to ensure the list is empty.
+* Test case: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`<br/>
+    - Expected: An unserved Reservation with reservation number [1] is added into the `reservations` list. Details of the added Reservation will display.
+* Test case: `add reservation; p/David; d/2020-03-12 12:00; c/98887777;`<br/>
+    - Expected: No Reservation is added. An error message displays to remind the user that "number of guests n/" is missing.
+* Test case: `add reservation`<br/>
+    - Expected: An error message displays to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+* Other incorrect add commands to try: `add reservation; p/David d/2020-03-12 12:00; n/3; c/98887777;`, `add reservation;`, etc
+    - Expected: No Reservation is added. Error messages indicating input missing displays.
 
 <a name="e3-delete-functionality"></a>
 ### E.3. Delete functionality
@@ -460,21 +460,21 @@ Deleting an ingredient in the stock.
 * Test case: `delete stock; q/10`
     - Expected: No ingredient is deleted. An error message will be displayed to remind the user to input an ingredient name.
     
-#### E.3.3 Deleting a reservation
-Deleting a reservation while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[1] is Unserved.
-* Test case: `delete reservation; r/1;`
-    - Expected: The status of the first reservation in the list is changed to **Invalid**. The reservation itself still remains in the list.
-* Test case: `delete reservation; r/X;` where X is a large number exceeding the maximum of reservation number
-    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user that there is no such reservation in the list.
-* Test case: `delete reservation; r/2.3;`
-    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user to input a positive integer.
+#### E.3.3 Deleting a reservation<br/>
+Deleting a Reservation while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[1] is Unserved.<br/>
+* Test case: `delete reservation; r/1;`<br/>
+    - Expected: The status of the first reservation in the list is changed to **Invalid**. The reservation itself still remains in the list.<br/>
+* Test case: `delete reservation; r/X;` where X is a large number exceeding the maximum of reservation number<br/>
+    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user that there is no such reservation in the list.<br/>
+* Test case: `delete reservation; r/2.3;`<br/>
+    - Expected: No Reservation is marked as Invalid. An error message shows to remind the user to input a positive integer.<br/>
 
-#### E.3.4 Marking a reservation
-Marking a reservation as Served while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[2] is Unserved.
-* Test case: `mark reservation; r/2;`
-    - Expected: The status of the second reservation in the list is changed to **Served**.
+#### E.3.4 Marking a reservation<br/>
+Marking a reservation as Served while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. The status of Reservation[2] is Unserved.<br/>
+* Test case: `mark reservation; r/2;`<br/>
+    - Expected: The status of the second reservation in the list is changed to **Served**.<br/>
     
   
 <a name="e4-search-functionality"></a>
@@ -502,15 +502,15 @@ Searching an ingredient in the menu.
 * Test case: `search stock; tomato`
     - Expected: An error message will be displayed to request the user to input the keyword in the follow format of `k/keyword`. 
 
-#### E.4.3 Search a reservation
-Searching a reservation while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[1] and Reservation[3] are on 2020-04-10.
-* Test case: `search reservation; r/1;`
-    - Expected: The details of the first reservation in the list are displayed on the screen.
-* Test case: `search reservation; d/2020-04-10;`
-    - Expected: The details of the Reservation[1] and Reservation[3] will be displayed on the screen. 
-* Test case: `search reservation; r/1; d/2020-04-11;`
-    - Expected: A message of no such reservation will display.
+#### E.4.3 Search a reservation<br/>
+Searching a reservation while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[1] and Reservation[3] are on 2020-04-10.<br/>
+* Test case: `search reservation; r/1;`<br/>
+    - Expected: The details of the first reservation in the list are displayed on the screen.<br/>
+* Test case: `search reservation; d/2020-04-10;`<br/>
+    - Expected: The details of the Reservation[1] and Reservation[3] will be displayed on the screen. <br/>
+* Test case: `search reservation; r/1; d/2020-04-11;`<br/>
+    - Expected: A message of no such reservation will display.<br/>
 
 
 
@@ -533,31 +533,31 @@ Listing all ingredients in the stock.
 * Test case: `list stock`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
 
-#### E.5.3 List all reservations
-Listing all reservations at the beginning of the program execution with reservation content already exist in the "report.txt" file.
-* Prerequisites: Execute the program for the first time and add some reservations. Type `bye` to exit the program and the reservations added will be automatically saved to the "report.txt" file. Execute the program again.
-* Test case: `list reservation;`
-    - Expected: The details of reservations originally in the "report.txt" will display on the screen.
-* Test case: `list reservation`
-    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+#### E.5.3 List all reservations<br/>
+Listing all reservations at the beginning of the program execution with reservation content already exist in the "report.txt" file.<br/>
+* Prerequisites: Execute the program for the first time and add some reservations. Type `bye` to exit the program and the reservations added will be automatically saved to the "report.txt" file. Execute the program again.<br/>
+* Test case: `list reservation;`<br/>
+    - Expected: The details of reservations originally in the "report.txt" will display on the screen.<br/>
+* Test case: `list reservation`<br/>
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.<br/>
   
 
-#### E.5.4. List all Served reservations
-Listing all served reservations while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[2] and Reservation [3] are Served.
-* Test case: `list served reservation;`
-    - Expected: The details of Reservation[2] and Reservation[3] will display on the screen.
-* Test case: `list served reservation`
-    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+#### E.5.4. List all Served reservations<br/>
+Listing all served reservations while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[2] and Reservation [3] are Served.<br/>
+* Test case: `list served reservation;`<br/>
+    - Expected: The details of Reservation[2] and Reservation[3] will display on the screen.<br/>
+* Test case: `list served reservation`<br/>
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.<br/>
 
 
-#### E.5.5. List all Unserved reservations
-Listing all unserved reservations while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[4] and Reservation [5] are Served.
-* Test case: `list unserved reservations`
-    - Expected: The details of Reservation[4] and Reservation[5] will display on the screen.
-* Test case: `list unserved reservation`
-    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+#### E.5.5. List all Unserved reservations<br/>
+Listing all unserved reservations while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list. Only Reservation[4] and Reservation [5] are Served.<br/>
+* Test case: `list unserved reservations`<br/>
+    - Expected: The details of Reservation[4] and Reservation[5] will display on the screen.<br/>
+* Test case: `list unserved reservation`<br/>
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.<br/>
 
 <a name="e6-clear-functionality"></a>  
 ### E.6 Clear functionality
@@ -568,13 +568,15 @@ Clear all ingredients in the stock.
 * Test case: `clear stock`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
     
+    
 #### E.6.2 Clear all reservations
-Clear all reservations in the list while all reservations are listed.
-* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.
-* Test case: `clear reservation;`
-    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
-* Test case: `clear reservation`
-    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+Clear all reservations in the list while all reservations are listed.<br/>
+* Prerequisites: List all reservations using the `list reservation;` command. Multiple reservations in the list.<br/>
+* Test case: `clear reservation;`<br/>
+    - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. <br/>
+* Test case: `clear reservation`<br/>
+    - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.<br/>
+
 
 ### E.7 Sales Functionality
 #### E.7.1 Add a sales
@@ -585,10 +587,12 @@ Adding sold dishes
 * Test case: `sell dish; d/pasta;` or `sell dish; q/20`
     - Expected: Error with command format will be shown
 
+
 #### E.7.2 Calculating Profit
 * Prerequisites: Sales must be added
 * Test case: `profit`
     - Expected: The profit will be calculated and be outputted
+
 
 #### E.7.3 Finding the most popular dish
 * Prerequisites: Sales must be added

@@ -61,11 +61,11 @@ Add menu items, ingredients, and reservations.
   + Example: `add stock; i/tomato; q/10; p/0.50;`<br/>
 
 
-#### Add reservation into list: add reservation 
-* Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`
+#### Add reservation into list: add reservation <br/>
+* Format: `add reservation; p/CONTACT_PERSON_NAME; d/DATE; n/NUMBER_OF_GUESTS; c/CONTACT; [m/COMMENTS];`<br/>
   + Example: `add reservation; p/Peter; d/2020-03-12 12:00; n/3; c/98955555;`<br/>
 
-*The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be a non-negative integer.*
+*The `DATE` must be in **yyyy-mm-dd HH:mm** format. The `NUMBER_OF_GUESTS` must be a non-negative integer.*<br/>
 
 <a name="delete"></a>
 
@@ -83,14 +83,14 @@ Delete menu items, ingredients and reservations.
   + Example: `delete stock; i/tomato;`<br/>
 
 
-#### Mark reservation as invalid: delete reservation
-* Format: `delete reservation; r/NUMBER_OF_RESERVATION;`
+#### Mark reservation as invalid: delete reservation<br/>
+* Format: `delete reservation; r/NUMBER_OF_RESERVATION;`<br/>
   + Example: `delete reservation; r/12;`<br/>
 
 
-#### Mark reservation as served: mark reservation
-Cannot mark the reservation as served if the reservation is originally invalid.
-* Format: `mark reservation; r/NUMBER_OF_RESERVATION;`
+#### Mark reservation as served: mark reservation<br/>
+Cannot mark the reservation as served if the reservation is originally invalid.<br/>
+* Format: `mark reservation; r/NUMBER_OF_RESERVATION;`<br/>
   + Example: `mark reservation; r/4;`<br/>
 
 
@@ -120,13 +120,13 @@ Search items in the menu, stock and reservations.
   + Example: `search stock; k/tomato;`
 
 
-#### Search for reservation: search reservation
-* Search reservation : `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`
-  + Example: `search reservation; r/1;`
-  + Example: `search reservation; d/2020-02-02;`
-  + Example: `search reservation; r/0; d/2020-02-02;`
+#### Search for reservation: search reservation<br/>
+* Search reservation : `search reservation; {r/RESERVATION_NUMBER; | d/DATE;}`<br/>
+  + Example: `search reservation; r/1;`<br/>
+  + Example: `search reservation; d/2020-02-02;`<br/>
+  + Example: `search reservation; r/0; d/2020-02-02;`<br/>
 
-*The `DATE` must be in **yyyy-mm-dd** format. The `RESERVATION_NUMBER` must be a non-negative integer.*
+*The `DATE` must be in **yyyy-mm-dd** format. The `RESERVATION_NUMBER` must be a non-negative integer.*<br/>
 
 
 <a name="sales"></a>
