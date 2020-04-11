@@ -439,6 +439,10 @@ This section will describe the significant details of how the commands in <b>Nuk
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
+*Class diagram* to illustrate **Add Command** classes:
+
+
+
 #### **1.1. Add Module Command**
 
 The add module feature enable the user to add modules into the Module List.
@@ -457,10 +461,6 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 
 1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
 2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
-
-Below are the class-diagram for the involved classes:
-
-![image-20200326014336120](images/Add_Module_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
