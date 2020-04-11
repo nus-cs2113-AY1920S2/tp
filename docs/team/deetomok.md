@@ -14,8 +14,8 @@ For all the code that I have contributed to Module Manager, click here:
 [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
 
 #### Enhancements implemented  
-In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands (Mark as Done,
-View, Helping and Clear) and some exception classes.  
+In this project, other than helping implement all other classes, I implemented the portion of Controller, Person, 
+JUnit test, Logging, some commands (Mark as Done, View, Helping and Clear) and some exception classes.  
 
 ##### Mark as Done Command  
 * What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,

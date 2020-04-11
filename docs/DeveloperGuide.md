@@ -30,6 +30,7 @@ Table of Contents
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
     5.2 [Diagrams](#52-diagrams)  
+    
 [Appendix A: Product Scope](#appendix-a-product-scope)  
 [Appendix B: User Stories](#appendix-b-user-stories)  
 [Appendix C: Glossary](#appendix-c-glossary)  
