@@ -15,6 +15,7 @@ import seedu.happypills.ui.StorageTextUi;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+//@@author sitinadiah25
 public class AddAppointmentCommand extends AppointmentCommand {
     protected String nric;
     protected String date;

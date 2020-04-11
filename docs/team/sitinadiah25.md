@@ -1,10 +1,10 @@
-#Siti Nadiah - Project Portfolio Page
+# Siti Nadiah - Project Portfolio Page
 
 ## `PROJECT: HappyPills`
 
 ## About the project
 Our team consists of 4 software engineering students were tasked to build a basic command line interface desktop 
-application for our Software Engineering project.
+application for our Software Engineering project. 
 
 Our team chose to develop a note management application called HappyPills. HappyPills is specially designed for 
 Doctors to record patient's details, past medical records and future appointments. HappyPills allows users
@@ -13,15 +13,13 @@ to store all information in a single place and users can always have quick acces
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-**Major enhancement:** I implemented two `PatientCommand` and three `AppointmentCommand` classes.
+**Major enhancement:** I implemented one `PatientCommand` and three `AppointmentCommand` classes.
 
 + What it does:
 
-    - The two `PatientCommand` classes that I implemented is `EditPatientCommand` and `ListPatientCommand`. 
+    - The `PatientCommand` class that I implemented is `EditPatientCommand`. 
     
         - `EditPatientCommand` allows the user to edit the `name`, `date of birth`, `phone number`, `blood type`, `allergies` and `remarks` of a patient.
-        
-        - `ListPatientCommand` displays all the patient's `nric` and `name`.
         
     - The three `AppointmentCommand` classes that I implemented is `AddAppointmentCommand`, `ListAppointmentCommand` and 
     `DeleteAppointmentCommand`.
@@ -87,13 +85,15 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
++ [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
++ [Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md#34-appointment-scheduling-commands)
++ Reformat UG to make it more consistent
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#3-design)  
-[Section 4.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-appointment-scheduling-feature)  
-[Appendices](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-user-prompting)  
++ [Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#3-design)  
++ [Section 4](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#4-Implementation)  
++ Sequence diagrams for Implementation and Appointment-related explanation & diagrams
++ Class diagrams for Design
