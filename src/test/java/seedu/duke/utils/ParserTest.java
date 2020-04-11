@@ -133,7 +133,7 @@ public class ParserTest {
                 + System.lineSeparator()
                 + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - Quantity of an item should be in positive numerical form."
+                + " - Quantity of an item should be in positive numerical form (no decimals)."
                 + System.lineSeparator()
                 + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                 + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -151,7 +151,7 @@ public class ParserTest {
                 + System.lineSeparator()
                 + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - Quantity of an item should be in positive numerical form."
+                + " - Quantity of an item should be in positive numerical form (no decimals)."
                 + System.lineSeparator()
                 + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                 + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -181,7 +181,7 @@ public class ParserTest {
                 + System.lineSeparator()
                 + " - Price of an item should be in positive numerical form."
                 + System.lineSeparator()
-                + " - Quantity of an item should be in positive numerical form."
+                + " - Quantity of an item should be in positive numerical form (no decimals)."
                 + System.lineSeparator()
                 + " - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], "
                 + "p/[NEW PRICE] or q/[QUANTITY] must be present."

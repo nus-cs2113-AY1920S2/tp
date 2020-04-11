@@ -84,9 +84,9 @@ the items.
 The following sequence diagrams below show how the display feature works. Note the <code>Ui</code> class is
 omitted to emphasise the other classes:
 
-![alt text](../images/DisplayFinal.png)
+![alt text](../images/Display_v1.png)
 
-![alt text](../images/Display_SDFinal.png)
+![alt text](../images/Display_SD_v1.png)
 
 #### 3.6.2 Design considerations
 ##### Aspect: Data structure to support the display feature
@@ -125,7 +125,7 @@ also be able to trace functionality bugs more easily if each command class deals
  The following sequence diagram below shows how the clear list feature works. Note the <code>Ui</code> class is
  omitted to emphasise the other classes:
    
- ![alt text](../images/ClearFinal.png)
+ ![alt text](../images/Clear_v1.png)
    
  #### 3.9.2 Design considerations
    

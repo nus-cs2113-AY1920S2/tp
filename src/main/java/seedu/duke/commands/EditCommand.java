@@ -12,7 +12,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "EDIT";
     public static final String EXCEED_WARNING = "\nNOTE: You have exceeded your budget by %.2f";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified item in the list."
-            + System.lineSeparator() + "|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE]"
+            + System.lineSeparator() + "|| Parameters: EDIT [INDEX] i/[DESCRIPTION] p/[PRICE] q/[QUANTITY]"
             + System.lineSeparator() + "|| Example 1: EDIT 1 i/apple p/3.00 q/4"
             + System.lineSeparator() + "|| Example 2: EDIT 1 i/apple"
             + System.lineSeparator() + "|| Example 3: EDIT 1 p/3.00"
@@ -30,7 +30,7 @@ public class EditCommand extends Command {
             + System.lineSeparator()
             + " - Price of an item should be in positive numerical form."
             + System.lineSeparator()
-            + " - Quantity of an item should be in positive numerical form."
+            + " - Quantity of an item should be in positive numerical form (no decimals)."
             + System.lineSeparator()
             + " - If 'i/', 'p/' or 'q/' is present, i/[NEW DESCRIPTION], "
             + "p/[NEW PRICE] or q/[QUANTITY] must be present."
