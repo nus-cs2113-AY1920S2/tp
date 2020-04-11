@@ -307,7 +307,7 @@ command, to generate ```ArrayList<Contact>```.
 then uses the retrieved schedule to fill a combined schedule, adding all "busy" time blocks of the retrieved schedule into the
 combined schedule.
 5. ```CommandHandler``` retrieves the final combined schedule by calling ```ScheduleHandler#getCombinedSchedule```.
-6. ``CommandHandler``` calls ```TextUI``` to print the combined schedule.
+6. ```CommandHandler``` calls ```TextUI``` to print the combined schedule.
 7. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
 
 ### 3.4 Schedule a new meeting
