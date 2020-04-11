@@ -10,8 +10,6 @@
     5. [Contributions to team based tasks](#Contributions-to-team-based-tasks)
     6. [Review/mentoring contributions](#Review/mentoring-contributions)
     7. [Contributions beyond the project team](#Contributions-beyond-the-project-team)
-3. [Contributions to the User Guide](#contributions-to-the-user-guide)
-4. [Contributions to the Developer Guide](#contributions-to-the-developer-guide)
 
 ## Overview
 Diet Manager is an personalized chat-bot application used for managing an individual's diet.
@@ -96,9 +94,3 @@ I have helped a number of other peers in cs2113 along the way in my cs2113 journ
 
 * Another help that I have offered was to a fellow peer in cs2113 by the name of Tze Ning. I remember she needed help as her Duke cannot be ran in the IntelliJ during the Individual Project. She had posted this issue on the forum but the technical support she received was to no avail. <br>
 I then reached out to her and tried to fork her Duke using a second account to run it on my com to ascertain that her Duke code was not the reason for the issue. Next, I skyped her to teach her step by step how to close her project, reimport the project and run her Duke program in the right way. With that, her IntelliJ issue was resolved.
-
-## Contributions to the User Guide
-To be completed...
-
-## Contributions to the Developer Guide
-To be completed...
