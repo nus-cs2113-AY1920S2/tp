@@ -818,28 +818,16 @@ No. | Profile Commands | Description
 9|`delete-weight INDEX`| Delete a specific weight record.
 10|`check-weight-progress`| Check user weight record progression.
 11|`check-bmi`| Check user BMI and BMI classification.
-
-No. | Daily Food Record Commands | Description
-----| ------- | -----------
 12|`record-meal DATE TIMEPERIOD /FOOD1 {-- 10.0} /FOOD2 {-- 6.00} /...`| Record a meal
 13|`check-meal DATE TIMEPERIOD`| Check a meal 
-14| `clear-records`| Clear all food records
-15| `check-required-cal` | Check calories required for an activity level
-16| `calculate` | Calculates calories intake on a day or during a time period
-
-No. | Food Nutrition Record Commands | Description
-----| ------- | -----------
-17| `list-food` | List all foods recorded in the database 
-18| `addf` | Add a new food into database
-19| `delf` | Delete a food from the database
-
-No. | Recipe Commands | Description
-----| ------- | -----------
-20| `new-recipe` | Create a recommended recipe for user
-21| `show-recipe` | Show the recipe recommended for user
-
-No. | Utility Commands | Description
-----| ------- | -----------
+14|`clear-records`| Clear all food records
+15|`check-required-cal DATE ACTIVITYLEVEL` | Check calories required based on user's activity level
+16|`calculate {DATE1}->{DATE2}` | Calculates calories intake on a day or during a time period
+17|`list-food` | List all foods recorded in the database 
+18|`addf FOODNAME --CALORIES` | Add a new food into database
+19|`delf FOODNAME` | Delete a food from the database
+20|`new-recipe MAXIMUM_FODD_TYPES ACTIVITY_LEVEL` | Create a recommended recipe for user
+21|`show-recipe` | Show the recipe recommended for user
 22|`help`| Show the help function table with supported commands.
 23|`exit`| Terminates and exits the application.
 
