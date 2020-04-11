@@ -527,7 +527,7 @@ Below shows the flow chart and sequence diagram of Student Command Interpreter.
 ![Flow chart](images/StudentCommandInterpreterFlowChart.png)   
 *Flow Chart of Student Command Interpreter*    
 
-![Sequence diagram]()   
+![Sequence diagram](images/StudentCommandInterpreterSequenceDiagram.png)   
 *Sequence diagram of Student Command Interpreter*    
 
 #### Features under Student List Collection

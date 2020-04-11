@@ -1,11 +1,8 @@
 ## Chan Ee Zheng, Benjamin - Project Portfolio Page
 ### Project: Professor Assistant Console (PAC)
 
-### Overview
-Pac is a event scheduler used by professors which helps to keep track of events. Pac has a unique feature of linking
-attendance list and performance list to events. The user interacts with it using a Command Line Interface (CLI).
-
-### Summary of Contributions
+Pac is a event scheduler used by professors which helps to keep track of events. 
+The user interacts with it using a Command Line Interface (CLI).
 
 #### Code contributed: [here](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=benchan911)
 
@@ -72,24 +69,22 @@ attendance list and performance list to events. The user interacts with it using
     list with the same name, it will append a number to the list name to ensure no duplicate studentList in 
     studentListCollection.
 
-#### Contribution to documentation
+#### Contributions to Documentation
 - For the User Guide, I have written features related to Attendance and StudentList.
-
-#### Contribution to DG
 - For the Developer Guide, I have written features related to Attendance and advance feature for 
   StudentList such as `findStudentList`, `SortStudentListByList`, `SortStudentListByName`. 
 
-##### Contributing to team-based tasks:
+##### Contributions to team-based tasks:
 - Added issues pertaining to bugs, feature flaws or features related to features mentioned above. 
 - Linked these issues to my PRs promptly with their respective labels.
 - Contributed to Release management
 
-##### Contributions beyond the project team
+#### Contributions beyond the project team
 - Added target user profile and user stories
 - Added onto the FAQ in the user guide
 - Added onto command summary in the user guide
 
-#### Review Contributions 
+##### Review Contributions 
 - PRs reviewed (with non-trivial comments)  
 [#116](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/116), 
 [#164](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/164), 
