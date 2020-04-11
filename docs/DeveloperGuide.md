@@ -64,7 +64,7 @@ By: `AY1920S2-CS2113T-T12-1`
 ![Architecture Diagram](images/architecture.png)<br>
 *Fig 1. Architecture diagram of the WhenFree application*
 
-The architecture diagram above shows the high-level design of WhenFree. WhenFree
+Fig 1. shows the high-level design of the WhenFree application. WhenFree
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
 Here is a quick overview of each layer/component and the sub-components residing in it.
 * UI: The Command Line user interface of the application.
