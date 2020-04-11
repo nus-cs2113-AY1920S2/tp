@@ -82,9 +82,12 @@ public class Ui {
     private static final String VIEWED_CREDITS = "You have completed this amount of credits:";
 
     private static final String SHOW_CAP = "Your current CAP is:";
+
     private static final String SHOW_INPUT_ERROR = "Input Error, please enter your comand again!"
             + " Type \"help\" for help";
+
     private static final String CLEAR = "Your module plan has been cleared :)";
+
     private static final String EMPTY_MODULE_PLAN = "Your module plan is empty.";
 
     private static void showToUser(String... messages) {

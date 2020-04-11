@@ -28,7 +28,6 @@ module code or module name, and the semester it was allocated to.
 ##### Command to delete module from list of available modules
 The `DeleteFromAvailableCommand` allows users to delete a module from the list of available modules.
 The module is deleted if the module is not a prerequisite of any other modules.
-In the process of doing so, 3 checks are done.
 If the module is in the module plan, it will be deleted from the module plan as well.
 
 ### Contributions to documentation
