@@ -27,6 +27,7 @@ Table of Contents
     . . 4.3.1 [Calculate CAP feature](#431-calculate-cap-feature)  
     . . 4.3.2 [Marking module as done](#432-marking-module-as-done)  
     . . 4.3.3 [Searching modules with keywords](#433-searching-modules-with-keywords)  
+    . . 4.3.4 [Viewing modules](#434-viewing-modules)  
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
     5.2 [Diagrams](#52-diagrams)  
@@ -459,6 +460,36 @@ relevant modules from the both the module plan and the list of available modules
 The sequence diagram below shows the mechanics of `FindCommand`:
 ![SequenceDiagram_FindCommand](https://github.com/chengTzeNing/tp/blob/DG-and-UG/docs/images/SequenceDiagram_FindCommand.png)
 
+### 4.3.4 Viewing modules
+The `ViewCommand` allows users to see different kinds of data that has been added or updated by the user. Depending on
+the subsequent string of command entered by the user, the programme will display different kinds of information to the
+user.
+
+#### Step 1:
+When a user enters the `view` keyword, the command is being parsed in `Controller`.
+`Controller` then returns a `ViewCommand`, which proceeds to call 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, or in this context,
+`ViewCommand.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`.
+
+#### Step 2:
+In the `execute(SemesterList semesterList, AvailableModulesList availableModulesList)` method, the parsed argument
+is passed into a switch statement to decide the kind of data to show the user. The respective method will then be called
+to print the data that the user has requested to see. 
+
+*Design Considerations*  
+* Alternative 1 (current choice): Determine user's argument using Java contain() method
+
+|   |   |
+|---|---|
+|Pro|Easy to determine the argument and match it to user's intention|
+|Cons|Easy to misunderstand what is the user's true intention if there is mis-spelling|
+
+* Alternative 2 : Determine user's argument using Java equal() method  
+
+|   |   |
+|---|---|
+|Pro|Accurate in determining the user's intentions based on the argument received|
+|Cons|Requires users to enter precise keywords which could result in inconvenience|
 
 # 5. Documentation
 ## 5.1 Written documentation  

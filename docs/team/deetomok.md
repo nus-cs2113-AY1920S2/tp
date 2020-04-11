@@ -15,7 +15,8 @@ For all the code that I have contributed to Module Manager, click here:
 
 #### Enhancements implemented  
 In this project, other than helping implement all other classes, I implemented the portion of Controller, Person, 
-JUnit test, Logging, some commands (Mark as Done, View, Helping and Clear) and some exception classes.  
+JUnit test, Logging, some commands (Mark as Done, View, Helping and Clear) and some exception classes. Furthermore,
+I adjusted the programme to accept commands from user irrespective of upper or lower case characters.  
 
 ##### Mark as Done Command  
 * What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,
@@ -31,17 +32,17 @@ user's data. Some scenarios considered include:
     * User fails a mod, we have to allow them to add the same module again, as in reality they must re-take the module. 
     * User marks a module as done, but entered an incorrect grade, and has to update the done module's grade
 
-### Contributions to documentation: 
+### Contributions to the User Guide: 
 * Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Command Format, Mark as Done feature, Deleting features, FAQ, Command summary 
 ([#62](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/62), [#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121))
 
-### Contributions to the DG: 
+### Contributions to the Developer Guide: 
 * Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Introduction Section and Setting up section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
 * Added Architecture, UI component, Logic component and Model component under Design section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
-* Wrote implementation document for Delete from Available, Add to Available and Marking as Done
-([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),)
+* Wrote implementation document for Delete from Available, Add to Available, Marking as Done and Viewing modules
+([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),[#156](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/156))
 * Added Architecture Diagram, Sequence Diagram for MarkAsDone feature and Object Diagrams for 
 Ui component, Logic component and Model component ([#119](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/119), 
 [#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118), 
@@ -210,6 +211,7 @@ The other components involved are:
 
 
 #### 3.2 UI component
+Given below is the structure of the Ui component:
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
 
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
@@ -220,7 +222,7 @@ The `UI` component,
 *   Executes user commands using the `Logic` component
 
 #### 3.3 Logic component
-
+Given below is the object diagram of the Logic Component
 ![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
@@ -234,7 +236,7 @@ All these command classes inherits from the abstract `Command` class.
 such as displaying help to the user.
 
 #### 3.4 Model component
-
+Given below is the class diagram of the Model Component:
 ![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component(1).png)
 
 The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
@@ -245,3 +247,12 @@ The responsibilities of the `Model` component includes
 `ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
 * All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
 in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
+
+### 4.3.2 Marking module as done
+
+The Marking as done mechanism is executed by `MarkAsDoneCommand`.
+`MarkAsDoneCommand` is extended from the abstract class `Command`, and this implementation marks the module that has
+been added to a `SemModuleList` in the `SemesterList` as done, and updates the respective grade to the `Module` object.  
+ 
+The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
+![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
