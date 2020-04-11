@@ -180,7 +180,7 @@ Expected output:
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
 This can be done based on a module code or module name.\
-If you mark a module as done again, the grade will be updated.
+If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
 #### 3.4.1 Based on module code
 Format:​ `done id/[module name] g/[grade]`
