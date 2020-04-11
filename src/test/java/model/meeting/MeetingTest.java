@@ -1,4 +1,5 @@
 //@@author synckun
+
 package model.meeting;
 
 import org.junit.jupiter.api.Test;
