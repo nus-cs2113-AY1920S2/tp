@@ -49,7 +49,8 @@ public class Appointment {
      * @param time Time of appointment.
      * @param done Status of whether the appointment is over.
      */
-    public Appointment(String id, String nric, String date, String time,String reason, Boolean done) {
+    public Appointment(String id, String nric, String date,
+                       String time, String reason, Boolean done) {
         this.nric = nric;
         this.reason = reason;
         this.date = date;
@@ -91,16 +92,8 @@ public class Appointment {
         this.time = time;
     }
 
-    public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
     public String getAppointmentId() {
         return appointmentId;
-    }
-
-    public boolean isDone() {
-        return isDone;
     }
 
     public void setDone(boolean done) {
