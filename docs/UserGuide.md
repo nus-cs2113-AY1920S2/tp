@@ -32,8 +32,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 [NOTE] Please resize the terminal to full screen mode to make full use of our CLI ASCII art.
 You will see this welcome message if you have done the above steps correctly.
 
-TODO: change image
-![](images/capture.png)
+![welcome Message](images/welcome_msg.png)
 
 The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
 
@@ -68,12 +67,11 @@ Format:
 
 Example of usage:
 
-    Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01
+    Tommy https://nusmods.com/timetable/sem-2/share?CG2027=LEC:01,TUT:01&CS2101=&CS2113T=LEC:C01
 
 Example output:
 
-TODO: change image so that the words are the same font size
-![](images/capture.png)
+![](images/add_contact_op.png)
 
 
 [&#8593; Return to list of Features](#features)
@@ -94,7 +92,7 @@ Example of usage:
 
 Example output:
 
-![](images/capture2.png)
+![](images/contacts_op.png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -120,8 +118,7 @@ Example of usage:
 
 Example output:
 
-TODO: update image
-![](images/capture3.png)
+![timetable](images/timetable_op.png)
     
 A cross in a 30-minute square of the timetable represents "busy", while an empty square represents "free".
 
@@ -141,8 +138,7 @@ Example of usage:
     
 Example output:
 
-TODO: update image
-![](images/capture4.png)
+![timetable 1](images/timetable_1_command_op.png)
 
 <br/>
 
@@ -155,12 +151,11 @@ Format:
    
 Example of usage: 
    
-    timetable 0 1 2
+    timetable 0 1
     
 Example output:
 
-TODO: update image
-![](images/capture5.png)
+![timetable 0 1](images/timetable_0_1_op).png)
 
 <br/>
 
@@ -176,7 +171,7 @@ Example of usage:
     
 Example output:
 
-TODO:update image
+![more](images/more_command_op).png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -210,11 +205,11 @@ Format:
 
 Example of usage:
 
-    schedule meeting 3 17:00 3 19:00
+    schedule meeting 11 17:00 11 19:00
 
 Example output:
 
-![](images/capture6.png)
+![schedule meeting 11 17:00 11 19:00](images/schedule_meeting_11_1700_11_1900_op.png)
 
 <br/>
 
@@ -248,12 +243,11 @@ Format:
     
 Example of usage:
     
-    edit busy 0 2 22:00 2 23:00
+    edit busy 0 11 09:00 11 10:00
         
 Example output:
 
-TODO change image
-![](images/capture6.png)
+![edit busy 0 11 09:00 11 10:00](images/edit_busy_0_11_0900_11_1000_op.png)
 
 <br/>
 
@@ -266,12 +260,11 @@ Format:
     
 Example of usage:
  
-    edit free 0 2 22:00 2 23:00
+    edit free 0 11 09:00 11 10:00
         
 Example output:
 
-TODO change image
-![](images/capture6.png)
+![edit free 0 11 09:00 11 10:00](images/edit_free_0_11_0900_11_1000_op.png)
 
 [&#8593; Return to list of Features](#features)
     
@@ -294,8 +287,7 @@ Example of usage:
 
 Example output:
 
-TODO change image
-![](images/capture7.png)
+![delete 1](images/delete_1_op.png)
 
 <br/>
 
@@ -307,12 +299,11 @@ Format:
 
 Example of usage:
 
-    delete alex
+    delete Tommy
     
 Example output:
 
-TODO change image
-![](images/capture7.png)
+![delete Tommy](images/delete_Tommy_op.png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -332,7 +323,7 @@ Example of usage:
     
 Example output:
 
-![](images/capture8.png)
+![meetings](images/meetings_op.png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -351,7 +342,7 @@ Example of usage:
     
 Example output:
 
-![](images/capture9.png)
+![exit](images/exit_op.png)
 
 [&#8593; Return to list of Features](#features)
 
