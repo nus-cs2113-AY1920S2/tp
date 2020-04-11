@@ -1,10 +1,13 @@
-# Lam Yue Wei - Project Portfolio Page
+# Lim Yu Xiang(@yuxianglim) - Project Portfolio Page
 
 ## Content
 1. [Overview](#overview)
-2. [Summary of Contributions](#summary-of-contributions)
-3. [Contributions to the User Guide](#contributions-to-the-user-guide)
-4. [Contributions to the Developer Guide](#contributions-to-the-developer-guide)
+2. [Code Contributed](#code-contributed)
+3. [Enhancements implemented](#code-contributed)
+4. [Contributions to documentation](#contributions-to-documentation)
+5. [Contributions to the DG](#contributions-to-the-dg)
+6. [Contributions to team based tasks](#contributions-to-team-based-tasks)
+7. [Contributions to the User Guide](#contributions-to-the-user-guide)
 
 
 ## Overview
@@ -13,14 +16,12 @@ Diet Manager is an personalized chat-bot application used for managing an indivi
 Diet Manager is capable of tracking daily food intake and providing recommendations based on a user's specified
 health data and weight goal.
 
-## Summary of Contributions
-
-### Code Contributed
+## Code Contributed
 **__Diet Manager__**:<br>
 Link to code on tP Code Dashboard 
 [**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=yuxianglim&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos).
 
-### Enhancements implemented
+## Enhancements implemented
 1. Created the CheckWeightProgress class which allows users to check their past weight records from the beginning till present.
     * The enhancement to this function is the ability to show the difference in weight of the user from the initial record to present and output message from the message bank in relative to the progress.
     
@@ -57,7 +58,7 @@ Link to code on tP Code Dashboard
     16 | `exit` | Exit application | (eg. exit )
 
 
-### Contributions to documentation
+## Contributions to documentation
 I contributed to the User Guide under the section of check weight progress. 
 * Provided an introduction to the features of the method
 * Provided the format of using the command
@@ -81,11 +82,11 @@ I contributed to the User Guide under the section of help.
 I also contributed to the User Guide under the section of command summary
 * Updated the table of functions available currently available
 
-### Contributions to the DG
+## Contributions to the DG
 I contributed to the Developer Guide under the section of user-stories component
 * Provided the table to the user stories
 
-### Contributions to team based tasks
+## Contributions to team based tasks
 I have contributed to my team based tasks in:
 * initial brainstorming for type of program and user stories 
 * implementing enhancements for my team project such as

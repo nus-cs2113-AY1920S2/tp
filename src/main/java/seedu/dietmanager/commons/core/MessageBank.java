@@ -177,7 +177,7 @@ public class MessageBank {
                     + "  Randomly recommend recipe from database       |\n"
                     + "|   show-recipe                                              |"
                     + "  Show recommended recipe to user               |\n"
-                    + "|   check-required-cal                                       |"
+                    + "|   check-required-cal DATE ACTIVITY_LEVEL                   |"
                     + "  Check amount of calories required/day         |\n"
                     + "|   clear-records                                            |"
                     + "  Clear the records in the database             |\n"
@@ -187,7 +187,10 @@ public class MessageBank {
                     + "  Exit the application                          |\n"
                     + "|____________________________________________________________|"
                     + "________________________________________________|\n"
-                    + "Please key in your command:";
+                    + "Syntax Guidelines:\n"
+                    + "DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)\n"
+                    + "Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial\n"
+                    + "\nPlease key in your command:\n";
 
     public static final String BMI_TABLE_MESSAGE = "You can check your height and weight against this table"
             + " to see which category you fall into.\n"

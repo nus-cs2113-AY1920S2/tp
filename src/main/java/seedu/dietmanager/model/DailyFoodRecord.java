@@ -85,16 +85,6 @@ public class DailyFoodRecord {
     }
 
     /**
-     * Displays the Daily Food Record.
-     */
-
-    public void showDailyRecord() {
-        System.out.println(this.showBreakfast());
-        System.out.println(this.showLunch());
-        System.out.println(this.showDinner());
-    }
-
-    /**
      * Displays the Daily Breakfast Record.
      */
 
