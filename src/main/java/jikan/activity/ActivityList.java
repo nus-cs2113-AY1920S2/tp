@@ -118,11 +118,6 @@ public class ActivityList {
         fieldChangeUpdateFile();
     }
 
-    public void updateTags(int index, Set<String> newTags) {
-        activities.get(index).setTags(newTags);
-        fieldChangeUpdateFile();
-    }
-
     public void updateAlloc(int index, Duration newAllocTime) {
         activities.get(index).setAllocatedTime(newAllocTime);
         fieldChangeUpdateFile();

@@ -29,7 +29,6 @@ public class ContinueCommand extends Command {
                 Log.makeInfoLog("Could not continue activity due to ongoing activity.");
                 return;
             }
-            //Parser.parseContinue(activityList);
             int index = activityList.findActivity(parameters);
             if (index != -1) {
                 // activity is found
