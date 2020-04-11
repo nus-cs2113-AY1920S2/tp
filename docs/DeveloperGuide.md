@@ -22,9 +22,6 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [3.6. Delete a scheduled meeting](#36-delete-a-scheduled-meeting)
 	* [3.7. Delete a contact](#37-delete-a-contact)
 	* [3.8. List all scheduled meetings](#38-list-all-scheduled-meetings)
-* [4. Documentation](#4-documentation)
-* [5. Testing](#5-testing)
-* [6. Dev Ops](#6-dev-ops)
 * [Appendix A: Product Scope](#appendix-a-product-scope)
 	* [A.1. Target user profile](#a1-target-user-profile)
 	* [A.2. Value proposition](#a2-value-proposition)
@@ -46,7 +43,7 @@ Prerequisites<br>
 Setting up the project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
 2. Open Intellij and import the ```build.gradle``` from project directory of the cloned repository.
-> :information_source If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
+> :information_source: If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
 3. Set up the correct JDK version for Gradle:
     * Click the ```File``` tab > ```Project Structure``` > ```Platform Settings``` > ```SDK```.
     * Select the path where your JDK(>11) is installed. Click this link if you do not have at least JDK11.
@@ -60,7 +57,7 @@ Verifying Setup
 ### 2.1. Architecture
 ![Architecture Diagram](images/architecture.png)<br>
 
-The architecture diagram above shows an overview of the high-level design of MeetingOrganizer. Meeting Organizer
+The architecture diagram above shows an overview of the high-level design of WhenFree. Meeting Organizer
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
 Here is a quick overview of each layer and the components residing in it.
 * UI: The CLI user interface of the application.
@@ -146,7 +143,7 @@ The ```contacts``` component of our application consists of 2 classes: ```TeamMe
 
 ![storage component class structure](images/storage_class_diagram.png)
 
-Above image shows the structure of Storage. It is created by MeetingOrganizer class to handle the loading and saving of scheduled meetings and member schedules.
+Above image shows the structure of Storage. It is created by WhenFree class to handle the loading and saving of scheduled meetings and member schedules.
 
 The `Storage` component,
 - can save `Contact` objects in .txt format and read it back.
@@ -369,7 +366,7 @@ Given below is an example usage scenario and how the ```ListMeetings``` command 
 
 ## Appendix A: Product Scope
 ### A.1. Target user profile
-Our application, MeetingOrganizer, is for NUS students and teaching assistants looking to save time finding
+Our application, WhenFree, is for NUS students and teaching assistants looking to save time finding
 free-slots for their project meetings, consultations etc. It allow users to add their team members and tutees respectively, and
 finding a time-slot where everyone would be free.
 Target user profile:
@@ -439,25 +436,24 @@ Given below are instructions to test the app manually.
     **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
    
 
-> :information_source: The test cases below are provided such that it should be executable without showing any errors if follow sequentially.
+> :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
-    1. Test case: Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6
-    
+    1.Test case: ```Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6``` <br>
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
     > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
     
-    2. Test case: Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1
-                  Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01
-                  Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1
-    
+    2. Test case: ```Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1``` <br>
+                  ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
+                  ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
     **Expected: 3 new contacts will be added, with their respective modules.**
     
+        
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
-    1. Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
+    1. Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
     2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
     3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
     4. Test case: ```schedule test_meeting startDate startTime endDate endTime```
@@ -466,6 +462,12 @@ Given below are instructions to test the app manually.
  
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
-    1. Type ```meetings``` to list down all meetings in the main user's timetable.
-    2. Test case: 
+    1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
+    2. Test case: ```delete 1```. <br>
+    **Expected: The meeting scheduled previously in F.3 is deleted.**
+
+### F.5. Editing a particular timetable
+1. Editing main user's timetable
+    1. You 
+  
 ### F.2. Saving data

@@ -24,12 +24,12 @@ test {
 }
 
 application {
-    mainClassName = "MeetingOrganizer"
+    mainClassName = "WhenFree"
 }
 
 shadowJar {
-    archiveBaseName = "MeetingOrganizer"
-    archiveVersion = "2.0"
+    archiveBaseName = "WhenFree"
+    archiveVersion = "2.1"
     archiveClassifier = null
     archiveAppendix = null
 }
