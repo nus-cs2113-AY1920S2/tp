@@ -187,7 +187,7 @@ public class MessageBank {
                     + "  Exit the application                          |\n"
                     + "|____________________________________________________________|"
                     + "________________________________________________|\n"
-                    + "Please key in your command: ";
+                    + "Please key in your command:";
 
     public static final String BMI_TABLE_MESSAGE = "You can check your height and weight against this table"
             + " to see which category you fall into.\n"
