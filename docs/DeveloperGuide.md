@@ -448,8 +448,8 @@ The following sequence diagram summarizes how repeat command operation works, fr
         
     5. `LocalDateTime nextDateAndTime`: Not initialized initially, but gets updated every time `updateDate()` is called. This is used to
      keep track of the event's next date and time so that it could be utilized in other areas, such as `list upcoming events` for corner
-     cases. For example, a repeating event that occurs today but we have past its time (thus will not appear in `list upcoming events` as
-      the event has past and its date will not be updated yet since it is still today) but should appear as it will repeat into the future.
+     cases. For example, a repeating event that occurs today but we have passed its time (thus will not appear in `list upcoming events` as
+      the event has passed and its date will not be updated yet since it is still today) but should appear as it will repeat into the future.
 
 -   With this implementation in mind, every time the app is launched, after `load()` method in `Storage` class is called, the app will
     call a method `updateEventDate()` which will iterate through every task in the list and calls `RepeatEvent#updateDate()` if the task is
@@ -462,12 +462,12 @@ The following sequence diagram summarizes how repeat command operation works, fr
    the last few dates of a month. For example, given 31st Jan 2020, if we add 1 month to it using the LocalDateTime Java API,
    we will get 29 Feb 2020. Then adding another month, we will get 29 Mar 2020 instead of 31 Mar 2020.
  >
- > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
+ > However by using `originalDateAndTime`, and using `periodCounter` to keep track of how much time has passed (i.e how many `numOfPeriod` with type `typeOfPeriod` has passed), we can accurately and quickly obtain the correct
    next date and time. In this case, we will obtain 31 Mar 2020 instead of 29 Mar 2020. 
 
 -   To users, apart from minor differences such as the icon and listing of `RepeatEvent` shows how often it is being repeated, there will be
- no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and 
-they can only add or edit `Event` or `Assignment` and would appear as if there are only 2 type of tasks.
+ no other noticeable difference between an `Event` and a `RepeatEvent`. The implementation of `RepeatEvent` is transparent to the users and appear as if
+they can only add or edit `Event` or `Assignment` tasks and that there are only 2 type of tasks.
 
 #### 3.4.3 How date and time is updated in `RepeatEvent#updateEvent()`
 There are 2 ways an event's date and time is updated. 
@@ -476,7 +476,7 @@ There are 2 ways an event's date and time is updated.
 2. When a user starts up ATAS with `RepeatEvent` object in its `TaskList`, `Atas#updateEventDate()` will be called. It will then
  call `updateEvent()` for each `RepeatEvent` objects and its date will be updated if it is in the past.
  
--  `updateEvent()` solely compares dates. 
+-  `updateEvent()` solely compares dates and not time. 
 - It will loop until `startDate` (which is the `RepeatEvent` object's stated `startDateAndTime.toLocalDate()`) is equal to or
   greater than the current date. With each loop, it will simply add `numOfPeriod` of days, months or years using the methods
    provided by Java `LocalDateTime` API to `startDate`. `periodCounter` will also increase by one per iteration. 
@@ -508,7 +508,7 @@ There are 2 ways an event's date and time is updated.
 
     -   Alternative Considered:  
 
-        1.  Removing `numOfPeriod` and fixing it to just 4 types of recurrence.
+        1.  Removing `numOfPeriod` and fixing it to just 4 types of recurrence (using solely `typeOfPeriod`).
 
             -   Pros: It would simplify usability and implementation since there will only be 4 options to choose from.
 
@@ -518,7 +518,7 @@ There are 2 ways an event's date and time is updated.
 
     -   Rationale:  
         It allows the repeated events to be easily removed or un-repeated as a there will only be a single `RepeatEvent` present in the list.
-        However, this means that past instances of that event will not be kept and we feel that it is acceptable as the past events are not 
+        However, this means that past instances of that event will not be kept and we feel that it is acceptable as past events are not 
         nearly as important as future events for a time management app.
 
     -   Alternative considered:  
