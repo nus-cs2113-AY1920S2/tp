@@ -52,7 +52,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Your timetable this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -106,7 +106,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Your timetable this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
@@ -159,7 +159,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -221,7 +221,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
@@ -282,7 +282,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -344,7 +344,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Fri Apr 10, week 12.
+Today is Sat Apr 11, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
