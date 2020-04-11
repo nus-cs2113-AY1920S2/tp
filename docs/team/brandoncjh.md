@@ -99,7 +99,6 @@ CLI to keep track of various medical records* and *can type fast*.
 5. In Command Prompt, change your current working directory to the folder containing the .jar using $ `cd <Path of folder containing .jar>`
 6. Run the .jar using $ `java -jar (latest version).jar`
 
-### [Back to top &#x2191;](#table-of-content)
  
 &nbsp;
 
@@ -117,8 +116,6 @@ The `lista` or `listp` command that HAMS provides can display all the Appointmen
 HAMS has an auto-save feature which stores Patient and Appointments every time you add or modify them. 
 With this feature, your tasks will be saved every time you leave the application and can be easily retrieved when you reopen the application subsequently.
 
-### [Back to top &#x2191;](#table-of-content)
-
 &nbsp;
 
 ***
@@ -129,6 +126,7 @@ With this feature, your tasks will be saved every time you leave the application
  technical contributions to the project and rationale for technical implementation.
 ```
 > I developed the Storage module, listing out the main purpose and steps in input interpretation.
+
 #### 2.2.3 Storage module
 
 The Storage module consists of 3 different classes. 
@@ -140,8 +138,7 @@ These operations are usually invoked on startup, whenever changes are made to th
 Additionally, it also works with PatientIdManager class to load pre-existing Patient-PatientId mappings.
 The class diagram for the storage module is as seen below: 
 
-
-![](../images/storageclass.PNG)
+<img src="../images/storageclass.PNG" width="400" />
 
 &nbsp;
 
@@ -161,13 +158,12 @@ the static PatientList.
 
 The sequence diagrams for both `loadSavedAppointment()` and `loadSavedPatient()` are shown below:
 
-<img src="../images/loadsavedappt_ref.PNG" style="zoom:50%;" />
+<img src="../images/loadsavedappt_seq1.PNG" width="400" />
+<img src="../images/loadsavedappt_ref.PNG" width="400" />
 
-![](../images/loadsavedappt_seq1.PNG)
-![](../images/loadsavedappt_ref.PNG)
+<img src="../images/loadsavedpatient_seq1.PNG" width="400" />
+<img src="../images/loadsavedpatient_ref.PNG" width="400" />
 
-![](../images/loadsavedpatient_seq1.PNG)
-![](../images/loadsavedpatient_ref.PNG)
 
 When the static AppointmentList or PatientList has changes, or the program is exiting, `saveAppointmentList()` or `savePatientList()` 
 is invoked respectively. This allows the Storage object to back up existing records to a local .txt file.
@@ -180,12 +176,12 @@ For Patients, the process is the same as above. The difference is that Storage o
 
 The sequence diagram for `saveAppointmentList()` and `savePatientList()`  is shown below:
 
-![](../images/saveapptlist_seq.PNG)
-![](../images/savepatientlist_seq.PNG)
+<img src="../images/saveapptlist_seq.PNG" width="400" />
+<img src="../images/savepatientlist_seq.PNG" width="400" />
 
 > I developed the FindPatientCommand and FindAppointmentCommand classes, listing out the main purpose and steps in input interpretation. 
 > 
->Additionally, I also provided design considerations while implementing this module.
+> Additionally, I also provided design considerations while implementing this module.
 
 #### 2.2.4.14 FindAppointmentCommand Class
 
@@ -211,8 +207,8 @@ to the format of the input, this class searches specific fields:
 
 Below shows the sequence diagram for FindAppointmentCommand class.
 
-![](../images/findappt_seq1.PNG)
-![](../images/findappt_ref.PNG)
+<img src="../images/findappt_seq1.PNG" width="400" />
+<img src="../images/findappt_ref.PNG" width="400" />
 
 ##### 2.2.4.14.1 Design Considerations
 ###### Aspect: Format of Search Input
@@ -253,8 +249,8 @@ through every field in the Patient object for the search keyword.
 
 Below shows the sequence diagram for FindPatientCommand class.
 
-![](../images/findpatient_seq1.PNG)
-![](../images/findpatient_ref.PNG)
+<img src="../images/findpatient_seq1.PNG" width="400" />
+<img src="../images/findpatient_ref.PNG" width="400" />
 
 ##### 2.2.4.15.1 Design Considerations
 ###### Aspect: Format of Search Input
