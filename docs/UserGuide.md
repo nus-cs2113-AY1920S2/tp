@@ -48,7 +48,7 @@ Interested? Jump to the Section 2, “Quick Start” to get started. Enjoy!
 
 ## 2. Quick Start
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](https://github.com/AY1920S2-CS2113-T15-3/tp/releases).
+2. Download the latest version of `Module Manager` from [here](https://github.com/AY1920S2-CS2113-T15-3/tp/releases).
 
 ## 3. Features
 
