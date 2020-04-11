@@ -18,6 +18,7 @@ public class MarkAsDoneCommand extends Command {
 
     /**
      * marks the module in a semester in the selectedList as done.
+     *
      * @param description : name of the module or id of the module that the user wants to mark as done.
      * @param grade       : Grading awarded for the module.
      */
@@ -34,20 +35,21 @@ public class MarkAsDoneCommand extends Command {
         super.execute(semesterList, availableModulesList);
     }
 
-    /** Find selected module in sem and assign module with a grade.
+    /**
+     * Find selected module in sem and assign module with a grade.
      * Increase user's number of completed module credit if the grade assigned to module is not F or CU.
+     *
      * @param semesterList Semester List containing Semester Module Lists, which contains selected modules
      * @throws RuntimeException throws except if module not found in semester
      */
     private void markAsDoneCommand(SemesterList semesterList) throws RuntimeException {
-        for (SemModulesList sem: semesterList) {
-            for (SelectedModule module: sem) {
+        for (SemModulesList sem : semesterList) {
+            for (SelectedModule module : sem) {
                 boolean isModuleName = module.getName().equalsIgnoreCase(description);
                 boolean isModuleId = module.getId().equalsIgnoreCase(description);
                 if (isModuleName || isModuleId) {
                     boolean isNotGradeF = (grade != Grading.F);
                     boolean isNotGradeCU = (grade != Grading.CU);
-                    /* Add module credit if the module is marked for the first time */
                     boolean isModuleNotDone = !module.getDone();
                     if (isNotGradeF && isNotGradeCU && isModuleNotDone) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
@@ -59,23 +61,30 @@ public class MarkAsDoneCommand extends Command {
                     }
                     module.setAsDone(grade);
                     if (!isNotGradeF || !isNotGradeCU) {
-                        StringBuilder newName = new StringBuilder();
-                        if (module.isIdValid()) {
-                            newName.append(module.getId());
-                        } else if (module.isNameValid()) {
-                            newName.append(module.getName());
-                        }
-                        newName.append(" Failed");
-                        SelectedModule failedModule = new SelectedModule("name", newName.toString(),
-                                module.getSem(), module.getModuleCredit());
-                        sem.remove(module);
-                        failedModule.setAsDone(grade);
-                        sem.add(failedModule);
+                        appendFailString(module, sem);
                     }
                     return;
                 }
             }
         }
         throw new RuntimeException("module not found");
+    }
+
+    /**
+     * adds " Failed" to the module name/ id if it has a fail grade.
+     */
+    private void appendFailString(SelectedModule module, SemModulesList sem) {
+        StringBuilder newName = new StringBuilder();
+        if (module.isIdValid()) {
+            newName.append(module.getId());
+        } else if (module.isNameValid()) {
+            newName.append(module.getName());
+        }
+        newName.append(" Failed");
+        SelectedModule failedModule = new SelectedModule("name", newName.toString(),
+                module.getSem(), module.getModuleCredit());
+        sem.remove(module);
+        failedModule.setAsDone(grade);
+        sem.add(failedModule);
     }
 }

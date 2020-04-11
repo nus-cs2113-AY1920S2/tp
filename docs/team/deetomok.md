@@ -14,18 +14,22 @@ For all the code that I have contributed to Module Manager, click here:
 [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
 
 #### Enhancements implemented  
-In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands and some exception classes.  
+In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands (Mark as Done,
+View, Helping and Clear) and some exception classes.  
 
-##### Controller  
-* What it does: When a user inputs a command line, 
-* Justification: 
-* Highlights: 
-
-##### Commands  
-- Mark as Done Command  
-- View Command  
-- Helping Command  
-- Clear Command  
+##### Mark as Done Command  
+* What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,
+it stores the grade of the module. This is essential for the calculation of the user's CAP and amount of completed credits.
+* Justification: In a Module Management application, it is important for users to keep track of which modules they have
+completed, its respective grades, and which modules in their module plan they have yet to finish. If the user fails
+the module, the fail grade is added to cap, but the credit of that module is not added to the completed credit of the 
+user. Furthermore, if the user incorrectly enters the grade of the module when using this feature, the user can simply
+re-enter this feature with the updated grade to change the grade of the completed module. 
+* Highlights: Implementation was challenging because there are multiple different scenarios to consider for when a 
+user wants to use this feature, and when implementing this feature, we must be clear of what to change and add into the
+user's data. Some scenarios considered include:
+    * User fails a mod, we have to allow them to add the same module again, as in reality they must re-take the module. 
+    * User marks a module as done, but entered an incorrect grade, and has to update the done module's grade
 
 ### Contributions to documentation: 
 * Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
@@ -65,10 +69,6 @@ Glossary section and Instructions for Manual Testing section.([#133](https://git
 - bugs reported in other team's products: [Bug reports to CS2113T-T12-3](https://github.com/DeetoMok/ped/issues)  
 
 
-
-
-
-
 ### Contributions to the User Guide
 The user guide is updated with relevant instructions and their correct format. I was responsible for the 
 Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
@@ -79,14 +79,15 @@ A grey highlight as `such` indicates a command which can be typed into the comma
 Words in [square brackets] denotes parameters that have to be specified by the user.
 
 ## Project Feature
-### Deleting module: delete
+### 3.3  Deleting module: delete
 You can delete a module from a semester of your module plan or from the list of available modules.
 
-#### Delete a specific module from a semester in module plan
+#### 3.3.1 Delete a specific module from a semester in module plan
 You can do so by using the module code or the module name.
-The module to be deleted must be in your module plan.
+The module to be deleted must be in your module plan.\
+If you delete a module which is done and not failed, then the total complete credits will be changed.
  
-#### Based on module code
+#### 3.3.1.1 Based on module code
 Format: `delete id/[module code] s/[semester]`
 
 Example:​ `delete id/IS4241 s/4`
@@ -98,7 +99,7 @@ Expected output:
 `Module IS4241 has been deleted from semester Y2S2`
 
 
-#### Based on module name
+#### 3.3.1.2 Based on module name
 Format: `delete n/[module name] s/[semester]`
 
 Example:​ `delete n/Discrete Structure s/4`
@@ -109,9 +110,10 @@ Expected output:
 
 `Module Discrete Structure has been deleted from semester Y2S2`
 
-#### Delete a specific module from available module list
+#### 3.3.2 Delete a specific module from available module list
+If the module you delete also in module plan, it will also be removed in module plan.
 
-#### Based on module name
+#### 3.3.2.1 Based on module name
 Format: `delete id/[module code]`
 
 Example:​ `delete id/IS4241`
@@ -122,7 +124,7 @@ Expected output:
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
 
-#### Based on module code
+#### 3.3.2.2 Based on module code
 Format: `delete n/[module name]`
 
 Example:​ `delete n/Social Media Network Analysis`
@@ -132,12 +134,6 @@ Expected output:
 `Okay, this module has been deleted from the list of available modules`
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
-
-
-
-
-
-
 
 
 ### Contributions to the Developer Guide (Which sections did you contribute to the DH? Which UML Diagrams did u add/update)
