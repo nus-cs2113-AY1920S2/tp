@@ -493,7 +493,8 @@ Searching a dish in the menu.
 #### E.4.2 Search an ingredient
 Searching an ingredient in the menu.
 * Test case: `search stock; k/tomato;`
-    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2 strictly, the only ingredient         that will  be displayed is `tomato`. Note that we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
+    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2 strictly, the only ingredient
+    that will be displayed is `tomato`. Note that we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `search stock; k/banana`
     - Expected: A message will be displayed to show that there is currently no existing ingredient that matches the keyword you have just given.
 * Test case: `search stock; k/TOMATO;`
@@ -527,7 +528,8 @@ Listing all dishes in the menu.
 Listing all ingredients in the stock.
 * Test case: `list stock;`
     - Expected: All ingredients in the stock will be listed. Assuming that you have followed up to E.4.2 strictly, the only ingredient listed would be
-    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently. Also, we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
+    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently. 
+    Also, we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `list stock`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
 
