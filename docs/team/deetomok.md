@@ -32,12 +32,12 @@ user's data. Some scenarios considered include:
     * User fails a mod, we have to allow them to add the same module again, as in reality they must re-take the module. 
     * User marks a module as done, but entered an incorrect grade, and has to update the done module's grade
 
-### Contributions to documentation: 
+### Contributions to the User Guide: 
 * Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Command Format, Mark as Done feature, Deleting features, FAQ, Command summary 
 ([#62](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/62), [#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121))
 
-### Contributions to the DG: 
+### Contributions to the Developer Guide: 
 * Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Introduction Section and Setting up section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
 * Added Architecture, UI component, Logic component and Model component under Design section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
@@ -146,6 +146,40 @@ section, Non-Functional Requirements section, Glossary section and Instructions 
 
 Below contains an excerpt of my documentation regarding the Architecture Design of Module Manager.
 
+# 2. Setting up
+## 2.1 Prerequisites
+1. JDK `11`.
+2. IntelliJ IDE.
+
+## 2.2 Setting up the project in your computer
+1. Fork this repository, and clone the fork repository to your computer
+2. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project 
+dialog first)
+3. Set up the correct JDK version for Gradle
+    * Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
+    * If `JDK 11` is listed in the drop down, select it. Otherwise, click `New…` and select the directory where you 
+    installed `JDK 11`
+    * Click `OK`
+4. Click `Import Project`
+5. Locate the `build.gradle` file and select it. Click `OK`
+6. Click `Open as Project`
+7. Click `OK` to accept the default settings if prompted
+
+## 2.3 Verifying the setup
+1. Run Module Manager to verify and try a few commands. Do refer to the user guide for a list of commands to try out.
+2. Run the JUnit Tests/gradlew test command to ensure that all test case passes.
+
+## 2.4 Configurations to do before writing code
+**Configuring the coding style**
+* Module Manager uses CheckStyle to check for code quality violations.
+* To configure your project to use CheckStyle, add `id 'checkstyle'` under plugins for your `build.gradle` file.
+* Ensure that your CheckStyle toolVersion is 8.23 by adding `toolVersion = '8.23'` into your `build.gradle` file.
+Refer to Module Manager's `build.gradlew` file as a reference to set up CheckStyle correctly.
+
+**Getting started with coding**
+When you are ready to start coding, we recommend that you get a sense of the overall design by reading about 
+Module Manager's architecture in the next section.
+
 # 3. Design
 This section provides a high level overview of our application, Module Manager.
 ## Design & Implementation
@@ -177,6 +211,7 @@ The other components involved are:
 
 
 #### 3.2 UI component
+Given below is the structure of the Ui component:
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
 
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
@@ -187,7 +222,7 @@ The `UI` component,
 *   Executes user commands using the `Logic` component
 
 #### 3.3 Logic component
-
+Given below is the object diagram of the Logic Component
 ![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
@@ -201,7 +236,7 @@ All these command classes inherits from the abstract `Command` class.
 such as displaying help to the user.
 
 #### 3.4 Model component
-
+Given below is the class diagram of the Model Component:
 ![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component(1).png)
 
 The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
@@ -212,3 +247,68 @@ The responsibilities of the `Model` component includes
 `ArrayList<SelectedModule>` in a `SemModulesList` class. This represents a semester of the user's module plan.
 * All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
 in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
+
+### 4.3.2 Marking module as done
+
+The Marking as done mechanism is executed by `MarkAsDoneCommand`.
+`MarkAsDoneCommand` is extended from the abstract class `Command`, and this implementation marks the module that has
+been added to a `SemModuleList` in the `SemesterList` as done, and updates the respective grade to the `Module` object.  
+
+Given below is the behaviour of the Marking module as done mechanism at each step:
+
+#### Step 1:
+User launches the application. `SelectedModules` are added to `SemModuleList` through either of the following methods:
+1) Imported from `semesterList.csv` using `StorageSemesterList.load()`
+2) Added using `add id/ID s/SEMESTER mc/MODULE_CREDIT` command
+
+#### Step 2:
+User enters a mark as done command e.g. `done id/CS2113 g/A+ `. The command will be parsed in `Parser`, 
+which will return its parsed Strings to `Controller`. `Controller` takes in the Strings from `Parser` and creates
+a `MarkAsDoneCommand` object which then calls 
+`Command.execute(SemesterList semesterList, AvailableModulesList availableModulesList)`, in this context, 
+`(MarkAsDoneCommand#execute(SemesterList semesterList, AvailableModulesList availableModulesList))`.
+
+#### Step 3:
+`MarkAsDoneCommand#execute()` then calls self method `MarkAsDone#markAsDone()` which iterates through the 
+`semesterList` to check all `SemModulesList` and compare module name or id to see if the module that is being
+ marked as done exists in the `semesterList`.  
+If the module exists in the list, the method will proceed to step 4. If the module does not exist in the list, 
+a `RuntimeExcption` will be thrown to tell the user that the module does not exist in the user's module plan.
+
+#### Step 4:
+Once corresponding module is found, the method will check the grade being assigned to module as well as whether
+the module has already been marked as done.  
+If the module is being assigned a passing grade and has not been marked done, 
+`personPerson.addTotalModuleCreditCompleted()` is called to add the number of module credit of the module to the user's
+`totalModuleCreditCompleted` attribute.  
+If the module is being assigned a failing grade but has already been marked as done, 
+`personPerson.minusTotalModuleCreditCompleted()` is called to reduce the number of module credit of the module 
+from the user's `totalModuleCreditCompleted` attribute. This conditional step is for the case when user wants to change 
+the grade of a module from a passing grade to failing grade.  
+
+#### Step 5:
+The grade of the module will be passed to the `Module` object to update the grade attribute, 
+and the `isDone` attribute of the module will be updated to be `true`.
+
+#### Step 6:
+If the grade being assigned is a failing grade, self method will be `appendFailString` called. `appendFailString` will 
+construct a new `StringBuilder` and check if the module has an `id` attribute by calling `module.isIdValid()` method. 
+If the method has an id, the module's id will be appended to the `StringBuilder`. If the module does not have an `id` 
+attribute, the method will check if the module has a `name` attribute by calling `module.isNameValid()` method. The
+module's name will then be appended to the `StringBuilder`. After appending the module's id or name, `" Failed"` string 
+will be appended to the `StringBuilder`.  
+
+#### Step 7:
+A new `SelectedModule` will be constructed using the String derived from `StringBuilder.toString()`, the Semester of 
+the module called from the module's `getSem()` method and the number of module credits called from the module's
+`getModuleCredit()` method.  
+Once the new `SelectedModule` has been constructed, the module that is being assigned a failing grade will be removed
+from the `SemModuleList`.  
+
+#### Step 8:
+The new `SelectedModule` will be updated by updating its `isDone` attribute to `true` and updated with the `grade` that 
+was supposed to be assigned using the `SetAsDone`. It will then be added to the same `SemModuleList` as the removed
+module.
+ 
+The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
+![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
