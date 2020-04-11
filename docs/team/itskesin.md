@@ -76,8 +76,8 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Patient Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)
+[Main](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#3-features)  
+[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
