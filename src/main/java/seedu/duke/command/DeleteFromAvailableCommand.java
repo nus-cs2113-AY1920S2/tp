@@ -39,7 +39,6 @@ public class DeleteFromAvailableCommand extends DeleteCommand {
      * @throws RuntimeException Throws exception when the module does not exist or if the module is a prerequisite
      *     of other modules.
      */
-
     private void deleteModule(SemesterList selectedModulesList, AvailableModulesList availableModulesList)
             throws RuntimeException {
         boolean isModuleAvailable = checkIfModuleAvailable(availableModulesList);

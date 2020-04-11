@@ -28,7 +28,7 @@ public class MarkAsDoneCommand extends Command {
 
     @Override
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList)
-            throws RuntimeException, StorageException, InputException {
+            throws RuntimeException, InputException, StorageException {
         markAsDoneCommand(semesterList);
         Ui.showDoneMessage();
         super.execute(semesterList, availableModulesList);
@@ -46,9 +46,9 @@ public class MarkAsDoneCommand extends Command {
                 boolean isModuleId = module.getId().equals(description);
                 if (isModuleName || isModuleId) {
                     module.setAsDone(grade);
-                    boolean isGradeF = (grade == Grading.F);
-                    boolean isGradeCU = (grade == Grading.CU);
-                    if (!isGradeF && !isGradeCU) {
+                    boolean isNotGradeF = (grade != Grading.F);
+                    boolean isNotGradeCU = (grade != Grading.CU);
+                    if (isNotGradeF && isNotGradeCU) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
                     return;

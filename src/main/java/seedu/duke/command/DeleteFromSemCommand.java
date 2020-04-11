@@ -13,19 +13,16 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     private String moduleIdentifier;
     private String semester;
-    private String type;
     private String yearSemester;
 
     /**
      * Constructor for DeleteFromSemCommand.
      * @param moduleIdentifier The Id or the Name of the Module.
      * @param semester The Semester the module was allocated to.
-     * @param type To determine if the moduleIdentifier is an Id or the Name of the module.
      */
-    public DeleteFromSemCommand(String moduleIdentifier, String semester, String type) {
+    public DeleteFromSemCommand(String moduleIdentifier, String semester) {
         this.moduleIdentifier = moduleIdentifier;
         this.semester = semester;
-        this.type = type;
         setYearSemester();
     }
 
@@ -39,6 +36,11 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     }
 
+    /**
+     * Look for the specific semester within SemesterList and delete selectedModule from it
+     * @param selectedModulesList
+     * @throws RuntimeException when module is not found within SemesterList
+     */
     private void deleteModule(SemesterList selectedModulesList) throws RuntimeException, InputException {
         boolean isModuleInSem = checkModuleExistInCorrectSem(selectedModulesList);
         if (!isModuleInSem) {
@@ -73,7 +75,9 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     private boolean checkModuleExistInCorrectSem(SemesterList moduleList) {
         for (SemModulesList sem: moduleList) {
-            if (sem.getSem().equalsIgnoreCase(semester) && sem.isInList(moduleIdentifier)) {
+            boolean isTheSemesterSame = sem.getSem().equalsIgnoreCase(semester);
+            boolean isTheModuleInAnySem = sem.isInList(moduleIdentifier);
+            if (isTheSemesterSame && isTheModuleInAnySem) {
                 return true;
             }
         }
