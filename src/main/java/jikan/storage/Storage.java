@@ -19,6 +19,7 @@ public class Storage {
     /** File object for current data file. */
     public File dataFile;
 
+    /** Activity list linked to this storage file. */
     public ActivityList activityList;
 
     /**
