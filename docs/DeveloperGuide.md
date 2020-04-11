@@ -83,10 +83,10 @@ _Fig 2.1. Architecture diagram of the Jikan program_
 The high-level class diagram describes the structure of the components
 
 ![image_info](./pictures/Simplified_Class_Diagram.png)
-_Fig 2.1. Class diagram of the Jikan program_
+_Fig 2.2. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
-_Fig 2.2. Commands of Jikan (private methods omitted)_
+_Fig 2.3. Commands of Jikan (private methods omitted)_
 
 All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
@@ -499,7 +499,7 @@ This feature gives the user a visual representation of their activity duration a
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
 #### 3.10.1 Current Implementation
-![graph seq diagram](./pictures/graph.png)
+![graph seq diagram](./pictures/graph_seqDiag.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
 * The Parser will create a GraphCommand object.
 * The GraphCommand will invoke its own `executeCommand()` method.  
