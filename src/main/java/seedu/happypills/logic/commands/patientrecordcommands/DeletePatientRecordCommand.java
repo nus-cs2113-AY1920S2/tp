@@ -67,7 +67,7 @@ public class DeletePatientRecordCommand extends PatientRecordCommand {
         assert !nric.isEmpty() : "No NRIC was provided";
         if (patients.containsKey(nric)) {
             if (patientRecordMap.get(nric) == null || patientRecordMap.get(nric).isEmpty()) {
-                throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT);
+                throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT_RECORD);
             } else if (isIndexOutOfBound) {
                 throw new HappyPillsException(Messages.MESSAGE_INDEX_OUT_OF_BOUND);
             }

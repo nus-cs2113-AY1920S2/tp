@@ -2,6 +2,7 @@ package seedu.happypills.ui;
 
 import seedu.happypills.model.data.PatientRecord;
 import seedu.happypills.model.data.PatientRecordMap;
+import seedu.happypills.model.exception.HappyPillsException;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,13 @@ public class PatientRecordTextUi extends TextUi {
      *
      * @param patientRecords Patient records of the patient.
      * @return message A formatted success message string to be displayed to user.
+     * @throws HappyPillsException If the list is empty
      */
-    public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords) {
+    public static String getPatientRecordListSuccessMessage(ArrayList<PatientRecord> patientRecords)
+            throws HappyPillsException {
+        if (patientRecords.isEmpty()) {
+            throw new HappyPillsException(Messages.MESSAGE_EMPTY_PATIENT_RECORD);
+        }
         String nric = patientRecords.get(0).getNric();
         String message = "    Here is the list of " + nric + "'s records:\n"
                 + "    ID    | Date       | Time     \n";
@@ -61,9 +67,8 @@ public class PatientRecordTextUi extends TextUi {
      * Formats a delete patient success message for user.
      * Includes a specified string, requested patient details and a divider.
      *
-     * @param patientRecord    Patient record object to be returned as a part of the string.
-     * @param patientNric      Nric of the patient.
-     *
+     * @param patientRecord Patient record object to be returned as a part of the string.
+     * @param patientNric   Nric of the patient.
      * @return a formatted success message string to be displayed to user.
      */
     public static String deletePatientRecordSuccessMessage(
