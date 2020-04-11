@@ -69,10 +69,6 @@ Glossary section and Instructions for Manual Testing section.([#133](https://git
 - bugs reported in other team's products: [Bug reports to CS2113T-T12-3](https://github.com/DeetoMok/ped/issues)  
 
 
-
-
-
-
 ### Contributions to the User Guide
 The user guide is updated with relevant instructions and their correct format. I was responsible for the 
 Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, Table of contents.
@@ -138,12 +134,6 @@ Expected output:
 `Okay, this module has been deleted from the list of available modules`
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
-
-
-
-
-
-
 
 
 ### Contributions to the Developer Guide (Which sections did you contribute to the DH? Which UML Diagrams did u add/update)
