@@ -125,8 +125,9 @@ saved.
 
 ## 3. Implementation  
 ### 3.1 Event
-![event](images/Event.png "Class diagram of Event component")               
-*Class diagram of the Event component*
+![event](images/Event.png "Class diagram of Event component")           
+*Class diagram of the Event component*  
+
 The Event features allow users to update and keep track of their schedules.
 
 #### Program flow
@@ -144,7 +145,7 @@ step passed into it.
 
 The diagram below illustrates the program flow stated above, with the command 
 `event delete i/1`.
-![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")
+![event sequence](images/EventSequence.png "Sequence diagram of event delete i/1")  
 
 In this diagram:
 * Other alternative paths are not shown (e.g. [add], [editEvent], [list], etc.).
@@ -162,6 +163,7 @@ either by complete match, or fuzzy match.
 ### 3.2 Calendar
 ![Calendar](images/Calendar.png "Class diagram of Calendar component")  
  *Class diagram of the Calendar component*  
+ 
 The calendar feature allows users to view their schedule by semester and academic year. Since our target
 user is professor, this feature allows the professor to manage their events in a way that is more related to their
 work life schedule. 
@@ -170,6 +172,7 @@ work life schedule.
 Below shows the sequence diagram of `CalendarCommandInterpreter`:  
 ![CalendarCommandInterpreter](images/CalendarCommandInterpreter.png "Command Interpreter")  
 *Diagram of CalendarCommandInterpreter*  
+
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object which extends `Command` is created.  
@@ -232,7 +235,8 @@ the optimization of calendar view in accordance to the professor's schedule.
 * Event name size must be less than 10 characters to be displayed neatly (current implementation), however
 it can be implemented in the future to truncate longer names to fit nicely in the calendar. 
 * Addition, deletion and editing of events from the calendar are automatically attempted whenever a user enters a 
-command to modify an event from the event list. This is illustrated in the flowchart below:  
+command to modify an event from the event list.  
+This is illustrated in the flowchart below:  
 ![Flowchart](images/CalendarFlowChart.png "Calendar flow chart")  
 *Calendar management activity diagram*
 
