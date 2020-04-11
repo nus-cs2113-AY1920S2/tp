@@ -1,4 +1,5 @@
 //@@author JLoh579
+
 package seedu.duke.utils;
 
 import com.google.gson.Gson;
