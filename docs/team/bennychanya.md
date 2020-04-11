@@ -7,10 +7,6 @@ and it is optimized for those who want to type fast with CLI. It is written in J
 
 ## Summary of Contributions
 
-#### Code contributed  
-For all the code that I have contributed to Module Manager, click here:
-[code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
-
 #### Enhancements implemented  
 Added and/or edited the following class:  
 - SemesterList ([#38](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/38))
