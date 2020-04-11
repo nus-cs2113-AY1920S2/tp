@@ -130,8 +130,8 @@ Edit the location of task 2 to be NUSCOM2
 * `edit 2 c/todo`  <br/>
 Edit the category of task 2 to be TODO
 
-  ​      
 ### 3.4. Listing tasks: `list`
+
 #### 3.4.1. List
 Displays all the current tasks in the list. <br/> 
 **Usage**: `list`
