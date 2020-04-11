@@ -375,7 +375,7 @@ while application is still running, or outside of the application.
 **Q**: How do I obtain the NUSMODS links to my NUSMODS timetable?
 
 **A**:
- 1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your browser, you can create a new one. Else, you will be brought to your saved NUSMODS timetable.
+ 1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your browser, you can create a new one. Else, you will be brought to your saved NUSMODS timetable.<br>
  2) Click on the red "Share/Sync" button located at the bottom right of the page.
 ![](images/NUSMODS_step2.png)<br>
  3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
