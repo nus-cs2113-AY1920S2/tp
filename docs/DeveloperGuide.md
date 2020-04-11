@@ -29,8 +29,7 @@ By: `AY1920S2-CS2113T-T12-1`
 * [Appendix C: Use Cases](#appendix-c-use-cases)
 * [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
 * [Appendix E: Glossary](#appendix-e-glossary)
-* [Appendix F: Product Survey](#appendix-f-product-survey)
-* [Appendix G: Instructions for Manual Testing](#appendix-g-instructions-for-manual-testing)
+* [Appendix F: Instructions for Manual Testing](#appendix-f-instructions-for-manual-testing)
 	* [G.1. Launch and Shutdown](#g1-launch-and-shutdown)
 	* [G.2. Saving data](#g2-saving-data)
 
@@ -54,6 +53,10 @@ Setting up the project<br>
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
 2. Try out a few commands as shown on the CLI menu.
+
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
 
 ## 2. Design
 
@@ -98,7 +101,7 @@ Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` s
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
-### 2.3.1. logic.modulelogic component
+#### 2.3.1. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
@@ -131,7 +134,7 @@ The above figure shows a full overview of the UML sequence of the entire logic.m
  
 The information returned from ```LessonsGenerator``` would then be used in ```Command``` component.
  
-### 2.3.2. logic.schedulelogic component
+#### 2.3.2. logic.schedulelogic component
 
 The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
 The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#Display-timetable-of-selected-contacts) 
@@ -154,7 +157,7 @@ by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule`
 implementation of the [`Display timetable of selected contacts`](#33-display-timetable-of-selected-contacts) feature.
 <br>
 
-### 2.3.4. logic.commands component
+#### 2.3.3. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
 The ```commands``` consists of the class ```CommandHandler```.
 
@@ -163,7 +166,7 @@ The ```commands``` consists of the class ```CommandHandler```.
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
-### 2.4.1. Model.meetings component
+#### 2.4.1. Model.meetings component
 ![Meetings Component](images/meetingscomponent.png)<br>
 
 The ```meetings``` component of our application consists of 2 classes: ```Meeting``` and ```MeetingList```.
@@ -172,7 +175,7 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 2. ```MeetingList``` is used to store a list of all meetings. It contains a ```ArrayList<Meeting>``` which is updated every time the user adds or deletes a meeting. There are also getter methods not shown in the diagram.
 <br>
 
-### 2.4.2. Model.contacts component
+#### 2.4.2. Model.contacts component
 ![Contacts Component](images/contactscomponent.png)<br>
 
 The ```contacts``` component of our application consists of 2 classes: ```Contact``` and ```ContactList```.
@@ -199,6 +202,9 @@ The `Storage` component,
 Classes used by multiple components are in the ```commons``` package. These includes exception classes, information of 
 blacklisted modules as well as output messages to be shown to users when exception occurs.
 
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
 
 ## 3. Implementation
 This section describes some noteworthy details of how the main features of our application works in the backend.
@@ -220,7 +226,7 @@ Given below is an example usage scenario and how the `Add new contact` feature b
 6. ```LogicManager``` checks if the ```Contact``` is a main user and calls ```setMainUser()``` accordingly.
 7. The final procedure is to append the new ```Contact``` into ```ContactList``` found in the ```model``` component.
 
-### 3.1.1 Design Considerations
+#### 3.1.1 Design Considerations
 **Aspect 1: Optimizing fetching of module information**
 * Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information. <br>
 Pros: The classes are intuitively separated and data structures returned is understandable. <br>
@@ -244,6 +250,7 @@ blacklisted modules every semester. <br>
     2. **Cons**: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
        Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
 * Ultimately we decided to go with **Alternative 1** since it is the most user-friendly as our targeted users do not have to download another file and just downloading the jar would do. On the developer side, updates would still be required every semester, but our focus is to make the application as user-centric as possible.
+
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
 ######Fig 7. Sequence diagram of the implementation of the `List all contacts` feature
@@ -301,7 +308,7 @@ Given below is an example usage and how the `ScheduleMeeting` command behaves.
 	3. Lastly, `CommandHandler` calls `addBusyBlocks()` on `mainUser:Contacts` to mark the indicated timeframe as "busy".
 4. If the indicated timeframe is not available, an exception will be thrown to inform user.
 
-### 3.4.1 Design Considerations
+#### 3.4.1 Design Considerations
 **Aspect 1: **
 
 
@@ -335,7 +342,7 @@ schedule of `Contact` will be marked as "free" for the given time slot.
 
 The schedule of the `Contact` is edited and saved in the application.
 
-### 3.5.1 Design Considerations
+#### 3.5.1 Design Considerations
 **Aspect 1: Clash of ```Meeting```'s time slot and ```EditContact```'s time slot when editing main user's schedule**
 
 The implementation described above would allow the overwrite of any time blocks in the ```Contact```'s schedule. This  
@@ -416,6 +423,10 @@ Given below is an example usage scenario and how the ```ListMeetings``` command 
 2. ```LogicManager```would then request ```CommandHandler``` for the list.
 3. ```CommandHandler``` will call ```listMeetings()``` on ```MeetingList```, which will display every scheduled meetings that has been created.
 
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
+
 ## Appendix A: Product Scope
 ### A.1. Target user profile
 Our application, WhenFree, is for NUS students and teaching assistants looking to save time finding
@@ -452,7 +463,15 @@ meetings into account when scheduling a common timeslot timetable.
 |v2.0| As a student | I want to see the list of upcoming meeting dates  | so that i can remind myself which meetings i have to go for in the coming week. |
 |v2.1| As a  | a | a |
 
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
+
 ## Appendix C: Use Cases
+
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
 
 ## Appendix D: Non-Functional Requirements
 
@@ -463,10 +482,18 @@ meetings into account when scheduling a common timeslot timetable.
 5. Should work on both 32-bit and 64-bit environments.
 6. Should not exceed 100MB in size given normal usage.
 
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
+
 ## Appendix E: Glossary
 
 * **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
 * **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
+
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
 
 ## Appendix F: Instructions for Manual Testing
 
@@ -584,3 +611,7 @@ Given below are instructions to test the app manually.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
+
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
