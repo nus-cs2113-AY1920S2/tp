@@ -1155,8 +1155,14 @@ The following occurs when there is no existing attendance list.
     
 ### 4.5. Performance List
 #### 4.5.1. Add Performance List
-Add a students' result to the performance list. Pac offers you the absolute freedom to
-add students' result in any form, i.e. mark or grade.   
+Add new students' result to an empty or existing performance list. Pac offers 
+you the absolute freedom to add students' result in any form, i.e. mark or grade.  
+
+You are allowed to add the student's result by importing a student list or manually key
+in students' performance. This section will demonstrate two ways of adding a performance 
+list.  
+Do note that you have to have an existing name list before you are using the alternative method.  
+
 This is a step by step command and you may follow the instructions given by the console. 
 
 Format: `performance add`
@@ -1166,28 +1172,51 @@ Step by step guide:
     >>> performance add
     Please key in the name of event that you wish to access to its student's performance. 
     
-    >>> event
-    
-If the event is found, you can choose to add the student's result by manually key in each student, or you may choose
-the alternative provided by Pac: record using a current name list. Do note that you have to have an existing name list 
-before you are using this short cut.  
+    >>> Event
+
 The following will show a success example of using a current name list to add performance. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
     >>> yes
-    Please choose the name list you wish to use. (shows a list of list names)
+    Please choose the name list you wish to use. 
+    (shows a list of list names)
     
     >>> 1
     Please key in the result for (student1 name) 
     
     >>> A
-    The result of student (student name) has been added successfully under event (event name)
+    The result of student (student name) has been added successfully under event Event.
     If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'.
     
     Please key in the result for (student2 name)
-    ...
     
+    >>> A
+    
+    >>> The result of student (student2 name) has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+
+    You have successfully added 2 result(s) to the performance list.
+    
+The following will show a success example of adding performance list manually. 
+    
+    Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
+    
+    >>> nooo
+    Please key in the performance you want to add in this format: n/name r/result
+    When you are finished, input 'done' 
+    
+    >>> n/Student1 r/A
+    The result of student Student1 has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+    
+    >>> n/Student2 r/B
+    The result of student Student2 has been added successfully under event Event.
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'. 
+    
+    >>> done
+    You have successfully added 2 result(s) to the performance list.
+        
 *Note:*  
 *1. All commands above are not case sensitive.*  
 *2. Student name is restricted to one word only for manual add, i.e. `n/Student Name r/A` is an invalid input.*  
@@ -1211,7 +1240,16 @@ Step by step guide:
     
     >>> name
     The result of student (name) has been deleted successfully under event event.
-    
+
+If you are trying to delete a performance from an empty performance list, an error message
+will be shown as below:
+
+    >>> performance delete
+    Please key in the name of event that you wish to access to its student's performance. 
+        
+    >>> event
+    No performance list under this event.
+        
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.3. View Performance List
@@ -1234,6 +1272,14 @@ Step by step guide:
     |___________|_____________________________________|_____________________________________________|
     | 1         |  XX                                 |  A                                          |
     |___________|_____________________________________|_____________________________________________|
+
+If the performance list you wish to view is empty, you will see the following message:
+
+     No performance list under this event
+    _________________________________________________________________________________________________
+    | index     |  Name of Student                                   |  Result                      |
+    |___________|____________________________________________________|______________________________|
+
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.4. Edit Performance List
@@ -1260,9 +1306,32 @@ Step by step guide to edit name:
     
     >>> Carl
     The student name has been changed to Carl successfully.
+
+
+Step by step guide to edit result: 
+
+    >>> performance edit
+    Please key in the name of event that you wish to access to its student's performance.
     
-You should follow the same procedure to edit result, while changing your input from
-`name` to `result` at the `***` line.
+    >>> event
+    Please key in the name of student that you wish to edit his/her performance 
+    
+    >>> Alice
+    Please key in the type of performance parameter you want to edit: name / result
+    
+    >>> result
+    Please key in the student's new result
+    
+    >>> A
+    The student result has been changed to student successfully.
+
+If you have selected a wrong performance parameter, i.e. anything but 'name' or 'result', 
+an error message will be shown as below:
+    
+    Please key in the type of performance parameter you want to edit: name / result
+        
+    >>> type
+    Wrong type of parameter chosen.
 
 *Note: All commands above are not case sensitive.*
 
