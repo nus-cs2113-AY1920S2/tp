@@ -100,7 +100,13 @@ Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` s
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
-#### 2.3.1. logic.modulelogic component
+
+#### 2.3.1. logic.commands component
+The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components to execute the commands.
+The ```commands``` consists of the class ```CommandHandler```.
+
+
+#### 2.3.2. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser``` ```ModuleApiParser``` ```ModuleHandler``` ```LessonsGenerator```.
@@ -133,7 +139,7 @@ Fig 4. shows an overview of the UML sequence of the entire logic.modulelogic com
  
 The information returned from ```LessonsGenerator``` would then be used in ```Command``` component.
  
-#### 2.3.2. logic.schedulelogic component
+#### 2.3.3. logic.schedulelogic component
 
 The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
 The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#33-Display-timetable-of-selected-contacts) 
@@ -155,10 +161,6 @@ by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule(
 [Section 3.3](#3-implementation) below explains in detail how the ```schedulelogic``` component is used in the 
 implementation of the [`Display timetable of selected contacts`](#33-display-timetable-of-selected-contacts) feature.
 <br>
-
-#### 2.3.3. logic.commands component
-The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
-The ```commands``` consists of the class ```CommandHandler```.
 
 ### 2.4. Model component
 ![Model Component](images/modelcomponent.png)<br>
