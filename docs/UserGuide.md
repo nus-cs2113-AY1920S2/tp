@@ -181,6 +181,7 @@ Expected output:
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
 This can be done based on a module code or module name.\
+If your grade of one module is F or CU, this module will be converted to a failed form.\
 If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
 

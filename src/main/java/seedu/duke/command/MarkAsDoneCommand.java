@@ -52,6 +52,9 @@ public class MarkAsDoneCommand extends Command {
                     if (isNotGradeF && isNotGradeCU && isModuleNotDone) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
+                    if (!isModuleNotDone && (!isNotGradeCU || !isNotGradeF)) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
                     module.setAsDone(grade);
                     if (!isNotGradeF || !isNotGradeCU) {
                         StringBuilder newName = new StringBuilder();
