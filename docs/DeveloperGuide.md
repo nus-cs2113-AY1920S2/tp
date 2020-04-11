@@ -686,8 +686,25 @@ than using the mouse.
 1. Download the jar file and copy it into an empty folder.
 1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
 folder in command terminal.  
- 
-#### Saving and loading data
+
+#### Deleting an event
+
+- Prerequisites: At least one event must be added beforehand.
+- Test case: `event delete i/1`     
+  Expected: First event is deleted from the list. The name of the deleted 
+  event is shown.
+- Test case: `event delete i/0` (or other index that is less than 1)   
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete i/10` (out of bound)     
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete i/apple` (not an integer)    
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete 1` (too short to look for flag)  
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete apple` (no flag)  
+    Expected: No event is deleted. Error details shown.
+
+#### Saving and loading corrupted data
 1. Make sure you have some events and/or student lists to load.  
     - You can use `event add`, and `studentlist add` to add some.
 1. Close the application using `bye` command.   
