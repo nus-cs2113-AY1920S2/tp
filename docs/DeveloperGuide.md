@@ -332,15 +332,6 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ### Value proposition
 
-<<<<<<< HEAD
-
-* Single application to store dishes, stock and reservations
-* Can calculate the daily profit and most popular dish
-* Allows the owner to see an overview of their restaurant
-* Simple and easy to use interface
-=======
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
-
 * Single application to store dishes, stock and reservations
 * Can calculate the daily profit and most popular dish
 * Allows the owner to see an overview of their restaurant
@@ -372,15 +363,11 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
 |v2.0|restaurant owner|search dishes|I can know which dishes contain a certain word and the ingredients of those dishes|
 |v2.0|restaurant owner|search stock|I can know the quantity and cost of specific ingredients|
-<<<<<<< HEAD
 |v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
-=======
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 |v2.1|restaurant owner|load the dishes, stock and reservation|I don't have to re-enter the dishes, stock and reservations when I start up the program|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
 |v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
-
 
 
 <a name="nonfunctional-requirement"></a>
@@ -415,11 +402,11 @@ Given below are instructions to test the app manually.
 #### E.2.1 Adding a dish into menu
 Adding a dish into menu.
 * Test case: `add dish; n/pizza; i/cheese, sauce; p/7.00;`
-    - Expected: Dish `pizza` added into the menu.
+    - Expected: Dish `pizza` successfully added.
 * Test case: `add dish; n/pizza; i/cheese, sauce;`
     - Expected: Dish `pizza` will not be added. An error message will be displayed to request the user to input the correct format.
-* Other incorrect add commands to try: ``add dish; n/pizza; sauce;`` or `add dish;i/cheese, sauce;``
-    - Expected: The ingredient will not be added. An error message will be displayed accordingly.
+* Other incorrect add commands to try: `add dish; n/pizza; sauce;` or `add dish;i/cheese, sauce;`
+    - Expected: The dish will not be added. An error message will be displayed accordingly.
 
 #### E.2.2. Adding an ingredient into stock
 Adding an ingredient into stock.
@@ -493,12 +480,12 @@ Marking a reservation as Served while all reservations are listed.
 
 #### E.4.1 Search a dish
 Searching a dish in the menu.
-* Test case: `search dish; k/bacon;`
+* Test case: `search dish; k/piz;`
     - Expected: The dish `pizza` will be displayed.
 * Test case: `search dish; k/sushi;`
     - Expected: An error message will be displayed as the dish `sushi` does not exist in the menu.
 * Test case: `search dish; k/water`
-    - Expected: An error message will be displayed to reuest the user to input in the following format: `search dish; k/KEYWORD;`
+    - Expected: An error message will be displayed to request the user to input in the following format: `search dish; k/KEYWORD;`
     
 
 #### E.4.2 Search an ingredient
