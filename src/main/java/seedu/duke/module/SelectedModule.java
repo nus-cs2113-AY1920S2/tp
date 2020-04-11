@@ -152,7 +152,7 @@ public class SelectedModule extends Module {
 
     /**
      * Updates selected module's info if it is in available modules list.
-     * @param availableModule available modules list.
+     * @param availableModule Module from available modules list.
      */
     public void setModuleConfig(Module availableModule) {
         this.name = availableModule.name;

@@ -1,5 +1,7 @@
 package seedu.duke.data;
 
+import seedu.duke.exception.InputException;
+
 import java.util.Scanner;
 
 public class Person {
@@ -14,7 +16,12 @@ public class Person {
      * @return user's total completed module credits.
      */
     public static int getTotalModuleCreditCompleted() {
+        assert totalModuleCreditCompleted >= 0 : "Invalid Total Module Credit";
         return totalModuleCreditCompleted;
+    }
+
+    public static void clearTotalModuleCreditCompleted() {
+        totalModuleCreditCompleted = 0;
     }
 
     /**
@@ -25,6 +32,14 @@ public class Person {
     }
 
     /**
+     * Updates user's total completed module credits.
+     * @param modularCredit modular credit.
+     */
+    public static void minusTotalModuleCreditCompleted(int modularCredit) {
+        Person.totalModuleCreditCompleted -= modularCredit;
+    }
+
+    /**
      * Constructor of Person.
      * @param name user's name.
      * @param year user's matric year.
@@ -32,6 +47,13 @@ public class Person {
     public Person(String name, String year) {
         Person.name = name;
         matricYear = year;
+        isPersonExist = true;
+    }
+
+    public Person(String name, String year, String cc) {
+        Person.name = name;
+        matricYear = year;
+        totalModuleCreditCompleted = Integer.parseInt(cc);
         isPersonExist = true;
     }
 
@@ -70,6 +92,6 @@ public class Person {
      * @return personal information's string for storage.
      */
     public static String toStorageString() {
-        return name + "," + matricYear;
+        return name + "," + matricYear + "," + totalModuleCreditCompleted;
     }
 }

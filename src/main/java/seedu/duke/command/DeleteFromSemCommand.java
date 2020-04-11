@@ -1,11 +1,14 @@
 package seedu.duke.command;
 
 import seedu.duke.data.AvailableModulesList;
+import seedu.duke.data.Person;
 import seedu.duke.data.SemModulesList;
 import seedu.duke.data.SemesterList;
 import seedu.duke.exception.InputException;
 import seedu.duke.exception.RuntimeException;
 import seedu.duke.exception.StorageException;
+import seedu.duke.module.Grading;
+import seedu.duke.module.SelectedModule;
 import seedu.duke.ui.Ui;
 import seedu.duke.module.Module;
 
@@ -13,19 +16,16 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     private String moduleIdentifier;
     private String semester;
-    private String type;
     private String yearSemester;
 
     /**
      * Constructor for DeleteFromSemCommand.
      * @param moduleIdentifier The Id or the Name of the Module.
      * @param semester The Semester the module was allocated to.
-     * @param type To determine if the moduleIdentifier is an Id or the Name of the module.
      */
-    public DeleteFromSemCommand(String moduleIdentifier, String semester, String type) {
+    public DeleteFromSemCommand(String moduleIdentifier, String semester) {
         this.moduleIdentifier = moduleIdentifier;
         this.semester = semester;
-        this.type = type;
         setYearSemester();
     }
 
@@ -39,6 +39,11 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     }
 
+    /**
+     * Look for the specific semester within SemesterList and delete selectedModule from it.
+     * @param selectedModulesList List of semesters with selected modules
+     * @throws RuntimeException when module is not found within SemesterList
+     */
     private void deleteModule(SemesterList selectedModulesList) throws RuntimeException, InputException {
         boolean isModuleInSem = checkModuleExistInCorrectSem(selectedModulesList);
         if (!isModuleInSem) {
@@ -46,10 +51,18 @@ public class DeleteFromSemCommand extends DeleteCommand {
                     moduleIdentifier, semester));
         }
 
-        Module module;
+        SelectedModule module;
         for (SemModulesList semModulesList : selectedModulesList) {
             if (semester.equals(semModulesList.getSem())) {
                 module = semModulesList.getModule(moduleIdentifier);
+                if (module.getDone()) {
+                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
+                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
+                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
+                    if (!hasModuleFailed) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
+                }
                 semModulesList.remove(module);
                 break;
             }
@@ -73,7 +86,9 @@ public class DeleteFromSemCommand extends DeleteCommand {
 
     private boolean checkModuleExistInCorrectSem(SemesterList moduleList) {
         for (SemModulesList sem: moduleList) {
-            if (sem.getSem().equalsIgnoreCase(semester) && sem.isInList(moduleIdentifier)) {
+            boolean isTheSemesterSame = sem.getSem().equalsIgnoreCase(semester);
+            boolean isTheModuleInAnySem = sem.isInList(moduleIdentifier);
+            if (isTheSemesterSame && isTheModuleInAnySem) {
                 return true;
             }
         }

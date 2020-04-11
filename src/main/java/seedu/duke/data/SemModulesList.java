@@ -1,6 +1,7 @@
 package seedu.duke.data;
 
 import seedu.duke.exception.InputException;
+import seedu.duke.module.Grading;
 import seedu.duke.module.Module;
 import seedu.duke.module.SelectedModule;
 
@@ -58,8 +59,8 @@ public class SemModulesList extends ArrayList<SelectedModule> {
      * @param moduleIdentifier Id or Name of module.
      * @return Module that corresponds to the modules identifier inputted.
      */
-    public Module getModule(String moduleIdentifier) throws InputException {
-        for (Module module : this) {
+    public SelectedModule getModule(String moduleIdentifier) throws InputException {
+        for (SelectedModule module : this) {
             if (module.getId().equalsIgnoreCase(moduleIdentifier)
                     || module.getName().equalsIgnoreCase(moduleIdentifier)) {
                 return module;
@@ -69,8 +70,16 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     }
 
     public void deleteModule(String moduleIdentifier) {
-        for (Module module : this) {
+        for (SelectedModule module : this) {
             if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
+                if (module.getDone()) {
+                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
+                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
+                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
+                    if (!hasModuleFailed) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
+                }
                 this.remove(module);
                 break;
             }

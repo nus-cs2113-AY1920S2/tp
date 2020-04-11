@@ -20,8 +20,12 @@ Table of Contents
     . . . 3.3.2.1 [Based on module name](#3321-based-on-module-name)  
     . . . 3.3.2.2 [Based on module code](#3322-based-on-module-code)  
     3.4 [Marking as done](#34-marking-as-done-done)  
-    . . 3.4.1 [Based on module code](#341-based-on-module-code)  
-    . . 3.4.2 [Based on module name](#342-based-on-module-name)  
+    . . 3.4.1 [Marked with Passing Grades](#341-marked-with-passing-grades)  
+    . . . 3.4.1.1 [Based on module name](#3411-based-on-module-code)  
+    . . . 3.4.1.2 [Based on module code](#3412-based-on-module-name)  
+    . . 3.4.2 [Marked with Failing Grades](#342-marked-with-failing-grades)  
+    . . . 3.4.2.1 [Based on module name](#3411-based-on-module-code)  
+    . . . 3.4.2.2 [Based on module code](#3412-based-on-module-name)  
     3.5 [Viewing modules](#35-viewing-modules-view)  
     . . 3.5.1 [Viewing all available modules](#351-viewing-all-available-modules)  
     . . 3.5.2 [Viewing done modules](#352-viewing-done-modules)  
@@ -67,7 +71,8 @@ You can add a module to a semester or to the list of available modules.
 You can do so using the module code or the module name.
 The module to be added could be in the existing list of available modules or not.\
 If you add a module which is in the list of available modules, then when you input code or name, the output
-will show both code and name of this module.
+will show both code and name of this module.\
+You can add modules whose grades are `F` or `CU` to a specific semester again.
 
 ##### 3.2.2 Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
@@ -127,7 +132,8 @@ You can delete a module from a semester of your module plan or from the list of 
 
 #### 3.3.1 Delete a specific module from a semester in module plan
 You can do so by using the module code or the module name.
-The module to be deleted must be in your module plan.
+The module to be deleted must be in your module plan.\
+If you delete a module which is done and not failed, then the total complete credits will be changed.
  
 #### 3.3.1.1 Based on module code
 Format: `delete id/[module code] s/[semester]`
@@ -153,6 +159,7 @@ Expected output:
 `Module Discrete Structure has been deleted from semester Y2S2`
 
 #### 3.3.2 Delete a specific module from available module list
+If the module you delete also in module plan, it will also be removed in module plan.
 
 #### 3.3.2.1 Based on module name
 Format: `delete id/[module code]`
@@ -178,9 +185,39 @@ Expected output:
 
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
-This can be done based on a module code or module name.
+This can be done based on a module code or module name.\
+If your grade of one module is F or CU, this module will be converted to a failed form.\
+If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
-#### 3.4.1 Based on module code
+
+The following Table shows the Grades available for input and the category of the Grades.
+
+|Passing Grades|Failing Grades|
+|---|---|
+A+|F |
+A|CU
+A-|
+B+|
+B|
+B-|
+C+|
+C|
+D+|
+D|
+CS|
+
+#### 3.4.1 Marked with Passing Grades
+
+##### 3.4.1.1 Based on module code
+Format:​ `done n/[module name] g/[grade]`
+
+Example:​ `done n/Software Engineering & Object-Oriented Programming g/A+`
+
+Example of expected output:
+
+`Okay, I've marked the module as done!`
+
+##### 3.4.1.2 Based on module name
 Format:​ `done id/[module name] g/[grade]`
 
 Example:​ `done id/Software Engineering & Object-Oriented Programming g/A+`
@@ -189,15 +226,45 @@ Example of expected output:
 
 `Okay, I've marked the module as done!`
 
-#### 3.4.2 Based on module name
+#### 3.4.2 Marked with Failing Grades
 
-Format: `done n/[module code] g/[grade]`
+A placeholder module will be created to replace the current module being marked with a Failing grade.
+This will allow you to add the same module into your module plan when you retake the failed module.  
+*Note: "Failed" will be added to the Module ID or name of the original module.*
 
-Example:​ `done n/CS2113 g/CU`
+##### 3.4.2.1 Based on module code
+Format: `done id/[module code] g/[grade]`
+
+Example:​ `done id/CS2113 g/F`
 
 Example of expected output:
 
 `Okay, I've marked the module as done!`
+
+When your module plan is displayed using `view` function:
+
+`[✓] Name: CS2113 Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
+
+##### 3.4.2.2 Based on module name
+Format:​ `done n/[module name] g/[grade]`
+
+Example:​ `done n/Software Engineering & Object-Oriented Programming g/F`
+
+Example of expected output:
+
+`Okay, I've marked the module as done!`
+
+When your module plan is displayed using `view` function, there will be one of the 2 outcome:
+
+1. If your module has an Module ID:
+
+`[✓] Name: CS2113 Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
+
+*note: Module ID has been converted to Name. use "delete n/CS2113 Failed" when deleting the placeholder module*
+
+1. If your module does not have an Module ID:
+
+`[✓] Name: Software Engineering & Object-Oriented Programming Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
 
 ### 3.5 Viewing modules: view
 
@@ -228,10 +295,13 @@ Format: ​`view /dm`
 Example of expected output:
 
 `Okay! Here are your completed modules:`
+
  `Y2S1`
+ 
 `1.[✓] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1 | Grade: A+`
  
  `Y2S2`
+ 
  `1.[✓] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-`
 
 #### 3.5.3 Viewing module plan
@@ -294,7 +364,7 @@ Example: 'find cs'
  `[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1`
 
 
- `List of available modules`
+ `List of available modules:`
  
  `ID: CS1010 Name: Programming Methodology | Modular Credit: 4`
  

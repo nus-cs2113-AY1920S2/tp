@@ -75,7 +75,7 @@ public class Ui {
             + "9. \"view /dm\" to view all finished modules\n"
             + "10. \"view /cc\" to view the number of modular credits u have completed\n"
             + "11. \"CAP\" to view your current cap\n"
-            + "12. \"find\" [keyword] to search a module based on the keyword"
+            + "12. \"find\" [keyword] to search a module based on the keyword\n"
             + "13. \"bye\" to exit\n";
 
 

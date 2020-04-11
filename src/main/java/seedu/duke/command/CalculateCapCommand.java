@@ -19,13 +19,15 @@ public class CalculateCapCommand extends Command {
 
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) throws RuntimeException {
         calculateCap(semesterList);
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         String cap = df.format(Person.getTotalCap());
         Ui.showCap(cap);
     }
 
     /** Calculate User's current Cumulative Average Point (CAP).
      * @param semesterList All modules selected by user
+     * @throws RuntimeException if user has no module credit
+     * @throws RuntimeException if cap is not within 0 to 5
      */
     public void calculateCap(SemesterList semesterList) throws RuntimeException {
         double totalGradePoint = 0;
