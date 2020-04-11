@@ -424,7 +424,9 @@ Given below is an example usage scenario of how the ```DeleteContact``` command 
 
 
 ### 3.8 List all scheduled meetings
-![ListMeetings](images/ListMeetings_seq.png)
+
+<img src="images/ListMeetings_seq.png" width="80%">
+
 *Fig 18. Sequence diagram of the implementation of the `List all scheduled meetings` feature*
 
 Fig 18. shows the sequence diagram of the ```ListMeetings``` command.
