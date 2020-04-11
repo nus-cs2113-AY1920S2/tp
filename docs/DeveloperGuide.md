@@ -111,6 +111,7 @@ The other components involved are:
 
 
 #### 3.2 UI component
+Given below is the structure of the Ui component:
 ![Ui Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Ui.png)
 
 The `UI` component consists of a `Ui` class that stores all user interaction output data. 
@@ -121,7 +122,7 @@ The `UI` component,
 *   Executes user commands using the `Logic` component
 
 #### 3.3 Logic component
-
+Given below is the object diagram of the Logic Component
 ![Object Diagram of Logic Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Object_Diagram_of_Logic_Component.png)
 
 The `Logic` component 
@@ -135,7 +136,7 @@ All these command classes inherits from the abstract `Command` class.
 such as displaying help to the user.
 
 #### 3.4 Model component
-
+Given below is the class diagram of the Model Component:
 ![Class Diagram of Model Component](https://github.com/DeetoMok/tp/raw/master/docs/images/Class_Diagram_of_Model_Component(1).png)
 
 The `Model` component is responsible for serving as a boundary between the `Controller` component and `Storage` 
@@ -147,9 +148,7 @@ The responsibilities of the `Model` component includes
 * All `ArrayList<SelectedModule>` is then stored in a `PriorityQueue<SemModulesList>` which contains `SemModulesList`
 in an ordered fashion. This class is called `SemesterList`, which represents the entire module plan of the user.
 
-
 #### 3.5 Storage component
-
 
 The `Storage` component,
 * can save `personInfo` objects in csv format and read it back
