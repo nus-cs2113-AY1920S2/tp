@@ -1354,5 +1354,5 @@ Given below are instructions to test the application manually.
 
 
 ## Useful links:
-* [User Guide](UserGuide-Main.md)
+* [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)
