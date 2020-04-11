@@ -156,7 +156,7 @@ class AppointmentTest {
         final ArrayList<String> wrongTestCases = new ArrayList<>();
 
         wrongTestCases.add(testCase1);
-        //wrongTestCases.add(testCase2); //Sam ~
+        wrongTestCases.add(testCase2); 
         wrongTestCases.add(testCase3);
         wrongTestCases.add(testCase4);
         wrongTestCases.add(testCase5);

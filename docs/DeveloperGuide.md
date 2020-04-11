@@ -387,8 +387,10 @@ Other than the getter and the setter methods, the most important methods in ```P
  
  To summarize ```checkPatientIdUsed()```
  
- 1) Get the patient id to check.
- 2) Let the patient id be the key. See the patient id's value in the ```patientIdMap``` hash table. If it is 1
+ 
+ 1. Get the patient id to check.
+ 
+ 2. Let the patient id be the key. See the patient id's value in the ```patientIdMap``` hash table. If it is 1
  , return true (patient currently exist), else return false.
  
  ```checkPatientIdUsed()``` is used by the ```addAppointmentCommand``` class when adding an appointment to check if
@@ -399,11 +401,14 @@ For ```addBackPatientId()```, its purpose is to save the patient id of deleted p
  
  To summarize ```addBackPatientId()```
  
- 1) Get the deleted patient id.
- 2) Check to see if the patient id is a valid id. A valid patient id is an id that does not exist in the reusable
+ 1. Get the deleted patient id.
+ 
+ 2. Check to see if the patient id is a valid id. A valid patient id is an id that does not exist in the reusable
   patient id queue and its value cannot be below 0 and (equal and above) ```nextTopNewNumber```.
- 3) If the patient id is a valid id, then add it in the reusable patient id queue. Else, ignore it.
- 4) Once it is deleted, update the ```patientIdMap``` map to reflect that the patient id now do not belong to any patient currently (set the corresponding value to null in the map).
+  
+ 3. If the patient id is a valid id, then add it in the reusable patient id queue. Else, ignore it.
+ 
+ 4. Once it is deleted, update the ```patientIdMap``` map to reflect that the patient id now do not belong to any patient currently (set the corresponding value to null in the map).
  
  ```addBackPatientId()``` is used by the ```deletePatientClass``` when deleting a patient to store the deleted
   patient id number.
@@ -446,11 +451,14 @@ One property of ```nextTopNewNumber``` is that all patient id numbers in the que
        
 To summarize ```getNextPatientId()```
 
-1) Check if the reusable patient id queue is empty
-2) If it is not empty, we take a patient id from the queue.
-3) On the other hand, if it is empty, we use the value of ```nextTopNewNumber``` for the patient id. We then increase
+1. Check if the reusable patient id queue is empty
+
+2. If it is not empty, we take a patient id from the queue.
+
+3. On the other hand, if it is empty, we use the value of ```nextTopNewNumber``` for the patient id. We then increase
  the value of ```nextTopNewNumber``` by 1.
-4) Once we decided on which patient id to use, update the ```patientIdMap``` map to reflect that the patient id now belongs to a patient (set the corresponding value in the map to 1).
+
+4. Once we decided on which patient id to use, update the ```patientIdMap``` map to reflect that the patient id now belongs to a patient (set the corresponding value in the map to 1).
 
 ```getNextPatientId()``` is used by the ```addPatientCommandClass``` when adding a patient to get a unique patient id
  for the new patient.
@@ -544,7 +552,7 @@ To edit an appointment, the ```EditAppointmentCommand``` class is used. For this
 serves as a facade class for the ```Main```, ```Appointment```, ```AppointmentList```, ```Ui``` and the ```Storage``` class to 
 interact with one another. 
 
-Note that if the patient information given is incorrect due to formatting or value error, ```EditAppointmentCommand``` will return an exception and ```EditAppointmentCommand``` will **not** update the patient record.
+Note that if the appointment information given is incorrect due to formatting or value error, ```EditAppointmentCommand``` will return an exception and ```EditAppointmentCommand``` will **not** update the appointment record.
 
 1. The ```EditAppointmentCommand``` class is processed by ```Parser```
 
@@ -577,7 +585,7 @@ To edit an appointment, the ```EditPatientCommand``` class is used. For this ```
 serves as a facade class for the ```Main```, ```Patient```, ```PatientList```, ```Ui``` and the ```Storage``` class to 
 interact with one another. 
 
-Note that if the appointment information given is incorrect due to formatting or value error, ```EditPatientCommand``` will return an exception and ```EditPatientCommand``` will **not** update the patient record.
+Note that if the patient information given is incorrect due to formatting or value error, ```EditPatientCommand``` will return an exception and ```EditPatientCommand``` will **not** update the patient record.
 
 1. The ```EditPatientCommand``` class is processed by ```Parser```
 
