@@ -23,7 +23,7 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
         + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
     
-    * [3.4. Appointments](#34-appointment-scheduling-commands)
+    * [3.4. Appointment Scheduling](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
         + [3.4.2. Edit Appointment: `edit appt`](#342-edit-appointment-edit-appt)
         + [3.4.3. Delete Appointment: `delete appt`](#343-delete-appointment-delete-appt)
@@ -56,23 +56,23 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 <img src="images/UG/StartOfApplication.PNG" alt="Start of Application" width="600">
 
 3. When you start the application for the first time, you can type `help` to check all the available commands.
-4. Refer to [here](#3-features) for detailed instructions on how to use each command.
+4. Refer to the features below for detailed instructions on how to use each command.
 
 ## 3. Features
 
-HappyPills have three main features: `Patient Details`, `Patient Records` and `Appointment Scheduling`. 
+HappyPills have three main features: `General Patient Information`, `Patient Medical Records` and `Appointment Scheduling`. 
 
-`Patient Details` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
+`General Patient Information` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
 blood type and allergies).
 
-`Patient Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
+`Patient Medical Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
 (e.g. patient's symptoms, diagnosis and date/time of the medical treatment).
 
-`Appointment Scheduling` helps the you schedule future appointments with your patients (e.g. appointment date, time and 
+`Appointment Scheduling` helps the you schedule appointments with your patients (e.g. appointment date, time and 
 reason for appointment). 
 
-These features come together to help you easily manage their patients' information. You can now provide their patients 
-with better service by being able to retrieve their patients' information quickly and easily.  
+These features come together to help you easily manage your patients' information. You can now provide your patients 
+with better service by being able to retrieve your patients' information quickly and easily.  
 
 This section will elaborate more on how to use these features in HappyPills. 
 
@@ -656,7 +656,7 @@ from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#
           
   **Example:**
       
-    edit appt S1234567F 1 /d 12/02/2020
+    edit appt S1234567F 1 /d12/02/2020
  
 > ***Expected output:***
 >
@@ -832,7 +832,7 @@ Find a Patient Record| `find pr NRIC INDEX`
 **Command** | **Format**
 --------|----------
 Add an Appointment | `add appt /ic NRIC /d DATE /t TIME /r REASON`
-Edit an Appointment | `edit appt NRIC /d<DATE> or /t<TIME> or /r<REASON>`
+Edit an Appointment | `edit appt NRIC APPT_ID /d<DATE> or /t<TIME> or /r<REASON>`
 Delete an Appointment | `delete appt NRIC APPT_ID`
 List all Appointments | `list appt`
 Find an Appointment| `find appt NRIC`
