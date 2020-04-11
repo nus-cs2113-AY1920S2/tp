@@ -46,8 +46,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
 - [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
-- [Delete a meeting](#delete-a-meeting-delete--m)
-- [Delete a contact](#delete-a-contact-delete--c)
+- [Delete an item](#delete-an-item-delete)
 - [List all meetings](#list-all-meetings-meetings)
 - [Exit application](#exit-the-application-exit)
 
@@ -163,20 +162,36 @@ Example output:
 TODO: update image
 ![](images/capture5.png)
 
+<br/>
+
+**Extended view:** Displays up to 2 weeks of timetable.
+
+Format:
+
+    more
+    
+Example of usage:
+
+    more
+    
+Example output:
+
+TODO:update image
+
 [&#8593; Return to list of Features](#features)
 
 <br/>
 
 ### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
-`<Meeting Name>`, and specify the meeting time slot with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
+`<Meeting Name>`, and specify the meeting time slot with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
 * You can schedule a meeting on only the current week and the next week, for which your timetable can be displayed with the 
 [`timetable`](#display-timetable-of-selected-contacts-timetable) and `more` commands
-* Hence, `<Start Day>` and `<End Day>` represents the date number you wish to schedule the meeting on, within the current 
+* Hence, `<Start Date>` and `<End Date>` represents the date number you wish to schedule the meeting on, within the current 
 week and the next week, from the current date onwards. For example, if the date today is 27 April:
-    * You can schedule a meeting on 29 April this week with `<Start Day>` and `<End Day>` as `29`. 
-    * You can schedule a meeting on 6 May next week with `<Start Day>` and `<End Day>` as `6`.
-    * You will not be able to schedule a meeting with `<Start Day>` and `<End Day>` as `26`. Even though 26 April is within
+    * You can schedule a meeting on 29 April this week with `<Start Date>` and `<End Date>` as `29`. 
+    * You can schedule a meeting on 6 May next week with `<Start Date>` and `<End Date>` as `6`.
+    * You will not be able to schedule a meeting with `<Start Date>` and `<End Date>` as `26`. Even though 26 April is within
     this week, the date has passed. The future date 26 May is also not within the current week and the next week.
 * `<Start Time>` and `<End Time>` should be in the 24-hour HH:MM format. For example, the time 3pm should be represented
 as `15:00`.
@@ -190,7 +205,7 @@ your timetable if you try to schedule a meeting during a time slot which you are
 
 Format: 
 
-    schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>
+    schedule <Meeting Name> <Start Date> <Start Time> <End Date> <End Time>
     
 
 Example of usage:
@@ -212,11 +227,11 @@ There are 2 use cases illustrated below: to edit a contact's timetable to **"bus
 to edit a contact's timetable to **"free"** for a specified time slot.
 * You can edit the contact's timetable for only the current week and the next week, for which your timetable can be displayed 
 with the [`timetable <Contact Index>`](#display-timetable-of-selected-contacts-timetable) and `more` commands
-* Hence, `<Start Day>` and `<End Day>` represents the date number you wish to edit the timetable for, within the current 
+* Hence, `<Start Date>` and `<End Date>` represents the date number you wish to edit the timetable for, within the current 
 week and the next week, from the current date onwards. For example, if the date today is 27 April:
-    * You can edit the timetable on 29 April this week with `<Start Day>` and `<End Day>` as `29`. 
-    * You can edit the timetable on 6 May next week with `<Start Day>` and `<End Day>` as `6`.
-    * You will not be able to edit the timetable with `<Start Day>` and `<End Day>` as `26`. Even though 26 April is within
+    * You can edit the timetable on 29 April this week with `<Start Date>` and `<End Date>` as `29`. 
+    * You can edit the timetable on 6 May next week with `<Start Date>` and `<End Date>` as `6`.
+    * You will not be able to edit the timetable with `<Start Date>` and `<End Date>` as `26`. Even though 26 April is within
     this week, the date has passed. The future date 26 May is also not within the current week and the next week.
 * `<Start Time>` and `<End Time>` should be in the 24-hour HH:MM format. For example, the time 3pm should be represented
 as `15:00`.
@@ -225,11 +240,11 @@ as `15:00`.
 
 
 **Use case 1:** Edits a contact's timetable to be **"busy"** for a specified time slot. You need to key in `<Contact Index>`
-of the contact, and specify the time slot to be marked **"busy"** with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
+of the contact, and specify the time slot to be marked **"busy"** with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
 
 Format: 
     
-    edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
+    edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>
     
 Example of usage:
     
@@ -243,11 +258,11 @@ TODO change image
 <br/>
 
 **Use case 2:** Edits a contact's timetable to be **"free"** for a specified time slot. You need to key in `<Contact Index>`
-                of the contact, and specify the time slot to be marked **"free"** with `<Start Day>` `<Start Time>` `<End Day>` `<End Time>`.
+                of the contact, and specify the time slot to be marked **"free"** with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
     
 Format: 
     
-    edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
+    edit free <Contact Index> <Start Date> <Start Time> <End Date> <End Time>
     
 Example of usage:
  
@@ -262,53 +277,42 @@ TODO change image
     
 <br/>
 
-### Delete a meeting: `delete -m`
-Deletes a scheduled meeting from the meeting list. You will need to key in **Meeting Index** of the meeting you wish 
-to delete.
+### Delete an item: `delete`
+There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
+- You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
+- You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
+
+**Use case 1:** Deletes a **meeting** from the meeting list. You will need to key in **Meeting Index** of the meeting you wish to delete.
 
 Format:
     
-    delete -m <Meeting Index>
+    delete <Meeting Index>
 
 Example of usage:
 
-    delete -m 1
+    delete 1
 
 Example output:
 
 TODO change image
 ![](images/capture7.png)
-
-Note:
-- You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
-- Be careful to include the -m tag in `delete -m` when you wish to delete a meeting. 
-- `delete -m` which is used to delete a meeting, should be differentiated from `delete -c` which is used to delete a contact.
-
-[&#8593; Return to list of Features](#features)
 
 <br/>
 
-### Delete a contact: `delete -c`
-Deletes a contact from the contact list. You will need to key in **Contact Index** of the contact you wish 
-to delete.
+**Use case 2:** Deletes a **contact** from the contact list. You will need to key in **Contact Name** of the contact you wish to delete.
 
 Format: 
     
-    delete -c <Contact Index>
+    delete <Contact Name>
 
 Example of usage:
 
-    delete -c 1
+    delete alex
     
 Example output:
 
 TODO change image
 ![](images/capture7.png)
-
-Note:
-- You can check `<Contact Index>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
-- Be careful to include the -c tag in `delete -c` when you wish to delete a contact. 
-- `delete -c` which is used to delete a contact, should be differentiated from `delete -m` which is used to delete a meeting.
 
 [&#8593; Return to list of Features](#features)
 
@@ -389,10 +393,10 @@ Feature | Format | Example usage
 Adding a new contact | `<name> <NUSMODS link>` | `Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:01,PTUT:01&CG2027=TUT:01,LEC:01&CG2028=TUT:01,LAB:02,LEC:01&CS2101=&CS2107=TUT:08,LEC:1&CS2113T=LEC:C01`
 List all contacts | `contacts` | `contacts`
 Display timetable of selected contacts | `timetable` <br/><br/> `timetable <Member Index>` <br/><br/> `timetable <Member A Index> <Member B Index>` | `timetable` <br/><br/> `timetable 1` <br/><br/> `timetable 0 1 2`
-Schedule a new meeting | `schedule <Meeting Name> <Start Day> <Start Time> <End Day> <End Time>` | `schedule meeting 3 17:00 3 19:00`
-Edit a contact's timetable | `edit busy <Contact Index> <Start Day> <Start Time> <End Day> <End Time>` <br/><br/> `edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>` | `edit busy 0 2 22:00 2 23:00` <br/><br/> `edit busy 0 2 22:00 2 23:00`
-Delete a meeting | `delete -m <Meeting Index>` | `delete -m 1`
-Delete a contact | `delete -c <Contact Index>` | `delete -c 1`
+Extend view of timetable | `more` | `more`
+Schedule a new meeting | `schedule <Meeting Name> <Start Date> <Start Time> <End Date> <End Time>` | `schedule meeting 3 17:00 3 19:00`
+Edit a contact's timetable | `edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` <br/><br/> `edit free <Contact Index> <Start Date> <Start Time> <End Date> <End Time>` | `edit busy 0 2 22:00 2 23:00` <br/><br/> `edit free 0 2 22:00 2 23:00`
+Delete an item | `delete <Meeting Index>` <br/><br/> `delete <Contact Name>` | `delete 1` <br/><br/> `delete alex`
 List all scheduled meetings | `meetings` | `meetings`
 Exit application | `exit` | `exit`
 

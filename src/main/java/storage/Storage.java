@@ -16,7 +16,6 @@ import java.util.Scanner;
 
 public class Storage {
     File meetingFile;
-    File memberFile;
 
     /**
      * Constructor specifying file path of model.meeting list.
@@ -24,7 +23,7 @@ public class Storage {
      * @param meetingFilePath File path to load and store model.meeting list.
      */
     public Storage(String meetingFilePath) {
-        meetingFile = new File(meetingFilePath); //meetingFilePath = "data/meeting_list.txt"
+        meetingFile = new File(meetingFilePath);
     }
 
     public void updateMeetingListToDisk(ArrayList<Meeting> meetingList) {

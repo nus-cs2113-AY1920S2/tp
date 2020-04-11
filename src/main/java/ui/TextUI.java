@@ -52,7 +52,7 @@ public class TextUI {
     }
 
     public static void exitMsg() {
-        out.println("Thank you for using MeetingOrganizer, goodbye!");
+        out.println("Thank you for using WhenFree, goodbye!");
     }
 
     public static void errorMsg(WfException e) {
@@ -64,7 +64,6 @@ public class TextUI {
         out.print("Date:  ");
         String[] tempDate = java.util.Calendar.getInstance().getTime().toString().split(" ");
         String dayString = tempDate[0];
-        int day = 0;
         Calendar cal = Calendar.getInstance();
         switch (dayString) {
         case "Sun":
@@ -107,9 +106,11 @@ public class TextUI {
             String datePostFix;
             if (lastChar.equals("1") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "st";
-            } else if (lastChar.equals("2")) {
+            } else if (lastChar.equals("2")
+                    && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "nd";
-            } else if (lastChar.equals("3")) {
+            } else if (lastChar.equals("3")
+                    && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
                 datePostFix = "rd";
             } else {
                 datePostFix = "th";
@@ -221,7 +222,7 @@ public class TextUI {
     }
 
     public static void meetingListSizeMsg(MeetingList myMeetingList) {
-        out.println("You now have " + myMeetingList.getMeetingListSize() + "meeting/s in the list.");
+        out.println("You now have " + myMeetingList.getMeetingListSize() + " meeting(s) in the list.");
     }
 
     public static void listMeetings() {
@@ -312,8 +313,12 @@ public class TextUI {
         String startDay = getDayFromNumber(meetingList.get(index).getStartDay());
         String endDay = getDayFromNumber(meetingList.get(index).getEndDay());
         System.out.println("I have removed:");
-        System.out.println((index + 1) + ". " + startDay + " " + meetingList.get(index).getStartTime()
-                + " to " + endDay + " " + meetingList.get(index).getEndTime() + " " + meetingList.get(index).getMeetingName());
+        String startDate = Integer.toString(meetingList.get(index).getStartDate());
+        String endDate = Integer.toString(meetingList.get(index).getEndDate());
+
+        System.out.println((index + 1) + ". " + startDay + "(" + startDate + getPostFix(startDate) + ") "
+                + meetingList.get(index).getStartTime() + " to " + endDay + "(" + endDate + getPostFix(endDate) + ") "
+                + meetingList.get(index).getEndTime() + " (" + meetingList.get(index).getMeetingName() + ")");
     }
 
     public static void displayInvalidDeleteTarget() {

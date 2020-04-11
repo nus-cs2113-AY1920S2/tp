@@ -1,0 +1,19 @@
+title ListMeetings
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":MeetingList" as MeetingList #lightblue
+
+User->LogicManager:list meetings
+activate LogicManager
+LogicManager->CommandHandler:list meetings
+activate CommandHandler
+CommandHandler->MeetingList:listMeetings()
+activate MeetingList
+CommandHandler<--MeetingList:
+deactivate MeetingList
+LogicManager<--CommandHandler:
+deactivate CommandHandler
+User<--LogicManager:
+deactivate LogicManager

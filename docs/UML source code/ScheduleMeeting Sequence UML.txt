@@ -1,0 +1,36 @@
+title ScheduleMeeting
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":Meeting" as Meeting #lightblue
+participant ":MeetingList" as MeetingList #lightblue
+participant "mainUser:Contact" as Contact #lightyellow
+User->LogicManager:schedule meeting
+activate LogicManager
+LogicManager->CommandHandler:schedule meeting
+activate CommandHandler
+
+
+
+alt timeFrameAvailable
+CommandHandler->*Meeting:new()
+activate Meeting
+CommandHandler<--Meeting:
+deactivate Meeting
+CommandHandler->MeetingList:add()
+activate MeetingList
+CommandHandler<--MeetingList:
+deactivate MeetingList
+CommandHandler->Contact:addBusyBlocks()
+activate Contact
+CommandHandler<--Contact:
+deactivate Contact
+LogicManager<--CommandHandler:
+else else
+LogicManager<--CommandHandler:show exception message "cannot delete main user"
+deactivate CommandHandler
+
+end
+User<--LogicManager:
+deactivate LogicManager
