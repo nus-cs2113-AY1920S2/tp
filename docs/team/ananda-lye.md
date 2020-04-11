@@ -11,13 +11,13 @@ ultimately being able to keep track of what's left to do and maintain an overvie
 ### Enhancements implemented
 * Find and Filter Activities
     * Developed the `find` and `filter` commands for users to view a sub-list of activities, matching for name and 
-    tag keywords.
+    tag keywords respectively.
     * Both commands allow for multiple keywords to be matched with `find` accepting `/` separated keywords and `filter`
-    accepting space-separated keywords. Activities which match either keyword will be included in the sub-list
-    * Both commands can be limited to searching within the last shown list of activities by including the `-s` flag.
-    This is particularly useful when used before graphing functions to omit undesired activities.
+    accepting space-separated keywords. Activities which match either keyword will be included in the sub-list.
+    * Both commands can be limited to only searching activities in the last shown list by including the `-s` flag.
+    This is particularly helpful when used before graphing functions to omit undesired activities.
         * This can also be included as a single-line user input, separating commands by `;` which reduces the
-        number of user input and printing required to achieve the same results.
+        number of user inputs and printing calls required to achieve the same results.
 	
 * Last Shown List Implementation
     * Proposed and implemented the last shown list which is used in `list`, `find`, `filter` and `graph` commands.
