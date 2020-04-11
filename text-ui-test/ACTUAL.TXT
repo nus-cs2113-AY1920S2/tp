@@ -497,22 +497,6 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Slot entered is not of valid range.
-
-To edit a contact:
-edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>
-edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
-________________________________________________________________________________________________________________________________
-[contacts] List all contacts.
-[timetable] Display combined timetable of selected contacts.
-[schedule] Schedule a new meeting.
-[edit] Edit a contact's timetable.
-[delete] Delete a scheduled meeting.
-[meetings] List all scheduled meetings.
-[exit] Exit application.
-
-Insert your member's timetable by following: <name of new member> <nusmods link>
-________________________________________________________________________________________________________________________________
 Today is Sat Apr 11, week 12.
 Your timetable this week:
 
