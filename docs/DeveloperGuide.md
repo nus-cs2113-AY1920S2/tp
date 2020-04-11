@@ -23,8 +23,7 @@ Pac. The following groups are in particular the intended audience of the documen
     3.3 [Attendance](#33-attendance)   
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)  
-    3.6 [Help](#36-help)
-
+    3.6 [Help](#36-help)  
 
 [Appendix A: Target User Profile](#appendix-a-target-user-profile)   
 [Appendix B: Value Proposition](#appendix-b-value-proposition)  
@@ -163,15 +162,17 @@ either by complete match, or fuzzy match.
 * Any classes (e.g. `Seminar`) that inherit from `Event` class will have similar program flow. 
 
 ### 3.2 Calendar
-![Calendar](images/Calendar.png "Class diagram of Calendar component")
- *Class diagram of the Calendar component*
- The calendar feature allows users to view their schedule by semester and academic year. Since our target
- user is professor, this feature allows the professor to manage their events in accordance to their work schedule.
+![Calendar](images/Calendar.png "Class diagram of Calendar component")  
+*Class diagram of the Calendar component*  
+ 
+The calendar feature allows users to view their schedule by semester and academic year. Since our target
+user is professor, this feature allows the professor to manage their events in accordance to their work schedule.
  
 #### Calendar Command Interpreter
 Below shows the sequence diagram of `CalendarCommandInterpreter`:
-![CalendarCommandInterpreter](images/CalendarCommandInterpreter.png "Command Interpreter")
-*Diagram of CalendarCommandInterpreter*
+![CalendarCommandInterpreter](images/CalendarCommandInterpreter.png "Command Interpreter")  
+*Diagram of CalendarCommandInterpreter*  
+
 1. When a user enters a calendar-related command, the command is analysed by `CalendarCommandInterpreter`.
 1. Once determined, the relevant information (eg. semester, academic year) are extracted by `CalendarParser`.
 1. Then, only if semester equals 1 or 2 (i.e. valid number), an `EventsSeperator` object which extends `Command` is created.  
@@ -200,9 +201,9 @@ Step 2: The user realises that the name of the event is wrong and decides to `ed
 `event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
 to edit the name of the event.  
  
- Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
- `calendar s/2 ay/19-20`. A sample view of the calendar is shown below:
- 
+Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
+`calendar s/2 ay/19-20`. A sample view of the calendar is shown below:
+
       ___________________________________________________________________________________________________________________________________ 
                                                               SEMESTER 2 AY 19/20 
       ___________________________________________________________________________________________________________________________________ 
@@ -229,7 +230,7 @@ to edit the name of the event.
 - Alternative 1(current choice): Implement a class specifically to interact with the calendar
   - Pros: Calendar class can support different interactions to modify calendar content
   - Cons: Many new methods to be implemented, which affects code readability.
-   
+
 - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
   - Pros: Does not require instantiation of new object to modify the calendar contents.
   - Cons: Many new methods to be implemented, which affects code readability.
@@ -247,7 +248,7 @@ it can be implemented in the future to truncate longer names to fit nicely in th
 command to modify an event from the event list.  
 This is illustrated in the flowchart below:  
 ![Flowchart](images/CalendarFlowChart.png "Calendar flow chart")  
-*Calendar management activity diagram*
+*Calendar management activity diagram*  
 
 ### 3.3 Attendance
 ![attendance](images/Attendance.png)        
@@ -287,10 +288,10 @@ attendance data. `n/` and `p/` flags are used to insert new attendance.
 There are 6 features for attendance in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
 
-1. Add attendanceList  
+##### Add attendanceList  
 ![AddAttendanceList](images/AddAttendance.png)    
-*Sequence diagram of AddAttendanceList*  
-
+*Sequence diagram of AddAttendanceList*
+     
 `AddAttendanceList` is a subclass of Command. It allows the user to add a new existing `attendanceList` under an Event.
 The method addToList() accesses the `attendanceList` of a given event, and checks whether the list is empty. If there is
 an existing `attendanceList` in the given event, it calls display() in UI and inform the user that the list currently
@@ -298,7 +299,7 @@ exist and needs to be cleared before adding a new attendanceList. Else, it will 
 user intends to use an existing `studentList` found in `studentListCollection` or create a new list which will be added
 to `studentListCollection` upon creation with the name of the event as the list name. 
  
-1. Clear attendanceList    
+##### Clear attendanceList    
 ![ClearAttendanceList](images/ClearAttendanceList.png)    
 *Sequence diagram of ClearAttendanceList*  
 
@@ -307,7 +308,7 @@ The method clear() accesses the desired `attendanceList` of a given event, and c
 If empty, it calls display() in UI and inform the user list is empty. Else, it will clear the existing `attendanceList` 
 stored under the given event.
 
-1. View attendanceList  
+##### View attendanceList  
 ![ViewAttendanceList](images/ViewAttendanceList.png)     
 *Sequence diagram of ViewAttendanceList*    
 
@@ -317,15 +318,15 @@ The method view() accesses the desired `attendanceList` of given event, and chec
 If empty, it calls display() in UI and inform the user list is empty. Else, it will iterate through the `attendanceList` 
 and print Attendance data in a table format.  
 
-1. Sort attendanceList  
-    1. 
-    ![SortAttendanceListByName](images/SortAttendanceListByName.png)   
-    *Sequence diagram of SortAttendanceListByName*    
-    
-    1. 
-    ![SortAttendanceListByStatus](images/SortAttendanceListByStatus.png)    
-    *Sequence diagram of SortAttendanceListByStatus*    
-    
+##### Sort attendanceList 
+
+-
+![SortAttendanceListByName](images/SortAttendanceListByName.png)     
+*Sequence diagram of SortAttendanceListByName*    
+
+- 
+![SortAttendanceListByStatus](images/SortAttendanceListByStatus.png)      
+*Sequence diagram of SortAttendanceListByStatus*  
     
 `SortAttendanceListByName` and `SortAttendanceListByStatus` are subclasses of Command. 
 They both allow the user to sort a attendance list by either the student's name or status.
@@ -334,7 +335,7 @@ The methods `SortAttendanceListByName` and `SortAttendanceListByStatus` access a
 whether it is empty. If empty, it calls display() in UI and inform the user list is empty.  
 Else, it will sort the `attendanceList` by the type mentioned in its method name.  
 
-1. Edit attendance  
+##### Edit attendance  
 ![EditAttendance](images/EditAttendance.png)    
 *Sequence diagram of EditAttendance*  
 
@@ -345,7 +346,7 @@ If empty, it calls display() in UI and inform the user list is empty. Else, it w
 The method decideEdit() will call getUserInput() in UI to get the user input and decide whether to call editName() or 
 editStatus() base on the user input.
 
-1. Find attendance  
+##### Find attendance  
 ![FindAttendance](images/FindAttendanceList.png)  
 *Sequence diagram of FindAttendance*  
 
@@ -422,7 +423,7 @@ prompting instructions and correct command format.
 There are 5 features for Performance in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
  
-1. Add performanceList
+##### Add performanceList
 ![AddPerformance](images/AddPerformance.png)  
 *Sequence diagram of AddPerformanceList*  
 
@@ -436,7 +437,7 @@ The method addByList() or addManually() will then get user input for Performance
 which will be parsed by the PerformanceParser and return a Performance.  
 The Performance attained from the parser will be added to a desired performanceList. 
 
-1. Delete performanceList
+##### Delete performanceList
 ![DeletePerformance](images/DeletePerformance.png)  
 *Sequence diagram of AddPerformance*  
 
@@ -448,7 +449,7 @@ getPerformance() from itself to get the user input, Performance parameters
 of the Performance to be deleted, and return a Performance.  
 The Performance attained from getPerformance() will be deleted from a desired performanceList. 
 
-1. Edit performanceList
+##### Edit performanceList
 ![EditPerformance](images/EditPerformance.png)  
 *Sequence diagram of EditPerformance*  
 
@@ -464,14 +465,15 @@ student's name or result.
 The new parameter will be attained from the user in method editPerformance(performance, editType) 
 in PerformanceList.  
 
-1. Sort performanceList  
-    1. 
-    ![SortPerformanceByName](images/SortPerformanceList.png)  
-    *Sequence diagram of SortPerformanceListByName*  
+##### Sort performanceList  
+
+- 
+![SortPerformanceByName](images/SortPerformanceList.png)    
+*Sequence diagram of SortPerformanceListByName*  
     
-    1. 
-    ![SortPerformanceByResult](images/SortPerformanceListByResult.png)  
-    *Sequence diagram of SortPerformanceListByResult*  
+- 
+![SortPerformanceByResult](images/SortPerformanceListByResult.png)    
+*Sequence diagram of SortPerformanceListByResult*  
     
 SortPerformanceListByName and SortPerformanceListByResult are subclasses of Command. 
 They both allow the user to sort a performance list, by student's name or result as their
@@ -484,7 +486,7 @@ the list is empty.
 If empty, it calls display() in UI and inform the user.  
 Else, it will sort the performanceList by the type mentioned in its method name.  
 
-1. View performanceList  
+##### View performanceList  
 ![ViewPerformance](images/ViewPerformanceList.png)  
 *Sequence diagram of ViewPerformanceList*  
 
@@ -532,7 +534,7 @@ Below shows the flow chart and sequence diagram of Student Command Interpreter.
 There are 6 features for Student in total, as shown below. 
 The features will be presented in the order of sequence diagram, followed by description.  
 
-1. Add student list
+##### Add student list
 ![AddStudentList](images/addStudentList.png)  
  *Sequence diagram of AddStudentList*   
  
@@ -550,7 +552,7 @@ in addStudent(studentList).
 After user has done input, `studentList` will be printed, and this new list is
 added to `studentListCollection`.
  
-1. Delete student list  
+##### Delete student list  
 ![DeleteStudentList](images/DeleteStudentList.png)  
  *Sequence diagram of DeleteStudentList*  
  
@@ -563,7 +565,7 @@ Else, it calls deleteFromExisting() from the same class and get user input for i
 list number to be deleted.  
 The (index-1)th list in `studentListCollection` is deleted.  
 
-1. Clear student list  
+##### Clear student list  
 ![ClearStudentList](images/ClearStudentList.png)   
  *Sequence diagram of ClearStudentList*  
  
@@ -576,7 +578,7 @@ from UI, to inform the user.
 Else, it calls clear() from `StudentListCollection` to clear the collection.  
 The user will get informed when a success clear has been performed.  
 
-1. View student list  
+##### View student list  
 ![ViewStudentList](images/ViewStudentList.png)  
  *Sequence diagram of ViewStudentList*   
  
@@ -588,7 +590,7 @@ If the `studentListCollection` is empty, displayStudentList() calls
 displayStudentListCollectionEmpty() from UI, to inform the user.  
 Else, it calls printStudentListCollection() from UI to print the table. 
 
-1. Find student list   
+##### Find student list   
 ![FindStudentList](images/FindStudentList.png)   
  *Sequence diagram of FindStudentList*   
  
@@ -604,14 +606,15 @@ the `studentListCollection` to find a `studentListCollection` listName that equa
 Last, it will call printSearchResults from displayList to display the searchResults found.  
 The user will get informed when a success sort has been performed.  
  
-1. Sort student list   
-    1. 
-    ![SortStudentListByName](images/SortStudentListByName.png)    
-    *Sequence diagram of SortStudentListByName*    
-    
-    1. 
-    ![SortStudentListByList](images/SortStudentListByList.png)    
-    *Sequence diagram of SortStudentListByList*    
+##### Sort student list   
+
+-    
+![SortStudentListByName](images/SortStudentListByName.png)      
+*Sequence diagram of SortStudentListByName*    
+
+- 
+![SortStudentListByList](images/SortStudentListByList.png)    
+*Sequence diagram of SortStudentListByList*    
     
 `SortStudentListByName` and `SortStudentListByList` are subclasses of Command. 
 They both allow the user to sort a student list by either the student's name within a list or 
@@ -705,7 +708,7 @@ folder in command terminal.
 1. Display calendar by entering  
 `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
 
-#### Follow **step-by-step** command for following commands:  
+#### Follow **step-by-step** command in console for following commands:  
 
 **Attendance**
 1. Add attendance to attendance list by typing  
