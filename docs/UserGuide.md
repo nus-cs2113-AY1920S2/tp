@@ -227,8 +227,7 @@ Edit information of a patient with the specified NRIC.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
-   There should <b>no spaces</b> between the tag and the edited information.</td>
+   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>.</td>
  </tr>
 </table>
 
@@ -451,8 +450,7 @@ Enter `y` to confirm.
    <col width="200">
   <tr>
     <td><span> &#9888; </span></td>
-    <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
-    There should <b>no spaces</b> between the tag and the edited information.</td>
+    <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>.</td>
   </tr>
  </table>
      
@@ -649,8 +647,7 @@ from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
-   There should <b>no spaces</b> between the tag and the edited information.</td>
+   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>.</td>
  </tr>
 </table>
           
