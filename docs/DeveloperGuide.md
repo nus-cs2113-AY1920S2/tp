@@ -244,7 +244,7 @@ Given below is an example usage scenario of the `Add new contact` feature.
 6. ```LogicManager``` checks if the ```Contact``` is a main user and calls ```setMainUser()``` accordingly.
 7. The final procedure is to append the new ```Contact``` into ```ContactList``` found in the ```model``` component.
 
-#### 3.1.1 Design Considerations
+### 3.1.1 Design Considerations
 **Aspect 1: Optimizing fetching of module information**
 * Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information. <br>
 Pros: The classes are intuitively separated and data structures returned is understandable. <br>
@@ -268,6 +268,7 @@ blacklisted modules every semester. <br>
     2. **Cons**: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
        Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
 * Ultimately we decided to go with **Alternative 1** since it is the most user-friendly as our targeted users do not have to download another file and just downloading the jar would do. On the developer side, updates would still be required every semester, but our focus is to make the application as user-centric as possible.
+<br/>
 
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
@@ -282,7 +283,7 @@ Given below is an example usage scenario of the ```List all contacts``` feature.
 2. The ```LogicManager``` would then request to list all contacts via ```CommandHandler```.
 3. The ```CommandHandler``` would call ```getContactList()``` on ```ContactList``` from storage and then using the ContactList retrieved, it then calls ```ListMsgUI()``` from ```TextUI``` class.
 4. The result is that ```TextUI``` would return a ```System.out.println``` of all the contacts the user have.
-
+<br/>
 
 ### 3.3 Display timetable of selected contacts
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
@@ -309,6 +310,7 @@ combined schedule.
 5. ```CommandHandler``` retrieves the final combined schedule by calling ```ScheduleHandler#getCombinedSchedule```.
 6. ```CommandHandler``` calls ```TextUI``` to print the combined schedule.
 7. ```TextUI``` returns a ```System.out.println``` of the combined schedule in an ASCII timetable diagram. 
+<br/>
 
 ### 3.4 Schedule a new meeting
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
@@ -326,10 +328,7 @@ Given below is an example usage scenario of the ```Schedule a new meeting``` fea
 	2. This new `Meeting` object is then added into `MeetingList`.
 	3. Lastly, `CommandHandler` calls `addBusyBlocks()` on `mainUser:Contacts` to mark the indicated timeframe as "busy".
 4. If the indicated timeframe is not available, an exception will be thrown to inform user.
-
-#### 3.4.1 Design Considerations
-**Aspect 1: **
-
+<br/>
 
 ### 3.5 Edit a contact's timetable
 ![EditContact](images/EditContact.png)<br>
@@ -361,7 +360,7 @@ schedule of `Contact` will be marked as "free" for the given time slot.
 
 The schedule of the `Contact` is edited and saved in the application.
 
-#### 3.5.1 Design Considerations
+### 3.5.1 Design Considerations
 **Aspect 1: Clash of ```Meeting```'s time slot and ```EditContact```'s time slot when editing main user's schedule**
 
 The implementation described above would allow the overwrite of any time blocks in the ```Contact```'s schedule. This  
@@ -399,7 +398,8 @@ edit is done before editSchedule() of `Contact` is called, as shown in Fig 14.
     
     >:information_source: `TextUI` and `Exception` classes which are involved in generating the exception, and displaying the exception message
     to the user are omitted to keep the sequence diagram concise.
-    
+<br/>  
+  
 ### 3.6 Delete a scheduled meeting
 ![DeleteMeeting](images/DeleteMeeting_seq.png)
 *Fig 16. Sequence diagram of the implementation of the `Delete a scheduled meeting` feature*
@@ -413,6 +413,7 @@ Given below is an example usage scenario of the ```Delete a scheduled meeting```
 2. ```LogicManager```would then request ```CommandHandler``` for deletion.
 3. ```CommandHandler``` will check if target meeting index exists. If it exists, a method call ```addFreeBlocks()``` will be made on the `mainUser:Contact` which will make the indicated timeframe back to "free" again. In addition, `CommandHandler` will also make a method call, `delete()`, on `MeetingList` which will find and remove the meeting at the given index. If it does not exist, an exception will be thrown.
 4. Subsequently, the updated list of meetings and schedule of the mainUser will be saved in the application.
+<br/>
 
 ### 3.7 Delete a contact
 ![DeleteContact](images/DeleteContact_seq.png)
@@ -427,7 +428,7 @@ Given below is an example usage scenario of the ```Delete a contact``` feature*
 2. ```LogicManager```would then request ```CommandHandler``` for deletion.
 3. ```CommandHandler``` will check if target contact is the main user. If it is the main user, no contact will be removed and an exception will be thrown to inform user. If it is not the main user, a method call ```remove()``` will be requested on ```ContactList``` which will find and remove the contact with the matching name.
 5. Subsequently, the new list of contacts will be saved in the application.
-
+<br/>
 
 ### 3.8 List all scheduled meetings
 
