@@ -12,7 +12,7 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [2.3. Logic component](#23-logic-component)
 	* [2.4. Model component](#24-model-component)
 	* [2.5. Storage component](#25-storage-component)
-	* [2.6. Common component](#26-common-classes)
+	* [2.6. Common component](#26-common-component)
 * [3. Implementation](#3-implementation)
 	* [3.1. Add new contact](#31-add-new-contact)
 	* [3.2. List all contacts](#32-list-all-contacts)
@@ -29,7 +29,7 @@ By: `AY1920S2-CS2113T-T12-1`
 * [Appendix C: Use Cases](#appendix-c-use-cases)
 * [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
 * [Appendix E: Glossary](#appendix-e-glossary)
-* [Appendix F: Instructions for Manual Testing](#appendix-g-instructions-for-manual-testing)
+* [Appendix F: Instructions for Manual Testing](#appendix-f-instructions-for-manual-testing)
 	* [F.1. Launch and Shutdown](#f1-launch-and-shutdown)
 	* [F.2. Setting up profile](#f2-setting-up-profile)
 	* [F.3. Scheduling a meeting](#f3-scheduling-a-meeting)
@@ -45,7 +45,7 @@ By: `AY1920S2-CS2113T-T12-1`
     > :bulb: We recommend IntelliJ IDE since this project is built upon the features of IntelliJ
 3. The setting up of this project would assume that Intellij IDE is your preferred choice of IDE.
 
-### 1.2 Setting up the project<br>
+### 1.2 Setting up project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
 2. Open Intellij (if you are not in the welcome screen, click File > Close Project to close the existing project dialog first)
 3. Set up the correct JDK version
@@ -117,8 +117,10 @@ The ```commands``` consists of the class ```CommandHandler```.
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser``` ```ModuleApiParser``` ```ModuleHandler``` ```LessonsGenerator```.
 
-```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing. The ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
-
+1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules.
+2. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module.
+3. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing.
+4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
 <img src="images/modulelogic.png" width="80%">
@@ -679,7 +681,7 @@ Given below are instructions to test the app manually.
     
     > :bulb: Type ```delete``` to see the required format.
                                                                                                                                                                                                                                                                                                                                                                                 
-### F.4. Deleting a contact
+### F.5. Deleting a contact
 1. Deleting a contact.
     1. Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
     2. Test case: ```delete name```. <br>
