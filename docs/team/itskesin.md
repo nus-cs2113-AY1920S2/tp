@@ -84,10 +84,10 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 [Architecture](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#31-architecture)  
-[Section 1]()  
-[Section 2]()  
-[Section 4.1]() 
-[Section 4.4]() 
-[Section 4.5]() 
-[Section 6]() 
-[Appendices]()  
+[Section 1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#1-introduction)  
+[Section 2](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#2-setting-up)  
+[Section 4.1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#41-data-structure)  
+[Section 4.4](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 4.5](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 6](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#6-useful-links)  
+[Appendices](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#appendices)   
