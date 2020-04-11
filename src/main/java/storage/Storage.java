@@ -26,6 +26,10 @@ public class Storage {
         meetingFile = new File(meetingFilePath);
     }
 
+    /**
+     * Updates meeting list to hard drive on call.
+     *
+     */
     public void updateMeetingListToDisk(ArrayList<Meeting> meetingList) {
         try {
             Files.createDirectory(Paths.get("data"));
@@ -53,6 +57,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates member list to hard drive on call.
+     *
+     */
     public void updateMemberListToDisk(ArrayList<Contact> myContactList) {
         try {
             Files.createDirectory(Paths.get("data"));
@@ -109,10 +117,10 @@ public class Storage {
     }
 
     /**
-     * Loads file from hard drive on start of program.
+     * Loads meeting list file from hard drive on start of program.
      *
-     * @return List from hard drive
-     * @throws FileNotFoundException If file is not found
+     * @return ContactList from hard drive.
+     * @throws FileNotFoundException If file is not found.
      */
     public ArrayList<Meeting> loadMeetingListFromDisk() throws FileNotFoundException {
         ArrayList<Meeting> list = new ArrayList<>();
@@ -128,7 +136,13 @@ public class Storage {
     }
 
 
-    public ArrayList<Contact> loadMemberListFromDisk() throws FileNotFoundException {
+    /**
+     * Loads contact list files from hard drive on start of program.
+     *
+     * @return ContactList from hard drive.
+     * @throws FileNotFoundException If file is not found.
+     */
+    public ArrayList<Contact> loadContactListFromDisk() throws FileNotFoundException {
         ArrayList<Contact> list = new ArrayList<>();
 
         Path path = Paths.get("data");

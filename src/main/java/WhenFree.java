@@ -30,7 +30,7 @@ public class WhenFree {
 
         try {
             storage = new Storage("data/meeting_list.txt");
-            myContactList = new ContactList(storage.loadMemberListFromDisk());
+            myContactList = new ContactList(storage.loadContactListFromDisk());
             myMeetingList = new MeetingList(storage.loadMeetingListFromDisk());
             TextUI.introMsg();
             if (myContactList.getSize() > 0) {
