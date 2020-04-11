@@ -41,8 +41,8 @@ user's data. Some scenarios considered include:
 * Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
 * Added Introduction Section and Setting up section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
 * Added Architecture, UI component, Logic component and Model component under Design section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
-* Wrote implementation document for Delete from Available, Add to Available and Marking as Done
-([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),)
+* Wrote implementation document for Delete from Available, Add to Available, Marking as Done and Viewing modules
+([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),[#156](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/156))
 * Added Architecture Diagram, Sequence Diagram for MarkAsDone feature and Object Diagrams for 
 Ui component, Logic component and Model component ([#119](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/119), 
 [#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118), 
