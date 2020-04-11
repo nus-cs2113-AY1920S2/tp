@@ -151,31 +151,10 @@ Follow the following steps to manually test the product:
 
 2. Open the terminal and go to the folder where the file is stored and type `java -jar tp.jar` to initialize the program. 
 
-3. Once the program starts, you should get the following output: 
-
-        _ **_____________________________________________________________________________**_
-        _                                                                                  _
-        _                             Hello! Here's TechToday.                             _
-        _            Let me show you some technology news to refresh your mind!            _
-        _ **_____________________________________________________________________________**_
-        _                    Your queries can be of the following forms:                   _
-        _                                      1. help                                     _
-        _                              2. view [article / job]                             _
-        _                       3. save [article / job] INDEX_NUMBER                       _
-        _                         4. create [article / job / note]                         _
-        _                          5. list [article / job / note]                          _
-        _                   6. delete [article / job / note] INDEX_NUMBER                  _
-        _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-        _                                      8. exit                                     _
-        _                                                                                  _
-        _ **_____________________________________________________________________________**_
-             What can I do for you?
-
-        All the required files do not exist. We will create completely new files to save your data.
-        __________________________________________________________________________________________
+3. Once the program starts, you should get a welcome message with possible commands.
 
 
-4. **Note** Ensure that it outputs `All the required files do not exist. We will create completely new files to save your data.`
+4. **Note** Ensure that it outputs `All the required files do not exist. We will create completely new files to save your data.` 
 
 5. Type `list article` and ensure the initial list is empty. You should get the following output: 
 
@@ -189,65 +168,15 @@ Follow the following steps to manually test the product:
             __________________________________________________________________________________________
            
 
-6. Type `list note` and ensure the initial list is empty. You should get the following output: 
-            __________________________________________________________________________________________
+6. You should get a similar output for `list note` and `list job`: 
 
 
-            _                                     Note List                                    _
+7. Type `exit` to exit the program. 
 
 
-            _                      There is nothing in the list currently.                     _
-            __________________________________________________________________________________________
+9. Rerun by typing `java -jar tp.jar` to start the program again.
 
-7. Type `list job` and ensure the initial list is empty. You should get the following output: 
-            __________________________________________________________________________________________
-
-
-            _                                     Job List                                     _
-
-
-            _                      There is nothing in the list currently.                     _
-            __________________________________________________________________________________________
-
-
-8. Type `exit` to exit the program. You should get the following output: 
-
-            __________________________________________________________________________________________
-
-
-            _                                Saving your data...                               _
-            _                           We are exiting the program...                          _
-            _                            Bye. Come back again later.                           _
-
-
-
-9. Rerun by typing `java -jar tp.jar` to start the program again. You should get the following output: 
-
-            _ **_____________________________________________________________________________**_
-            _                                                                                  _
-            _                             Hello! Here's TechToday.                             _
-            _            Let me show you some technology news to refresh your mind!            _
-            _ **_____________________________________________________________________________**_
-            _                    Your queries can be of the following forms:                   _
-            _                                      1. help                                     _
-            _                              2. view [article / job]                             _
-            _                       3. save [article / job] INDEX_NUMBER                       _
-            _                         4. create [article / job / note]                         _
-            _                          5. list [article / job / note]                          _
-            _                   6. delete [article / job / note] INDEX_NUMBER                  _
-            _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-            _                                      8. exit                                     _
-            _                                                                                  _
-            _ **_____________________________________________________________________________**_
-                 What can I do for you?
-
-            Loading "articleList.json", "jobList.json" and "notelist.json"...
-
-            Done loading files, enter your command now:
-            __________________________________________________________________________________________
-
-           
-10. **Note** The message `Loading "articleList.json", "jobList.json" and "notelist.json"...` and `Done loading files, enter your command now:` should appear instead of previous message of missing data. This is to ensure these JSON files were created the first time you run the program. 
+**Note** The message `Loading "articleList.json", "jobList.json" and "notelist.json"...` and `Done loading files, enter your command now:` should appear instead of previous message of missing data. This is to ensure these JSON files were created the first time you run the program. 
 
 ### 7.2 Load Storage Testing 
 
