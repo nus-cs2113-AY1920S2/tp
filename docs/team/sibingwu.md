@@ -12,38 +12,37 @@ daily so that restaurant owners can better manage their business operations.
   1. Feature: Add a Reservation
       - What it does: Allows users to input `add reservation` to add a reservation with details to the `reservations` list in the application.
       - Justification: This feature is needed for restaurant to add the newly received reservation to the list in the application.
-      - Highlights: The `AddReservationCommand` class will examine if the user misses some inputs or delimiters. Adding the reservation is handled by `ReservationList` class.
+      - Highlights: The `AddReservationCommand` class will examine if the user misses some inputs or delimiters. Adding the reservation is handled by `ReservationList` class.<br/>
   
   2. Feature: Mark a Reservation
       - What it does: Allows users to input `delete reservation` to mark a reservation as **invalid** or input `mark reservation` to mark a reservation as **served**.
       - Justification: This feature is needed for restaurant to update the status of a reservation when they finish serving it or the reservation is canceled.
       - Highlights: The `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. 
-          Marking the reservation is handled by `ReservationList` class. 
-     -    Some restriction is set to follow the common sense: a invalid reservation cannot be marked as served or invalid again; a served reservation cannot be marked as invalid.
+          Marking the reservation is handled by `ReservationList` class. Some restriction is set to follow the common sense: a invalid reservation cannot be marked as served or invalid again; a served reservation cannot be marked as invalid.<br/>
        
   3. Feature: List the Reservations
       - What it does: Allows the users to input `list reservation` to list all reservations, or input `list served reservation` to list all **served** reservations, or input `list unserved reservation` to list all **unserved** reservations.
-      - Justification: This feature is needed for restaurant to review all reservations.
-      - Highlights: When certain types of reservations are required to be listed, the `ListServedCommand` and `ListUnservedCommand` class will do a linear search among `reservations` list and check the reservation status.
+      - Justification: This feature is needed for restaurant to review all reservations.<br/>
+      - Highlights: When certain types of reservations are required to be listed, the `ListServedCommand` and `ListUnservedCommand` class will do a linear search among `reservations` list and check the reservation status.<br/>
   
   4. Feature: Search the Reservations
       - What it does: Allows the users to input `search reservation` to search for a specific reservation or all reservations in a certain day.
-      - Justification: This feature is needed for restaurant to look at the details of a specific reservation or review all the reservations in a specific day.
+      - Justification: This feature is needed for restaurant to look at the details of a specific reservation or review all the reservations in a specific day.<br/>
       - Highlights: The `SearchReservationCommand` class will do a linear search among `reservations` list to find the matched reservations.
   
   5. Feature: Load the `Reservation` from the **"report.txt"** file to the `reservations` list
       - What it does: The reservations in the txt file will be automatically loaded into the `reservations` list when the program is started.
-      - Justification: This feature is needed for restaurant to view reservations added before.
+      - Justification: This feature is needed for restaurant to view reservations added before.<br/>
       - Highlights: The `LoadReservation` class will be in charge of loading reservations in the txt file into the `reservations` list.
   
   6. Feature: Clear the `reservations` list
-      - What it does: Allows the user to input `clear reservation` to clear all reservations.
-      - Justification: This feature exists in case the restaurant really needs it.
-      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly.
+      - What it does: Allows the user to input `clear reservation` to clear all reservations.<br/>
+      - Justification: This feature exists in case the restaurant really needs it.<br/>
+      - Highlights: The `ReservationList` class will clear the `reservations` ArrayList directly.<br/>
   
   7. Adding Logger to the Reservation-related section and Ui
       - What it does: It records down all the `add`, `mark` and `delete` activities which can modify the `reservations` list. A fail to set up the logger will also be recorded.
-      - Justification: The restaurant need to keep track of the log of its reservations.
+      - Justification: The restaurant need to keep track of the log of its reservations.<br/>
 
 * **Contributions to documentation:**
   1. Updated User Guide for all reservation-related features.
@@ -51,11 +50,11 @@ daily so that restaurant owners can better manage their business operations.
 
 * **Contributions to the DG:**
   1. Added description for the `Search Reservation` features.
-  2. Added content for Appendix A, C and D
-  3. Added reservation-related content to Appendix B and E.
+  2. Added content for Appendix A, C and D<br/>
+  3. Added reservation-related content to Appendix B and E.<br/>
 
 * **Contributions to team-based tasks:** Project Management
-  1. Creating the milestones v1.0, v2.0, v2.1
+  1. Creating the milestones v1.0, v2.0, v2.1<br/>
   2. Maintaining the issue tracker: I used the [Github issues](https://github.com/AY1920S2-CS2113-T14-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3ASibingWu) to allocate the upcoming work.
 
 * **Review/mentoring contributions:** Pull Request reviewed: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148), [#149](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/149), [#171](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/171)

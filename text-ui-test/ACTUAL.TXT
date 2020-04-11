@@ -673,7 +673,7 @@ Please specify the keyword using the format 'k/keyword;'
 
 Input next command:
 
-There is no reservation currently in the list.
+Currently there is no reservation in the list.
 
 Input next command:
 
