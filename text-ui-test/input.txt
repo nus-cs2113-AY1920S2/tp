@@ -1,1 +1,7 @@
-James Gosling
+lsm
+addm CS3235
+addm CS1111
+lst
+cd CS3235
+cd Assignment
+bye

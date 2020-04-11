@@ -1,0 +1,50 @@
+--- MODULE ---
+CS2113T -|||- Software Engineering & Object-Oriented Programming -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+tutorial 1 -|||- N -|||-  -|||- 2
+--- FILE ---
+--- END FILE ---
+--- TAG ---
+urgent
+--- END TAG ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+lab -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- TAG ---
+--- END TAG ---
+--- END TASK ---
+--- END CATEGORY ---
+CS3230 -|||- Design and Analysis of Algorithms -|||- NIL
+--- CATEGORY ---
+Lecture -|||- 1
+--- TASK ---
+--- END TASK ---
+Tutorial -|||- 2
+--- TASK ---
+--- END TASK ---
+Assignment -|||- 4
+--- TASK ---
+--- END TASK ---
+Lab -|||- 3
+--- TASK ---
+lab1 -|||- N -|||-  -|||- 3
+--- FILE ---
+--- END FILE ---
+--- TAG ---
+ur
+gen
+--- END TAG ---
+--- END TASK ---
+--- END CATEGORY ---
+--- END MODULE ---
