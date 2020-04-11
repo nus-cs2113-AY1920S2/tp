@@ -12,6 +12,7 @@ import static seedu.nuke.util.ExceptionMessage.MESSAGE_INCORRECT_DIRECTORY_LEVEL
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.nuke.util.ExceptionMessage.MESSAGE_TASK_NOT_FOUND;
 import static seedu.nuke.util.Message.MESSAGE_TAG_ADDED;
+import static seedu.nuke.util.Message.messageAddTagSuccess;
 
 
 public class AddTagCommandTest {
@@ -61,18 +62,19 @@ public class AddTagCommandTest {
         result = Executor.executeCommand("addt read -c Lab");
 
         result = Executor.executeCommand("addg ur -c Lab -t read");
-        assertEquals(MESSAGE_TAG_ADDED, result.getFeedbackToUser());
+        assertEquals(messageAddTagSuccess("ur"), result.getFeedbackToUser());
 
         result = Executor.executeCommand("cd Lab");
         result = Executor.executeCommand("addg ur -t read");
-        assertEquals(MESSAGE_TAG_ADDED, result.getFeedbackToUser());
+        assertEquals(messageAddTagSuccess("ur"), result.getFeedbackToUser());
 
         result = Executor.executeCommand("addg ur -t tp");
+        System.out.println(result.getFeedbackToUser());
         assertEquals(MESSAGE_TASK_NOT_FOUND, result.getFeedbackToUser());
 
         result = Executor.executeCommand("addt quiz -c Assignment");
         result = Executor.executeCommand("addg ur -c Assignment -t quiz");
-        assertEquals(MESSAGE_TAG_ADDED, result.getFeedbackToUser());
+        assertEquals(messageAddTagSuccess("ur"), result.getFeedbackToUser());
 
     }
 

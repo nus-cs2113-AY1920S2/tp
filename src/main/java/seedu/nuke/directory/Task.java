@@ -147,7 +147,7 @@ public class Task extends Directory implements Tag {
     }
 
     public String getLastTag() {
-        return tags.get(tags.size()-1);
+        return tags.get(tags.size() - 1);
     }
 
     @Override
