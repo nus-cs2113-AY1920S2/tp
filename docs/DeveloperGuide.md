@@ -668,10 +668,10 @@ Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The word limit that we have implemented in <b>Nuke</b> are the following:
 <br><br>
-<b><i>Module Code</i></b>: No character limit, but has to be an <n>NUS</b> provided <i>module</i><br>
-<b><i>Category Name</i></b>: <b>15</b> characters</i><br>
-<b><i>Task Description</i></b>: <b>25</b> characters</i><br>
-<b><i>File Name</i></b>: <b>30</b> characters</i><br>
+<b><i>Module Code</i></b>: No character limit, but has to be an <b>NUS</b> provided <i>module</i><br>
+<b><i>Category Name</i></b>: <b>15</b> characters<br>
+<b><i>Task Description</i></b>: <b>25</b> characters<br>
+<b><i>File Name</i></b>: <b>30</b> characters<br>
 <br>
 These numbers are chosen in view of the realistic length of words a user will usually use for such names. So in most cases, the user should not be exceeding the character limit &#128527;.
 </div> 
