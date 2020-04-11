@@ -6,9 +6,9 @@
     1. [Code Contributed](#code-contributed)
     2. [Enhancements implemented](#enhancements-implemented)
     3. [Contributions to documentation](#contributions-to-documentation)
-    4. [Contributions to the DG](#contributions-to-the-DG)
+    4. [Contributions to the DG](#contributions-to-the-dg)
     5. [Contributions to team based tasks](#contributions-to-team-based-tasks)
-    6. [Review/mentoring contributions](#review/mentoring-contributions)
+    6. [Review/mentoring contributions](#reviewmentoring-contributions)
     7. [Contributions beyond the project team](#contributions-beyond-the-project-team)
 
 ## Overview
