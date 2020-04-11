@@ -120,12 +120,12 @@ public class AttendanceList {
         if (isMatch(keyword).isEmpty()) {
             ui.display("There is no student named: " + keyword);
         } else {
+            UI.display("Search Result(s): ");
             displayAttendanceList(isMatch(keyword));
         }
     }
 
     public ArrayList<Attendance> isMatch(String keyword) {
-        UI.display("Search Results");
         ArrayList<Attendance> searchResults = new ArrayList<>();
         for (Attendance attendance: this.attendanceList) {
             if (attendance.getStudentName().toLowerCase().contains(keyword.toLowerCase())) {

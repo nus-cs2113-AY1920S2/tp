@@ -33,7 +33,7 @@ public class DisplayList extends UI {
     }
 
     public void printSearchResults(ArrayList<StudentList> searchResults) throws PacException {
-        UI.display("Here's the Search Results");
+        UI.display("Here's the Search Result(s)");
         try {
             int index = 1;
             for (StudentList studentList : searchResults) {

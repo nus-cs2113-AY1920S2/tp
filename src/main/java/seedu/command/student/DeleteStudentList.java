@@ -31,7 +31,11 @@ public class DeleteStudentList extends Command {
         } catch (Exception e2) {
             throw new PacException("Deletion Failed, out of bound.");
         }
-        displayList.printStudentListCollection();
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            displayList.printStudentListCollection();
+        }
     }
 
     @Override

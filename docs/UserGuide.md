@@ -354,7 +354,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> CG
-    You have 1 matched:
+    You have 1 matches:
     Here's the Search Result(s)
     
     [1]
@@ -374,7 +374,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> EG
-    Nothing match you description : EG
+    Nothing match your description : EG
     
 The following occurs when there are no existing student list in the student list collection.
 
@@ -807,6 +807,8 @@ The following will show a success example of *creating a new attendance list usi
     You have successfully added 3 to the attendance list.
     
 The following will show a success example of *creating a new attendance list using a single line interface*.
+Please note that the name provided must be connected. "John Doe" is not accepted. If you wish to add in name
+with spaces, please use the other method. Future releases will allow names like "John Doe" to be added. 
 
     Would you like to import an existing student list? If yes, input 'yes'. Else, input anything.
     
@@ -1020,7 +1022,7 @@ Command: `attendance find`
 
 Example:
 
-The following shows a successful find
+The following shows a successful find.
 
     >>> attendance view
     Please key in the name of event.
@@ -1060,7 +1062,7 @@ The following occurs when there is no names matching the name that the user inpu
     
     >>> Richard
     Search Results
-    There is no student named: Richard.
+    There is no student named: Richard
     
 The following occurs when the attendance list is empty.
 

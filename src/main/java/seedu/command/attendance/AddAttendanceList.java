@@ -69,7 +69,7 @@ public class AddAttendanceList extends Command {
     /**
      * Method to create with existing student list.
      */
-    private void createWithExistingList() {
+    private void createWithExistingList() throws PacException {
         if (studentListCollection.isEmpty()) {
             UI.display("There is no existing student list to import");
         } else {
@@ -83,11 +83,15 @@ public class AddAttendanceList extends Command {
      * User can select base on the index given.
      * @return A studentList selected from the studentListCollection.
      */
-    private ArrayList<String> fetchStudentList() {
+    private ArrayList<String> fetchStudentList() throws PacException {
         UI.display("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
-        int index = Integer.parseInt(ui.getUserInput());
-        return studentListCollection.get(index - 1).getStudentList();
+        try {
+            int index = Integer.parseInt(ui.getUserInput());
+            return studentListCollection.get(index - 1).getStudentList();
+        } catch (Exception e) {
+            throw new PacException("Wrong format");
+        }
     }
 
     /**
@@ -152,7 +156,7 @@ public class AddAttendanceList extends Command {
                 UI.display("There is an entry with the same name.");
             }
         }
-        studentListCollection.push(newStudentList);
+        appendNewStudentList();
         UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
@@ -181,10 +185,17 @@ public class AddAttendanceList extends Command {
                 studentNumber++;
             }
         }
-        studentListCollection.push(newStudentList);
+        appendNewStudentList();
         UI.display("You have successfully added "
                 + studentNumber + " to the attendance list.\n");
     }
+
+    public void appendNewStudentList() {
+        if (!newStudentList.isEmpty()) {
+            studentListCollection.push(newStudentList);
+        }
+    }
+
 
     @Override
     public void execute() throws PacException {
