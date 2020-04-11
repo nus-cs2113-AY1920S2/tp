@@ -14,30 +14,22 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
-    * [3.2. TextUi Component](#32-textui-component)
+    * [3.2. TextUi Component](#32-textui-comonent)
     * [3.3. Logic Component](#33-logic-component)
     * [3.4. Model Component](#34-model-component)
     * [3.5. Storage Component](#35-storage-component)
 - [4. Implementation](#4-implementation)
-    * [4.1. Patient Details Feature](#41-patient-details-feature)
-        + [4.1.1. Add Patient Details](#411-add-patient-details)
-        + [4.1.2. Edit Patient Details](#412-edit-patient-details)
-        + [4.1.3. Delete Patient Details](#413-delete-patient-details)
-        + [4.1.4. List Patients](#414-list-patients)
-        + [4.1.5. Retrieve Patient Details](#415-retrieve-patient-details)
-    * [4.2. Patient Medical Records Feature](#42-patient-medical-records-feature)
-    * [4.3. Appointment Scheduling Feature](#43-appointment-scheduling-feature)
-        + [4.3.1. Add Appointment](#431-add-appointment)
-        + [4.3.2. Edit Appointment](#432-edit-appointment)
-        + [4.3.3. Delete Appointment](#433-delete-appointment)
-        + [4.3.4. Mark Appointment as Done](#434-mark-appointment-as-done)
-        + [4.3.5. List Appointments](#435-list-appointments)
-        + [4.3.6. Find Appointments of Patient](#436-find-appointments-of-patient)
-    * [4.4 Storage](#44-storage)
-    * [4.5 User Prompting](#45-user-prompting)
-- [5. Documentation](#5-documentation)
-- [6. Testing](#6-testing)
-- [7. Useful Links](#7-useful-links)
+    * [4.1. Data Structure](#41-data-structure)
+    * [4.2. Add Feature](#42-add-feature)
+    * [4.3. List Feature](#43-list-features)
+    * [4.4. Find/Get Feature](#44-findget-feature)
+    * [4.5. Edit Features](#45-edit-features)
+    * [4.6. Delete Features](#46-delete-features)
+    * [4.7. Done Appointment Feature](#47-done-appointment-feature)
+    * [4.8 Storage](#48-storage)
+    * [4.9 User Prompting](#49-user-prompting)
+- [5. Testing](#5-testing)
+- [6. Useful Links](#6-useful-links)
 - [Appendices](#appendices)
     * [Appendix A: Product Scope](#qppendix-a-product-scope)
     * [Appendix B: User Stories](#appendix-b-user-stories)
@@ -200,11 +192,15 @@ The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is fa
            This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
-### 4.2. Add Feature
+### 4.2. Add Features
 
 The user is able to add patient details, patient's record and appointment details into the program to keep track of the patient. 
 
 **Implementation** 
+
+Add patient details, patient's record and appointment details use similar implementation with minor difference in the usage of tags when parsing the command.  
+
+Below is an example of adding patient's appointment.
 
 The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric`, `date`, `time`, and `reason` in its constructor. 
@@ -233,8 +229,6 @@ subsequently call the `AddAppointmentCommand#execute()` method.
 	objects in the Patient object mapped with the nric given. The `Appointment` object is stored in the storage by calling `Storage#writeAllToFile()`. 
 	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
 	and displays the `AppointmentID` associated to the `Appointment` object created. 
-
-The following sequence diagram summarises how the `AddAppointmentCommand` operation works: 
 
 #### 4.2.1 Add Patient Details
 
@@ -451,7 +445,7 @@ The following sequence diagram summarises how the `FindAppointmentCommand` opera
         P.S subject to change in v2.
 
 
-### 4.5. Edit Feature
+### 4.5. Edit Features
 
 The user can edit an appointment from the list of appointments currently in the program. The command:
 
@@ -542,7 +536,7 @@ The following sequence diagram summarises how the `EditAppointmentCommand` opera
         P.S subject to change in v2.
 
 
-### 4.6. Delete Feature
+### 4.6. Delete Features
 
 The user can delete an appointment from the list of appointments currently in the program. The command: 
 
@@ -625,7 +619,7 @@ The following sequence diagram summarises how the `DeleteAppointmentCommand` ope
         P.S subject to change in v2.
 
 
-### 4.7. Done Appoint Feature
+### 4.7. Done Appointment Feature
 The user can mark an appointment as done from the list of appointments currently in the program. The command: 
 
     done appt S1234567Z 1
