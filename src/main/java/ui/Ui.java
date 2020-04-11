@@ -36,7 +36,7 @@ public class Ui {
         System.out.println("||    ||||       \\      ||    /  ||  ||  || ||    |     /  || ||    ||   ||");
         System.out.println("||__ /  ||___     \\___  ||   /___||  ||  || ||__ /     /___|| ||    ||   ||");
         System.out.println("||   \\\\ ||           \\  ||  /    ||  ||  || ||   \\\\   /    || ||    ||   ||");
-        System.out.println("||    \\\\||____   _____\\ || /     ||   \\__/  ||    \\\\ /     Daily Report v2.0");       
+        System.out.println("||    \\\\||____   _____\\ || /     ||   \\__/  ||    \\\\ /     Daily Report v2.1");       
     }
     
     public Ui(InputStream in, PrintStream out) {
