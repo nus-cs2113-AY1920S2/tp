@@ -445,6 +445,41 @@ Given below is an example usage scenario of how the ```ListMeetings``` command b
 1. The user running the application invokes the ```LogicManager``` by typing ```meetings```.
 2. ```LogicManager```would then request ```CommandHandler``` for the list.
 3. ```CommandHandler``` will call ```listMeetings()``` on ```MeetingList```, which will display every scheduled meetings that has been created.
+<br/>
+
+
+### 3.9 [Proposed] Undo/Redo feature
+![undo redo](/images/undoredo_seq.png)
+*Fig 19. Sequence diagram of the implementation of the `Undo/Redo` feature*
+
+Fig 19. shows the sequence diagram of the  `Undo/Redo` feature.
+It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```VersionedWhenFree```.
+
+The undo/redo function acts through `VersionedWhenFree`. It contains an undo/redo history, stored internally as an whenFreeVersionList and currentVersion. VersionedWhenFree includes the following methods:
+* `include()` saves the current version to whenFreeVersionList.
+* `undo()` reverts to the previous version from the list.
+* `redo()` reverts to the previous undo version from the list.
+
+Given below is an example usage scenario of how the ```undo/redo``` command behaves from the start of application runtime.
+
+1. The user starts the application. The `VersionedWhenFree` will be initialized with the current state of the application and the currentVersion pointing to this WhenFree version.
+2. The user executes `delete john` command to delete john from the contact list. The delete command calls `include()` method in `VersionedWhenFree` to append the new version of WhenFree to whenFreeVersionList and the current version to point to this new version.
+3. The user executes `undo` command. This will invoke the `LogicManager`.
+4. ```LogicManager```would then request ```CommandHandler``` to undo action.
+5. ```CommandHandler``` will call `undo()` method in `VersionedWhenFree`, which causes `currentVersion` to point one to the left. Then WhenFree will revert to that version. 
+The `redo` command does the opposite, which calls `redo()` in VersionedWhenFree which causes `currentVersion` to point one to the right and revert to that version instead.
+6. The user executes `contacts` command, which lists every stored contact's name. Commands like this will not affect `VersionedWhenFree`. 
+7. The user executes `delete adam` command. This will delete all entries in `whenFreeVersionList` after the current version, and continue similar to that in step 2.
+
+### 3.9.1. Design Considerations
+Aspect: How undo/redo executes
+* Alterative 1 (current choice): Saves the entire storage.
+	* Pros: Easy to implement.
+	* Cons: May have memory problem.
+* Alterative 2: Modularized undo/redo such that every relevant commands can undo/redo its own command.
+	* Pros: Less memory usage.
+	* Cons: Implementation process will be harder and more testing will be needed.
+
 
 [&#8593; Return to Table of Contents](#table-of-contents)
 
