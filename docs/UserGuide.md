@@ -541,11 +541,13 @@ Add a new event to the event list.
 
 Format: `event add n/NAME [d/DATE t/TIME] [v/VENUE]`
 
-* Name and Venue accepts input with spaces.
-* Date and Time must either be provided together, or not provided at all. 
+* `Name` and `Venue` accepts input with spaces.
+* `Date` and `Time` must either be provided together, or not provided at all. 
 * The Date should be in the format: yyyy-mm-dd.  
 * The Time should be in the 24-hour format: HHmm.
 * Flags can be arranged in any order.
+* If only `Venue` is provided, `Name` will be set to a default value based on 
+current time (e.g. event_1586607776).
  
 Examples: 
 
@@ -563,6 +565,15 @@ Expected outcome:
     New Event: World Cup was added successfully to your Event list.
     
     New Event: soccer match was added successfully to your Event list.
+
+Examples of bad input:
+
+    >>> event add n/NS [d/2020-02-01 t/0000] [v/Tekong]
+
+Expected outcome of bad input:
+
+    Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
+    New Event: NS [d/2020-02-01 was added successfully to your Event list.
 
 #### 4.2.2. List Events
 List all events.

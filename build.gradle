@@ -27,7 +27,7 @@ application {
 
 shadowJar {
     archiveBaseName = "Pac"
-    archiveVersion = "2.0"
+    archiveVersion = "2.1"
     archiveClassifier = null
     archiveAppendix = null
 }

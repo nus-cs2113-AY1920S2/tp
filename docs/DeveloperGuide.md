@@ -17,9 +17,9 @@ Pac. The following groups are in particular the intended audience of the documen
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
     2.5 [Storage component](#25-storage-component)  
-3. [Implementation](#3-implementation)  
+3. [Implementation of features](#3-implementation-of-features)  
     3.1 [Event](#31-event)  
-    3.2 [Calendar](#32-calendar) 
+    3.2 [Calendar](#32-calendar)    
     3.3 [Attendance](#33-attendance)   
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)  
@@ -40,7 +40,7 @@ Pac. The following groups are in particular the intended audience of the documen
 or above installed in your Computer.
 1.  Download the latest PAC.jar from [here](https://github.com/AY1920S2-CS2113T-T12-4/tp/releases).
 1.  Copy the file to the folder you want to use as the home folder for this application.
-1.  Type `java -jar PAC.jar` to start the application.
+1.  Type `java -jar PAC-2.1.jar` to start the application.
 1.  You should see this screen if everything is successful.
 
 ### 1.2 Startup using Command Line
@@ -98,11 +98,11 @@ base `Command` abstract class and utilize its abstract `execute()` method.
 They are created and executed when the user inputs a corresponding command.
  
 ### 2.4 Parser component
-*Class diagram of the Parser component*  
+
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
 of Pac. 
 
-| Parser                    | Created in                                                    |
+| Parser                    | Created by                                                    |
 |---------------------------|---------------------------------------------------------------|
 | EventParser               | EventCommandInterpreter                                       | 
 | CalenderParser            | CalendarCommandInterpreter                                       | 
@@ -116,13 +116,15 @@ A Parser class is created when a user input contains data to be stored or used i
 *Class diagram of the Storage component*
 
 On startup, `Pac` instantiates two `Storage` objects (`eventStorage` and 
-`studentListStorage`) to load and save `Event` and `StudentList` objects respectively.
+`studentListStorage`) to load and save `Event` and `StudentList` objects 
+respectively. Each event requires other Attendance-related and Performance-related 
+methods to load and save it, but these methods are not shown in the diagram above. 
 
-All `Event` and `StudentList` objects are receiving `Bye` command. If the 
-program crashes (due to unhandled Exception or Interrupt), they *will not* be 
-saved.
+All `Event` and `StudentList` objects are saved after receiving `Bye` command. 
+If the program crashes (due to unhandled Exception or Interrupt), they *will not* 
+be saved.
 
-## 3. Implementation  
+## 3. Implementation of Features  
 ### 3.1 Event
 ![event](images/Event.png "Class diagram of Event component")               
 *Class diagram of the Event component*
@@ -152,7 +154,6 @@ In this diagram:
 Note that:
 * `datetime` is stored as a single attribute in `Event` class, but it is exposed to user as `date` 
 and `time`, which corresponds to `d/` and `t/` flag respectively.
-* adding `datetime` to events is optional.
 * `editDate` or `editTime` commands are not available. Only `editDateTime` is available to change the 
 `date` and/or `time` of an `Event` object.
 * `delete(Event)` method is currently not in use, but can be used to implement delete by event name, 
@@ -185,16 +186,16 @@ and getMonthEvents() to sieve the events that fall under a specific time-frame m
 1. displayCalendar() method in separateEvents(), displays all the components of the calendar by interacting with 
 the UI and DisplayTable classes.  
 The diagram below illustrates the program flow stated above:  
- ![CalendarProgramFlow](images/EventsSeparator.png "program flow")  
- *Program flow of calendar execution*
- 
- Below is an example usage of how the user can interact with the calendar manager:  
- Step 1: The user wants to `add` an event to their calendar. They do so by inputting `event add n/football d/2020-05-04 t/1700`.
- Assuming that it is currently semester 2 of the academic year 19-20, this event falls in that timeline and is added to the calendar.
+![CalendarProgramFlow](images/EventsSeparator.png "program flow")  
+*Program flow of calendar execution*
+
+Below is an example usage of how the user can interact with the calendar manager:  
+Step 1: The user wants to `add` an event to their calendar. They do so by inputting `event add n/football d/2020-05-04 t/1700`.
+Assuming that it is currently semester 2 of the academic year 19-20, this event falls in that timeline and is added to the calendar.
     
- Step 2: The user realises that the name of the event is wrong and decides to `edit` the name of the event. First, they input
- `event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
- to edit the name of the event.  
+Step 2: The user realises that the name of the event is wrong and decides to `edit` the name of the event. First, they input
+`event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
+to edit the name of the event.  
  
  Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
  `calendar s/2 ay/19-20`. A sample view of the calendar is shown below:
@@ -216,19 +217,19 @@ The diagram below illustrates the program flow stated above:
    - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
    ArrayLists.
    
- - Alternative 2: Save the events as a sorted tree map 
-   - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
-   - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
-   every new addition, deletion or editing.  
+- Alternative 2: Save the events as a sorted tree map 
+  - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
+  - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
+  every new addition, deletion or editing.  
  
  *Aspect: How addition, deletion and editing of events affects calendar execution*  
  - Alternative 1(current choice): Implement a class specifically to interact with the calendar
    - Pros: Calendar class can support different interactions to modify calendar content
    - Cons: Many new methods to be implemented, which affects code readability.
    
- - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
-   - Pros: Does not require instantiation of new object to modify the calendar contents.
-   - Cons: Many new methods to be implemented, which affects code readability.
+- Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
+  - Pros: Does not require instantiation of new object to modify the calendar contents.
+  - Cons: Many new methods to be implemented, which affects code readability.
 
 **Note that**:
 * Event list should contain existing events with date and time to view the calendar. 
