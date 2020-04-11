@@ -308,10 +308,10 @@ The <b>Directory Manager</b> classes also contain very similar methods to carry 
 <br>
 The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
 </div>   
-  
+
 [Back To Top](#table-of-contents)    
 <br>   
-  
+
 #### **Design Considerations**     
 <b>Structure Decision</b>    
 - <b>Alternative 1</b>: No <b>Directory Tree</b> structure; have <b>one</b> Task List</b> which stores all the user's <i>tasks</i>       
@@ -344,7 +344,7 @@ The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> att
 </div>  
 
 #### **Implementation**    
-![directory traverser class diagram](#images/dg_traverser_class.png)   
+![directory traverser class diagram](images/dg_traverser_class.png)   
 <span style="color: green"><small><i>Figure <b>Directory Traverser Class Diagram</b></i></small></span>   
  <br>
 
@@ -358,7 +358,7 @@ The <code>DirectoryTraverser</code> class is a static class which has several pu
 ![directory traverser traverse down](images/dg_traverse_down.png)    
 <span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Down</b></i></small></span>   
  <br>  
- 
+
 ![directory traverser traverse up](images/dg_traverse_up.png)    
 <span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Up</b></i></small></span>   
  <br>  
@@ -410,7 +410,7 @@ To support the attributes matching feature, <code>DirectoryTraverser</code> has 
 As of the current implementation, the above methods are sufficient for the attributes matching property.
 </div>
 <br>   
-  
+
 [Back To Top](#table-of-contents)    
 <br>   
 
@@ -462,8 +462,6 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
 2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
 
-<span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
-
 #### **Example Usage**
 
 The addition of modules will be illustrated as follows.
@@ -508,9 +506,11 @@ Total modules: 3
    +--------------------------------------------------------------------------------------------------+
 ```
 
+Below is a *sequence diagram* to illustrate the above example scenario.  
+
 ![image-20200326014336120](images/Add_Module_Command_Sequence_Diagram.png)
 
-Below is a *sequence diagram* to illustrate the above example scenario.  
+<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
 
 
@@ -541,9 +541,13 @@ The `AddCategoryCommand` and `AddTaskCommand` will first call the `getParentDire
 
 Below are the class-diagram for the involved classes:
 
+![image-20200326014336120](images/Add_Category_Command_Class_Diagram.png)
+
 ```
-to-do: add the class-diagram
+TODO: add the class diagram for add category command
 ```
+
+<span style="color: green"><small><i>Figure <b>Add Category Command Class Diagram</b></i></small></span>
 
 #### **Example Usage**
 
@@ -598,13 +602,11 @@ Total categories: 5
    SUCCESS!! Category misc is created.
    ```
 
-
-
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
+![add category command sequence diagram](images/Add_Category_Command_Sequence_Diagram.png)
 
-<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
+<span style="color: green"><small><i>Figure <b>Add Category Command Sequence Diagram</b></i></small></span>
 
 <br><br>
 
@@ -620,7 +622,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![List Command Class Diagram](images/List_Command_Class_Diagram.png)
+![list command class diagram](images/List_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -666,7 +668,7 @@ After the input is parsed as a **list module** command and executed, the `ListMo
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)   
+![list module command sequence diagram](images/List_Module_Command_Sequence_Diagram.png)   
 <span style="color: green"><small><i>Figure <b>List Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
@@ -702,7 +704,6 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-
 ![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
 
@@ -866,6 +867,7 @@ The <b>edit</b> command edits the attributes of a <i>directory</i>. For example,
 ![edit commands class diagram](images/dg_edit_class.png)   
  <span style="color: green"><small><i>Figure <b>Edit Commands Class Diagram</b></i></small></span>   
  <br>  
+
 <div>   
 The <b>edit</b> commands all work in a similar manner. As seen in the <i>class diagram</i> above, each of the <b>edit</b> commands extends from the <i>abstract</i> <code>EditCommand</code> class. The <code>EditCommand</code> class has an <i>abstract</i> method, <code>toEdit(Directory)</code>, which is to be implemented by each of the <b>edit</b> commands. 
 <br><br>
@@ -935,7 +937,6 @@ If the user want to traverse up from the current <i>directory</i> instead, <code
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
 </div> <br>   
-
 Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>      
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
  <span style="color: green"><small><i>Figure <b>Change Directory Command Sequence Diagram</b></i></small></span>   
