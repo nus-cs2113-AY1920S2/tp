@@ -978,7 +978,6 @@ An error message will be shown to the user when the user tries to undo when no r
 <br><br>
 This is done in the <code>ScreenShotManager</code> class by checking if the <b>undo</b> stack contains more than 1 element (first element is the start-up state), and if the <b>redo</b> stack is not empty respectively. If checking fails, an <b>exception</b> will be thrown. &#128529;
 </div>    
-
 Below is a <i>sequence diagram</i> of the undo command in action: <br>   
 ![undo command sequence diagram](images/dg_undo_seq.png)  
 <span style="color: green"><small><i>Figure <b>Undo Command Sequence Diagram</b></i></small></span>    
@@ -1171,7 +1170,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
 4. Add file
    1. Correct usage:
       1. Test case: `delf test.pdf -m cs2113t -c Assignment -t assignment2`
-      2. Expected: Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
+      2. Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
    2. Wrong usage:
       1. Test case: `delf non-exist.pdf -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No files found.`
@@ -1181,6 +1180,85 @@ All the Delete Commands below are assumed to be executed at the root directory.<
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
 </div>
+1. List modules
+
+   1. Test case: `lsm`
+
+   2. Expected: the program display a table containing all the *modules* added by the user as shown below:
+
+      ![](images/dg_lsm.png)
+
+2. List categories
+
+   1. Test case: `lsc -m cs2113t`
+
+   2. Expected: the program display a table containing all the *categories* under *module* `cs2113t` as shown below:
+
+      ![](images/dg_lsc.png)
+
+3. List tasks
+
+   1. Test case: `lst -m cs2113t -c Assignment`
+
+   2. Expected: the program display a table containing all the *tasks* under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
+
+      ![](images/dg_lst.png)
+
+4. List files
+
+   1. Test case: `lsf -m cs2113t -c Assignment -t assignment2`
+
+   2. Expected: the program display a table containing all the files of the *task* `assignment2` under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
+
+      ![](images/dg_lsf.png)
+
+#### 5. Edit Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</div>
+1. Edit module
+   1. Test case: `edm cs2113t -m cs2113t`
+   2. Expected: the program will prompt the user with message: `SUCCESS!! The module has been updated.`
+2. Edit category
+   1. Test case: `edc Lab -m cs2113t -c Project`
+   2. Expected: the program will prompt the user with message: `SUCCESS!! The category has been updated.`
+3. Edit task
+   1. Test case: `edt assignment2 -m cs2113t -c Assignment -t assignment3 -d tmr 12:00 -p 18`
+   2. Expected: the program will prompt the user with message: `SUCCESS!! The task has been updated.`
+4. Edit file
+   1. Test case: `edf test.pdf -m cs2113t -c Assignment -t assignment2 -f test1.pdf`
+   2. Expected: the program will prompt the user with message: `SUCCESS!! The file has been updated.`
+
+#### 6. Undo and Redo Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the Undo and Redo Commands below are assumed to be executed at the root directory.<br> And user has <b>not</b> added any data beforehand.
+</div>
+1. Correct Usage:
+   1. Test case: enter `addm cs2113t` followed by `undo`
+   2. Expected: the program will prompt the user with message: `SUCCESS!! Data has been reverted to the previous state.`
+   3. Test case: enter `addm cs2113t` followed by `undo` and then followed by `redo`
+   4. Expected: the program will prompt the user with message: `SUCCESS!! Data has been reverted back to the next state.`
+2. Wrong Usage:
+   1. Test case: enter `addm cs2113t` followed by `undo` and another `undo`
+   2. Expected: the program will prompt the user with message: `You are already at the initial state!`
+   3. Test case: enter `redo` **without** executing any `undo` command
+   4. Expected: the program will prompt the user with message: `You are already at the newest state!`
+
+#### 7. Change Directory Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the Undo and Redo Commands below are assumed to be executed at the root directory.<br> And user has added a <i>module</i> <code>cs2113t</code>
+</div>
+
+1. Correct Usage:
+   1. Test case: enter `cd cs2113t`
+   2. Expected: the program prompt will be changed to `root / CS2113T :` from `root :`
+2. Wrong Usage:
+   1. Test case: enter `cd ..`
+   2. Expected: the program prompt the user with message: `Unable to traverse further.`
+
 
 
 [Back To Top](#table-of-contents)    
