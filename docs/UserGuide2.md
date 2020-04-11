@@ -121,7 +121,7 @@ Format: `help`
 
 >***Expected output:***
 > 
-> <img src="images/UG/HelpOutput.PNG" alt="help output" width="600">
+> <img src="images/UG/HelpOutput.PNG" alt="Help Output" width="600">
 >
 
 <table>
@@ -145,7 +145,7 @@ Format: `exit`
 
 >***Expected output:***
 > 
-> ![help](images/UG/Exit.PNG "exit output")
+> <img src="images/UG/Exit.PNG" alt="Exit Output" width="600">
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -171,7 +171,7 @@ You can also add a new patient with the specified parameters in any order.
 
 >***Expected output:***
 >
->![MissingInput](images/UG/PATIENT/MissingAddPatientInput.PNG "Missing Add Output")
+> <img src="images/UG/PATIENT/MissingAddPatientInput.PNG" alt="Missing Add Output" width="600">
 >
 > 
 
@@ -188,7 +188,7 @@ Enter `/p 91265432` to add the missing field.
 
 > ***Expected output:***
 >
->   ![CheckConfirmAdd](images/UG/PATIENT/addConfirm.PNG "Add Confirmation Output")
+> <img src="images/UG/PATIENT/addConfirm.PNG" alt="Add Confirmation Output" width="600">
 >
 
 <table>
@@ -205,7 +205,7 @@ Enter `y` to confirm.
 
 > ***Expected output:***
 >    
->  ![SuccessfulAdd](images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG "Successfully Added Output")
+> <img src="images/UG/PATIENT/SuccessfullyAddedPatientInformation.PNG" alt="Successfully Added Output" width="600">
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -238,7 +238,7 @@ Edit information of the patient with the specified NRIC.
 
 > ***Expected output:***
 >
-> ![editPatientOutput](images/UG/PATIENT/EditCommandOutput.PNG "Edit Patient Output")
+> <img src="images/UG/PATIENT/EditCommandOutput.PNG" alt="Edit Patient Output" width="600">
 
 <table>
   <col width="20">
@@ -265,7 +265,7 @@ Delete a patient as specified by the NRIC.
 
 > ***Expected output:***
 >
-> ![confirmDelete](images/UG/PATIENT/ConfirmationDeletion.PNG "Delete Confirmation Output")
+> <img src="images/UG/PATIENT/ConfirmationDeletion.PNG" alt="Delete Confirmation Output" width="600">
 >
 <table>
   <col width="20">
@@ -280,7 +280,7 @@ Enter `y` to confirm.
 
 > ***Expected output:***
 >    
->  ![SuccessfulDelete](images/UG/PATIENT/DeleteSuccessful.PNG "Successfully Deleted Output")
+> <img src="images/UG/PATIENT/DeleteSuccessful.PNG" alt="Successfully Deleted Output" width="600">
 
 <table>
   <col width="20">
@@ -303,7 +303,7 @@ Displays all the patients in the patient list.
     
 > ***Expected output:***
 >
-> ![ListPatient](images/UG/PATIENT/ListPatientOutput.PNG "List Output")  
+> <img src="images/UG/PATIENT/ListPatientOutput.PNG" alt="List Patient Output" width="600">
 
  [&#8593; Return to Top](#table-of-content)
 
@@ -321,7 +321,7 @@ Retrieve details of the patient with the specified NRIC.
     
 > ***Expected output:***
 >
-> ![getpatient](images/UG/PATIENT/GetPatientOutput.PNG "Get Output")
+> <img src="images/UG/PATIENT/GetPatientOutput.PNG" alt="Get Patient Output" width="600">
 
  [&#8593; Return to Top](#table-of-content)
  
@@ -350,14 +350,14 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- > ![addPR](images/UG/PR/AddPR.PNG "addPR")
+ > <img src="images/UG/PR/AddPR.PNG" alt="Add PR Output" width="600">
  >
  
  > Enter `y` to confirm.
  
  > ***Expected output:***
  >
- > ![cfmAddPR](images/UG/PR/addprcfm.PNG "cfmAddPR")
+ > <img src="images/UG/PR/addprcfm.PNG" alt="Confirm Add PR" width="600">
  >
  
   [&#8593; Return to Top](#table-of-content)
@@ -378,7 +378,7 @@ Retrieve details of the patient with the specified NRIC.
      
  > ***Expected output:***
  >
- > ![listPR](images/UG/PR/listpr.PNG "list PR output")
+ > <img src="images/UG/PR/listpr.PNG" alt="List PR Output" width="600">
  >
  
  <table>
@@ -392,7 +392,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- > ![listPR not found](images/UG/PR/listprfail.PNG "list PR not found")
+ > <img src="images/UG/PR/listprfail.PNG" alt="List PR not found" width="600">
  >
  
   [&#8593; Return to Top](#table-of-content)
@@ -414,7 +414,7 @@ Retrieve details of the patient with the specified NRIC.
  > ***Expected output:***
  >
  >
- >![findPR](images/UG/PR/findpr.PNG "find PR output")
+ > <img src="images/UG/PR/findpr.PNG" alt="Find PR Output" width="600">
  
  <table>
    <col width="20">
@@ -428,7 +428,7 @@ Retrieve details of the patient with the specified NRIC.
  > ***Expected output:***
  >
  >
- >![PR not found](images/UG/PR/prEmpty.PNG "PR not found")
+ > <img src="images/UG/PR/prEmpty.PNG" alt="PR not found" width="600">
  
   [&#8593; Return to Top](#table-of-content)
   
@@ -460,7 +460,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- > ![EditPR](images/UG/PR/editprsuccess.PNG "edit pr output")
+ > <img src="images/UG/PR/editprsuccess.PNG" alt="Edit PR Output" width="600">
  
  <table>
    <col width="20">
@@ -474,7 +474,7 @@ Retrieve details of the patient with the specified NRIC.
  > ***Expected output:***
  >
  >
- >![prEmpty](images/UG/PR/prEmpty.PNG "help output")
+ > <img src="images/UG/PR/prEmpty.PNG" alt="Help Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
   
@@ -493,7 +493,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- > ![Delete PR](images/UG/PR/deleteprsuccess.PNG "Delete PR output")
+ > <img src="images/UG/PR/deleteprsuccess.PNG" alt="Delete PR Output" width="600">
  
  <table>
    <col width="20">
@@ -506,7 +506,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![PR not found](images/UG/PR/prEmpty.PNG "Delete PR not found")
+ > <img src="images/UG/PR/prEmpty.PNG" alt="Delete PR not found" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -529,11 +529,11 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![addSuccess](images/UG/APPT/AddAppt.png)
+ > <img src="images/UG/APPT/AddAppt.png" alt="Add Appt Output" width="600">
  >
  >Confirm appointment details are correct by typing "y" or "Y"
  >
- >![addConfirmSuccess](images/UG/APPT/confirmAddAppt.png)
+ > <img src="images/UG/APPT/confirmAddAppt.png" alt="Confirm Add Appt" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -556,7 +556,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![editSuccess](images/UG/APPT/EditAppt.png)
+ > <img src="images/UG/APPT/EditAppt.png" alt="Edit Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -574,7 +574,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- > ![deleteSuccess](images/UG/APPT/DeleteAppt.png)
+ > <img src="images/UG/APPT/DeleteAppt.png" alt="Delete Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -593,7 +593,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![doneSuccess](images/UG/APPT/DoneAppt.png)
+ > <img src="images/UG/APPT/DoneAppt.png" alt="Done Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -610,7 +610,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![ListSuccess](images/UG/APPT/ListAppt.png)
+ > <img src="images/UG/APPT/ListAppt.png" alt="List Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -629,7 +629,7 @@ Retrieve details of the patient with the specified NRIC.
  
  > ***Expected output:***
  >
- >![findSuccess](images/UG/APPT/FindAppt.png)
+ > <img src="images/UG/APPT/FindAppt.png" alt="Find Appt Output" width="600">
  
   [&#8593; Return to Top](#table-of-content)
 
