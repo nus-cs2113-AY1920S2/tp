@@ -162,8 +162,7 @@ either by complete match, or fuzzy match.
 ![Calendar](images/Calendar.png "Class diagram of Calendar component")
  *Class diagram of the Calendar component*
  The calendar feature allows users to view their schedule by semester and academic year. Since our target
- user is professor, this feature allows the professor to manage their events in a way that is more related to their
- work life schedule. 
+ user is professor, this feature allows the professor to manage their events in accordance to their work schedule.
  
 #### Calendar Command Interpreter
 Below shows the sequence diagram of `CalendarCommandInterpreter`:
@@ -209,7 +208,7 @@ The diagram below illustrates the program flow stated above:
  
  
  #### Design considerations
- Aspect: Data Structure used to implement calendar
+ *Aspect: Data Structure used to implement calendar*
  - Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
    - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
    the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
@@ -221,7 +220,7 @@ The diagram below illustrates the program flow stated above:
    - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
    every new addition, deletion or editing.  
  
- Aspect: How addition, deletion and editing of events affects calendar execution  
+ *Aspect: How addition, deletion and editing of events affects calendar execution*  
  - Alternative 1(current choice): Implement a class specifically to interact with the calendar
    - Pros: Calendar class can support different interactions to modify calendar content
    - Cons: Many new methods to be implemented, which affects code readability.
@@ -231,6 +230,7 @@ The diagram below illustrates the program flow stated above:
    - Cons: Many new methods to be implemented, which affects code readability.
 
 **Note that**:
+* Event list should contain existing events with date and time to view the calendar. 
 * Input of the both academic years should be double digit, e.g ay/07-08, ay/19-20. 
 * `acadamic year` is parsed in `CalendarParser` and only one year is returned to `CalendarCommandInterpreter` according 
 to the semester input by the user, i.e s/1 ay/19-20 would return year = 19, s/2 ay/19-20 would return year = 20.
@@ -625,6 +625,7 @@ folder in command terminal.
 `event editvenue i/INDEX v/VENUE`  
 
 **Calender**
+1. Add events with date and time 
 1. Display calendar by entering  
 `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
 
