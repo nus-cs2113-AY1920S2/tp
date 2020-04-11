@@ -1,0 +1,20 @@
+title UndoRedo
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":VersionedWhenFree" as VersionedWhenFree #lightblue
+
+User->LogicManager:undo action
+activate LogicManager
+LogicManager->CommandHandler: undo action
+activate CommandHandler
+CommandHandler->VersionedWhenFree:undo()
+activate VersionedWhenFree
+VersionedWhenFree->VersionedWhenFree:stepBack()
+CommandHandler<--VersionedWhenFree:
+deactivate VersionedWhenFree
+LogicManager<--CommandHandler:
+deactivate CommandHandler
+User<--LogicManager:
+deactivate LogicManager
