@@ -227,7 +227,7 @@ Example output:
 
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
-> :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
+> :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Index>` a meeting.
 
 Format: 
     
