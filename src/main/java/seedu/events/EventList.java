@@ -72,7 +72,7 @@ public class EventList {
         }
 
         if (listToShow.isEmpty()) {
-            System.out.println("No upcoming event within " + dateRange[0] + " day(s).");
+            System.out.println("No upcoming events within " + dateRange[0] + " day(s).");
         } else {
             for (int i = 0; i < listToShow.size(); i++) {
                 int j = i + 1;

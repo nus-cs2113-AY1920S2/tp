@@ -48,7 +48,7 @@ of upcoming events to show.
 ### Contributions to Documentation
 
 #### Contributions to the DG
-+ Minor updates to the 1.Design section to reflect an updated implementation of the Event Management Feature.
++ Minor updates to the Design section to reflect an updated implementation of the Event Management Feature.
 + All write-ups and diagrams for the [Quiz feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#22-quiz-feature).
 + All write-ups and diagrams for the [Score feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#23-score-feature).
 + All write-ups and diagrams for the [Event Management feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#24-event-management-feature).
