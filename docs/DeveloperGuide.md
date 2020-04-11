@@ -23,8 +23,7 @@ Pac. The following groups are in particular the intended audience of the documen
     3.3 [Attendance](#33-attendance)   
     3.4 [Performance](#34-performance)  
     3.5 [Student List Collection](#35-student-list-collection)  
-    3.6 [Help](#36-help)
-
+    3.6 [Help](#36-help)  
 
 [Appendix A: Target User Profile](#appendix-a-target-user-profile)   
 [Appendix B: Value Proposition](#appendix-b-value-proposition)  
@@ -684,7 +683,7 @@ folder in command terminal.
 1. Display calendar by entering  
 `calendar s/SEMESTER ay/YEAR_ONE-YEAR_TWO`   
 
-#### Follow **step-by-step** command for following commands:  
+#### Follow **step-by-step** command in console for following commands:  
 
 **Attendance**
 1. Add attendance to attendance list by typing  
