@@ -29,12 +29,17 @@ Welcome to Diet Manager! How may I assist you today?
 |   delf FOOD_NAME                                           |  Delete food info from database                |
 |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
 |   show-recipe                                              |  Show recommended recipe to user               |
-|   check-required-cal                                       |  Check amount of calories required/day         |
+|   check-required-cal DATE ACTIVITY_LEVEL                   |  Check amount of calories required/day         |
 |   clear-records                                            |  Clear the records in the database             |
 |   help                                                     |  Show this function help table                 |
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
+Syntax Guidelines:
+DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)
+Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial
+
 Please key in your command:
+
 Please create a profile before using this command. Enter:
 set-profile {name} {age} {gender} {height} {weight} {weight goal}
 Sorry, that is an invalid command.
@@ -217,11 +222,16 @@ No need to delete! Referred Food doesn't exist in database
 |   delf FOOD_NAME                                           |  Delete food info from database                |
 |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
 |   show-recipe                                              |  Show recommended recipe to user               |
-|   check-required-cal                                       |  Check amount of calories required/day         |
+|   check-required-cal DATE ACTIVITY_LEVEL                   |  Check amount of calories required/day         |
 |   clear-records                                            |  Clear the records in the database             |
 |   help                                                     |  Show this function help table                 |
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
+Syntax Guidelines:
+DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)
+Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial
+
 Please key in your command:
+
 You are now exiting the application.
 Thanks for using Diet Manager! See you again soon. :)
