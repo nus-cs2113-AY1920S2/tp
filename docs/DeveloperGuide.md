@@ -354,6 +354,31 @@ The method find() accesses the desired `attendanceList` of given event, and chec
 If empty, it calls display() in UI and inform the user list is empty. Else, it will call findAttendance() from 
 `attendanceList`. findAttendance() will search for attendance with the same name entered and display for the user.
 
+#### Design consideration for Attendance  
+
+##### AddAttendance
+* Alternative 1 : Use single line for adding of attendance to an event
+    * **Pros:** Prompts the user what to type
+    * **Cons:** Slow for experience users
+* Alternative 2 : Use multi-line for adding of attendance to an event
+Using single line or multi-line for adding of attendance to an event
+    * **Pros:** Fast for experience users
+    * **Cons:** New users will have difficulty in adding new attendance
+    
+* Final Decision : Using both single line and multi-line by giving the user the option    
+
+##### ClearAttendance VS DeleteAttendance
+* Alternative 1 : Allow the deletion of a single attendance in an attendance list in an event
+    * **Pros** User can specifically remove a single student
+    * **Cons** Complicated feature to use as user will need to search for the attendance in the list before deletion
+    
+* Alternative 2 : Only allow the attendance list to be cleared
+    * **Pros** User can easily remove the attendance list and add a new attendance list
+    * **Cons** A single mistake in the attendance list will mean that user has to clear and add again.
+    
+* Final Decision: Introduce a feature to `editAttendance` to amend mistake and have `clearAttendance` instead of 
+`deleteAttendance`. `deleteAttendance` can be inserted in future releases.
+
 ### 3.4 Performance
 ![Performance](images/Performance.png)
 *Class diagram of the Performance component*  
