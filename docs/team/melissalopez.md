@@ -1,3 +1,0 @@
-# Duke
-
-Portfolio: Melissa Lopez
