@@ -1,21 +1,43 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.commands.Command;
+import seedu.exception.EscException;
+import seedu.parser.Parser;
+import seedu.subjects.SubjectList;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    public static UI ui = new UI();
+    private Storage storage = new Storage();
+    private SubjectList subjectList;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    /**
+     * Reads the user's commands and executes them until the user issues the exit command.
+     */
+    private void run() throws EscException {
+        ui.showWelcome();
+        boolean isExit = false;
+        subjectList = new SubjectList(storage.loadObjects());
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(subjectList);
+                storage.saveSubs(subjectList.getSubjects(), subjectList.getEventList().getEvents());
+                isExit = c.isExit();
+            } catch (EscException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Main method.
+     */
+    public static void main(String[] args) throws EscException {
+        //assert false : "dummy to fail";
+        new Duke().run();
     }
 }
