@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -70,8 +71,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Purpose** [&#10149;](#purpose)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Scope** [&#10149;](#scope)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Definitions** [&#10149;](#definitions)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)    
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <br>  
@@ -126,25 +126,6 @@ This document will cover the structure and software design decisions for the imp
 [Back To Top](#table-of-contents)    
 <br>  
 
-### **Definitions**  
-
-static
-exception
-class
-object
-directory
-directory tree
-abstract
-method
-parent and child directory
-```
-	// To be done.
-```
-
-
-[Back To Top](#table-of-contents)    
-<br>  
-
 ### **Setting Up**
 
 #### **1.1. Prerequisites**
@@ -189,7 +170,45 @@ parent and child directory
 [Back To Top](#table-of-contents)    
 <br>  
 
-## **Design**  
+## **Design**
+### Architecture
+
+![architecture](/images/dg_arch.png)
+<span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
+ <br>
+ 
+The **Architecture Diagram** given above explains the high-level design of the application. Give below is a quick overview of each component.
+
+**`Main`** has only one class called **Nuke**. It is responsible for,
+- At launch: Initialises the components in the correct sequences, and connects them up with each other.
+
+- At running: Invoke UI to Show welcome messages, continuously invokes UI, Logic component to execute commands entered by user. Also invokes storage component to save data after execution of user's commands
+
+- At shut down: Invokes UI component to show exit message.
+
+There are <b>four</b> other components in the <b>Nuke</b> application.
+- **`UI`**:  The UI of the application which complete interactions between **User** and **Nuke**.
+
+- **`Logic`**: The command executor.
+
+- **`Model`**: Holds different data types in the application.
+
+- **`Storage`**: Loads data from, and writes data to, a file in the user's hard disk.
+
+Each of the four components
+- defines its API in several classes
+
+- exposes its functionalitiy by invoking different methods in these classes.
+
+For example, the **`Storage`** component defines it's API in several classes including <code>Encoder</code> and  <code>Decoder</code>, and exposes its functionality by invoking different method in these classes by <code>StorageManager</code>  class.
+<br>
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+
+![logic component](images/dg_logic.png)
+<span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
+<br>
+More information about the <b>Model Component</b> can be found [here](#structure-implementation).<br>
+More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
@@ -1349,6 +1368,8 @@ All the Add Commands below are assumed to be executed at the root directory.
 
       1. Test case: `addg urgent -m cs2113t -c Assignment -t non-exist-task`
       2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
+      1. Test case: `addg urgent -t assignment2`
+      2. Expected: the program will promit the user with message: `Sorry, unable to execute the command at the current directory. Either move to the appropriate directory level, or enter the full directory path.`
 
 #### 3. Delete Command
 
@@ -1360,6 +1381,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    1. Correct usage:
       1. Test case: `delm cs2113t`
       2. Expected: the program will prompt the user with message: `Confirm delete CS2113T Software Engineering & Object-Oriented Programming?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Module(s) have been deleted.`
+   
    2. Wrong usage:
       1. Test case: `delm cs1111`
       2. Expected: the program will prompt the user with message: `Sorry. No modules found.`
@@ -1391,7 +1413,9 @@ All the Delete Commands below are assumed to be executed at the root directory.<
 5. Delete tag
    1. Correct usage: 
       1. Test case: `delg urgent -m cs2113t -c Assignment -t assignment2`
-      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Tag(s) have been deleted.`
+      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `y` or `yes`, the program will prompt the user with message: `SUCCESS!! Tag(s) have been deleted.`
+      1. Test case: `delg`
+      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `n` or `no`, the program will prompt the user with message: `The deletion is aborted`
    2. Wrong usage:
       1. Test case: `delg non-exist-tag -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No tasks with the tag found.`
