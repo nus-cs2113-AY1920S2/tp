@@ -4,7 +4,7 @@
 WhenFree is a Command Line scheduler chatbot for NUS students to find common free time among them and their friends, using just the NUSMODS links to their school timetable.
 
 ## Summary of Contributions
-* [**Code contributed**](https://github.com/AY1920S2-CS2113T-T12-1/tp/pulls?q=is%3Apr+author%3Alowxizhi)
+* [**Code contributed**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=lowxizhi)
 * **Enhancement 1**: added feature **Display timetable of selected contacts**
     * What it does: Generates and displays a combined timetable from several contacts’ timetable. 
     * Justification: This feature is key to the functionality of WhenFree as it allows the user to see his/her common free slots with other contacts.
