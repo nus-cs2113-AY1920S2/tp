@@ -18,10 +18,10 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         
     * [3.3. Patient Medical Records](#33-patient-medical-records)
         + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
-        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-list-pr)
-        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-find-pr)
-        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-edit-pr)
-        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-delete-pr)
+        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-edit-pr)
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-delete-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-list-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-find-pr)
     
     * [3.4. Appointments](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
@@ -646,7 +646,7 @@ This can be used as a method to check for appointmentID.
    <col width="200">
   <tr>
     <td><span> &#8505; </span></td>
-    <td>If there is no appointments found, the message below will be printed instead.</td>
+    <td>If there are no appointments found, the message below will be printed instead.</td>
   </tr>
  </table>
  
@@ -710,7 +710,7 @@ This can be used as a method to check for appointmentID.
    <col width="200">
   <tr>
     <td><span> &#8505; </span></td>
-    <td>If the record is not found with the given input, the message below will be printed instead.</td>
+    <td>If the appointment is not found with the given input, the message below will be printed instead.</td>
   </tr>
  </table>
  
