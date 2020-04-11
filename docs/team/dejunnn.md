@@ -90,7 +90,11 @@ UML Diagrams drawn and added:
 [#143](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/143),
 [#145](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/145),
 [#149](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/149),
-[#166](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/166)
+[#166](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/166),
+[#172](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/172),
+[#174](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/174),
+[#175](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/175)
+
 * Unofficially reviewed many other PRs and provided recommendations, assistance and feedback to team members on external communication channels
 
 ### Contributions beyond the project team
