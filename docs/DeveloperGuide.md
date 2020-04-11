@@ -592,7 +592,7 @@ meets your needs and is conducive, should you urgently need one.
 
     a. Download the jar file and copy into an empty folder.
    
-    b. Double-click the jar file (or) Run using `java -jar [CS2113T-T12-3][OrgaNice!].jar` command.
+    b. Double-click the jar file (or) Run using `java -jar OrgaNice.jar` command.
 
 ### Testing for task related features
 
