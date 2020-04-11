@@ -162,16 +162,16 @@ The Commons consists of the following classes:
 * `MessageBank` - Consists of multiple standard system output messages for UI to print
 * `Weekday` - Enumeration class for classifying all 7 possible days in a week
 * `"ABC"Exception` - A collection of exceptions to aid in running of the application
-    * `InvalidAgeException`
-    * `InvalidCaloriesException`
-    * `InvalidCommandException`
-    * `InvalidFoodNameException`
-    * `InvalidFormatException`
-    * `InvalidGenderException`
-    * `InvalidHeightException`
-    * `InvalidNameException`
-    * `InvalidWeightException`
-    * `NegativeNumberException`
+    * `InvalidAgeException` - Exception that is thrown when when user inputs age format that is not integer or when the user provides an age that is not within 0 and 150 years old.
+    * `InvalidCaloriesException` - Exception that is thrown when the user inputs a calories value that is not double or when the user provides a calories value that is negative.
+    * `InvalidCommandException` - Exception that is thrown when the user key in a Command that does not exists.
+    * `InvalidFoodNameException` - Exception that is thrown when the user did not input any String food name.
+    * `InvalidFormatException` - Exception that is thrown when the user input a command that is not of the right number of argument.
+    * `InvalidGenderException` - Exception that is thrown when user input gender format that is not "male" or "female" regardless of upper or lower case input.
+    * `InvalidHeightException` - Exception that is thrown when user inputs height format that is not double or when the user provides a height that is not within 0 and 300 centimetres.
+    * `InvalidNameException` - Exception that is thrown when the user did not input any String name.
+    * `InvalidWeightException` - Exception that is thrown when user inputs weight format that is not double or when the user provides a weight that is not within 0 and 500 kilograms.
+    * `NegativeNumberException` - Exception that is thrown when the user input negative number for the number of food item in build receipt command.
 
 
 ## Implementation
