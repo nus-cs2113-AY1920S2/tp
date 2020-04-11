@@ -74,7 +74,7 @@ public class LoadStock {
                 } else {
                     
                     String[] lineArgs = line.split(" ");
-                    if (line.indexOf('$') == -1) {
+                    if (line.indexOf('*') == -1) {
                         continue;
                     } else {
                         lines.add(line);
@@ -128,7 +128,7 @@ public class LoadStock {
                         Optional.of(ingredientQuantity), 
                         Optional.of(ingredientPrice));
                 
-                stock.addIngredient(ingredientToAdd);
+                stock.addIngredientWithoutMessage(ingredientToAdd);
             }
         }
     }
@@ -144,7 +144,7 @@ public class LoadStock {
             ingredientName += lineArgs[j]
                     + " ";
         }
-        return ingredientName;        
+        return ingredientName.trim();        
     }
     
     /**

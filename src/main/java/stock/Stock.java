@@ -77,6 +77,30 @@ public class Stock {
     }
     
     /**
+     * This method has the same implementation as addIngredient().
+     * However, this is mainly used for the LoadStock class. This is
+     * to prevent the message from showing when the data from 'report.txt'
+     * is loaded when the program starts.
+     * 
+     */
+    public void addIngredientWithoutMessage(Ingredient ingredientToAdd) {
+        
+        String ingredientName = ingredientToAdd.getIngredientName();
+        int quantityToAdd = ingredientToAdd.getIngredientQuantity();
+        double ingredientPrice = ingredientToAdd.getIngredientPrice();
+              
+        if (stock.containsKey(ingredientName)) {
+            int currQuantity = stock.get(ingredientName).first();
+            int newQuantity = currQuantity + quantityToAdd;
+            stock.replace(ingredientName, Pair.of(newQuantity, ingredientPrice));
+        } else {
+            stock.put(ingredientName, Pair.of(quantityToAdd, ingredientPrice));
+            duplicateIngredientNameSet.add(ingredientName.toLowerCase());
+
+        }
+    }
+    
+    /**
      * Deletes an ingredientName from the current stock. If the ingredient
      * exists previously, update the quantity by subtracting the quantity
      * supplied by the user to the current quantity. If there is no quantity
