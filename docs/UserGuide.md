@@ -1143,7 +1143,8 @@ The following occurs when there is no existing attendance list.
     
 ### 4.5. Performance List
 #### 4.5.1. Add Performance List
-Add a student’s result to the performance list.  
+Add a students' result to the performance list. Pac offers you the absolute freedom to
+add students' result in any form, i.e. mark or grade.   
 This is a step by step command and you may follow the instructions given by the console. 
 
 Format: `performance add`
@@ -1166,16 +1167,24 @@ The following will show a success example of using a current name list to add pe
     Please choose the name list you wish to use. (shows a list of list names)
     
     >>> 1
-    Please key in the result for student (student1 name)
+    Please key in the result for (student1 name) 
     
     >>> A
     The result of student (student name) has been added successfully under event (event name)
-    Please key in the result for student (student2 name)
+    If you are adding student's result manually, record next student: (format: n/name r/result). When you are finished, input 'done'.
+    
+    Please key in the result for (student2 name)
     ...
-*Note: All commands above are not case sensitive.*
+    
+*Note:*  
+*1. All commands above are not case sensitive.*  
+*2. Student name is restricted to one word only for manual add, i.e. `n/Student Name r/A` is an invalid input.*  
+*3. However, you may import an existing student list for multiple word names.* 
 
 #### 4.5.2. Delete Performance List
-Delete a student’s result to the performance list.  
+Delete a student’s result to the performance list. You are able to select the performance
+list under any existing Event and delete a student's data under that list.  
+
 This is a step by step command and you may follow the instructions given by the console.  
 
 Format: `performance delete`
@@ -1194,7 +1203,9 @@ Step by step guide:
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.3. View Performance List
-View the list of students' result under a certain event.  
+View the list of students' result under a certain event. Pac will generate a nice 
+looking table containing the performance data you wish to view automatically.  
+
 This is a step by step command and you may follow the instructions given by the console. 
 
 Format: `performance view`
@@ -1214,9 +1225,10 @@ Step by step guide:
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.4. Edit Performance List
-Edit the list of students' result under a certain event.  
+Edit the list of students' result under a certain event. You are allowed to edit 
+either student's name or result.  
+
 This is a step by step command and you may follow the instructions given by the console. 
-During the process, you can choose to edit either student's name or result.
 
 Format: `performance edit`
     
@@ -1237,19 +1249,19 @@ Step by step guide to edit name:
     >>> Carl
     The student name has been changed to Carl successfully.
     
-You can follow the same procedure to edit result, but change your input from
+You should follow the same procedure to edit result, while changing your input from
 `name` to `result` at the `***` line.
 
 *Note: All commands above are not case sensitive.*
 
 #### 4.5.5. Sort Performance List
-Sort the list of students' result under a certain event.  
+Sort the list of students' result under a certain event by either student's name or result.  
+
 This is a step by step command and you may follow the instructions given by the console. 
-During the process, you can choose to sort by either student's name or result.
 
 Format: `performance sort`
     
-Step by step guide to edit name: 
+Step by step guide to sort performance list by name: 
 
     >>> performance sort
     Please key in the name of event that you wish to access to its student's performance.
@@ -1263,10 +1275,15 @@ Step by step guide to edit name:
     >>> name ***
     Performance List is sorted by Performance name for Event:  event
     
-You can follow the same procedure to sort by result, but change your input from
+You should follow the same procedure to sort by result, while changing your input from
 `name` to `result` at the `***` line.  
+- Result in grade will be sorted from highest to lowest.  
+- Result in mark will be sorted from smallest to largest by its most significant digit.  
+- If the students' result are of different form in the same list, ie some are in grades,
+while some are in marks, result will be sorted in the order of mark, followed by grades.   
 
 *Note: All commands above are not case sensitive.*
+
 
 ## 5. Possible Console Messages and Reasons:  
 1. If you entered a wrong command type, ie. not specifying 
@@ -1277,6 +1294,13 @@ which category your command belongs to
 1. If you entered two flags, i.e. n/work n/presentation:
 
        Please provide only 1 name flag.
+       
+1. If you entered two similar flag for a Performance command, e.g. adding performance list to event
+named Event.  
+When prompted to input student's name and result, given input: `n/Name1 n/Name2 r/A`, data after the latest 
+detected flag will be used:
+
+        The result of student name2 has been added successfully under event Event.
 
 1. If you did not enter any flag, ie. event add: 
 
