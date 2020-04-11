@@ -832,7 +832,7 @@ Find a Patient Record| `find pr NRIC INDEX`
 **Command** | **Format**
 --------|----------
 Add an Appointment | `add appt /ic NRIC /d DATE /t TIME /r REASON`
-Edit an Appointment | `edit appt NRIC /d<DATE> or /t<TIME> or /r<REASON>`
+Edit an Appointment | `edit appt NRIC APPT_ID /d<DATE> or /t<TIME> or /r<REASON>`
 Delete an Appointment | `delete appt NRIC APPT_ID`
 List all Appointments | `list appt`
 Find an Appointment| `find appt NRIC`
