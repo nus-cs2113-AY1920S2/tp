@@ -8,7 +8,7 @@
 **Code contribution**: You can view my code contribution for this project [here:](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=josephlimweijie)
 
 * **Enhancement added:**
-    1. `Add` functionality
+    `Add` functionality
     - Allows flexibility in the ordering of the parameters specified from the user. For example: Entering `add stock; i/tomato; q/10; p/1.00;` and `add stock; i/tomato; 
     p/1.00; q/10;` are both acceptable.
     - Customizes error messages according to the input supplied from the user. For example: Entering `add stock; i/;` will display the message: `"The user's input must specify 
@@ -19,7 +19,7 @@
         <img src= "https://user-images.githubusercontent.com/59989652/78984371-a42d6b80-7b58-11ea-8e88-d9fa8adfdec8.png">
     </p>    
 
-    2. `Delete` functionality
+    `Delete` functionality
     - Allows flexibility in the ordering of the parameters specified from the user. For example: entering `delete stock; i/tomato; q/10;` and `delete stock; i/tomato;` 
     are both acceptable.
     - Allows the user to delete the ingredient by quantity count or remove from the stock entirely. For example: Entering `delete stock; i/tomato;` removes tomato entirely from the stock. 
@@ -27,13 +27,13 @@
     - Customizes error messages according to the input supplied from the user. For example: Entering `delete stock; i/;` will display the message: `"The user's input must specify the
  ingredient's name!"` while entering `delete stock; i/tomato; q/-10;` will display the message: `"Please enter a positive value for the quantity to be added!"`
     
-    3. `List` functionality
+    `List` functionality
     - Lists ingredients in the stock from the highest quantity to the lowest quantity.
 
-    4. `Search` functionality
+    `Search` functionality
     - Takes into account case-sensitivity of the keyword supplied from the user when searching against the stock.
 
-    5. `Load` functionality
+    `Load` functionality
     - Loads the stock-related data from the `report.txt` file.
 
 * **Contributions to documentations:**
