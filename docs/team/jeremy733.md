@@ -26,7 +26,7 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 
 + Justification: This feature was done originally in one class. Then it was separated into different classes to  shorten the length of code needed.
 
-+ Highlights: The messages follows each command was later moved to repestive classes to avoid lengthy code.
++ Highlights: The messages follows each command was later moved to respective classes to avoid lengthy code.
 
 ### Minor enhancement: Added the view of answers when listing.
 ### Minor enhancement: Added the ability to detect duplicates in subjects
