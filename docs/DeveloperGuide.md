@@ -303,9 +303,10 @@ Reliability:
 ## Instructions for Manual Testing
 
 For manual testing, developers can follow the instructions listed out in the [UserGuide](UserGuide.md)
+* Detailed input and output examples are displayed for cross checking.
 
 Alternatively, they can also follow the following steps to test out the respective commands, 
-adhering to the specified restrictions in Glossary:
+upon downloading the jar file, while adhering to the specified restrictions in Glossary:
 
 1. `set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`
     * Creates a new profile
