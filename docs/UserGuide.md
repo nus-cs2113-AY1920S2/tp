@@ -6,7 +6,7 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
 3. [Features](#3-features)
-    *. [Command Format](#command-format)
+    1. [Command Format](#command-format)
         1. [Asking for help with valid commands : `help`](#help-command)
         2. [Viewing articles or jobs : `view`](#view-command)
         3. [Saving an article or job: `save `](#save-command)
