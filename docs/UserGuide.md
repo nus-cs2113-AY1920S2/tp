@@ -208,6 +208,8 @@ If we want to find all CS2106 tutorials, we can first use `filter 2106` to filte
 * `filter TAGNAME ; find KEYWORD1 ; find KEYWORD2`
 * `filter -s TAGNAME ; find KEYWORD1 ; find KEYWORD2`
 
+Note: `-s` is only relevant in the first command of the entire input string, as subsequent values are automatically chained.
+
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
 The 3 types of graphs are :
