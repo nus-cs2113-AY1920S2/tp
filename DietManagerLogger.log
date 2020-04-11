@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-04-11T04:40:56.413252600Z</date>
-  <millis>1586580056413</millis>
-  <nanos>252600</nanos>
+  <date>2020-04-11T09:11:19.042580200Z</date>
+  <millis>1586596279042</millis>
+  <nanos>580200</nanos>
   <sequence>0</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Existing Directory found: data</message>
 </record>
 <record>
-  <date>2020-04-11T04:40:56.444170800Z</date>
-  <millis>1586580056444</millis>
-  <nanos>170800</nanos>
+  <date>2020-04-11T09:11:19.098431Z</date>
+  <millis>1586596279098</millis>
+  <nanos>431000</nanos>
   <sequence>1</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -26,22 +26,10 @@
   <message>Existing Profile found: profile.txt</message>
 </record>
 <record>
-  <date>2020-04-11T04:40:56.446165100Z</date>
-  <millis>1586580056446</millis>
-  <nanos>165100</nanos>
+  <date>2020-04-11T09:11:19.119374200Z</date>
+  <millis>1586596279119</millis>
+  <nanos>374200</nanos>
   <sequence>2</sequence>
-  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
-  <level>INFO</level>
-  <class>seedu.dietmanager.commons.core.LogsCentre</class>
-  <method>writeInfoLog</method>
-  <thread>1</thread>
-  <message>Profile Information Invalid, Profile cleared.</message>
-</record>
-<record>
-  <date>2020-04-11T04:40:56.449156900Z</date>
-  <millis>1586580056449</millis>
-  <nanos>156900</nanos>
-  <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
@@ -50,10 +38,10 @@
   <message>Existing Food Nutrition Record found: food-nutrition-record.txt</message>
 </record>
 <record>
-  <date>2020-04-11T04:40:56.454143700Z</date>
-  <millis>1586580056454</millis>
-  <nanos>143700</nanos>
-  <sequence>4</sequence>
+  <date>2020-04-11T09:11:19.129348300Z</date>
+  <millis>1586596279129</millis>
+  <nanos>348300</nanos>
+  <sequence>3</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
   <class>seedu.dietmanager.commons.core.LogsCentre</class>
@@ -62,9 +50,21 @@
   <message>Existing Recipe file found: recipe.txt</message>
 </record>
 <record>
-  <date>2020-04-11T04:40:56.457136Z</date>
-  <millis>1586580056457</millis>
-  <nanos>136000</nanos>
+  <date>2020-04-11T09:11:19.140319Z</date>
+  <millis>1586596279140</millis>
+  <nanos>319000</nanos>
+  <sequence>4</sequence>
+  <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
+  <level>INFO</level>
+  <class>seedu.dietmanager.commons.core.LogsCentre</class>
+  <method>writeInfoLog</method>
+  <thread>1</thread>
+  <message>Recipe Information Invalid, Recipe cleared.</message>
+</record>
+<record>
+  <date>2020-04-11T09:11:19.145308Z</date>
+  <millis>1586596279145</millis>
+  <nanos>308000</nanos>
   <sequence>5</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -74,9 +74,9 @@
   <message>Existing food record file found: daily-food-record.txt</message>
 </record>
 <record>
-  <date>2020-04-11T04:40:56.458133500Z</date>
-  <millis>1586580056458</millis>
-  <nanos>133500</nanos>
+  <date>2020-04-11T09:11:19.150292800Z</date>
+  <millis>1586596279150</millis>
+  <nanos>292800</nanos>
   <sequence>6</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>
@@ -86,9 +86,9 @@
   <message>Starting Diet Manager</message>
 </record>
 <record>
-  <date>2020-04-11T04:41:13.240428600Z</date>
-  <millis>1586580073240</millis>
-  <nanos>428600</nanos>
+  <date>2020-04-11T09:49:32.910005Z</date>
+  <millis>1586598572910</millis>
+  <nanos>5000</nanos>
   <sequence>7</sequence>
   <logger>seedu.dietmanager.commons.core.LogsCentre</logger>
   <level>INFO</level>

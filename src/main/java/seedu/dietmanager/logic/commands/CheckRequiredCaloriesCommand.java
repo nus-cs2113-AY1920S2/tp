@@ -33,7 +33,7 @@ public class CheckRequiredCaloriesCommand extends Command {
         try {
             String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.date = descriptionArray[0].trim().toUpperCase();
-            this.activityLevel = descriptionArray[1];
+            this.activityLevel = descriptionArray[1].toLowerCase();
             Weekday.valueOf(this.date);
         } catch (NullPointerException e) {
             noDescription = true;
