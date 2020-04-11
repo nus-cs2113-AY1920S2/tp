@@ -72,7 +72,7 @@ Command Format, Mark as Done feature, Deleting features, FAQ, Command summary, T
 
 Below is a small portion from the User Guide, showing my documentation for the Deleting feature.
 
-A grey highlight as `such` indicates a command which can be typed into the command line and executed by Module Manager.
+A font as `such` indicates a command which can be typed into the command line and executed by Module Manager.
 Words in [square brackets] denotes parameters that have to be specified by the user.
 
 ## Project Feature
