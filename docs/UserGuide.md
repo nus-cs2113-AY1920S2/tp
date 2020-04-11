@@ -163,7 +163,7 @@ Format: `ADD i/DESCRIPTION [p/PRICE] [q/QUANTITY]`
 * `[PRICE]` and `[QUANTITY]` are optional values, user can choose to provide the 
   respective values or omit them. The system will set the price and quantity to 
   the default values `0.0` and `1` if omitted.
-> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: Note: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
 Examples of usage: 
 
@@ -200,7 +200,7 @@ shown in the displayed shopping list.
 * Indices that are not numbers or are out of bounds will produce an error message indicating the error of the index.
 * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
 * **At least one** of the three parameters (description/price/quantity) must be present in the command.
-> :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: Note: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
 
 Examples of usage: 
 
