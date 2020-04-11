@@ -83,13 +83,11 @@ messages in the user's console.
 `TextUI` is called by the main class `WhenFree` which runs the application, to display the welcome message, menu message and exit message. 
 These messages enhances the usability rather than the functionality of the application.
 
-`TextUI` is called by the `CommandHandler` class which interprets user input and initializes the execution of commands, to display 
-messages that indicate to the user the successful execution of a command. Importantly, these messages include requested information by commands 
-such as [List all contacts](#32-list-all-contacts), [List all scheduled meetings](#38-list-all-scheduled-meetings) and [Display timetable of selected commands](#33-display-timetable-of-selected-contacts),
-which are key to the functionality of the application. The implementation of these 3 features whose functionality involves the `TextUI` class 
-are described in Section 3 below.
+`TextUI` is also called by the `CommandHandler` class which interprets user input and initializes the execution of commands. 
+`TextUI` displays messages that indicate to the user the successful execution of a command. Importantly, these messages include requested information by commands such as [List all contacts](#32-list-all-contacts), [List all scheduled meetings](#38-list-all-scheduled-meetings) and [Display timetable of selected commands](#33-display-timetable-of-selected-contacts),
+which are key to the functionality of the application. The implementation of these 3 features whose functionality involves the `TextUI` class are described in Section 3 below.
 
-Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` to display error messages when exceptions are caught.
+Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
 
 ### 2.3. Logic component
 ![Logic Component](images/logiccomponent.png)<br>
