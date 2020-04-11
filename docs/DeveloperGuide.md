@@ -79,16 +79,14 @@ by the executing `Commands`.
 even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session.
 
 ![image_info](./pictures/Architecture_Diagram.png)
-_Fig 2.1. Architecture diagram of the Jikan program_
+
 
 ### 2.2 Class Diagram
 The high-level class diagram describes the structure of the components
 
 ![image_info](./pictures/Simplified_Class_Diagram.png)
-_Fig 2.2. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
-_Fig 2.3. Commands of Jikan (private methods omitted)_
 
 All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
@@ -488,11 +486,11 @@ The following illustrates the execution sequence of a general use case.
 Note: Due to the sequence similarities between `find` and 
       `filter`, the sequence diagram for `filter` is omitted.
 
-![image_info](./pictures/Find_Sequence_Diagram.png)
 *Sequence Diagram for Find Command*
+![image_info](./pictures/Find_Sequence_Diagram.png)
 
+*Reference Frame for Populating List*
 ![image_info](./pictures/Find_Reference_Frame.PNG)
-*Reference frame for populating last shown list*
 
 
 #### 3.8.4 Additional features
