@@ -121,7 +121,7 @@ The `Ui` component:
 * Consist of 6 classes:
     - PatientTextUi
     - AppointmentTextUi
-    - PatientRecordTextUi
+    - PatientRecordTextUi 
     - StorageTextUi
     - HelpTextUi
     - Messages
