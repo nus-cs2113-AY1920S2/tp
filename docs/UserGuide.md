@@ -56,7 +56,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 <img src="images/UG/StartOfApplication.PNG" alt="Start of Application" width="600">
 
 3. When you start the application for the first time, you can type `help` to check all the available commands.
-4. Refer to [here](#3-features) for detailed instructions on how to use each command.
+4. Refer to the features below for detailed instructions on how to use each command.
 
 ## 3. Features
 
