@@ -52,7 +52,7 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 **For all users**
 1. Open Command Prompt in the directory where the JAR file is located.
 2. Run the command `java -jar happypills.jar`.
-![Start of Application](images/UG/StartOfApplication.PNG "Start of App")
+<img src=”images/UG/StartOfApplication.PNG” width=”600” />
 3. When you start the application for the first time, you can type `help` to check all the available commands.
 4. Refer to [here](#3-features) for detailed instructions on how to use each command.
 
@@ -66,7 +66,8 @@ blood type and allergies).
 `Patient Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
 (e.g. patient's symptoms, diagnosis and date/time of the medical treatment).
 
-`Appointment Scheduling` helps the you schedule future appointments with your patients. 
+`Appointment Scheduling` helps the you schedule future appointments with your patients (e.g. appointment date, time and 
+reason for appointment). 
 
 These features come together to help you easily manage their patients' information. You can now provide their patients 
 with better service by being able to retrieve their patients' information quickly and easily.  
