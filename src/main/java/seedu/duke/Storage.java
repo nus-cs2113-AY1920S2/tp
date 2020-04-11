@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.events.Event;
+import seedu.events.EventList;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -96,7 +97,7 @@ public class Storage {
 
         return returnList;
     }
-
+    
     /**
      * Saves the current card list to the save file.
      * @param currSub the current subject list

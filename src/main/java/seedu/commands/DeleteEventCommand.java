@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.events.EventList;
 import seedu.exception.EscException;
 import seedu.subjects.SubjectList;
 
@@ -27,7 +28,7 @@ public class DeleteEventCommand extends DeleteCommand {
 
     /** Removes an event from the application. */
     public void execute(SubjectList subjectList) throws EscException {
-        subjectList.removeEvent(this.eventIndex);
-        //ui display
+        EventList events = subjectList.getEventList();
+        events.removeEvent(this.eventIndex);
     }
 }
