@@ -83,14 +83,15 @@ A grey highlight as `such` indicates a command which can be typed into the comma
 Words in [square brackets] denotes parameters that have to be specified by the user.
 
 ## Project Feature
-### Deleting module: delete
+### 3.3  Deleting module: delete
 You can delete a module from a semester of your module plan or from the list of available modules.
 
-#### Delete a specific module from a semester in module plan
+#### 3.3.1 Delete a specific module from a semester in module plan
 You can do so by using the module code or the module name.
-The module to be deleted must be in your module plan.
+The module to be deleted must be in your module plan.\
+If you delete a module which is done and not failed, then the total complete credits will be changed.
  
-#### Based on module code
+#### 3.3.1.1 Based on module code
 Format: `delete id/[module code] s/[semester]`
 
 Example:​ `delete id/IS4241 s/4`
@@ -102,7 +103,7 @@ Expected output:
 `Module IS4241 has been deleted from semester Y2S2`
 
 
-#### Based on module name
+#### 3.3.1.2 Based on module name
 Format: `delete n/[module name] s/[semester]`
 
 Example:​ `delete n/Discrete Structure s/4`
@@ -113,9 +114,10 @@ Expected output:
 
 `Module Discrete Structure has been deleted from semester Y2S2`
 
-#### Delete a specific module from available module list
+#### 3.3.2 Delete a specific module from available module list
+If the module you delete also in module plan, it will also be removed in module plan.
 
-#### Based on module name
+#### 3.3.2.1 Based on module name
 Format: `delete id/[module code]`
 
 Example:​ `delete id/IS4241`
@@ -126,7 +128,7 @@ Expected output:
 
 `ID: IS4241 Name: Social Media Network Analysis | Modular Credit: 4`
 
-#### Based on module code
+#### 3.3.2.2 Based on module code
 Format: `delete n/[module name]`
 
 Example:​ `delete n/Social Media Network Analysis`
