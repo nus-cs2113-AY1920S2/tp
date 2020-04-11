@@ -55,3 +55,42 @@ improved format standardisation.
     * [PED](https://github.com/ananda-lye/ped/issues)
 
 ### Contributions to the User Guide (Extracts)
+
+### Finding Activities by Name: `find`
+**Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
+
+**Format:**
+* `find KEYWORD`
+* `find KEYWORD1 / KEYWORD2 / KEYWORD3`
+
+### Filtering Activities by Tags: `filter`
+**Usage:** Users can request for a sub-list of activities that has specific tags. Each tag should be space separated.
+
+**Format:**
+* `filter TAGNAME`
+* `filter TAGNAME1 TAGNAME2`
+
+### Chaining Finds & Filters: `-s`
+**Usage:** Users can provide the `find` and `filter` command on the last shown list (also compatible after a `list` 
+command) by providing the `-s` flag after each `find` or `filter` command.
+
+**Format:** 
+* `find -s KEYWORD`
+* `filter -s TAGNAME`
+* `filter -s TAGNAME1 TAGNAME2`
+* `find -s KEYWORD1 / KEYWORD2 / KEYWORD3`
+
+**Example:**  
+If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
+
+![chain graph activities](./pictures/filter-find_chain.PNG)
+
+#### Single Input Chaining: `;`
+**Usage:** Users can achieve the same outcome as multiple `-s` chaining with a single input. This is done by separating
+`find` and `filter` commands with ` ; `.
+
+**Examples:**
+* `filter TAGNAME ; find KEYWORD1 ; find KEYWORD2`
+* `filter -s TAGNAME ; find KEYWORD1 ; find KEYWORD2`
+
+Note: `-s` is only relevant in the first command of the entire input string, as subsequent commands are automatically chained.
