@@ -8,7 +8,6 @@ By: `Alaukik Pant, Melissa Lopez`      Since: `Mar 2020`      Licence: `
 1. [Setting Up](#1-setting-up)
 1. [Design](#2-design)
 1. [Implementation](#3-implementation)
-     * [`create` feature](#current-implementation:)
 1. [Product Scope](#3-product-scope)
      * [Value Proposition](#value-proposition)
      * [Target user profile](#target-user-profile)
