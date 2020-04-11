@@ -203,25 +203,38 @@ Each of the four components
 
 For example, the **`Storage`** component defines it's API in several classes including <code>Encoder</code> and  <code>Decoder</code>, and exposes its functionality by invoking different method in these classes by <code>StorageManager</code>  class.
 <br>
-More information about the <b>Model Component</b> can be found [here](#structure-implementation).<br>
-More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
+
 
 #### How the architecture components interact with each other
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
 
+![interactions.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/interactions.jpg)
+
 <span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
 
 ### UI componenet
-Classes 
+Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
 
 ### Logic component
+Classes used by Logic component are in the **`seedu.nuke.data`** package, [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java)** in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
+
 The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
 
 ![logic component](images/dg_logic.png)
+
 <span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
 <br>
+
+### Model Component
+More information about the <b>Model Component</b> can be found [here](#structure-implementation).
+<br>
+
+### Storage Component
+More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
+<br>
+
 [Back To Top](#table-of-contents)    
-<br>  <br>  
+<br>  
 
 ## **Structure Implementation**  
 <div>
