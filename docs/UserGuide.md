@@ -20,7 +20,7 @@ By: `Alaukik Nath Pant, Melissa Lopez`      Since: `Feb 2020`      Licence: `MIT
 
 ## 1. Introduction
 
-TechToday Information Tracker(TTIT) is for an application for users who *prefer to use a desktop application for **managing** information about the technology field, in the form of news, jobs and/or notes*. TTIT is *optimized for those who prefer to work with a Command Line Interface* (CLI). TTIT utilizes the [Hacker News](https://github.com/HackerNews/API) API to give users access to the latest technology related news through the **view** feature of the application. However, the purpose of TTIT isn't to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. Hence, we help the user to manage metadata such as the title, URL, date, and additional extract of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` feature. If the user is not connected to the internet while using the app, the user can **view** pre-loaded articles and jobs. The user also has the option to add additional articles, jobs and notes about technology themselves using the **create** functionality. 
+TechToday Information Tracker(TTIT) is an application for those who prefer to use a desktop app for managing information about technology including news, jobs or even notes. TTIT *is optimized for those who prefer to work with a Command Line Interface (CLI)*. TTIT utilizes Hacker News API to give the user the option to **view** new news articles and questions/jobs. However, note that the purpose of TTIT isn’t to act as a news/job/note portal, but rather a **manager** of technology related information for a lifelong learner of Computer Science and closely related disciplines. In other words, we help the user to manage metadata such as title, URL and date of an article/job/note. The user can go to the relavent article, for instance, using the URL if they are interested in the article and even add a short extract to articles that they have saved using the `addinfo` functionality. If the device is not connected to the internet, the user can **view** pre-loaded articles and jobs. The user also has the option to add interesting articles, jobs and notes about technology themselves using the **create** functionality.
 
 ## 2. Quick Start
 
@@ -54,8 +54,6 @@ TechToday Information Tracker(TTIT) is for an application for users who *prefer 
                 _ **_____________________________________________________________________________**_
 
 
-* Note: When the application first runs, it will create new JSON files to store data in the folder where the JAR file is located. 
-
 ## 3. Features
 
 
@@ -72,24 +70,6 @@ TechToday Information Tracker(TTIT) is for an application for users who *prefer 
 
 * Loads all possible commands that the user can type.
 * Format: `help`
-
-Expected outcome: 
-
-        __________________________________________________________________________________________
-
-
-        _                    Your queries can be of the following forms:                   _
-        _                                      1. help                                     _
-        _                              2. view [article / job]                             _
-        _                       3. save [article / job] INDEX_NUMBER                       _
-        _                         4. create [article / job / note]                         _
-        _                          5. list [article / job / note]                          _
-        _                   6. delete [article / job / note] INDEX_NUMBER                  _
-        _              7. addinfo [article / job / note] INDEX_NUMBER EXTRACT              _
-        _                                      8. exit                                     _
-        _                                                                                  _
-        __________________________________________________________________________________________
-
 
 ****
 
@@ -109,58 +89,7 @@ Example:
 
 Expected Outcome:
 
-            __________________________________________________________________________________________
-
-
-            Connecting to the internet and loading information... 
-
-               1. Title: A man owns the most advanced private air force after buying 46 F/A-18s
-               Date: 2020-Apr-10 Fri 08:33 AM
-               Category: default
-               Url: https://www.thedrive.com/the-war-zone/32869/this-man-owns-the-worlds-most-advanced-private-air-force-after-buying-46-f-a-18-hornets
-               Extract: 
-
-
-               2. Title: How to Win a Currency War
-               Date: 2020-Apr-10 Fri 02:25 PM
-               Category: default
-               Url: https://www.lynalden.com/currency-war/
-               Extract: 
-
-
-               3. Title: Apple and Google partner on Covid-19 contact tracing technology
-               Date: 2020-Apr-10 Fri 10:05 AM
-               Category: default
-               Url: https://www.apple.com/newsroom/2020/04/apple-and-google-partner-on-covid-19-contact-tracing-technology/
-               Extract: 
-
-
-               4. Title: Senate Stock Watcher
-               Date: 2020-Apr-10 Fri 09:20 AM
-               Category: default
-               Url: https://senatestockwatcher.com
-               Extract: 
-
-
-               5. Title: Show HN: We made a web app so that our parents can keep reading to our daughter
-               Date: 2020-Apr-10 Fri 01:17 PM
-               Category: default
-               Url: http://readastorytome.com/
-               Extract: 
-
-
-               6. Title: FreeRDP 2.0 – A Remote Desktop Protocol implementation
-               Date: 2020-Apr-10 Fri 08:54 AM
-               Category: default
-               Url: https://www.freerdp.com/
-               Extract: 
-
-
-            __________________________________________________________________________________________
-
-
-* Note: The program will show six articles from the internet/memory. The ones shown above are an example of the format, but articles that appear to user may have different titles, url, ect. 
-
+Shows six articles from the internet/memory.
 
 ****
 
@@ -248,7 +177,14 @@ Expected Outcome:
         _                                   Article List                                   _
 
 
-           1. Title: ArticleForUserGuide
+           1. Title: The Global Dollar Short Squeeze
+           Date: 2020-Apr-10 Fri 09:24 AM
+           Category: default
+           Url: https://www.lynalden.com/global-dollar-short-squeeze/
+           Extract: 
+           
+           
+           2. Title: ArticleForUserGuide
            Date: 2020-Apr-10 Fri 04:11 PM
            Category: user guide
            Url: www.articleforug.com
@@ -321,15 +257,6 @@ Expected Outcome:
 
 * Exits the program. 
 * Format: `exit`
-
-Expected output: 
-
-        __________________________________________________________________________________________
-
-        _                                Saving your data...                               _
-        _                           We are exiting the program...                          _
-        _                            Bye. Come back again later.                           _
-
 
 ****
 
