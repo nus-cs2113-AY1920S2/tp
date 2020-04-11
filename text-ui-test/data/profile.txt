@@ -1,6 +1,0 @@
-Name: Jane
-Age: 18
-Gender: female
-Height: 170.0
-WeightList: 65.0,
-Weight-Goal: 65.0
