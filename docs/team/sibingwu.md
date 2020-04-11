@@ -19,7 +19,7 @@ daily so that restaurant owners can better manage their business operations.
       - Justification: This feature is needed for restaurant to update the status of a reservation when they finish serving it or the reservation is canceled.
       - Highlights: The `VoidReservationCommand` or `MarkReservationCommand` class will examine if the user misses some inputs or delimiters. 
           Marking the reservation is handled by `ReservationList` class. 
-     -    Some restriction is set to follow the common sense: a invalid reservation cannot be makred as served or invalid again; a served reservation cannot be marked as invalid.
+     -    Some restriction is set to follow the common sense: a invalid reservation cannot be marked as served or invalid again; a served reservation cannot be marked as invalid.
        
   3. Feature: List the Reservations
       - What it does: Allows the users to input `list reservation` to list all reservations, or input `list served reservation` to list all **served** reservations, or input `list unserved reservation` to list all **unserved** reservations.

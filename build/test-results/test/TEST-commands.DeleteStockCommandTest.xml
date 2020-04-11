@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.DeleteStockCommandTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:01" hostname="Ganeshs-MacBook-Pro.local" time="0.057">
+<testsuite name="commands.DeleteStockCommandTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.046">
   <properties/>
-  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgsWithoutQuantity_parseNormally()" classname="commands.DeleteStockCommandTest" time="0.004"/>
-  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgsWithQuantity_parseNormally()" classname="commands.DeleteStockCommandTest" time="0.004"/>
-  <testcase name="construct_DeleteStockCommandWithQuantity_constructNormally()" classname="commands.DeleteStockCommandTest" time="0.004"/>
-  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingIngredientTag()" classname="commands.DeleteStockCommandTest" time="0.019"/>
-  <testcase name="getIngredient_GetIngredientInDeleteCommand_getNormally()" classname="commands.DeleteStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgsWithoutQuantity_parseNormally()" classname="commands.DeleteStockCommandTest" time="0.003"/>
+  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgsWithQuantity_parseNormally()" classname="commands.DeleteStockCommandTest" time="0.001"/>
+  <testcase name="construct_DeleteStockCommandWithQuantity_constructNormally()" classname="commands.DeleteStockCommandTest" time="0.002"/>
+  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingIngredientTag()" classname="commands.DeleteStockCommandTest" time="0.015"/>
+  <testcase name="getIngredient_GetIngredientInDeleteCommand_getNormally()" classname="commands.DeleteStockCommandTest" time="0.0"/>
   <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingQuantityTag()" classname="commands.DeleteStockCommandTest" time="0.001"/>
-  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingIngredientNameOnly()" classname="commands.DeleteStockCommandTest" time="0.001"/>
+  <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingIngredientNameOnly()" classname="commands.DeleteStockCommandTest" time="0.0"/>
   <testcase name="excute_ExecuteDeleteStockCommand_ingredientNotFoundInStock()" classname="commands.DeleteStockCommandTest" time="0.004"/>
-  <testcase name="construct_DeleteStockCommandWithoutQuantity_constructNormally()" classname="commands.DeleteStockCommandTest" time="0.001"/>
-  <testcase name="execute_ExecuteDeleteStockCommandWithQuantity_executeNormally()" classname="commands.DeleteStockCommandTest" time="0.012"/>
+  <testcase name="construct_DeleteStockCommandWithoutQuantity_constructNormally()" classname="commands.DeleteStockCommandTest" time="0.0"/>
+  <testcase name="execute_ExecuteDeleteStockCommandWithQuantity_executeNormally()" classname="commands.DeleteStockCommandTest" time="0.013"/>
   <testcase name="parse_ParseUserInputIntoDeleteIngredientsArgs_missingIngredientNameAndQuantity()" classname="commands.DeleteStockCommandTest" time="0.001"/>
-  <testcase name="excute_ExecuteDeleteStockCommandWithoutQuantity_executeNormally()" classname="commands.DeleteStockCommandTest" time="0.001"/>
+  <testcase name="excute_ExecuteDeleteStockCommandWithoutQuantity_executeNormally()" classname="commands.DeleteStockCommandTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
