@@ -47,7 +47,7 @@ This increases readability and navigability of app.
 **6) Delete contact command:** deletes the person and their saved schedule from the app and the disk.
 
 **Other contributions:**
-* Contributions to UG:
+* **Contributions to UG:**
 	* Created the contents section at the start with hyperlinks
 	* Created all the example output pictures
 	* Created the "Return to list of Features" and "Return to the top" hyperlinks
@@ -57,7 +57,7 @@ This increases readability and navigability of app.
 * **Contributions to DG:**
 Wrote `2.5. Storage component`, `3.4. Schedule a new meeting`, `3.6 Delete a scheduled meeting`, `3.7 Delete a contact`, `3.8 List all scheduled meetings`, `3.9 [Proposed] Undo/Redo feature`, `Appendix B: User Stories`, `Appendix C: Use Cases`.
 	
-* **Contributions to team-based tasks :**
+* **Contributions to team-based tasks:**
 	* Jointly released V1.0, V2.0 and V2.1 together with team mates, taking into account the must have features for each version.
 	* Set up issues that needs to be solved for every milestone.
    	* Looked through all the issue feedback from PED dry run. Issues related to user guide are assigned to teammates respectively depending on their roles for this project.
