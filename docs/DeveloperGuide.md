@@ -553,7 +553,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User keys in the member's name and timetables into application .<br>
     * System adds the nusmods timetable of team members.<br>
     * Use case ends.
-    Extensions:
+    Extensions:<br>
     * System detects invalid name containing all numbers - System catches it and use case resumes from step 3.
     * System detects invalid nusmods URL - System catches it and use case resumes from step 3.
     
@@ -564,7 +564,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User keys in the command together with the name of the contact.<br>
     * System deletes the contact from the user's storage.<br>
     * Use case ends.<br>
-    Extensions:
+    Extensions:<br>
     * System detects an invalid name - System catches it and use case resumes from step 2.
     
     
@@ -583,7 +583,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System stores the scheduled meeting.<br>
     * System blocks out the scheduled meeting in his/her timetable.<br>
     * Use case ends.<br>
-    Extensions:
+    Extensions:<br>
     * System detects start date later than end date - System catches it and use case resumes from step 2.
     * System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
     * System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
@@ -595,7 +595,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User keys in the command, with the start/end date, start/end time that he/she is free.<br>
     * System free up the timetable slots.<br>
     * Use case ends.
-    Extensions:
+    Extensions:<br>
     * System detects start date later than end date - System catches it and use case resumes from step 2.
     * System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
     * System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
@@ -616,7 +616,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.<br>
     * System deletes the meeting and reflects it in user's timetable.<br>
     * Use case ends.
-    Extensions:
+    Extensions:<br>
     * System detects an invalid index - System catches it and use case resumes from step 2.
 
 [&#8593; Return to Table of Contents](#table-of-contents)
