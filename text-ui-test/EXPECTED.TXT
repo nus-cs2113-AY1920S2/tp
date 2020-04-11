@@ -1032,18 +1032,16 @@ Comments: no spicy food please
 
 Input next command:
 
-The command has been successfully executed.
+The sale has been successfully added.
 
 Input next command:
 
 The total profit for the day is: $57.0
-The command has been successfully executed.
 
 Input next command:
 
 The most popular dish today is: rice
 This has sales of: 5
-The command has been successfully executed.
 
 Input next command:
 

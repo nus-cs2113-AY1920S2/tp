@@ -332,15 +332,6 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 ### Value proposition
 
-<<<<<<< HEAD
-
-* Single application to store dishes, stock and reservations
-* Can calculate the daily profit and most popular dish
-* Allows the owner to see an overview of their restaurant
-* Simple and easy to use interface
-=======
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
-
 * Single application to store dishes, stock and reservations
 * Can calculate the daily profit and most popular dish
 * Allows the owner to see an overview of their restaurant
@@ -372,15 +363,11 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 |v2.0|restaurant owner|search a reservation via a specific date|I can know the achievement on a certain date or know what reservations I need to prepare on a certain date|
 |v2.0|restaurant owner|search dishes|I can know which dishes contain a certain word and the ingredients of those dishes|
 |v2.0|restaurant owner|search stock|I can know the quantity and cost of specific ingredients|
-<<<<<<< HEAD
 |v2.1|restaurant owner|clear the reservations list|I can have an empty reservations list when situations, like moving restaurant to a new place, happen|
-=======
->>>>>>> branch 'master' of https://github.com/AY1920S2-CS2113-T14-4/tp
 |v2.1|restaurant owner|load the dishes, stock and reservation|I don't have to re-enter the dishes, stock and reservations when I start up the program|
 |v2.1|restaurant owner|clear the ingredients in the stock|I can reset the entire stock if there are too many unwanted ingredients stored in the program|
 |v2.1|restaurant owner|load the stock data from a data file|I can port the data from one computer to another|
 |v2.1|restaurant owner|search a reservation without being tied to case sensitivity|I know all the possible ingredients if I typed in a keyword|
-
 
 
 <a name="nonfunctional-requirement"></a>
@@ -400,7 +387,7 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 <a name="manual-test"></a>
 ## Appendix E: Instructions for Manual Testing
-Given below are instructions to test the app manually.
+Given below are instructions to test the program manually.
 
 <a name="e1-launch-and-shutdown"></a>
 ### E.1. Launch and Shutdown
@@ -415,20 +402,20 @@ Given below are instructions to test the app manually.
 #### E.2.1 Adding a dish into menu
 Adding a dish into menu.
 * Test case: `add dish; n/pizza; i/cheese, sauce; p/7.00;`
-    - Expected: Dish `pizza` added into the menu.
+    - Expected: Dish `pizza` successfully added.
 * Test case: `add dish; n/pizza; i/cheese, sauce;`
     - Expected: Dish `pizza` will not be added. An error message will be displayed to request the user to input the correct format.
-* Other incorrect add commands to try: ``add dish; n/pizza; sauce;`` or `add dish;i/cheese, sauce;``
-    - Expected: The ingredient will not be added. An error message will be displayed accordingly.
+* Other incorrect add commands to try: `add dish; n/pizza; sauce;` or `add dish;i/cheese, sauce;`
+    - Expected: The dish will not be added. An error message will be displayed accordingly.
 
 #### E.2.2. Adding an ingredient into stock
 Adding an ingredient into stock.
 * Test case: `add stock; i/tomato; q/10; p/0.50;`
     - Expected: Ingredient `tomato` added into the stock.
 * Test case: `add stock; i/tomato; q/10; p/0.50;`
-    - Expected: The quantity of `tomato` increased to 20 due to the addition from the previous entry.
+    - Expected: The quantity of `tomato` increased to `20` due to the addition from the previous entry.
 * Test case: `add stock; i/rice; q/10; p/randomNumber;`
-    - Expected: Rice will not be added into the stock. An error message will be displayed to request the user to type in the price
+    - Expected: `rice` will not be added into the stock. An error message will be displayed to request the user to type in the price
     as a double.
 * Test case: `add stock; i/tOMaTO; q/10; p/0.50`
     - Expected: tOMaTO will be added into the stock. However, because of case-sensitivity, the quantity will not add on to the previous `tomato` 
@@ -436,7 +423,9 @@ Adding an ingredient into stock.
 * Other incorrect add commands to try: `add stock; i/tomato; q/LOL; p/10` or `add stock; i/tomato;`
     - Expected: The ingredient will not be added. An error message will be displayed accordingly.
 * Extra Notes: 
-    - Adding `add stock; i/tomato; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
+    - The price of the ingredient can be overwritten. 
+    For example:
+    - Adding `add stock; i/apple; q/10; p/0.50` and then `add stock; i/apple; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
     **This is intentional.**
 
 #### E.2.3. Adding a reservation
@@ -466,7 +455,7 @@ Deleting an ingredient in the stock.
 * Test case: `delete stock; i/tomato; q/1`
     - Expected: The quantity of tomato will be reduced by 1. Assuming that you have followed the add commands in E.2.2, the count of `tomato`
     should be `19` now.
-* Test case:  `delete stock; i/tOMaTO;
+* Test case:  `delete stock; i/tOMaTO;`
     - Expected: The ingredient `tOMaTO` is completely removed in the stock.
 * Test case: `delete stock; q/10`
     - Expected: No ingredient is deleted. An error message will be displayed to remind the user to input an ingredient name.
@@ -493,19 +482,19 @@ Marking a reservation as Served while all reservations are listed.
 
 #### E.4.1 Search a dish
 Searching a dish in the menu.
-* Test case: `search dish; k/bacon;`
+* Test case: `search dish; k/piz;`
     - Expected: The dish `pizza` will be displayed.
 * Test case: `search dish; k/sushi;`
     - Expected: An error message will be displayed as the dish `sushi` does not exist in the menu.
 * Test case: `search dish; k/water`
-    - Expected: An error message will be displayed to reuest the user to input in the following format: `search dish; k/KEYWORD;`
+    - Expected: An error message will be displayed to request the user to input in the following format: `search dish; k/KEYWORD;`
     
 
 #### E.4.2 Search an ingredient
 Searching an ingredient in the menu.
 * Test case: `search stock; k/tomato;`
-    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2., the only ingredient that will      
-    be displayed is `tomato`.
+    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2 strictly, the only ingredient
+    that will be displayed is `tomato`. Note that we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `search stock; k/banana`
     - Expected: A message will be displayed to show that there is currently no existing ingredient that matches the keyword you have just given.
 * Test case: `search stock; k/TOMATO;`
@@ -539,7 +528,8 @@ Listing all dishes in the menu.
 Listing all ingredients in the stock.
 * Test case: `list stock;`
     - Expected: All ingredients in the stock will be listed. Assuming that you have followed up to E.4.2 strictly, the only ingredient listed would be
-    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently.
+    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently. 
+    Also, we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `list stock`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
 
@@ -585,3 +575,22 @@ Clear all reservations in the list while all reservations are listed.
     - Expected: All reservations are cleared, both in `reservations` list and in the "report.txt" file. User can type `list reservation` to make sure all reservations are cleared. 
 * Test case: `clear reservation`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
+
+### E.7 Sales Functionality
+#### E.7.1 Add a sales
+Adding sold dishes
+* Prerequisites: dishes and ingredients for the dish must exist 
+* Test case: `sell dish; d/pasta; q/10;`
+    - Expected: Command is successful and 10 pastas will be added to sales
+* Test case: `sell dish; d/pasta;` or `sell dish; q/20`
+    - Expected: Error with command format will be shown
+
+#### E.7.2 Calculating Profit
+* Prerequisites: Sales must be added
+* Test case: `profit`
+    - Expected: The profit will be calculated and be outputted
+
+#### E.7.3 Finding the most popular dish
+* Prerequisites: Sales must be added
+* Test case: `popular`
+  -  Expected: Most popular dish with its sales will be outputted

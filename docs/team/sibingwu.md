@@ -58,4 +58,4 @@ daily so that restaurant owners can better manage their business operations.
   1. Creating the milestones v1.0, v2.0, v2.1
   2. Maintaining the issue tracker: I used the [Github issues](https://github.com/AY1920S2-CS2113-T14-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3ASibingWu) to allocate the upcoming work.
 
-* **Review/mentoring contributions:** Pull Request reviewed: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148), [#149](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/149)
+* **Review/mentoring contributions:** Pull Request reviewed: [#148](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/148), [#149](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/149), [#171](https://github.com/AY1920S2-CS2113-T14-4/tp/pull/171)

@@ -75,7 +75,7 @@ public class LoadReservation {
             
             // meet blank line: restart the reservationLines
             if (reservationLine.equals("")) {
-                saveStringToReservation(reservationLines);
+                parseReservation(reservationLines);
                 reservationLines.clear();
                 continue;
             }
@@ -84,7 +84,7 @@ public class LoadReservation {
         }
         
         if (reservationLines.size() != 0) {
-            saveStringToReservation(reservationLines);
+            parseReservation(reservationLines);
         }
 
         return fileReservations;
@@ -96,7 +96,7 @@ public class LoadReservation {
      * 
      * @param fileLines Reservation string read from the txt file.
      */
-    private void saveStringToReservation(List<String> fileLines) {
+    private void parseReservation(List<String> fileLines) {
         if (fileLines == null || fileLines.size() == 0 || fileLines.get(0).equals("")) {
             return;
         }
@@ -147,5 +147,4 @@ public class LoadReservation {
         
         fileReservations.add(reservation);
     }
-
 }

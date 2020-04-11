@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="utils.PairTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:00" hostname="Ganeshs-MacBook-Pro.local" time="0.006">
+<testsuite name="utils.PairTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.003">
   <properties/>
   <testcase name="test_pairOfMethod_constructNormally()" classname="utils.PairTest" time="0.001"/>
-  <testcase name="test_equals_TrueIfBothPairsHaveSameFirstAndSecondValue()" classname="utils.PairTest" time="0.002"/>
-  <testcase name="test_equals_TrueIfBothPairsHaveSameTypings()" classname="utils.PairTest" time="0.0"/>
+  <testcase name="test_equals_TrueIfBothPairsHaveSameFirstAndSecondValue()" classname="utils.PairTest" time="0.001"/>
+  <testcase name="test_equals_TrueIfBothPairsHaveSameTypings()" classname="utils.PairTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

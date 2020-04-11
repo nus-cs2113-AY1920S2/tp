@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.SearchStockCommandTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-04-09T23:59:01" hostname="Ganeshs-MacBook-Pro.local" time="0.034">
+<testsuite name="commands.SearchStockCommandTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-04-11T00:27:06" hostname="Ganeshs-MacBook-Pro.local" time="0.041">
   <properties/>
   <testcase name="check_checkForKAndSlashCharacter_kAndSlashCharacterUnspecificed()" classname="commands.SearchStockCommandTest" time="0.001"/>
-  <testcase name="execute_executeSearchCommand_executeNormally()" classname="commands.SearchStockCommandTest" time="0.028"/>
+  <testcase name="execute_executeSearchCommand_executeNormally()" classname="commands.SearchStockCommandTest" time="0.035"/>
   <testcase name="check_checkForKAndSlashCharacter_kAndSlashCharacterNotAtTheStart()" classname="commands.SearchStockCommandTest" time="0.0"/>
-  <testcase name="check_checkValidSearchKeywordArgumentsSupplied_noExceptionThrown()" classname="commands.SearchStockCommandTest" time="0.0"/>
-  <testcase name="check_checkForKAndSlashCharacter_kAndSlashCharacterAtTheEnd()" classname="commands.SearchStockCommandTest" time="0.001"/>
-  <testcase name="parse_parseIntoSearchKeyword_parseNormally()" classname="commands.SearchStockCommandTest" time="0.0"/>
+  <testcase name="check_checkValidSearchKeywordArgumentsSupplied_noExceptionThrown()" classname="commands.SearchStockCommandTest" time="0.001"/>
+  <testcase name="check_checkForKAndSlashCharacter_kAndSlashCharacterAtTheEnd()" classname="commands.SearchStockCommandTest" time="0.0"/>
+  <testcase name="parse_parseIntoSearchKeyword_parseNormally()" classname="commands.SearchStockCommandTest" time="0.001"/>
   <testcase name="construct_SearchStockCommand_constructNormally()" classname="commands.SearchStockCommandTest" time="0.0"/>
-  <testcase name="check_checkCorrectKeywordTagUsed_usePriceTagInstead()" classname="commands.SearchStockCommandTest" time="0.001"/>
-  <testcase name="check_checkForBlankArguments_blankKeywordSupplied()" classname="commands.SearchStockCommandTest" time="0.0"/>
+  <testcase name="check_checkCorrectKeywordTagUsed_usePriceTagInstead()" classname="commands.SearchStockCommandTest" time="0.0"/>
+  <testcase name="check_checkForBlankArguments_blankKeywordSupplied()" classname="commands.SearchStockCommandTest" time="0.001"/>
   <testcase name="check_checkForBlankArguments_blankKeywordAfterSlashCharacter()" classname="commands.SearchStockCommandTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

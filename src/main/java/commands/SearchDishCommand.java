@@ -4,7 +4,6 @@ import dish.Dish;
 import exceptions.InvalidSearchDishCommandException;
 import exceptions.KeywordMissingException;
 import menu.Menu;
-
 import java.util.HashMap;
 
 public class SearchDishCommand extends Menu {
@@ -66,8 +65,8 @@ public class SearchDishCommand extends Menu {
             ingredientList += str + ", ";
         }
         ingredientList = ingredientList.substring(0, ingredientList.length() - 2);
-        System.out.println("Name: " + name + "; Ingredients: " + ingredientList
-                + "; Price: $" + matchingDishes.get(name).getPrice() + ";");
+        System.out.println("Name: " + name + "     Price: $"
+                + matchingDishes.get(name).getPrice() + "     Ingredients: " + ingredientList);
     }
 
     /**
