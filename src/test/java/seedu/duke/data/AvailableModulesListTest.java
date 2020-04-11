@@ -3,7 +3,6 @@ package seedu.duke.data;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.module.NewModule;
-import seedu.duke.data.ModuleList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,10 +12,9 @@ public class AvailableModulesListTest {
 
     @Test
     void getModule() {
-        AvailableModulesList modulesList = new AvailableModulesList();
         NewModule module = new NewModule("CS1010", "Programming Methodology", 4);
-        assertEquals(module, modulesList.getModule("CS1010"));
-        assertEquals(module, modulesList.getModule("Programming Methodology"));
+        assertEquals(module, new AvailableModulesList().getModule("CS1010"));
+        assertEquals(module, new AvailableModulesList().getModule("Programming Methodology"));
     }
 
     @Test

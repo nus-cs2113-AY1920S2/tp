@@ -1,5 +1,2 @@
 id,name,mc,semester,isDone,grade
-CS1010,Programming Methodology,4,3,false,/
-CS2113,Software Engineering & Object-Oriented Programming,4,4,false,/
-IS4241,Social Media Network Analysis,4,4,false,/
-ACC1004,/,4,5,true,F
+TES0001,test,4,5,false,/

@@ -16,16 +16,14 @@ view /dm
 view /cc
 find cS
 add id/ACC1004 s/5 mc/4
-done id/acc1004 g/f
-CAP
-done id/acc1004 g/A
-CAP
+view /mp
+done id/acc1004 g/CU
 add id/CS000T s/5 mc/4
 view /mp
 view /cc
 view /dm
 CAP
-find cs
+find
 delete id/IS4241 s/4
 view /mp
 delete n/Singapore Employment Law

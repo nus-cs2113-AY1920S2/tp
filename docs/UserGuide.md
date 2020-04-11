@@ -67,7 +67,7 @@ You can add a module to a semester or to the list of available modules.
 You can do so using the module code or the module name.
 The module to be added could be in the existing list of available modules or not.\
 If you add a module which is in the list of available modules, then when you input code or name, the output
-will show both code and name of this module.
+will show both code and name of this module.\
 
 ##### 3.2.2 Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
@@ -127,7 +127,8 @@ You can delete a module from a semester of your module plan or from the list of 
 
 #### 3.3.1 Delete a specific module from a semester in module plan
 You can do so by using the module code or the module name.
-The module to be deleted must be in your module plan.
+The module to be deleted must be in your module plan.\
+If you delete a module which is done and not failed, then the total complete credits will be changed.
  
 #### 3.3.1.1 Based on module code
 Format: `delete id/[module code] s/[semester]`
@@ -178,7 +179,8 @@ Expected output:
 
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
-This can be done based on a module code or module name.
+This can be done based on a module code or module name.\
+If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
 #### 3.4.1 Based on module code
 Format:​ `done id/[module name] g/[grade]`
@@ -294,7 +296,7 @@ Example: 'find cs'
  `[✗] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1`
 
 
- `List of available modules`
+ `List of available modules:`
  
  `ID: CS1010 Name: Programming Methodology | Modular Credit: 4`
  

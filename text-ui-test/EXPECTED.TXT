@@ -22,7 +22,8 @@ Here are the commands that I can do for you:
 9. "view /dm" to view all finished modules
 10. "view /cc" to view the number of modular credits u have completed
 11. "CAP" to view your current cap
-12. "bye" to exit
+12. "find" [keyword] to search a module based on the keyword
+13. "bye" to exit
 
 Please input your command:
 Okay! Here are your available modules:
@@ -163,7 +164,7 @@ Y2S2
 2.[x] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
@@ -176,7 +177,7 @@ Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
@@ -192,7 +193,7 @@ List of selected modules:
 [x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
 [x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
-List of available modules
+List of available modules:
 ID: CS1010 Name: Programming Methodology | Modular Credit: 4
 ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010
 ID: CS2040 Name: Data Structures and Algorithms | Modular Credit: 4 | Prerequisites: CS1010
@@ -208,6 +209,20 @@ ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisit
 
 
 Please input your command:
+Please input your command:
+Okay! Here is your module plan:
+Y2S1
+1.[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+2.[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+
+Y2S2
+1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
+
+Y3S1
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
+
+
 Please input your command:
 Okay, I've marked the module as done!
 
@@ -224,12 +239,12 @@ Y2S2
 2.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
 You have completed this amount of credits:
-8
+4
 
 
 Please input your command:
@@ -238,7 +253,7 @@ Y2S2
 1.[v] ID: IS4241 Name: Social Media Network Analysis | Module Credit: 4 | Sem: Y2S2 | Grade: A-
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
@@ -247,28 +262,6 @@ Your current CAP is:
 
 
 Please input your command:
-Okay, this is the list of related modules:
-
-List of selected modules:
-[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
-[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
-[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
-
-List of available modules
-ID: CS1010 Name: Programming Methodology | Modular Credit: 4
-ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010
-ID: CS2040 Name: Data Structures and Algorithms | Modular Credit: 4 | Prerequisites: CS1010
-ID: CS2100 Name: Computer Organisation | Modular Credit: 4 | Prerequisites: CS1010
-ID: CS2106 Name: Introduction to Operating Systems | Modular Credit: 4 | Prerequisites: CS2100
-ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Modular Credit: 4 | Prerequisites: CS2040
-ID: CS2105 Name: Introduction to Computer Networks | Modular Credit: 4 | Prerequisites: CS2040
-ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
-ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030 CS1231
-ID: CS1231 Name: Discrete Structures | Modular Credit: 4
-ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
-
-
-
 Please input your command:
 Okay, this module has been deleted from the corresponding semester
 Module IS4241 has been deleted from semester Y2S2
@@ -361,7 +354,7 @@ Y2S2
 1.[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
 
 Y3S1
-1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CS
+1.[v] ID: ACC1004 | Module Credit: 4 | Sem: Y3S1 | Grade: CU
 
 
 Please input your command:
