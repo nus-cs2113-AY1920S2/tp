@@ -11,7 +11,7 @@ import java.util.Collections;
 /**
  * Represents the entire list of events.
  */
-public class EventList implements Serializable {
+public class EventList {
     private ArrayList<Event> events;
 
     public EventList() {
