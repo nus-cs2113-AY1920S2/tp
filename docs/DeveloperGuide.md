@@ -94,7 +94,7 @@ These messages enhances the usability rather than the functionality of the appli
 which are key to the functionality of the application. The implementation of these 3 features whose functionality involves the `TextUI` class are described in Section 3 below.
 
 Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
-</br>
+</br></br>
 
 ### 2.3. Logic component
 <img src="images/logiccomponent.png" width="80%">
