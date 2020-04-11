@@ -47,10 +47,26 @@ public class MarkAsDoneCommand extends Command {
                 if (isModuleName || isModuleId) {
                     boolean isNotGradeF = (grade != Grading.F);
                     boolean isNotGradeCU = (grade != Grading.CU);
-                    if (isNotGradeF && isNotGradeCU && !module.getDone()) {
+                    //to add module credit if the module is marked for the first time
+                    boolean isModuleNotDone = !module.getDone();
+                    if (isNotGradeF && isNotGradeCU && isModuleNotDone) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
                     module.setAsDone(grade);
+                    if (!isNotGradeF || !isNotGradeCU) {
+                        StringBuilder newName = new StringBuilder();
+                        if (module.isIdValid()) {
+                            newName.append(module.getId());
+                        } else if (module.isNameValid()) {
+                            newName.append(module.getName());
+                        }
+                        newName.append(" Failed");
+                        SelectedModule failedModule = new SelectedModule("name", newName.toString(),
+                                module.getSem(), module.getModuleCredit());
+                        sem.remove(module);
+                        failedModule.setAsDone(grade);
+                        sem.add(failedModule);
+                    }
                     return;
                 }
             }
