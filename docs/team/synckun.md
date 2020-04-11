@@ -26,10 +26,10 @@ This enhancement is essential to effectiveness of the app. Since this enhancemen
 **2) Storage Component**
 
 This component allows 
-	* storing methods to store the list of meetings and each individual's schedule information that includes start and end time of every class, and weeks that the class is held,
-	* storing and loading to differentiate between main user (the owner of the application) and his/her other contacts
-	* loading method filters corrupted files,
-	* capability to create `data` directory, and create and delete meeting and contact .txt files.
+* storing methods to store the list of meetings and each individual's schedule information that includes start and end time of every class, and weeks that the class is held,
+* storing and loading to differentiate between main user (the owner of the application) and his/her other contacts
+* loading method filters corrupted files,
+* capability to create `data` directory, and create and delete meeting and contact .txt files.
 
 This component is essential to application reusability.
 
@@ -50,6 +50,7 @@ This functionality allows schedules to be planned ahead, which increases usabili
 **4) Truncation of displayed timetable**
 
 Before this enhancement, the timetable shows the week in 30 minute blocks, thus the timetable always has the size of 7(days) by 48(blocks to fill 24 hours).
+
 After this enhancement, if the earliest time that you are occupied in the entire week is at 10am, the week's timetable will only display from 10am. If the latest time that you are occupied in that same week is at 2pm, that week's timetable will also only display until 2pm.
 
 This increases readability and navigability of app.
