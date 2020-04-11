@@ -37,6 +37,9 @@ public class Storage {
                 if (m.getMessage().equals("FileIO: nothing to read anymore")) {
                     break;
                 }
+            } catch (Exception m) {
+                UI.display("... Corrupted event found. Only previous events are loaded.");
+                return eventList;
             }
         } while (!input.isBlank());
 
@@ -78,6 +81,9 @@ public class Storage {
                 if (m.getMessage().equals("FileIO: nothing to read anymore")) {
                     break;
                 }
+            } catch (Exception m) {
+                UI.display("... Corrupted student list found. Only previous student lists are loaded.");
+                return studentListCollection;
             }
         } while (!input.isBlank());
 
