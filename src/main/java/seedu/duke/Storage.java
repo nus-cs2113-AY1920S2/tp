@@ -57,7 +57,7 @@ public class Storage {
     /**
      * Loads any pre-existing cards & events from the save file into an ArrayList to be initiated.
      * @return ArrayList of pre-existing subject & event ArrayLists (if any) OR blank ArrayList of ArrayLists
-     * @throws EscException
+     * @throws EscException if load fails
      */
     @SuppressWarnings("unchecked")
     public static ArrayList loadObjects() throws EscException {
@@ -99,8 +99,8 @@ public class Storage {
 
     /**
      * Saves the current subjectList and eventList to the save file.
-     * @param currSub ArrayList<S> of current subjects
-     * @param currEvent ArrayList<E> of current events
+     * @param currSub ArrayList(S) of current subjects
+     * @param currEvent ArrayList(E) of current events
      * @throws EscException if the ArrayLists are unable to be saved
      */
     public void saveSubs(ArrayList<Subject> currSub, ArrayList<Event> currEvent) throws EscException {
