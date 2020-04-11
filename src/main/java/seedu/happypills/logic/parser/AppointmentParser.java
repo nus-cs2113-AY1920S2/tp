@@ -71,10 +71,10 @@ public class AppointmentParser extends Parser {
                 || !Checker.isValidNric(parseInput[0].trim())) {
             printMissingInput(parseInput);
             String input = promptUser().trim();
-            System.out.println(TextUi.DIVIDER);
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }
+            System.out.println(TextUi.DIVIDER);
             String[] updates = splitInput(input);
             parseInput = parseInput(updates, parseInput);
         }
@@ -114,7 +114,7 @@ public class AppointmentParser extends Parser {
         if (parseInput[3].equalsIgnoreCase("")) {
             System.out.println("      /r [REASONS]");
         }
-        System.out.println(Messages.MESSAGE_COMMAND_ABORTED);
+        System.out.println(Messages.MESSAGE_CLEAR_COMMAND);
     }
 
     /**

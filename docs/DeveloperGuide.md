@@ -112,6 +112,8 @@ The architecture of HappyPills is broken down into seven main classes:
 
 ### 3.2. Ui Component
 
+![Ui Diagram](images/DG/architecture/UiClassDiagram.png)
+
 The `Ui` component: 
 * Executes user commands using the command component.
 * Listens for changes and outputs messages accordingly from the Command component.
@@ -119,7 +121,7 @@ The `Ui` component:
 * Consist of 6 classes:
     - PatientTextUi
     - AppointmentTextUi
-    - PatientRecordTextUi
+    - PatientRecordTextUi 
     - StorageTextUi
     - HelpTextUi
     - Messages
@@ -135,7 +137,7 @@ the usage of the commands.
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/DG/Logic.png)
+![Logic Diagram](images/DG/architecture/LogicClassDiagram.png)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -146,7 +148,7 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-![Model Diagram](images/DG/ModelDiagram.jpg)
+![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
 
 ### 3.5. Storage Component
 
@@ -803,14 +805,11 @@ Step 5: `HappyPills` will execute the command.
         P.S subject to change in v2.
 
 
-
-## 5. Documentation 
-
-## 6. Testing
+## 5. Testing
 
 Refer to the guide [here](Testing.md).
 
-## 7. Useful links
+## 6. Useful links
 
 * [User Guide](UserGuide.md)
 * [About Us](AboutUs.md)
