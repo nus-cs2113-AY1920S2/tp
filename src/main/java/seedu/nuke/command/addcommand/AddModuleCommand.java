@@ -19,6 +19,7 @@ import static seedu.nuke.util.Message.messageAddModuleSuccess;
 /**
  * <h3>Add Module Command</h3>
  * A <b>Command</b> to add a <b>Module</b> into the <b>Module List</b>.
+ *
  * @see Command
  * @see Module
  */
@@ -27,12 +28,12 @@ public class AddModuleCommand extends AddCommand {
     public static final String FORMAT = COMMAND_WORD + " <module code>";
     public static final String MESSAGE_USAGE = String.format(
             "%s - Add a new module to the list\n"
-            + "Format: %s\n"
-            + "Example: addm CS2113T\n",
+                    + "Format: %s\n"
+                    + "Example: addm CS2113T\n",
             COMMAND_WORD, FORMAT);
     public static final Pattern REGEX_FORMAT = Pattern.compile(
             "(?<identifier>(?:\\s+\\w\\S*)*)"
-            + "(?<invalid>.*)"
+                    + "(?<invalid>.*)"
     );
 
     private String moduleCode;
@@ -40,8 +41,7 @@ public class AddModuleCommand extends AddCommand {
     /**
      * Constructs the command to add a module.
      *
-     * @param moduleCode
-     *  The module code of the module
+     * @param moduleCode The module code of the module
      */
     public AddModuleCommand(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
