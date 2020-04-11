@@ -148,7 +148,7 @@ diagram and description below.
 
 A `ScheduleHandler` object can be created by the `CommandHandler` class with the `ScheduleHandler()` constructor, and is passed an ArrayList of `Contact`s.
 
-The `ScheduleHandler` object retrieves the schedule of each `Contact` using `Contact#getSchedule()`, and uses the retrieved 
+The `ScheduleHandler` object retrieves the schedule of each `Contact` using `Contact#getMySchedule()`, and uses the retrieved 
 schedule to fill up its private class variable, combinedSchedule. `CommandHandler` can retrieve the combined schedule generated 
 by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule()`.
 
