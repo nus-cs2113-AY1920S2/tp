@@ -215,7 +215,7 @@ By using the following commands, users can get a visual representation of the ti
 The 3 types of graphs are :
  * *Activity time graph* - Total time spent on each activity: `graph activities SCALE`
  * *Tags time graph* - Total time spent on each tag: `graph tags SCALE`
- * *Activity targets graph* - Progress of each activity in relation to its allocated time: `graph allocations`
+ * *Activity allocation graph* - Progress of each activity in relation to its allocated time: `graph allocations`
 
 Tip: Use `find`, `filter` and `list` commands to reduce clutter before graphing as the graphs are based on the last shown list of activities. 
 
