@@ -27,6 +27,7 @@ public class DisplayList extends UI {
         display("Please choose one of the following list.");
         for (StudentList studentList: studentListCollection) {
             UI.display(index + ". " + studentList.getListName());
+            index++;
         }
         return Integer.parseInt(getStringInput());
     }
