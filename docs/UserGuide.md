@@ -56,7 +56,6 @@ a.backlink:active {
 
 <a href="https://ay1920s2-cs2113t-t12-3.github.io/tp/" class="backlink">Back to OrgaNice!'s main page</a>
 
-
 # OrgaNice! - User Guide
 
 ## Table Of Contents
