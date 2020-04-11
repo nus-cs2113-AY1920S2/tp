@@ -3,13 +3,13 @@
 ## Content
 1. [Overview](#overview)
 2. [Summary of Contributions](#summary-of-contributions)
-    1. [Code Contributed](#Code-contributed)
-    2. [Enhancements implemented](#Enhancements-implemented)
-    3. [Contributions to documentation](#Contributions-to-documentation)
-    4. [Contributions to the DG](#Contributions-to-the-DG)
-    5. [Contributions to team based tasks](#Contributions-to-team-based-tasks)
-    6. [Review/mentoring contributions](#Review/mentoring-contributions)
-    7. [Contributions beyond the project team](#Contributions-beyond-the-project-team)
+    1. [Code Contributed](#code-contributed)
+    2. [Enhancements implemented](#enhancements-implemented)
+    3. [Contributions to documentation](#contributions-to-documentation)
+    4. [Contributions to the DG](#contributions-to-the-DG)
+    5. [Contributions to team based tasks](#contributions-to-team-based-tasks)
+    6. [Review/mentoring contributions](#review/mentoring-contributions)
+    7. [Contributions beyond the project team](#contributions-beyond-the-project-team)
 
 ## Overview
 Diet Manager is an personalized chat-bot application used for managing an individual's diet.
