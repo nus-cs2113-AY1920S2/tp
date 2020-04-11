@@ -36,7 +36,7 @@ public class LoadStockTest {
 
     @Test
     public void test_decodeIngredientName_decodeNormally() {
-        String ingredientName = "tomato      ";
+        String ingredientName = "tomato";
         String decodedIngredientName = decodeIngredientName(
                 lineFromBufferedReader, startIndexToDecodeForPrice);
         
@@ -229,7 +229,7 @@ public class LoadStockTest {
                         Optional.of(ingredientQuantity), 
                         Optional.of(ingredientPrice));
                 
-                stock.addIngredient(ingredientToAdd);
+                stock.addIngredientWithoutMessage(ingredientToAdd);
             }
         }
     }
@@ -246,7 +246,7 @@ public class LoadStockTest {
             ingredientName += lineArgs[j]
                     + " ";
         }
-        return ingredientName;        
+        return ingredientName.trim();        
     }
     
     /**

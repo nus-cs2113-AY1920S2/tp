@@ -1,7 +1,9 @@
 package commands;
 
 public class HelpCommand {
-
+    /**
+     * Prints all the commands.
+     */
     public static void execute() {
         System.out.println("These are the commands supported by the system:");
         addCommands();
@@ -13,6 +15,9 @@ public class HelpCommand {
         quitCommand();
     }
 
+    /**
+     * Helper method for add commands.
+     */
     private static void addCommands() {
         System.out.println("Add Commands:");
         System.out.println("Add Dish: add dish; n/NAME; p/PRICE; [i/INGREDIENT1, INGREDIENT2, ...];");
@@ -22,6 +27,9 @@ public class HelpCommand {
         System.out.println("");
     }
 
+    /**
+     * Helper method for delete commands.
+     */
     private static void deleteCommands() {
         System.out.println("Delete Commands:");
         System.out.println("Delete Dish: delete dish; n/NAME;");
@@ -32,6 +40,9 @@ public class HelpCommand {
         System.out.println("");
     }
 
+    /**
+     * Helper method for list commands.
+     */
     private static void listCommands() {
         System.out.println("List Commands:");
         System.out.println("List Menu: list dish;");
@@ -42,6 +53,9 @@ public class HelpCommand {
         System.out.println("");
     }
 
+    /**
+     * Helper method for search commands.
+     */
     private static void searchCommands() {
         System.out.println("Search Commands:");
         System.out.println("Search dish: search dish; k/KEYWORD;");
@@ -50,6 +64,9 @@ public class HelpCommand {
         System.out.println("");
     }
 
+    /**
+     * Helper method for sales commands.
+     */
     private static void salesCommands() {
         System.out.println("Sales Commands:");
         System.out.println("Sell dish: sell dish; d/DISH; q/QUANTITY;");
@@ -57,12 +74,20 @@ public class HelpCommand {
         System.out.println("Find most popular dish: popular");
         System.out.println("");
     }
-    
+
+    /**
+     * Helper methods for clear commands.
+     */
     private static void clearCommands() {
         System.out.println("Clear Commands:");
         System.out.println("Clear all reservations: clear reservation;");
+        System.out.println("Clear all stock: clear stock;");
+        System.out.println("");
     }
 
+    /**
+     * Helper method for quitting the application.
+     */
     private static void quitCommand() {
         System.out.println("To exit the program enter: bye");
         System.out.println("");
