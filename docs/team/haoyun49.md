@@ -1,6 +1,3 @@
-## Project Portfolio -- Hao Yun
-### Project Nuke <small>v2.1</small>
-
 ### Overview
 **Nuke** is a simply yet powerful task management application that targets towards _NUS students_ and aims to facilitate record, classification, management and navigation of their acdemical tasks. The users can interact with **Nuke** using both a _Command Line Interface (CLI)_ and a complementary _Graphical User Interface (GUI)_. **Nuke** is written in Java, and has about 17000 lines of code.
 
@@ -47,10 +44,10 @@
     - Documented Add Tag/ List Tag/ Delete Tag([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/19c7a70cce7e9fa5ad4e896f60704da4406dbaf0#diff-e3e2a9bfd88566b05001b02a3f51d286)) and Add File/Add Task/List Sorted Tasks([#commit](https://github.com/HAOYUN49/tp/commit/d3d542b81d2474459d570576b182ab026c99f7cd#diff-572f9bedcb201b96c74241fb42e29fcf))
     
   - Developer Guide
-    - Documented User Stories Section of Appendix Section. -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/37d6f8373731cdc34af91d98e1a713c1eb0e0048#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
-    - Documented Class Diagrams of Add Command Classes and List Command Classes([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/4d6011dd18122f897b17964a0f1c0e1064b5671f#diff-2fff7a74a4bc5eedf2b5dfeb29633018)), Documented Arichitecture Diagram([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/8973f3a786d2510e878e2e08e1dc37089e31725f#diff-2fff7a74a4bc5eedf2b5dfeb29633018)) and Component Interactions Diagram([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/93c4d6284eaf3d127716372dabf3255df76c2f55#diff-2fff7a74a4bc5eedf2b5dfeb29633018))
-    - Added up more test cases of Tag features in Manul Testing Section -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/f5bccec92b600f2709ac457bd600da017a2ca2ba#diff-2fff7a74a4bc5eedf2b5dfeb29633018) 
-    - Documented Design Section -- [#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/51b6430a509a876b5e5de816b99c8c72f18d59c1#diff-2fff7a74a4bc5eedf2b5dfeb29633018)
+    - Documented User Stories Section of Appendix Section. ([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/37d6f8373731cdc34af91d98e1a713c1eb0e0048#diff-2fff7a74a4bc5eedf2b5dfeb29633018))
+    - Documented Class Diagrams of Add Command Classes and List Command Classes([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/4d6011dd18122f897b17964a0f1c0e1064b5671f#diff-2fff7a74a4bc5eedf2b5dfeb29633018)), Documented Arichitecture Diagram([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/8973f3a786d2510e878e2e08e1dc37089e31725f#diff-2fff7a74a4bc5eedf2b5dfeb29633018)) and Component Interactions Diagram ([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/93c4d6284eaf3d127716372dabf3255df76c2f55#diff-2fff7a74a4bc5eedf2b5dfeb29633018))
+    - Added up more test cases of Tag features in Manul Testing Section ([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/f5bccec92b600f2709ac457bd600da017a2ca2ba#diff-2fff7a74a4bc5eedf2b5dfeb29633018))
+    - Documented Design Section ([#commit](https://github.com/AY1920S2-CS2113T-T13-2/tp/commit/51b6430a509a876b5e5de816b99c8c72f18d59c1#diff-2fff7a74a4bc5eedf2b5dfeb29633018))
     
 - Community
   - PRs reviewd (with non-trivial 7 review comments: reported bugs during the PE-Dry run) ([#1](https://github.com/HAOYUN49/ped/issues/1), [#2](https://github.com/HAOYUN49/ped/issues/2), [#3](https://github.com/HAOYUN49/ped/issues/3), [#4](https://github.com/HAOYUN49/ped/issues/4), [#5](https://github.com/HAOYUN49/ped/issues/5), [#6](https://github.com/HAOYUN49/ped/issues/6), [#7](https://github.com/HAOYUN49/ped/issues/7))
