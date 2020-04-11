@@ -92,3 +92,75 @@ If we want to find all CS2106 tutorials, we can first use `filter 2106` to filte
 * `filter -s TAGNAME ; find KEYWORD1 ; find KEYWORD2`
 
 Note: `-s` is only relevant in the first command of the entire input string, as subsequent commands are automatically chained.
+
+## Contributions to the Developer Guide (Extracts)
+## 2. Design
+The section provides a high-level explanation of how the Jikan software is designed.
+
+### 2.1 High-Level Architecture
+The users interact with the Jikan software which modifies the local storage data file.
+
+Within the Jikan software, there are 5 main components:
+* **Parser Component** - Parses the user inputs and calls the relevant `Command` object to execute the desired
+command.
+* **Ui Component** - Prints to the user the output of the desired `Commands`.
+* **Commands Component** - Contains all the `Commands` to be called by the `Parser` based on user inputs.
+* **Activities Component** - Maintains the non-permanent state of all `Activities` in the `Activity List` to be accessed
+by the executing `Commands`.
+* **Storage Component** - Interacts with and modifies the local storage file, which contains the permanent (lasting
+even after the program terminates) state of all activities. It retrieves this permanent state and populates the `Activity List` at the start of each session.
+
+### 3.8 Find & Filter Features
+
+#### Find Feature
+This command accepts keyword(s) and searches either the entire activity list or the last shown list for activities with 
+names containing each keyword.
+
+#### Filter Feature
+This feature accepts space-separated keyword(s) to search either the entire list or the last shown list 
+for activities with tags matching each keyword. The keywords should be an exact-match with the tag names.
+
+
+#### 3.8.1 Design Considerations
+As the `find` and `filter` commands are important for the user to analyse and eventually graph time-spent on each 
+activity. The user should be allowed to query for all useful combinations of activities in the activity list. 
+This entails:
+* The user should be allowed to match for multiple keywords at once.
+* The user should be allowed to exclude certain activities by limiting his search to a previously shown list as 
+    opposed to the entire activity list.
+    (chaining `list`, `find`, and `filter` commands).
+
+
+#### 3.8.2a Current Implementation for Find
+* This feature is called by the user when the `find` command is entered into the command line. 
+The string following the command are the parameters:
+    * `-s` flag indicates that the searching should be limited to activities previously shown to the user.
+    * The remaining parameters are a string of keywords separated by ` / `. 
+* The Parser will create a FindCommand object.
+* The FindCommand will invoke its own `executeCommand()` method.
+    * The Parser's `lastShownList` will be cleared.
+    * Then it will loop through `activityList` to find activities with names that contain the keyword.
+    * If one is found, it will be added to `lastShownList`.
+    * `printResults()` of the Ui will be called:
+        * If `lastShownList` is not empty, it will print the matching activities.
+        * Else, it will respond to the user that there are no tasks which match the given keyword.
+
+
+#### 3.8.2b Current Implementation for Filter 
+* This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
+* The Parser will create a FilterCommand object.
+* The FindCommand will invoke its own `executeCommand()` method.
+* The Parser's `lastShownList` will be cleared.
+* For each keyword:
+    * Then it will loop through `activityList` to find activities with tags that contain the keyword.
+    * If one is found, it will be added to `lastShownList`.
+    * `printResults()` method of the Ui will be called
+        * If `lastShownList` is not empty, it will print the matching activities.
+        * Else, it will respond to the user that there are no tasks which match the given keyword.
+	
+#### 3.8.4 Additional features
+`find` and `filter` command supports the limiting of searches to activities in the last shown list. This
+is done in 2 ways:
+* The `-s` flag following the command (eg. `find -s keyword`)
+* The `;` delimiter for a combination of `find` and `filter` in a single input (eg. `find KEYWORD ; filter TAGNAME`)
+
