@@ -20,8 +20,12 @@ Table of Contents
     . . . 3.3.2.1 [Based on module name](#3321-based-on-module-name)  
     . . . 3.3.2.2 [Based on module code](#3322-based-on-module-code)  
     3.4 [Marking as done](#34-marking-as-done-done)  
-    . . 3.4.1 [Marked with passing grades](#341-marked-with-passing-grades)  
-    . . 3.4.2 [Marked with failing grades](#342-marked-with-failing-grades)  
+    . . 3.4.1 [Marked with Passing Grades](#341-marked-with-passing-grades)  
+    . . . 3.4.1.1 [Based on module name](#3411-based-on-module-code)  
+    . . . 3.4.1.2 [Based on module code](#3412-based-on-module-name)  
+    . . 3.4.2 [Marked with Failing Grades](#342-marked-with-failing-grades)  
+    . . . 3.4.2.1 [Based on module name](#3411-based-on-module-code)  
+    . . . 3.4.2.2 [Based on module code](#3412-based-on-module-name)  
     3.5 [Viewing modules](#35-viewing-modules-view)  
     . . 3.5.1 [Viewing all available modules](#351-viewing-all-available-modules)  
     . . 3.5.2 [Viewing done modules](#352-viewing-done-modules)  
@@ -261,7 +265,6 @@ When your module plan is displayed using `view` function, there will be one of t
 1. If your module does not have an Module ID:
 
 `[✓] Name: Software Engineering & Object-Oriented Programming Failed | Module Credit: 4 | Sem: Y2S1 | Grade: F`
-
 
 ### 3.5 Viewing modules: view
 
