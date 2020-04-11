@@ -76,18 +76,18 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Patient Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)
+[Main](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#3-features)  
+[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 [Architecture](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#31-architecture)  
-[Section 1]()  
-[Section 2]()  
-[Section 4.1]() 
-[Section 4.4]() 
-[Section 4.5]() 
-[Section 6]() 
-[Appendices]()  
+[Section 1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#1-introduction)  
+[Section 2](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#2-setting-up)  
+[Section 4.1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#41-data-structure)  
+[Section 4.4](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 4.5](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 6](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#6-useful-links)  
+[Appendices](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#appendices)   
