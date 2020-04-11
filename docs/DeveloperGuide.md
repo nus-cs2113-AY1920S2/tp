@@ -214,7 +214,9 @@ blacklisted modules as well as output messages to be shown to users when excepti
 ## 3. Implementation
 This section describes some noteworthy details of how the main features of our application works in the backend.
 
-There are 6 main features: add new contact, list all contacts, display combined timetable of selected contacts, schedule a new meeting, delete a scheduled meeting, list all scheduled meetings.
+
+There are 6 main features:[Add new contact](#31-add-new-contact), [List all contacts](#32-list-all-contacts), [Display timetable of selected contacts](#33-display-timetable-of-selected-contacts), [Schedule a new meeting](#34-schedule-a-new-meeting), [Edit a contact's timetable](#35-edit-a-contacts-timetable), [Delete a scheduled meeting](#36-delete-a-scheduled-meeting), [Delete a contact](#37-delete-a-contact), [List all scheduled meetings](#38-list-all-scheduled-meetings).
+
 ### 3.1 Add new contact
 ![Add Contact](images/AddContact.png)<br>
 *Fig 10. Sequence diagram of the implementation of the `Add new contact` feature*
