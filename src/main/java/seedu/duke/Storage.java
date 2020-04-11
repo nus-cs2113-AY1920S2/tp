@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import seedu.events.Event;
-import seedu.events.EventList;
 import seedu.exception.EscException;
 import seedu.subjects.Subject;
 
@@ -13,15 +12,15 @@ import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 
 public class Storage {
 
     private static String dir = System.getProperty("user.dir");
-    private static Path filepath = Paths.get(dir, "data", "cards.txt");
+    private static Path filepath = Paths.get(dir, "data", "escData.txt");
     private static String filepathStr  = String.valueOf(filepath);
     private static File saveFile = new File(filepathStr);
-    private static Path saveDir = Paths.get(dir, "data");
 
     /**
      * Default constructor.
@@ -56,11 +55,12 @@ public class Storage {
     }
 
     /**
-     * Loads any pre-existing cards & exams from the save file into an ArrayList to be initiated.
-     * @return ArrayList of pre-existing subject & exam list (if any) or blank lists
+     * Loads any pre-existing cards & events from the save file into an ArrayList to be initiated.
+     * @return ArrayList of pre-existing subject & event ArrayLists (if any) OR blank ArrayList of ArrayLists
+     * @throws EscException if load fails
      */
     @SuppressWarnings("unchecked")
-    public static ArrayList<Subject> loadObjects() throws EscException {
+    public static ArrayList loadObjects() throws EscException {
         ArrayList tempSub;
         ArrayList tempEvent;
 
@@ -94,13 +94,14 @@ public class Storage {
                 throw new EscException("Load error");
             }
         }
-
         return returnList;
     }
-    
+
     /**
-     * Saves the current card list to the save file.
-     * @param currSub the current subject list
+     * Saves the current subjectList and eventList to the save file.
+     * @param currSub ArrayList(S) of current subjects
+     * @param currEvent ArrayList(E) of current events
+     * @throws EscException if the ArrayLists are unable to be saved
      */
     public void saveSubs(ArrayList<Subject> currSub, ArrayList<Event> currEvent) throws EscException {
         ensureFileExists();
@@ -114,7 +115,7 @@ public class Storage {
             objWrite.flush();
             objWrite.close();
         } catch (IOException e) {
-            throw new EscException("Save error ");
+            throw new EscException("Save error");
         }
     }
 }

@@ -2,7 +2,6 @@ package seedu.events;
 
 import seedu.exception.EscException;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.Collections;
 /**
  * Represents the entire list of events.
  */
-public class EventList implements Serializable {
+public class EventList {
     private ArrayList<Event> events;
 
     public EventList() {
