@@ -517,7 +517,7 @@ public class Parser {
         String taskDescription = matcher.group(TASK_GROUP).replace(TASK_PREFIX, NONE).trim();
 
 
-        return new AddTagCommand(new ArrayList<>(Arrays.asList(tagName)), moduleCode, categoryName, taskDescription);
+        return new AddTagCommand(tagName, moduleCode, categoryName, taskDescription);
     }
 
     /* Prepare Delete and List Commands */

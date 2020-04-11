@@ -1,5 +1,3 @@
-
-
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -233,7 +231,7 @@ The hierarchy of the <b>Directory Tree</b> set in place has to be followed stric
 <div>
 The basic <i>class diagram</i> of the structure is shown below. A more detailed <i>class diagram</i> with the attributes for each <i>directory</i> is shown <a href="#directory-class-diagram">here</a>.
 </div>   
-  
+
 ![directory class diagram basic](images/dg_directory_class_basic.png)   
  <span style="color: green"><small><i>Figure <b>Directory Class Diagram (Basic)</b></i></small></span>   
  <br>
@@ -344,7 +342,7 @@ The <b>Directory Traverser</b> is a very fundamental feature that utilises the <
 <br><br>
 The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> attributes in various commands by using the information from the <i>current</i> and <i>parent</i> <b>Directories</b>. For example, if a user is at the <b>Module</b> level, with <i>module code</i> <b>CS2100</b>, and wants to add a <i>category</i>, he does not have to enter the <i>directory path</i>  to the <i>module</i> in the command as such: <code>addc toAdd -m cs2100</code>. Instead, he can just type <code>addc toAdd</code>. This also works when the user is at the <b>Category</b>, <b>Task</b> and <b>File</b> levels.
 </div>  
-  
+
 #### **Implementation**    
 ![directory traverser class diagram](#images/dg_traverser_class.png)   
 <span style="color: green"><small><i>Figure <b>Directory Traverser Class Diagram</b></i></small></span>   
@@ -441,6 +439,10 @@ This section will describe the significant details of how the commands in <b>Nuk
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
+![ClassDiagramAdd.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramAdd.jpg)
+
+<span style="color: green"><small><i>Figure <b>Add Command Classes Diagram</b></i></small></span>
+
 #### **1.1. Add Module Command**
 
 The add module feature enable the user to add modules into the Module List.
@@ -459,10 +461,6 @@ The `AddCommand` will first try to call the static method `add` in `ModuleManage
 
 1. `DuplicateModuleException` will be thrown if the module specified by the user is contained in the `ArrayList` named `moduleList` in `ModuleManager` class.
 2. `ModuleNotProvidedException` will be thrown if the module code specified by the user is not contained in the `HashMap` named `modulesMap` in `ModuleManager` class.
-
-Below are the class-diagram for the involved classes:
-
-![image-20200326014336120](images/Add_Module_Command_Class_Diagram.png)
 
 <span style="color: green"><small><i>Figure <b>Add Module Command Class Diagram</b></i></small></span>
 
@@ -616,7 +614,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-![List Command Class Diagram](images/List_Command_Class_Diagram.png)
+![ClassDiagramList.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramList.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
@@ -819,11 +817,11 @@ Peter receives the final message:<br><br>
 ```
 SUCCESS!! Module(s) have been deleted.
 ```
-   
+
 <div>    
 and the delete process ends.  
 </div>
-    
+​    
 
 [Back To Top](#table-of-contents)    
 
@@ -844,7 +842,7 @@ and the delete process ends.
 - <b>Alternative 2</b>: Prompts are enabled <b>(current implementation)</b>    
 	- <b>Pros</b>: User has another chance to choose to confirm the deletion. &#128517; This reduce the chance of accidental deletions happening.
 	- <b>Cons</b>: Deletion process is now longer. The user has to go through another layer of confirmation despite being sure that he he deleting the correct <i>directories</i> <small>(but who knows?)</small>. Moreover, we will have a harder time to implement the <b>delete</b> command, since it has now become multi-staged. Considerations have to be made to counter scenarios with <b>zero</b>, <b>one</b> or <b>more</b> matches after filtering. We will also have to consider how the <code>Parser</code> will be able to recognise if the user's input is a regular command, or an input corresponding to a prompt for list number, or a prompt for delete confirmation.  
-  
+
 
 [Back To Top](#table-of-contents)    
 
@@ -900,7 +898,7 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 	- <b>Pros</b>: Have a more specialised class just to mark user's <i>tasks</i> as done. Easier to implement and differentiates from the standard <code>EditTaskCommand</code>.      
 	- <b>Cons</b>: There is one more <i>command word</i> for the user to remember.          
 <br>   
-  
+
 
 <b>Edit Multiple Attributes</b>  
 - <b>Alternative 1</b>: User can only edit one attribute of a <i>directory</i> at a time       
@@ -909,7 +907,7 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 - <b>Alternative 2</b>: User can edit any number for attributes of a <i>directory</i> at a time <b>(current implementation)</b>        
 	- <b>Pros</b>: The user does not need to keep executing the <b>edit</b> command when editing more than one attribute.    
 	- <b>Cons</b>: Possibly slightly harder to implement. We now have to check if the user has provided at least one attribute to be edited. Also, we need to be able to efficiently extract the individual attributes from the user's input. However, this could be made easier by grouping and matching the attributes using <b>Java</b>'s <b>RegEx</b> patterns.           
-  
+
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -976,7 +974,7 @@ Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:
 
 ![open file command sequence diagram](images/dg_open_file_seq.png)    
  <span style="color: green"><small><i>Figure <b>Open File Command Sequence Diagram</b></i></small></span>   
-   
+
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -1342,14 +1340,22 @@ All the Add Commands below are assumed to be executed at the root directory.
    2. Wrong usage:
       1. Test case: `addf test.pdf -m cs2113t -c Assignment -t non-exist-task -f c:\users\null\downloads\assignment2.pdf` **without** adding the respective *task*
       2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
+5. Add tag
+
+   1. Correct usage:
+      1. Test case: `addg urgent -m cs2113t -c Assignment -t assignment2` **after** adding an `assignment2` *task* under `Assignment` *category* and `cs2113t` *module*
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Tag urgent is added.`
+   2. Wrong usage:
+
+      1. Test case: `addg urgent -m cs2113t -c Assignment -t non-exist-task`
+      2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
 
 #### 3. Delete Command
 
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-All the Delete Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+All the Delete Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>, with a <i>tag</i> <code>urgent</code>
 </div>
-
 1. Delete modules
    1. Correct usage:
       1. Test case: `delm cs2113t`
@@ -1357,6 +1363,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    2. Wrong usage:
       1. Test case: `delm cs1111`
       2. Expected: the program will prompt the user with message: `Sorry. No modules found.`
+   
 2. Delete category
    1. Correct usage:
       1. Test case: `delc Assignment -m cs2113t` 
@@ -1364,6 +1371,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    2. Wrong usage:
       1. Test case: `delc Project -m cs2113t` 
       2. Expected: the program will prompt the user with message: `Sorry. No categories found.`
+   
 3. Delete task
    1. Correct usage:
       1. Test case: `delt assignment2 -m cs2113t -c Assignment` 
@@ -1371,6 +1379,7 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    2. Wrong usage:
       1. Test case: `delt non-exist-task` 
       2. Expected: the program will prompt the use with message: `Sorry. No tasks found.`
+
 4. Delete file
    1. Correct usage:
       1. Test case: `delf test.pdf -m cs2113t -c Assignment -t assignment2`
@@ -1378,18 +1387,70 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    2. Wrong usage:
       1. Test case: `delf non-exist.pdf -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No files found.`
+   
+5. Delete tag
+   1. Correct usage: 
+      1. Test case: `delg urgent -m cs2113t -c Assignment -t assignment2`
+      2. Expected: the program will prompt the user with message: `Confirm delete tag urgent of the task assignment2?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Tag(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delg non-exist-tag -m cs2113t -c Assignment -t assignment2` 
+      2. Expected: the program will prompt the user with message: `Sorry. No tasks with the tag found.`
 
 #### 4. List Command
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>, with a <i>tag</i> <code>urgent</code>
 </div>
+
+1. List modules
+
+   1. Test case: `lsm`
+
+   2. Expected: the program display a table containing all the *modules* added by the user as shown below:
 
 
 [Back To Top](#table-of-contents)    
 <br>  
 
-<hr>  
+      ![](images/dg_lsf.png)
+   
+5. List tags
+
+   1. Test case: `lsg -m cs2113t -c Assignment -t assignment2`
+
+   2. Expected: the program display a table containing all the tags of the *task* `assignment2` under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
+
+      ![](images/dg_lsg.png)
+
+1. Correct Usage:
+   1. Test case: enter `cd cs2113t`
+   2. Expected: the program prompt will be changed to `root / CS2113T :` from `root :`
+2. Wrong Usage:
+   1. Test case: enter `cd ..`
+   2. Expected: the program prompt the user with message: `Unable to traverse further.`
+
+#### 8. Info Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+For Info Command below are assumed to be executed at the root directory.<br> And user has added a <i>module</i> <code>cs2113t</code>
+</div>
+
+1. Test case: enter `info`
+
+2. Expected: the program will display the information about the current *directory* to the user as shown below:
+
+   ![](images/dg_info.png)
+
+#### 9. Open File Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</div>
+1. Test case: enter `open test.pdf -m cs2113t -c Assignment -t assignment2`
+2. Expected: `test.pdf` will be opened automatically using the default pdf application.
+
+[Back To Top](#table-of-contents)
+
 
 ## **Contact Us**   
 <div>
@@ -1407,5 +1468,3 @@ If you have any further inquiries, or if you found any <b>bugs</b> <i class="fa 
 
 We are currently still at the development stage of the <b>Nuke</b> application. Any feedback you give is welcomed as they can help us to improve <b>Nuke</b> even further! &#128516;
 </div>
-
-[Back To Top](#table-of-contents)
