@@ -47,7 +47,8 @@ CLI to keep track of various medical records* and *can type fast*.
 * *Contributions to the Developer Guide*: As I have to implement the two enhancements mentioned earlier. I have to write some DG sub-sections to explain about my implementation and the design consideration. Also, I have added multiple sequence diagrams for better explanation.
 
 * *Contributions to team-based tasks*: Some example of my suggestions and replying for the project's enhancement: 
-    * Issues fixing: [#49](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/49), [#51](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/51), [#70](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/70)
+    * Issues fixed from PE-D: [#127](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/127), [#114](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/114), [#112](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/112)
+    * Issues suggestion: [#49](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/49), [#51](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/51), [#70](https://github.com/AY1920S2-CS2113T-T13-3/tp/issues/70)
     * PRs reviewed: [#10](https://github.com/AY1920S2-CS2113T-T13-3/tp/pull/10)
     
 * *Contributions to community*:
