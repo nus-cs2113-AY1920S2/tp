@@ -68,6 +68,7 @@ You can do so using the module code or the module name.
 The module to be added could be in the existing list of available modules or not.\
 If you add a module which is in the list of available modules, then when you input code or name, the output
 will show both code and name of this module.\
+You can add modules whose grades are `F` or `CU` to a specific semester again.
 
 ##### 3.2.2 Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
@@ -180,6 +181,7 @@ Expected output:
 ### 3.4 Marking as done: done
 Marks a module as done to show that it has been completed.
 This can be done based on a module code or module name.\
+If your grade of one module is F or CU, this module will be converted to a failed form.\
 If you mark a module as done again, the new grade that has been entered will update your module's grade.
 
 #### 3.4.1 Based on module code
