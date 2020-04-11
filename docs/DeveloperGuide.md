@@ -662,10 +662,10 @@ Given below are instructions to test the app manually.
     
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
-    1. Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
-    2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
-    3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
-    4. Test case: ```schedule test_meeting startDate startTime endDate endTime``` <br>
+    *  Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
+    * Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
+    * Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
+    * Test case: ```schedule test_meeting startDate startTime endDate endTime``` <br>
     
     
     > :bulb: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
@@ -676,12 +676,12 @@ Given below are instructions to test the app manually.
                        
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
-    1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
-    2. Test case: ```delete 1```. <br>
+    * Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
+    * Test case: ```delete 1```. <br>
     
     Expected: The meeting scheduled previously in F.3 is deleted. If no meeting is scheduled at all, an error would be shown to user. <br>
     
-    3. Test case: ```delete 0``` <br>
+    * Test case: ```delete 0``` <br>
     
     Expected: No meeting would be deleted since the index starts from 1 <br>
     
@@ -689,8 +689,8 @@ Given below are instructions to test the app manually.
                                                                                                                                                                                                                                                                                                                                                                                 
 ### F.5. Deleting a contact
 1. Deleting a contact.
-    1. Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
-    2. Test case: ```delete name```. <br>
+    * Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
+    * Test case: ```delete name```. <br>
     
     Expected: The desired contact would be deleted<br>
     
@@ -700,16 +700,16 @@ Given below are instructions to test the app manually.
 
 ### F.6. Editing a contact's timetable
 1. Editing main user's timetable
-    1. Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
-    2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
+    * Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
+    * Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
     
     Expected: The date and time given would be free up <br>
     
-    3. Test case: ```edit busy 0 startDate startTime endDate endTime``` <br>
+    * Test case: ```edit busy 0 startDate startTime endDate endTime``` <br>
     
     Expected: The date and time given would be blocked out <br>
     
-    4. Other incorrect edit commands to try: not stating whether it is ```free``` or ```busy```, ```startTime endTime``` doesn't follow 30minutes blocks.
+    * Other incorrect edit commands to try: not stating whether it is ```free``` or ```busy```, ```startTime endTime``` doesn't follow 30minutes blocks.
     
     
     > :bulb: Type ```edit``` to see the required format.
@@ -718,17 +718,17 @@ Given below are instructions to test the app manually.
 ### F.7. Saving data
 1. Data is saved automatically in the ```/data``` directory where the jar file is located in.
 2. Loading previously scheduled meetings.
-    1. Prerequisites: ```/data/meeting_list.txt``` is not empty.
-    2. The text file stores every meeting in each line, and it contains information of the meeting name, start/end date, start/end time.
-    3. Expected: The stored meetings would be shown in the application via ```meetings``` command and is also reflected in the ```timetable``` command.
+    * Prerequisites: ```/data/meeting_list.txt``` is not empty.
+    * The text file stores every meeting in each line, and it contains information of the meeting name, start/end date, start/end time.
+    * Expected: The stored meetings would be shown in the application via ```meetings``` command and is also reflected in the ```timetable``` command.
     
     
     > :information_source: Note that you can't manually add meeting simply by editing ```/data/meeting_list.txt``` since the meetings generated would also be reflected in the main user's timetable. Editing it manually would corrupt the timetable schedule.
     
 3. Loading previously stored contacts.
-    1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
-    2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
-    3. Expected: The stored contacts would be shown in application via ```contacts```.
+    * Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
+    * The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
+    * Expected: The stored contacts would be shown in application via ```contacts```.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
