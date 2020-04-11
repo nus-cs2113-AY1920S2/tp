@@ -135,11 +135,6 @@ public class ViewCommand extends Command {
         Ui.showCompletedCredits();
     }
 
-
-    /**
-     * @param viewList
-     * @param module the module to be printed
-     */
     private void alignPreReqModules(StringBuilder viewList, Module module) {
         int lengthOfPreReqModulesColumn = 24;
         viewList.append(" ".repeat(Math.max(0,

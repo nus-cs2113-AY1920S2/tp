@@ -37,8 +37,8 @@ public class DeleteFromSemCommand extends DeleteCommand {
     }
 
     /**
-     * Look for the specific semester within SemesterList and delete selectedModule from it
-     * @param selectedModulesList
+     * Look for the specific semester within SemesterList and delete selectedModule from it.
+     * @param selectedModulesList List of semesters with selected modules
      * @throws RuntimeException when module is not found within SemesterList
      */
     private void deleteModule(SemesterList selectedModulesList) throws RuntimeException, InputException {
