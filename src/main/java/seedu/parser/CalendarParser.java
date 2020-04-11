@@ -8,10 +8,8 @@ public class CalendarParser {
     private static final int SEMESTER_AND_AY = 2;
     private static final int CHARACTERS_IN_SEMESTER = 3;
     private static final int CHARACTERS_IN_AY = 8;
-    private static final String INPUT_ERROR_MESSAGE = "Please provide the semester and the academic year in this format"
+    private static final String INPUT_ERROR_MESSAGE = "Please provide a valid semester and academic year in this format"
             + ": s/1 ay/19-20.\n    * Note that each academic year should be provided as double digits.";
-    private static final String INVALID_YEAR_FORMAT_MESSAGE = "Please provide a valid year in this format: ay/19-20";
-    private static final String INVALID_CHARACTER_MESSAGE = "Please provide an integer";
     private static final String INVALID_FLAG_MESSAGE = "Unknown flag. Only s/ and ay/ flags are recognizable.";
     private static final String INVALID_YEAR_NUMBER_FORMAT_MESSAGE = "Please provide consecutive years for ay, eg, ay/19-20";
 
@@ -32,7 +30,7 @@ public class CalendarParser {
         int calendarYear;
         for (String yr : academicYear) {
             if (yr.length() > 2 || yr.length() < 1) {
-                throw new PacException(INVALID_YEAR_FORMAT_MESSAGE);
+                throw new PacException(INPUT_ERROR_MESSAGE);
             }
         }
         try {
@@ -42,7 +40,7 @@ public class CalendarParser {
                 calendarYear = Integer.parseInt(academicYear[1]);
             }
         } catch (NumberFormatException e) {
-            throw new PacException(INVALID_CHARACTER_MESSAGE);
+            throw new PacException(INPUT_ERROR_MESSAGE);
         }
         return calendarYear;
     }
@@ -55,7 +53,7 @@ public class CalendarParser {
             try {
                 semester = Integer.parseInt(tokens[0].substring(2));
             } catch (NumberFormatException e) {
-                throw new PacException(INVALID_CHARACTER_MESSAGE);
+                throw new PacException(INPUT_ERROR_MESSAGE);
             }
         } else {
             throw new PacException(INVALID_FLAG_MESSAGE);
@@ -70,12 +68,12 @@ public class CalendarParser {
             String[] academicYear = tokens[1].substring(3).split("-");
             try {
                 if (academicYear.length != 2) {
-                    throw new PacException(INVALID_YEAR_FORMAT_MESSAGE);
+                    throw new PacException(INPUT_ERROR_MESSAGE);
                 } else if (Integer.parseInt(academicYear[1]) - Integer.parseInt(academicYear[0]) != 1) {
                     throw new PacException(INVALID_YEAR_NUMBER_FORMAT_MESSAGE);
                 }
             } catch (NumberFormatException e) {
-                throw new PacException(INVALID_YEAR_FORMAT_MESSAGE);
+                throw new PacException(INPUT_ERROR_MESSAGE);
             }
             calendarYear = parseAcademicYear(academicYear, semester);
         } else {

@@ -550,13 +550,18 @@ Format: `event add n/NAME [d/DATE t/TIME] [v/VENUE]`
 Examples: 
 
     >>> event add n/dinner with collegue
+    
     >>> event add n/World Cup d/2022-11-21 t/0000
+    
     >>> event add n/soccer match v/Kallang d/2020-01-23 t/1900
     
 Expected outcome:
 
+    Datetime is not set. If you wish to add datetime, please enter the correct format:yyyy-MM-dd HHmm
     New Event: dinner with collegue was added successfully to your Event list.
+    
     New Event: World Cup was added successfully to your Event list.
+    
     New Event: soccer match was added successfully to your Event list.
 
 #### 4.2.2. List Events
