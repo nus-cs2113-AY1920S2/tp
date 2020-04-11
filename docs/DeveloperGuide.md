@@ -496,7 +496,7 @@ meetings into account when scheduling a common timeslot timetable.
 ## Appendix C: Use Cases
 (For all use cases below, the **System** is WhenFree and the **Actor** is the ```user```, unless otherwise stated.)
 
-1. Use case: Show(more) timetable/s <br>
+###1. Use case: Show(more) timetable/s <br>
     MSS:<br>
     1) User wants to see the common timeslots together with 3 of his/her contacts to schedule a common meeting timeslot.<br>
     2) User keys in the command together with the index of the contacts.<br>
@@ -511,7 +511,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
     
     
-2. Use case: Add contacts <br>
+###2. Use case: Add contacts <br>
     MSS:<br>
     1) User has a group of team mates for a certain project.<br>
     2) User wants to add the timetable of his/her teammates to schedule a common time-slot.<br>
@@ -524,7 +524,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects invalid nusmods URL - System catches it and use case resumes from step 3.
     
     
-3. Use case: Delete contacts <br>
+###3. Use case: Delete contacts <br>
     MSS: <br>
     1) User wants to delete the members of a particular project since the project has finished.<br>
     2) User keys in the command together with the name of the contact.<br>
@@ -535,15 +535,15 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects an invalid name - System catches it and use case resumes from step 2.
     
     
-4. Use case: List contacts <br>
-    MSS:
+###4. Use case: List contacts <br>
+    MSS: <br>
     1) User wants to see the current list of saved contacts he/she has previously keyed.<br>
     2) User keys in the command without any additional parameters.<br>
     3) System lists the contact from the user's storage.<br>
     Use case ends
     
     
-5. Use case: Schedule meetings <br>
+###5. Use case: Schedule meetings <br>
     MSS:<br>
     1) User has a common time-slot chosen via our application and wants to schedule it into his/her timetable.<br>
     2) User keys in the command together with the start and end date, start and end time.<br>
@@ -557,7 +557,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
     
     
-6. Use case: Edit timetable slots <br>
+###6. Use case: Edit timetable slots <br>
     MSS:<br>
     1) User realised lecturer has cancelled a particular lecture time-slot and is free during that time.<br>
     2) User keys in the command, with the start/end date, start/end time that he/she is free.<br>
@@ -571,7 +571,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects that user did not specify if he/she wants to free or block the slot/s - System catches it and use case resume from step 2.
     
     
-7. Use case: List meetings <br>
+###7. Use case: List meetings <br>
     MSS: <br>
     1) User wants to see the current list of saved meetings he/she has previously keyed. <br>
     2) User keys in the command without any additional paramters.<br>
@@ -579,7 +579,7 @@ meetings into account when scheduling a common timeslot timetable.
     Use case ends
     
     
-8. Use case: Delete meetings <br>
+###8. Use case: Delete meetings <br>
     MSS:<br>
     1) User has an urgent stuff on a particular scheduled meeting slot and wish to delete the scheduled meeting in application.<br>
     2) User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.<br>
