@@ -16,6 +16,7 @@ public class Person {
      * @return user's total completed module credits.
      */
     public static int getTotalModuleCreditCompleted() {
+        assert totalModuleCreditCompleted >= 0 : "Invalid Total Module Credit";
         return totalModuleCreditCompleted;
     }
 

@@ -67,7 +67,8 @@ You can add a module to a semester or to the list of available modules.
 You can do so using the module code or the module name.
 The module to be added could be in the existing list of available modules or not.\
 If you add a module which is in the list of available modules, then when you input code or name, the output
-will show both code and name of this module.
+will show both code and name of this module.\
+You can add modules whose grades are `F` or `CU` to a specific semester again.
 
 ##### 3.2.2 Based on module code
 Format: `add id/[module code] s/[semester] mc/[credit]`
