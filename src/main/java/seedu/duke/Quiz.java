@@ -53,16 +53,21 @@ public class Quiz {
     public static void quizQuestion(Subject subject, int numToQuiz) throws EscException {
         HashSet<Card> set = new HashSet<>();
         CardList cards = subject.getCardList();
+        ScoreList scores = subject.getScoreList();
         if (cards.size() == 0) {
             throw new EscException("No questions for this subject.");
         }
-        ScoreList scores = subject.getScoreList();
+        int checkedNumToQuiz = checkNumber(numToQuiz, cards.size());
+        // To check that checkedNumToQuiz is less than the stored number of questions.
+        assert checkedNumToQuiz <= cards.size() : "number to quiz should be less than or equal to number of cards";
+
         int attempted = 0;
         double score = 0;
-        while (attempted < numToQuiz) {
+        while (attempted < checkedNumToQuiz) {
             try {
                 double obtainedScore = quizNext(cards, set);
                 if (obtainedScore == -1.0) {
+                    // Means that user has input an exitquiz command.
                     break;
                 }
                 score += obtainedScore;
@@ -76,6 +81,24 @@ public class Quiz {
         scores.add(percentageScore);
         System.out.println("Quiz Finished!");
         System.out.println("You Scored: " + percentageScore + "%");
+    }
+
+    /**
+     * Ensures that the number of questions to quiz is less than or equal to the number of stored questions.
+     * @param numToQuiz Number of questions that user requested to quiz.
+     * @param cardListSize Number of questions stored in the selected subject.
+     * @return Checked number to quiz.
+     */
+    public static int checkNumber(int numToQuiz, int cardListSize) {
+        if (numToQuiz > cardListSize) {
+            System.out.println("Insufficient stored questions for this subject.");
+            System.out.println("Setting number of questions to all stored questions: " + cardListSize + " question(s).");
+            return cardListSize;
+        } else if (numToQuiz == -1) {
+            return cardListSize;
+        } else {
+            return numToQuiz;
+        }
     }
 
     /**
@@ -99,7 +122,6 @@ public class Quiz {
         if (userAnswer.equals("exitquiz")) {
             return -1.0;
         }
-
         // To check that quiz terminates once user inputs the termination command.
         assert !userAnswer.equals("exitquiz") : "method should have terminated already";
 
