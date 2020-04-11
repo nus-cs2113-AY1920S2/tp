@@ -15,7 +15,7 @@
     3.1. [Using Pac](#31-using-pac)
 4. [Features](#4-features)  
 4.1. [Student List](#41-student)  
-4.1.1. [Add New Student List](#411-add-new-student-list-studentlist-add)        
+4.1.1. [Add New Student List](#411-add-new-student-list)        
 4.1.2. [View Student List](#412-view-all-existing-student-lists-from-the-student-list-collection)  
 4.1.3. [Clear Student List Collection](#413-clear-all-existing-student-lists-from-the-student-list-collections)   
 4.1.4. [Delete Student List](#414-clear-all-existing-student-lists-from-the-student-list-collection)  
@@ -31,15 +31,15 @@
 4.2.6. [Edit Event -venue](#426-edit-event-venue)  
 4.2.7. [Edit Event](#427-edit-event)    
 4.3. [Calendar](#43-calendar)  
-4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time--calendar-s2-ay19-20)   
+4.3.1 [View events in calendar format](#431-view-events-under-a-particular-time)   
 4.4 [Attendance List](#44-attendance)    
-4.4.1. [Add New Attendance](#441-add-students-attendance-to-event-attendance)    
+4.4.1. [Add New Attendance](#441-add-students-attendance-to-event)    
 4.4.2. [View Attendance List](#442-view-attendance-list)   
 4.4.3. [Clear Attendance List](#443-clear-attendance-list)  
 4.4.4. [Sort Attendance by name](#444-sort-attendance-list-by-name)  
 4.4.5. [Sort Attendance by status](#445-sort-attendance-list-by-status)  
-4.4.6. [Edit Attendance](#446-edit-attendance)    
-4.4.7. [Find Attendance](#447-find-attendance)  
+4.4.6. [Find Attendance](#446-find-attendance)  
+4.4.7. [Edit Attendance](#447-edit-attendance)    
 4.5. [Performance List](#45-performance-list)     
 4.5.1. [Add New Performance List](#451-add-performance-list)  
 4.5.2. [Delete Current Performance List](#452-delete-performance-list)   
@@ -650,7 +650,7 @@ Expected outcome:
 
 
 ### 4.3 Calendar 
-#### 4.3.1 View events under a particular time : `calendar s/2 ay/19-20`  
+#### 4.3.1 View events under a particular time
 View existing events under a particular semester and academic year in a calendar format.
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
@@ -683,7 +683,7 @@ Example:
 This section for attendance related commands is done in chronological order. Please follow the numbering to get
 a clearer understanding on how you can use the commands.
 
-#### 4.4.1 Add students’ attendance to event: attendance
+#### 4.4.1 Add students’ attendance to event
 
 Add a student’s attendance to the attendance list.  
 This is a step by step command and you may follow the instructions given by the console. 
@@ -802,7 +802,7 @@ The following will show a success example of *creating a new attendance list usi
     >>> done
     You have successfully added 3 to the attendance list.
     
-#### 4.4.2 View attendance list:
+#### 4.4.2 View attendance list
 
 View the attendance list under a certain event.  
 
@@ -835,7 +835,7 @@ The following occurs if there is no existing attendance list.
         >>> CS2113T Tutorial
         Attendance List is empty
     
-#### 4.4.3 Clear attendance list:
+#### 4.4.3 Clear attendance list
 
 Clear the attendance list under a certain event.  Attendance list is cleared regardless whether 
 the attendance list under the event is empty.
@@ -880,7 +880,7 @@ The following will show the message shown when clearing of an empty attendance l
     >>> CS1010 Tutorial
     Attendance List is already empty
             
-#### 4.4.4 Sort attendance list by name:
+#### 4.4.4 Sort attendance list by name
 
 Sort the attendance list by name in alphabetical order under a certain event.  
 
@@ -901,7 +901,7 @@ The following occurs if there is no existing attendance list.
       >>> name
       An empty list cannot be sorted
       
-#### 4.4.5 Sort attendance list by status:
+#### 4.4.5 Sort attendance list by status
 Sort the attendance list by attendance status under a certain event with student that are absent on the top.  
 
 Command:  `attendance sort`
@@ -976,7 +976,7 @@ The following occurs if there is no existing attendance list.
       | 3         |  John Doe                                          |  Present                     |
       |___________|____________________________________________________|______________________________|
       
-#### 4.4.6 Find attendance:
+#### 4.4.6 Find attendance
 Find a student's attendance under a certain event.
 
 Command: `attendance find`
@@ -1033,7 +1033,7 @@ The following occurs when the attendance list is empty.
     >>> CS1010 Tutorial
     The attendance list is currently empty. Please add attendance instead.
 
-#### 4.4.7 Edit attendance:
+#### 4.4.7 Edit attendance
 Edit a student's attendance under a certain event. 
 This allows the user to overwrite the student's name or status.
 
