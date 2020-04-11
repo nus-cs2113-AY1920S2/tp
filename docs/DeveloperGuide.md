@@ -21,28 +21,28 @@
 
 The Duke class is the main class of the product. It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes storage method where necessary.	
+* At shut down: Shuts down the components.	
 
 The product also contains the following components:
-* Model:
-  * Cards: Holds the data in the type of Card and relative operations
-  * Subjects: Holds the data in the type of Subject and relative operations
-  * Score: Holds the data in the type of Score and relative operations
-  * Event: Holds the data in the type of Event and relative operations
-* Logic:
-  * Commands: Deals with user input and communicate CLI to relative methods
-  * Parser: Convert CLI inputs into command keywords
-* Storage:
-  * Manages the data stored in the application.
-* UI:
+* Model
+  * Cards: Holds the data in the type of Card and relative operations.
+  * Subjects: Holds the data in the type of Subject and relative operations.
+  * Score: Holds the data in the type of Score and relative operations.
+  * Event: Holds the data in the type of Event and relative operations.
+* Logic
+  * Commands: Deals with user input and communicate CLI to relative methods.
+  * Parser: Convert CLI inputs into command keywords.
+* Storage
+  * Deals with data management of the data entered by the user.
+* UI
   * Deals with the input from the user and the output to the user.
-* Quiz:
+* Quiz
   * Deals with selection of quiz questions and update of scores.  
-* Exceptions: 
-  * Deals with illegal inputs
+* Exceptions
+  * Deals with illegal inputs.
 
 
-In these components, cards and subjects have similar structure. Both of them contains a Card/Subject class and CardList/SubjectList class.
+In these components, cards and subjects have similar structure. Both of them contain a Card/Subject class and a CardList/SubjectList class.
 Duke, along with all command class and Parser form the logic box of the product.
 <br />
 <p align="center">
@@ -50,10 +50,10 @@ Duke, along with all command class and Parser form the logic box of the product.
   <br />Figure 2. Class diagram of Logic Component  
 </p>
 
-The flow of the logic component is as follows:
-1) Duke uses the Parser class to parse the command
-2) The corresponding Command object is created and passed to Duke
-3) The Command object is then executed by Duke  
+The flow of the Logic component is as follows:
+1) Duke uses the Parser class to parse the command.
+2) The corresponding Command object is created and passed to Duke.
+3) The Command object is then executed by Duke.
 <br />
 <p align="center">
   <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>
@@ -70,7 +70,7 @@ The flow of the logic component is as follows:
 - The Card class contains both a question and an answer to the question.  
 <br />
 <p align="center">
-  <img src="images/modeluml.jpeg" width="600" alt="Model class Diagram"/>
+  <img src="images/modeluml.png" width="600" alt="Model Class Diagram"/>
   <br />Figure 4. Class diagram of Model Component  
 </p>
 
