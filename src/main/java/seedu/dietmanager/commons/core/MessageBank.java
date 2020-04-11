@@ -187,7 +187,7 @@ public class MessageBank {
                     + "  Exit the application                          |\n"
                     + "|____________________________________________________________|"
                     + "________________________________________________|\n"
-                    + "Syntax Guidelines:"
+                    + "Syntax Guidelines:\n"
                     + "DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)\n"
                     + "Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial\n"
                     + "\nPlease key in your command:\n";

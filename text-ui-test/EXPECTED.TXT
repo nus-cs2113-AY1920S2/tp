@@ -34,6 +34,10 @@ Welcome to Diet Manager! How may I assist you today?
 |   help                                                     |  Show this function help table                 |
 |   exit                                                     |  Exit the application                          |
 |____________________________________________________________|________________________________________________|
+Syntax Guidelines:
+DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)
+Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial
+
 Please key in your command:
 Please create a profile before using this command. Enter:
 set-profile {name} {age} {gender} {height} {weight} {weight goal}
