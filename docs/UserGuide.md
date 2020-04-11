@@ -656,7 +656,7 @@ from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#
           
   **Example:**
       
-    edit appt S1234567F 1 /d 12/02/2020
+    edit appt S1234567F 1 /d12/02/2020
  
 > ***Expected output:***
 >
