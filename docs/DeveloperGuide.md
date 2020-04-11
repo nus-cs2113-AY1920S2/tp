@@ -8,7 +8,7 @@
 <br />2.5. [Save/Load Feature](#25-saveload-feature)
 3.  [Appendices](#3-appendices)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
-- [Appendix B: User Stories](#appendix-b--user-stories)
+- [Appendix B: User Stories](#appendix-b-user-stories)
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
 - [Appendix D: Instructions for Manual Testing](#appendix-d-instructions-for-manual-testing)
 
