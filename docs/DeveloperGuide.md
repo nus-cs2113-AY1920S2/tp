@@ -274,7 +274,7 @@ The `add appt` will add the appointments into the appointment list.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td><p>The implementation of all the add commands in HappyPills utilises <code>similar implementation</code> 
+   <td><p>The implementation of all the add commands in HappyPills utilises <b>similar implementation</b> 
    with minor difference in the usage of tags when parsing the command.</p>
    The following section will elaborate more on the <code>add appt</code> command behaves which can be generalise to other 
    add commands.
@@ -363,7 +363,7 @@ The `list appt` will list all the existing appointments in the appointment list.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the list commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the list commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>list appt</code> command which can be generalise to other 
    list commands.
    </td>
@@ -432,7 +432,7 @@ The `find appt` will find all the appointments that the patient with the specifi
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the find/get commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the find/get commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>find pr NRIC INDEX</code> command which can be generalise 
    to other find/get commands.
    </td>
@@ -479,7 +479,7 @@ The edit commands used in HappyPills are listed as follows:
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Users can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>.</td>
+   <td> Users can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>.</td>
  </tr>
 </table>
 
@@ -494,7 +494,7 @@ The `edit appt` will edit a single field in the Appointment object with the give
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the edit commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the edit commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>edit pr NRIC INDEX</code> command which can be generalise 
    to other edit commands.
    </td>
@@ -597,7 +597,7 @@ The `delete appt` will delete a Appointment object with the given NRIC and apptI
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The implementation of all the delete commands in HappyPills utilises <code>similar method</code>. 
+   <td>The implementation of all the delete commands in HappyPills utilises <b>similar method</b>. 
    The following section will elaborate more on the <code>delete pr NRIC INDEX</code> command which can be generalise 
    to other delete commands.
    </td>
@@ -1416,8 +1416,6 @@ Given below are instructions to test the application manually.
     
     5. **Test case:** `find patient S987G`
     Expected: An error message will be shown indicating invalid NRIC.  
-  
-
 
 ## Useful links:
 * [User Guide](UserGuide.md)
