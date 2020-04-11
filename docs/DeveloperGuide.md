@@ -59,22 +59,38 @@ Verifying Setup
 
 ### 2.1. Architecture
 ![Architecture Diagram](images/architecture.png)<br>
+######Fig 1. Architecture diagram of the WhenFree application
 
-The architecture diagram above shows an overview of the high-level design of WhenFree. Meeting Organizer
+The architecture diagram above shows the high-level design of WhenFree. WhenFree
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
 Here is a quick overview of each layer and the components residing in it.
-* UI: The CLI user interface of the application.
+* UI: The Command Line user interface of the application.
 * Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that can't be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
 * Model: Holds the data of the application in memory which is easily accessible by any methods that requires it.
 * Storage: Writes data from Model layer to hard disk, as well as reading previously saved data from hard disk and storing it into Model layer.
 
 ### 2.2. UI component
-[Structure of UI layer]
+The UI component represents the Command Line user interface of the application. It serves the purpose of facilitating the 
+usage of the application and providing information requested by the user.
 
-The UI consists of....
+The UI component consists of the `TextUI` class. `TextUI` is called by 2 classes, `WhenFree` and `CommandHandler` to display
+messages in the user's console using the Java method ```System.out.println```. 
+
+`TextUI` is called by the main class `WhenFree` which runs the application, to display the welcome message, menu message and exit message. 
+These messages enhances the usability rather than the functionality of the application.
+
+`TextUI` is called by the `CommandHandler` class which interprets user input and initializes the execution of commands, to display 
+messages that indicate to the user the successful execution of a command. Importantly, these messages include requested information by commands 
+such as [List all contacts](#32-list-all-contacts), [List all scheduled meetings](#38-list-all-scheduled-meetings) and [Display timetable of selected commands](#33-display-timetable-of-selected-contacts),
+which are key to the functionality of the application. The implementation of these 3 features whose functionality involves the `TextUI` class 
+are described in Section 3 below.
+
+Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` to display error messages when exceptions are caught.
+
 ### 2.3. Logic component
 ![Logic Component](images/logiccomponent.png)<br>
+######Fig 2. Overview of Logic component
 
 The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
 First, ```command``` sub-component would be initialize to interpret the user commands. 
@@ -82,7 +98,7 @@ Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` s
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
-### 2.3.1. Logic.modulelogic component
+### 2.3.1. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
@@ -93,11 +109,11 @@ The modulelogic component consists of 4 classes: ```TimetableParser```, ```Modul
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
-**Design of Logic.modulelogic component**
  
 ![logic.modulelogic Component](images/modulelogic.png)<br>
+######Fig 3. Class diagram of the logic.modulelogic component
 
-The above figure shows the interaction between the 4 classes in ```Logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
+The above figure shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
 1. ```ModuleApiParser``` controls the API fetching logic and instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server via ```parse()```
 2. ```ModuleApiParser ``` is called by ```ModuleHandler``` every time a new module is requested.
 4. Subsequently, ```ModuleHandler``` would clean the data and filter out any blacklisted modules provided by ```ModuleApiParser```, and stores the information into an ```ArrayList<ArrayList<String>>``` data structure to be used by ```LessonsGenerator```.
@@ -107,25 +123,38 @@ the information in a ```Map<String, ArrayList<String>>``` data structure as seen
 4. This sub-component also depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 
 ![logic.modulelogic Component](images/LessonsGenerator.jpg)<br>
+######Fig 4. Sequence diagram of the logic.modulelogic component
 
-The above figure shows a full overview of the UML sequence of the entire Logic.modulelogic component.<br>
+The above figure shows a full overview of the UML sequence of the entire logic.modulelogic component.<br>
 
 ```LessonsGenerator``` collates the returned data structure from both ```ModuleHandler``` and ```TimetableParser```, calling```.lessonsChecker()``` simultaneously to create a set of information containing the start-time, end-time, day, weeks of the modules that a user is taking.
  
 The information returned from ```LessonsGenerator``` would then be used in ```Command``` component.
  
-### 2.3.2. Logic.schedulelogic component
+### 2.3.2. logic.schedulelogic component
 
-The ```schedulelogic``` component finds common time slots from team members' schedules.
-The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
+The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
+The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#Display-timetable-of-selected-contacts) 
+feature to obtain a combined schedule of selected ```Contact```s.
 
-1. ```ScheduleHandler``` retrieves the schedule of ```Contact```s to generate a combined schedule.
+The ```schedulelogic``` component consists of the class ```ScheduleHandler```. The key interactions of `ScheduleHandler ` 
+with 2 classes, ```CommandHandler``` and ```Contact```, are explained in the class 
+diagram and description below.
 
-**Design of Logic.schedulelogic component**
- 
-![logic.schedulelogic Component](images/schedulelogic.png)<br>
+![logic.schedulelogic Component](images/schedulelogic.png)
+######Fig 4. Class diagram of the logic.schedulelogic component
 
-### 2.3.4. Logic.commands component
+A `ScheduleHandler` object created by the `CommandHandler` class is passed an ArrayList of `Contact`s.
+
+The `ScheduleHandler` object retrieves the schedule of each `Contact` using `Contact#getSchedule`, and uses the retrieved 
+schedule to fill up its private class variable, combinedSchedule. `CommandHandler` can retrieve the combined schedule generated 
+by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule`.
+
+[Section 3.3](#Display-timetable-of-selected-contacts) below explains in detail how the ```schedulelogic``` component is used in the 
+implementation of the [`Display timetable of selected contacts`](#33-display-timetable-of-selected-contacts) feature.
+<br>
+
+### 2.3.4. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
 The ```commands``` consists of the class ```CommandHandler```.
 
@@ -158,6 +187,7 @@ The ```contacts``` component of our application consists of 2 classes: ```Contac
 ### 2.5. Storage component
 
 ![storage component class structure](images/storage_class_diagram.png)
+######Fig 5. Class diagram of the storage component
 
 Above image shows the structure of Storage. It is created by WhenFree class to handle the loading and saving of scheduled meetings and member schedules.
 
@@ -176,9 +206,11 @@ This section describes some noteworthy details of how the main features of our a
 There are 6 main features: add new contact, list all contacts, display combined timetable of selected contacts, schedule a new meeting, delete a scheduled meeting, list all scheduled meetings.
 ### 3.1 Add new contact
 ![Add Contact](images/AddContact.png)<br>
-The figure above shows the sequence diagram of the ```addContact``` command.
+######Fig 6. Sequence diagram of the implementation of the `Add new contact` feature
 
-Given below is an example usage scenario and how the ```add contact``` command behaves.
+The figure above shows the sequence diagram of the `Add new contact` feature.
+
+Given below is an example usage scenario and how the `Add new contact` feature behaves.
 
 1. The user running the application invokes the ```LogicManager``` by typing ```name nusmodslink```, followed by kbd:[enter] key.
 2. ```LogicManager```would then request for a new contact by calling ```CommandHandler```.
@@ -214,6 +246,7 @@ blacklisted modules every semester. <br>
 * Ultimately we decided to go with **Alternative 1** since it is the most user-friendly as our targeted users do not have to download another file and just downloading the jar would do. On the developer side, updates would still be required every semester, but our focus is to make the application as user-centric as possible.
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
+######Fig 7. Sequence diagram of the implementation of the `List all contacts` feature
 
 The figure above shows the sequence diagram of listing all contacts saved in the application. 
 It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
@@ -228,6 +261,7 @@ Given below is an example usage and how the```ListContact``` command behaves.
 
 ### 3.3 Display timetable of selected contacts
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
+######Fig 7. Sequence diagram of the implementation of the `Display timetable of selected contacts` feature
 
 The figure above shows the sequence diagram of displaying a combined timetable of selected contacts. 
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
@@ -252,6 +286,7 @@ combined schedule.
 
 ### 3.4 Schedule a new meeting
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
+######Fig 8. Sequence diagram of the implementation of the `Schedule a new meeting` feature
 
 The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
@@ -272,6 +307,7 @@ Given below is an example usage and how the `ScheduleMeeting` command behaves.
 
 ### 3.5 Edit a contact's timetable
 ![EditContact](images/EditContact.png)<br>
+######Fig 9. Sequence diagram of the implementation of the `Edit a contact's timetable` feature
 
 The figure above shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
 It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
@@ -321,9 +357,10 @@ which there is a dedicated feature implemented. This causes unnecessary overhead
 whereas Alternative 2 requires the removal of ```Meeting``` from ```MeetingList```.<br><br>
 
 ![EditContact](images/EditContact_checkvalid.png)<br>
+######Fig 10. Sequence diagram of checking if an edit is valid in the `Edit a contact's timetable` feature
 
-The figure above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
-edit is done before editSchedule() of `Contact` is called. (Fig. 1)
+Fig 10. above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
+edit is done before editSchedule() of `Contact` is called, as shown in Fig 9. 
 1. This path is optional, and is only implemented if `Contact` the main user.
 2. `CommandHandler` calls isValidEdit(time slot) of the `Contact` class.
 
@@ -339,6 +376,7 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
     
 ### 3.6 Delete a scheduled meeting
 ![DeleteMeeting](images/DeleteMeeting_seq.png)
+######Fig 11. Sequence diagram of the implementation of the `Delete a scheduled meeting` feature
 
 The figure above shows the sequence diagram of the ```DeleteMeeting``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
@@ -352,6 +390,7 @@ Given below is an example usage scenario and how the ```DeleteMeeting``` command
 
 ### 3.7 Delete a contact
 ![DeleteContact](images/DeleteContact_seq.png)
+######Fig 11. Sequence diagram of the implementation of the `Delete a contact` feature
 
 The figure above shows the sequence diagram of the ```DeleteContact``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
@@ -366,6 +405,7 @@ Given below is an example usage scenario and how the ```DeleteContact``` command
 
 ### 3.8 List all scheduled meetings
 ![ListMeetings](images/ListMeetings_seq.png)
+######Fig 12. Sequence diagram of the implementation of the `List all scheduled meetings` feature
 
 The figure above shows the sequence diagram of the ```ListMeetings``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
