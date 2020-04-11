@@ -44,9 +44,9 @@ The following part of the User Guide will explain the features of WhenFree in de
 - [List all contacts](#list-all-contacts-contacts)
 - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
 - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
+- [List all meetings](#list-all-meetings-meetings)
 - [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
 - [Delete an item](#delete-an-item-delete)
-- [List all meetings](#list-all-meetings-meetings)
 - [Exit application](#exit-the-application-exit)
 
 <br/>
@@ -155,7 +155,7 @@ Example of usage:
     
 Example output:
 
-![timetable 0 1](images/timetable_0_1_op).png)
+![timetable 0 1](images/timetable_0_1_op.png)
 
 <br/>
 
@@ -171,7 +171,7 @@ Example of usage:
     
 Example output:
 
-![more](images/more_command_op).png)
+![more](images/more_command_op.png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -212,6 +212,25 @@ Example output:
 ![schedule meeting 11 17:00 11 19:00](images/schedule_meeting_11_1700_11_1900_op.png)
 
 <br/>
+
+[&#8593; Return to list of Features](#features)
+
+<br/>
+### List all meetings: `meetings`
+List all scheduled meetings stored in program.
+* This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
+
+Format: 
+    
+    meetings
+
+Example of usage: 
+
+    meetings
+    
+Example output:
+
+![meetings](images/meetings_op.png)
 
 [&#8593; Return to list of Features](#features)
 
@@ -304,26 +323,6 @@ Example of usage:
 Example output:
 
 ![delete Tommy](images/delete_Tommy_op.png)
-
-[&#8593; Return to list of Features](#features)
-
-<br/>
-
-### List all meetings: `meetings`
-List all scheduled meetings stored in program.
-* This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
-
-Format: 
-    
-    meetings
-
-Example of usage: 
-
-    meetings
-    
-Example output:
-
-![meetings](images/meetings_op.png)
 
 [&#8593; Return to list of Features](#features)
 
