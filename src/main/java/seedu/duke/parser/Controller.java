@@ -314,11 +314,11 @@ public class Controller {
         if (args.contains("id/")) {
             String moduleId = moduleWords[0].replace("id/", "").toUpperCase().trim();
             String semester = moduleWords[1].trim();
-            return new DeleteFromSemCommand(moduleId, semester, "id");
+            return new DeleteFromSemCommand(moduleId, semester);
         } else if (args.contains("n/")) {
             String moduleName = moduleWords[0].replace("n/", "");
             String semester = moduleWords[1].trim();
-            return new DeleteFromSemCommand(moduleName, semester, "name");
+            return new DeleteFromSemCommand(moduleName, semester);
         }
         throw new InputException("invalid 'delete' command to delete from Selected Modules",
                 "delete id/ID s/SEM OR delete n/NAME s/SEM");

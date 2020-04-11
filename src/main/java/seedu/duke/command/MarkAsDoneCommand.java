@@ -28,17 +28,26 @@ public class MarkAsDoneCommand extends Command {
 
     @Override
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList)
-            throws RuntimeException, StorageException, InputException {
+            throws RuntimeException, InputException, StorageException {
         markAsDoneCommand(semesterList);
         Ui.showDoneMessage();
         super.execute(semesterList, availableModulesList);
     }
 
+    /** Find selected module in sem and assign module with a grade.
+     * Increase user's number of completed module credit if the grade assigned to module is not F or CU.
+     * @param semesterList Semester List containing Semester Module Lists, which contains selected modules
+     * @throws RuntimeException throws except if module not found in semester
+     */
     private void markAsDoneCommand(SemesterList semesterList) throws RuntimeException {
         for (SemModulesList sem: semesterList) {
             for (SelectedModule module: sem) {
-                if (module.getName().equals(description) || module.getId().equals(description)) {
-                    if (grade != Grading.F && grade != Grading.CU && !module.getDone()) {
+                boolean isModuleName = module.getName().equalsIgnoreCase(description);
+                boolean isModuleId = module.getId().equalsIgnoreCase(description);
+                if (isModuleName || isModuleId) {
+                    boolean isNotGradeF = (grade != Grading.F);
+                    boolean isNotGradeCU = (grade != Grading.CU);
+                    if (isNotGradeF && isNotGradeCU && !module.getDone()) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
                     module.setAsDone(grade);

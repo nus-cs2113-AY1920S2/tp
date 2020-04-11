@@ -26,6 +26,8 @@ public class CalculateCapCommand extends Command {
 
     /** Calculate User's current Cumulative Average Point (CAP).
      * @param semesterList All modules selected by user
+     * @throws RuntimeException if user has no module credit
+     * @throws RuntimeException if cap is not within 0 to 5
      */
     public void calculateCap(SemesterList semesterList) throws RuntimeException {
         double totalGradePoint = 0;
