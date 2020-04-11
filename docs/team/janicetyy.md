@@ -80,13 +80,10 @@ This section shows a summary of my coding, documentation, and other helpful cont
 [Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
 [Appointment Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Appointment.md)
 
-I have also broken down the user guide into smaller sections for the ease of viewing the various
-section.
-
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
-[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#35-storage-component)   
-[Section 4.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-appointment-scheduling-feature)  
+[Section 3](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#35-storage-component)    
 [Storage](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-storage)   
+[Appendix E.3](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#E4-Appointment-Scheduling-Commands)
