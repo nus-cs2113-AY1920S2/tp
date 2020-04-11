@@ -36,6 +36,9 @@ public class EditPerformanceList extends Command {
 
     @Override
     public void execute() throws PacException {
+        if (performanceList.isEmpty()) {
+            throw new PacException("No performance list under this event.");
+        }
         editPerformance();
     }
 }

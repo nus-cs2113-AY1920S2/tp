@@ -11,7 +11,8 @@ public class CalendarParser {
     private static final String INPUT_ERROR_MESSAGE = "Please provide a valid semester and academic year in this format"
             + ": s/1 ay/19-20.\n    * Note that each academic year should be provided as double digits.";
     private static final String INVALID_FLAG_MESSAGE = "Unknown flag. Only s/ and ay/ flags are recognizable.";
-    private static final String INVALID_YEAR_NUMBER_FORMAT_MESSAGE = "Please provide consecutive years for ay, eg, ay/19-20";
+    private static final String INVALID_YEAR_NUMBER_FORMAT_MESSAGE = "Please provide consecutive years for ay, eg, "
+            + "ay/19-20";
 
 
     public CalendarParser() {
