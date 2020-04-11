@@ -83,10 +83,10 @@ _Fig 2.1. Architecture diagram of the Jikan program_
 The high-level class diagram describes the structure of the components
 
 ![image_info](./pictures/Simplified_Class_Diagram.png)
-_Fig 2.1. Class diagram of the Jikan program_
+_Fig 2.2. Class diagram of the Jikan program_
 
 ![image_info](./pictures/Commands.png)
-_Fig 2.2. Commands of Jikan (private methods omitted)_
+_Fig 2.3. Commands of Jikan (private methods omitted)_
 
 All the commands inherit from the abstract `Command` class. Each command has a protected `parameters` attribute from it's Parent class `command` and an overridden method `executeCommand` which is called in `main` to execute the relevant command. 
 
@@ -193,7 +193,7 @@ undesirable.
 Jikan provides a `clean` command where users can automate the cleaning of done activities (i.e activities with duration > allocation) and logging data
 at application startup.
 
-![StartCD](./pictures/CleanCD.png)
+![CleanCD](./pictures/CleanCD.png)
 
 With Jikan as the main entry for our application,
 
@@ -343,27 +343,30 @@ The order of method calls to edit the activity details is as follows if the spec
 #### 3.5.2 Additional Implementations
 The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
-This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
+This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. Additionally, there may be more updates required if the tags were to be edited due to the tag goals feature.
+
+The flowchart below shows the flow of activities if the feature of editing tags were to be implemented.
+![image_info](./pictures/EditTagFlowChart.png)
 
 #### 3.5.3 Design Considerations
 ##### Current Design
 The user is able to edit only the name and allocated time of the activity, which are user input data.     
 
-Pros:
+**Pros:**
 * The user is able to correct any mistake made during the recording of the activity.
 * The user is able to adjust their allocated time for the activity based on their needs.
 * Ensures that the record of activities is accurate and consistent in order for more efficient analysis of the time spent.
 
-Cons: 
+**Cons:** 
 * The user is only able to edit 2 parameters of the activity, which may be restrictive for them.  
 
 ##### Possible Design
 The user is able to edit any parameters of the activity, including tags, start and end date/time. 
  
-Pros:
+**Pros:**
 * The user has more flexibility in modifying the record of activities based on their needs.
 
-Cons:  
+**Cons:**  
 * By allowing the user to edit the date and time, there may be potential inaccuracies in the record of activities, defeating the purpose of the time tracking program. 
 * By allowing the user to edit the tags, the tag goals command may become more complicated due to the need to keep track of the presence of the tags.
 
@@ -450,8 +453,6 @@ This entails:
     (chaining `list`, `find`, and `filter` commands).
 
 
-  
-
 #### 3.8.2a Current Implementation for Find
 * This feature is called by the user when the `find` command is entered into the command line. 
 The string following the command are the parameters:
@@ -466,20 +467,8 @@ The string following the command are the parameters:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-#### 3.7.3 Sequence Diagram
-The following illustrates the execution sequence of a general use case. Due to the similarities between `find` and 
-`filter` sequences, the sequence diagram of `filter` is omitted.
 
-![image_info](./pictures/Find_Sequence_Diagram.png)
-*Sequence Diagram for Find Command*
-
-![image_info](./pictures/Find_Reference_Frame.PNG)
-*Reference frame for populating last shown list*
-
-### 3.9 Filter Feature
-This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
-
-#### 3.9.1 Current Implementation
+#### 3.8.2b Current Implementation
 * This feature is called by the user when the `filter` command is entered into the command line. The space separated strings following the command are the keywords to match activity tags with.
 * The Parser will create a FilterCommand object.
 * The FindCommand will invoke its own `executeCommand()` method.
@@ -491,21 +480,34 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
+#### 3.8.3 Sequence Diagram
+The following illustrates the execution sequence of a general use case. 
 
-#### 3.7.4 Additional features
+Note: Due to the sequence similarities between `find` and 
+      `filter`, the sequence diagram for `filter` is omitted.
+
+![image_info](./pictures/Find_Sequence_Diagram.png)
+*Sequence Diagram for Find Command*
+
+![image_info](./pictures/Find_Reference_Frame.PNG)
+*Reference frame for populating last shown list*
+
+
+#### 3.8.4 Additional features
 `find` and `filter` command supports the limiting of searches to activities in the last shown list. This
 is done in 2 ways:
 * The `-s` flag following the command (eg. `find -s keyword`)
 * The `;` delimiter for a combination of `find` and `filter` in a single input (eg. `find KEYWORD ; filter TAGNAME`)
 
- 
+ ![Chaining_Activity_Diagram](./pictures/Chaining_Activity_Diagram.png)
+ *Activity Diagram for Additional Features*
 
-### 3.10 Graph Feature
+### 3.9 Graph Feature
 This feature gives the user a visual representation of their activity duration and activity goals.  
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
-#### 3.10.1 Current Implementation
-![graph seq diagram](./pictures/graph.png)
+#### 3.9.1 Current Implementation
+![graph seq diagram](./pictures/graph_seqDiag.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
 * The Parser will create a GraphCommand object.
 * The GraphCommand will invoke its own `executeCommand()` method.  
@@ -529,7 +531,7 @@ This displays a bar graph of the durations of each activity in the `lastShownLis
 * `graphDuration` calls `printActivityGraph` of the Ui class and passes the `interval` parameter, which is how many minutes each point in the graph represents.
 
 
-#### 3.10.2 Additional features
+#### 3.9.2 Additional features
 As graph gets it's data based on the `lastShownList`, users can pair the `graph` command with `find`, `filter`, and `list` to sieve out the activities to be graphed.
 
 

@@ -185,9 +185,9 @@ By using `find` and `filter` commands, the user can reduce clutter and zoom-in t
 * `filter TAGNAME`
 * `filter TAGNAME1 TAGNAME2`
 
-### Chaining Lists, Finds & Filters: `-s`
-**Usage:** Users can provide the `find` and `filter` command on the last shown list by providing the `-s` flag after each
-`find` or `filter` command.
+### Chaining Finds & Filters: `-s`
+**Usage:** Users can provide the `find` and `filter` command on the last shown list (also compatible after a `list` 
+command) by providing the `-s` flag after each `find` or `filter` command.
 
 **Format:** 
 * `find -s KEYWORD`
@@ -200,6 +200,15 @@ If we want to find all CS2106 tutorials, we can first use `filter 2106` to filte
 
 ![chain graph activities](./pictures/filter-find_chain.PNG)
 
+#### Single Input Chaining: `;`
+**Usage:** Users can achieve the same outcome as multiple `-s` chaining with a single input. This is done by separating
+`find` and `filter` commands with ` ; `.
+
+**Examples:**
+* `filter TAGNAME ; find KEYWORD1 ; find KEYWORD2`
+* `filter -s TAGNAME ; find KEYWORD1 ; find KEYWORD2`
+
+Note: `-s` is only relevant in the first command of the entire input string, as subsequent commands are automatically chained.
 
 ## Graphs
 By using the following commands, users can get a visual representation of the time spent on each activity and their current progress. 
@@ -243,7 +252,7 @@ As tags can be used to group activities of a similar nature together (i.e. same 
 **Example:**    
 `graph tags 1` 
 
-### Activity targets graph: `graph allocations`
+### Activity allocation graph: `graph allocations`
 **Usage:** View the progress of activities to see how much time was spent on the activity relative to the allocated time.
 
 Note: Only activities with an `ALLOCATED_TIME` will be shown.
@@ -377,13 +386,13 @@ to users who are running this application on systems with limited hardware (smal
 * Stop an activity: `end`
 * Continue an activity: `continue ACTIVITY_NAME`
 * List all activities: `list`
-    * List today's activities: `list day` or `list daily`
+    * List today's activities: `list day` or `list daily` or `list today`
+    * List yesterday's activities: `list yesterday`
     * List this week's activities: `list week` or `list weekly`
         * List a specific week's activities by day: `list week DATE` or `list weekly DATE`, 
         where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
     * List this month's activities: `list month` or `list monthly`
-        * List a specific month's activities by day: `list month DATE` or `list monthly DATE`, 
-        where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
+        * List a specific month's activities by day: `list month MONTH_NAME` where `MONTH_NAME` must be spelled out in full
     * List a specific day's activities: `list DATE`, where `DATE` is in either `yyyy-MM-dd` or `dd/MM/yyyy` format
     * List activities within a time frame: `list DATE1 DATE2`, where both `DATE1` and `DATE2` are 
     in either `yyyy-MM-dd` or `dd/MM/yyyy` format
