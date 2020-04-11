@@ -541,7 +541,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User types in the command "more".<br>
     * System generates two timetable side by side, each representing this week and next week's timetable.<br>
     * Use case ends.<br>
-    Extension:
+    Extension:<br>
     * System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
     * System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
     
@@ -552,7 +552,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User wants to add the timetable of his/her teammates to schedule a common time-slot.<br>
     * User keys in the member's name and timetables into application .<br>
     * System adds the nusmods timetable of team members.<br>
-    * Use case ends.
+    * Use case ends.<br>
     Extensions:<br>
     * System detects invalid name containing all numbers - System catches it and use case resumes from step 3.
     * System detects invalid nusmods URL - System catches it and use case resumes from step 3.
@@ -594,7 +594,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User realised lecturer has cancelled a particular lecture time-slot and is free during that time.<br>
     * User keys in the command, with the start/end date, start/end time that he/she is free.<br>
     * System free up the timetable slots.<br>
-    * Use case ends.
+    * Use case ends.<br>
     Extensions:<br>
     * System detects start date later than end date - System catches it and use case resumes from step 2.
     * System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
@@ -615,7 +615,7 @@ meetings into account when scheduling a common timeslot timetable.
     * User has an urgent stuff on a particular scheduled meeting slot and wish to delete the scheduled meeting in application.<br>
     * User keys in the command together with the index of the meeting. Index is gotten by listing the meetings.<br>
     * System deletes the meeting and reflects it in user's timetable.<br>
-    * Use case ends.
+    * Use case ends.<br>
     Extensions:<br>
     * System detects an invalid index - System catches it and use case resumes from step 2.
 
