@@ -170,28 +170,28 @@ down into nine main features: `Data Structure`, `Add Details Feature`, `List Fea
 
 The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
 
->`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
->`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
->`PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
->`PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
->`PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
->`PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
->`AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
->`AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
->`AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
+- `PatientMap#add(Patient patient)` — Adds the patient object into the patient list using the patient’s Nric as key.  
+- `PatientMap#remove(String nric)` — Removes the patient object from the existing patient list.  
+- `PatientMap#get(String nric)` — Get the patient object resides in the existing patient list. 
+- `PatientRecordMap#add(Patient patient)` — Adds the patient's record object into the patient's record list using the patient’s Nric as key.  
+- `PatientRecordMap#remove(String nric)` — Removes the patient's record object from the existing patient's record list.  
+- `PatientRecordMap#get(String nric)` — Get the patient's record object resides in the existing patient's record list.
+- `AppointmentMap#add(Patient patient)` — Adds the appointment object into the appointment list using the patient’s Nric as key.  
+- `AppointmentMap#remove(String nric)` — Removes the appointment object from the existing appointment list.  
+- `AppointmentMap#get(String nric)` — Get the appointment object resides in the existing appointment list.  
     
 **Design Considerations** 
 
 *Aspect: Data Structure of the Patient List* 
 
-- Alternative 1 (current choice): Hash Map
+- **Alternative 1 (current choice): Hash Map**
   * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
   * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
- - Alternative 2: Array List
-   * Pros: This would be easier to implement and retrieve the information.
-   * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-           This would cause the deletion to be very slow when there is a large number of patients in the list.
+- Alternative 2: Array List
+  * Pros: This would be easier to implement and retrieve the information.
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+          This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
 ### 4.2. Add Features
@@ -284,16 +284,38 @@ subsequently call the `AddAppointmentCommand#execute()` method.
 
 ### 4.3 List Features 
 
-The user is able to get a list of all the appointments currently in the program.
-The command: 
-    
-    list appt
-    
-will list all the appointments in the `AppointmentMap`. 
+The list features implemented in HappyPills allow users to view a list of **_patients_, _patient's records_** and 
+**_appointments_**. 
 
+The list commands used in HappyPills are listed as follows: 
+    
+    1. list patient
+    2. list pr NRIC
+    3. list appt
+
+The `list patient` will list all the existing patients in the patient list.  
+The `list pr NRIC` will list all the existing patient records for a particular searched patient (identified by the NRIC).    
+The `list appt` will list all the existing appointments in the appointment list.  
+        
 **Implementation** 
 
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the list commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>list appt</code> command which can be generalise to other 
+   list commands.
+   </td>
+ </tr>
+</table>
+
 The `ListAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class.
+
+The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
+
+![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png "list sequence diagram")
 
 The following steps below is an example of how the `ListAppointmentCommand` class behaves: 
 
@@ -306,75 +328,70 @@ user input. Upon checking that it is an Appointment-related command, `Parser` th
 
 4. The `ListAppointmentCommand#execute()` method will check if there are any appointments in the program. 
 
-5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap.getAppointments()` 
+5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap#getAppointments()` 
 and displays all the appointments. Otherwise, the user will receive a message saying that the there is no appointments in the list. 
-
-The following sequence diagram summarises how the `ListAppointmentCommand` operation works: 
-
-![List Appointment Sequence Diagram](images/DG/ListAppointmentSequenceDiagram.png)
 
 #### 4.3.1. List Patients
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+_Aspect: Information needed to be displayed_
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
+- Alternative 1 **(current choice)**: Display only NRIC and NAME of the patient
+  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
+  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+- Alternative 2: Array List
+  * Pros: This would be easier to implement and retrieve the information.
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+          This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
 #### 4.3.2 List Patient's Records
 
-**Design Considerations**
 
-##### Aspect: Prompt handling method
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 #### 4.3.3 List Appointments 
 
-**Design Considerations**
 
-##### Aspect: Prompt handling method
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 ### 4.4. Find/Get Feature
 
-The user is able to find all the appointments a specific patient has.
-The command: 
+The find/get features implemented in HappyPills allow users to view detailed information of **_patient's particulars_, 
+_a specified patient record_** and **_appointment for a particular patient_**. 
+
+The find/get commands used in HappyPills are listed as follows: 
     
-    find appt S7777777Z
-    
-will list all the appointments that the patient with NRIC S7777777Z has. 
+    1. get patient NRIC
+    2. find pr NRIC INDEX
+    3. find appt NRIC
+
+The `get patient NRIC` will retrieve all basic information related to the searched patient.
+The `find pr NRIC INDEX` will display detailed information of a particular patient record identified by the NRIC and INDEX.
+The `find appt NRIC` will find all the appointments that the patient with the specified NRIC has.
 
 **Implementation**
 
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the find/get commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>find appt NRIC</code> command which can be generalise to other 
+   find/get commands.
+   </td>
+ </tr>
+</table>
+
 The `FindAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `patientNric` in its constructor. 
+
+The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
+
+![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
 
 The following steps below is an example of how the `FindAppointmentCommand` class behaves: 
 
@@ -392,62 +409,38 @@ method.
 5. If it exists, it gets the list of appointments by calling `PatientMap.getAppointments()` and displays all the appointments 
 belonging to the patient, otherwise it displays that there is no patient with the given nric that exists. 
 
-The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
-
-![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
-
 #### 4.4.1. Get Patient Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+_Aspect: Information needed to be displayed_
 
 
 #### 4.4.2. Find Patient Record Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+_Aspect: Information needed to be displayed_
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
 
 
 #### 4.4.3. Find Appointment Detail
 
 **Design Considerations**
 
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+_Aspect: Information needed to be displayed_
 
 
 ### 4.5. Edit Features
+
+The edit features implemented in HappyPills allow users to view detailed information of **_patient's particulars_, 
+_a specified patient record_** and **_appointment for a particular patient_**. 
+
+The edit commands used in HappyPills are listed as follows: 
+    
+    1. edit patient NRIC 
+    2. edit pr NRIC INDEX 
+    3. edit appt NRIC APPT_ID 
 
 The user can edit an appointment from the list of appointments currently in the program. The command:
 
@@ -459,6 +452,10 @@ will edit the date of the appointment with appointment id `1`, to `04/04/2020`, 
 
 The `EditAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric`, `apptId` and `newContent` in its constructor. 
+
+The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
+
+![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
 
 The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
 
@@ -482,10 +479,6 @@ the `AppointmentParser#parse()` method.
 	will then be called to update the storage of the newly edited appointment. 
 
 5. A display message will be shown to the user to indicate whether or not the edit was successful. 
-
-The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
-
-![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
 
 #### 4.5.1. Edit Patient Detail
 
