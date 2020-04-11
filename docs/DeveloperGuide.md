@@ -603,10 +603,18 @@ Extensions:
 5. Should work on both 32-bit and 64-bit environments.
 6. Should not exceed 100MB in size given normal usage.
 
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
+
 ## Appendix E: Glossary
 
 * **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
 * **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
+
+[&#8593; Return to Table of Contents](#table-of-contents)
+
+<br/>
 
 ## Appendix F: Instructions for Manual Testing
 
@@ -724,3 +732,5 @@ Given below are instructions to test the app manually.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
+    
+[&#8593; Return to Table of Contents](#table-of-contents)
