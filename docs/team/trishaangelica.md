@@ -4,7 +4,7 @@
 
 ## Overview
 
-SHOCO is a desktop application used for the managing and planning of shopping lists and budgets. Users interact with it through the use of a command-line interface (CLI), the program is written in Java and has bout 5 kLoC.
+SHOCO is a desktop application used for managing and planning of shopping lists and budgets. Users interact with it through the use of a command-line interface (CLI), the program is written in Java and has bout 5 kLoC.
 
 ## Summary of Contributions
 * **Major enhancement 1:** Included the **ability to edit items** in the shopping list.
@@ -15,8 +15,8 @@ SHOCO is a desktop application used for the managing and planning of shopping li
 
 * **Major enhancement 2:** Added the **help function** for the SHOCO application.
     * What it does: Lists all acceptable commands, their purpose, valid parameters and examples of usage.   
-    * Justification: This feature improves the product significantly because the user may forget how certain functions work and so, the app should provide a convenient way for them to check the accepted format.
-     With the help feature embedded in the application, users need not solely rely on the SHOCO User Guide.
+    * Justification: This feature improves the product significantly because the user may forget how certain functions work and so, the app should provide a convenient way for them to check on the accepted command format.
+     With the help feature embedded in the application, users need not solely rely on the SHOCO User Guide for help when they are in doubt.
     * Highlights: This enhancement includes examples of command usages which makes the accepted command formats much more comprehensible to the user.  
 
 * **Code contributed:** [[Functional code]](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=trishaangelica&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=trishaangelica&tabRepo=AY1920S2-CS2113T-T13-1%2Ftp%5Bmaster%5D)
@@ -34,7 +34,7 @@ SHOCO is a desktop application used for the managing and planning of shopping li
         
     * Documentation:
         * Added a navigable table of contents and "back to top" links for both SHOCO user guide and developer guide: <ins>[#111]((https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111))</ins> , <ins>[#112](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/112/files)</ins> , <ins>[#122](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/122/files)</ins>
-        * Organized the "skeletal" base of the DG in order to provide team members with allocated sections for easier collaboration <ins>[#114](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/114/files)</ins>
+        * Organized the "skeletal" base of the DG in order to provide the team with allocated sections for easier collaboration <ins>[#114](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/114/files)</ins>
         * Standardized colour and font of all diagrams in the DG for comprehensibility <ins>[#191](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/191)</ins> , <ins>[#210](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/210)</ins>
         * Added the Manual Testing Section of the DG <ins>[#204](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/204)</ins>
            
@@ -130,7 +130,7 @@ Format: `HELP`
  * **[2. Overview of the SHOCO application](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#2-overview-of-the-shoco-application)**
  * **[3. Implementation](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#3-implementation)**
      + [3.1 View help feature](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#31-view-help-feature)
-     + [3.2 Display feature](#32-display-feature)
+     + [3.2 Display feature](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#32-display-feature)
      + [3.3 Set budget feature](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#33-set-budget-feature)
      + [3.4 Add feature](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#34-add-feature)
      + [3.5 Edit feature](https://github.com/AY1920S2-CS2113T-T13-1/tp/blob/master/docs/DeveloperGuide.md#35-edit-feature)
@@ -253,33 +253,28 @@ Reason for choosing alternative 1: By abstracting out different command types as
 ##### Launch and Shutdown
 1. Initial launch 
     
-      i.    Download the [latest jar file](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases).
+      i.    Download the [latest](https://github.com/AY1920S2-CS2113T-T13-1/tp/releases) version of `SHOCO`, named <code>CS2113T-T13-1.Shoco.jar</code> under version 2.1.
         
       ii.   Copy it into an empty folder on your desktop.
         
       iii.  While inside the empty folder, open a command prompt window by typing <code>CMD</code> in the address bar of the folder.
         
-      iv.   Run the command <code>java -jar SHOCO.jar</code>
+      iv.   Run the following command in the command prompt window: `java -jar CS2113T-T13-1.Shoco.jar`
       
-      v.    If the font size of the command window is too big, you can make it smaller by <code>CTRL + scroll down</code> on your mouse.
+      v.    If the font size of the command window is too big, you can decrease it by <code>CTRL + scroll down</code> on your mouse.
             
         Expected: Shows a welcome message from SHOCO.
-
 
    &nbsp;
 
 2. Shutdown
         
       i.    Enter the command <code>BYE</code> to exit the SHOCO application.
-                
-      ii.   Close the command terminal.
-        
-        Expected: Data is stored to shoppinglist.json and budget.json, the program is terminated.
+
+        Expected: The program is terminated.
   
-
    &nbsp;
-
-
+   
 ##### Set and Reset a budget
 
 1. Set a budget
