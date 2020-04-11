@@ -7,9 +7,15 @@ and it is optimized for those who want to type fast with CLI. It is written in J
 
 ## Summary of Contributions
 
+#### Code contributed  
+The following link contains all the code I have contributed to Module Manager:
+[code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=bennychanya).  
+
 #### Enhancements implemented  
 Added and/or edited the following class:  
 - SemesterList ([#38](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/38))
+  - In order to show all the semesters in sequential order, SemesterList was converted into a priority list instead of
+  extending from an Array of SelectedModules
 - SemModuleList ([#38](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/38))
 - Grading Enum ([#38](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/38))
 - Ui ([#16](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/16))
