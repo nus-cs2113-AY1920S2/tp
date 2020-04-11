@@ -176,15 +176,15 @@ down into nine main features: `Data Structure`, `Add Details Feature`, `List Fea
 
 The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
 
->`PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
->`PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
->`PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
->`PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
->`PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
->`PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
->`AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
->`AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
->`AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
+- `PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
+- `PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
+- `PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
+- `PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
+- `PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
+- `PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
+- `AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
+- `AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
+- `AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
     
 **Design Considerations** 
 
