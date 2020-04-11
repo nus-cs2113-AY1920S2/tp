@@ -37,7 +37,8 @@ By: `AY1920S2-CS2113T-T12-1`
 ## 1. Setting up
 Prerequisites<br>
 1. Ensure Java Development Kit(JDK) is 11 or above.
-2. IDE of your choice. :+1: We recommend IntelliJ IDE since this project is built upon the features of IntelliJ
+2. IDE of your choice. <br>
+    > :bulb: We recommend IntelliJ IDE since this project is built upon the features of IntelliJ
 3. The setting up of this project would assume that Intellij IDE is your preferred choice of IDE.
 
 Setting up the project<br>
@@ -48,7 +49,7 @@ Setting up the project<br>
     2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
     3. Click OK
     4. Click Import Project
-> :information-source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
+    > :information-source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
@@ -427,22 +428,22 @@ Given below are instructions to test the app manually.
     1. Download the jar file and copy into an empty folder.
     2. Double click the jar file
    
-    **Expected: The CLI application would be running with our logo: WhenFree.**
+    Expected: The CLI application would be running with our logo: WhenFree.
     
     > :bulb: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
     
 2. Shutting down
     1. Type ```exit``` followed by kbd:[enter] key to exit.
     
-    **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
+    Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.
 
-    > :loudspeaker: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
+    > :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
     1.Test case: ```Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6``` <br>
     
-    **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
+    Expected: A new main contact will be added. Name: Tommy, with his respective modules.
     
     > :bulb: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
      
@@ -450,13 +451,13 @@ Given below are instructions to test the app manually.
        Test case: ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
        Test case: ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
        
-    **Expected: 3 new contacts will be added, with their respective modules.**
+    Expected: 3 new contacts will be added, with their respective modules.
     
     3. Test case: ```Timmy https://nusmods.com/timetable/sem-2/brokenlink``` <br>
     
-    **Expected: Contact is not updated into contact list as nusmods URL is invalid** <br>
+    Expected: Contact is not updated into contact list as nusmods URL is invalid <br>
     
-    > :loudspeaker: Names must not contain purely integers. It should either be entirely alphabetical or alphanumerical.
+    > :information_source: Names must not contain purely integers. It should either be entirely alphabetical or alphanumerical.
     
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
@@ -468,51 +469,52 @@ Given below are instructions to test the app manually.
     
     > :bulb: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    > :bulb:Type ```schedule``` to see the required format.
+    
     > :information_source: startTime and endTime should strictly be in 30minutes blocks, startDay and endDay should strictly follow the date given in ```timetable```  command.
                        
-    > :bulb:Type ```schedule``` to see the required format.
-             
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
     1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
     2. Test case: ```delete 1```. <br>
     
-    **Expected: The meeting scheduled previously in F.3 is deleted. If no meeting is scheduled at all, an error would be shown to user.** <br>
+    Expected: The meeting scheduled previously in F.3 is deleted. If no meeting is scheduled at all, an error would be shown to user. <br>
     
     3. Test case: ```delete 0``` <br>
     
-    **Expected: No meeting would be deleted since the index starts from 1** <br>
+    Expected: No meeting would be deleted since the index starts from 1 <br>
     
-    > :loudspeaker: TIP: Type ```delete``` to see the required format.
+    > :bulb: Type ```delete``` to see the required format.
                                                                                                                                                                                                                                                                                                                                                                                 
 ### F.4. Deleting a contact
 1. Deleting a contact.
     1. Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
     2. Test case: ```delete name```. <br>
     
-    **Expected: The desired contact would be deleted** <br>
+    Expected: The desired contact would be deleted<br>
     
     > :information_source: You cannot delete main user contact.
                                                                                                                                                                                                                                     
-    > :loudspeaker: TIP: Type ```delete``` to see the required format.
+    > :bulb: Type ```delete``` to see the required format.
 
 ### F.6. Editing a contact's timetable
 1. Editing main user's timetable
     1. Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
     2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
     
-    **Expected: The date and time given would be free up** <br>
+    Expected: The date and time given would be free up <br>
     
     3. Test case: ```edit busy 0 startDate startTime endDate endTime``` <br>
     
-    **Expected: The date and time given would be blocked out** <br>
+    Expected: The date and time given would be blocked out <br>
     
     4. Other incorrect edit commands to try: not stating whether it is ```free``` or ```busy```, ```startTime endTime``` doesn't follow 30minutes blocks.
     
-    > :loudspeaker: TIP: Type ```edit``` to see the required format.
+    
+    > :bulb: Type ```edit``` to see the required format.
   
 
-### F.2. Saving data
+### F.7. Saving data
 1. Data is saved automatically in the ```/data``` directory where the jar file is located in.
 2. Loading previously scheduled meetings.
     1. Prerequisites: ```/data/meeting_list.txt``` is not empty.
