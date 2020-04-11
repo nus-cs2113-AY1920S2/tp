@@ -1,18 +1,19 @@
 
-# Project Portfolio Page -- Clement Cheng
-## Project Nuke <small>v2.1</small>
+
+# **Project Portfolio Page -- Clement Cheng**
+## **Project Nuke** <small><b>v2.1</b></small>
 
 <hr>
 
-## Overview
+## **Overview**
 **Nuke v2.1** is a simple yet powerful task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organise the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
 
 <br>
 
 <hr>
 
-## Summary of Contributions
-### Major Enhancements
+## **Summary of Contributions**
+### **Major Enhancements**
 
 #### **Implemented Directory Structure of Nuke**
 ##### **What it does**
@@ -70,10 +71,10 @@ Using RegEx to support the parsing was challenging initially. Most commands need
 
 <hr>
 
-### Minor Enhancements
+### **Minor Enhancements**
 Improve the feedback messages shown to the user for invalid commands by making them more informative, so the user knows exactly where in their input was wrong.
 
-### Other Contributions
+### **Other Contributions**
 #### Implemented a fully functional [GUI version](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases/tag/v2.1) of **Nuke**. 
 Though this was not the main focus of the project, having a GUI definitely improves the aesthetics of the application. The implementation of an auto-complete console will certainly aid the user to be able to enter their commands faster. In addition, the syntax highlighter can help user to identify mistakes in their command format at real time before they execute the command.
 
@@ -107,5 +108,5 @@ Though this was not the main focus of the project, having a GUI definitely impro
 
 <hr>
 
-### Code Contributed
+### **Code Contributed**
 [Functional and Test Code](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=iceclementi&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos) from _GitHub RepoSense_
