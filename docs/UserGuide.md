@@ -94,6 +94,14 @@ to store the relevant information.
         |____________________________________________________________|________________________________________________|
         |   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
         |   profile                                                  |  View user profile details                     |
+        |   set-name USER_NAME                                       |  Set the user's name                           |
+        |   set-age USER_AGE                                         |  Set the user's age                            |
+        |   set-height USER_HEIGHT                                   |  Set the user's height                         |
+        |   set-weight USER_WEIGHT                                   |  Set/Update weight in user profile             |
+        |   check-weight-progress                                    |  List index of weight progress                 |
+        |   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+        |   set-weight-goal WEIGHT_GOAL                              |  Set the user's new weight goal                |
+        |   check-bmi                                                |  Show user's BMI and BMI table                 |
         |   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
         |   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
         |   calculate DATE                                           |  Calculate Calorie intake for the day          |
@@ -101,11 +109,10 @@ to store the relevant information.
         |   list-food                                                |  Lists all foods info in database.             |
         |   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
         |   delf FOOD_NAME                                           |  Delete food info from database                |
-        |   set-weight                                               |  Set/Update weight in user profile             |
-        |   check-weight-progress NAME                               |  List index of weight progress                 |
-        |   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
         |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
         |   show-recipe                                              |  Show recommended recipe to user               |
+        |   check-required-cal                                       |  Check amount of calories required/day         |
+        |   clear-records                                            |  Clear the records in the database             |
         |   help                                                     |  Show this function help table                 |
         |   exit                                                     |  Exit the application                          |
         |____________________________________________________________|________________________________________________|
@@ -116,11 +123,11 @@ to store the relevant information.
 *Note that most command features are locked until a valid profile has been created. 
 Only the `set-profile`, `help` and `exit` commands are usable upon first start-up*
 
-```
-Please create a profile before using this command. Enter:
-set-profile {name} {age} {gender} {height} {weight} {weight goal}
-```
-
+      
+        Please create a profile before using this command. Enter:
+        set-profile {name} {age} {gender} {height} {weight} {weight goal}
+   
+   
 ## 3 Features 
 
 Note that:
@@ -148,11 +155,11 @@ Example of usage:
 
 `set-profile John 20 male 180 80 75`
 
-Expected Outcome:
+* Expected Outcome:
 
-```
-Your profile has been successfully updated.
-```
+    ```
+    Your profile has been successfully updated.
+    ```
 
 ### View user profile
 View user profile details
@@ -165,17 +172,17 @@ Example of usage:
 
 `profile`
 
-Expected Outcome:
+* Expected Outcome:
 
-```
-Your profile information are as follows:
-Name:         John
-Age:          20 years old
-Gender:       male
-Height:       180.00 centimetres
-Weight        80.00 kilograms
-Weight Goal:  75.00 kilograms
-```
+    ```
+    Your profile information are as follows:
+    Name:         John
+    Age:          20 years old
+    Gender:       male
+    Height:       180.00 centimetres
+    Weight        80.00 kilograms
+    Weight Goal:  75.00 kilograms
+    ```
 
 ### Set user name
 
@@ -189,10 +196,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-name Jane
-Your username has been changed to Jane.
-```
+    ```
+    set-name Jane
+    Your username has been changed to Jane.
+    ```
 
 ### Set user age
 
@@ -206,10 +213,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-age 18
-Your age has been changed to 18.
-```
+    ```
+    set-age 18
+    Your age has been changed to 18.
+    ```
 
 ### Set user gender
 
@@ -223,10 +230,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-gender female
-Your gender has been changed to female.
-```
+    ```
+    set-gender female
+    Your gender has been changed to female.
+    ```
 
 ### Set user height
 
@@ -240,10 +247,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-height 170
-Your height has been changed to 170.00.
-```
+    ```
+    set-height 170
+    Your height has been changed to 170.00.
+    ```
 
 ### Set user weight-goal
 
@@ -257,10 +264,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-weight-goal 65
-Your weight goal has been changed to 65.00.
-```
+    ```
+    set-weight-goal 65
+    Your weight goal has been changed to 65.00.
+    ```
 
 ### Set user weight
 
@@ -275,10 +282,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-set-weight 70
-Your weight has been changed to 70.00.
-```
+    ```
+    set-weight 70
+    Your weight has been changed to 70.00.
+    ```
 
 ### Delete user weight record
 
@@ -292,10 +299,10 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-delete-weight 1
-Weight Record: 80.0kg has been removed successfully!
-```
+   ```
+    delete-weight 1
+    Weight Record: 80.0kg has been removed successfully!
+   ```
 
 ### Check user weight progress
 
@@ -357,77 +364,77 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-check-bmi
-Your current BMI : 24.22
+    ```
+    check-bmi
+    Your current BMI : 24.22
 
-You can check your height and weight against this table to see which category you fall into.
-Check weight first then height.
+    You can check your height and weight against this table to see which category you fall into.
+    Check weight first then height.
 
-LEGEND for BMI Table:
-1: UNDERWEIGHT       2: HEALTHY      3: OVERWEIGHT      4: OBESE      5: EXTREMELY OBESE
- ___________________________________________________________________________________________________________________________________
-|        |                                                      WEIGHT in KG                                                        |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        |         | 41 | 45 | 50 | 54 | 59 | 64 | 68 | 73 | 77 | 82 | 86 | 91 | 95 | 100 | 104 | 109 | 113 | 118 | 122 | 127 | 132 |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 142.2   | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 144.7   | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 147.3   | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 149.8   | 1  | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 152.4   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 154.9   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 157.4   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 160.0   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 162.5   | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 165.1   | 1  | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 167.6   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 170.1   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 172.7   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-| HEIGHT | 175.2   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |
-|   in   |--------------------------------------------------------------------------------------------------------------------------|
-|   CM   | 177.8   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 180.3   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 182.8   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 185.4   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 187.9   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 190.5   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 193.0   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 195.5   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 198.1   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 200.6   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 203.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 205.7   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 208.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
-|        |--------------------------------------------------------------------------------------------------------------------------|
-|        | 210.8   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
-|________|__________________________________________________________________________________________________________________________|
-```
+    LEGEND for BMI Table:
+    1: UNDERWEIGHT       2: HEALTHY      3: OVERWEIGHT      4: OBESE      5: EXTREMELY OBESE
+     ___________________________________________________________________________________________________________________________________
+    |        |                                                      WEIGHT in KG                                                        |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        |         | 41 | 45 | 50 | 54 | 59 | 64 | 68 | 73 | 77 | 82 | 86 | 91 | 95 | 100 | 104 | 109 | 113 | 118 | 122 | 127 | 132 |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 142.2   | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 144.7   | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 147.3   | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 5  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 149.8   | 1  | 2  | 2  | 2  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 152.4   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 154.9   | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  | 5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 157.4   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 160.0   | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  | 4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 162.5   | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 165.1   | 1  | 1  | 1  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  | 4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 167.6   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 170.1   | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 172.7   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    | HEIGHT | 175.2   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  | 4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |  5  |
+    |   in   |--------------------------------------------------------------------------------------------------------------------------|
+    |   CM   | 177.8   | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 180.3   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  5  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 182.8   | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 185.4   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 3  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 187.9   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 190.5   | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  | 3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 193.0   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 195.5   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  | 3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 198.1   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 200.6   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 203.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  4  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 205.7   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 208.2   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+    |        |--------------------------------------------------------------------------------------------------------------------------|
+    |        | 210.8   | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 2  | 2  | 2  |  2  |  2  |  3  |  3  |  3  |  3  |  3  |  4  |
+    |________|__________________________________________________________________________________________________________________________|
+    ```
 
 
 ## 3.2 Daily Food Record Features
@@ -454,19 +461,19 @@ Example of usage:
 
 `record-meal Saturday morning /egg prata -- 5 /noodles -- xxx`
 
-Expected Output:
+* Expected Output:
 
-```
-You just record the meal in the morning of: SATURDAY.
-Some food/foods are not added due to invalid format.
-```
+    ```
+    You just record the meal in the morning of: SATURDAY.
+    Some food/foods are not added due to invalid format.
+    ```
 
 * If enter `check-meal Saturday morning` right now, you expect to see:
-```
-SATURDAY Morning: 
-Food: egg prata, Calories: 5.00cal
-For morning, total calculable calories intake: 5.00cal.
-```
+    ```
+    SATURDAY Morning: 
+    Food: egg prata, Calories: 5.00cal
+    For morning, total calculable calories intake: 5.00cal.
+    ```
 
 ### Check meals
 Check what the `profile` had eaten for a meal.
@@ -505,11 +512,11 @@ Example of usage:
 
 `clear-records`
 
-Expected Output:
+* Expected Output:
 
-```
-You have just cleared all food records in the week!
-```
+    ```
+    You have just cleared all food records in the week!
+    ```
 
 ### Check required calories
 Check the required calories for the current `profile` based on the activity level for the day.
@@ -526,29 +533,29 @@ Example of usage:
 
 `check-required-cal Monday low`
 
-Expected Output:
+* Expected Output:
 
-* If the profile is trying to gain weight but is having insufficient calories for the day:
-    ```
-    Calories Intake and Requirement for SATURDAY:
-    Total calculable calories intake for the entire day: 5.00cal.
-    Calories requirement for high activity level: 2848.41cal.
-    Ohh no!!! You have consumed too little calories.
-    ```
-* If the profile is trying to lose weight but is having excess calories for the day:
-    ```
-    Calories Intake and Requirement for WEDNESDAY:
-    Total calculable calories intake for the entire day: 2805.00cal.
-    Calories requirement for moderate activity level: 2559.44cal.
-    Ohh no!!! You have consumed too much calories
-    ```
-* If the profile is working towards the weight goal and is having sufficient calories for the day:
-    ```
-    Calories Intake and Requirement for MONDAY:
-    Total calculable calories intake for the entire day: 2860.00cal.
-    Calories requirement for low activity level: 2270.47cal.
-    Well done!!! You have consumed sufficient calories.
-    ```
+    * If the profile is trying to gain weight but is having insufficient calories for the day:
+        ```
+        Calories Intake and Requirement for SATURDAY:
+        Total calculable calories intake for the entire day: 5.00cal.
+        Calories requirement for high activity level: 2848.41cal.
+        Ohh no!!! You have consumed too little calories.
+        ```
+    * If the profile is trying to lose weight but is having excess calories for the day:
+        ```
+        Calories Intake and Requirement for WEDNESDAY:
+        Total calculable calories intake for the entire day: 2805.00cal.
+        Calories requirement for moderate activity level: 2559.44cal.
+        Ohh no!!! You have consumed too much calories
+        ```
+    * If the profile is working towards the weight goal and is having sufficient calories for the day:
+        ```
+        Calories Intake and Requirement for MONDAY:
+        Total calculable calories intake for the entire day: 2860.00cal.
+        Calories requirement for low activity level: 2270.47cal.
+        Well done!!! You have consumed sufficient calories.
+        ```
 
 ### Calculate calories
 Calculates calories intake on a day or during a time period.
@@ -590,16 +597,16 @@ Format: `list-food`
 
 Example of usage: `list-food`
 
-Expected Output:
-```
-These are the foods stored in our database:
-Food: Chicken, Calories: 1.00cal
-Food: Apple, Calories: 2.00cal
-Food: Carrots, Calories: 3.00cal
-Food: Rice, Calories: 4.00cal
-Food: Oil, Calories: 5.00cal
-Food: Tea, Calories: 6.00cal
-```
+*   Expected Output:
+    ```
+    These are the foods stored in our database:
+    Food: Chicken, Calories: 1.00cal
+    Food: Apple, Calories: 2.00cal
+    Food: Carrots, Calories: 3.00cal
+    Food: Rice, Calories: 4.00cal
+    Food: Oil, Calories: 5.00cal
+    Food: Tea, Calories: 6.00cal
+    ```
 
 ### Add food into database
 Adds a new food into database.
@@ -608,13 +615,13 @@ Format: `addf FOODNAME --CALORIES`
 
 Example of usage: `addf beef noodles -- 7.0`
 
-Expected Output:
-```
-You have added a new food into the database:
-Food: beef noodles, Calories: 7.0
-```
+* Expected Output:
+    ```
+    You have added a new food into the database:
+    Food: beef noodles, Calories: 7.0
+    ```
 
-Attention: If calories info is incorrect, you expect to see:
+*Attention: If calories info is incorrect, you expect to see:*
 ```
 Sorry, to add new food to database you must input correct calories info.
 It has to be positive Integer or Float
@@ -664,35 +671,35 @@ Example of usage:
 
     Input: `new-recipe 2 low`
     
-    Expected Output: 
-    ```
-             morning                                                                         afternoon                                                                       night
-    MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
-    TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
-    WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
-    THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
-    FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
-    SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
-    SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
-    ```
+    * Expected Output: 
+        ```
+                  morning                                                                         afternoon                                                                       night
+        MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
+        TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
+        WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
+        THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
+        FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
+        SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
+        SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
+        ```
 * `MAXIMUM_NUM` is 5, `ACTIVITY_LEVEL` is high:
 
     Input: `new-recipe 5 high`
     
-    Expected Output:
-    ```
-    We support at most 3 kinds of food in a meal, otherwise it's easy to overtake calories and not good for your health!
+    * Expected Output:
+        ```
+        We support at most 3 kinds of food in a meal, otherwise it's easy to overtake calories and not good for your health!
+     
+                  morning                                                                         afternoon                                                                       night
+        MONDAY    white-bread(77.00),fishball-noodles-soup(330.00),chicken-curry(450.00)          soft-drink(120.00),prawn-noodles-dry(459.00),fresh-milk(163.00)                 prawn-noodles-dry(459.00),white-bread(77.00),soft-drink(120.00)
+        TUESDAY   fishball-noodles-soup(330.00),orange-juice(80.00),french-fries(450.00)          soft-drink(120.00),white-bread(77.00),fishball-noodles-soup(330.00)             prawn-noodles-dry(459.00),orange-juice(80.00),fishball-noodles-soup(330.00)
+        WEDNESDAY fried-rice(508.00),orange-juice(80.00),fishball-noodles-soup(330.00)            soft-drink(120.00),fried-rice(508.00),cheeseburger(300.00)                      soft-drink(120.00),orange-juice(80.00),cheeseburger(300.00)
+        THURSDAY  prawn-noodles-dry(459.00),fishball-noodles-soup(330.00),white-bread(77.00)      soft-drink(120.00),fishball-noodles-soup(330.00),white-bread(77.00)             fried-rice(508.00),cheeseburger(300.00),soft-drink(120.00)
+        FRIDAY    fresh-milk(163.00),white-bread(77.00),chicken-rice(702.00)                      soft-drink(120.00),chicken-curry(450.00),fishball-noodles-soup(330.00)          cheeseburger(300.00),fresh-milk(163.00),orange-juice(80.00)
+        SATURDAY  chicken-rice(702.00),white-bread(77.00),orange-juice(80.00)                     prawn-noodles-dry(459.00),soft-drink(120.00),cheeseburger(300.00)               orange-juice(80.00),soft-drink(120.00),white-bread(77.00)
+        SUNDAY    cheeseburger(300.00),chicken-curry(450.00),orange-juice(80.00)                  prawn-noodles-dry(459.00),white-bread(77.00),cheeseburger(300.00)               chicken-rice(702.00),orange-juice(80.00),white-bread(77.00)
     
-              morning                                                                         afternoon                                                                       night
-    MONDAY    white-bread(77.00),fishball-noodles-soup(330.00),chicken-curry(450.00)          soft-drink(120.00),prawn-noodles-dry(459.00),fresh-milk(163.00)                 prawn-noodles-dry(459.00),white-bread(77.00),soft-drink(120.00)
-    TUESDAY   fishball-noodles-soup(330.00),orange-juice(80.00),french-fries(450.00)          soft-drink(120.00),white-bread(77.00),fishball-noodles-soup(330.00)             prawn-noodles-dry(459.00),orange-juice(80.00),fishball-noodles-soup(330.00)
-    WEDNESDAY fried-rice(508.00),orange-juice(80.00),fishball-noodles-soup(330.00)            soft-drink(120.00),fried-rice(508.00),cheeseburger(300.00)                      soft-drink(120.00),orange-juice(80.00),cheeseburger(300.00)
-    THURSDAY  prawn-noodles-dry(459.00),fishball-noodles-soup(330.00),white-bread(77.00)      soft-drink(120.00),fishball-noodles-soup(330.00),white-bread(77.00)             fried-rice(508.00),cheeseburger(300.00),soft-drink(120.00)
-    FRIDAY    fresh-milk(163.00),white-bread(77.00),chicken-rice(702.00)                      soft-drink(120.00),chicken-curry(450.00),fishball-noodles-soup(330.00)          cheeseburger(300.00),fresh-milk(163.00),orange-juice(80.00)
-    SATURDAY  chicken-rice(702.00),white-bread(77.00),orange-juice(80.00)                     prawn-noodles-dry(459.00),soft-drink(120.00),cheeseburger(300.00)               orange-juice(80.00),soft-drink(120.00),white-bread(77.00)
-    SUNDAY    cheeseburger(300.00),chicken-curry(450.00),orange-juice(80.00)                  prawn-noodles-dry(459.00),white-bread(77.00),cheeseburger(300.00)               chicken-rice(702.00),orange-juice(80.00),white-bread(77.00)
-
-    ```
+        ```
 
 ### View recipe
 Show the recipe recommended for the user.
@@ -702,31 +709,31 @@ Format: `show-recipe`
 Example of usage:`show-recipe`
 * If no recipe exists:
 
-    Expected Output:
-    ```
-              morning                                                     afternoon                                                   night
-    MONDAY                                                                                                                           
-    TUESDAY                                                                                                                          
-    WEDNESDAY                                                                                                                        
-    THURSDAY                                                                                                                         
-    FRIDAY                                                                                                                           
-    SATURDAY                                                                                                                         
-    SUNDAY                                                                                                                           
-
-    ```
+    * Expected Output:
+        ```
+                  morning                                                     afternoon                                                   night
+        MONDAY                                                                                                                           
+        TUESDAY                                                                                                                          
+        WEDNESDAY                                                                                                                        
+        THURSDAY                                                                                                                         
+        FRIDAY                                                                                                                           
+        SATURDAY                                                                                                                         
+        SUNDAY                                                                                                                           
+    
+        ```
 * If recipe exists:
 
-    Expected Output:
-    ```
-              morning                                                                         afternoon                                                                       night
-    MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
-    TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
-    WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
-    THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
-    FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
-    SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
-    SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
-    ```
+    * Expected Output:
+        ```
+                  morning                                                                         afternoon                                                                       night
+        MONDAY    fried-rice(508.00),white-bread(77.00)                                           fresh-milk(163.00),fishball-noodles-soup(330.00)                                fresh-milk(163.00),soft-drink(120.00)
+        TUESDAY   white-bread(77.00),orange-juice(80.00)                                          prawn-noodles-dry(459.00),fresh-milk(163.00)                                    white-bread(77.00),prawn-noodles-dry(459.00)
+        WEDNESDAY fried-rice(508.00),fresh-milk(163.00)                                           chicken-rice(702.00)                                                            fried-rice(508.00),soft-drink(120.00)
+        THURSDAY  white-bread(77.00),fishball-noodles-soup(330.00)                                prawn-noodles-dry(459.00),soft-drink(120.00)                                    orange-juice(80.00),prawn-noodles-dry(459.00)
+        FRIDAY    prawn-noodles-dry(459.00),cheeseburger(300.00)                                  soft-drink(120.00),chicken-curry(450.00)                                        soft-drink(120.00),white-bread(77.00)
+        SATURDAY  french-fries(450.00),cheeseburger(300.00)                                       white-bread(77.00),orange-juice(80.00)                                          fried-rice(508.00),orange-juice(80.00)
+        SUNDAY    chicken-rice(702.00)                                                            fresh-milk(163.00),chicken-curry(450.00)
+        ```
 
 ## 3.5 Utility Features
 
@@ -741,30 +748,36 @@ Example of usage:
 
 * Expected Outcome:
 
-```
+    ```
      _____________________________________________________________________________________________________________
     |                          Functions:                        |                 Descriptions:                  |
     |____________________________________________________________|________________________________________________|
     |   set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL     |  set user's profile data                       |
     |   profile                                                  |  View user profile details                     |
+    |   set-name USER_NAME                                       |  Set the user's name                           |
+    |   set-age USER_AGE                                         |  Set the user's age                            |
+    |   set-height USER_HEIGHT                                   |  Set the user's height                         |
+    |   set-weight USER_WEIGHT                                   |  Set/Update weight in user profile             |
+    |   check-weight-progress                                    |  List index of weight progress                 |
+    |   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
+    |   set-weight-goal WEIGHT_GOAL                              |  Set the user's new weight goal                |
+    |   check-bmi                                                |  Show user's BMI and BMI table                 |
     |   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |  Record meal info                              |
     |   check-meal DATE TIME_PERIOD                              |  Check meals eaten                             |
-    |   clear-records                                            |  Clear all food records                        |
     |   calculate DATE                                           |  Calculate Calorie intake for the day          |
     |   calculate DATE1->DATE2                                   |  Calculate Calorie intake from DATE1 to DATE2  |
     |   list-food                                                |  Lists all foods info in database.             |
     |   addf FOOD_NAME --CALORIES                                |  Add new food info into database               |
     |   delf FOOD_NAME                                           |  Delete food info from database                |
-    |   update-weight                                            |  Update weight in user profile                 |
-    |   check-weight-progress NAME                               |  List index of weight progress                 |
-    |   delete-weight INDEX                                      |  Delete weight from the weight progress list   |
     |   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |  Randomly recommend recipe from database       |
     |   show-recipe                                              |  Show recommended recipe to user               |
+    |   check-required-cal                                       |  Check amount of calories required/day         |
+    |   clear-records                                            |  Clear the records in the database             |
     |   help                                                     |  Show this function help table                 |
     |   exit                                                     |  Exit the application                          |
     |____________________________________________________________|________________________________________________|
 
-```
+    ```
 
 ### Exit application
 Terminates and exits the application.
@@ -777,9 +790,9 @@ Example of usage:
 
 * Expected Outcome:
 
-```
-Thanks for using Diet Manager! See you again soon :)
-```
+    ```
+    Thanks for using Diet Manager! See you again soon :)
+    ```
 
 ## 4 FAQ
 
