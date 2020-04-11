@@ -56,6 +56,8 @@ I have written unit tests for `Event`, `EventParser` and `Interpreter`.
 I have also written text-based UI test to test `Event`-related operations, such 
 as `add`, `delete`, `edit` and `list`.
 
+I have also written manual testing instructions for `Event` and `Storage`.
+
 ### Documentation
 
 I have written in the User Guide and Developer Guide all the features/enhancements I have mentioned above.
@@ -75,4 +77,4 @@ Command, Storage, Event (class) and Event (sequence).
 [#113](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/113),
 [#114](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/114),
 [#116](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/116), 
-[#161](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/161)
+[#161](https://github.com/AY1920S2-CS2113T-T12-4/tp/pull/161), and more.
