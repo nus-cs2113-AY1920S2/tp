@@ -24,8 +24,7 @@ health data.
 ### Code Contributed
 
 **__Diet Manager__**:<br>
-Link to code on tP Code Dashboard 
-[**__here__**](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=ddzuikeai).
+This link is my [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=ddzuikeai).
 
 ### Enhancements implemented
 #### Implement the `record-meal` and `check-meal` feature
@@ -55,12 +54,13 @@ meal, the other is one's activity level(low/moderate/high) which indicates diffe
 #### Other enhancements
 * Implement the `clear-records` feature to enable user clear all their records.
 * Implement the `calculate` feature which enables user to calculate their calories intake on a day or during a time period.
+* Implement the storage of recipe, and all food records.
 * Add DailyFoodRecord class and related codes to support all kinds of operations related to food record.
 
 ### Contributions to the User Guide
 
 * Which sections did you contribute to the UG?
-Documented the details of following features (feature 1-12 in the UG):
+Documented the details of following features:
     * Set user profile
     * View user profile
     * Record meals
@@ -77,19 +77,18 @@ Documented the details of following features (feature 1-12 in the UG):
 ### Contributions to the Developer Guide: 
 
 * Which sections did you contribute to the DG? 
-    * Help in building framework.
+    * Helped in building the framework.
     * Documented the implementation of Record Meal Feature.
     
 * Which UML diagrams did you add/updated?
     * The sequence diagrams that explain the workflow of record meal feature.
-    
-    Generate Command:
-    
-    ![Step1. Diagram](../images/Record_step1.png)
-    
-    Execute and Save Result:
-    ![Step2. Diagram](../images/Record_step2.png)
 
 ### Contributions to team-based tasks 
 
+Help design the architecture and main workflow of our product.
+
 Help review teammates' PR and provide suggestions.
+
+### Contributions beyond the project team
+
+Reported several crucial bugs for other team in the PE Dry Run: [bugs reported](https://github.com/DDzuikeai/ped/issues)
