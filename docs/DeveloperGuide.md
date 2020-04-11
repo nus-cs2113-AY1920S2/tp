@@ -144,7 +144,7 @@ using the addActivity() method.
 
 **continueActivity**
 
-![continueActivity](./pictures/continueActivity.png)
+![continueActivity](./pictures/continueActivity.jpg)
 
 The diagram above shows how the StartCommand#continueActivity function works. This function is used when the current activity
 to be started already exists in the activity list. Thus, this function will check with the user whether to continue on that activity 
