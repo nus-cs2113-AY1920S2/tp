@@ -171,9 +171,10 @@ This document will cover the structure and software design decisions for the imp
 <br>  
 
 ## **Design**
-### Architecture
+### **2.1Architecture
 
-![architecture](/images/dg_arch.png)
+![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
+
 <span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
  <br>
  
@@ -202,11 +203,6 @@ Each of the four components
 
 For example, the **`Storage`** component defines it's API in several classes including <code>Encoder</code> and  <code>Decoder</code>, and exposes its functionality by invoking different method in these classes by <code>StorageManager</code>  class.
 <br>
-The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
-
-![logic component](images/dg_logic.png)
-<span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
-<br>
 More information about the <b>Model Component</b> can be found [here](#structure-implementation).<br>
 More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 
@@ -218,6 +214,12 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 ### UI componenet
 Classes 
 
+### Logic component
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+
+![logic component](images/dg_logic.png)
+<span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
+<br>
 [Back To Top](#table-of-contents)    
 <br>  <br>  
 
