@@ -354,28 +354,34 @@ Example output:
 ## FAQ
 **Q**: How do I transfer my data to another computer? 
 
-&ensp;&ensp;&ensp;&ensp;**A**: Copy the `data` folder in the program directory and paste into the selected directory 
+**A**: Copy the `data` folder in the program directory and paste into the selected directory 
 containing the .jar file in another computer.
+
+<br/>
 
 **Q**: How do I prevent file corruption? 
 
-&ensp;&ensp;&ensp;&ensp;**A**: Ensure that you do not abruptly exit the application and do not edit delete the data file 
+**A**: Ensure that you do not abruptly exit the application and do not edit delete the data file 
 while application is still running, or outside of the application.
+
+<br/>
 
 **Q**: How can I create a NUSMODS timetable?
 
-&ensp;&ensp;&ensp;&ensp;**A**: Visit the [NUSMODS website](https://nusmods.com/) to create a NUSMODS timetable.
+**A**: Visit the [NUSMODS website](https://nusmods.com/) to create a NUSMODS timetable.
+
+<br/>
 
 **Q**: How do I obtain the NUSMODS links to my NUSMODS timetable?
 
-&ensp;&ensp;&ensp;&ensp;**A**: 
-1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your
+**A**: 
+ 1) Visit the [NUSMODS website](https://nusmods.com/) in your browser. If you do not already have a NUSMODS timetable saved in your
 browser, you can create a new one. Else, you will be brought to your saved NUSMODS timetable.
-2) Click on the red "Share/Sync" button located at the bottom right of the page.
+ 2) Click on the red "Share/Sync" button located at the bottom right of the page.
 ![](images/NUSMODS_step2.png)<br>
-3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
+ 3) Click on the red copy icon next to the NUSMODS link in the pop-up box.
 ![](images/NUSMODS_step1.png)<br>
-4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) feature.
+ 4) Paste the link into the CLI for the [`add a new contact`](#add-a-new-contact) feature.
 
 [&#8593; Return to the top](#whenfree---user-guide)
 
