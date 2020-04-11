@@ -220,7 +220,7 @@ of usage.
 The following sequence diagram below shows how the help feature works. Note, the <code>Ui</code> class is
 omitted in the sequence diagram to emphasise on the other classes:
 
-![Help Feature](../images/Help_v1.png)
+![Help Feature](../images/Help_v1_PPP.png)
 
 ##### 3.10.2 Design considerations
 
