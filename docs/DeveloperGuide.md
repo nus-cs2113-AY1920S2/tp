@@ -1438,5 +1438,3 @@ Expected Output: Calendar view of all tasks scheduled in May 2020 will be displa
 **Test Case 2**: `calendar 05/20`
 
 Expected Output: Error message indicating that incorrect `calendar` command is entered will be displayed.
-
-[Back to Top](#)
