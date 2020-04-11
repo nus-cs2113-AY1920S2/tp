@@ -235,12 +235,17 @@ For example, the **`Storage`** component defines it's API in several classes inc
 <br>
 
 
-#### How the architecture components interact with each other
+**How the architecture components interact with each other**
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
 
 ![interactions.jpg](images/interactions.jpg)
 
 <span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
+<br>
+
+[Back To Top](#table-of-contents)    
+
+<br>
 
 ### **2. UI Component**
 Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
@@ -248,7 +253,7 @@ Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://gi
 ### **3. Logic Component**
 Classes used by Logic component are in the [**`seedu.nuke.data`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/data), [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java) in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
 
-The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br><br> 
 
 ![logic component](images/dg_logic.png)
 
@@ -282,7 +287,7 @@ The <b>Nuke</b> application attempts to simulate the structure of a <b>Directory
 <br><br>
 There are altogether <b>5</b> levels in the current implementation of <b>Nuke</b>'s <b>Directory Tree</b>:
 </div>
-<br>
+
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
 
 | Directory Level | Description                                                                      |
@@ -333,10 +338,10 @@ The <b>Root Directory</b> is the <b>base</b> of the entire <b>Directory Tree</b>
 #### **Module**    
 <div>
 The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree</b>. It corresponds to a <i>module</i>. A <i>module</i> has a <i>module code</i> and <i>title</i>. It also has a <b>Category Manager</b> which stores <i>categories</i> to categorise the user's <i>tasks</i>, such as "Lecture", "Tutorial" and "Assignment". 
-</div>
+</div><br>
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
-In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
+In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are "Lecture", "Tutorial", "Assignment" and "Lab". These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
 </div>     
 
 #### **Category**   
@@ -352,7 +357,7 @@ The <b>Task Directory</b> is the <b>fourth</b> level of the <b>Directory Tree</b
 #### **File**  
 <div>
 The <b>File Directory</b> is the <b>last</b> level of the <b>Directory Tree</b>. It corresponds to a <i>file</i>. The <i>file</i> must have a <i>file name</i>, <i>file path</i>, and its <i>original file path</i> It does no have a corresponding <b>Directory Manager</b>.     
-</div>   
+</div><br>   
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <i>original file path</i> is the <i>path</i> to where the <i>original file</i> is taken from in the application. In our current implementation, <b>Nuke</b> will then make a copy of the <i>file</i> and save it into a new location, and the <i>path</i> to the new location is stored in the <i>file path</i> attribute.
@@ -414,7 +419,7 @@ The <b>Directories</b> and <b>Directory Managers</b> together make up the <a hre
 ### **3. Directory Traverser**    
 #### **Overview**    
 <div>
-The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
+The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#1-directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
 <br><br>
 The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> attributes in various commands by using the information from the <i>current</i> and <i>parent</i> <b>Directories</b>. For example, if a user is at the <b>Module</b> level, with <i>module code</i> <b>CS2100</b>, and wants to add a <i>category</i>, he does not have to enter the <i>directory path</i>  to the <i>module</i> in the command as such: <code>addc toAdd -m cs2100</code>. Instead, he can just type <code>addc toAdd</code>. This also works when the user is at the <b>Category</b>, <b>Task</b> and <b>File</b> levels.
 </div>  
@@ -577,27 +582,27 @@ James will simply enter the command `addm cs3235`
 <big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
 James receive the following feedback:
 ```
-   root :
-   addm cs3235
-   SUCCESS!! Module CS3235 Computer Security has been added.
+ root :
+ addm cs3235
+ SUCCESS!! Module CS3235 Computer Security has been added.
    
-   root :
-   lsm
-   Here are what you are looking for...
+ root :
+ lsm
+ Here are what you are looking for...
    
-   +--------------------------------------------------------------------------------------------------+
-    NO |  MODULE CODE   |                                 MODULE TITLE
-   +--------------------------------------------------------------------------------------------------+
-    1  |     CS1231     |                             Discrete Structures
-    2  |     CS2100     |                            Computer Organisation
-    3  |     CS2113     |              Software Engineering & Object-Oriented Programming
-    4  |     CS3235     |                              Computer Security
-   +--------------------------------------------------------------------------------------------------+
-   Total modules: 4
-   +--------------------------------------------------------------------------------------------------+
+ +--------------------------------------------------------------------------------------------------+
+  NO |  MODULE CODE   |                                 MODULE TITLE
+ +--------------------------------------------------------------------------------------------------+
+  1  |     CS1231     |                             Discrete Structures
+  2  |     CS2100     |                            Computer Organisation
+  3  |     CS2113     |              Software Engineering & Object-Oriented Programming
+  4  |     CS3235     |                              Computer Security
+ +--------------------------------------------------------------------------------------------------+
+ Total modules: 4
+ +--------------------------------------------------------------------------------------------------+
 ```
 
-
+<br>
 
 Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 
@@ -1071,14 +1076,14 @@ The <b>open file</b> command opens up the <i>file(s)</i> of a <i>task</i> specif
 The implementation of the <b>Open File</b> command uses two important <b>Java APIs</b> &ndash; <code>java.io.File</code> and <code>java.awt.Desktop</code>. The first <b>API</b> is responsible for operations involving file access, while the second <b>API</b> is used to open the file to the Desktop. <br><br>  
 
 The <code>OpenFile</code> object first obtains the list of <i>files</i> from the <i>task</i> to open via the <code>OpenFile#getFilesToOpen()</code> method. Then, <code>OpenFile</code> executes the <code>OpenFile#openFiles()</code> method to open each of the <i>files</i> in the list. 
-</div><br>   
+</div>   
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 If there is an error opening a particular <i>file</i> in the list &#128534;, the opening process will not be terminated immediately. Instead, the application will continue to open the rest of the <i>files</i> in the list. <br>
 After it has gone through the list, it will then show the user the <i>files</i> that were not opened due to an error.
 <br><br>
-This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of </i>file names</i> as the message.
+This is done by collecting the <i>file names</i> of the failed to open <i>files</i> into a String, and thereafter throw an <b>exception</b> with the String of <i>file names</i> as the message.
 </div> <br>   
 Below is a <i>sequence</i> diagram of how the <b>open file</b> command operates:<br>   
 
