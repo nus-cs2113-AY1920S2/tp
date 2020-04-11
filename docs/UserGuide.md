@@ -354,7 +354,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> CG
-    You have 1 matched:
+    You have 1 matches:
     Here's the Search Result(s)
     
     [1]
@@ -374,7 +374,7 @@ The following occurs when there are existing student list in the student list co
     Please state the list name you are searching for.
     
     >>> EG
-    Nothing match you description : EG
+    Nothing match your description : EG
     
 The following occurs when there are no existing student list in the student list collection.
 

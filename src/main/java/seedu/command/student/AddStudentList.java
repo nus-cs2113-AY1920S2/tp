@@ -27,8 +27,11 @@ public class AddStudentList extends Command {
      */
     private void addToList() throws PacException {
         String listName = ui.getListName().trim();
+        if (listName.isEmpty()) {
+            throw new PacException("The list name is empty!");
+        }
         if (studentListCollection.isExistedListName(listName)) {
-            throw new PacException(("There is already an existing list name!"));
+            throw new PacException("There is already an existing list name!");
         }
         if (listName.toLowerCase().equals("done")) {
             throw new PacException("Student Add cancelled.");
