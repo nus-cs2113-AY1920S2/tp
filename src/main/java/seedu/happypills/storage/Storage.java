@@ -201,7 +201,7 @@ public class Storage {
         try {
             Patient patient = (Patient) patients.get(dataString[0]);
             if (patient != null) {
-                storedPr.addPersonalRecord(tempPr,dataString[0]);
+                storedPr.add(tempPr,dataString[0]);
             }
         } catch (HappyPillsException e) {
             e.printStackTrace();

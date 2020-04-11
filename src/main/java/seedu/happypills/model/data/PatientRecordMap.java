@@ -17,7 +17,7 @@ public class PatientRecordMap {
      * @param nric Nric of the patient.
      * @throws HappyPillsException If the patient's nric is already in the PatientRecordMap.
      */
-    public void addPersonalRecord(PatientRecord patientRecord, String nric) throws HappyPillsException {
+    public void add(PatientRecord patientRecord, String nric) throws HappyPillsException {
         ArrayList<PatientRecord> patientRecords = argMultimap.get(nric);
 
         // if list does not exist create it

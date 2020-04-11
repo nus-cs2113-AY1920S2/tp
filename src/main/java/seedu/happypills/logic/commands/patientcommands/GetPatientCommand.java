@@ -37,7 +37,7 @@ public class GetPatientCommand extends PatientCommand {
         if (patients.containsKey(patientNric)) {
             return PatientTextUi.getPatientSuccessMessage(patients.get(patientNric));
         } else {
-            throw new HappyPillsException(Messages.MESSAGE_PATIENT_RECORD_NOT_FOUND);
+            throw new HappyPillsException(Messages.MESSAGE_PATIENT_NOT_FOUND);
         }
     }
 
