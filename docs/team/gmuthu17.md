@@ -10,10 +10,9 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 
 #### 2.2 Enhancements implemented
 
-##### Add dish
+**Add dish**
 1. Basic add dish functionality.
-2. Informs user if they attempt to add a dish that already exists.
-    + Custom message: `Dish [dish name] already exists!`
+2. Informs user if they attempt to add a dish that already exists. Custom message: `Dish [dish name] already exists!`
 3. Informs the user if dish name, ingredients, or price is missing.
 4. Informs the user if inputted price was not a number.
 5. Allows flexible ordering of parameters. Examples: 
@@ -21,30 +20,29 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
     + add dish; i/[INGREDIENT 1], [INGREDIENT 2],...]; p/PRICE; n/NAME;
 6. Custom dish added message. Example: `add dish; n/pizza; i/cheese, sauce, bread; p/6.00` Message: `Dish pizza successfully added.`
 
-##### Delete dish
+**Delete dish**
 1. Basic delete menu item functionality.
 2. Informs user if they attempt to delete a menu item that does not exist. Custom message: `Dish [dish name] does not exist!`
-3. Informs user if they attempt to delete a menu item when menu is empty.
-4. Informs the user if item name is missing.
-5. Custom dish deleted message. Example: `delete dish; n/pizza;` Message: `Dish pizza successfully removed!`
+3. Informs user if they attempt to delete a menu item when menu is empty or if item name is missing.
+4. Custom dish deleted message. Example: `delete dish; n/pizza;` Message: `Dish pizza successfully removed!`
 
-##### List menu item
+**List menu item**
 1. Basic list menu item functionality.
 2. Informs user if there are no items to list.
 
-##### Search menu item
+**Search menu item**
 1. Basic search menu item functionality.
 2. Informs user if no items match the search. Custom message: `There are no dishes that match the keyword [keyword]!`
 3. Informs user if they attempt to search for a menu item when menu is empty.
 4. Informs the user if keyword is missing.
 
-##### Dish profit
+**Dish profit**
 1. Basic dish profit functionality.
 2. Throws error if dish profit calculation is attempted for dish made of ingredients not listed in stock.
 3. Throws an error if dish profit calculation is attempted for dish made of ingredients with zero stock.
 4. Throws an error if dish profit calculation is attempted for a dish that would yield negative profit.
     
-##### Load dish
+**Load dish**
 1. Load dish input from saved file.
 
 #### 2.3 Developer guide
