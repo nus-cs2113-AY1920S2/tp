@@ -1,4 +1,4 @@
-# Lam Yue Wei - Project Portfolio Page
+# Lim Yu Xiang - Project Portfolio Page
 
 ## Content
 1. [Overview](#overview)
