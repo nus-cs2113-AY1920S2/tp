@@ -1,11 +1,15 @@
 package seedu.happypills.logic.commands.patientcommands;
 
+import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
 import seedu.happypills.model.data.PatientMap;
 import seedu.happypills.model.data.PatientRecordMap;
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientTextUi;
+import seedu.happypills.ui.TextUi;
+
+import java.nio.charset.CharacterCodingException;
 
 //@@author janicetyy
 public class GetPatientCommand extends PatientCommand {
@@ -34,6 +38,9 @@ public class GetPatientCommand extends PatientCommand {
     public String execute(
             PatientMap patients, AppointmentMap appointments, PatientRecordMap visits) throws HappyPillsException {
         assert !patientNric.isEmpty() : "No NRIC was provided";
+        if (Checker.isValidNric(patientNric)) {
+            return TextUi.INVALID_NRIC_MESSAGE;
+        }
         if (patients.containsKey(patientNric)) {
             return PatientTextUi.getPatientSuccessMessage(patients.get(patientNric));
         } else {
