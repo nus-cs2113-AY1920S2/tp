@@ -28,8 +28,8 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
 * **Minor Enhancement:** 
     * Added capabilities for meetings to be deleted and reflected onto user's timetable.
 * **Contributions to documentation:**
-	* Documented the ```modulelogic``` subcomponent in the ```logic``` component, as well as LogicManager responsible for managing all the subcomponents in logic component.
-	* Documented the```common``` components which holds various classes with static variables used in other components.
+	* Documented the information source and bulb tips for every commands. It is extremely useful for first time users.
+	* Documented the use cases and example pictures for a few commands.
 * **Contributions to the DG:**
 	* Documented design section: ```2.2.1 Architecture 2.2.3```
 	* Documented design section: ```Logic component 2.2.6 Common component```
@@ -39,7 +39,7 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
 * **Contributions to team-based tasks :**
 	* Jointly released V1.0, V2.0 and V2.1 together with team mates, taking into account the must have features for each version.
 	* Set up team organization and set up issues that needs to be solved for every milestone.
-	* Set up shadowJar and related dependencies in gradle for the team.
+	* Set up shadowJar, checkStyles and related dependencies in gradle for the team.
 	* Documented settings section: ```1. Setting Up``` of Developer Guide.
 	* Documented Appendix A of Developer's guide: ```Appendix A: Product Scope```
 	* Documented Appendix B of Developer's guide: ```Appendix B: User Stories```
