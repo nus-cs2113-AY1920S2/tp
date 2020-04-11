@@ -1,0 +1,356 @@
+# Developer Guide
+
+<!-- TOC -->
+* [1. Introduction](#1-introduction)
+    + [1.1. Purpose](#11-purpose)
+    + [1.2. Product Scope](#12-product-scope)
+        - [1.2.1. Target User Profile](#121-target-user-profile)
+        - [1.2.2. Value Proposition](#122-value-proposition)
+    + [1.3. Definitions](#13-definitions)
+* [2. Design & Implementation](#2-design--implementation)
+    * [2.1. Project Overview](#21-project-overview)
+        * [2.2. Module Overview](#22-module-overview)
+            * [2.2.1. SAM record module ](#221-sam-record-module)
+            * [2.2.2. BRANDON storage module ](#222-brandon-storage-module)
+            * [2.2.3. AD command module ](#223-ad-command-module)
+            * [2.2.4. Parser Module ](#224-parser-module)
+                * [2.2.4.1. Object creation and input interpretation](#2241-object-creation-and-steps-in-input-interpretation)
+                * [2.2.4.2. Design Considerations ](#2242-design-considerations)
+* [3. User Stories](#3-user-stories)
+* [4. Non-functional requirements](#4-non-functional-requirements)
+* [5. Instructions for manual testing](#5-instructions-for-manual-testing)
+        
+<!-- TOC -->
+
+## 1. Introduction
+
+### 1.1. Purpose
+This document specifies the architecture and software designs for 
+Hospital Administrative Management System (HAMS).
+
+### 1.2. Product Scope
+#### 1.2.1. Target User Profile
+The intended audience of this documentation are the developers, designers, software testers,
+operators and maintenance engineers. The below table summarizes the purposes of reading for each 
+audience.
+
+
+|Role|Purpose|
+|---------|-------|
+|Developers & Designers| To understand the architecture and follow the design to build the system|
+|Software testers| To understand the internals of the system so as to test more effectively|
+|Operators| To improve productivity while using the system on a daily basis|
+|Maintenance Engineers| To understand how the system was built in order to perform enhancement or re-engineering work|
+
+#### 1.2.2. Value Proposition
+**TODO {Describe the value proposition: what problem does it solve?}**
+
+### 1.3. Definitions
+**TODO**
+* *HAMS* - Short for Hospital Administrative Management System.
+* *SAM* - Short for Stupendously AwsoMe, an acronym to describe the records module.
+* *BRANDON* - Short for BRillant Ahead of its time Neat Dainty OrigNal, it is an acronym to describe the custom 
+implementation of the save file structure. 
+* *A&D* - Short of Amazing & Dazzling, it is an acronym to describe the command module.
+
+## 2. Design & Implementation
+### 2.1 Project overview
+HAMS is built using java. Under java's write once run anywhere, HAMS can be built on any platform including Windows,
+MAC-OS and Linux. When running locally on these system, HAMS uses as custom save configuration called 
+BRillant Ahead of its time Neat Dainty OrigiNal (BRANDON) for loading and saving data. This allows HAMS' internal 
+list to be modified by operators before and during run time. 
+
+### 2.2 Module Overview
+The major code can be broken down into modules. The below table is the breakdown of the module's custom
+name and a summarized purpose.
+
+**TODO**
+|Module name|Purpose|
+|---------|-------|
+|Stupendously AwesoMe (SAM) **records**|?| 
+|BRillant Ahead of its time Neat Dainty OrigiNal (BRANDON) **storage**|?|
+|Amazing & Dazzling (A&D) Commands|?|
+|Parser|Parses the user input for command execution|
+
+#### 2.2.1 SAM record module
+#### 2.2.2 BRANDON storage module
+#### 2.2.3 A&D command module 
+
+The command module consist of 11 different classes, where each class does a different command by itself. 
+These classes allows the patients and appointments to be added into HAMS, allows the updating of patient and 
+appointment details, allows the admin to delete patients and appointment information and allows of listing of the 
+different patients and the appointments in HAMS. In addition, the classes also deals with displaying the list of 
+commands and as well as to allowing HAMS to exit.
+
+![](images/Command%20class%20diagram.png)
+
+All of these command classes inherits from the abstract ```Command``` class. Likewise, the execute function of each 
+command  class is also inherited from the abstract ```Command``` class's ```execute(Ui ui, Storage storage)``` function 
+too. Every command class (other than the  ```ExitCommand``` and ```HelpCommand```) are actually façade classes that 
+creates the connection from the ```Main``` class to the other classes required such as ```Storage``` class,
+```PatientList``` class and the ```Appointment``` class to name a few. 
+
+##### 2.2.3.1 AddPatientClass
+
+To add a patient, the ```AddPatientCommand``` class is used. For this ```AddPatientCommand``` class, it serves as the 
+façade class for the ```Main```, ```Patient``` , ```PatientList``` and the ```Storage``` class to interact with one 
+another. 
+
+![](images/AddPatientDiagram.png)
+
+The ```AddPatientCommand``` class object will first be created by the ```Parser``` object, where the information 
+regarding the patient to be added will be stored in the ```AddPatientCommand``` class object. When the 
+```execute(Ui ui, Storage storage)``` command is called, the  ```AddPatientCommand``` would first make use of the 
+```Patient``` class constructor to create a new ```Patient``` object. After which, it would then call the 
+```PatientList```’s ```getPatientList()``` command to get the ```List``` patient list object such that the ```Patient``` 
+object created beforehand can directly be inserted into the patient list. After adding the patient into the patient list 
+object, the ```Storage```’s ```savePatientList()``` function will be called next so that the newly update list of 
+```patient``` is saved as offline data.  When this operation is successful, it will call upon the ```Ui``` class’ 
+```showPatientAddSuccess()``` function to display the success of adding the ```Patient``` object into the patient list.
+
+If the supplied patient age is a word or is missing, the age will be set to ```-1```. This value is chosen to indicate 
+that there isn’t a valid age set. Thus, when displaying the age, if ```-1``` is encountered, show age as an empty string 
+instead.
+
+Below shows the sequence diagram for ```AddPatientCommand``` class
+
+![](images/AddPatientCommandSequence.png)
+
+##### 2.2.3.1 AddAppointmentClass
+
+To add an appointment, the ```AddAppointmentCommand``` class is used. For this ```AddAppointmentCommand``` class, it 
+serves as a façade class for the ```Main```, ```Appointment```, ```AppointmentList``` and the ```Storage``` class to 
+interact with one another. 
+
+![](images/AddAppointmentDiagram.png)
+
+Like the ```AddPatientCommand``` class, the ```AddAppointmentCommand``` object is first created by the ```Parser``` 
+object, where the information of the appointment is again stored in the ```AddAppoinmentCommand``` object. When 
+the ```Main``` calls ```execute(Ui ui, Storage storage)```, the ```AddAppointmentCommand``` class would call upon the 
+```Appointment``` class to make an ```Appointment``` Object. After which, the ```AddAppoinmentCommand``` object will 
+call upon the ```AppointmentList``` object to obtain the list of ```Appointments``` (get the ```List``` object that 
+represents the list of appointments by ```AppointmentList```’s ```getAppointmentList()``` command) so that it can 
+directly add the new ```Appointment``` object into the appointment list. Finally, it will call upon the ```Storage``` 
+class’s ```saveAppoinmentList()``` function to save the updated appointment list. Upon successfully adding the 
+```Appointment``` object into the appointment list, it will call upon the ```Ui``` class’ 
+```showAppointmentAddSuccess()``` function to display the success of adding the ```appointment``` into the appointment 
+list.
+
+Below shows the sequence diagram for ```AddAppointmentCommand``` class
+
+![](images/AddAppointCommandSequence.png)
+
+##### 2.2.3.1 ListPatientClass
+
+To display the list of patients, the ```ListPatientCommand``` class is called. This class serves as a façade class of 
+```Main``` and ```Ui``` to interact with each other. 
+
+![](images/ListPatientDiagram.png)
+
+This class is first created by the ```Parser``` class, where it is then returned to the ```Main``` class to have its
+```execute(Ui ui, Storage storage)``` function be called. When the ```Main``` class calls the 
+```execute(Ui ui, Storage storage)``` function, ```ListPatientCommand``` will call upon the ```Ui```’s 
+```showEntirePatientList()``` function to display the list of patients.
+
+Below shows the sequence diagram for ```ListPatientCommand``` class
+
+![](images/ListPatientCommandSequence.png)
+
+##### 2.2.3.1 ListAppointmentClass
+
+To display the list of appointments, the ```ListAppointmentCommand``` class is called. This class serves as a façade 
+class of ```Main``` and ```Ui``` to interact with each other. 
+
+![](images/ListAppointmentDiagram.png)
+
+This class is first created by the ```Parser``` class, where it is then returned to the ```Main``` class to 
+have its ```execute(Ui ui, Storage storage)``` function be called. When the ```Main``` class calls the 
+```execute(Ui ui, Storage storage)``` function, ```ListAppointmentCommand``` will call upon the ```Ui```’s 
+```showEntireAppointmentList()``` function to display the list of appointments.
+
+Below shows the sequence diagram for ```ListAppointmentCommand``` class
+
+![](images/ListAppointmentCommandSequence.png)
+
+
+#### 2.2.4 Parser module
+This section describes the implementation of Parser class, as well as the design considerations and rational behind the 
+current implementation.
+
+The main purpose of the Parser class is as below.
+1.  To interpret user inputs so that the correct command can be executed 
+2.  Functions as the first line to sanitize user input
+
+As such, the Parser class only has one publicly callable method and that returns the command object for execution. 
+To assist the public method, Parser class has multiple private helper methods, as well as access to the Exception handler
+to ensure that the user input is formatted correctly. This way, purpose 1 and 2 is satisfied. 
+
+##### 2.2.4.1 Object creation and steps in input interpretation
+1.  The `Parser` object is first created in `Duke` class and subsequently used until program termination.
+2.  User input is received and handed over to `Parser` object for interpretation.
+3. In the `Parser` object, the type of command is first determined via helper method `getCommand(userInput)`.
+    + Example: `addp \age 23 \name Justin`, the `addp` command will be determined.
+4. The remaining fields will be recorded in a hashMap through either `fillPatientFields(userInput)` or `fillAppointmentFields(userInput)`
+depending on the command type in Step 3.
+    + The type of category of the command can be determined based on the last alphabet of the first word. 
+    + The command `addp` has the last alphabet is `p`, `fillPatientFields()` will be called. 
+    Likewise, if it ise `adda`, it will be `fillAppointmentFields()`.
+    + Example: `addp \name Sam \age 18`, the method `fillPatientFields(userInput)` will be called. The hashMap will contain
+    age -> 23, name -> Sam. 
+5. At the end of the execution, a reference to the command object will be returned. 
+
+![](images/SD_parser/capture2.JPG)
+
+
+![](images/SD_parser/capture.JPG)
+
+Sequence Diagram when `parseCommand(userInput)` is initially called
+![](images/SD_parser/Slide1.JPG)
+
+Sequence Diagram for `addp`
+![](images/SD_parser/Slide2.JPG)
+
+Sequence Diagram for `editp`
+![](images/SD_parser/Slide3.JPG)
+
+Sequence Diagram for `deletep`
+![](images/SD_parser/Slide4.JPG)
+
+Sequence Diagram for `adda`
+![](images/SD_parser/Slide5.JPG)
+
+Sequence Diagram for `edita`
+![](images/SD_parser/Slide6.JPG)
+
+Sequence Diagram for `deletea`
+![](images/SD_parser/Slide7.JPG)
+
+Sequence Diagram when it is an unknown command
+![](images/SD_parser/Slide8.JPG)
+
+Sequence Diagram for the creation of the command Object
+
+![](images/SD_parser/Slide9.JPG)
+
+Sequence Diagram for error checking when `DukeExpcetion` is called
+
+![](images/SD_parser/Slide10.JPG)
+
+Sequence Diagram for calling an enum
+
+![](images/SD_parser/Slide11.JPG)
+
+Sequence Diagram for error checking when `DukeExpcetion` is called
+
+![](images/SD_parser/Slide12.JPG)
+
+
+![](images/SD_parser/capture3.JPG)
+
+
+|Enum|PatientFieldKeys|AppointmentFieldKeys
+|--------|-------|------|
+|.|INDEX|INDEX|
+|.|NAME|DATE|
+|.|AGE|TIME|
+|.|ADDRESS|.|
+|.|CONTACT_NUMBER|.|
+
+
+![](images/SD_parser/capture4.JPG)
+
+
+|DukeExceptions|checkFieldEmpty|checkIndexValidity
+|--------|-------|------|
+|.|Based on the above enum table, checks that at least 1 field  is provided. <br><br>Throws NoFieldCommandException if all fields are empty|Check that the index provided is valid. <br><br> If it is less than 0 or not an integer, throw InvalidIndex and IndexNotInteger respectively.|
+
+
+
+##### 2.2.4.2 Design considerations
+###### Aspect: Symbol for delimiter
++   Alternative 1 (current choice): Backslash `/\` is used. 
+    *   Pros: 
+    
+        -   Backslash is the least used symbol in the english language.
+        
+    *   Cons: 
+    
+        - More caution must be exercised to used backslash in computer language as REGEX uses it as a delimiter by
+          default.
+          
+        - Might break the speed at which user type since backslash is located where it would be hard to reach with
+          regular typing. 
+
++   Alternative 2: Slash is `/` used.
+    * Pros:
+    
+        - easier to access when typing
+        
+    * Cons:
+    
+        - some people may have a slash in their legal name - `Suresh S/O Ravindran`
+     
+###### Aspect: Symbol for delimiter
++   Alternative 1 (current choice): Each command will call its own method to parse field. 
+    *   Pros: 
+    
+        -   Decouples commands from method, making the code more modular.
+        -   Increases testability, bugs found can be isolated to the individual command and method respectively
+        -   Changes to one method will only affect the command calling it and vice-versa.
+        
+    *   Cons: 
+    
+        -   Code duplication will increase
+ 
++   Alternative 2: Every command calls a common method to parse the remaining fields. 
+    * Pros:
+    
+        -   Less code duplication
+        
+        -   Easier to understand code. 
+        
+    * Cons:
+    
+        - Leads to tighter coupling
+        
+        -   All command depends on this common method to parse fields, if the method changes, it may return the wrong
+        result for some commands. 
+
+
+
+## 3. User Stories
+
+|Version| As a ... | I want to ... | So that I can ...|
+|--------|----------|---------------|------------------|
+|v1.0|new admin assistant|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|admin assistant|add upcoming appointments|set the patient's future appointments|
+|v1.0|admin assistant|obtain upcoming appointments|remind patients of their appointment|
+|v1.0|admin assistant|reschedule appointments|help the patient change his appointment dates|
+|v1.0|admin assistant|add and delete patient's address|update the information in the system|
+|v1.0|admin assistant|add and delete telephone number|contact the patient directly|
+|v1.0|admin assistant|have an interface|easily update the patient's personal information|
+|v1.0|admin assistant|register new patient's medical information|so that it can be stored and accessed whenever needed|
+|v1.0|admin assistant|save my data on shutdown|continue my work the next day|
+|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+
+## 4. Non-Functional Requirements
+* HAMS should be usable with minimal training, all commands should be self-explanatory and viewing the in-application
+help menu should be sufficient for basic usage. 
+
+* HAMS should be resistant to software crashes and if a crash does happens, the latest patient and 
+appointment list should be saved. In addition, user should be able to manually save their work. 
+
+
+* Each function of HAMS can be executed in a single line.
+
+* 
+
+
+**TODO**
+{Give non-functional requirements}
+
+
+## 5. Instructions for Manual Testing
+
+**TODO**
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
