@@ -4,8 +4,8 @@ By: `AY1920S2-CS2113T-T12-1`
 ## Table of Contents
 * [1. Setting up](#1-setting-up)
     * [1.1. Prerequites](#11-Prerequisites)
-    * [1.1. Setting up project](#12-Setting-up-project)
-    * [1.1. Verifying setup](#13-Verifying-setup)
+    * [1.2. Setting up project](#12-Setting-up-project)
+    * [1.3. Verifying setup](#13-Verifying-setup)
 * [2. Design](#2-design)
 	* [2.1. Architecture](#21-architecture)
 	* [2.2. UI component](#22-ui-component)
