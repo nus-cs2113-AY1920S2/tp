@@ -8,6 +8,7 @@
 
 ### Enhancements implemented  
 * Edit activities
+    * Ensures that the activity record is accurate by giving the user the ability to update certain parameters of the activities that have been recorded.
     * Allow the user to edit the name of existing activities in the activity list.
     * Allow the user to edit the allocated time of existing activities in the activity list.
     * `edit ACTIVITY_NAME /en NEW_NAME` allows the user to edit the activity name.
@@ -19,17 +20,18 @@
     * `goal TAG_NAME /d` allows the user to delete the goal set for that tag.
   
 * View goals 
-    * Allow the user to view the goals in a table format.
-    * `goal` displays all the goals that have been set. 
+    * Allow the user to view the goals easily in a table format.
+    * `goal` displays all the goals that have been set together with the actual time spent on the activities under the tags and the amount of time left to meet the goal. 
 
 ### Contributions to documentation  
-* Provided syntax and usage examples for some commands (edit, set goal, view goal)
-* Added command summary with command name and syntax.
+* Provided syntax and usage examples for some commands (edit, set goal, view goal).
+* Added command summary with command name and syntax in the User Guide.
 
 ### Contributions to the DG  
 * Added setting up instructions.
 * Explained the implementation of the `edit` command (under section 3.4) using Sequence Diagram. 
 * Gave instructions for manual testing and included sample test cases for `goal` command.
+* Added the user stories for the program.
 * Added the non-functional requirements for the program. 
 
 ### Contributions to team-based tasks  
@@ -100,26 +102,31 @@ The order of method calls to edit the activity details is as follows if the spec
 #### 3.5.2 Additional Implementations
 The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
-This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
+This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. Additionally, there may be more updates required if the tags were to be edited due to the tag goals feature.
+
+The flowchart below shows the flow of activities if the feature of editing tags were to be implemented.   
+
+_[The flowchart diagram has been omitted in this section]_
+
 
 #### 3.5.3 Design Considerations
 ##### Current Design
 The user is able to edit only the name and allocated time of the activity, which are user input data.     
 
-Pros:
+**Pros:**
 * The user is able to correct any mistake made during the recording of the activity.
 * The user is able to adjust their allocated time for the activity based on their needs.
 * Ensures that the record of activities is accurate and consistent in order for more efficient analysis of the time spent.
 
-Cons: 
+**Cons:** 
 * The user is only able to edit 2 parameters of the activity, which may be restrictive for them.  
 
 ##### Possible Design
 The user is able to edit any parameters of the activity, including tags, start and end date/time. 
  
-Pros:
+**Pros:**
 * The user has more flexibility in modifying the record of activities based on their needs.
 
-Cons:  
+**Cons:**  
 * By allowing the user to edit the date and time, there may be potential inaccuracies in the record of activities, defeating the purpose of the time tracking program. 
 * By allowing the user to edit the tags, the tag goals command may become more complicated due to the need to keep track of the presence of the tags.

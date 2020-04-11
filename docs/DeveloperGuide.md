@@ -343,27 +343,30 @@ The order of method calls to edit the activity details is as follows if the spec
 #### 3.5.2 Additional Implementations
 The current implementation of the edit feature only allows the user to edit the activity name and allocated time. Hence, additional implementations of the edit feature could allow the user to edit other parameters of the activity such as the tags and the start and end dates. 
 
-This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. 
+This will require the implementation of more update methods in the ActivityList class to allow for the changes to be updated in the activityList after it has been edited. Additionally, there may be more updates required if the tags were to be edited due to the tag goals feature.
+
+The flowchart below shows the flow of activities if the feature of editing tags were to be implemented.
+![image_info](./pictures/EditTagFlowChart.png)
 
 #### 3.5.3 Design Considerations
 ##### Current Design
 The user is able to edit only the name and allocated time of the activity, which are user input data.     
 
-Pros:
+**Pros:**
 * The user is able to correct any mistake made during the recording of the activity.
 * The user is able to adjust their allocated time for the activity based on their needs.
 * Ensures that the record of activities is accurate and consistent in order for more efficient analysis of the time spent.
 
-Cons: 
+**Cons:** 
 * The user is only able to edit 2 parameters of the activity, which may be restrictive for them.  
 
 ##### Possible Design
 The user is able to edit any parameters of the activity, including tags, start and end date/time. 
  
-Pros:
+**Pros:**
 * The user has more flexibility in modifying the record of activities based on their needs.
 
-Cons:  
+**Cons:**  
 * By allowing the user to edit the date and time, there may be potential inaccuracies in the record of activities, defeating the purpose of the time tracking program. 
 * By allowing the user to edit the tags, the tag goals command may become more complicated due to the need to keep track of the presence of the tags.
 
