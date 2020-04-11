@@ -46,14 +46,18 @@ You can view my code contribution for this project: [RepoSense Dashboard](https:
 #### Enhancements implemented
 
 - Major Enhancement: added the ability to scedule the task based on the user's requirement
-
-
+  - Delete Command (almost whole part): delete the task by task index, category, time and date.
+  - Task List (changes): manages the tasks in the list and categoryMap's process
+  - Tasks (changes): Create two task types: taskNonClass and Class.
+  - List Command (Final version): lists tasks by category, time, date, and mix of them. 
 
 <a name="contribute-documentation"></a>
 
 #### Contributions to documentations:
 
-- Documented the majority of the features.
+- Documented the majority of the list and delete features and give examples about it.
+- Documented the user guide and development guide.
+- Update About us.
 
 <a name="contribute-developerguide"></a>
 
@@ -75,6 +79,8 @@ You can view my code contribution for this project: [RepoSense Dashboard](https:
 #### Review/Mentoring contributions: 
 
 - Reviewed the following PR's: [#130](https://github.com/AY1920S2-CS2113-T14-3/tp/pull/130), [#104](https://github.com/AY1920S2-CS2113-T14-3/tp/pull/104), [#162](https://github.com/AY1920S2-CS2113-T14-3/tp/pull/162), [#175](https://github.com/AY1920S2-CS2113-T14-3/tp/pull/175).
+- Responsiveness on github issue discussion
+- create the issues to discuss the tasks: [#33](https://github.com/AY1920S2-CS2113-T14-3/tp/issues/33), [#48](https://github.com/AY1920S2-CS2113-T14-3/tp/issues/48), [#55](https://github.com/AY1920S2-CS2113-T14-3/tp/issues/55) , [#128](https://github.com/AY1920S2-CS2113-T14-3/tp/issues/128)
 
 <a name="contribute-team"></a>
 
@@ -84,11 +90,11 @@ You can view my code contribution for this project: [RepoSense Dashboard](https:
 
 <a name="contribute-ug"></a>
 
+
+
 ### Contributions to the User Guide (Extracts)
 
 ***
-
-### List
 
 #### **List** 
 
@@ -101,16 +107,12 @@ List all tasks
 List tasks belong to a specific category
 
 * **Usage**: `list c/<CATEGORY>`
-  
-  
 
 #### **List Time** And/Or Date
 
 List tasks by specific date/time
 
 * **Usage**: `list d/<DATE> t/<TIME>`
-  
-  
 
 #### List Category & Time And/Or Date
 
@@ -118,17 +120,11 @@ List tasks by category and date and time.
 
 * **Usage**: `list c/<CATEGORY> d/<DATE> t/<TIME>`
 
-  
-
-### Delete
-
 #### **Delete a task**
 
 Delete a task from the list
 
 * **Usage**: `delete <task index>`
-  
-  
 
 #### **Delete Category**
 
@@ -152,7 +148,33 @@ List tasks by category and date and time.
 
 <a name="contribute-dg"></a>
 
-### Contributions to the Developer Guide
+### Contributions to the Developer Guide (Extract)
+
+#### 3.5. Delete by task index (Proposed)
+
+##### 3.5.1 Proposed Implementation
+
+The delete by task index mechanism is facilitated by ListCommand which extends Command.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step1: The user adds a task: `add n/2113 c/DEADLINE d/2020-03-30 t/11:59` to add a task.
+
+Since the user adds a new category `DEADLINE`, the categoryMap will add one more key whose value is the category and the value is the index for this task.
+
+Step2: The users adds a task: `add n/3145 c/CLASS` to add a class. 
+
+Since the user adds a new category `CLASS`, the categoryMap wil add one more key whose value is the category and the value is the index for this task.
+
+Step3: Users list the class he just added by category CLASS: `list c/CLASS`. The TaskList will
+
+return the index of the tasks based on the categoryMap. Then the task in the `CLASS` category
+
+will be displayed.
+
+This is the Sequence Diagram for deleting by the task index. 
+
+![Sequence Diagram for View](../images/deleteCommand_class.jpg)
 
 
 
