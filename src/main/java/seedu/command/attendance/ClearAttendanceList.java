@@ -22,14 +22,13 @@ public class ClearAttendanceList extends Command {
 
     /**
      * Method to clear an existing attendanceList in a specific event.
-     * @throws PacException If attendanceList fail to clear.
      */
-    private void clear() throws PacException {
-        try {
+    private void clear() {
+        if (!attendanceList.isEmpty()) {
             attendanceList.clearList();
             ui.clearAttendanceMessage(eventName);
-        } catch (Exception e) {
-            throw new PacException("Attendance List fail to clear");
+        } else {
+            UI.display("Attendance List is already empty");
         }
     }
 

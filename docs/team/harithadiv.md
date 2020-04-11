@@ -29,7 +29,7 @@ user in this format: E, MMM dd yyyy HHmm (displays the day of the week, and the 
 which is easier, by displaying the day of the week, ie. Mon-Sun and the month name, ie. Jan-Dec. 
 
 **Highlights**: This enhancement was challenging as adding date and time to an event is an *optional* feature. Therefore, 
-an empty string cannot be considered as a DateTimeParseException to be thrown and crash the application. Thus, it required 
+an empty string cannot be considered as a DateTimeParseException to be thrown. Thus, it required 
 analysis of design alternatives to make sure that a wrong datetime format is indeed an exception to be thrown whereas an empty string is not. 
 Moreover, it affected calendar implementation as not all events contain the date and time to be extracted for calendar view. 
 
@@ -71,7 +71,7 @@ in most of the classes.
 - Linked these issues to my PRs promptly. 
 
 ### Documentation
-- I have written in the User Guide and Developer Guide features related to calendar. 
+- I have written in the User Guide and Developer Guide features related to calendar and datetime features. 
 
 ### Community 
 - PRs reviewed (with non-trivial comments)

@@ -1,18 +1,20 @@
 package seedu.ui;
 
-public class Help extends UI {
+public class HelpUI extends UI {
 
     public void printGetHelp() {
         StringBuilder output = new StringBuilder(
-            "Hello, please select 1-4 for its command format.\n"
+            "Hello, please select 1-5 for its command format.\n"
             + "1. Student List\n"
             + "2. Event-related\n"
             + "3. Calendar\n"
-            + "4. Attendance\n" + "5. Peformance\n"
+            + "4. Attendance\n"
+            + "5. Performance\n"
         );
-        output.append("To track any list, input: <type_of_list> list\n");
-        output.append("Note: All command are NOT case sensitive.\n");
-
+        output.append("To view event list, input: event list\n");
+        output.append("To view other lists, input: <type_of_list> view\n");
+        output.append("Note: All command are NOT CASE SENSITIVE.\n");
+        output.append("To exit help function, enter 'back'\n");
         display(output.toString());
     }
 
@@ -40,15 +42,17 @@ public class Help extends UI {
             + "To delete an event, use the command\n"
             + "\tevent delete i/Event_index\n"
         );
+        output.append("Enter 'list' for command format list. To exit help function, enter 'back'\n");
         display(output.toString());
     }
 
     public void printCalendarHelp() {
         display("To view events in a calendar, there should be events that exist in the event list.");
-        display("\tTo view calendar, input: s/Semester_Number ay/Year_one-Year_two.\n");
+        display("To view calendar, input: s/Semester_Number ay/Year_one-Year_two.\n");
         display("* Note that semester can only be an integer 1 or 2.");
         display("* Note that the academic year must contain two consecutive years separated by a hyphen.\n "
                 + " Each year should be in a double digit format.");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printPerformanceHelp() {
@@ -59,36 +63,45 @@ public class Help extends UI {
         display("To delete a student's performance under an event, input:\n\t"
                 + "Performance delete\n");
         display("To edit a student's performance under an event, input:\n\t"
-                + "Performance edit\n");
+                + "Performance edit");
+        display("\tYou are allowed to edit student's performance by student's name or result.\n");
         display("To sort a student's performance list under an event, input:\n\t"
-                + "Performance sort\n");
+                + "Performance sort");
+        display("\tYou are allowed to sort student's performance by students' name or result.\n");
+        display("To view a student's performance under an event, input:\n\t"
+                + "Performance view");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printAttendanceHelp() {
         display("All attendance list should exist under an existing event."
                 + "Follow step-by-step commands after the following commands are input.");
         display("To add students' attendance, input:\n\t"
-                + "Attendance add\n");
-        display("To delete a student's attendance, input:\n\t"
-                + "Attendance delete\n");
+                + "attendance add\n");
+        display("To clear a student's attendance list, input:\n\t"
+                + "attendance clear\n");
         display("To sort a student's attendance list, input:\n\t"
-                + "Attendance sort\n");
+                + "attendance sort\n");
+        display("To find a student's attendance, input:\n\t"
+                + "attendance find\n");
+        display("To edit a student's attendance, input:\n\t"
+                + "attendance edit\n");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 
     public void printStudentListHelp() {
         display("To create a new studentList for future events, input:\n\t"
-                + "student.list add\n\n");
+                + "studentlist add\n");
         display("To delete an existing studentList, input:\n\t"
-                + "student.list delete (index)\n\n");
+                + "studentlist delete\n");
         display("To clear all existing studentList, input:\n\t"
-                + "student.list clear\n\n");
+                + "studentlist clear\n");
         display("To find an existing studentList, input:\n\t"
-                + "student.list find\n\n");
+                + "studentlist find\n");
         display("To list all existing studentList, input:\n\t"
-                + "student.list list\n\n");
-        display("To sort all existing studentList by their names, input:\n\t"
-                + "student.list sort/by/name\n\n");
-        display("To sort all name within the existing studentList, input:\n\t"
-                + "student.list sort/by/list\n\n");
+                + "studentlist view\n");
+        display("To sort all existing studentList, input:\n\t"
+                + "studentlist sort\n");
+        display("Enter 'list' for command format list. To exit help function, enter 'back'\n");
     }
 }

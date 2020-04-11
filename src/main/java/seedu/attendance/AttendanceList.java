@@ -1,6 +1,5 @@
 package seedu.attendance;
 
-import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
@@ -35,10 +34,9 @@ public class AttendanceList {
      */
     public boolean isDuplicate(String name) {
         String existingStudentName;
-        String newStudentName;
+        String newStudentName = name.toLowerCase();
         for (int i = 0; i < attendanceList.size(); i++) {
             existingStudentName = attendanceList.get(i).getStudentName().toLowerCase();
-            newStudentName = name.toLowerCase();
             if (existingStudentName.equals(newStudentName)) {
                 return true;
             }
@@ -53,7 +51,7 @@ public class AttendanceList {
      */
     public void addToList(Attendance attendance, String eventName) {
         attendanceList.add(attendance);
-        ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
+        ui.addAttendanceMessage(attendance.studentName, attendance.getStatus(), eventName);
     }
 
     /**
@@ -64,27 +62,23 @@ public class AttendanceList {
         attendanceList.add(attendance);
     }
 
-    /**
-     * To display the existing attendanceList in the selected event.
-     * @throws PacException If the existing attendanceList is empty.
-     */
-    public void displayAttendanceList() throws PacException {
-        if (isEmpty()) {
-            throw new PacException("No attendance list under this event");
-        } else {
-            printTable();
+    public void displayAttendanceList(ArrayList<Attendance> attendanceList) {
+        int index = 1;
+        displayTable.printHeaderOfThree("index", "Name of Student", "Status");
+        for (Attendance attendance : attendanceList) {
+            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getStatus());
+            index++;
         }
     }
 
     /**
      * To display the attendanceList in table form.
      */
-    public void printTable() {
-        int index = 1;
-        displayTable.printHeaderOfThree("index", "Name of Student", "Status");
-        for (Attendance attendance : attendanceList) {
-            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getAttendanceStatus());
-            index++;
+    public void displayList() {
+        if (attendanceList.isEmpty()) {
+            UI.display("Attendance List is empty");
+        } else {
+            displayAttendanceList(attendanceList);
         }
     }
 
@@ -119,4 +113,25 @@ public class AttendanceList {
     }
 
 
+    public void findAttendance() {
+        UI.display("Please type the name of the student you are looking for.");
+        ui.readUserInput();
+        String keyword = ui.getUserInput().trim().toLowerCase();
+        if (isMatch(keyword).isEmpty()) {
+            ui.display("There is no student named: " + keyword);
+        } else {
+            displayAttendanceList(isMatch(keyword));
+        }
+    }
+
+    public ArrayList<Attendance> isMatch(String keyword) {
+        UI.display("Search Results");
+        ArrayList<Attendance> searchResults = new ArrayList<>();
+        for (Attendance attendance: this.attendanceList) {
+            if (attendance.getStudentName().toLowerCase().contains(keyword.toLowerCase())) {
+                searchResults.add(attendance);
+            }
+        }
+        return searchResults;
+    }
 }

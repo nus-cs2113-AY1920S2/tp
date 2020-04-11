@@ -7,7 +7,7 @@ import seedu.exception.PacException;
 import seedu.ui.UI;
 
 import java.util.Collections;
-
+import static seedu.pac.Pac.studentListCollection;
 import static seedu.student.StudentList.listNameComparator;
 
 /**
@@ -22,8 +22,12 @@ public class SortStudentListByName extends Command {
      * Method to sort all student list in studentListCollection alphabetically.
      */
     private void sort() {
-        Pac.studentListCollection.sort(listNameComparator);
-        UI.display("Student List is sorted by name within the Student List Collection");
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            studentListCollection.sortByName();
+            UI.display("Student List is sorted by name within the Student List Collection.");
+        }
     }
 
     @Override

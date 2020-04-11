@@ -20,7 +20,7 @@ public class CalendarParser {
     public CalendarParser() {
     }
 
-    private static String[] parseDescription(String parameters) throws PacException {
+    private String[] parseDescription(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
         if (tokens.length != SEMESTER_AND_AY || tokens[0].length() != CHARACTERS_IN_SEMESTER
                 || tokens[1].length() != CHARACTERS_IN_AY) {
@@ -29,7 +29,7 @@ public class CalendarParser {
         return tokens;
     }
 
-    private static int parseAcademicYear(String[] academicYear, int semester) throws PacException {
+    private int parseAcademicYear(String[] academicYear, int semester) throws PacException {
         int calendarYear;
         for (String yr : academicYear) {
             if (yr.length() > 2 || yr.length() < 1) {
@@ -49,7 +49,7 @@ public class CalendarParser {
     }
 
 
-    public static int getSemester(String description) throws PacException {
+    public int getSemester(String description) throws PacException {
         String[] tokens = parseDescription(description);
         int semester;
         if (tokens[0].substring(0,2).equals(SEMESTER_FLAG)) {
@@ -64,7 +64,7 @@ public class CalendarParser {
         return semester;
     }
 
-    public static int getYear(String description, int semester) throws PacException {
+    public int getYear(String description, int semester) throws PacException {
         String[] tokens = parseDescription(description);
         int calendarYear;
         if (tokens[1].substring(0,3).equals(ACADEMIC_YEAR_FLAG)) {

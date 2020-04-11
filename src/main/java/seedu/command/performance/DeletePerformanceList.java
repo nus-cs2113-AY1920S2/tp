@@ -6,8 +6,8 @@ import seedu.performance.Performance;
 import seedu.performance.PerformanceList;
 import seedu.ui.UI;
 
-public class DeletePerformance extends Command {
-    PerformanceList performances;
+public class DeletePerformanceList extends Command {
+    PerformanceList performanceList;
     Performance performance;
     String eventName;
     UI ui;
@@ -15,22 +15,22 @@ public class DeletePerformance extends Command {
     /**
      * Constructor for DeletePerformanceCommand. Takes in performance list and
      * the name of event that the list is under.
-     * @param performances A PerformanceList of students.
+     * @param performanceList A PerformanceList of students.
      */
-    public DeletePerformance(PerformanceList performances, String eventName) {
+    public DeletePerformanceList(PerformanceList performanceList, String eventName) {
         this.ui = new UI();
-        this.performances = performances;
+        this.performanceList = performanceList;
         this.eventName = eventName;
     }
 
     private Performance getPerformance() throws PacException {
         String studentName = ui.getStudentName("delete his/her performance");
-        return performances.getPerformance(studentName);
+        return performanceList.getPerformance(studentName);
     }
 
     private void deleteFromList() throws PacException {
         performance = getPerformance();
-        performances.deletePerformance(performance, eventName);
+        performanceList.deletePerformance(performance, eventName);
     }
 
     @Override

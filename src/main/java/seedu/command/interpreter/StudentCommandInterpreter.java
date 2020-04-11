@@ -12,9 +12,13 @@ import seedu.event.EventList;
 import seedu.exception.PacException;
 import seedu.ui.UI;
 
+import java.util.logging.Logger;
+
+
 public class StudentCommandInterpreter extends CommandInterpreter {
 
     protected UI ui;
+    private static final Logger logger = Logger.getLogger(StudentCommandInterpreter.class.getName());
 
     public StudentCommandInterpreter(EventList eventList) {
         super(eventList);
@@ -31,64 +35,42 @@ public class StudentCommandInterpreter extends CommandInterpreter {
     public Command decideCommand(String commandDescription) throws PacException {
 
         String commandType = getFirstWord(commandDescription);
+
+        assert commandType.isBlank() : "studentlist: Unknown command";
+
+        AttendanceCommandInterpreter.setupLogger();
+        logger.info("StudentList Log");
+        logger.finest(commandType);
+
         switch (commandType) {
         case "add":
-            try {
-                return new AddStudentList();
-            } catch (Exception e) {
-                throw new PacException("Student List Command Add failed.");
-            }
-
+            return new AddStudentList();
         case "view":
-            try {
-                return new ViewStudentList();
-            } catch (Exception e) {
-                throw new PacException("Student List Command View failed.");
-            }
+            return new ViewStudentList();
         case "delete":
-            try {
-                return new DeleteStudentList();
-            } catch (Exception e) {
-                throw new PacException("Student List Command Delete failed.");
-            }
+            return new DeleteStudentList();
         case "sort":
-            try {
-                UI.display("Please Key in either 'name' or 'list'.");
-                ui.readUserInput();
-                String sortType = ui.getUserInput();
-                switch (sortType) {
-                case "name":
-                    try {
-                        return new SortStudentListByName();
-                    } catch (Exception e) {
-                        throw new PacException("Student List Command Sort By Name failed.");
-                    }
-                case "list":
-                    try {
-                        return new SortStudentListByList();
-                    } catch (Exception e) {
-                        throw new PacException("Student List Command Sort By List failed.");
-                    }
-                default:
-                    throw new PacException("Unknown Student List Sort Command");
-                }
-            } catch (Exception e) {
-                throw new PacException("Student List Command Sort failed.");
-            }
+            return sortCommand();
         case "find":
-            try {
-                return new FindStudentList();
-            } catch (Exception e) {
-                throw new PacException("Student List Command Find failed.");
-            }
+            return new FindStudentList();
         case "clear":
-            try {
-                return new ClearStudentList();
-            } catch (Exception e) {
-                throw new PacException("Student List Command Clear failed.");
-            }
+            return new ClearStudentList();
         default:
             throw new PacException("Unknown Student List Command.");
+        }
+    }
+
+    private Command sortCommand() throws PacException {
+        UI.display("Please Key in either 'name' or 'list'.");
+        ui.readUserInput();
+        String sortType = ui.getUserInput();
+        switch (sortType) {
+        case "name":
+            return new SortStudentListByName();
+        case "list":
+            return new SortStudentListByList();
+        default:
+            throw new PacException("Unknown Student List Sort Command");
         }
     }
 }

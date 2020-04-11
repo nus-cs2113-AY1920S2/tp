@@ -1,12 +1,12 @@
 package seedu.command.interpreter;
 
 import seedu.command.Command;
-import seedu.command.performance.AddPerformance;
-import seedu.command.performance.DeletePerformance;
-import seedu.command.performance.EditPerformance;
-import seedu.command.performance.ViewStudentPerformance;
+import seedu.command.performance.AddPerformanceList;
+import seedu.command.performance.DeletePerformanceList;
+import seedu.command.performance.EditPerformanceList;
+import seedu.command.performance.ViewStudentPerformanceList;
 import seedu.command.performance.SortPerformanceListByName;
-import seedu.command.performance.SortPerformanceListByGrade;
+import seedu.command.performance.SortPerformanceListByResult;
 import seedu.event.EventList;
 import seedu.exception.PacException;
 import seedu.performance.PerformanceList;
@@ -14,7 +14,7 @@ import seedu.ui.UI;
 
 
 public class PerformanceCommandInterpreter extends CommandInterpreter {
-    PerformanceList performances;
+    PerformanceList performanceList;
     String eventName;
     UI ui;
 
@@ -32,16 +32,16 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
     public Command decideCommand(String commandDescription) throws PacException {
         String commandType = getFirstWord(commandDescription);
         eventName = ui.getEventName(); // to know under which event the user want to edit the performance
-        performances = getPerformances(eventName); //performance list to be edited
+        performanceList = getPerformanceList(eventName); //performance list to be edited
         switch (commandType) {
         case "add":
-            return new AddPerformance(performances, eventName);
+            return new AddPerformanceList(performanceList, eventName);
         case "delete":
-            return new DeletePerformance(performances, eventName);
+            return new DeletePerformanceList(performanceList, eventName);
         case "edit":
-            return new EditPerformance(performances, eventName);
+            return new EditPerformanceList(performanceList, eventName);
         case "view":
-            return new ViewStudentPerformance(performances);
+            return new ViewStudentPerformanceList(performanceList);
         case "sort":
             return getSortCommand();
         default:
@@ -60,9 +60,9 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
     private Command getSortCommand() throws PacException {
         String type = ui.getSortType();
         if (type.equals("name")) {
-            return new SortPerformanceListByName(performances, eventName);
-        } else if (type.equals("grade")) {
-            return new SortPerformanceListByGrade(performances, eventName);
+            return new SortPerformanceListByName(performanceList, eventName);
+        } else if (type.equals("result")) {
+            return new SortPerformanceListByResult(performanceList, eventName);
         }
         throw new PacException("Performance sort: Unknown sort type. Enter 'name' or 'student'.");
     }
@@ -73,7 +73,7 @@ public class PerformanceCommandInterpreter extends CommandInterpreter {
      * @throws PacException Throws PacException when the event is
      *                       not found in the EventList.
      */
-    private PerformanceList getPerformances(String eventName) throws PacException {
+    private PerformanceList getPerformanceList(String eventName) throws PacException {
         return eventList.getEvent(eventName).getPerformanceList();
     }
 }

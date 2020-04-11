@@ -4,7 +4,6 @@ import seedu.command.Command;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.PacException;
-import seedu.pac.Pac;
 
 public class AddEvent extends Command {
     private Event newEvent;
