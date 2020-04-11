@@ -123,10 +123,6 @@ With this feature, your tasks will be saved every time you leave the application
 
 ***
 
-&nbsp;
-
-***
-
 ## Contributions to the Developer Guide
 ```
  Provided below are sections I contributed to the Developer Guide. They demonstrate my ability to communicate my 
@@ -164,6 +160,8 @@ They are added to an ArrayList of Patients called `patientListToReturn`. `patien
 the static PatientList.
 
 The sequence diagrams for both `loadSavedAppointment()` and `loadSavedPatient()` are shown below:
+
+<img src="../images/loadsavedappt_ref.PNG" style="zoom:50%;" />
 
 ![](../images/loadsavedappt_seq1.PNG)
 ![](../images/loadsavedappt_ref.PNG)
