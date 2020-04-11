@@ -24,7 +24,7 @@ SHOCO is a desktop application used for the managing and planning of shopping li
 
 * **Other contributions:** 
     * Project Management:
-        * Closed milestone v1.0 on GitHub
+        * Closed milestones v1.0 and v2.1 on GitHub
         * Assigned bugs and PRs to respective team members on GitHub. (Issues <ins>[#146-#162](https://github.com/AY1920S2-CS2113T-T13-1/tp/issues?q=is%3Aissue+is%3Aclosed+PE-D)</ins>)
     
     * Enhancements to existing features:
