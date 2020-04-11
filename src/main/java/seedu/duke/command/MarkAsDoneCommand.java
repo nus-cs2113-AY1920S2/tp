@@ -70,6 +70,9 @@ public class MarkAsDoneCommand extends Command {
         throw new RuntimeException("module not found");
     }
 
+    /**
+     * adds " Failed" to the module name/ id if it has a fail grade.
+     */
     private void appendFailString(SelectedModule module, SemModulesList sem) {
         StringBuilder newName = new StringBuilder();
         if (module.isIdValid()) {
