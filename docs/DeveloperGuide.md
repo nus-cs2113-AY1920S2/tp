@@ -387,7 +387,7 @@ Ideally, the owner would be proficient at using desktop apps and is a quick type
 
 <a name="manual-test"></a>
 ## Appendix E: Instructions for Manual Testing
-Given below are instructions to test the app manually.
+Given below are instructions to test the program manually.
 
 <a name="e1-launch-and-shutdown"></a>
 ### E.1. Launch and Shutdown
