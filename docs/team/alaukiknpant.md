@@ -27,8 +27,8 @@ TechToday Information Tracker(TTIT) is a Command Line Application(CLI) designed 
 * **Highlights:** This enhancement complements existing functionalities and commands because you can view new articles/jobs from the internet and save them instead of just having the feature of manually adding articles. This enhancement also lets the user quickly save latest news/jobs without having to spend time manually entering the details. This enhancement required understanding the relevant API documentation. Apart from the HackerNews API documentation, I used the following sources to use the API in TechToday. 			
 
 #### Sources Reference for this enhancement: 								
-1. https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java 
-1. https://searchcode.com/codesearch/view/72088059/					
+1. [https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java](https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java) 
+1. [https://searchcode.com/codesearch/view/72088059/](https://searchcode.com/codesearch/view/72088059/)				
 
 ### Contributions to documentation: 
 
