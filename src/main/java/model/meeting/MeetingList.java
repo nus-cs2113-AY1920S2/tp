@@ -1,10 +1,15 @@
 package model.meeting;
 
 import ui.TextUI;
+
 import java.util.ArrayList;
 
 /**
- * TESTING SUMMARY DOC.
+ * Stores meetings in a meeting list.
+ * Contains an ArrayList object as the meeting list.
+ * Has constructor and getter methods for the meeting list.
+ *
+ * @see Meeting
  */
 public class MeetingList {
     private ArrayList<Meeting> meetingList;
