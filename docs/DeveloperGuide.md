@@ -1592,7 +1592,7 @@ If you have any further inquiries, or if you found any <b>bugs</b> <i class="fa 
 <div style="text-align: center">
 <i class="fa fa-facebook-square fa-lg" style="color:blue"></i> <a href="https://www.facebook.com/nukeproject/"><b>Facebook</b></a> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nukeproject@gmail.com"><b>Gmail</b></a>
+<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nusnuke2019@gmail.com"><b>Gmail</b></a>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 <i class="fa fa-yahoo fa-lg" style="color: purple"></i> <a href="mailto:nukeproject@yahoo.com"><b>Yahoo! Mail</b></a> 
 </div>
