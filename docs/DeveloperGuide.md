@@ -90,8 +90,7 @@ which are key to the functionality of the application. The implementation of the
 Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
 
 ### 2.3. Logic component
-<img src="images/logiccomponent.png" width="40%">
-![Logic Component](images/logiccomponent.png | width=100)<br>
+<img src="images/logiccomponent.png" width="80%">
 *Fig 2. Overview of Logic component*
 
 Fig 2. shows an overview of the Logic component. The ```LogicManager``` class is the brain and backbone of the logic component. It depends on 3 sub-components: ```schedulelogic``` ```modulelogic``` ```command```.
@@ -118,8 +117,7 @@ The modulelogic component consists of 4 classes: ```TimetableParser``` ```Module
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
- 
-![logic.modulelogic Component](images/modulelogic.png)<br>
+<img src="images/modulelogic.png" width="80%">
 *Fig 3. Class diagram of the logic.modulelogic component*
 
 Fig 3. shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
@@ -131,7 +129,7 @@ Fig 3. shows the interaction between the 4 classes in ```logic.modulelogic``` su
 the information in a ```Map<String, ArrayList<String>>``` data structure as seen from the figure. 
 4. This sub-component also depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 
-![logic.modulelogic Component](images/LessonsGenerator.jpg)<br>
+<img src="images/LessonsGenerator.jpg" width="80%">
 *Fig 4. Sequence diagram of the logic.modulelogic component*
 
 Fig 4. shows an overview of the UML sequence of the entire logic.modulelogic component.<br>
