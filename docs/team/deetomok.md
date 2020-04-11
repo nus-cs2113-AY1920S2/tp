@@ -48,7 +48,7 @@ Glossary section and Instructions for Manual Testing section.([#133](https://git
 
 ### Contributions to team-based tasks  
 - configured Build Gradle windows to make sure runtest.bat works ([#28](https://github.com/AY1920S2-CS2113-T15-3/tp/commit/f2767e597522e0aa84c1a99dcf087354bddfda62))  
-- Maintaining the issue tracker.  
+- Maintaining the issue tracker, and in charge of first version JAR file release  
 - Ensuring group meetings and consolidation of group discussions  
 
 ### Review/mentoring contributions:
