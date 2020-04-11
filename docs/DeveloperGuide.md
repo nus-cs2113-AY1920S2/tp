@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -70,8 +71,7 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <big style="color: green">**Introduction** [&#10149;](#introduction)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Purpose** [&#10149;](#purpose)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Scope** [&#10149;](#scope)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Definitions** [&#10149;](#definitions)    
+&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Design Goals** [&#10149;](#design-goals)    
 <br>   
 <big style="color: green"> **Setting Up** [&#10149;](#setting-up)  </big>  
 <br>  
@@ -126,25 +126,6 @@ This document will cover the structure and software design decisions for the imp
 [Back To Top](#table-of-contents)    
 <br>  
 
-### **Definitions**  
-
-static
-exception
-class
-object
-directory
-directory tree
-abstract
-method
-parent and child directory
-```
-	// To be done.
-```
-
-
-[Back To Top](#table-of-contents)    
-<br>  
-
 ### **Setting Up**
 
 #### **1.1. Prerequisites**
@@ -192,45 +173,42 @@ parent and child directory
 ## **Design**
 ### Architecture
 
-The **Architecture Diagram** given above explains the high-level design of the apllicatoin. Give below is a qucik overview of each component.
-
-![Architecture.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Architecture.jpg)
-
-<span style="color: green"><small><i>Figure <b>Architecture Diagram</b></i></small></span>
+![architecture](/images/dg_arch.png)
+<span style="color: green"><small><i>Figure <b>Nuke Architecture</b></i></small></span>   
+ <br>
+ 
+The **Architecture Diagram** given above explains the high-level design of the application. Give below is a quick overview of each component.
 
 **`Main`** has only one class called **Nuke**. It is responsible for,
-- At launch: Initializes the components in the correct sequences, and connects them up with each other.
+- At launch: Initialises the components in the correct sequences, and connects them up with each other.
 
-- At running: Invoke UI to Show welcome messages, continuously invokes UI, Logic component to execute commands entered by User.
+- At running: Invoke UI to Show welcome messages, continuously invokes UI, Logic component to execute commands entered by user. Also invokes storage component to save data after execution of user's commands
 
-- At shut down: Invokes storage component to save data and invokes UI componenet to show exit message.
+- At shut down: Invokes UI component to show exit message.
 
-**`Commons`** represents a collection of classess used by multiple other components. The following classes are of vital importance and are utilized quite frequently.
-- **`DirectoryTraverser`**: Used by many classes to traverse among differnt directories and get base directories.
+There are <b>four</b> other components in the <b>Nuke</b> application.
+- **`UI`**:  The UI of the application which complete interactions between **User** and **Nuke**.
 
-- **`ModuleManager`**: Used by many classes to manage all added modules and get necessary information
-
-- **`CategoryManager`**: Used by many classes to manage all added categories of each module and get necessary information
-
-- **`TaskManager`**: Used by many classes to manage all added tasks of each category and get necesssary information
-
-- **`TaskFileManager`**: Used by many classes to manage all added files of each task and get necessary information
-
-The rest of the application consists of four components.
-- **`UI`**: The UI of the application which complete interactions between **User** and **Nuke**.
-
-- **`logic`**: the command executor.
+- **`Logic`**: The command executor.
 
 - **`Model`**: Holds different data types in the application.
 
-- **`Storage`**: Loads data from, and writes data to, the file in the hard disk. It will only be used when launing and terminating the application
+- **`Storage`**: Loads data from, and writes data to, a file in the user's hard disk.
 
 Each of the four components
 - defines its API in several classes
 
 - exposes its functionalitiy by invoking different methods in these classes.
 
-For example, the **`Storage`** component defines it's API in several classes including _Encoder.java_, _Decoder.java_ and etc and exposes its functionaility by invoking differnt method in these classes by _StorageManager.java_ class.
+For example, the **`Storage`** component defines it's API in several classes including <code>Encoder</code> and  <code>Decoder</code>, and exposes its functionality by invoking different method in these classes by <code>StorageManager</code>  class.
+<br>
+The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
+
+![logic component](images/dg_logic.png)
+<span style="color: green"><small><i>Figure <b>Logic Component</b></i></small></span>   
+<br>
+More information about the <b>Model Component</b> can be found [here](#structure-implementation).<br>
+More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 
 #### How the architecture components interact with each other
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
@@ -239,7 +217,6 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 ### UI componenet
 Classes 
-
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
