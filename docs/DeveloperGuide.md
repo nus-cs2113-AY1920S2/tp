@@ -117,10 +117,8 @@ The ```commands``` consists of the class ```CommandHandler```.
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser``` ```ModuleApiParser``` ```ModuleHandler``` ```LessonsGenerator```.
 
-1. ```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules.
-2. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module.
-3. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing.
-4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
+```LessonsGenerator``` uses the ```TimetableParser``` class to acquire the modules a user is taking, including the timeslots of those modules. ```LessonsGenerator``` also uses ```Modulehandler``` to retrieve a set of information related to a specific module. With both information, ```LessonsGenerator``` is able to dynamically generate the user's time-slots stored in ```ArrayList<String[]>``` via a series of Key-Value pair hashing. The ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
+
 <br>
 
 <img src="images/modulelogic.png" width="80%">
