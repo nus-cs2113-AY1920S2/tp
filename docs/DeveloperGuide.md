@@ -506,6 +506,7 @@ is done in 2 ways:
 This feature gives the user a visual representation of their activity duration and activity goals.  
 Graph can be used along with `list`, `find` and `filter` to sieve out the data to be graphed.
 
+
 #### 3.9.1 Current Implementation
 ![graph seq diagram](./pictures/graph_seqDiag.png)
 * This feature is called by the user when the `graph` command is entered into the command line. The user will then have to specify what he would like to graph (goals progress bar / tag duration / activity duration).
