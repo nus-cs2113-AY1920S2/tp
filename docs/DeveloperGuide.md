@@ -90,6 +90,7 @@ which are key to the functionality of the application. The implementation of the
 Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` classes to display error messages when exceptions are caught.
 
 ### 2.3. Logic component
+<img src="images/logiccomponent.png" width="40%">
 ![Logic Component](images/logiccomponent.png | width=100)<br>
 *Fig 2. Overview of Logic component*
 
