@@ -39,7 +39,7 @@
 
     1. **User guide contribution:**
     - Anchoring using Table of Content at the top of the user guide.
-    - `Section 1: Introduction`, `Section 2: Quick Start` and all `Stock` related commands from `Section 3 - Section 4`.
+    - `Section 1: Introduction`, `Section 2: Quick Start`, `Stock` related commands from `Section 3 - Section 4` and all images used in the User Guide.
 
     2. **Developer guide contribution:**
     - Anchoring using Table of Content at the top of the developer guide.
@@ -48,7 +48,7 @@
 
 * **Team-based Task**
     1. Automate testing by incorporating test cases using text-ui-test.
-    2. Release `Restaurant Daily Report v2.0`.
+    2. Release `Restaurant Daily Report v2.0` and `Restaurant Daily Report v2.1`.
 
 **Review/Mentoring contributions:** Troubleshoot failing CI-Test in issue [#74](https://github.com/nus-cs2113-AY1920S2/forum/issues/74)
 
