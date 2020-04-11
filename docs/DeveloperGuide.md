@@ -142,6 +142,16 @@ The diagram above shows the logic flow of HappyPills.
 
 ![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
 
+The Model component consists of `Patient`, `PatientMap`, `PatientRecord`, `PatientRecordMap`, `Appointment` and
+`AppointmentMap`, which stores the user's data according to their input. 
+
++ `Patient`: Stores information about a patient
++ `PatientMap`: Stores all patient information
++ `PatientRecord`: Stores all medical-related information about a patient
++ `PatientRecordMap`: Stores all patient records
++ `Appointment`: Stores information about an appointment
++ `AppointmentMap`: Stores all scheduled appointments
+
 ### 3.5. Storage Component
 
 The `Storage` class is called by the `HappyPills` class to handle the loading and saving of patient general details, 
