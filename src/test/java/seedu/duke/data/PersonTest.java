@@ -40,7 +40,8 @@ public class PersonTest {
     @Test
     void toStorageString() {
         Person person = new Person("Duke", "2018");
-        assertEquals("Duke,2018",Person.toStorageString());
+        String[] words = Person.toStorageString().split(",");
+        assertEquals(3,words.length);
     }
 
     @Test

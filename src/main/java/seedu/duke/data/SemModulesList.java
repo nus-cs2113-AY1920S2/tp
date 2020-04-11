@@ -72,11 +72,13 @@ public class SemModulesList extends ArrayList<SelectedModule> {
     public void deleteModule(String moduleIdentifier) {
         for (SelectedModule module : this) {
             if (module.getName().equals(moduleIdentifier) || module.getId().equals(moduleIdentifier)) {
-                boolean isModuleGradeF = module.getGrade().equals(Grading.F);
-                boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
-                boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
-                if (module.getDone() && !hasModuleFailed) {
-                    Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                if (module.getDone()) {
+                    boolean isModuleGradeF = module.getGrade().equals(Grading.F);
+                    boolean isModuleGradeCU = module.getGrade().equals(Grading.CU);
+                    boolean hasModuleFailed = isModuleGradeCU || isModuleGradeF;
+                    if (!hasModuleFailed) {
+                        Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
+                    }
                 }
                 this.remove(module);
                 break;
