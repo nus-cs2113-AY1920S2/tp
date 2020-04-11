@@ -8,12 +8,9 @@ import seedu.nuke.exception.CorruptedFileException;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -25,7 +22,6 @@ import static seedu.nuke.data.storage.StoragePath.TASK_FILE_DIRECTORY_PATH;
 
 public class StorageManager {
     private static boolean isToSave = false;
-
     private String dataFileName;
 
     /**
@@ -52,54 +48,6 @@ public class StorageManager {
      */
     public StorageManager(String dataFileName) {
         this.dataFileName = dataFileName;
-    }
-
-    /**
-     * load from json data file and return an ArrayList of Module objects.
-     *
-     * @return an ArrayList of Module objects.
-     */
-    public ArrayList<Module> load() {
-        String jsonStr;
-        try {
-            jsonStr = loadJsonStringFromFile(dataFileName);
-            return (ArrayList<Module>) JSON.parseArray(jsonStr, Module.class);
-        } catch (IOException e) {
-            System.out.println("Error when reading from " + dataFileName);
-            return new ArrayList<>();
-        }
-    }
-
-    private static String loadJsonStringFromFile(String dataFileName) throws IOException {
-        String encoding = "utf8";
-        File file = new File(dataFileName);
-        Long fileLength = file.length();
-        byte[] fileContent = new byte[fileLength.intValue()];
-        FileInputStream in = new FileInputStream(file);
-        in.read(fileContent);
-        in.close();
-        try {
-            return new String(fileContent, encoding);
-        } catch (UnsupportedEncodingException e) {
-            System.err.println("The OS does not support " + encoding);
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * Save the current ArrayList of Module objects into json file.
-     */
-    public void save() {
-        String jsonStr = JSON.toJSONString(ModuleManager.getModuleList());
-        try {
-            FileWriter fw = new FileWriter(dataFileName);
-            fw.write(jsonStr);
-            fw.flush();
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("something wrong when writing to " + dataFileName);
-        }
     }
 
     /**
@@ -137,10 +85,6 @@ public class StorageManager {
             System.out.println("File is corrupted!\n");
             ModuleManager.setModuleList(new ArrayList<>());
         }
-    }
-
-    public static String saveModuleToString(ArrayList<Module> moduleList) {
-        return JSON.toJSONString(moduleList);
     }
 
     /**

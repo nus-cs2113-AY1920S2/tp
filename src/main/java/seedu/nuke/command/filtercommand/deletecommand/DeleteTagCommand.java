@@ -63,10 +63,10 @@ public class DeleteTagCommand extends DeleteCommand {
 
     @Override
     protected CommandResult executeInitialDelete(ArrayList<Directory> filteredTagList) {
-        final int fileCount = filteredTagList.size();
-        if (fileCount == 0) {
+        final int tagCount = filteredTagList.size();
+        if (tagCount == 0) {
             return new CommandResult(MESSAGE_NO_TAGS_FOUND);
-        } else if (fileCount == 1) {
+        } else if (tagCount == 1) {
             Executor.preparePromptConfirmation();
             Executor.setFilteredList(filteredTagList, DirectoryLevel.TAG);
             TaskTag toDelete = (TaskTag) filteredTagList.get(0);
