@@ -33,7 +33,8 @@
 
 
 ### Minor Enhancement
-Added **help** command which will show a simple user guide to enable users find valid commands and corresponding format when using **Nuke**.
+- Added **help** command which will show a simple user guide to enable users find valid commands and corresponding format when using **Nuke**.
+- Added **Data Manager** which is a base class used to realize some commands. 
 
 ### Other Contributions
 - Project managment:
