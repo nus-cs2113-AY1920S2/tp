@@ -484,7 +484,10 @@ meetings into account when scheduling a common timeslot timetable.
 |v2.0| As a TA | I want to use this to schedule consults and marking sessions without sacrificing my tutorial/lecture slots | so that I can get the best TA award and maintain my grades at the same time. |
 |v2.0| As a lazy student | I want to use this application to automatically sync my previous meeting onto a new schedule profile | so that I can automatically block out dates instead of typing it manually. |
 |v2.0| As a student | I want to see the list of upcoming meeting dates  | so that i can remind myself which meetings i have to go for in the coming week. |
-|v2.1| As a  | a | a |
+|v2.1| As a busy student | I want to edit my schedule manually | so that I can add more slots at which I am busy |
+|v2.1| As a student | I want to edit my schedule manually | so that I can free up slots at which I am not busy |
+|v2.1| As a team leader | I want to see my team's schedule for the following week | so that I can plan and schedule meetings in advance |
+
 
 [&#8593; Return to Table of Contents](#table-of-contents)
 
