@@ -28,6 +28,5 @@ public class DeleteSubjectCommand extends DeleteCommand {
     /** Removes a subject from the application. */
     public void execute(SubjectList subjectList) throws EscException {
         subjectList.removeSubject(this.subjectIndex);
-        //ui display
     }
 }

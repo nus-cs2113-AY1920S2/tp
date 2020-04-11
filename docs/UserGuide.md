@@ -75,6 +75,7 @@ Format: `addcard s/<INDEX> q/<QUESTION> a/<ANSWER>`
 Example of Usage:
 * `addcard s/2 q/What year was NUS established? a/1980`
 * `addcard s/1 q/How many electrons does oxygen have? a/8`
+![](images/addcard.png)
 
 ### Listing Cards in a Subject
 Lists all the cards in the specified subject.
@@ -88,7 +89,7 @@ Example of Usage:
 
 Screenshot showing listcard:
 
-![](images/addcard.png)
+![](images/listcard.png)
 
 ### Deleting a Card
 Deletes the specified card from the specified category 

@@ -43,6 +43,5 @@ public class DeleteCardCommand extends DeleteCommand {
         Subject chosenSubject = subjectList.getSubject(this.subjectIndex);
         CardList cardList = chosenSubject.getCardList();
         cardList.removeCard(this.cardIndex);
-        //ui display result list
     }
 }

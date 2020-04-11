@@ -458,7 +458,7 @@ public class Parser {
      */
     private static String[] getQuestionAndAnswer(String argument, String errorMessage) throws EscException {
         String secondaryArgs = argument.split(QUESTION_ARG,2)[1];
-        String [] cardArgs = secondaryArgs.split(ANSWER_ARG);
+        String [] cardArgs = secondaryArgs.split(ANSWER_ARG,2);
 
         if (cardArgs.length < 2) {
             throw new EscException(errorMessage);
