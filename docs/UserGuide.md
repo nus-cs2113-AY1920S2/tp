@@ -647,5 +647,3 @@ Refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
 Q: Can I edit my repeated event details using `edit` command? <br/>
 A: The `edit` command is used to edit the details such as `date` or `comments` of `assignment`, `event` or `repeat event`. 
 To change the repeat details for a `repeat event`, please refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat).
-
-[Back to Top](#)
