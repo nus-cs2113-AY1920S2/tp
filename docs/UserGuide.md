@@ -66,10 +66,12 @@ Format:
     <Contact Name> <NUSMODS link>
 
 Examples of usage:
-
-    Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:06,PLEC:02,PTUT:01
-    
-    Tommy https://nusmods.com/timetable/sem-2/share?CG2027=LEC:01,TUT:01&CS2101=&CS2113T=LEC:C01
+```
+Juan https://nusmods.com/timetable/sem-2/share?CG2023=LAB:06,PLEC:02,PTUT:01
+```
+```
+Tommy https://nusmods.com/timetable/sem-2/share?CG2027=LEC:01,TUT:01&CS2101=&CS2113T=LEC:C01
+```
 
 Example output:
 
