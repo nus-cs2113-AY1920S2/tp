@@ -81,8 +81,10 @@ I have contributed to several of my team based tasks.
     * While the list is not exhaustive, some of the most recent reviews I have done can be found:
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/133), 
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/134), 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/136) and 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/137).
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/136), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/137), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/140) and 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/141).
 
 * In addition, I have also provided feedback to my teammates by providing them with insights as to how to go about implementing certain features when they request for help. These helps are essential since it help our team ensure that we are on track with the tasks on hand.<br>
     * For example, I have helped Yu Xiang recently when he asked me for an idea of how to go about creating a class file to monitor weight changes.
