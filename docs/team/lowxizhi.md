@@ -88,7 +88,7 @@ Example of usage:
         
 Example output:
 
-![edit free 0 11 09:00 11 10:00](images/edit_free_0_11_0900_11_1000_op.png)
+![edit free 0 11 09:00 11 10:00](../images/edit_free_0_11_0900_11_1000_op.png)
 
 [&#8593; Return to list of Features](#features)
     
@@ -96,7 +96,7 @@ Example output:
 
 ## Example Contributions to the Developer Guide:
 ### 3.5 Edit a contact's timetable
-![EditContact](images/EditContact.png)<br>
+![EditContact](../images/EditContact.png)<br>
 *Fig 14. Sequence diagram of the implementation of the `Edit a contact's timetable` feature*
 
 Fig 14. shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
@@ -146,7 +146,7 @@ which there is a dedicated feature implemented. This causes unnecessary overhead
 3. Alternative 1 is easier to implement. When a clash is detected, Alternative 1 requires only the throwing of exception, 
 whereas Alternative 2 requires the removal of ```Meeting``` from ```MeetingList```.<br><br>
 
-![EditContact](images/EditContact_checkvalid.png)<br>
+![EditContact](../images/EditContact_checkvalid.png)<br>
 *Fig 15. Sequence diagram of checking if an edit is valid in the `Edit a contact's timetable` feature*
 
 Fig 15. shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
