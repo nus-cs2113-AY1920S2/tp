@@ -51,6 +51,7 @@ wrote the code skeleton for various JUnit Tests (e.g. `AssignmentTest`,`EventTes
 * Enabled the use of Jansi in gradle
 * Converted UG from ADOC format to MD format: [#147](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/147)
 * Converted DG from ADOC format to DG format: [#146](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/147)
+* Released Jar file for V1.0 and V2.0
 
 **Community** :
 * Fixed overlooked wrong index in UG: [#191](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/191)
