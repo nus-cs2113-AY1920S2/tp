@@ -169,7 +169,7 @@ implementation of the [`Display timetable of selected contacts`](#33-display-tim
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
-#### 2.4.1. Model.meetings component
+#### 2.4.1. model.meetings component
 ![Meetings Component](images/meetingscomponent.png)<br>
 *Fig 7. Class diagram of the model.meetings component*
 
@@ -179,7 +179,7 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 2. ```MeetingList``` is used to store a list of all meetings. It contains a ```ArrayList<Meeting>``` which is updated every time the user adds or deletes a meeting. There are also getter methods not shown in the diagram.
 <br>
 
-#### 2.4.2. Model.contacts component
+#### 2.4.2. model.contacts component
 ![Contacts Component](images/contactscomponent.png)<br>
 *Fig 8. Class diagram of the model.contacts component*
 
