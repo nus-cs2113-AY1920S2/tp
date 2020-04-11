@@ -216,6 +216,7 @@ Example output:
 [&#8593; Return to list of Features](#features)
 
 <br/>
+
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
 * This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
