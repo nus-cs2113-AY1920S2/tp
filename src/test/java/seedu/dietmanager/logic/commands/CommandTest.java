@@ -39,7 +39,7 @@ class CommandTest {
         Command command = new CheckWeightRecordCommand("check-weight-progress");
         command.execute(profile, ui);
         assertEquals("There has been no change in your weight!" + System.lineSeparator()
-                        + "-5.00 kg more to go to meet your dream girl/boy!", command.resultString);
+                + "-5.00 kg more to go to meet your dream girl/boy!", command.resultString);
     }
 
     @Test

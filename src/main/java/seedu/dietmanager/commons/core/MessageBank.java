@@ -46,7 +46,7 @@ public class MessageBank {
     public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
-    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static String BREAKFAST_RECORD_MESSAGE = "You just record the meal in the morning of: ";
