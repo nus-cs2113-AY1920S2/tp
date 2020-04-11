@@ -31,7 +31,8 @@ Table of Contents
 5. [Documentation](#5-documentation)  
     5.1 [Written documentation](#51-written-documentation)  
     5.2 [Diagrams](#52-diagrams)  
-    
+6. [General Design Considerations](#6-general-design-considerations)
+
 [Appendix A: Product Scope](#appendix-a-product-scope)  
 [Appendix B: User Stories](#appendix-b-user-stories)  
 [Appendix C: Glossary](#appendix-c-glossary)  
@@ -499,6 +500,22 @@ The user and developer guide are written and formatted using MarkDown.
 Diagrams are drawn and edited using the tool [draw.io](https://app.diagrams.net/). 
 The tool provides support for a wide range of UML diagrams, 
 such as class, object and sequence diagrams.
+
+# 6. General Design Considerations
+Option 1 (current choice): Have a `static ModuleList availableModulesList` in the `AvailableModulesList` class.
+
+| | | 
+|------------------------------------|------------------------------------|  
+| Pros | When we want to query the list of available modules, we can check the `availableModulesList` directly since it is class level variable, without needing to access the specific instance of `AvailableModulesList` created initially.|
+| Cons | However, there is a need to override the `add(object)` and `remove(object)` methods. This is because the built in `add(object)` and `remove(object)` methods do not delete the modules from the static variable `availableModulesList`.
+
+Option 2: Do not have a static variable `availableModulesList` in the `AvailableModulesList` class
+
+| | |  
+|------------------------------------|------------------------------------|  
+| Pros | We do not need to override the `add` and `remove` methods of the `AvailableModulesList` class, thus we can directly use the built in methods.
+| Cons | However, when we want to access the list of available modules, that specific instance of `AvailableModulesList` instantiated in the beginning must be queried since there is no class level method.
+
 
 ## Appendix A: Product Scope
 ### Target user profile
