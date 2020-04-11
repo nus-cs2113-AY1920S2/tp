@@ -110,10 +110,10 @@ a.backlink:active {
 ## 2. Quick Start
  
  * Ensure you have Java 11 or above installed in your Computer.
- * Download the latest [CS2113T-T12-3][OrgaNice!].jar from [here](https://github.com/AY1920S2-CS2113T-T12-3/tp/releases) and place it in an empty folder. 
+ * Download the latest OrgaNice.jar from [here](https://github.com/AY1920S2-CS2113T-T12-3/tp/releases) and place it in an empty folder. 
  * Open Command Prompt. **NOTE: Please ensure that the command prompt is at full screen BEFORE running the jar file**
  * Navigate to the folder with the jar.
- * Type the following command:  java -jar [CS2113T-T12-3][OrgaNice!].jar to run it.
+ * Type the following command:  java -jar OrgaNice.jar to run it.
  
  A text based UI should appear with the following lines.
   
