@@ -1,4 +1,4 @@
-# Project Portfolio Page -- Clement Cheng
+# Project Portfolio Page -- Yang Chenglong
 
 ## Project Nuke <small>v2.1</small>
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-**Nuke v2.1** is a desktop task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organise the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
+**Nuke v2.1** is a simple yet powerful task management application target towards **NUS students**.  **Nuke** aims to provide a more efficient way to organize the user's modules and tasks. The user interacts with **Nuke** using a _Command Line Interface_ (CLI). In its latest versions, it also has a complementary _Graphical User Interface_ version created with JavaFX, though the GUI is still in its _Beta_ stage. **Nuke** is written in Java, and has about 10, 000 lines of code.
 
 ## Summary of Contributions
 
@@ -24,7 +24,7 @@
 
 - What it does: Preloads the information of all modules provided by NUS, including module codes and module titles.
 - Justification: This feature makes our product more targeted at our intended user(NUS students) more, it also enables the auto-complete features when users are adding their modules by entering module codes, which enhances usability.
-- Highlights: This enhancement is based on the json file which is retrieved from the [NUSMods](https://api.nusmods.com/v2/) API, and it has to deal with the case when there is no relevant json file on the disk, then the program needs to fetch the content from [NUSMods](https://api.nusmods.com/v2/) API, and if the user has no network connection(which is a very rare case), the program also needs to be compatible with such extreme case.
+- Highlights: This enhancement is based on the json file which is retrieved from the [NUSMods](https://api.nusmods.com/v2/) API, and it has to deal with the case when there is no relevant json file on the disk, then the program needs to fetch the content from [NUSMods](https://api.nusmods.com/v2/) API, and if the user has no network connection(which is a very rare case), the program also needs to be compatible with such extreme case and compromises to allow the user to add any modules, even not provided by NUS
 - Credits: 
   - [NUSMods](https://api.nusmods.com/v2/) API: For providing the API to retrieve the information of all the modules provided by NUS.
   - [FastJson](https://github.com/alibaba/fastjson) library: For parsing the json file.
@@ -50,32 +50,23 @@ Managed releases `v1.0` ,  `v2.0` (2 releases) on GitHub
 
 ##### User Guide:
 
--   Documented List modules/categories/tasks and Delete modules/categories/tasks Features -- [#122](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/122/commits/cececb821a8e6b54c2abc5da7ed13acf79262c08) 
--   Elaborate Add modules/categories/tasks Features -- [#117](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/117/commits/f518160a8b8df0a2e4e7b6d481011b083cbeef40)
+-   Documented List modules/categories/tasks and Delete modules/categories/tasks Features. -- [#122](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/122/commits/cececb821a8e6b54c2abc5da7ed13acf79262c08) 
+-   Elaborated Add modules/categories/tasks Features. -- [#117](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/117/commits/f518160a8b8df0a2e4e7b6d481011b083cbeef40)
 
 ##### Developer Guide:
 
--   Documented Add modules/categories/tasks Implementation -- [#96](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/96/commits/6fe3ee74bec8fdb7c8eccca5871e974220200d9c)
+-   Documented Add modules/categories/tasks Implementation. -- [#96](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/96/commits/6fe3ee74bec8fdb7c8eccca5871e974220200d9c)
+-   Documented List Command Implementation. -- [#208](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/208/commits/796f5c9327141c8aedf2001aa92c3546ce2a47a8)
+-   Documented Setting Up section. -- [#221](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/211/commits/71bc5c7c0ee3eaf6e6f8538ebda0635a7267fdfc)
+-   Documented Appendix Section. -- [#211](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/211/commits/71bc5c7c0ee3eaf6e6f8538ebda0635a7267fdfc) [#214](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/214/commits/652a3e4b1c05dd7f5f5820a7da0451fdccc0d02f) [#215](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/215/commits) [#220](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/220/commits) [#221](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/221/commits) [#223](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/223/commits) [#226](https://github.com/AY1920S2-CS2113T-T13-2/tp/pull/226/commits) 
 
-##### Community:
+#### Contributions to team-based tasks :
 
--   
+- Modify the code  to make sure it passes CI on GitHub regularly.
+- Handled part of the issues/bugs raised during the PE-Dry run.
 
+#### Community:
 
-
-Contributions to the User Guide
-===============================
-
-<table><colgroup><col style="width: 100%" /></colgroup><tbody><tr class="odd"><td><p><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td></tr></tbody></table>
-
-Contributions to the Developer Guide
-====================================
-
-<table><colgroup><col style="width: 100%" /></colgroup><tbody><tr class="odd"><td><p><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td></tr></tbody></table>
-
-PROJECT: PowerPointLabs
-=======================
-
----
-
-*{Optionally, you may include other projects in your portfolio.}*
+-   Reviewed other course member's tP and reported 6 bugs during the PE-Dry run. -- [#1](https://github.com/A11riseforme/ped/issues/1) [#2](https://github.com/A11riseforme/ped/issues/2) [#3](https://github.com/A11riseforme/ped/issues/3) [#4](https://github.com/A11riseforme/ped/issues/4) [#5](https://github.com/A11riseforme/ped/issues/5) [#6](https://github.com/A11riseforme/ped/issues/6) 
+-   Reported bugs on the course website. -- [#3](https://github.com/nus-cs2113-AY1920S2/forum/issues/3)
+-   Helped other course member on the forum. -- [#10](https://github.com/nus-cs2113-AY1920S2/forum/issues/10#issuecomment-576370349) [#16](https://github.com/nus-cs2113-AY1920S2/forum/issues/16#issuecomment-578772535) [#17](https://github.com/nus-cs2113-AY1920S2/forum/issues/17#issuecomment-579072279) [#24](https://github.com/nus-cs2113-AY1920S2/forum/issues/24#issuecomment-581422244) [#41](https://github.com/nus-cs2113-AY1920S2/forum/issues/41#issuecomment-591348850) [#51](https://github.com/nus-cs2113-AY1920S2/forum/issues/51#issuecomment-592957231) [#106](https://github.com/nus-cs2113-AY1920S2/forum/issues/106#issuecomment-612346406)
