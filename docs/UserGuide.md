@@ -110,7 +110,7 @@ This is just a quick overview of what Jikan can do for you. For more details on 
 `start GER1000 quiz /t GER GEmod`  
 `start revision`  
  
-**Discouraged Names for Activity & Tags:**
+**Discouraged Names for Activities & Tags:**
  * The following strings are used as parameters for other commands, and hence should be avoided as it may interfere with Jikan running smoothly:
     *  `/`,`;`, `/a`, `/t`,`/a`,`-s`,`/en`,`/ea`, `/d`, `/n`
     
