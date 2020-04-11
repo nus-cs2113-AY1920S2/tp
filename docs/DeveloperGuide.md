@@ -216,7 +216,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Classes used by UI component are in the [**`seedu.nuke.ui`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/ui).
 
 ### **2.3 Logic component**
-Classes used by Logic component are in the **`seedu.nuke.data`** package, [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java)** in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
+Classes used by Logic component are in the [**`seedu.nuke.data`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/data), [**`seedu.nuke.parser`** package](https://github.com/AY1920S2-CS2113T-T13-2/tp/tree/master/src/main/java/seedu/nuke/parser), [**`DirectoryTraverse.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/directory/DirectoryTraverser.java) in **`seedu.nuke.directory`** package and [**`Executor.java`**](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/src/main/java/seedu/nuke/Executor.java) in **`seedu.nuke`** package.
 
 The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> application in our current implementation:<br> 
 
