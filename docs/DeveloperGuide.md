@@ -466,7 +466,15 @@ The string following the command are the parameters:
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-![find seq diagram](https://imgur.com/Icg5rdB.png)
+#### 3.7.3 Sequence Diagram
+The following illustrates the execution sequence of a general use case. Due to the similarities between `find` and 
+`filter` sequences, the sequence diagram of `filter` is omitted.
+
+![image_info](./pictures/Find_Sequence_Diagram.png)
+*Sequence Diagram for Find Command*
+
+![image_info](./pictures/Find_Reference_Frame.PNG)
+*Reference frame for populating last shown list*
 
 ### 3.9 Filter Feature
 This feature accepts multiple space-separated keywords to search for activities with tags matching each keyword.
@@ -483,9 +491,6 @@ This feature accepts multiple space-separated keywords to search for activities 
         * If `lastShownList` is not empty, it will print the matching activities.
         * Else, it will respond to the user that there are no tasks which match the given keyword.
 
-#### 3.7.3 Find Sequence Diagram
-![image_info](./pictures/Find_Sequence_Diagram.png)
-![image_info](./pictures/Find_Reference_Frame.PNG)
 
 #### 3.7.4 Additional features (Proposed)
 Developers may include the feature allowing users users to chain multiple queries and multiple commands 
