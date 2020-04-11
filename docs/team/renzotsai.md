@@ -52,6 +52,6 @@ e.g [#42 PR in our team repo](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/4
 [Google Slides: Available Modules List's data structure](https://docs.google.com/presentation/d/1UeuonNaPafGD5bX36J_iroB_umS6lvyD37ECp8OfvSI/edit)
 
 #### Contributions beyond the project team
-- responses posted in forum: [a possible answer to #89](https://github.com/nus-cs2113-AY1920S2/forum/issues/89#issuecomment-605184683)
+- responses posted in forum: [a possible answer to #89](https://github.com/nus-cs2113-AY1920S2/forum/issues/89\#issuecomment-605184683)
 (why Java CI build failure only for windows)
 - bugs reported in other team's products: [bugs reports to CS2113T-T12-4](https://github.com/RenzoTsai/ped/issues)
