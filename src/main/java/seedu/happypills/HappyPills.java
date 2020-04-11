@@ -100,8 +100,8 @@ public class HappyPills {
     private String getCommandType(String fullCommand) {
         String message = "";
         try {
-            Command command = Parser.parse(fullCommand);
-            message = command.execute(patients, appointments, patientRecords);
+            Command c = Parser.parse(fullCommand);
+            message = c.execute(patients, appointments, patientRecords);
         } catch (HappyPillsException hpe) {
             System.out.println(hpe.getMessage());
             System.out.println(TextUi.DIVIDER);

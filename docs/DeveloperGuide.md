@@ -205,10 +205,10 @@ Below is an example of adding patient's appointment.
 The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric`, `date`, `time`, and `reason` in its constructor. 
 
+The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
+
 ![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
 
-
-The following steps below is an example of how the `AddAppointmentCommand` class behaves: 
 
 1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
 class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
@@ -230,13 +230,30 @@ subsequently call the `AddAppointmentCommand#execute()` method.
 	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
 	and displays the `AppointmentID` associated to the `Appointment` object created. 
 
-#### 4.2.1 Add Patient Details
-
 **Design Considerations**
 
-##### Aspect: Prompt handling method
+##### Aspect: Key-value for adding
 
-        Alternative 1 (current choice):
+>        Alternative 1 (current choice): Use Nric as Key for all
+>          Pros: Universal checking would be easy  
+>                Ease of use as the user can access all information with one NRIC 
+>                
+>          Cons: NRIC is lenghty
+>            
+>        Alternative 2: Use Index as Key for all
+>          Pros: Shorter key
+>          Cons: Hard to remeber unique index for each patient.
+>                Increase coupling between component.
+>        
+>        Alternative 3: Different index as key for all
+>          Pros: Reduce coupling between components.
+>          Cons: It require the user to remember all different 
+>          
+>        Alternative 1 was chosen as NRIC is unique and it decrease coupling between components (PatientMap, PatientRecordMap, AppointmentMap).  
+
+##### Aspect: Add Patient Details
+
+        Alternative 1 (current choice): 
           Pros: 
           Cons: 
             
@@ -246,28 +263,7 @@ subsequently call the `AddAppointmentCommand#execute()` method.
         Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
         P.S subject to change in v2.
 
-#### 4.2.2 Add Patient Record Details
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
-
-#### 4.2.3. Add Appointment Details 
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
+##### Aspect: Add Patient Record Details
 
         Alternative 1 (current choice):
           Pros: 
