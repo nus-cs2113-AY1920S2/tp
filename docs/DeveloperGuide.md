@@ -210,6 +210,14 @@ The diagram below shows the <b>Logic Component</b> of the <b>Nuke</b> applicatio
 More information about the <b>Model Component</b> can be found [here](#structure-implementation).<br>
 More information about the <b>Storage Component</b> can be found [here](#storage-implementation).
 
+#### How the architecture components interact with each other
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
+
+<span style="color: green"><small><i>Figure <b> Components interactions</b></i></small></span>
+
+### UI componenet
+Classes 
+
 [Back To Top](#table-of-contents)    
 <br>  <br>  
 
