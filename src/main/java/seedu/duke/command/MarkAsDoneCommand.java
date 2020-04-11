@@ -45,12 +45,12 @@ public class MarkAsDoneCommand extends Command {
                 boolean isModuleName = module.getName().equals(description);
                 boolean isModuleId = module.getId().equals(description);
                 if (isModuleName || isModuleId) {
-                    module.setAsDone(grade);
                     boolean isNotGradeF = (grade != Grading.F);
                     boolean isNotGradeCU = (grade != Grading.CU);
-                    if (isNotGradeF && isNotGradeCU) {
+                    if (isNotGradeF && isNotGradeCU && !module.getDone()) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
+                    module.setAsDone(grade);
                     return;
                 }
             }
