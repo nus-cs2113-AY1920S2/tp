@@ -56,17 +56,17 @@ public class DirectoryTraverser {
     /**
      * Traverse one level down in the directory.
      *
-     * @param nextLevel
+     * @param nextDirectory
      *  The next level of the directory
      * @throws DirectoryTraversalOutOfBoundsException
      *  If the traversal will result in traversing out of the directory
      */
-    public static void traverseDown(Directory nextLevel) throws DirectoryTraversalOutOfBoundsException {
+    public static void traverseDown(Directory nextDirectory) throws DirectoryTraversalOutOfBoundsException {
         if (currentLevel >= MAXIMUM_LEVEL) {
             throw new DirectoryTraversalOutOfBoundsException();
         }
         currentLevel++;
-        directoryStack.push(nextLevel);
+        directoryStack.push(nextDirectory);
     }
 
     /**

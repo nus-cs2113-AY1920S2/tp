@@ -1,4 +1,5 @@
 
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -198,7 +199,7 @@ parent and child directory
 This section shall discuss about our implementation of the overall structure of the <b>Nuke</b> application. We will highlight <b>three</b> main features of the current structure: <b><a href="#directory">Directory</a></b>, <b><a href="#directory-manager">Directory Manager</a></b> and <b><a href="#directory-traverser">Directory Traverser</a></b>.
 </div>
 
-### **Directory**    
+### **1. Directory**    
 #### **Overview**   
 <div>
 The <b>Nuke</b> application attempts to simulate the structure of a <b>Directory Tree</b> &#127795; <i>(folder sub-folder)</i> structure. This means that there is a hierarchy for different <i>directories</i> in the <b>Tree</b>. Each <i>directory</i> will have a corresponding <i>parent directory</i>, with the exception of the <i>base directory</i>. In <b>Nuke</b>, this <i>base</i> directory is called the <b>Root</b>.
@@ -285,7 +286,7 @@ The <i>original file path</i> is the <i>path</i> to where the <i>original file</
 [Back To Top](#table-of-contents)    
 <br> 
 
-### **Directory Manager**   
+### **2. Directory Manager**   
 #### **Overview**     
 <div>
 The <b>Directory Manager</b> is a collective term used to refer to the <b>Module Manager</b>, <b>Category Manager</b>, <b>Task Manager</b> and <b>File Manager</b>. The <b>Directory Manager</b> manages the storage and operations of the <b>Directory</b> it is managing. For example, the <code>ModuleManager</code> object will manage <code>Module</code> objects. 
@@ -297,44 +298,135 @@ The <b>Directories</b> in the <b>Directory Manager</b> are stored in an <code>Ar
 <br><br>
 The <b>Directory Manager</b> classes also contain very similar methods to carry out operations regarding its <b>Directories</b>. For example, in the <code>ModuleManager</code> class, there are:
 <ul>
-<li><code>getModule(String: moduleCode)</code> &ndash; Gets a <code>Module</code> object from the <code>ArrayList</code> based on the <code>moduleCode</code> provided</li>
+<li><code>getModule(moduleCode: String)</code> &ndash; Gets a <code>Module</code> object from the <code>ArrayList</code> based on the <code>moduleCode</code> provided</li>
 <li><code>add(Module)</code> &ndash; Adds a <code>Module</code> object into the <code>ArrayList</code> of stored <code>Module</code> objects</li>
 <li><code>delete(Module)</code> &ndash; Remove a <code>Module</code> object from the <code>Array List</code></li>
-<li><code>edit(Module, String: newModuleCode)</code> &ndash; Edits a <code>Module</code> object's <code>moduleCode</code> to a new one</li>
-<li><code>filter(String: moduleKeyword)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>contains</u> the <code>moduleKeyword</code></li>
-<li><code>filterExact(String: moduleKeyword)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
+<li><code>edit(Module, newModuleCode: String)</code> &ndash; Edits a <code>Module</code> object's <code>moduleCode</code> to a new one</li>
+<li><code>filter(moduleKeyword: String)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>contains</u> the <code>moduleKeyword</code></li>
+<li><code>filterExact(moduleKeyword: String)</code> &ndash; Filters for <code>Module</code> objects in the <code>ArrayList</code> with <code>moduleCode</code> that <u>equals</u> the <code>moduleKeyword</code></li>
 </ul>
 <br>
 The <b>Directories</b> and <b>Directory Managers</b> together make up the <a href="#model-component"><b>Model</b> component</a> of the <b>Nuke</b> application.  
-</div>
+</div>   
+  
+[Back To Top](#table-of-contents)    
+<br>   
+  
+#### **Design Considerations**     
+<b>Structure Decision</b>    
+- <b>Alternative 1</b>: No <b>Directory Tree</b> structure; have <b>one</b> Task List</b> which stores all the user's <i>tasks</i>       
+	- <b>Pros</b>: Implementation-wise will be trivial. Any operations relating to the <i>task</i> can be done directly from the <b>Task List</b>     
+	- <b>Cons</b>: The <b>Task List</b> can become too large overtime. It can become messy and unorganised since  categorisation of <i>tasks</i> is not explicitly implemented. Also, it will prevent having duplicated common names. For example, many <i>tasks</i> may have the same <i>task description</i> <b>Tutorial 3</b>.   
+
+- <b>Alternative 2</b>: Have a <b>Directory Tree</b> structure <b>(current implementation)</b>         
+	- <b>Pros</b>: The structure is more layered and well-organised. A folder and sub-folder structure is intuitive to the user since it tends to follow how he would normally store and organise their <i>tasks</i>. Duplicated <b>Directory</b> names are also supported &#128522; provided they come from different <i>parent</i> <b>Directories</b>.   
+	- <b>Cons</b>: Can be challenging to implement &#128553;. There are many other structures and methods that we need to implement to facilitate the <b>Tree</b> structure. For example, methods to traverse the <b>Tree</b>, and how <b>Directories</b> have knowledge of their <i>parent</i> <b>Directory</b>. For the users, this would mean more commands and features for them to know.    
 <br>
+
+<b>Directory Operations</b>    
+- <b>Alternative 1</b>: Merge <b>Directory</b> classes with <b>Directory Manager</b> classes        
+	- <b>Pros</b>: We will be able to implement one less class for each <b>Directory</b>. Also it may be intuitive at first to combine them since they perform "similar" functions. For example <code>Module</code> and <code>ModuleManager</code> classes both have operations that largely involve <code>Module</code> objects.     
+	- <b>Cons</b>: The operations of <b>Directory</b> classes with <b>Directory Manager</b> classes are not exactly similar. <b>Directory</b> classes form the basic structure of the <b>Directories</b>, while the <b>Directory Manager</b> classes manage storing and operating <b>Directories</b>. Merging the two will thus violate Single Responsibility Principle and Separation of Concerns as the merged class will have two different roles.    
+
+- <b>Alternative 2</b>: Have separated <b>Directory</b> classes and <b>Directory Manager</b> classes <b>(current implementation)</b>         
+	- <b>Pros</b>: The classes are more specialised and perform more distinct roles, which is an ideal coding practice.   
+	- <b>Cons</b>: A separate class needs to be implemented for each of the <b>Directories</b>. Both <b>Directory</b> classes and <b>Directory Manager</b> classes also tend to be very closely associated to each other and increases coupling.     
 
 [Back To Top](#table-of-contents)    
 <br> 
 
-### **Directory Traverser**    
+### **3. Directory Traverser**    
 #### **Overview**    
 <div>
-The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
+The <b>Directory Traverser</b> is a very fundamental feature that utilises the <b><a href="#directory">Directory Tree</a></b> structure of <b>Nuke</b> to carry out its operations. In particular, it plays a pivotal role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command to traverse up and down from the current <b>Directory</b>. 
 <br><br>
 The <b>Directory Traverser</b> also helps to fill in the missing <i>path</i> attributes in various commands by using the information from the <i>current</i> and <i>parent</i> <b>Directories</b>. For example, if a user is at the <b>Module</b> level, with <i>module code</i> <b>CS2100</b>, and wants to add a <i>category</i>, he does not have to enter the <i>directory path</i>  to the <i>module</i> in the command as such: <code>addc toAdd -m cs2100</code>. Instead, he can just type <code>addc toAdd</code>. This also works when the user is at the <b>Category</b>, <b>Task</b> and <b>File</b> levels.
 </div>  
   
 #### **Implementation**    
-![directory traverser class diagram](#images/dg_traverser_class.png)
+![directory traverser class diagram](#images/dg_traverser_class.png)   
+<span style="color: green"><small><i>Figure <b>Directory Traverser Class Diagram</b></i></small></span>   
+ <br>
+
 <div>
 The <code>DirectoryTraverser</code> class is a static class which has several public static methods. That means other classes can use the <code>DirectoryTraverser</code> class's methods without having to instantiate a <code>DirectoryTraverser</code> object. 
 <br><br>
-As described <a href="#overview-2">above</a>, the <code>DirectoryTraverser</code> class has <b>two</b> main functions:
+<code>DirectoryTraverser</code> stores the current <i>path</i> information as a Stack. When traversing down to a <i>child</i> <b>Directory</b>, it pushes the <i>child</i> <b>Directory</b> into the Stack. Similarly, when traversing up to its <i>parent</i> <b>Directory</b>, it pops the current <b>Directory</b> out of the Stack. This helps to track what is the current <b>Directory</b>, which will always be at the top of the Stack.
+</div>
+<br>
+
+![directory traverser traverse down](images/dg_traverse_down.png)    
+<span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Down</b></i></small></span>   
+ <br>  
+ 
+![directory traverser traverse up](images/dg_traverse_up.png)    
+<span style="color: green"><small><i>Figure <b>Directory Traverser Traverse Up</b></i></small></span>   
+ <br>  
+
+<div>
+As described in the <a href="#overview-2">Overview</a>, the <code>DirectoryTraverser</code> class has <b>two</b> main functions:
 <br><br>
 <b><u>Traversal</u></b>
 <br>
-The <code>DirectoryTraverser</code> class contains methods used to traverse up and down <b>Directories</b>. 
+The <code>DirectoryTraverser</code> class contains <b>three</b> main methods to facilitate traversing up and down <b>Directories</b>.  They are:<br>  
+<ol>
+<li><code>findNextDirectory(nextDirectoryName: String)</code> &ndash; Finds a present <code>Directory</code> in the next <b>Directory</b> level with the matching <code>nextDirectoryName</code></li>
+<li><code>traverseDown(nextDirectory: Directory)</code> &ndash; Traverses down to the <code>nextDirectory</code> by pushing the <code>nextDirectory</code> into the <code>directoryStack</code></li>
+<li><code>traverseUp()</code> &ndash; Traverses  up to the <i>parent</i> <b>Directory</b> by popping the top <code>Directory</code> from the <code>directoryStack<code></li>
+</ol>
+<br>
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128559;
+</div>
+<br>
+The above <b>three</b> methods plays an important role in the <b><a href="#5-change-directory-command">Change Directory</a></b> command.
 <br><br>
 <b><u>Attributes Matching</u></b>
 <br>
-</div>
+Matching attributes to fill in the missing <i>path</i> attributes given by the user is not so straightforward. <code>DirectoryTraverser</code> has to search through each of the <code>Directory</code> in its <code>directoryStack</code> to extract the relevant information.
+<br><br>
+At times, the user may be at an inadequate <b>Directory</b> level for <code>DirectoryTraverser</code> to fully extract the <i>path</i> information. In this case, <code>DirectoryTraverser</code> has to be able to recognise this, and throw an <b>exception</b> &#128542;. For example, if the user is at the <b>Root</b> level and enters <code>addt do task -c Assignment</code> to add a <i>task</i>, in our current implementation, the following will happen:
 <br>
+<ol>
+<li><code>DirectoryTraverser</code> will attempt to fill in the missing <i>path</i> attribute for the <i>module</i></li>
+<li>However, since the user is at the <b>Root</b> level, <code>DirectoryTraverser</code> is unable to fill the missing <i>path</i> to the <i>module</i></li>
+<li><code>DirectoryTraverser</code> will throw an <b>exception</b> and an error message is shown to the user to either move to the correct level, or enter the full <b>Directory</b> <i>path</i></li>
+</ol>
+<br>
+To support the attributes matching feature, <code>DirectoryTraverser</code> has <b>2</b> distinct groups of methods, with one method for each <b>Directory</b> level from <b>Root</b> to <b>File</b> <i>(i.e. in total <b>8</b>)</i>. The methods are:
+<br>
+<ol>
+<li><code>getBaseModule()</code> &ndash; Gets the <i>parent</i> <b>Module</b> Directory, or the current <b>Directory</b> if it is at the <b>Module</b> level</li>
+<li><code>getBaseCategory()</code> &ndash; Gets the <i>parent</i> <b>Category</b> Directory, or the current <b>Directory</b> if it is at the <b>Category</b> level</li>
+<li><code>getBaseTask()</code> &ndash; Gets the <i>parent</i> <b>Task</b> Directory, or the current <b>Directory</b> if it is at the <b>Task</b> level</li>
+<li><code>getBaseFile()</code> &ndash; Gets the current <b>Directory</b> if it is at the <b>File</b> level</li>
+<li><code>getModuleDirectory(String)</code> &ndash; Gets the <b>Module</b> level <code>Directory</code> after first filling missing <i>path</i> attributes</li>
+<li><code>getCategoryDirectory(String, String)</code> &ndash; Gets the <b>Category</b> level <code>Directory</code> after first filling missing <i>path</i> attributes</li>
+<li><code>getTaskDirectory(String, String, String)</code> &ndash; Gets the <b>Task</b> level <code>Directory</code> after first filling missing <i>path</i> attributes</li>
+<li><code>getFileDirectory(String, String, String, String)</code> &ndash; Gets the <b>File</b> level <code>Directory</code> after first filling missing <i>path</i> attributes</li>
+</ol>
+<br>
+As of the current implementation, the above methods are sufficient for the attributes matching property.
+</div>
+<br>   
+  
+[Back To Top](#table-of-contents)    
+<br>   
+
+#### **Design Considerations**     
+<b>Attributes Matching</b>    
+- <b>Alternative 1</b>: Do not have any attribute matching, <i>i.e. missing path attributes are <b>not</b> allowed</i>       
+	- <b>Pros</b>: Simple to implement. We only need to check if every <i>path</i> attribute is provided by the user, and that the <b>Directory</b> from the given <i>path</i> exists.     
+	- <b>Cons</b>: The user needs to consistently enter the full <i>path</i> to the <b>Directory</b> he is targeting. This can become rather time-consuming and very inconvenient to the user.   
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+The commands targeting the <b>File</b> Directroy requires the longest <i>path</i>. For example, the format for the <b>add file</b> command would look something like <code>addf assignment_1 -m ma1521 -c Assignment -t do assignment</code>. Having the user to constantly type such <b><i>long</i></b> commands &#128555; would really inconvenience them.
+</div>     
+
+- <b>Alternative 2</b>: Have attribute matching <b>(current implementation)</b>         
+	- <b>Pros</b>: User can omit certain <i>path</i> attributes, or the entire <i>path</i> altogether if he is at the correct <b>Directory</b>. Commands would be shorter and can be entered faster, which meets the expectation stated in the <a href="#user-stories">user stories</a>.
+	- <b>Cons</b>: A lot harder to implement &#128551;. There are many considerations to be made for the correct implementation of this feature such as how missing attributes can be derived and the correct matching of attributes.   
 
 [Back To Top](#table-of-contents)    
 <br> 
@@ -567,14 +659,14 @@ Total modules: 6
 ```
 
 <br>
+
 James will first enter the command to list out *modules* with *moduleCode* begin with "CS":  
 	`lsm CS`  
 After the input is parsed as a **list module** command and executed, the `ListModuleCommand#execute()` will call `FilterCommand#createFilteredModuleList()` to create the filtered list of *modules* containing the *Modules* with *moduleCode* begin with "CS". `ListModuleCommand#execute()` will then call its parent class's method `FilterCommand#sortModuleList(filteredModuleList)` to sort the *modules* by their respective moduleCode. And finally the sorted Arraylist of *Module*s is used to instantiate a CommandResult object and returned, and `ui#showResult(commandResult)` will be called to show the result to the user. And Listing process ends.
 
 Below is a *sequence diagram* to illustrate the above example scenario.  
 
-![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)
-
+![List Module Command Sequence Diagram](images/List_Module_Command_Sequence_Diagram.png)   
 <span style="color: green"><small><i>Figure <b>List Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
@@ -1038,7 +1130,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`* * *` |student |delete modules\tasks |remove modules and tasks I do not need to keep on track anymore |
 |`* * *` |student |count my total tasks |keep track of how many tasks I have left and plan my time better |
 |`* * *` |student |add different priorities to tasks |manage my time and do the most important things first |
-|`* * *` |student |edit modules\tasks |correct or change some attributes |
+|`* * *` |student |edit modules and tasks |correct or change some attributes |
 |`* * *` |student |constantly check the deadline of tasks in ascending order |get tasks done on time |
 |`* * *` |student |receive a reminder of urgent tasks |know which tasks should be done first |
 |`* * *` |student |sort my tasks in terms of certain criteria |view my tasks of highest priorities |
