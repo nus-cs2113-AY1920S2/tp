@@ -19,7 +19,7 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
      With the help feature embedded in the application, users need not solely rely on the SHOCO User Guide for help when they are in doubt.
     * Highlights: This enhancement includes examples of command usages which makes the accepted command formats much more comprehensible to the user.  
 
-* **Code contributed:** [[Functional code]](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=trishaangelica&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=trishaangelica&tabRepo=AY1920S2-CS2113T-T13-1%2Ftp%5Bmaster%5D)
+* **Code contributed:** [[Functional code]](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=trishaangelica&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&tabOpen=true&tabType=authorship&tabAuthor=trishaangelica&tabRepo=AY1920S2-CS2113T-T13-1%2Ftp%5Bmaster%5D)
 
 
 * **Other contributions:** 
@@ -177,7 +177,7 @@ have been omitted from the diagram. Those details are shown in a separate sequen
 
 The separate sequence diagram below shows how an item is updated with new values.
 
-![Edit Feature SD](../images/Edit_SD_v1.png)
+![Edit Feature SD](../images/Edit_SD_v1_PPP.png)
 
 
 ##### 3.2.2 Design considerations
