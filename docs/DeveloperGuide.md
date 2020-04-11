@@ -42,12 +42,12 @@ The product also contains the following components:
   * Deals with illegal inputs.
 
 
-In these components, cards and subjects have similar structure. Both of them contain a Card/Subject class and a CardList/SubjectList class.
-Duke, along with all command class and Parser form the logic box of the product.
+In these components, cards, subjects and events have similar structure. All of them contain a Card/Subject/Event class and CardList/SubjectList/EventList class.
+Duke, along with all command classes and Parser, form the Logic box of the product.
 <br />
 <p align="center">
   <img src="images/logicuml.jpg" width="600" alt="Logic Class Diagram"/>
-  <br />Figure 2. Class diagram of Logic Component  
+  <br />Figure 2. Class diagram of Logic component  
 </p>
 
 The flow of the Logic component is as follows:
@@ -57,35 +57,36 @@ The flow of the Logic component is as follows:
 <br />
 <p align="center">
   <img src="images/command_sequence_diagram.jpeg" width="600" alt="Command Sequence Diagram"/>
-  <br />Figure 3. Sequence diagram of Logic Component  
+  <br />Figure 3. Sequence diagram of Logic component  
 </p>
 
-<br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, ScoreList.
+<br />The Logic box interacts with Model box, i.e. Card, CardList, Subject, SubjectList, Event, EventList, ScoreList.
 
-- The SubjectList class contains an array the subjects and exams
-- The Event class contains information about the upcoming events.
-- The Subject class contains details such as the subject name, a scorelist and a cardlist.
+- The SubjectList class contains an array the subjects and an eventList
+- The Subject class contains details such as the subject name, a scoreList and a cardList.
+- The EventList class contains an array of events.
+- The Event class contains information about upcoming events.
 - The ScoreList class contains an array of past scores of the quizzes which the user have completed.
 - The CardList class contains an array of cards.
 - The Card class contains both a question and an answer to the question.  
 <br />
 <p align="center">
   <img src="images/modeluml.png" width="600" alt="Model Class Diagram"/>
-  <br />Figure 4. Class diagram of Model Component  
+  <br />Figure 4. Class diagram of Model component  
 </p>
 
 <br />Finally, the Storage box, i.e. Storage class will handle reading and writing of the contents to a file.
-<br />The Storage component saves and loads the SubjectList objects using Serializable.
+<br />The Storage component saves and loads the SubjectList objects using the Serializable interface.
 <br />
 <p align="center">
   <img src="images/storageuml.jpg" width="600" alt="Storage Class Diagram"/>
-  <br />Figure 5. Class diagram of Storage Component  
+  <br />Figure 5. Class diagram of Storage component  
 </p>
 
 ## 2. Implementation
 ### 2.1. Subject Feature
 #### 2.1.1. Proposed Implementation
-The subject feature is an extension to the existing flashcard feature which allows users to categorise their
+The subject feature is an extension to the existing flashcard feature, which allows users to categorise their
 flashcards. This helps users to search for their flashcards more efficiently and also users to quiz by subject. The list of user's subjects are stored inside the SubjectList. It implements the following operations:
 
 - ``SubjectList#addSubject()`` - Adds a new subject to the subject list.
@@ -276,7 +277,7 @@ The following diagram describes how the show upcoming operation works:
 </p>
 
 #### 2.4.2. Design Considerations
-##### Aspect: How to format the score history shown to the user
+##### Aspect: How to implement addition and management of events
 - **Alternative 1 (current choice)**: Allow the user to store any type of event (does not have to be a test/exam, and
 does not have to be tied to a pre-existing subject).
   - Pros: 

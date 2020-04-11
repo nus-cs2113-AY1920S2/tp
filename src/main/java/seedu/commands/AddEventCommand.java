@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Command class for the AddEventCommand.
  */
-public class AddEventCommand extends Command {
+public class AddEventCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addevent";
 

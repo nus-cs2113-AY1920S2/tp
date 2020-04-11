@@ -15,7 +15,7 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 needed for the exam, as practice makes perfect.
 
 + Highlights: This enhancement quizzes questions in random order, allows the user to select the number of questions to quiz, and allows the user to quit the quiz prematurely.
-It works alongside the side score feature, in order to further enhance the user's revision (elaborated below).
+It works alongside the score feature, in order to further enhance the user's revision (elaborated below).
 
 #### Added the Score feature
 + What it does: Allows users to view their score after each quiz, and also a list of their past quiz scores for the selected subject.
@@ -37,25 +37,26 @@ deemed important, even those not related to any of the stored subjects. The even
 of upcoming events to show.
 
 ### Minor Enhancements: 
-##### Added the Card and CardList classes.
-##### Added the ability to detect duplicates in questions when adding cards.
++ ##### Added the Card and CardList classes.
++ ##### Added the ability to detect duplicates in questions when adding cards.
 
 <hr>
-<h4> Code contributed: <a href="https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=JeremiasLiew&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos" target="_blank">Code</a>
+<h4> Code Contributed: <a href="https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=JeremiasLiew&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos" target="_blank">Code</a>
 </h4>
 <hr>
 
-### Contributions to documentation
+### Contributions to Documentation
 
 #### Contributions to the DG :
-+ All write-ups and diagrams for the Quiz feature.
-+ All write-ups and diagrams for the Score feature.
-+ All write-ups and diagrams for the Event feature.
++ Minor updates to the 1.Design section to reflect an updated implementation of the Event Management Feature.
++ All write-ups and diagrams for the [Quiz feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#22-quiz-feature).
++ All write-ups and diagrams for the [Score feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#23-score-feature).
++ All write-ups and diagrams for the [Event Management feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#24-event-management-feature).
 
 #### Contributions to the UG :
 + All write-ups and diagrams for the Event feature.
 + Additions to the Quiz feature write-up and FAQ section based on newly implemented Quiz features.
 
 #### Contributions to team-based tasks
-+ Bug checking and minor un-intrusive bug fixes for other features.
++ Bug checking and bug fixes.
 + Added user stories in issue tracker for v1.0.

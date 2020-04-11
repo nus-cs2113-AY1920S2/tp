@@ -13,7 +13,7 @@ import java.util.Collections;
 /**
  * Command class for the ShowUpcomingCommand.
  */
-public class ShowUpcomingCommand extends Command {
+public class ShowUpcomingCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "showupcoming";
 
