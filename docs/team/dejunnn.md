@@ -2,8 +2,7 @@
 
 ## Overview
 
-Diet Manager is an personal text-based chat-bot application used for managing an individual's diet.
-
+Diet Manager is an personalised text-based chat-bot application used for managing an individual's diet. 
 Diet Manager is capable of tracking daily food intake and providing recommendations depending on a user's specified
 health data.
 
@@ -50,7 +49,7 @@ Introduction, Quick Start, Profile Features, Utility Features, FAQ, Command Summ
 Sections enhanced:
 Daily Food Record Features, Food Nutrition Record Features, Recipe Features
 
-### Contributions to the DG: 
+### Contributions to the DG
 
 Established the framework and contributed to most sections of the 
 [Developer Guide](https://ay1920s2-cs2113-t15-4.github.io/tp/DeveloperGuide.html):
@@ -69,13 +68,13 @@ UML Diagrams drawn and added:
 
 ### Contributions to team-based tasks 
 
-* Created team organisation and settle administrative duties at start of tP
+* Created team organisation and settled administrative duties for team
 * Managed all Jar-file releases for team - v1.0, v2.0, v2.1
-* Managed product website release, including PPP, User Guide, Developer Guide, Team information page
-* Established clear milestones, creating and assigning issues and PRs to these milestones to aid in team progress
-* Managed issue tracking, assignments, milestone tracking
-* Established proper text-ui-testing and fixed bug experienced with runtest.bat and runtest.sh scripts
-* Established proper JUnit testing for the team
+* Managed product website release, including PPP, User Guide, Developer Guide, Team information page etc.
+* Established clear milestones, creating and assigning issues and PRs, tagging and progress reviews
+* Managed issue tracking, assignments, milestone tracking and worked to keep team on pace for deadlines
+* Established proper text-ui-testing and fixed bug with runtest.bat and runtest.sh scripts
+* Established proper JUnit testing and assertions for the project.
 * Officially reviewed the following PRs:
 [#12](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/12),
 [#38](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/38),
@@ -92,7 +91,7 @@ UML Diagrams drawn and added:
 [#145](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/145),
 [#149](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/149),
 [#166](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/166)
-* Unofficially reviewed many other PRs and provided recommendations and feedback to team members on external communication channels
+* Unofficially reviewed many other PRs and provided recommendations, assistance and feedback to team members on external communication channels
 
 ### Contributions beyond the project team
 
@@ -102,12 +101,14 @@ UML Diagrams drawn and added:
 and contributed to many more forum posts, either asking for help, clarifying certain doubts or trying to help other students.
 * Helped to report 15 bugs during [Practical Exam Dry Run](https://github.com/dejunnn/ped)
 * Provided useful feedback to groups and classmates during DG/UG review, as well as during code reviews.
-* Assisted classmates from group AY1920S2-CS2113-T15-4, helping them figure out certain bugs, as well as teaching them how to implement certain functions.
+* Assisted classmates from group AY1920S2-CS2113-T15-4, helping them figure out certain bugs and helping implement certain functions.
     * Helped member #1 with implementing Storage and Logging features, and fix certain bugs with their application.
     * Helped member #2 with running JUnit tests, how to check coverage and fix certain bugs with their application.
-    * Helped member #3 with text-ui-testing and with certain bugs with their application, as well as other questions and clarifications.
+    * Helped member #3 with text-ui-testing and with certain bugs with their application, questions and clarifications.
 
 ## Contributions to the User Guide
+
+Below are short snippets of my contributions to the User Guide. I am unable to include more due to page constraints.
 
 ---
 
@@ -246,7 +247,7 @@ being forced to delete the data file and create a new one.
 
 ## Contributions to the Developer Guide
 
-Below are short snippets of my contributions to the Developer Guide. I am unable to include more due to the page constraints.
+Below are short snippets of my contributions to the Developer Guide. I am unable to include more due to page constraints.
 
 ---
 
@@ -275,6 +276,25 @@ The components involved are given below:
 The `Logic` component is responsible for:
 * Establishing the logic flow.
 * Deciding how functional components interact with each other.
+
+### Model component
+
+![Model-Component](images/Model-Component.png)
+
+The `Model` component is responsible for:
+* Storing all relevant information in-memory for the application to access.
+
+The Model consists of the following classes: 
+* `Profile` - Stores the personal information of a person including the name, age, gender, height, weight, weight goal, list of food consumed and list of weight changes
+* `DailyFoodRecord` - Keeps a record of the food consumed in a day, comprising morning, afternoon and night
+* `Food` - A food object which contains the relevant food information
+* `FoodNutritionRecord` - Provides a data bank of food items with the food name and calories value
+* `RecipeManager` - Generates and stores recipes depending on user information
+
+The `Model` component
+1. Receives instructions from `Logic` to update in-memory information.
+2. Is not dependent on any of the other components.
+3. Contains all the classes that are responsible for database and records of food and user
 
 ### Launch Application
 
