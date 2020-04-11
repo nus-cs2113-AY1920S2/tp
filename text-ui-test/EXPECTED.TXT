@@ -247,6 +247,29 @@ Your current CAP is:
 
 
 Please input your command:
+Okay, this is the list of related modules:
+
+List of selected modules:
+[x] ID: CS1010 Name: Programming Methodology | Module Credit: 4 | Sem: Y2S1
+[x] ID: CS1231 Name: Discrete Structures | Module Credit: 4 | Sem: Y2S1
+[x] ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Module Credit: 4 | Sem: Y2S2
+
+List of available modules
+ID: CS1010 Name: Programming Methodology | Modular Credit: 4
+ID: CS2030 Name: Programming Methodology II | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2040 Name: Data Structures and Algorithms | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2100 Name: Computer Organisation | Modular Credit: 4 | Prerequisites: CS1010
+ID: CS2106 Name: Introduction to Operating Systems | Modular Credit: 4 | Prerequisites: CS2100
+ID: CS2113 Name: Software Engineering & Object-Oriented Programming | Modular Credit: 4 | Prerequisites: CS2040
+ID: CS2105 Name: Introduction to Computer Networks | Modular Credit: 4 | Prerequisites: CS2040
+ID: CS2101 Name: Effective Communication for Computing Professionals | Modular Credit: 4
+ID: CS2102 Name: Database Systems | Modular Credit: 4 | Prerequisites: CS2030 CS1231
+ID: CS1231 Name: Discrete Structures | Modular Credit: 4
+ID: CS2104 Name: Programming Language Concepts | Modular Credit: 4 | Prerequisites: CS2030
+
+
+
+Please input your command:
 Okay, this module has been deleted from the corresponding semester
 Module IS4241 has been deleted from semester Y2S2
 

@@ -14,18 +14,27 @@ For all the code that I have contributed to Module Manager, click here:
 [code contribution](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#=undefined&search=deetomok).  
 
 #### Enhancements implemented  
-In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands and some exception classes.  
+In this project, I added the portion of Controller, Person, JUnit test, Logging, some commands (Mark as Done,
+View, Helping and Clear) and some exception classes.  
+
+##### Mark as Done Command  
+* What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,
+it stores the grade of the module. This is essential for the calculation of the user's CAP and amount of completed credits.
+* Justification: In a Module Management application, it is important for users to keep track of which modules they have
+completed, its respective grades, and which modules in their module plan they have yet to finish. If the user fails
+the module, the fail grade is added to cap, but the credit of that module is not added to the completed credit of the 
+user. Furthermore, if the user incorrectly enters the grade of the module when using this feature, the user can simply
+re-enter this feature with the updated grade to change the grade of the completed module. 
+* Highlights: Implementation was challenging because there are multiple different scenarios to consider for when a 
+user wants to use this feature, and when implementing this feature, we must be clear of what to change and add into the
+user's data. Some scenarios considered include:
+    * User fails a mod, we have to allow them to add the same module again, as in reality they must re-take the module. 
+    * User marks a module as done, but entered an incorrect grade, and has to update the done module's grade
 
 ##### Controller  
 * What it does: When a user inputs a command line, 
 * Justification: 
 * Highlights: 
-
-##### Commands  
-- Mark as Done Command  
-- View Command  
-- Helping Command  
-- Clear Command  
 
 ### Contributions to documentation: 
 * Added table of contents for the User Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
