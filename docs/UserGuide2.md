@@ -552,7 +552,7 @@ Retrieve details of the patient with the specified NRIC.
           
   **Example:**
       
-     edit appt S1234567F 1 /d 12/02/2020
+     *edit appt S1234567F 1 /d 12/02/2020*
  
  > ***Expected output:***
  >
