@@ -162,12 +162,12 @@ The ```commands``` component interprets the user command and call the ```modulel
 The ```commands``` consists of the class ```CommandHandler```.
 
 ### 2.4. Model component
-![Model Component](images/modelcomponent.png)<br>
+![Model Component](images/modelcomponent.PNG)<br>
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
 #### 2.4.1. Model.meetings component
-![Meetings Component](images/meetingscomponent.png)<br>
+![Meetings Component](images/meetingscomponent.PNG)<br>
 
 The ```meetings``` component of our application consists of 2 classes: ```Meeting``` and ```MeetingList```.
 
@@ -176,7 +176,7 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 <br>
 
 #### 2.4.2. Model.contacts component
-![Contacts Component](images/contactscomponent.png)<br>
+![Contacts Component](images/contactscomponent.PNG)<br>
 
 The ```contacts``` component of our application consists of 2 classes: ```Contact``` and ```ContactList```.
 
