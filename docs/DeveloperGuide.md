@@ -221,9 +221,9 @@ There are 6 main features: [Add new contact](#31-add-new-contact), [List all con
 ![Add Contact](images/AddContact.png)<br>
 *Fig 10. Sequence diagram of the implementation of the `Add new contact` feature*
 
-The figure above shows the sequence diagram of the `Add new contact` feature.
+Fig. 10 shows the sequence diagram of how a new contact is added.
 
-Given below is an example usage scenario and how the `Add new contact` feature behaves.
+Given below is an example usage scenario of how the `Add new contact` feature behaves.
 
 1. The user running the application invokes the ```LogicManager``` by typing ```name nusmodslink```, followed by kbd:[enter] key.
 2. ```LogicManager```would then request for a new contact by calling ```CommandHandler```.
@@ -262,7 +262,7 @@ blacklisted modules every semester. <br>
 ![Add Contact](images/ListContact.png)<br>
 *Fig 11. Sequence diagram of the implementation of the `List all contacts` feature*
 
-The figure above shows the sequence diagram of listing all contacts saved in the application. 
+Fig 11. shows the sequence diagram of listing all contacts saved in the application. 
 It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
 
 Given below is an example usage and how the```ListContact``` command behaves.
@@ -277,7 +277,7 @@ Given below is an example usage and how the```ListContact``` command behaves.
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
 *Fig 12. Sequence diagram of the implementation of the `Display timetable of selected contacts` feature*
 
-The figure above shows the sequence diagram of displaying a combined timetable of selected contacts. 
+Fig. 12 shows the sequence diagram of displaying a combined timetable of selected contacts. 
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
 
 Given below is an example usage and how the ```DisplayTimetable``` command behaves.
@@ -302,7 +302,7 @@ combined schedule.
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
 *Fig 13. Sequence diagram of the implementation of the `Schedule a new meeting` feature*
 
-The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
+Fig 13 shows the sequence diagram of scheduling a new meeting at a given time slot.
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
 
 Given below is an example usage and how the `ScheduleMeeting` command behaves.
@@ -323,7 +323,7 @@ Given below is an example usage and how the `ScheduleMeeting` command behaves.
 ![EditContact](images/EditContact.png)<br>
 *Fig 14. Sequence diagram of the implementation of the `Edit a contact's timetable` feature*
 
-The figure above shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
+Fig 14. shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
 It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
 
 Given below is an example usage and how the ```EditContact``` command behaves.
@@ -373,7 +373,7 @@ whereas Alternative 2 requires the removal of ```Meeting``` from ```MeetingList`
 ![EditContact](images/EditContact_checkvalid.png)<br>
 *Fig 15. Sequence diagram of checking if an edit is valid in the `Edit a contact's timetable` feature*
 
-Fig 15. above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
+Fig 15. shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
 edit is done before editSchedule() of `Contact` is called, as shown in Fig 14. 
 1. This path is optional, and is only implemented if `Contact` the main user.
 2. `CommandHandler` calls isValidEdit(time slot) of the `Contact` class.
@@ -392,7 +392,7 @@ edit is done before editSchedule() of `Contact` is called, as shown in Fig 14.
 ![DeleteMeeting](images/DeleteMeeting_seq.png)
 *Fig 16. Sequence diagram of the implementation of the `Delete a scheduled meeting` feature*
 
-The figure above shows the sequence diagram of the ```DeleteMeeting``` command.
+Fig 16. shows the sequence diagram of the ```DeleteMeeting``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
 
 Given below is an example usage scenario and how the ```DeleteMeeting``` command behaves.
@@ -406,7 +406,7 @@ Given below is an example usage scenario and how the ```DeleteMeeting``` command
 ![DeleteContact](images/DeleteContact_seq.png)
 *Fig 17. Sequence diagram of the implementation of the `Delete a contact` feature*
 
-The figure above shows the sequence diagram of the ```DeleteContact``` command.
+Fig 17. shows the sequence diagram of the ```DeleteContact``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
 
 Given below is an example usage scenario and how the ```DeleteContact``` command behaves.
@@ -421,7 +421,7 @@ Given below is an example usage scenario and how the ```DeleteContact``` command
 ![ListMeetings](images/ListMeetings_seq.png)
 *Fig 18. Sequence diagram of the implementation of the `List all scheduled meetings` feature*
 
-The figure above shows the sequence diagram of the ```ListMeetings``` command.
+Fig 18. shows the sequence diagram of the ```ListMeetings``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
 
 Given below is an example usage scenario and how the ```ListMeetings``` command behaves.
