@@ -510,6 +510,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
     * System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
     
+    
 2. Use case: Add contacts <br>
     MSS:<br>
     1) User has a group of team mates for a certain project.<br>
@@ -522,6 +523,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects invalid name containing all numbers - System catches it and use case resumes from step 3.
     * System detects invalid nusmods URL - System catches it and use case resumes from step 3.
     
+    
 3. Use case: Delete contacts <br>
     MSS: <br>
     1) User wants to delete the members of a particular project since the project has finished.<br>
@@ -532,12 +534,14 @@ meetings into account when scheduling a common timeslot timetable.
     Extensions:
     * System detects an invalid name - System catches it and use case resumes from step 2.
     
+    
 4. Use case: List contacts <br>
     MSS:
     1) User wants to see the current list of saved contacts he/she has previously keyed.<br>
     2) User keys in the command without any additional parameters.<br>
     3) System lists the contact from the user's storage.<br>
     Use case ends
+    
     
 5. Use case: Schedule meetings <br>
     MSS:<br>
@@ -552,6 +556,7 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects start/end date not within this week or next week - System catches it and use case resumes from step 2.
     * System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
     
+    
 6. Use case: Edit timetable slots <br>
     MSS:<br>
     1) User realised lecturer has cancelled a particular lecture time-slot and is free during that time.<br>
@@ -565,12 +570,14 @@ meetings into account when scheduling a common timeslot timetable.
     * System detects start/end time is not in blocks of 30minutes - System catches it and use case resumes from step 2.
     * System detects that user did not specify if he/she wants to free or block the slot/s - System catches it and use case resume from step 2.
     
+    
 7. Use case: List meetings <br>
     MSS: <br>
     1) User wants to see the current list of saved meetings he/she has previously keyed. <br>
     2) User keys in the command without any additional paramters.<br>
     3) System lists the meetings from the user's storage.<br>
     Use case ends
+    
     
 8. Use case: Delete meetings <br>
     MSS:<br>
