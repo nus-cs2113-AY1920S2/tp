@@ -696,15 +696,12 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2d91fbf7e144b1cdc618592a84adecd88c72c66a
-![prompt command class diagram](images/dg_prompt_class.png)      
+![prompt command class diagram](images/dg_prompt_class.png)   
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
 
 <br> 
 Two <b>prompt</b> commands are involved in the deletion process:<br>  
+
 <ol>  
 <li><code>ListNumberPrompt</code> manages the event after the user has input the <i>list numbers</i> of the <i>directories</i> to delete when there are <b>multiple</b> matches.</li>  
 <li><code>DeleteConfirmationPrompt</code> manages the event after the user has responded to the confirmation prompt to delete the <i>directories</i></li>  
@@ -932,12 +929,8 @@ If the user want to traverse up from the current <i>directory</i> instead, <code
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
-<<<<<<< HEAD
-</div> <br>   
-=======
-</div>    
+</div> <br>
 
->>>>>>> 2d91fbf7e144b1cdc618592a84adecd88c72c66a
 Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>      
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
  <span style="color: green"><small><i>Figure <b>Change Directory Command Sequence Diagram</b></i></small></span>   
