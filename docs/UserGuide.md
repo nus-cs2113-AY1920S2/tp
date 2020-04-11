@@ -119,7 +119,7 @@ Format: `editcard s/<S-INDEX> c/<C-INDEX> q/<QUESTION> a/<ANSWER>`
 Example of Usage:
 * `editcard s/1 c/1 q/what is this docunment a/user guide`
 
-Screenshot showing deletecard:
+Screenshot showing editcard:
 
 ![](images/editcard.png)
 
