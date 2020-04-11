@@ -49,7 +49,7 @@ Setting up the project<br>
     2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
     3. Click OK
     4. Click Import Project
-    > :information-source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
+    > :information_source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
@@ -198,7 +198,7 @@ blacklisted modules every semester. <br>
     1. **Pros**: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
     2. **Cons**: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
        Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
-
+* Ultimately we decided to go with **Alternative 1** since it is the most user-friendly as our targeted users do not have to download another file and just downloading the jar would do. On the developer side, updates would still be required every semester, but our focus is to make the application as user-centric as possible.
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
 
@@ -412,7 +412,6 @@ meetings into account when scheduling a common timeslot timetable.
 ## Appendix E: Glossary
 
 * **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
-<br>
 * **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
 
 ## Appendix F: Instructions for Manual Testing
@@ -527,7 +526,7 @@ Given below are instructions to test the app manually.
 3. Loading previously stored contacts.
     1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
     2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
-    3. Expected: The stored contacts would be shown in application via ```contacts``.
+    3. Expected: The stored contacts would be shown in application via ```contacts```.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
