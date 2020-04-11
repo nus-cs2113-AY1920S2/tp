@@ -14,38 +14,25 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
 **1) Capability to differentiate between weeks**
 
 Before this PR, the application can only differentiate the days of the week. The input schedule would be specific to the day of the week, which then repeats every week. After the PR, the app 
-* knows the date and time everytime it starts,
 * can differentiate between different days of different NUS weeks of different months of different semesters,
 * can identify classes each week (since some modules in NUS have classes in selected weeks). Therefore, app can compare and create timetables between people that is accurate to the week.
 * App now takes in the dates of interest when scheduling meetings. Thus, I also wrote methods to account for when the start and/or end date crosses into the next month and between the types of NUS weeks which was very tricky.
 
 This enhancement is essential to effectiveness of the app. Since this enhancement made very drastic changes to the way information was stored and handled, code from most classes was analysed and reworked. Click [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/pull/96) to view this PR.
 
-<br/>
-
 **2) Storage Component**
 
-This component allows 
+This component is essentail to application reusability as it allows
 * storing methods to store the list of meetings and each individual's schedule information that includes start and end time of every class, and weeks that the class is held,
 * storing and loading to differentiate between main user (the owner of the application) and his/her other contacts
 * loading method filters corrupted files,
 * capability to create `data` directory, and create and delete meeting and contact .txt files.
 
-This component is essential to application reusability.
-
-<br/>
-
 **3) Extended view of timetable**
 
-Related command: `more`
-
-This command 
+This command allows schedules to be planned ahead, which increases usability as it
 * shows the timetable of the current NUS week and the next. This extended view of the timetable will be applied on the most recent variation of the timetable command if the most recent command is a timetable command.
 * makes the display of the two weeks consistent by adjusting the truncation of both weeks to match the week that requires the largest space in the timetable display.
-
-This functionality allows schedules to be planned ahead, which increases usability.
-
-<br/>
 
 **4) Truncation of displayed timetable**
 
@@ -55,23 +42,9 @@ After this enhancement, if the earliest time that you are occupied in the entire
 
 This increases readability and navigability of app.
 
-<br/>
+**5) List meetings command:** displays all schedule meetings that are created and stored.
 
-**5) List meetings command**
-
-Related command: `meetings`
-
-This command displays all schedule meetings that are created and stored.
-
-<br/>
-
-**6) Delete contact command**
-
-Related command: `delete <contact name>`
-
-This command deletes the person and their saved schedule from the app and the disk.
-
-<br/>
+**6) Delete contact command:** deletes the person and their saved schedule from the app and the disk.
 
 **Other contributions:**
 * Contributions to UG:
@@ -82,14 +55,7 @@ This command deletes the person and their saved schedule from the app and the di
 	* Wrote the `Delete an item` section
 	* Wrote some of the FAQ
 * **Contributions to DG:**
-	* Wrote `2.5. Storage component`
-	* Wrote `3.4. Schedule a new meeting`
-	* Wrote `3.6 Delete a scheduled meeting`
-	* Wrote `3.7 Delete a contact`
-	* Wrote `3.8 List all scheduled meetings`
-	* Wrote `3.9 [Proposed] Undo/Redo feature`
-	* Contributed to `Appendix B: User Stories`
-	* Contributed to `Appendix C: Use Cases`
+Wrote `2.5. Storage component`, `3.4. Schedule a new meeting`, `3.6 Delete a scheduled meeting`, `3.7 Delete a contact`, `3.8 List all scheduled meetings`, `3.9 [Proposed] Undo/Redo feature`, `Appendix B: User Stories`, `Appendix C: Use Cases`.
 	
 * **Contributions to team-based tasks :**
 	* Jointly released V1.0, V2.0 and V2.1 together with team mates, taking into account the must have features for each version.
