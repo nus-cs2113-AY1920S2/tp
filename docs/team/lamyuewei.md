@@ -82,6 +82,7 @@ I have contributed to several of my team based tasks.
 * I have helped to update the user guide.
 * I have helped to update the developer guide.
 * I have helped to review codes written my by group mates prior to approval.
+* I have helped to add multiple test cases for JUnit testing especially in CommandTest file.
 
 ### Review/mentoring contributions
 * I have contributed to the teams especially in helping to review codes prior to approval. <br>
