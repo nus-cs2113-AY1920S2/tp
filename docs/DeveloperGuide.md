@@ -91,8 +91,6 @@ the scenario where the user issues the command `delete patient NRIC`.
 
 The sections below give more details of each component.
 
------ shift down ---
-
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
 * `Parser`: This class handles the parsing and handling of user commands.
