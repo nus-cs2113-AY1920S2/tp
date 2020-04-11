@@ -136,7 +136,7 @@ Note that:
 * Gender is restricted to "male" or "female". Input is case-insensitive.
 * Height has units in centimetres.
 * Weight has units in kilograms.
-* Calories has units in kilocalories.
+* Calories has units in calories.
 * Date is restricted to days in a week - SUNDAY to SATURDAY. Input is case-insensitive.
 * Time-Period is restricted to MORNING, AFTERNOON, NIGHT. Input is case-insensitive.
 * Activity-Level is restricted to LOW, MODERATE, HIGH. Input is case-insensitive.
