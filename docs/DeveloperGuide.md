@@ -237,6 +237,7 @@ Diet Manager aims to achieve the following:
 2. Allow users to track food calories intake and monitor their eating habits
 3. Enable users to monitor weight changes over time and work towards their ideal weight goal
 4. Provide personalised health information and dietary recommendations for the user
+5. Monitor and track user's weight changes to achieve weight goal
 6. Check their BMI as well against the BMI table regardless of user
 
 ## User Stories
