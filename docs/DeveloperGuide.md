@@ -50,7 +50,48 @@ This guide is mainly for developers, designers and software engineers that are w
 
 ## 2. Setting Up
 
-Refer to the guide [here](SettingUp.md).
+### Prerequisites
+ 
+1.  JDK 11 or above
+ 
+2.  IntelliJ IDE
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>IntelliJ by default has Gradle and JavaFx plugins installed. Do not disable them. 
+    If you have disabled them, go to <code>File</code> > <code>Settings</code> > 
+    <code>Plugins</code> to re-enable them.</td>
+  </tr>
+ </table>
+ 
+### Setting up the project on your computer
+1.  Fork this repository, and clone the fork to your computer
+ 
+2.  Open the IntelliJ IDE. If you are not in the welcome screen, click `File` &gt; `Close Project` to close the existing project.
+ 
+3.  Set up the correct JDK version for Gradle
+ 
+    1.  Click `Configure` &gt; `Project Defaults` &gt; `Project Structure`
+ 
+    2.  Click `New...` and find the directory of the JDK
+ 
+4.  Click on `Import Project`
+ 
+5.  Locate and select the `build.gradle` file, then click `OK`
+ 
+6.  Click `Open as Project`
+ 
+7.  Click `OK` to use the default settings provided
+ 
+### Verifying the Setup
+1.  In Intellij, run `seedu.happypills.HappyPills` and try a few commands.
+    * Commands that you can try to get familiar with HappyPills:
+        - `help`: list all the available commands in HappyPills
+        - `add patient /ic S9876543F /n Eve /p 91265432 /dob 22/05/1999 /b O- /a School /rm Best Friend with Mallory`:
+        Add patient's information in HappyPills.
+        - `list patient`: list all the patients stored in HappyPills.
 
 ## 3. Design 
 
@@ -792,7 +833,32 @@ Alternative 1 was chosen for our current implementation because it decrease coup
 
 ## 5. Testing
 
-Refer to the guide [here](Testing.md).
+### Running Tests
+There are two ways to run tests.
+
+#### Method 1 : Using IntelliJ JUnit Tests
+- To run all test, right-click on `src/test/java` folder and choose `Run 'Tests in HappyPills'`
+- To run a subset of tests, you can right-click on a test package, test class, or a test and choose `Run 'TEST'`.
+ 
+#### Method 2 : Using Gradle
+- To run all test using Gradle: Open a terminal and run the command `gradlew clean test` 
+(Mac/Linux: `./gradlew clean test`)  
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#8505; </span></td>  
+     <td> See <a href="https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/tutorials/gradleTutorial.md">Gradle Tutorial</a> 
+     for more info on how to run tests using Gradle. </td>
+     </td>
+   </tr>
+  </table>
+  
+### Using Input-Output Tests
+- Right-click on `text-ui-test` folder and choose `Open in terminal` 
+- Enters `runtest.bat` (Windows) or `runtest.sh` (Mac / Linux) in the terminal to run the script.
+- This will run HappyPills with the commands given in the `input.txt` and compare its output in the `ACTUAL.txt` 
+with the `EXPECTED.txt`.
 
 ## 6. Useful links
 
