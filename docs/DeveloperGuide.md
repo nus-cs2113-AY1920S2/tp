@@ -242,6 +242,7 @@ The <b>Module</b>, <b>Category</b>, <b>Task</b> and <b>File</b> <b>Directories</
 We will show a more detailed <i>class diagram</i>, as well as describe each of the <b>Directory</b>'s attributes below: 
 </div>   
 <br>
+
 <p id="directory-class-diagram"></p>
 
 ![directory class diagram](images/dg_directory_class.png)    
@@ -439,7 +440,7 @@ This section will describe the significant details of how the commands in <b>Nuk
 #### **Overview**
 The **add** feature adds modules, categories, tasks and tags into the Module, Category and Task List respectively.
 
-![ClassDiagramAdd.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/ClassDiagramAdd.jpg)
+![ClassDiagramAdd.jpg](images/ClassDiagramAdd.jpg)
 
 <span style="color: green"><small><i>Figure <b>Add Command Classes Diagram</b></i></small></span>
 
@@ -542,10 +543,6 @@ The `AddCategoryCommand` and `AddTaskCommand` will first call the `getParentDire
 Below are the class-diagram for the involved classes:
 
 ![image-20200326014336120](images/Add_Category_Command_Class_Diagram.png)
-
-```
-TODO: add the class diagram for add category command
-```
 
 <span style="color: green"><small><i>Figure <b>Add Category Command Class Diagram</b></i></small></span>
 
