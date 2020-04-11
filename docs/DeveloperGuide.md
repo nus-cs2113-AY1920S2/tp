@@ -212,7 +212,7 @@ blacklisted modules as well as output messages to be shown to users when excepti
 <br/>
 
 ## 3. Implementation
-This section describes some noteworthy details of how the main features of our application works in the backend.
+This section describes some noteworthy details of how the main features of our application work in the backend.
 
 
 There are 6 main features: [Add new contact](#31-add-new-contact), [List all contacts](#32-list-all-contacts), [Display timetable of selected contacts](#33-display-timetable-of-selected-contacts), [Schedule a new meeting](#34-schedule-a-new-meeting), [Edit a contact's timetable](#35-edit-a-contacts-timetable), [Delete a scheduled meeting](#36-delete-a-scheduled-meeting), [Delete a contact](#37-delete-a-contact) and [List all scheduled meetings](#38-list-all-scheduled-meetings).
