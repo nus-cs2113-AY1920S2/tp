@@ -28,7 +28,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 ## Quick Start
 
 1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
-    > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). 
+    > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
     > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Download the .jar file of our latest release of WhenFree, V2.1 [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the downloaded .jar file to an empty folder.
@@ -63,7 +63,7 @@ contact.
 * You must add in your (main user's) contact before you can use the application. 
 If you try to enter a command before adding in your contact, WhenFree will remind
 you to key in your contact first. You can add as many contacts as you want thereafter.
-> :information_source: `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces.
+> :information_source: `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces. <br>
 > :information_source: Detailed instructions to obtain the NUSMODS links to the NUSMODS timetable can be found in the [FAQ](#faq) section.
 
 Format: 
