@@ -182,7 +182,7 @@ Students that :
 1. are too busy with schoolwork to carefully monitor their eating habits
 2. are concerned about their health
 3. likes to keep track of their meals/weight habit digitally
-3. want to keep track of their weight
+4. want to keep track of their weight
 
 ### Value proposition
 
@@ -231,7 +231,7 @@ Reliability:
 * Data files should be updated constantly and accurately, with no data loss
 * Data records should be retrievable and readable
 * Text inputs should produce similar results if utilised multiple times.
-* Program should run without and forced-close error due to bugs
+* Program should run without any forced-close error due to bugs
 
 ## Glossary
 
