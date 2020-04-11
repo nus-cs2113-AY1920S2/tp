@@ -265,7 +265,7 @@ blacklisted modules every semester. <br>
 Fig 11. shows the sequence diagram of listing all contacts saved in the application. 
 It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
 
-Given below is an example usage and how the```ListContact``` command behaves.
+Given below is an example usage scenario of how the```ListContact``` command behaves.
 
 1. The user invokes the LogicManager by typing ```contacts```, followed by kbd:[enter] key.
 2. The ```LogicManager``` would then request to list all contacts via ```CommandHandler```.
@@ -280,7 +280,7 @@ Given below is an example usage and how the```ListContact``` command behaves.
 Fig. 12 shows the sequence diagram of displaying a combined timetable of selected contacts. 
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
 
-Given below is an example usage and how the ```DisplayTimetable``` command behaves.
+Given below is an example usage scenario of how the ```DisplayTimetable``` command behaves.
 
 1. The user invokes the LogicManager by entering ```timetable <contact index A> <contact index B>```.
 
@@ -305,7 +305,7 @@ combined schedule.
 Fig 13 shows the sequence diagram of scheduling a new meeting at a given time slot.
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
 
-Given below is an example usage and how the `ScheduleMeeting` command behaves.
+Given below is an example usage scenario of how the `ScheduleMeeting` command behaves.
 
 1. The user invokes the LogicManager by entering `schedule <meeting name> <start date> <start time> <end date> <end time>`.
 2. The `LogicManager` requests to schedule a new meeting via `CommandHandler`.
@@ -326,7 +326,7 @@ Given below is an example usage and how the `ScheduleMeeting` command behaves.
 Fig 14. shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
 It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
 
-Given below is an example usage and how the ```EditContact``` command behaves.
+Given below is an example usage scenario of how the ```EditContact``` command behaves.
 
 1. The user invokes the LogicManager by entering ```edit <contact index> <time slot>```.
 
@@ -395,7 +395,7 @@ edit is done before editSchedule() of `Contact` is called, as shown in Fig 14.
 Fig 16. shows the sequence diagram of the ```DeleteMeeting``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
 
-Given below is an example usage scenario and how the ```DeleteMeeting``` command behaves.
+Given below is an example usage scenario of how the ```DeleteMeeting``` command behaves.
 
 1. The user running the application invokes the ```LogicManager``` by typing ```delete <meeting index>```.
 2. ```LogicManager```would then request ```CommandHandler``` for deletion.
@@ -409,7 +409,7 @@ Given below is an example usage scenario and how the ```DeleteMeeting``` command
 Fig 17. shows the sequence diagram of the ```DeleteContact``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
 
-Given below is an example usage scenario and how the ```DeleteContact``` command behaves.
+Given below is an example usage scenario of how the ```DeleteContact``` command behaves.
 
 1. The user running the application invokes the ```LogicManager``` by typing ```delete <contact name>```.
 2. ```LogicManager```would then request ```CommandHandler``` for deletion.
@@ -424,7 +424,7 @@ Given below is an example usage scenario and how the ```DeleteContact``` command
 Fig 18. shows the sequence diagram of the ```ListMeetings``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
 
-Given below is an example usage scenario and how the ```ListMeetings``` command behaves.
+Given below is an example usage scenario of how the ```ListMeetings``` command behaves.
 
 1. The user running the application invokes the ```LogicManager``` by typing ```meetings```.
 2. ```LogicManager```would then request ```CommandHandler``` for the list.
