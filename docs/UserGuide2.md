@@ -150,12 +150,19 @@ HappyPills can help users to manage their patients' information easily.
 
 #### 3.2.1. Add Patient: `add patient`
 
-This feature allows you to add more patients into the existing patients' list.
+Add a patient into the database.
  
-HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
-you will only need to fill in the couple of fields you missed.
-You can also add a new patient with the specified parameters in any order.
-
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#8505; </span></td>
+     <td>HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+          you will only need to fill in the couple of fields you missed.
+          You can also add a new patient with the specified parameters in any order.</td>
+   </tr>
+  </table>
+  
 ###### Format:   
 
     add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
@@ -204,7 +211,7 @@ Enter `y` to confirm.
  
 #### 3.2.2. Edit Patient: `edit patient`
 
-Edit information of the patient with the specified NRIC. 
+Edit information of a patient with the specified NRIC. 
 
 ##### Format: 
  
@@ -314,7 +321,7 @@ Enter `y` to confirm.
 
 #### 3.2.4. List All Patients: `list patient`
 
-Displays all the patients in the patient list. 
+Display all the patients in the patient list. 
 
 ##### Format: 
 
@@ -341,7 +348,7 @@ Displays all the patients in the patient list.
 
 #### 3.2.5. Retrieve a Patient's Information: `get patient`
 
-Retrieve details of the patient with the specified NRIC.
+Diaplay details of a patient with the specified NRIC.
 
 ##### Format: 
 
@@ -374,7 +381,19 @@ Retrieve details of the patient with the specified NRIC.
  
 #### 3.3.1. Add Patient Records: `add pr`
  
-Add patient's medical records to the database, to support the diagnosis and to justify the treatment.
+Add a patient's medical records into the database to support the diagnosis of a patient's illness 
+and to justify the treatment carried out.
+
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#8505; </span></td>
+     <td>HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+          you will only need to fill in the couple of fields you missed.
+          You can also add a new patient record with the specified parameters in any order.</td>
+   </tr>
+  </table>
  
 <table>
   <col width="20">
@@ -417,8 +436,8 @@ Enter `y` to confirm.
 
 #### 3.3.2. Edit Patient Records: `edit pr`
  
- Edit patient's past medical record using the index of the patient's records 
- which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
+ Edit a patient's past medical record using the patient's NRIC and the index of the patient's records 
+ which can be obtained from the [`list pr`](#334-list-patient-records-list-pr) command.
  
 ##### Format:
  
@@ -463,7 +482,7 @@ Enter `y` to confirm.
 #### 3.3.3. Delete Patient Records: `delete pr`
  
  Delete patient's medical records based on the given NRIC and the index of the patient's records 
- which can obtained from the [list pr](#332-list-patient-records-list-pr) command.
+ which can be obtained from the [`list pr`](#334-list-patient-records-list-pr) command.
  
 ##### Format:
  
@@ -494,9 +513,9 @@ Enter `y` to confirm.
  
 #### 3.3.4. List Patient Records: `list pr`
  
- Displays all  patient records for the patient using his/her NRIC. Patient's records will be listed with their respective 
- index which is needed for [find pr](#333-find-patient-records-find-pr), 
- [edit pr](#334-edit-patient-records-edit-pr) and [delete pr](#335-delete-patient-records-delete-pr) commands.
+ Display all patient records of a patient using his/her NRIC. The patient's records will be listed with their respective 
+ index which is used for [`find pr`](#335-find-patient-records-find-pr), 
+ [`edit pr`](#332-edit-patient-records-edit-pr) and [`delete pr`](#333-delete-patient-records-delete-pr) commands.
  
 ##### Format:
  
@@ -527,9 +546,9 @@ Enter `y` to confirm.
   
    
 #### 3.3.5. Find Patient Records: `find pr`
- 
- Display detailed information for that particular patient's visit using the NRIC and index of the patient's records 
- which can obtained from the [list pr](#332-list-patient-records-list-pr) command. 
+
+Display detailed information of a patient's visit using the NRIC and index of the patient's records 
+which can be obtained from the [`list pr`](#334-list-patient-records-list-pr) command. 
  
 ##### Format:
  
@@ -564,8 +583,19 @@ HappyPills helps to store appointment schedules.
  
 #### 3.4.1. Add Appointment: `add appt`
  
- Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
- patient automatically.
+ Add a new appointment for a patient with the given NRIC. An Appointment ID will be allocated to the
+ patient's appointment automatically.
+ 
+  <table>
+    <col width="20">
+    <col width="200">
+   <tr>
+     <td><span> &#8505; </span></td>
+     <td>HappyPills will prompt you if there are any missing fields. Instead of having to type the whole command again, 
+          you will only need to fill in the couple of fields you missed.
+          You can also add a new appointment with the specified parameters in any order.</td>
+   </tr>
+  </table>
  
   <table>
     <col width="20">
@@ -605,8 +635,8 @@ Enter `y` to confirm.
  
 #### 3.4.2. Edit Appointment: `edit appt`
  
- Edit information of the appointment with the specified appointmentID(apptID).
-  The appointment should belong to the patient with the specified NRIC. 
+Edit information of an appointment using the patient's NRIC and Appointment ID which can be be obtained
+from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#345-find-patients-appointments-find-appt) commands.
   
 ##### Format:  
   
@@ -649,7 +679,8 @@ Enter `y` to confirm.
  
 #### 3.4.3. Delete Appointment: `delete appt`
  
- Delete an appointment of a patient as specified by the NRIC and appointmentID(apptID). 
+ Delete an appointment of a patient using the patient's NRIC and Appointment ID which can be be obtained
+ from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#345-find-patients-appointments-find-appt) commands.
  
 ##### Format: 
  
@@ -680,8 +711,9 @@ Enter `y` to confirm.
  
 #### 3.4.4. List All Appointments: `list appt` 
  
-List all the existing appointments in the clinic. 
-This can be used as a method to check for appointmentID.
+Display all the existing appointments in the clinic. 
+This can be used as a method to check for appointmentID which is used for the [`edit appt`](#342-edit-appointment-edit-appt), 
+[`delete appt`](#343-delete-appointment-delete-appt) and [`done appt`](#346-mark-appointment-as-done-done-appt) commands. 
   
 ##### Format: 
   
@@ -710,9 +742,10 @@ This can be used as a method to check for appointmentID.
  
 #### 3.4.5. Find Patient's Appointments: `find appt`
  
- Check all appointments that the patient with the specified NRIC has. 
- This can be used as a method to check for appointmentID.
- 
+Display all the appointments that a patient has using the patient's NRIC.
+This can be used as a method to check for appointmentID which is used for the [`edit appt`](#342-edit-appointment-edit-appt), 
+[`delete appt`](#343-delete-appointment-delete-appt) and [`done appt`](#346-mark-appointment-as-done-done-appt) commands. 
+
 ##### Format: 
   
     find appt NRIC
@@ -741,9 +774,9 @@ This can be used as a method to check for appointmentID.
   [&#8593; Return to Top](#table-of-content)
 
 #### 3.4.6. Mark Appointment as Done: `done appt` 
- 
- Mark the appointment with the specified appointmentID(apptID) as done if arrived.
-  The appointment should belong to the patient with the specified NRIC. 
+
+Mark appointments as done using the patinet's NRIC and Appointment ID which can be be obtained
+from the [`list appt`](#344-list-all-appointments-list-appt) and [`find appt`](#345-find-patients-appointments-find-appt) commands.  
   
 ##### Format:
   
