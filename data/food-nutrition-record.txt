@@ -1,0 +1,11 @@
+chicken-rice,702.0
+fried-rice,508.0
+chicken-curry,450.0
+prawn-noodles,459.0
+fishball-noodles,330.0
+cheeseburger,300.0
+white-bread,77.0
+french-fries,450.0
+orange-juice,80.0
+soft-drink,120.0
+fresh-milk,163.0

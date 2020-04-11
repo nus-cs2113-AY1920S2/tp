@@ -1,0 +1,6 @@
+Name: john
+Age: 20
+Gender: male
+Height: 170.0
+WeightList: 70.0,
+Weight-Goal: 80.0
