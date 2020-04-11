@@ -130,6 +130,8 @@ Note that:
 * Height has units in centimetres.
 * Weight has units in kilograms.
 * Calories has units in kilocalories.
+* Date is restricted to days in a week - SUNDAY to SATURDAY
+* Time-Period is restricted to MORNING, AFTERNOON, NIGHT
 
 ## 3.1 Profile Features
 
@@ -763,7 +765,6 @@ Example of usage:
 
 ```
 
-
 ### Exit application
 Terminates and exits the application.
 
@@ -803,7 +804,7 @@ being forced to delete the data file and create a new one.
 
 ## 5 Command Summary
 
-No. | Command | Description
+No. | Profile Commands | Description
 ----| ------- | -----------
 1|`set-profile NAME AGE GENDER HEIGHT WEIGHT WEIGHTGOAL`|Creates a new profile
 2|`profile`| View user profile details
@@ -817,17 +818,27 @@ No. | Command | Description
 10|`check-weight-progress`| Check user weight record progression.
 11|`check-bmi`| Check user BMI and BMI classification.
 
-3  | `record-meal` | Record a meal
-4  | `check-meal` | Check a meal 
-5 | `clear-records`| Clear all food records
-6  | `check-required-cal` | Check calories required for an activity level
-7  | `calculate` | Calculates calories intake on a day or during a time period
-8  | `list-food` | List all foods recorded in the database 
-9  | `addf` | Add a new food into database
-10  | `delf` | Delete a food from the database
-11 | `new-recipe` | Create a recommended recipe for user
-12 | `show-recipe` | Show the recipe recommended for user
+No. | Daily Food Record Commands | Description
+----| ------- | -----------
+12|`record-meal DATE TIMEPERIOD /FOOD1 {-- 10.0} /FOOD2 {-- 6.00} /...`| Record a meal
+13|`check-meal DATE TIMEPERIOD`| Check a meal 
+14| `clear-records`| Clear all food records
+15| `check-required-cal` | Check calories required for an activity level
+16| `calculate` | Calculates calories intake on a day or during a time period
 
+No. | Food Nutrition Record Commands | Description
+----| ------- | -----------
+17| `list-food` | List all foods recorded in the database 
+18| `addf` | Add a new food into database
+19| `delf` | Delete a food from the database
+
+No. | Recipe Commands | Description
+----| ------- | -----------
+20| `new-recipe` | Create a recommended recipe for user
+21| `show-recipe` | Show the recipe recommended for user
+
+No. | Utility Commands | Description
+----| ------- | -----------
 22|`help`| Show the help function table with supported commands.
 23|`exit`| Terminates and exits the application.
 
