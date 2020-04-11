@@ -656,9 +656,9 @@ existing events that exist in your event list.
 
 Format: `calendar s/SEMESTER ay/YY_ONE-YY_TWO `
 * Both the semester and academic year should be provided.
-* Semester refers to a numerical number, i.e. 1 or 2
-* Academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
-  i.e. ay/07-08.  
+* Valid semester numbers can only be 1 or 2. 
+* Valid academic year refers to any 2 *consecutive* years with a hyphen separating them. Each year should be entered in a 2 digit format,
+  i.e. ay/07-08, ay/19-20.  
 * Order of the flags *matters*.
 
 Note that your event list should contain existing events to view calendar. The following *steps* will guide you to achieve this:
