@@ -49,7 +49,7 @@ Setting up the project<br>
     2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
     3. Click OK
     4. Click Import Project
-    > :information_source:IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
+    > :information_source: IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
