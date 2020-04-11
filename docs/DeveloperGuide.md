@@ -179,7 +179,7 @@ Follow the following steps to manually test the product:
 
 ### 7.2 Load Storage Testing 
 
-1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and download 'articleList.json', 'noteList.json', 'jobList.json' and store it in the same folder where you stored the original jar file. If you have already run the program and existing JSON data files exist, replace them with the onces from the sampleData folder. 
+1. Go to the sampleData folder [here](https://github.com/AY1920S2-CS2113-T14-2/tp/tree/master/docs/sampleData) and copy paste the contents of 'articleList.json', 'noteList.json', 'jobList.json' using your text editor into files called 'articleList.json', 'noteList.json', 'jobList.json' respectively and store it in the same folder where you stored the original jar file. If you have already run the program and existing JSON data files exist, replace them with the ones from the sampleData folder. 
 
 2. Open the terminal and go afformentioned folder and type `java -jar tp.jar`.
 
