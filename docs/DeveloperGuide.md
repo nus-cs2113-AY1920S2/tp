@@ -178,15 +178,15 @@ down into nine main features: `Data Structure`, `Add Details Feature`, `List Fea
 
 The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
 
-- `PatientMap #add(Patient patient)` — This command adds the patient object into the patient list using the patient’s nric as key.  
-- `PatientMap #remove(String nric)` — This command removes the patient object from the existing patient list.  
-- `PatientMap #get(String nric)` — This command get the patient object resides in the existing patient list. 
-- `PatientRecordMap #add(Patient patient)` — This command adds the patient's record object into the patient's record list using the patient’s nric as key.  
-- `PatientRecordMap #remove(String nric)` — This command removes the patient's record object from the existing patient's record list.  
-- `PatientRecordMap #get(String nric)` — This command get the patient's record object resides in the existing patient's record list.
-- `AppointmentMap #add(Patient patient)` — This command adds the appointment object into the appointment list using the patient’s nric as key.  
-- `AppointmentMap #remove(String nric)` — This command removes the appointment object from the existing appointment list.  
-- `AppointmentMap #get(String nric)` — This command get the appointment object resides in the existing appointment list.  
+- `PatientMap#add(Patient patient)` — Adds the patient object into the patient list using the patient’s Nric as key.  
+- `PatientMap#remove(String nric)` — Removes the patient object from the existing patient list.  
+- `PatientMap#get(String nric)` — Get the patient object resides in the existing patient list. 
+- `PatientRecordMap#add(Patient patient)` — Adds the patient's record object into the patient's record list using the patient’s Nric as key.  
+- `PatientRecordMap#remove(String nric)` — Removes the patient's record object from the existing patient's record list.  
+- `PatientRecordMap#get(String nric)` — Get the patient's record object resides in the existing patient's record list.
+- `AppointmentMap#add(Patient patient)` — Adds the appointment object into the appointment list using the patient’s Nric as key.  
+- `AppointmentMap#remove(String nric)` — Removes the appointment object from the existing appointment list.  
+- `AppointmentMap#get(String nric)` — Get the appointment object resides in the existing appointment list.  
     
 **Design Considerations** 
 
@@ -196,10 +196,10 @@ The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is fa
   * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
   * Cons: Implementation is harder and may result in bugs if not implemented accurately.
             
- - Alternative 2: Array List
-   * Pros: This would be easier to implement and retrieve the information.
-   * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-           This would cause the deletion to be very slow when there is a large number of patients in the list.
+- Alternative 2: Array List
+  * Pros: This would be easier to implement and retrieve the information.
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
+          This would cause the deletion to be very slow when there is a large number of patients in the list.
 
 
 ### 4.2. Add Feature
@@ -290,6 +290,7 @@ The following sequence diagram summarises how the `AddAppointmentCommand` operat
 
 ### 4.3 List Features 
 
+The user is able to ge
 The user is able to get a list of all the appointments currently in the program.
 The command: 
     
