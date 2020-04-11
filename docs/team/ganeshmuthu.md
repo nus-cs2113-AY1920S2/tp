@@ -55,7 +55,7 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 4. Throws an error if dish profit calculation is attempted for a dish that would yield negative profit.
     + When: Total cost of ingredients in dish > dish price
     
-#####Load dish
+##### Load dish
 1. Load dish input from saved file.
 
 #### 2.3 Developer guide
@@ -70,5 +70,4 @@ You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/t
 #### 2.5 Team tasks
 1. Contributed to brainstorming of project ideas.
 2. Contributed to creation of user stories.
-3. Frequently provided input on project direction throughout process.
-
+3. Used issue tracker to resolve issues and allocate work.
