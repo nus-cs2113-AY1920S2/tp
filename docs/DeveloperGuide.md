@@ -10,7 +10,6 @@ By: `CS2113T-T12-2` Since: `March 2020`
 - [1. Introduction](#1-introduction)
     * [1.1. Purpose](#11-purpose)
     * [1.2. Scope](#12-scope)
-    * [1.3.](#13-)
 - [2. Setting up](#2-setting-up)
 - [3. Design](#3-design)
     * [3.1. Architecture](#31-architecture)
@@ -48,10 +47,6 @@ This document contains the architecture and software design specifications for t
 
 This guide is mainly for developers, designers and software engineers that are working on and using HappyPills.
 
-### 1.3.
-`PatientParser` - A mark-up in PascalCase indicates the class used.
-
-`PatientParser#parse()` - The camelCase text after the '#' indicates the method called in the class
 
 ## 2. Setting Up
 
@@ -88,8 +83,6 @@ The Sequence Diagram below shows how the components interact with each other for
 the scenario where the user issues the command `delete patient NRIC`.  
 
 ![Architecture Sequence Diagram](images/DG/architecture/ArchitectureSequence.png "Architecture Sequence Diagram")
-
-The sections below give more details of each component.
 
 The architecture of HappyPills is broken down into seven main classes:
 * `Ui`: This class handles the User Interface of the application.
@@ -174,6 +167,17 @@ for add commands executed on the various objects.
 This section describes some of the details on how the features of the program has been implemented. This section has been broken 
 down into nine main features: `Data Structure`, `Add Details Feature`, `List Feature`, `Find/Get Feature`, `Edit Detail Feature`, `Delete Feature`, `Done Appointment Feature`, `Storage`, `Prompting Feature`.
 
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> <p><code>PatientParser</code> - A mark-up in PascalCase indicates the class used.</p>
+   <code>PatientParser#parse()</code> - The camelCase text after the '#' indicates the method called in the class.
+   </td>
+ </tr>
+</table>
+
 ### 4.1. Data Structure
 
 The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is facilitated by HashMap which implements the following operations: 
@@ -187,30 +191,55 @@ The `Patient Details`, `Patient Medical Records`, `Appointment Scheduling` is fa
 - `AppointmentMap#add(Patient patient)` — Adds the appointment object into the appointment list using the patient’s Nric as key.  
 - `AppointmentMap#remove(String nric)` — Removes the appointment object from the existing appointment list.  
 - `AppointmentMap#get(String nric)` — Get the appointment object resides in the existing appointment list.  
-    
-**Design Considerations** 
+
+#### Design Considerations 
 
 *Aspect: Data Structure of the Patient List* 
 
 - **Alternative 1 (current choice): Hash Map**
-  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
-  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
+  * Pros: Allow faster lookup of patients’ information using the unique identifier (NRIC)
+  * Cons: Implementation is harder and may result in bugs if not implemented accurately  
+          May have performance issues in terms of memory usage.
             
 - Alternative 2: Array List
-  * Pros: This would be easier to implement and retrieve the information.
-  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-          This would cause the deletion to be very slow when there is a large number of patients in the list.
+  * Pros: This would be easier to implement and retrieve the information
+  * Cons: When a patient is deleted, all the patients in the patient list need to be checked  
+          This would cause the deletion to be very slow when there is a large number of patients in the list  
+          This will requires a linear search, therefore, the search may be slower with large amount of data    
 
+Alternative 1 was chosen because our target audience are general practitioners operating small clinics. There might be
+large amount of information that the users will want to store in HappyPills. Hence, the use of HashMap will ensure that 
+the application will provide the user with fast lookup of saved information.  
 
 ### 4.2. Add Features
 
-The user is able to add patient details, patient's record and appointment details into the program to keep track of the patient. 
+The add features implemented in HappyPills allow users to add **_patient details_, _patient's record_** 
+and **_appointment details_** into the program.
+
+The add commands used in HappyPills are listed as follows: 
+    
+    1. add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a [ALLERGIES] /rm [REMARKS]
+    2. add pr /ic NRIC /sym SYMPTOMS /diag DIAGNOSIS /d DATE /t TIME
+    3. add appt /ic NRIC /d DATE /t TIME /r REASON
+
+The `add patient` will add the patient general information into the patient list.  
+The `add pr` will add the patient's medical records into the patient record list.   
+The `add appt` will add the appointments into the appointment list.  
 
 **Implementation** 
 
-Add patient details, patient's record and appointment details use similar implementation with minor difference in the usage of tags when parsing the command.  
-
-Below is an example of adding patient's appointment.
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td><p>The implementation of all the add commands in HappyPills utilises <code>similar implementation</code> 
+   with minor difference in the usage of tags when parsing the command.</p>
+   The following section will elaborate more on the <code>add appt</code> command behaves which can be generalise to other 
+   add commands.
+   </td>
+ </tr>
+</table>
 
 The `AddAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric`, `date`, `time`, and `reason` in its constructor. 
@@ -219,72 +248,57 @@ The following steps below is an example of how the `AddAppointmentCommand` class
 
 ![Add Appointment Sequence Diagram](images/DG/AddAppointmentSequenceDiagram.png)
 
-
-1. The user enters `add appt /ic S1234567A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
+1. The user enters `add appt /ic S1234566A /d 04/04/2020 /t 10:30 /r Checkup` into the application. The `HappyPills` 
 class then calls `Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, 
 `Parser` then calls the `AppointmentParser#parse()` method. 
 
-2. `AppointmentParser#parse()` will then call the `parseAddCommand` in the same class to parse all the arguments of the user input. 
+2. `AppointmentParser#parse()` will then call the `parseAddCommand` in the same class to parse all the arguments of 
+the user input and prompt the user if there are any missing fields 
+[[User Prompting]](#49-user-prompting). 
 
 3. A new instance of `AddAppointmentCommand` with the given arguments initialised will be created. `HappyPills` will 
 subsequently call the `AddAppointmentCommand#execute()` method. 
 
 4. The `AddAppointmentCommand#execute()` method will do 2 things: 
 
-	+ If there is no patients in the `PatientMap` with the given nric, the method returns a string to notify the user 
+	+ If there is no patients in the `PatientMap` with the given NRIC, the method returns a string to notify the user 
 	that the patient does not exist. 
 	
-	+ If the patient with the given nric exists in `PatientMap`, a new Appointment object with the given arguments 
-	(nric, date, time and reason) are created and added into the `AppointmentMap` and into the ArrayList of Appointment 
-	objects in the Patient object mapped with the nric given. The `Appointment` object is stored in the storage by calling `Storage#writeAllToFile()`. 
+	+ If the patient with the given NRIC exists in `PatientMap`, a new Appointment object with the given arguments 
+	(NRIC, date, time and reason) are created and added into the `AppointmentMap` and into the ArrayList of Appointment 
+	objects in the Patient object mapped with the NRIC given. The `Appointment` object is stored in the storage by 
+	calling `Storage#writeAllToFile()`.   
 	Subsequently, the method returns a string to notify the user that the patient has been added into the `AppointmentMap` 
 	and displays the `AppointmentID` associated to the `Appointment` object created. 
 
-**Design Considerations**
+5. A appointment for patient with NRIC `S1234566A` will be added to the appointment list with the following details 
+`date: 04/04/2020`, `time: 10:30` and `reason: Checkup`. 
 
-##### Aspect: Key-value for adding
+#### Design Considerations 
 
->        Alternative 1 (current choice): Use Nric as Key for all
->          Pros: Universal checking would be easy  
->                Ease of use as the user can access all information with one NRIC 
->                
->          Cons: NRIC is lenghty
->            
->        Alternative 2: Use Index as Key for all
->          Pros: Shorter key
->          Cons: Hard to remeber unique index for each patient.
->                Increase coupling between component.
->        
->        Alternative 3: Different index as key for all
->          Pros: Reduce coupling between components.
->          Cons: It require the user to remember all different 
->          
->        Alternative 1 was chosen as NRIC is unique and it decrease coupling between components (PatientMap, PatientRecordMap, AppointmentMap).  
+*Aspect: Key-value pair* 
 
-##### Aspect: Add Patient Details
-
-        Alternative 1 (current choice): 
-          Pros: 
-          Cons: 
+- **Alternative 1 (current choice): Use NRIC as key**
+  * Pros: 
+    - All stored information can be uniquely identified by NRIC 
+    - Reduce coupling in model components
+  * Cons: 
+    - NRIC is lengthy in comparison to index
             
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+- Alternative 2: Use Index as key
+  * Pros:
+    - Shorter user input required from the user, more suitable for fast typing users
+  * Cons: Hard to remember unique index for each patient, therefore more checks are required which will increase 
+  coupling between model components 
 
-##### Aspect: Add Patient Record Details
+- Alternative 2: Different index as key
+  * Pros:
+    - Reduce coupling between model components
+  * Cons:
+    - No standardisation between the each model components  
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
+Alternative 1 was chosen as NRIC is unique for each patient and it decrease coupling between model components 
+(e.g. PatientMap, PatientRecordMap, AppointmentMap).  
 
 ### 4.3 List Features 
 
@@ -298,7 +312,7 @@ The list commands used in HappyPills are listed as follows:
     3. list appt
 
 The `list patient` will list all the existing patients in the patient list.  
-The `list pr NRIC` will list all the existing patient records for a particular searched patient (identified by the NRIC).    
+The `list pr` will list all the existing patient records for a particular searched patient (identified by the NRIC).    
 The `list appt` will list all the existing appointments in the appointment list.  
         
 **Implementation** 
@@ -335,31 +349,25 @@ user input. Upon checking that it is an Appointment-related command, `Parser` th
 5. If there are appointments in the program, it gets the list of appointments by calling `PatientMap#getAppointments()` 
 and displays all the appointments. Otherwise, the user will receive a message saying that the there is no appointments in the list. 
 
-#### 4.3.1. List Patients
-
-**Design Considerations**
+### Design Considerations
 
 _Aspect: Information needed to be displayed_
 
-- Alternative 1 **(current choice)**: Display only NRIC and NAME of the patient
-  * Pros: Allow faster lookup of patients’ information using the unique identifier (nric)
-  * Cons: Implementation is harder and may result in bugs if not implemented accurately.
+- **Alternative 1 (current choice)**: Display only certain details  
+    `List patient` will only display name and NRIC  
+    `List pr` will only display index, date and time  
+    `List appt` will only display apptID, date, time and NRIC  
+  * Pros: Display only necessary information for quick lookup
+  * Cons: Not all details are shown, users will need to use another command to view detailed information  
             
-- Alternative 2: Array List
-  * Pros: This would be easier to implement and retrieve the information.
-  * Cons: When a patient is deleted, all the patients in the patient list need to be checked. 
-          This would cause the deletion to be very slow when there is a large number of patients in the list.
-
-
-#### 4.3.2 List Patient's Records
-
-
-
-
-#### 4.3.3 List Appointments 
-
-
-
+- Alternative 2: Display all information  
+  * Pros: User will only need one command to view all the information stored in HappyPills  
+  * Cons: The window screen will be filled with a lot of information and user might have a difficult time to 
+  search for the information of a particular patient  
+  
+Alternative 1 was chosen for our current implementation because we prioritise user experience over the ease of coding. 
+For alternative 1, all the information is also displayed in ascending order which user can quickly find information 
+they are searching for.  
 
 ### 4.4. Find/Get Feature
 
@@ -372,9 +380,9 @@ The find/get commands used in HappyPills are listed as follows:
     2. find pr NRIC INDEX
     3. find appt NRIC
 
-The `get patient NRIC` will retrieve all basic information related to the searched patient.
-The `find pr NRIC INDEX` will display detailed information of a particular patient record identified by the NRIC and INDEX.
-The `find appt NRIC` will find all the appointments that the patient with the specified NRIC has.
+The `get patient` will retrieve all basic information related to the searched patient.  
+The `find pr` will display detailed information of a particular patient record identified by the NRIC and INDEX.  
+The `find appt` will find all the appointments that the patient with the specified NRIC has.
 
 **Implementation**
 
@@ -384,56 +392,35 @@ The `find appt NRIC` will find all the appointments that the patient with the sp
  <tr>
    <td><span> &#8505; </span></td>
    <td>The implementation of all the find/get commands in HappyPills utilises <code>similar method</code>. 
-   The following section will elaborate more on the <code>find appt NRIC</code> command which can be generalise to other 
-   find/get commands.
+   The following section will elaborate more on the <code>find pr NRIC INDEX</code> command which can be generalise 
+   to other find/get commands.
    </td>
  </tr>
 </table>
 
-The `FindAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`patientNric` in its constructor. 
+The `FindPatientRecordCommand` extends the `PatientRecordCommand` which implements the `Command` class and 
+initialises the `nric` and `index` in its constructor. 
 
-The following sequence diagram summarises how the `FindAppointmentCommand` operation works: 
+The following sequence diagram summarises how the `FindPatientRecordCommand` operation works: 
 
 ![Find Appointment Sequence Diagram](images/DG/FindAppointmentSequenceDiagram.png)
 
-The following steps below is an example of how the `FindAppointmentCommand` class behaves: 
+The following steps below is an example of how the `FindPatientRecordCommand` class behaves: 
 
-1. The user enters `find appt S1234567Z` into the application. The `HappyPills` class then calls the `Parser#parse()` 
-to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the `AppointmentParser#parse()` 
-method. 
+1. The user enters `find pr S1234567F 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an Patient record related command, `Parser` then calls the 
+`PatientRecordParser#parse()` method. 
 
-2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
+2. `PatientRecordParser#parse()` will then split the user input and calls the `FindPatientRecordCommand` class. 
 
-3. `HappyPills` will then call the `FindAppointmentCommand#execute()` method. 
+3. `HappyPills` will then call the `FindPatientRecordCommand#execute(S1234567F, 1)` method. 
 
-4. `FindAppointmentCommand#execute()` first checks the validity of the nric given. It then checks if a patient exists in the 
-`PatientMap`. 
+4. `FindPatientRecordCommand#execute()` first checks the validity of the NRIC and index given. 
+It then checks if a patient exists in the `PatientRecordMap`. 
 
-5. If it exists, it gets the list of appointments by calling `PatientMap.getAppointments()` and displays all the appointments 
-belonging to the patient, otherwise it displays that there is no patient with the given nric that exists. 
-
-#### 4.4.1. Get Patient Detail
-
-**Design Considerations**
-
-_Aspect: Information needed to be displayed_
-
-
-#### 4.4.2. Find Patient Record Detail
-
-**Design Considerations**
-
-_Aspect: Information needed to be displayed_
-
-
-
-#### 4.4.3. Find Appointment Detail
-
-**Design Considerations**
-
-_Aspect: Information needed to be displayed_
-
+5. If it exists, it gets the list of patient record by calling `PatientRecordMap#get(S1234567F)` and displays a 
+particular patient record with index `1` belonging to the patient with NRIC `S1234567F`, 
+otherwise it displays that there is no patient record found. 
 
 ### 4.5. Edit Features
 
@@ -442,180 +429,177 @@ _a specified patient record_** and **_appointment for a particular patient_**.
 
 The edit commands used in HappyPills are listed as follows: 
     
-    1. edit patient NRIC 
-    2. edit pr NRIC INDEX 
-    3. edit appt NRIC APPT_ID 
+    1. edit patient NRIC /n<NAME> or /p<PHONE_NUMBER> or /dob<DOB> or /b<BLOOD_TYPE> or /a<ALLERGIES> or /rm<REMARKS>
+    2. edit pr NRIC INDEX /sym<SYMPTOMS> or /diag<DIAGNOSIS> or /d<DATE> or /t<TIME>
+    3. edit appt NRIC APPT_ID /d<DATE> /t<TIME> /r<REASON>
 
-The user can edit an appointment from the list of appointments currently in the program. The command:
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#9888; </span></td>
+   <td> Users can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>.</td>
+ </tr>
+</table>
 
-    edit appt S1234567Z 1 /d 04/04/2020
-
-will edit the date of the appointment with appointment id `1`, to `04/04/2020`, if found. 
+The `edit patient` will edit a single field in the Patient object with the given NRIC.  
+The `edit pr` will edit a single field in the PatientRecord object with the given NRIC and index.  
+The `edit appt` will edit a single field in the Appointment object with the given NRIC and apptId.
 
 **Implementation**
 
-The `EditAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
-`nric`, `apptId` and `newContent` in its constructor. 
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the edit commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>edit pr NRIC INDEX</code> command which can be generalise 
+   to other edit commands.
+   </td>
+ </tr>
+</table>
 
-The following sequence diagram summarises how the `EditAppointmentCommand` operation works: 
+The `EditPatientRecordCommand` extends the `PatientRecordCommand` which implements the `Command` class and initialises the 
+`nric`, `index` and `newContent` in its constructor. 
+
+The following sequence diagram summarises how the `EditPatientRecordCommand` operation works: 
 
 ![Edit Appointment Sequence Diagram](images/DG/EditAppointmentSequenceDiagram.png)
 
 The following steps below is an example of how the `EditAppointmentCommand` class behaves: 
 
-1. The user enters `edit appt S1234567Z 1 /d 04/04/2020` into the application. The `HappyPills` class then calls the 
-`Parser#parse()` to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls 
-the `AppointmentParser#parse()` method. 
+1. The user enters `edit pr S1234567F 1 /t 22:22` into the application. The `HappyPills` class then calls the 
+`Parser#parse()` to parse the user input. Upon checking that it is an patient record related command, `Parser` then calls 
+the `PatientRecordParser#parse()` method. 
 
-2. `AppointmentParser#parse()` will then split the user input and calls the `EditAppointmentCommand` class. 
+2. `PatientRecordParser` will calls its own method `PatientRecordParser#checkEditCommand()` to check the validity of NRIC
+and index. 
 
+3. `PatientRecordParser#parse()` will then split the user input and calls the `EditPatientRecordCommand` class. 
 
-    **Warning**: If the number of arguments given is not equal to 3, the `HappyPillsException()` will be thrown.
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> If the number of arguments given is not equal to 3, the <code>HappyPillsException()</code> will be thrown.</td>
+ </tr>
+</table>
 
-3. `HappyPills` will then call the `EditAppointmentCommand#execute()` method. 
+4. `HappyPills` will then call the `EditPatientRecordCommand#execute(S1234567F,1,22:22)` method. 
 
-4. In `EditAppointmentCommand#execute()`, does two things: 
+5. In `EditPatientRecordCommand#execute(S1234567F,1,22:22)`, it does two things: 
 
-	+ If the patient and/or appointment does not exist, the `HappyPillsException()` will be thrown.
+	+ `EditPatientRecordCommand#execute(S1234567F,1,22:22)` checks for which parameter is to be edited, 
+	`date`, `time`, `symptom` or `diagnosis`. The method will edit the time with the relevant information.
+	Afterwards, the method calls `PatientRecord#setTime` to edit the relevant field.
+	
+	+ If the patient and/or patient record does not exist, the `HappyPillsException()` will be thrown.
 
-	+ `EditAppointmentCommand#execute()` checks for which parameter is to be edited, `date`, `time` or `reason`. 
-	Afterwards, the method calls both `AppointmentMap` and `PatientMap` to edit the appropriate details. `Storage#writeAllToFile()` 
-	will then be called to update the storage of the newly edited appointment. 
+6. A display message will be shown to the user to indicate whether or not the edit was successful. 
 
-5. A display message will be shown to the user to indicate whether or not the edit was successful. 
+7. The patient record for patient with NRIC `S1234567F` and indexed `1` will be edited with a new time `22:22`.
 
-#### 4.5.1. Edit Patient Detail
+##### Design Considerations 
 
-**Design Considerations**
+_Aspect: The number of field to be edited in the one command_
 
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
+- **Alternative 1 (current choice)**: Edit only one field per command
+  * Pros: Shorter command is required from the user, less mistakes are likely to occur
+  * Cons: Not able to quickly edit all fields at once
             
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+- Alternative 2: Edit all fields per command
+  * Pros: User will only need one command to edit all the information stored in HappyPills in one command
+  * Cons: User might not need to edit all the fields  
+          There is a higher chance of making mistakes when the user input is lengthy  
 
+Alternative 1 was chosen for our current implementation because we believe that it is tedious for the user to edit all 
+the fields at once. 
 
-#### 4.5.2. Edit Patient Record Detail
+_Aspect: The type of fields that can be edited_
 
-**Design Considerations**
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
+- **Alternative 1 (current choice)**: Do not allow NRIC to be edited
+  * Pros: 
+    - The maintenance of the HashMap will be relatively easier.
+    - NRIC uniquely identifies the patient, hence no editing of NRIC reduces any possible duplication   
+  * Cons:
+    - If the user entered incorrect NRIC into the system, the user will have to delete the previously added patient's details
             
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
-
-#### 4.5.3. Edit Appointment Detail
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
+- Alternative 2: Allow NRIC to be edited
+  * Pros: User need not delete any existing patient record is incorrect NRIC is entered
+  * Cons: It might increase coupling between the model components to maintain the logic of the system
+  
+Alternative 1 was chosen to maintain low coupling between model components. To prevent the user from having to delete the 
+patient details when incorrect NRIC is added, HappyPills will prompt the user when it violates the usual NRIC format and 
+also display a confirmation page before saving the patient's NRIC and details.
 
 ### 4.6. Delete Features
 
-The user can delete an appointment from the list of appointments currently in the program. The command: 
+The delete features implemented in HappyPills allow users to delete **_patient's particulars_, 
+_a specified patient record_** and **_appointment for a particular patient_**. 
 
-    delete appt S1234567Z 1 
+The delete commands used in HappyPills are listed as follows: 
     
-will delete the appointment with appointment ID `1`, if found. 
+    1. delete patient NRIC
+    2. delete pr NRIC INDEX
+    3. delete appt NRIC APPT_ID
 
-**Implementation** 
+The `delete patient` will delete a Patient object with the given NRIC.  
+The `delete pr` will delete a PatientRecord object with the given NRIC and index.  
+The `delete appt` will delete a Appointment object with the given NRIC and apptId.
 
-The `DeleteAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises 
-the `nric` and `apptId` in its constructor. 
+**Implementation**
 
-The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td>The implementation of all the delete commands in HappyPills utilises <code>similar method</code>. 
+   The following section will elaborate more on the <code>delete pr NRIC INDEX</code> command which can be generalise 
+   to other delete commands.
+   </td>
+ </tr>
+</table>
 
-1. The user enters `delete appt S1234567Z 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
-to parse the user input. Upon checking that it is an Appointment-related command, `Parser` then calls the 
-`AppointmentParser#parse()` method. 
+The `DeletePatientRecordCommand` extends the `PatientRecordCommand` which implements the `Command` class and initialises 
+the `nric` and `index` in its constructor. 
 
-2. `AppointmentParser#parse()` will then split the user input and calls the `DeleteAppointmentCommand` class. 
-
-
-	**Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
-	
-3. `HappyPills` will then call the `DeleteAppointmentCommand#execute()` method.  
-
-4. In `DeleteAppointmentCommand#execute()`, if the patient and/or appointment does not exist, the `HappyPillsException()` 
-will be thrown. Otherwise, `DeleteAppointmentCommand#execute()` will call `Storage#writeAllToFile()` and remove the 
-appointment from the program. A display message will be shown to the user to indicate that the deletion have been successful. 
-
-The following sequence diagram summarises how the `DeleteAppointmentCommand` operation works: 
+The following sequence diagram summarises how the `DeletePatientRecordCommand` operation works: 
 
 ![Delete Appointment Sequence Diagram](images/DG/DeleteAppointmentSequenceDiagram.png)
 
-#### 4.6.1. Delete Patient Detail
-**Design Considerations**
+The following steps below is an example of how the `DeleteAppointmentCommand` class behaves: 
 
-##### Aspect: Prompt handling method
+1. The user enters `delete pr S1234567F 1` into the application. The `HappyPills` class then calls the `Parser#parse()` 
+to parse the user input. Upon checking that it is an patient record related command, `Parser` then calls the 
+`PatientRecordParser#parse()` method. 
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+2. `PatientRecordParser` will calls its own method `PatientRecordParser#checkDeleteCommand()` to check the validity of 
+NRIC and index. 
 
+3. `PatientRecordParser#parse()` will then split the user input and calls the `DeletePatientRecordCommand` class. 
 
-#### 4.6.2. Delete Patient Record Detail
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> If the number of arguments given is not equal to 2, the <code>HappyPillsException()</code> will be thrown.</td>
+ </tr>
+</table>
+	
+4. `HappyPills` will then call the `DeletePatientRecordCommand#execute(S1234567F,1)` method.  
 
-**Design Considerations**
+5. In `DeletePatientRecordCommand#execute(S1234567F,1)`, if the patient and/or appointment does not exist, the 
+`HappyPillsException()` will be thrown. 
+Otherwise, `DeletePatientRecordCommand#execute()` will remove the patient record from the program and update the list of 
+patient records. 
 
-##### Aspect: Prompt handling method
+6. A display message will be shown to the user to indicate that the deletion have been successful. 
 
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
-#### 4.6.3. Delete Appointment Detail
-
-**Design Considerations**
-
-##### Aspect: Prompt handling method
-
-        Alternative 1 (current choice):
-          Pros: 
-          Cons: 
-            
-        Alternative 2: 
-          Pros: 
-          
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
+7. The patient record for patient with NRIC `S1234567F` and indexed `1` will be deleted from the list of patient records.
 
 
 ### 4.7. Done Appointment Feature
@@ -630,6 +614,8 @@ will mark the appointment with appointment ID `1` as done, if found.
 The `DoneAppointmentCommand` extends the `AppointmentCommand` which implements the `Command` class and initialises the 
 `nric` and `apptId` in its constructor. 
 
+The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
+
 ![Done Appointment Sequence Diagram](images/DG/DoneAppointmentSequenceDiagram.png)
 
 The following steps below is an example of how the `DoneAppointmentCommand` class behaves:
@@ -640,17 +626,21 @@ method.
 
 2. `AppointmentParser#parse()` will then split the user input and calls the `DoneAppointmentCommand` class. 
 
-
-    **Warning**: If the number of arguments given is not equal to 2, the `HappyPillsException()` will be thrown.
+<table>
+  <col width="20">
+  <col width="200">
+ <tr>
+   <td><span> &#8505; </span></td>
+   <td> If the number of arguments given is not equal to 2, the <code>HappyPillsException()</code> will be thrown.</td>
+ </tr>
+</table>
     
 3. A new instance of `DoneAppointmentCommand` with the given arguments will be created. `HappyPills` will subsequently call 
 the `DoneAppointmentCommand#execute()` method.
 
 4. The `DoneAppointmentCommand#execute()` method will then check that the nric given is valid and that a patient with that 
-nric and appointment exists. If all the checks are successful, it calls `Storage#writeAllToFile()` and displays a success 
+NRIC and appointment exists. If all the checks are successful, it calls `Storage#writeAllToFile()` and displays a success 
 message to the user. Otherwise the `HappyPillsException()` will be thrown according to what is invalid. 
-
-The following sequence diagram summarises how the `DoneAppointmentCommand` operation works: 
 
 ### 4.8. Storage
 
@@ -719,9 +709,10 @@ For illustration purposes, only the load and parse for patient is called. The pr
 
  ![loading](images/DG/STORAGE/StorageLoadPatient.png)
  
-**Design Considerations**
+#### Design Considerations
 
-##### Aspect: Saving method
+_Aspect: Saving method_
+
 Alternative 1 was chosen as fewer checks means that the program is less prone to exception, especially
 so if the checks are confusing to implement. This would put lesser risk on the user experience for now.
 
@@ -734,7 +725,7 @@ so if the checks are confusing to implement. This would put lesser risk on the u
           Pros: Delete and edit operation on a patient will only affect the patient's file, and the referencing list.
           Cons: More checks are requires to identify class of the string in the file.
 
-*Aspect: Updating deletion/edit* 
+_Aspect: Updating deletion/edit_
 
 Alternative 1 was chosen for now as the program is relatively new, and is more likely to be subjected to unexpected exceptions.
 
@@ -752,9 +743,10 @@ Alternative 1 was chosen for now as the program is relatively new, and is more l
     
 #### 4.9.1. Description
 
-When the user adds a patient’s details, the input could be missing a few compulsory fields. Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.
-
-The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details. The add command will only be executed when all the compulsory fields are provided. 
+When the user adds a patient’s details, the input could be missing a few compulsory fields.  
+Instead of prompting the user to re-enter the entire input, HappyPills will only ask the user for the missing details.  
+The user may choose to abort the command because of a lack of knowledge of the compulsory field or provide the requested details.  
+The add command will only be executed when all the compulsory fields are provided.  
 
 **Implementation**
  
@@ -762,7 +754,7 @@ The user may choose to abort the command because of a lack of knowledge of the c
 
 The prompting mechanism uses tag such as `/ic[NRIC]` to represent individual field in patient's information. A list of tags is use to pass to the `Parser` which contains:
 
-        - Parser #addCommandParser(String input) — This method break down user input base on tags such as (/ic, /p)
+  - `Parser#addCommandParser(input)` — This method break down user input based on given tags (e.g. /ic)
 
 *Passing the prompts*
 
@@ -780,21 +772,23 @@ Step 4: `Parser#parseAddCommand` will ask for conformation before passing the co
 
 Step 5: `HappyPills` will execute the command.
 
-**Design Considerations**
+#### Design Considerations
 
-##### Aspect: Prompt handling method
+_Aspect: Prompt handling method_
 
-        Alternative 1 (current choice): The `HappyPill` functions is unaware of prompting. The `Parser` keeps track of the incomplete command and sends back as `addCommand` objects.
-          Pros: Decrease coupling between `HappyPill` and `Parser` components
-          Cons: `HappyPill` has no way to know if it is currently handling prompting, so it cannot abort prompts, `Parser` return IncorrectCommand to act as abort.
+- **Alternative 1 (current choice)**: The `HappyPill` functions is unaware of prompting. The `Parser` keeps track of the 
+incomplete command and sends back as `addCommand` objects.
+    * Pros: Decrease coupling between `HappyPill` and `Parser` components
+    * Cons: `HappyPill` has no way to know if it is currently handling prompting, so it cannot abort prompts, `Parser` 
+    return IncorrectCommand to act as abort.
             
-        Alternative 2: The `Parser` componetnt keeps track of the incomplete command and throws an exception containing promts to the `HappyPills`.
-          Pros: Greater flexibility for `HappyPill` to handle prompt, e.g. aborting
-          Cons: A new class is required to keep track of the command entered, rather than simply acting as a bridge between the `Command` and `Parser` sub-component. Increase number of pontential points of failure and decrease maintainability.
+- Alternative 2: The `Parser` component keeps track of the incomplete command and throws an exception containing prompts
+ to the `HappyPills`.
+    * Pros: Greater flexibility for `HappyPill` to handle the prompt (e.g. aborting the command)
+    * Cons: A new class is required to keep track of the command entered, rather than simply acting as a bridge between 
+    the `Command` and `Parser` sub-component. Increase number of potential points of failure and decrease maintainability.
           
-        Alternative 1 was chosen as it decrease coupling between components. And reduces major failure during v1.
-        P.S subject to change in v2.
-
+Alternative 1 was chosen for our current implementation because it decrease coupling between components. 
 
 ## 5. Testing
 
