@@ -31,16 +31,23 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
 	* Documented the ```modulelogic``` subcomponent in the ```logic``` component, as well as LogicManager responsible for managing all the subcomponents in logic component.
 	* Documented the```common``` components which holds various classes with static variables used in other components.
 * **Contributions to the DG:**
-	* Documented design section: ```2.2.1 Architecture 2.2.3 Logic component 2.2.6 Common component```
-	* Documented implementation section: ```3.3.1 Add a new contact 3.3.2 List all contacts```
+	* Documented design section: ```2.2.1 Architecture 2.2.3```
+	* Documented design section: ```Logic component 2.2.6 Common component```
+	* Documented implementation section: ```3.3.1 Add a new contact```
+	* Docuemented implementation section: ```3.3.2 List all contacts```
 	
 * **Contributions to team-based tasks :**
 	* Jointly released V1.0, V2.0 and V2.1 together with team mates, taking into account the must have features for each version.
 	* Set up team organization and set up issues that needs to be solved for every milestone.
 	* Set up shadowJar and related dependencies in gradle for the team.
 	* Documented settings section: ```1. Setting Up``` of Developer Guide.
-	* Documented Appendix A: Product Scope, Appendix B: User Stories, Appendix C: Use Cases, Appendix D: Non-functional requirements, Appendix E: Glossary, Appendix F: Instructions for Manual Testing of Developer Guide.
-    * Looked through all the issue feedback from PED dry run and fixed major issue that could cause our application to crash. Issues related to user guide is assigned to teammates respectively.
+	* Documented Appendix A of Developer's guide: ```Appendix A: Product Scope```
+	* Documented Appendix B of Developer's guide: ```Appendix B: User Stories```
+	* Documented Appendix C of Developer's guide: ```Appendix C: Use Cases```
+	* Documented Appendix D of Developer's guide: ```Appendix D: Non-functional requirement```
+	* Documented Appendix E of Developer's guide: ```Appendix E: Glossary```
+	* Documented Appendix F of Developer's guide: ```Appendix F: Instructions for Manual Testing```
+    * Looked through all the issue feedback from PED dry run and fixed major issue that could cause our application to crash. Issues related to user guide are assigned to teammates respectively depending on their roles for this project.
     * Refactor code in WhenFree.java (application's main class) to be more compact.
     
 * **Review/mentoring contributions:**
@@ -54,7 +61,7 @@ Link : [RepoSense Dashboard](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/
     
 * **Contributions to the Developer Guide (Extracts)**: 
 
-> :information_source: Below are some of the examples of my contributions to the developer guide.
+> :blush: Below are few of the examples of my contributions to the developer's guide.
 
 ### 2.1. Architecture
 ![Architecture Diagram](../images/architecture.png)<br>
