@@ -131,14 +131,15 @@ Only the `set-profile`, `help` and `exit` commands are usable upon first start-u
 ## 3 Features 
 
 Note that:
-* Name is restricted to strings with no spaces.
+* Name is restricted to strings with no spaces. Spaces in between names can be replaced by - instead. 
 * Age is restricted to whole numbers only.
-* Gender is restricted to "male" or "female".
+* Gender is restricted to "male" or "female". Input is case-insensitive.
 * Height has units in centimetres.
 * Weight has units in kilograms.
-* Calories has units in kilocalories.
-* Date is restricted to days in a week - SUNDAY to SATURDAY
-* Time-Period is restricted to MORNING, AFTERNOON, NIGHT
+* Calories has units in calories.
+* Date is restricted to days in a week - SUNDAY to SATURDAY. Input is case-insensitive.
+* Time-Period is restricted to MORNING, AFTERNOON, NIGHT. Input is case-insensitive.
+* Activity-Level is restricted to LOW, MODERATE, HIGH. Input is case-insensitive.
 
 ## 3.1 Profile Features
 

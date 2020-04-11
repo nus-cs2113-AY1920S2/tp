@@ -1,0 +1,6 @@
+Name: john-tan
+Age: 23
+Gender: male
+Height: 170.0
+WeightList: 80.0,
+Weight-Goal: 90.0

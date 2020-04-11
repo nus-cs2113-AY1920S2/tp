@@ -90,41 +90,41 @@ The Logic consists of the following classes:
 * `Result` - Stores the command result in-memory.
 * `CommandParser` - Parses the user input and generates a specific command.
 * `"ABC"Parser` - A collection of parser classes which parses a specific input to generate a specific value.
-    * `AgeParser`
-    * `CaloriesParser`
-    * `CommandParser`
-    * `DescriptionParser`
-    * `FoodNameParser`
-    * `GenderParser`
-    * `HeightParser`
-    * `NameParser`
-    * `StorageParser`
-    * `WeightParser`
+    * `AgeParser` - Parses the user input and generates the user's age as an integer value between 0 to 150 years old.
+    * `CaloriesParser` - Parses the user input and generates the calories value as a non-negative double.
+    * `CommandParser` - Parses the user input and generates the equivalent Command Object to be processed.
+    * `DescriptionParser` - Parses the user input and generates the String description required by Command.
+    * `FoodNameParser` - Parses the user input and generates the name of the food in lower case for Food Object to process.
+    * `GenderParser` - Parses the user input and generates the profile's gender as "male" or "female" regardless of upper or lower case input.
+    * `HeightParser` - Parses the user input and generates the profile's height as a double value between 0 and 300 centimeters.
+    * `NameParser` - Parses the user input and generates the profile's name as a String.
+    * `StorageParser` - Parses the stored inputs from various data file to generate the user profile, Recipe, Food Record, Time, Weight List and Food Nutrition Record.
+    * `WeightParser` - Parses the user input and generates the profile's weight as a double between 0 and 500 kilograms.
 * `Command` - An abstract class which other command classes inherits from.
 * `"ABC"Command` - A collection of command classes inherited from `Command` which perform specific functions.
-    * `AddFoodCommand`
-    * `BuildNewRecipeCommand`
-    * `CalculateCaloriesCommand`
-    * `CheckBmiCommand`
-    * `CheckRecordCommand`
-    * `CheckRequiredCaloriesCommand`
-    * `CheckWeightRecordCommand`
-    * `ClearFoodRecordCommand`
-    * `DeleteFoodCommand`
-    * `DeleteWeightCommand`
-    * `ExitCommand`
-    * `HelpCommand`
-    * `ListFoodDatabaseCommand`
-    * `ProfileCommand`
-    * `RecordMealCommand`
-    * `SetAgeCommand`
-    * `SetGenderCommand`
-    * `SetHeightCommand`
-    * `SetNameCommand`
-    * `SetProfileCommand`
-    * `SetWeightCommand`
-    * `SetWeightGoalCommand`
-    * `ShowRecipeCommand`
+    * `AddFoodCommand`Adds food item with food name and nutrition value into the `FoodNutritionRecord` which provide a data bank of food items.
+    * `BuildNewRecipeCommand` - Provides the user with a food recommendation for the week based on the maximum number of food they want per meal, capped at 3, and the activity level.
+    * `CalculateCaloriesCommand` - Calculates the calories intake of the profile in a given specified day or time period of a week.
+    * `CheckBmiCommand` - Provides the BMI table for user to view the category (UNDERWEIGHT, HEALTHY, OVERWEIGHT, OBESE, EXTREMELY OBESE) that he/she is in.
+    * `CheckRecordCommand` - Checks the meal that the profile had consumed on a given day and time period.
+    * `CheckRequiredCaloriesCommand` - Checks the calories intake against the required calories for a day given the activity level.
+    * `CheckWeightRecordCommand` - Checks the weight progress of the profile, to view the weight changes thus far and the weight changes required to meet the weight goal.
+    * `ClearFoodRecordCommand` - Clears all the stored food record of the profile.
+    * `DeleteFoodCommand` - Deletes food item with food name and nutrition value from the `FoodNutritionRecord` which provide a data bank of food items.
+    * `DeleteWeightCommand` - Deletes an incorrect weight record by the record index. Note that the profile must retain at least one weight record as initial weight.. 
+    * `ExitCommand` - Terminates the program and save all records into external data file.
+    * `HelpCommand` - Provides user with help table that shows list of command that can be executed and how to use them.
+    * `ListFoodDatabaseCommand` - Provides user with a list of all the food items stored in the data bank.
+    * `ProfileCommand` - Provides the current stored profile of the user.
+    * `RecordMealCommand` - Records the meal consumed in a day, Sunday to Saturday, and for a given time period, Morning or Afternoon or Night.
+    * `SetAgeCommand` - Sets the age of the profile.
+    * `SetGenderCommand` - Sets the gender of the profile.
+    * `SetHeightCommand` - Sets the height of the profile.
+    * `SetNameCommand` - Sets the name of the profile.
+    * `SetProfileCommand` - Sets a new profile for the user, with the name, age, gender, height, weight, weight goal.
+    * `SetWeightCommand` - Adds a new weight of the profile for user to monitor weight changes.
+    * `SetWeightGoalCommand` - Sets the ideal weight of the profile.
+    * `ShowRecipeCommand` - Provides the user with the stored food recommendation for the week.
 
 
 The `Logic` component
@@ -162,16 +162,16 @@ The Commons consists of the following classes:
 * `MessageBank` - Consists of multiple standard system output messages for UI to print
 * `Weekday` - Enumeration class for classifying all 7 possible days in a week
 * `"ABC"Exception` - A collection of exceptions to aid in running of the application
-    * `InvalidAgeException`
-    * `InvalidCaloriesException`
-    * `InvalidCommandException`
-    * `InvalidFoodNameException`
-    * `InvalidFormatException`
-    * `InvalidGenderException`
-    * `InvalidHeightException`
-    * `InvalidNameException`
-    * `InvalidWeightException`
-    * `NegativeNumberException`
+    * `InvalidAgeException` - Exception that is thrown when when user inputs age format that is not integer or when the user provides an age that is not within 0 and 150 years old.
+    * `InvalidCaloriesException` - Exception that is thrown when the user inputs a calories value that is not double or when the user provides a calories value that is negative.
+    * `InvalidCommandException` - Exception that is thrown when the user key in a Command that does not exists.
+    * `InvalidFoodNameException` - Exception that is thrown when the user did not input any String food name.
+    * `InvalidFormatException` - Exception that is thrown when the user input a command that is not of the right number of argument.
+    * `InvalidGenderException` - Exception that is thrown when user input gender format that is not "male" or "female" regardless of upper or lower case input.
+    * `InvalidHeightException` - Exception that is thrown when user inputs height format that is not double or when the user provides a height that is not within 0 and 300 centimetres.
+    * `InvalidNameException` - Exception that is thrown when the user did not input any String name.
+    * `InvalidWeightException` - Exception that is thrown when user inputs weight format that is not double or when the user provides a weight that is not within 0 and 500 kilograms.
+    * `NegativeNumberException` - Exception that is thrown when the user input negative number for the number of food item in build receipt command.
 
 
 ## Implementation
@@ -237,6 +237,7 @@ Diet Manager aims to achieve the following:
 2. Allow users to track food calories intake and monitor their eating habits
 3. Enable users to monitor weight changes over time and work towards their ideal weight goal
 4. Provide personalised health information and dietary recommendations for the user
+5. Monitor and track user's weight changes to achieve weight goal
 6. Check their BMI as well against the BMI table regardless of user
 
 ## User Stories
@@ -266,7 +267,7 @@ Diet Manager aims to achieve the following:
 Device Environment:
 * Must have Java 11 or higher installed in OS
 * 32-bit or 64-bit environment
-* Command Line Interface
+* Command Line Interface or Terminal for Mac
 
 Performance:
 * Function offline, without the need for internet access

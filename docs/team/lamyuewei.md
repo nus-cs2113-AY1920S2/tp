@@ -54,13 +54,22 @@ I contributed to the User Guide under the section of check required calories.
 * Provided examples of usages of the command
 * Provided some 3 sample outputs that the user will likely see as the result individuals might see differs since some profile might want to gain weight while others might want to lose weight
 
-I also contributed to the User Guide under the section of set user profile.
+I contributed to the User Guide under the section of set user profile.
 * Added some key information of the units used for the user to take note of when using the command
+
+I contributed to the User Guide under the section of Features.
+* Added the units for some required input (e.g. Activity-Level, etc) in our program
+* Stated which arguments are case-insensitive
 
 ### Contributions to the DG
 I contributed to the Developer Guide under the section of profile component and food component.
-* Stated the responsibility of the 2 component
-* Provided a description for the classes that the 2 component consists of
+* Stated the responsibility of several components
+* Provided description for the classes that the components consist of
+* Updated the table of content
+* Added to the list of user story
+* Updated to the value proposition
+* Fix minor typos in the Developer Guide
+* Stated description for all the parsers, commands and exceptions.
 
 ### Contributions to team based tasks
 I have contributed to several of my team based tasks. 
@@ -81,8 +90,14 @@ I have contributed to several of my team based tasks.
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/134), 
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/136), 
 [**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/137), 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/140) and 
-[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/141).
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/140), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/141), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/159), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/160), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/161), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/162), 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/163) and 
+[**__here__**](https://github.com/AY1920S2-CS2113-T15-4/tp/pull/165).
 
 * In addition, I have also provided feedback to my teammates by providing them with insights as to how to go about implementing certain features when they request for help. These helps are essential since it help our team ensure that we are on track with the tasks on hand.<br>
     * For example, I have helped Yu Xiang recently when he asked me for an idea of how to go about creating a class file to monitor weight changes.
