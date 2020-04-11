@@ -2,7 +2,11 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.*;
+import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
+import jikan.exception.InvalidCommandException;
+import jikan.exception.MultipleDelimitersException;
+import jikan.exception.EmptyQueryException;
 import jikan.ui.Ui;
 
 import java.util.ArrayList;

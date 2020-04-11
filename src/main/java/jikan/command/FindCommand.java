@@ -2,7 +2,11 @@ package jikan.command;
 
 import jikan.activity.Activity;
 import jikan.activity.ActivityList;
-import jikan.exception.*;
+import jikan.exception.EmptyNameException;
+import jikan.exception.ExtraParametersException;
+import jikan.exception.InvalidCommandException;
+import jikan.exception.MultipleDelimitersException;
+import jikan.exception.EmptyQueryException;
 import jikan.ui.Ui;
 
 import static jikan.Jikan.lastShownList;
@@ -20,7 +24,7 @@ public class FindCommand extends Command {
     /**
      * Constructor to create a new find command.
      */
-    public FindCommand(String parameters) throws MultipleDelimitersException{
+    public FindCommand(String parameters) throws MultipleDelimitersException {
         super(parameters.trim());
         isFinalCommand = true;
         this.parameters = parameters.replaceAll("\\s+", " ");
@@ -33,7 +37,7 @@ public class FindCommand extends Command {
     /**
      * Constructor to create a new find command that has chaining.
      */
-    public FindCommand(String parameters, boolean isFinal, boolean hasChaining) throws MultipleDelimitersException{
+    public FindCommand(String parameters, boolean isFinal, boolean hasChaining) throws MultipleDelimitersException {
         super(parameters.trim());
         isFinalCommand = isFinal;
         isChained = hasChaining;
@@ -68,13 +72,13 @@ public class FindCommand extends Command {
         }
     }
 
-    private void checkForInvalidChaining() throws MultipleDelimitersException{
+    private void checkForInvalidChaining() throws MultipleDelimitersException {
         if (parameters.contains(";;") || parameters.contains("; ;")) {
             throw new MultipleDelimitersException();
         }
     }
 
-    private void executeChainedCommand (ActivityList activityList, String[] tokenizedParameters) {
+    private void executeChainedCommand(ActivityList activityList, String[] tokenizedParameters) {
         if (tokenizedParameters[1].length() > 0) {
             isFinalCommand = false;
             parameters = tokenizedParameters[0];
