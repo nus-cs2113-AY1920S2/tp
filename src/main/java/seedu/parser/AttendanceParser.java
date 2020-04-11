@@ -12,7 +12,7 @@ public class AttendanceParser {
      *
      * @param commandParameters A String contains information of the Attendance, to be parsed.
      * @return                  A Attendance containing information parsed from commandParameters.
-     * @throws PacException    Throws PacException when the commandParameters contains wrong
+     * @throws PacException     Throws PacException when the commandParameters contains wrong
      *                          tokens or insufficient parameter.
      */
     public Attendance parseAttendance(String commandParameters) throws PacException {
@@ -41,5 +41,16 @@ public class AttendanceParser {
             throw new PacException("Insufficient variables to be saved as Attendance");
         }
         return new Attendance(studentName, status);
+    }
+
+    public String getName(String commandParameters) throws PacException {
+        try {
+            String[] dataToRead = commandParameters.split(" ", 5);
+            String[] tokens = dataToRead[0].split("/");
+            String studentName = tokens[1];
+            return studentName;
+        } catch (Exception e) {
+            throw new PacException("Fail to add");
+        }
     }
 }

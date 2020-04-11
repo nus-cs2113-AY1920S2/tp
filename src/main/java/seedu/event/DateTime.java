@@ -1,7 +1,5 @@
 package seedu.event;
 
-import seedu.ui.UI;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,7 +7,7 @@ import java.time.format.DateTimeParseException;
 public class DateTime {
     private String dateTime;
     private String dateTimeFormat;
-    private boolean isAutoSet = false;
+    private boolean isInvalid = false;
 
     public DateTime(String arguments) {
         this.dateTime = arguments;
@@ -21,7 +19,11 @@ public class DateTime {
      * @return The parsed string of date and time of the event.
      */
     public String getDateTimeFormat() {
-        return getDateTime().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy HHmm"));
+        if (getDateTime() != null) {
+            return getDateTime().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy HHmm"));
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -33,13 +35,13 @@ public class DateTime {
         try {
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         } catch (DateTimeParseException e) {
-            if (!isAutoSet) {
-                UI.display("Unknown DateTime format provided. DateTime is set to local time in the format: "
-                        + "yyyy-MM-dd HHmm.");
-            }
-            isAutoSet = true;
-            return LocalDateTime.now();
+            isInvalid = true;
+            return null;
         }
+    }
+
+    public boolean checkValidDateTime() {
+        return !isInvalid;
     }
 
     /**
@@ -72,7 +74,7 @@ public class DateTime {
     }
 
     public String toStorable() {
-        return getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return this.dateTime;
     }
 
     public static DateTime parseStorable(String representation) {

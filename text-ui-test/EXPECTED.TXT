@@ -1,7 +1,5 @@
-Storage file not found.
-A storage file is created.
-Storage file not found.
-A storage file is created.
+Storage file (.\data\eventlist.txt) is not found... created.
+Storage file (.\data\studentlist.txt) is not found... created.
 Hello from
 
  ______       ____           ______
@@ -12,13 +10,23 @@ Hello from
 |__|     /__/      \__\  \________|
 
 What is your name?
-Hello James Gosling. Welcome to your personal Professor Assistant Console. If you need assistant with command format, input 'help'.
->>> >>> Unknown DateTime format provided. DateTime is set to local time in the format: yyyy-MM-dd HHmm.
+
+>>> Hello James Gosling. Welcome to your personal Professor Assistant Console. If you need assistant with command format, input 'help'.
+
+>>> Unknown command category is provided
+
+>>> Unknown DateTime format provided. DateTime is set to local time in the format: yyyy-MM-dd HHmm.
 New Event: dinner with colleague was added successfully to your Event list.
+
 >>> New Event: World Cup was added successfully to your Event list.
+
 >>> New Event: soccer match was added successfully to your Event list.
+
 >>> Event: dinner with colleague was deleted successfully from your Event list.
+
 >>> Here are all the events in your list.
 1. Event: World Cup, time: Mon, Nov 21 2022 0000
 2. Event: soccer match, time: Thu, Jan 23 2020 1900, venue: Kallang
+
 >>> Bye, see you again!
+All events are saved.

@@ -11,10 +11,10 @@ import seedu.ui.UI;
 
 import static seedu.pac.Pac.studentListCollection;
 
-public class AddPerformance extends Command {
+public class AddPerformanceList extends Command {
     private UI ui;
     private DisplayList displayList;
-    PerformanceList performances;
+    PerformanceList performanceList;
     String eventName;
 
     /**
@@ -22,8 +22,8 @@ public class AddPerformance extends Command {
      * event to be modified, and String eventName, name of the event that owns the
      * performance list.
      */
-    public AddPerformance(PerformanceList performances, String eventName) {
-        this.performances = performances;
+    public AddPerformanceList(PerformanceList performanceList, String eventName) {
+        this.performanceList = performanceList;
         this.eventName = eventName;
         this.ui = new UI();
         this.displayList = new DisplayList();
@@ -34,7 +34,7 @@ public class AddPerformance extends Command {
      * The user is to choose whether to add the performance by importing a list
      * or adding manually.
      */
-    public void addToList() throws PacException {
+    private void addToList() throws PacException {
         boolean isByNameList = ui.isImportList();
         if (isByNameList) {
             addByList();
@@ -57,9 +57,9 @@ public class AddPerformance extends Command {
      */
     private void addManually() throws PacException {
         int studentNumber = 0;
-        String parameter = ui.getPerformanceParameter();
+        String parameter = ui.getPerformanceParameterToAdd();
         while (!parameter.equals("done")) {
-            performances.addToList(getPerformance(parameter), eventName);
+            performanceList.addToList(getPerformance(parameter), eventName);
             studentNumber++;
             parameter = ui.getStringInput();
         }
@@ -95,7 +95,7 @@ public class AddPerformance extends Command {
     private void addByList() throws PacException {
         StudentList studentList = getList();
         for (String studentName : studentList.getStudentList()) {
-            performances.addToList(new Performance(studentName,
+            performanceList.addToList(new Performance(studentName,
                     ui.getResultOfStudent(studentName)), eventName);
         }
     }

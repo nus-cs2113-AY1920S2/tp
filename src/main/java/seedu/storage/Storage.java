@@ -2,6 +2,7 @@ package seedu.storage;
 
 import seedu.student.StudentList;
 import seedu.student.StudentListCollection;
+import seedu.ui.UI;
 import seedu.event.Event;
 import seedu.event.EventList;
 import seedu.exception.PacException;
@@ -39,6 +40,10 @@ public class Storage {
             }
         } while (!input.isBlank());
 
+        if (eventList.getSize() > 0) {
+            UI.display("... Loaded all events.");
+        }
+
         return eventList;
     }
 
@@ -50,6 +55,10 @@ public class Storage {
     public void saveEventList(EventList eventList) throws PacException {
         for (Event event : eventList.list) {
             fileIO.write(event.toStorable() + System.lineSeparator());
+        }
+
+        if (eventList.getSize() > 0) {
+            UI.display("All events are saved.");
         }
     }
     
@@ -72,6 +81,10 @@ public class Storage {
             }
         } while (!input.isBlank());
 
+        if (studentListCollection.size() > 0) {
+            UI.display("... Loaded all student lists.");
+        }
+
         return studentListCollection;
     }
 
@@ -83,6 +96,10 @@ public class Storage {
     public void saveStudentListCollection(StudentListCollection studentListCollection) 
         throws PacException {
         fileIO.write(studentListCollection.toString());
+
+        if (studentListCollection.size() > 0) {
+            UI.display("All student lists are saved.");
+        }
     }
 
     /**

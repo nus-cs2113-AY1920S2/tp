@@ -4,8 +4,6 @@ import seedu.exception.PacException;
 import seedu.performance.Performance;
 
 public class PerformanceParser {
-    public PerformanceParser() {
-    }
 
     /**
      * This is the parser for Performance. It gets the parameters from the user

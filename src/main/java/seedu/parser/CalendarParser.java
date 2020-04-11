@@ -3,34 +3,47 @@ package seedu.parser;
 import seedu.exception.PacException;
 
 public class CalendarParser {
+    private static final String SEMESTER_FLAG = "s/";
+    private static final String ACADEMIC_YEAR_FLAG = "ay/";
+    private static final int SEMESTER_AND_AY = 2;
+    private static final int CHARACTERS_IN_SEMESTER = 3;
+    private static final int CHARACTERS_IN_AY = 8;
+    private static final String INPUT_ERROR_MESSAGE = "Please provide the semester and the academic year in this format"
+            + ": s/1 ay/19-20";
+    private static final String INVALID_YEAR_FORMAT_MESSAGE = "Please provide a valid year in this format: ay/19-20";
+    private static final String INVALID_CHARACTER_MESSAGE = "Please provide an integer";
+    private static final String INVALID_FLAG_MESSAGE = "Unknown flag. Only s/ and ay/ flags are recognizable.";
+    private static final String INVALID_CHARACTER_FOR_AY_MESSAGE = "Please provide two numbers with double digits each "
+            + "for ay, eg. ay/18-19";
+
 
     public CalendarParser() {
     }
 
-    public static String[] parseDescription(String parameters) throws PacException {
+    private static String[] parseDescription(String parameters) throws PacException {
         String[] tokens = parameters.split(" ");
-        if (tokens.length != 2 || tokens[0].length() != 3 || tokens[1].length() != 8) {
-            throw new PacException("Please provide the semester and the academic year in this format: "
-                    + "s/1 ay/19-20");
+        if (tokens.length != SEMESTER_AND_AY || tokens[0].length() != CHARACTERS_IN_SEMESTER
+                || tokens[1].length() != CHARACTERS_IN_AY) {
+            throw new PacException(INPUT_ERROR_MESSAGE);
         }
         return tokens;
     }
 
-    public static int parseAcademicYear(String[] academicYear, int year) throws PacException {
+    private static int parseAcademicYear(String[] academicYear, int semester) throws PacException {
         int calendarYear;
         for (String yr : academicYear) {
             if (yr.length() > 2 || yr.length() < 1) {
-                throw new PacException("Please provide a valid year in this format: ay/19-20");
+                throw new PacException(INVALID_YEAR_FORMAT_MESSAGE);
             }
         }
         try {
-            if (year == 1) {
+            if (semester == 1) {
                 calendarYear = Integer.parseInt(academicYear[0]);
             } else {
                 calendarYear = Integer.parseInt(academicYear[1]);
             }
         } catch (NumberFormatException e) {
-            throw new PacException("Please provide an integer");
+            throw new PacException(INVALID_CHARACTER_MESSAGE);
         }
         return calendarYear;
     }
@@ -39,35 +52,35 @@ public class CalendarParser {
     public static int getSemester(String description) throws PacException {
         String[] tokens = parseDescription(description);
         int semester;
-        if (tokens[0].substring(0,2).equals("s/")) {
+        if (tokens[0].substring(0,2).equals(SEMESTER_FLAG)) {
             try {
                 semester = Integer.parseInt(tokens[0].substring(2));
             } catch (NumberFormatException e) {
-                throw new PacException("Please provide a integer");
+                throw new PacException(INVALID_CHARACTER_MESSAGE);
             }
         } else {
-            throw new PacException("unknown flag");
+            throw new PacException(INVALID_FLAG_MESSAGE);
         }
         return semester;
     }
 
-    public static int getYear(String description, int year) throws PacException {
+    public static int getYear(String description, int semester) throws PacException {
         String[] tokens = parseDescription(description);
         int calendarYear;
-        if (tokens[1].substring(0,3).equals("ay/")) {
+        if (tokens[1].substring(0,3).equals(ACADEMIC_YEAR_FLAG)) {
             String[] academicYear = tokens[1].substring(3).split("-");
             try {
                 if (academicYear.length != 2) {
-                    throw new PacException("Please provide two numbers for ay, eg. ay/18-19");
+                    throw new PacException(INVALID_CHARACTER_FOR_AY_MESSAGE);
                 } else if (Integer.parseInt(academicYear[1]) - Integer.parseInt(academicYear[0]) != 1) {
-                    throw new PacException("Please provide a valid ay, eg. ay/18-19");
+                    throw new PacException(INVALID_CHARACTER_FOR_AY_MESSAGE);
                 }
             } catch (NumberFormatException e) {
-                throw new PacException("Please provide two numbers for ay, eg. ay/18-19");
+                throw new PacException(INVALID_CHARACTER_FOR_AY_MESSAGE);
             }
-            calendarYear = parseAcademicYear(academicYear, year);
+            calendarYear = parseAcademicYear(academicYear, semester);
         } else {
-            throw new PacException("Unknown flag");
+            throw new PacException(INVALID_FLAG_MESSAGE);
         }
         return calendarYear;
     }

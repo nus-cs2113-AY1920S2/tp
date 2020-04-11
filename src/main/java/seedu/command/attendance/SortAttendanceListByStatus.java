@@ -12,12 +12,12 @@ import seedu.ui.UI;
 public class SortAttendanceListByStatus extends Command {
 
     protected UI ui;
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
     protected String eventName;
 
     public SortAttendanceListByStatus(AttendanceList attendances, String eventName) {
         this.eventName = eventName;
-        this.attendances = attendances;
+        this.attendanceList = attendances;
         this.ui = new UI();
     }
 
@@ -25,10 +25,10 @@ public class SortAttendanceListByStatus extends Command {
      * Method to sort an attendance list according to status.
      */
     private void sort() {
-        if (attendances.isEmpty()) {
+        if (attendanceList.isEmpty()) {
             UI.display("An empty list cannot be sorted");
         } else {
-            attendances.sortByStatus();
+            attendanceList.sortByStatus();
             ui.sortAttendanceByStatus(eventName);
         }
     }

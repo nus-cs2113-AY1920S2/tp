@@ -24,13 +24,17 @@ public class UI {
         System.out.println(message);
     }
 
+    public static void displayStudentListCollectionEmpty() {
+        System.out.println("There is no existing student list.");
+    }
+
     /**
      * Advances this scanner past the current line and stores the input that
      * was skipped, excluding any line separator at the end.
      * The position is set to the beginning of the next line.
      */
     public void readUserInput() {
-        System.out.print(">>> ");
+        System.out.print(System.lineSeparator() + ">>> ");
         System.out.flush();
         userInput = in.nextLine();
     }
@@ -110,7 +114,9 @@ public class UI {
 
     public void addPerformanceMessage(String studentName, String taskName) {
         System.out.printf("The result of student %s has been added "
-                + "successfully under event %s.\n\n", studentName, taskName);
+                + "successfully under event %s.\n", studentName, taskName);
+        System.out.print("Record next student: (format: n/name r/result). ");
+        System.out.print("When you are finished, input 'done'.\n\n ");
     }
 
     public void deleteEventMessage(String eventType, String eventName) {
@@ -118,6 +124,10 @@ public class UI {
                 + "your Event list.\n", eventType, eventName);
     }
 
+    public void printInvalidDateTimeFormat() {
+        System.out.println("Datetime is not set. If you wish to add datetime, please enter the correct format:"
+                + "yyyy-MM-dd HHmm");
+    }
 
     public void printCalendarHeading(int semesterOneYear, int semesterTwoYear, int semester) {
         printCalendarHorizontalLine();
@@ -126,13 +136,11 @@ public class UI {
         printCalendarHorizontalLine();
     }
 
-
     public void printCalendarHorizontalLine() {
         Stream.generate(() -> " _").limit(1).forEach(System.out::print);
         Stream.generate(() -> "_").limit(130).forEach(System.out::print);
         UI.display(" ");
     }
-
 
     public void printCalendarHeader(int semesterOneYear, int semesterTwoYear,
                                      int semester) {
@@ -166,31 +174,46 @@ public class UI {
      *
      * @param performance The Performance deleted.
      */
-    public void deletePerformanceMessage(Performance performance, String eventName,
-                                         boolean hasDeleted) throws PacException {
+    public void deletePerformanceMessage(Performance performance, String eventName, boolean hasDeleted) {
         if (!hasDeleted) {
-            throw new PacException("Performance not found in list");
+            display("Performance not found in list");
         }
         String studentName = performance.getStudent();
         System.out.printf("The result of student %s has been deleted "
                 + "successfully under event %s.\n", studentName, eventName);
     }
 
+    public void editPerformanceMessage(Performance performance, String type) {
+        String studentName = performance.getStudent();
+        System.out.printf("The student %s has been changed to %s successfully.\n", type, studentName);
+    }
+
+    public String getPerformanceName(String type) {
+        System.out.printf("Please key in the student's new %s", type);
+        return getStringInput();
+    }
+
     public String getResultOfStudent(String studentName) {
-        UI.display("Please key in the result for student " + studentName);
+        display("Please key in the result for student " + studentName);
         readUserInput();
         return getUserInput();
     }
 
     public String getAttendanceStatusOfStudent(String studentName) {
-        UI.display("Please key in the attendance status for student " + studentName + "[Y/N]");
+        display("Please key in the attendance status for student " + studentName + " [Y/N]");
         readUserInput();
         return getUserInput();
     }
 
     public String getPerformanceParameter() {
-        UI.display("Please key in student name and result in the following format:");
-        UI.display("n/Student_Name r/result. If you are finished, enter done.");
+        display("Please key in the type of performance parameter you want to edit: name / result");
+        readUserInput();
+        return getUserInput();
+    }
+
+    public String getPerformanceParameterToAdd() {
+        display("Please key in the performance you want to add in this format: n/name r/result");
+        display("When you are finished, input 'done' ");
         readUserInput();
         return getUserInput();
     }
@@ -202,7 +225,7 @@ public class UI {
     }
 
     public String getTypeOfAddPerformance() {
-        UI.display("Would you like to import an existing student list? "
+        display("Would you like to import an existing student list? "
                 + "If yes, input 'yes'. Else, input anything.");
         return getStringInput();
     }
@@ -213,49 +236,49 @@ public class UI {
     }
 
     public String getEventName() {
-        UI.display("Please key in the name of event that "
+        display("Please key in the name of event that "
                 + "you wish to access to its student's performance.");
         readUserInput();
         return getUserInput();
     }
 
     public String getEventNameForAttendance() {
-        UI.display("Please key in the name of event.");
+        display("Please key in the name of event.");
         readUserInput();
         return getUserInput();
     }
 
     public void clearAttendanceMessage(String eventName) {
-        UI.display("Attendance List cleared for Event: " + eventName);
+        display("Attendance List cleared for Event: " + eventName);
     }
 
     public void sortAttendanceByStatus(String eventName) {
-        UI.display("Attendance List is sorted by name for Event: " + eventName);
+        display("Attendance List is sorted by name for Event: " + eventName);
     }
 
     public void sortAttendanceByName(String eventName) {
-        UI.display("Attendance List is sorted by attendance status for Event:  " + eventName);
+        display("Attendance List is sorted by attendance name for Event:  " + eventName);
     }
 
     public void sortPerformanceByName(String eventName) {
-        UI.display("Performance List is sorted by Performance name for Event:  " + eventName);
+        display("Performance List is sorted by Performance status for Event:  " + eventName);
     }
 
     public String getSortType() {
-        UI.display("Do you want to sort by students' name or grade?");
+        display("Do you want to sort by students' name or result?");
         return getStringInput().toLowerCase();
     }
 
     public void addStudent(StudentList studentList) throws PacException {
         String studentName = "";
         do {
-            UI.display("Please enter a student Name. If you are finished, enter done");
+            display("Please enter a student Name. If you are finished, enter done.");
             readUserInput();
             studentName = getUserInput().trim();
             if (studentName.equals("done")) {
                 break;
             } else if (studentList.isDuplicate(studentName)) {
-                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed");
+                throw new PacException("Duplicated Student Name found.\nStudent List Add Command Failed.");
             } else {
                 studentList.addToList(studentName);
             }
@@ -263,24 +286,20 @@ public class UI {
     }
 
     public String getListName() {
-        UI.display("What is the name of your list?");
+        display("What is the name of your list?");
         readUserInput();
         return getUserInput();
     }
 
     public void printStudentListCollection() {
-        if (studentListCollection.isEmpty()) {
-            UI.display("The student list collection is currently empty");
-        } else {
-            DisplayTable displayTable = new DisplayTable();
-            for (int i = 0; i < studentListCollection.size(); i++) {
-                displayTable.printHeaderOfTwo("List #" + (i + 1),
-                        studentListCollection.get(i).getListName());
-                int index = 1;
-                for (String name : studentListCollection.get(i).getStudentList()) {
-                    displayTable.printBodyOfTwo(index, name);
-                    index++;
-                }
+        DisplayTable displayTable = new DisplayTable();
+        for (int i = 0; i < studentListCollection.size(); i++) {
+            displayTable.printHeaderOfTwo("List #" + (i + 1),
+                    studentListCollection.get(i).getListName());
+            int index = 1;
+            for (String name : studentListCollection.get(i).getStudentList()) {
+                displayTable.printBodyOfTwo(index, name);
+                index++;
             }
         }
     }

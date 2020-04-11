@@ -1,39 +1,43 @@
 package seedu.command;
 
 import seedu.exception.PacException;
-
+import seedu.ui.HelpUI;
 
 public class Help extends Command {
-    seedu.ui.Help help;
+    HelpUI helpUI;
 
     public Help() {
-        this.help = new seedu.ui.Help();
+        this.helpUI = new HelpUI();
     }
 
     /**
      * This method allows the user to select the help message to
      * be displayed by type of command.
-     *
-     * @throws PacException Throws PacException when the user
-     *                       selects any command out of the list.
      */
-    public void selectHelpMessage() throws PacException {
-        help.printGetHelp();
-        String typeOfHelp = help.getStringInput();
-        switch (typeOfHelp) {
-        case "1":
-            help.printEventHelp();
-            break;
-        case "2":
-            help.printAttendanceHelp();
-            break;
-        case "3":
-            help.printPerformanceHelp();
-            break;
-        case "4":
-            help.printStudentListHelp();
-            break;
-        default: throw new PacException("Invalid help function selected.");
+    public void selectHelpMessage() {
+        helpUI.printGetHelp();
+        String typeOfHelp = helpUI.getStringInput();
+        while (!typeOfHelp.equals("back")) {
+            switch (typeOfHelp) {
+            case "1":
+                helpUI.printStudentListHelp();
+                break;
+            case "2":
+                helpUI.printEventHelp();
+                break;
+            case "3":
+                helpUI.printCalendarHelp();
+                break;
+            case "4":
+                helpUI.printAttendanceHelp();
+                break;
+            case "5":
+                helpUI.printPerformanceHelp();
+                break;
+            default:
+                helpUI.printGetHelp();
+            }
+            typeOfHelp = helpUI.getStringInput();
         }
     }
 
