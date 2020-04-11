@@ -620,7 +620,7 @@ When the user first requests to execute the **list** command to list out directo
 
 #### **Implementation**  
 
-！[Class_Diagram_List.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Class_Diagram_List.jpg)
+![Class_Diagram_List.jpg](https://github.com/AY1920S2-CS2113T-T13-2/tp/blob/master/docs/images/Class_Diagram_List.jpg)
 
 <span style="color: green"><small><i>Figure <b>List Command Class Diagram</b></i></small></span>
 
