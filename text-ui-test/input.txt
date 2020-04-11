@@ -1,1 +1,35 @@
-James Gosling
+profile
+set-profile
+hello
+y
+ermm
+helloworld
+set-profile John 20 male 180 80 75
+profile
+set-name Jane
+set-age 18
+set-gender female
+set-height 170
+set-weight 65
+set-weight-goal 65
+check-weight-progress
+delete-weight 1
+check-bmi
+profile
+check-meal Saturday morning
+record-meal Saturday morning /Steak -- 500 /Fries
+check-meal Saturday morning
+check-required-cal Saturday low
+check-required-cal Saturday moderate
+check-required-cal Saturday high
+record-meal Monday morning /Fish -- 400
+calculate Saturday->Monday
+calculate Monday
+clear-records
+list-food
+addf beef-noodles -- 400
+list-food
+delf beef-noodles
+delf beef-noodles
+help
+exit
