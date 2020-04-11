@@ -106,7 +106,8 @@ public class GoalCommand extends Command {
             Ui.printDivider("Invalid command format entered.");
             Log.makeInfoLog("Goal command failed as an incorrect format was provided.");
         } catch (IOException e) {
-            Ui.printDivider("Error reading the file.");
+            Ui.printDivider("Error reading the file.\n"
+                    + "If the file was open, please close it and try again.");
         } catch (NoSuchTagException e) {
             Ui.printDivider("There is no such tag.");
             Log.makeInfoLog("Goal command failed as there was no such tag saved.");

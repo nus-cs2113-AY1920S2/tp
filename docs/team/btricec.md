@@ -31,6 +31,7 @@
 * Provided syntax and usage examples for some commands (namely, start, end, continue, abort and delete)
   
 ### Contributions to the DG  
+* Drew command class diagram
 * Explained the implementation of the `continue` command (under section 3.5) using Sequence Diagrams 
 * Explained the implementation of the `graph` command (under section 3.9) using Sequence Diagrams
 * Gave instructions for manual testing and included sample test cases for `list`, `continue` and `graph` commands.
@@ -47,6 +48,86 @@
   
   
 ## Contributions to the User Guide (extracts)  
+
+## Usage
+Jikan lets you record how much time you spend on various activities so that you can easily see what took up the most time today / this week / this month.
+(In the example below, we use the example of a student tracking his/her schoolwork, but Jikan can be used for more than just that!)
+
+To start, record your first activity using the `start ACTIVITY_NAME` command.
+
+Add some tags to your activities to group similar activities together using `/t`. Tags help you group activities of the same type together, 
+in this example, we use the tags feature to label activities according to their module code. 
+**(Note that each activity can only store two tags at maximum.)**
+
+Add allocated time to your activities using `/a`. This allows users to set aside how much time they would like to spend on an activity and
+keep track on whether they are spending too much or too little time for that particular activity.
+
+When you are done with the activity, or want to move onto something else, tell Jikan to `end` and the Activity time will be recorded and saved to your list.
+
+You can view all your activities using the `list` command. Or view all your activities over a period of time by using `list` with extra parameters. For example `list week` will return a list of all activities this current week, as shown below.
+
+![list week](./pictures/list_week.PNG)
+
+The list still looks very cluttered, we can reduce it further! Want to find everything you did for CS2113 this week? Filter out the activities you want to see using the `find` or `filter` command. This is our list after filtering out all our activities tagged as `2113`. (the -s flag tells Jikan to search our last shown list, i.e. the list of activities this week in this case)
+
+![Continue command sequence diagram](./pictures/filter.PNG)
+
+To easily see what took up the most of your time out of all the 2113 activities, use the `graph` command to view a chart of your activities. 
+
+![Continue command sequence diagram](./pictures/graph.png)
+
+Curious about what module took up the most time this week? We can use the `graph tags` command on our weekly activity list to find out.
+
+![Continue command sequence diagram](./pictures/graphtags.PNG)
+
+Evidently, it was CS2105.
+
+Not done with an activity and want to continue on it? Use the `continue` command to continue recording time for a previously started activity.
+
+Finally, when you're done and want to close the app, simply say `bye` and Jikan will exit.
+
+This is just a quick overview of what Jikan can do for you. For more details on each individual command, read the command guide below.
+
+### Starting an activity: `start` 
+**Usage:** Starts recording the time for a new activity.  
+  
+**Format:** `start ACTIVITY_NAME /a ALLOCATED_TIME /t TAGS`    
+ * `ACTIVITY_NAME` can contains spaces and must be less than 25 characters.     
+* `ACTIVITY_NAME` must also be unique (should the user start an already existing activity, the option to `continue` will be given).  
+* `ALLOCATED_TIME` should be of the format [HH:MM:SS] and cannot exceed 23:59:59.
+* `TAGS` must be single spaced separated and a maximum of 2 tags can be stored.
+* `ALLOCATED_TIME` and `TAGS` are optional.  
+    
+**Example:**  
+`start assignment /a 01:30:00 /t CS1010`   
+`start GER1000 quiz /t GER GEmod`  
+`start revision`  
+  
+### Continuing an activity: `continue`  
+**Usage:** Continues recording the time of an activity that you have previously started.  
+  
+**Format:** `continue ACTIVITY_NAME`  
+* `ACTIVITY_NAME` must be an existing activity in the activity list.  
+  
+**Example:**  
+`continue revision`  
+  
+### Ending an activity: `end`  
+**Usage:** Stops recording the time for an ongoing activity and stores it into the activity list.  
+  
+**Format:** `end` 
+* An activity must be started or continued before it can be ended.  
+  
+### Aborting an activity: `abort`  
+**Usage:** Aborts the current activity and does not save it to the activity list.  
+  
+**Format:** `abort`  
+* An activity must be started or continued before it can be ended.  
+  
+### Delete an activity: `delete`  
+**Usage:** Deletes an activity in the activity list.  
+  
+**Format:** `delete ACTIVITY_NAME`  
   
 ## Contributions to the Developer Guide (extracts)  
 ### 3.5 Continue Feature

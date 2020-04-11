@@ -4,6 +4,7 @@ import jikan.activity.Activity;
 import jikan.activity.ActivityList;
 import jikan.exception.ExtraParametersException;
 import jikan.exception.MissingParametersException;
+import jikan.log.Log;
 import jikan.ui.Ui;
 
 import java.time.Duration;
@@ -40,12 +41,15 @@ public class GraphCommand extends Command {
             switch (inputs[0]) {
             case ALLOCATIONS:
                 Ui.graphAllocation(lastShownList);
+                Log.makeInfoLog("Allocations was graphed");
                 break;
             case TAGS:
                 graphTags();
+                Log.makeInfoLog("Tags were graphed");
                 break;
             case ACTIVITIES:
                 graphActivities();
+                Log.makeInfoLog("Activities were graphed");
                 break;
             default:
                 Ui.printDivider("Please specify whether you want to graph activities / tags / allocations.");
