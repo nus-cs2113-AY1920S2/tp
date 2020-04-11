@@ -63,7 +63,7 @@ class StockTest {
         stockC.addIngredient(new Ingredient("RICE", Optional.of(1), Optional.of(0.50)));
         stockC.addIngredient(new Ingredient("tomato", Optional.of(2), Optional.of(0.50))); 
             
-        assertEquals(createAddStockOutputCopyOne(), checkForDuplicateIngredient("RiCe", stockC));
+        assertEquals(createAddStockOutputCopyOne(), printDuplicateIngredientMessage("RiCe", stockC));
     }
     
     /**
@@ -216,6 +216,19 @@ class StockTest {
         assertEquals(createSearchStockOutputCopyOne(), executeSearch(stock, "TOMATO"));
     }
     
+    @Test
+    public void clearStock_clearAllIngredientsInStock_emptyStock() {
+        Stock stock = new Stock();
+        
+        stock.addIngredient(new Ingredient("tomato", Optional.of(3), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("rice", Optional.of(1), Optional.of(0.50)));
+        stock.addIngredient(new Ingredient("chicken", Optional.of(10), Optional.of(1.00)));
+        
+        stock.clearStock();
+        
+        assertTrue(stock.getStock().isEmpty());
+    }
+    
     @Test 
     public void print_printStockWhenIngredientQuantityIsZero_SerialIndexUnchanged() 
             throws IngredientNotFoundException {
@@ -270,9 +283,6 @@ class StockTest {
     
     private String createAddStockOutputCopyOne() {
         String outputMessage = "";
-        
-        outputMessage += "=================================================================="
-                + "==========================================================";
                 
         outputMessage += ls
                 + "Please note that there are other similar ingredient names in the stock."
@@ -296,18 +306,13 @@ class StockTest {
         outputMessage += "You may want to remove the unwanted ingredient names if it is a duplicate."
                 + ls;
         
-        outputMessage += "==================================================================="
-                + "=========================================================";
-        
         return outputMessage;
     }
     
     private String createListStockOutputCopyOne() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock currently:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
         
         outputMessage += ("1. [10][$1.00] chicken"
@@ -317,9 +322,7 @@ class StockTest {
                 + "3. [1][$0.50] rice"
                 + ls); 
                 
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
+        outputMessage += ls;
         
         return outputMessage;
     }
@@ -334,17 +337,11 @@ class StockTest {
     private String createSearchStockOutputCopyOne() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
         
         outputMessage += ("1. [3][$0.50] tomato"
                 + ls); 
-                
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
         
         return outputMessage;
     }
@@ -378,9 +375,7 @@ class StockTest {
      */
     private String printSearchResult(Stock stock, String keyword) {
         String outputMessage = ("Here are the ingredients in the stock that matches the keyword:"
-                + ls
-                + "=============================================================="
-                + "==============================================================");
+                + ls);
     
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
                 stock.getStock().entrySet());
@@ -412,10 +407,7 @@ class StockTest {
             } 
         }
 
-        outputMessage += (ls
-                + "=============================================================="
-                + "=============================================================="
-                + ls);
+        outputMessage += ls;
         
         return outputMessage;
     }
@@ -444,53 +436,63 @@ class StockTest {
         return hasIngredientWithKeyword;
     }
     
-    /** 
-     * A utility function of similar implementation to checkForDuplicateIngredient() in Stock
-     * class. This method returns a string instead of void.
+    /**
+     * A utility function to similar implementation to printDuplicateIngredientMessage() in
+     * Stock class.
      */
-    private String checkForDuplicateIngredient(String ingredientNameToCheck, Stock stock) {
+    private boolean checkForDuplicateIngredientName(String ingredientNameToCheck, Stock stock) {
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.getStock().entrySet()); 
+        boolean hasDuplicateIngredientName = false;
         
-        if (tempList.size() <= 1) {
-            return "";
-        } else if (checkIngredientInStock(ingredientNameToCheck, stock)) {
-            String outputMessage = "============================================================" 
-                    + "================================================================"
-                    + ls;
-            
-            outputMessage += ("Please note that there are other similar ingredient names in the stock."
-                    + ls
-                    + ls);
-            
-            outputMessage += ("You are currently adding: '"
-                    + ingredientNameToCheck
-                    + "'");
-            
-            outputMessage += (ls
-                    + ls
-                    + "Here are the ingredients in the stock with similar names:"
-                    + ls);
-            
-          
+        if (tempList.size() < 1) {
+            return hasDuplicateIngredientName;
+        } else {
             for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
                 String ingredientName = ingredient.getKey();
                 if (ingredientName.toLowerCase().equals(ingredientNameToCheck.toLowerCase())) {
-                    outputMessage += (ingredientName
-                            + ls);
+                    hasDuplicateIngredientName = true;
+                    break;
                 }
             }
-            
-            outputMessage += (ls
-                    + "You may want to remove the unwanted ingredient names if it is a duplicate.");
-            
-            outputMessage += (ls
-                    + "============================================================"
-                    + "================================================================");
-        
-            return outputMessage;
-        } else {
-            return "";
+            return hasDuplicateIngredientName;
         }
+    }
+    
+    /** 
+     * A utility function of similar implementation to printDuplicateIngredientMessage() in Stock
+     * class.
+     */
+    private String printDuplicateIngredientMessage(String duplicateIngredientName, Stock stock) {
+        String outputMessage = ls;
+        
+        outputMessage += ("Please note that there are other similar ingredient names in the stock."
+                + ls
+                + ls);
+        
+        outputMessage += ("You are currently adding: '"
+                + duplicateIngredientName
+                + "'");
+        
+        outputMessage += (ls
+                + ls
+                + "Here are the ingredients in the stock with similar names:"
+                + ls);
+        
+        List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(stock.getStock().entrySet());
+        for (Entry<String, Pair<Integer, Double>> ingredient : tempList) {
+            String ingredientName = ingredient.getKey();
+            if (ingredientName.toLowerCase().equals(duplicateIngredientName.toLowerCase())) {
+                outputMessage += (ingredientName
+                        + ls);
+            }
+        }
+        
+        outputMessage += (ls
+                + "You may want to remove the unwanted ingredient names if it is a duplicate.");
+        
+        outputMessage += (ls);
+        
+        return outputMessage;
     }
     
     private Map<String, Pair<Integer, Double>> createStockCopy() {
@@ -568,16 +570,12 @@ class StockTest {
             outputMessage += ("There is nothing in the stock currently.");
         } else {
             outputMessage += ("Here are the ingredients in the stock currently:"
-                    + ls)
-                    + ("============================================================"
-                    + "================================================================"
+                    + ls
                     + ls);
             
             outputMessage += printStockOutput(stock);
             
-            outputMessage += ("============================================================"
-                    + "================================================================"
-                    + ls);
+            outputMessage += ls;
         }
         
         return outputMessage;

@@ -195,9 +195,7 @@ class SearchStockCommandTest {
      */
     private String printSearchResult(Stock stock, String keyword) {
         String outputMessage = ("Here are the ingredients in the stock that matches the keyword:"
-                + ls
-                + "=============================================================="
-                + "==============================================================");
+                + ls);
     
         List<Entry<String, Pair<Integer, Double>>> tempList = new ArrayList<>(
                 stock.getStock().entrySet());
@@ -230,8 +228,6 @@ class SearchStockCommandTest {
         }
 
         outputMessage += (ls
-                + "=============================================================="
-                + "=============================================================="
                 + ls);
         
         return outputMessage;
@@ -343,17 +339,13 @@ class SearchStockCommandTest {
     private String createSearchStockOutputCopy() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
         
         outputMessage += ("1. [1][$0.50] potato"
                 + ls); 
                 
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
+        outputMessage += ls;
         
         return outputMessage;
     }
@@ -361,9 +353,7 @@ class SearchStockCommandTest {
     private String createSearchStockOutputCopyTwo() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
         
         outputMessage += ("1. [1][$0.50] potato"
@@ -371,9 +361,7 @@ class SearchStockCommandTest {
                 + "2. [1][$0.50] tomato"
                 + ls); 
                 
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
+        outputMessage += ls;
         
         return outputMessage;
     }
@@ -381,9 +369,7 @@ class SearchStockCommandTest {
     private String createSearchStockOutputCopyThree() {
         String outputMessage = "";
         outputMessage += ("Here are the ingredients in the stock that matches the keyword:"
-                + ls)
-                + ("============================================================"
-                + "================================================================"
+                + ls
                 + ls);
         
         outputMessage += ("1. [1][$0.30] salt"
@@ -395,9 +381,7 @@ class SearchStockCommandTest {
                 + "4. [10][$0.50] vegetable"
                 + ls); 
                 
-        outputMessage += ("============================================================"
-                + "================================================================"
-                + ls);
+        outputMessage += ls;
         
         return outputMessage;
     }
