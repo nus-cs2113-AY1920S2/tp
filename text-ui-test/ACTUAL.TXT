@@ -3,7 +3,7 @@ ______  ______  _____ ______    ___  __  __ ______        __  _______  ______
 ||    ||||       \      ||    /  ||  ||  || ||    |     /  || ||    ||   ||
 ||__ /  ||___     \___  ||   /___||  ||  || ||__ /     /___|| ||    ||   ||
 ||   \\ ||           \  ||  /    ||  ||  || ||   \\   /    || ||    ||   ||
-||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.0
+||    \\||____   _____\ || /     ||   \__/  ||    \\ /     Daily Report v2.1
 Input next command:
 
 Command is of incorrect format
@@ -673,7 +673,7 @@ Please specify the keyword using the format 'k/keyword;'
 
 Input next command:
 
-There is no reservation currently in the list.
+Currently there is no reservation in the list.
 
 Input next command:
 
@@ -1032,18 +1032,16 @@ Comments: no spicy food please
 
 Input next command:
 
-The command has been successfully executed.
+The sale has been successfully added.
 
 Input next command:
 
 The total profit for the day is: $57.0
-The command has been successfully executed.
 
 Input next command:
 
 The most popular dish today is: rice
 This has sales of: 5
-The command has been successfully executed.
 
 Input next command:
 
