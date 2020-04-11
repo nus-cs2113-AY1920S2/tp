@@ -249,15 +249,17 @@ Aspect: What is the format of add command
 
 Alternative 1 (current choice): Both `Add to Semester` and `Add to Available` use `add` command word.
 
-Pros: Can input command faster.
-
-Cons: May not distinguish these two types of command.
+|||
+---|---
+Pros| Can input command faster.
+Cons| May not distinguish these two types of command.
 
 Alternative 2: `Add to Semester` uses `addtosem` while `Add to Available` uses `addtodata`
 
-Pros: Easy to distinguish these two types of command.
-
-Cons: Will lower the typing speed.
+|||
+---|---
+Pros| Easy to distinguish these two types of command.
+Cons| Will lower the typing speed.
 
 ## 4.2 Deletion
 
