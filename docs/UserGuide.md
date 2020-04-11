@@ -166,14 +166,14 @@ What are you waiting for? Give <b>Nuke</b> a shot, and you will see how amazing 
         -   `addt assignment2 -m cs2113t -c Assignment -d tmr 23:59 -p 20` : Adds a task named `assignment2` which belongs to *module* `cs2113t` and *category* `Assignment` with a *deadline* `tomorrow 23:59` and *priority* of `20`
 -   `bye`: Exits **Nuke**.
 
-  
+
 [Back To Top](#table-of-contents)  
-  
+
 <br>    
-  
- 
+
+
 <hr>  
-  
+
 ## **General Usage**   
 This section will explain the fundamental structure of the **Nuke** application, and important guidelines to follow to ensure smooth usage of the application.    
 
@@ -898,7 +898,7 @@ delt urgent assignment
 [Back To Top](#table-of-contents)  
 <br>  
 
-#### **d. Delete Files from your File List**s
+#### **d. Delete Files from your File Lists**
 `delf` deletes a _file_ from your _task_'s **File List**. The **File List** contains all your added _files_ and can be viewed via the [List File](#f-list-your-files) command.  
 
 ##### **Format**    
@@ -1587,14 +1587,14 @@ You can mix both <code>-e</code> and <code>-a</code> to filter exactly the way y
 ## **Contact Us**   
 <div>
 If you have any further inquiries, or if you realised any <b>bugs</b> <i class="fa fa-bug"></i> while running the <B>Nuke</b> application, feel free to contact us at: <br><br>
-
 <div style="text-align: center">
 <i class="fa fa-facebook-square fa-lg" style="color:blue"></i> <a href="https://www.facebook.com/nukeproject/"><b>Facebook</b></a> 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nukeproject@gmail.com"><b>Gmail</b></a>
+<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nusnuke2019@gmail.com"><b>Gmail</b></a>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 <i class="fa fa-yahoo fa-lg" style="color: purple"></i> <a href="mailto:nukeproject@yahoo.com"><b>Yahoo! Mail</b></a> 
 </div>
+
 
 <br> <br>
 
