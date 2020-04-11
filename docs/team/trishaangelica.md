@@ -33,13 +33,13 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
         * Changed original list display to pretty-printing in a table (*Reused code from logicbig*) (Pull request <ins>[#54](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/54/files#diff-f5a2a66f3d795321ea951828c239db70)</ins>)
         
     * Documentation:
-        * Added a navigable table of contents and "back to top" links for both SHOCO user guide and developer guide: <ins>[#111]((https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111))</ins> , <ins>[#112](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/112/files)</ins> , <ins>[#122](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/122/files)</ins>
+        * Added a navigable table of contents and "back to top" links for both SHOCO user guide and developer guide: <ins>[#111](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/111/files)</ins> , <ins>[#112](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/112/files)</ins> , <ins>[#122](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/122/files)</ins>
         * Organized the "skeletal" base of the DG in order to provide the team with allocated sections for easier collaboration <ins>[#114](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/114/files)</ins>
-        * Standardized colour and font of all diagrams in the DG for comprehensibility <ins>[#191](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/191)</ins> , <ins>[#210](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/210)</ins>
-        * Added the Manual Testing Section of the DG <ins>[#204](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/204)</ins>
+        * Standardized colour and font of all diagrams in the DG for comprehensibility <ins>[#191](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/191/files)</ins> , <ins>[#210](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/210/files)</ins>
+        * Added the Manual Testing Section of the DG <ins>[#204](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/204/files)</ins>
            
     * Community:
-        * PRs reviewed (with non-trivial review comments): <ins>[#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38)</ins> , <ins>[#169](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/169)</ins>
+        * PRs reviewed (with non-trivial review comments): <ins>[#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38/files)</ins> , <ins>[#169](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/169/files)</ins>
     
     * Beyond the project team:
         * Reported feature flaws, documentation bugs and functionality bugs of varying severity for other project teams. (Pull requests <ins>[#1 - #6](https://github.com/trishaangelica/ped/issues)</ins>)
@@ -81,7 +81,7 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
  * The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
  * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
  * **At least one** of the three parameters (description/price/quantity) must be present in the command.
- > :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: Note: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
  
  Examples of usage: 
  
@@ -248,7 +248,7 @@ Reason for choosing alternative 1: By abstracting out different command types as
 &nbsp;
 
 #### Appendix D: Instructions for Manual Testing
-> :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
+> :information_source: Note: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
 
 ##### Launch and Shutdown
 1. Initial launch 
