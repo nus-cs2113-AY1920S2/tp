@@ -17,7 +17,7 @@ Pac. The following groups are in particular the intended audience of the documen
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
     2.5 [Storage component](#25-storage-component)  
-3. [Implementation of features](#3-implementation-of-features)  
+3. [Implementation of Features](#3-implementation-of-features)  
     3.1 [Event](#31-event)  
     3.2 [Calendar](#32-calendar)    
     3.3 [Attendance](#33-attendance)   
@@ -212,23 +212,23 @@ to edit the name of the event.
      |_____________________|_____________________|_____________________|_____________________|_____________________|_____________________|
  
  
- #### Design considerations
- *Aspect: Data Structure used to implement calendar*
- - Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
-   - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
-   the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
-   - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
-   ArrayLists.
-   
+#### Design considerations
+*Aspect: Data Structure used to implement calendar*
+- Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
+  - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
+  the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
+  - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
+  ArrayLists.
+
 - Alternative 2: Save the events as a sorted tree map 
   - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
   - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
   every new addition, deletion or editing.  
  
- *Aspect: How addition, deletion and editing of events affects calendar execution*  
- - Alternative 1(current choice): Implement a class specifically to interact with the calendar
-   - Pros: Calendar class can support different interactions to modify calendar content
-   - Cons: Many new methods to be implemented, which affects code readability.
+*Aspect: How addition, deletion and editing of events affects calendar execution*  
+- Alternative 1(current choice): Implement a class specifically to interact with the calendar
+  - Pros: Calendar class can support different interactions to modify calendar content
+  - Cons: Many new methods to be implemented, which affects code readability.
    
 - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
   - Pros: Does not require instantiation of new object to modify the calendar contents.
