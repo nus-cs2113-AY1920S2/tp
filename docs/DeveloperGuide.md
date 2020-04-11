@@ -106,13 +106,11 @@ Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` s
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
-
-#### 2.3.1. logic.commands component
+### 2.3.1. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components to execute the commands.
 The ```commands``` consists of the class ```CommandHandler```.
 
-
-#### 2.3.2. logic.modulelogic component
+### 2.3.2. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser``` ```ModuleApiParser``` ```ModuleHandler``` ```LessonsGenerator```.
@@ -146,7 +144,7 @@ Fig 4. shows an overview of the UML sequence of the entire logic.modulelogic com
  
 The information returned from ```LessonsGenerator``` would then be used in ```Command``` component.
  
-#### 2.3.3. logic.schedulelogic component
+### 2.3.3. logic.schedulelogic component
 
 The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
 The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#33-Display-timetable-of-selected-contacts) 
@@ -168,7 +166,7 @@ by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule(
 
 [Section 3.3](#3-implementation) below explains in detail how the ```schedulelogic``` component is used in the 
 implementation of the [`Display timetable of selected contacts`](#33-display-timetable-of-selected-contacts) feature.
-<br>
+</br></br>
 
 ### 2.4. Model component
 <img src="images/modelcomponent.png" width="50%">
@@ -178,7 +176,7 @@ implementation of the [`Display timetable of selected contacts`](#33-display-tim
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
-#### 2.4.1. model.meetings component
+### 2.4.1. model.meetings component
 <img src="images/meetingscomponent.png" width="50%">
 
 *Fig 7. Class diagram of the model.meetings component*
@@ -187,9 +185,8 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 
 1. ```Meeting``` is used to represent a meeting that the user has scheduled. It contains the name, start and end date, day and time of the meeting. It also contains getter methods, not shown in the diagram, which are used to access its attributes.
 2. ```MeetingList``` is used to store a list of all meetings. It contains a ```ArrayList<Meeting>``` which is updated every time the user adds or deletes a meeting. There are also getter methods not shown in the diagram.
-<br>
 
-#### 2.4.2. model.contacts component
+### 2.4.2. model.contacts component
 <img src="images/contactscomponent.png" width="50%">
 
 *Fig 8. Class diagram of the model.contacts component*
