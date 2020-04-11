@@ -77,6 +77,10 @@ public class Duke {
                         + "Please input your command again!");
             } catch (ModuleManagerException e) {
                 logr.log(Level.WARNING, e.getMessage());
+            } catch (NumberFormatException e) {
+                logr.log(Level.WARNING, "Wrong number format!");
+            } catch (Exception e) {
+                logr.log(Level.WARNING, "Invalid input!");
             }
         } while (!isExit);
         Ui.greetFarewell();

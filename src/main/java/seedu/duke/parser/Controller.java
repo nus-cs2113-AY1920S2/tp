@@ -307,6 +307,10 @@ public class Controller {
 
     private static DeleteFromSemCommand processDeleteFromSemCommand(String args) throws InputException {
         String[] moduleWords = args.split(" s/");
+        if (moduleWords.length < 2) {
+            throw new InputException("invalid 'delete' command to delete from Selected Modules",
+                    "delete id/ID s/SEM OR delete n/NAME s/SEM");
+        }
         if (args.contains("id/")) {
             String moduleId = moduleWords[0].replace("id/", "").toUpperCase().trim();
             String semester = moduleWords[1].trim();

@@ -65,12 +65,13 @@ public class StoragePersonInfo {
 
     public static Person processPersonInfoString(String personInfo) throws StorageException {
         String[] personWords = personInfo.split(",");
-        if (personWords.length < 2) {
-            throw new StorageException("Invalid person information!");
+        if (personWords.length < 3) {
+            throw new StorageException("Invalid person information! We will create a new PersonInfo file.");
         }
         String name = personWords[0];
         String matricYear = personWords[1];
-        return new Person(name, matricYear);
+        String cc = personWords[2];
+        return new Person(name, matricYear, cc);
     }
 
     /**
