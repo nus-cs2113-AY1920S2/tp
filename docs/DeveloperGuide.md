@@ -257,7 +257,7 @@ Diet Manager aims to achieve the following:
 Device Environment:
 * Must have Java 11 or higher installed in OS
 * 32-bit or 64-bit environment
-* Command Line Interface
+* Command Line Interface or Terminal for Mac
 
 Performance:
 * Function offline, without the need for internet access
