@@ -6,7 +6,7 @@ Restaurant Daily Report is a CLI app that generates a whitepaper, summarizing th
 ### 2. Summary of contributions
 
 #### 2.1 Code contributed
-You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=gmuthu17)
+You can view my code contribution [here](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#search=gmuthu17&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false)
 
 #### 2.2 Enhancements implemented
 
