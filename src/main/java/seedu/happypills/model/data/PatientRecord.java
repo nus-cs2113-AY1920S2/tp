@@ -1,6 +1,5 @@
 package seedu.happypills.model.data;
 
-import static java.lang.String.valueOf;
 
 //@@author NyanWunPaing
 

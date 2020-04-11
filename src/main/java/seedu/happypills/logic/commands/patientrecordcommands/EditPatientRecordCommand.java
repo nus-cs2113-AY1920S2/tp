@@ -1,6 +1,5 @@
 package seedu.happypills.logic.commands.patientrecordcommands;
 
-import org.w3c.dom.Text;
 import seedu.happypills.HappyPills;
 import seedu.happypills.logic.parser.Checker;
 import seedu.happypills.model.data.AppointmentMap;
