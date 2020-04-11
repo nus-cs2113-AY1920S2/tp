@@ -1,4 +1,4 @@
-#Ned Ning Guan - Project Portfolio Page
+# Ned Ning Guan - Project Portfolio Page
 
 ## Overview
 The Restaurant Daily Report is a CLI application is designed for restaurant owners, who need a simple and efficient way to manage the operation of their business.
