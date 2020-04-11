@@ -72,10 +72,6 @@ This command deletes the person and their saved schedule from the app and the di
 
 <br/>
 
-## Contributions to the User Guide:
-
-## Contributions to the Developer Guide:
-
 **Other contributions:**
 * Contributions to UG:
 	* Created the contents section at the start with hyperlinks
@@ -105,8 +101,5 @@ This command deletes the person and their saved schedule from the app and the di
     * Proof-read the team's documentation and enforced consistency.
     
 * **Contributions beyond the project team:**
-    * Provided solutions to problems/difficulties other teams were facing and discover bugs that causes wrong repl submission.
     * Reported 15 issues during PED by following a methodological approach of Expected Behaviour of application-Current behaviour of application and reproduced detailed description as to how i arrived at the issue with screenshots.
-    
-* **Contributions to the Developer Guide (Extracts)**: 
-
+    * Assisted other teams by suggesting useful libraries
