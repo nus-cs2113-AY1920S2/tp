@@ -193,7 +193,7 @@ undesirable.
 Jikan provides a `clean` command where users can automate the cleaning of done activities (i.e activities with duration > allocation) and logging data
 at application startup.
 
-![StartCD](./pictures/CleanCD.png)
+![CleanCD](./pictures/CleanCD.png)
 
 With Jikan as the main entry for our application,
 

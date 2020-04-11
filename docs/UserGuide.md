@@ -243,7 +243,7 @@ As tags can be used to group activities of a similar nature together (i.e. same 
 **Example:**    
 `graph tags 1` 
 
-### Activity targets graph: `graph allocations`
+### Activity allocation graph: `graph allocations`
 **Usage:** View the progress of activities to see how much time was spent on the activity relative to the allocated time.
 
 Note: Only activities with an `ALLOCATED_TIME` will be shown.
