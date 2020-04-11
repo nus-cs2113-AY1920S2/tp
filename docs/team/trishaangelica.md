@@ -81,7 +81,7 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
  * The `INDEX` and `[QUANTITY]` must be a **positive number**. *e.g 1, 2, 3 ..*
  * The `[PRICE]` must be in **positive numerical** form (decimal form accepted).
  * **At least one** of the three parameters (description/price/quantity) must be present in the command.
- > :information_source: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
+> :information_source: Note: You can rearrange the delimiters i/, p/ , q/ in <em>any</em> order. e.g `i/.. p/.. q/..` or `q/.. i/.. p/..`.
  
  Examples of usage: 
  
