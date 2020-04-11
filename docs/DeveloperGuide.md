@@ -29,7 +29,7 @@ You can find the set-up instructions [here](https://github.com/AY1920S2-CS2113-T
 
 The design of the project from the point of view of the user can be described as follows:
 
-![Image of Design](images/design.png)
+![Image of Design](https://raw.githubusercontent.com/AY1920S2-CS2113-T14-2/tp/master/docs/images/design.png)
 
 The above figure demonstrates that once a user inputs a command through the **UI** component, the user response is sent to the **Commands** component for processing. Depending on the user response, the commands component can either i) affect existing lists of jobs, news or articles in the **Lists** component or ii) give user access to new articles through the **API** component or iii) load pre-existing information pieces (articles, jobs) inputted into the program through the **Creator** component. More commands can be called on information pieces loaded through the **API** component or the **Creator** component using the **Commands** component. When the program terminates, the lists of articles, jobs and notes are stored through the **Storage** component.
 
@@ -63,7 +63,7 @@ The user enters the command, `create article`, for instance, into the command li
 The  `InformationCreator#execute(userResponse)` method again parses the user command to check what kind of information object the user is seeking to create. The three possibilities are `article`, `job` and `note`. The following daigram illustrates what steps are taken for different user responses.
 
 
-![Image of SwitchCase](images/switchCase.png)
+![Image of SwitchCase](https://raw.githubusercontent.com/AY1920S2-CS2113-T14-2/tp/master/docs/images/switchCase.png)
 
 
 * Step 4:
@@ -75,7 +75,7 @@ The `ManualArticleCreator#execute()` method asks the user for information includ
 
 *The following sequence diagram summarizes how `create` command works:*
 
-![Image of Sequence Diagram](images/SD.png)
+![Image of Sequence Diagram](https://raw.githubusercontent.com/AY1920S2-CS2113-T14-2/tp/master/docs/images/SD.png)
 
 
 ## 3. Product Scope
