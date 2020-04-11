@@ -7,10 +7,10 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 
 ## Summary of Contributions
 
-### Code contributed
-https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=alexlim510
+### Code Contributed
+[https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=alexlim510](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=alexlim510)
 
-### Enhancements implemented
+### Enhancements Implemented
 - Major enhancement: added the ability to parse user inputs
   - What it does: Parses the user inputs into the correct parameters for the corresponding commands.
   - Justification: The application must be able to process user inputs so as to produce the desired outcome.
@@ -27,7 +27,7 @@ https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=alexli
 - Contributed to section [1. Design](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#1-design) and [2.1.[Proposed] Subject Feature](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#21-proposed-subject-feature)
 - Added figures 1, 2, 3, 4, 6 and 7
 
-### Contributions to team-based tasks
+### Contributions to Team-based Tasks
 - Helped to maintain the issue tracker
 - Reviewed code by other team members when required
  

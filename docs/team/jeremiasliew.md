@@ -7,7 +7,7 @@ Exam Study Companion (ESC) is a command-line based app that is designed to help 
 
 
 ## Summary of Contributions
-### Major Enhancements: 
+### Major Enhancements
 #### Added the Quiz feature
 + What it does: Allows users to quiz themselves using stored flashcards in the selected subject.
 
@@ -36,7 +36,7 @@ it allows him/her to plan their revision accordingly.
 deemed important, even those not related to any of the stored subjects. The event feature also allows the user to select the number of days range
 of upcoming events to show.
 
-### Minor Enhancements: 
+### Minor Enhancements
 + ##### Added the Card and CardList classes.
 + ##### Added the ability to detect duplicates in questions when adding cards.
 
@@ -47,16 +47,16 @@ of upcoming events to show.
 
 ### Contributions to Documentation
 
-#### Contributions to the DG :
+#### Contributions to the DG
 + Minor updates to the 1.Design section to reflect an updated implementation of the Event Management Feature.
 + All write-ups and diagrams for the [Quiz feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#22-quiz-feature).
 + All write-ups and diagrams for the [Score feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#23-score-feature).
 + All write-ups and diagrams for the [Event Management feature implementation](https://ay1920s2-cs2113-t15-2.github.io/tp/DeveloperGuide.html#24-event-management-feature).
 
-#### Contributions to the UG :
+#### Contributions to the UG
 + All write-ups and diagrams for the Event feature.
 + Additions to the Quiz feature write-up and FAQ section based on newly implemented Quiz features.
 
-#### Contributions to team-based tasks
+#### Contributions to Team-based Tasks
 + Bug checking and bug fixes.
 + Added user stories in issue tracker for v1.0.

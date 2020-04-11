@@ -78,6 +78,9 @@ Format: `addcard s/<INDEX> q/<QUESTION> a/<ANSWER>`
 Example of Usage:
 * `addcard s/1 q/What year was NUS established? a/1980`
 * `addcard s/2 q/How many electrons does oxygen have? a/8`
+
+Screenshot showing addcard:
+
 ![](images/addcard.png)
 
 ### Listing Cards in a Subject
