@@ -1,3 +1,4 @@
+
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -486,7 +487,7 @@ The commands targeting the <b>File</b> Directroy requires the longest <i>path</i
 This section will describe the significant details of how the commands in <b>Nuke</b> are being implemented.  
 <br><br>
 Below is a diagram which summarises the commands in the current <b>Nuke</b> application.
-<br>
+<br><br>
 ![commands](images/dg_command.png)   
 <span style="color: green"><small><i>Figure <b>Nuke Commands</b></i></small></span>
 
@@ -667,10 +668,10 @@ Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The word limit that we have implemented in <b>Nuke</b> are the following:
 <br><br>
-<b><i>Module Code</b></i>: No character limit, but has to be an <n>NUS</b> provided <i>module</i><br>
-<b><i>Category Name</b></i>: <b>15</b> characters</i><br>
-<b><i>Task Description</b></i>: <b>25</b> characters</i><br>
-<b><i>File Name</b></i>: <b>30</b> characters</i><br>
+<b><i>Module Code</i></b>: No character limit, but has to be an <n>NUS</b> provided <i>module</i><br>
+<b><i>Category Name</i></b>: <b>15</b> characters</i><br>
+<b><i>Task Description</i></b>: <b>25</b> characters</i><br>
+<b><i>File Name</i></b>: <b>30</b> characters</i><br>
 <br>
 These numbers are chosen in view of the realistic length of words a user will usually use for such names. So in most cases, the user should not be exceeding the character limit &#128527;.
 </div> 
