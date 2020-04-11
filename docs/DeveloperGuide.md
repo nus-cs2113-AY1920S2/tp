@@ -6,6 +6,7 @@
 <br />2.3. [Score Feature](#23-score-feature)
 <br />2.4. [Event Management Feature](#24-event-management-feature)
 <br />2.5. [Save/Load Feature](#25-saveload-feature)
+3.  [Appendices](#3-appendices)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
 - [Appendix B: User Stories](#appendix-b--user-stories)
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
@@ -325,6 +326,7 @@ If so, it will create the file, then the method will continue on to save the lat
   <br /> Figure 12. Sequence diagram of Storage class  
 </p>
 
+## 3. Appendices
 ## Appendix A: Product Scope
 ### Target User Profile
 The product is intended for students preparing for exams. Students can store practice question and model answers in the product.
