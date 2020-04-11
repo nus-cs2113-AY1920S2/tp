@@ -13,6 +13,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
@@ -31,12 +32,12 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.tp.Main"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveVersion = "0.0.1"
+    archiveBaseName = "history-flashcard"
+    archiveVersion = "0.2.1"
     archiveClassifier = null
     archiveAppendix = null
 }
@@ -47,4 +48,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

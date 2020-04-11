@@ -1,0 +1,25 @@
+--------------------------------------------
+Welcome to History Flashcard App!
+--------------------------------------------
+--------------------------------------------
+Here's the list of flashcards you have:
+1: Albus Dumbledore | Time Period: 1881-08-01 to 1997-06-30 | Reviewed: / | Priority: Not indicated
+2: Resurrection Stone | Reviewed: / | Priority: **
+3: Quinn | Time Period: 1870-07-31 to 1943-02-24 | Reviewed: X | Priority: Not indicated
+--------------------------------------------
+--------------------------------------------
+Date: 2020-01-01
+1: Albus Dumbledore | Time Period: 1881-08-01 to 1997-06-30 | Reviewed: / | Priority: Not indicated
+2: Resurrection Stone | Reviewed: / | Priority: **
+3: Quinn | Time Period: 1870-07-31 to 1943-02-24 | Reviewed: X | Priority: Not indicated
+Date: 2020-02-02
+2: Resurrection Stone | Reviewed: / | Priority: **
+3: Quinn | Time Period: 1870-07-31 to 1943-02-24 | Reviewed: X | Priority: Not indicated
+--------------------------------------------
+--------------------------------------------
+Here are all existing groups:
+1. Harry Potter Flashcards | Description: This is a group for HP related stuff.
+--------------------------------------------
+--------------------------------------------
+Thanks for using History Flashcard!
+--------------------------------------------

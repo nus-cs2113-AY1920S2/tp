@@ -14,3 +14,11 @@ src/main/resources/docs/
 bin/
 
 /text-ui-test/ACTUAL.txt
+/text-ui-test/ACTUAL2.txt
+
+*.log
+logs/
+
+historyflashcards/
+flashcards/
+src/main/java/META-INF/MANIFEST.MF

@@ -1,0 +1,4 @@
+list
+show-plan
+show-groups
+bye

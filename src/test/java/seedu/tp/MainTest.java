@@ -1,10 +1,10 @@
-package seedu.duke;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package seedu.tp;
 
 import org.junit.jupiter.api.Test;
 
-class DukeTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class MainTest {
     @Test
     public void sampleTest() {
         assertTrue(true);
