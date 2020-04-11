@@ -36,6 +36,7 @@ Added and/or edited the following command classes:
 
 ### Contributions to the DG: 
 * Added diagram and explanation for the implementation of Calculate Cap ([#53](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/53))
+* Added explanation for the implementation of Mark As Done ([#154](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/154))
 
 ### Contributions to team-based tasks  
 - Facilitated discussion for optimal productivity during group meeting
