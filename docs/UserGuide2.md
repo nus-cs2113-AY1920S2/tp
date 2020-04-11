@@ -18,10 +18,10 @@ By: `Team CS2113T-T12-2` Since `March 2020` License: `MIT`
         
     * [3.3. Patient Medical Records](#33-patient-medical-records)
         + [3.3.1. Add Patient Records : `add pr`](#331-add-patient-records-add-pr)
-        + [3.3.2. Edit Patient Records : `edit pr`](#332-list-patient-records-list-pr)
-        + [3.3.3. Delete Patient Records : `delete pr`](#333-find-patient-records-find-pr)
-        + [3.3.4. List Patient Records : `list pr`](#334-edit-patient-records-edit-pr)
-        + [3.3.5. Find Patient Records : `find pr`](#335-delete-patient-records-delete-pr)
+        + [3.3.2. Edit Patient Records : `edit pr`](#332-edit-patient-records-list-pr)
+        + [3.3.3. Delete Patient Records : `delete pr`](#333-delete-patient-records-find-pr)
+        + [3.3.4. List Patient Records : `list pr`](#334-list-patient-records-edit-pr)
+        + [3.3.5. Find Patient Records : `find pr`](#335-find-patient-records-delete-pr)
     
     * [3.4. Appointments](#34-appointment-scheduling-commands)
         + [3.4.1. Add Appointment: `add appt`](#341-add-appointment-add-appt)
@@ -115,9 +115,7 @@ This section will elaborate more on how to use these features in HappyPills.
 
 Displays the list of commands and their syntax.
 
-###### Usage example:
-
-Format: `help`
+##### Format: `help`
 
 >***Expected output:***
 > 
@@ -138,9 +136,7 @@ Format: `help`
 
 Exits the program and ends the current session. 
 
-##### Usage example:
-
-Format: `exit`
+##### Format: `exit`
 
 >***Expected output:***
 > 
@@ -165,7 +161,6 @@ You can also add a new patient with the specified parameters in any order.
     add patient /ic NRIC /n NAME /p PHONE_NUMBER /dob DOB /b BLOOD_TYPE /a[ALLERGIES] /rm[REMARKS]
     
 **Example:**
-
 
     add patient /ic S9876543F /n Eve /dob 22/05/1999 /b O-
 
@@ -243,7 +238,7 @@ Edit information of the patient with the specified NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> NRIC <code>cannot</code> be edited because it is used to uniquely identify the patient.</td>
+   <td> NRIC <b>cannot</b> be edited because it is used to uniquely identify the patient.</td>
  </tr>
 </table>
 
@@ -285,7 +280,7 @@ Enter `y` to confirm.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon successful deletion, patient's information will not be able to be retrieved again. </td>
+   <td> Upon successful deletion, patient's information will not be retrievable again. </td>
  </tr>
 </table>
 
@@ -515,7 +510,7 @@ Enter `y` to confirm.
  
 HappyPills helps to store appointment schedules. 
  
-####3.4.1. Add Appointment: `add appt`
+#### 3.4.1. Add Appointment: `add appt`
  
  Add a new appointment for the patient with the specified NRIC. An appointmentID will be allocated to the
  patient automatically.
