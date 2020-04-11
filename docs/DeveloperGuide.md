@@ -62,7 +62,7 @@ Verifying Setup
 
 ### 2.1. Architecture
 ![Architecture Diagram](images/architecture.png)<br>
-######Fig 1. Architecture diagram of the WhenFree application
+*Fig 1. Architecture diagram of the WhenFree application*
 
 The architecture diagram above shows the high-level design of WhenFree. WhenFree
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
@@ -93,7 +93,7 @@ Additionally, `TextUI` is called by both `WhenFree` and `CommandHandler` to disp
 
 ### 2.3. Logic component
 ![Logic Component](images/logiccomponent.png)<br>
-######Fig 2. Overview of Logic component
+*Fig 2. Overview of Logic component*
 
 The LogicManager is the brain and backbone of the logic component. It depends on 3 sub-components for it to work.
 First, ```command``` sub-component would be initialize to interpret the user commands. 
@@ -114,7 +114,7 @@ The modulelogic component consists of 4 classes: ```TimetableParser```, ```Modul
 
  
 ![logic.modulelogic Component](images/modulelogic.png)<br>
-######Fig 3. Class diagram of the logic.modulelogic component
+*Fig 3. Class diagram of the logic.modulelogic component*
 
 The above figure shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
 1. ```ModuleApiParser``` controls the API fetching logic and instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server via ```parse()```
@@ -126,7 +126,7 @@ the information in a ```Map<String, ArrayList<String>>``` data structure as seen
 4. This sub-component also depends on the ```common.Messages``` class to provide the exception message when an incorrect link is being parsed.<br>
 
 ![logic.modulelogic Component](images/LessonsGenerator.jpg)<br>
-######Fig 4. Sequence diagram of the logic.modulelogic component
+*Fig 4. Sequence diagram of the logic.modulelogic component*
 
 The above figure shows a full overview of the UML sequence of the entire logic.modulelogic component.<br>
 
@@ -145,7 +145,7 @@ with 2 classes, ```CommandHandler``` and ```Contact```, are explained in the cla
 diagram and description below.
 
 ![logic.schedulelogic Component](images/schedulelogic.png)
-######Fig 4. Class diagram of the logic.schedulelogic component
+*Fig 5. Class diagram of the logic.schedulelogic component*
 
 A `ScheduleHandler` object created by the `CommandHandler` class is passed an ArrayList of `Contact`s.
 
@@ -163,11 +163,14 @@ The ```commands``` consists of the class ```CommandHandler```.
 
 ### 2.4. Model component
 ![Model Component](images/modelcomponent.png)<br>
+*Fig 6. Overview diagram of the Model component*
+
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
 it when the application is running. The model component contains 2 sub-components: ```meetings``` and ```contacts```.
 
 #### 2.4.1. Model.meetings component
 ![Meetings Component](images/meetingscomponent.png)<br>
+*Fig 7. Class diagram of the model.meetings component*
 
 The ```meetings``` component of our application consists of 2 classes: ```Meeting``` and ```MeetingList```.
 
@@ -177,6 +180,7 @@ The ```meetings``` component of our application consists of 2 classes: ```Meetin
 
 #### 2.4.2. Model.contacts component
 ![Contacts Component](images/contactscomponent.png)<br>
+*Fig 8. Class diagram of the model.contacts component*
 
 The ```contacts``` component of our application consists of 2 classes: ```Contact``` and ```ContactList```.
 
@@ -190,7 +194,7 @@ The ```contacts``` component of our application consists of 2 classes: ```Contac
 ### 2.5. Storage component
 
 ![storage component class structure](images/storage_class_diagram.png)
-######Fig 5. Class diagram of the storage component
+*Fig 9. Class diagram of the storage component*
 
 Above image shows the structure of Storage. It is created by WhenFree class to handle the loading and saving of scheduled meetings and member schedules.
 
@@ -212,7 +216,7 @@ This section describes some noteworthy details of how the main features of our a
 There are 6 main features: add new contact, list all contacts, display combined timetable of selected contacts, schedule a new meeting, delete a scheduled meeting, list all scheduled meetings.
 ### 3.1 Add new contact
 ![Add Contact](images/AddContact.png)<br>
-######Fig 6. Sequence diagram of the implementation of the `Add new contact` feature
+*Fig 10. Sequence diagram of the implementation of the `Add new contact` feature*
 
 The figure above shows the sequence diagram of the `Add new contact` feature.
 
@@ -253,7 +257,7 @@ blacklisted modules every semester. <br>
 
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
-######Fig 7. Sequence diagram of the implementation of the `List all contacts` feature
+*Fig 11. Sequence diagram of the implementation of the `List all contacts` feature*
 
 The figure above shows the sequence diagram of listing all contacts saved in the application. 
 It consists of 4 classes:```LogicManager Commandhandler TextUI ContactList``` .
@@ -268,7 +272,7 @@ Given below is an example usage and how the```ListContact``` command behaves.
 
 ### 3.3 Display timetable of selected contacts
 ![DisplayTimetable](images/DisplayTimetable.png)<br>
-######Fig 7. Sequence diagram of the implementation of the `Display timetable of selected contacts` feature
+*Fig 12. Sequence diagram of the implementation of the `Display timetable of selected contacts` feature*
 
 The figure above shows the sequence diagram of displaying a combined timetable of selected contacts. 
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```ScheduleHandler``` ```Contact``` ```TextUI``` .
@@ -293,7 +297,7 @@ combined schedule.
 
 ### 3.4 Schedule a new meeting
 ![ScheduleMeeting](images/ScheduleMeeting_seq.png)
-######Fig 8. Sequence diagram of the implementation of the `Schedule a new meeting` feature
+*Fig 13. Sequence diagram of the implementation of the `Schedule a new meeting` feature*
 
 The figure above shows the sequence diagram of scheduling a new meeting at a given time slot.
 It consists of 5 classes:```LogicManager``` ```Commandhandler``` ```Contact``` `Meeting` `MeetingList`.
@@ -314,7 +318,7 @@ Given below is an example usage and how the `ScheduleMeeting` command behaves.
 
 ### 3.5 Edit a contact's timetable
 ![EditContact](images/EditContact.png)<br>
-######Fig 9. Sequence diagram of the implementation of the `Edit a contact's timetable` feature
+*Fig 14. Sequence diagram of the implementation of the `Edit a contact's timetable` feature*
 
 The figure above shows the sequence diagram of editing the schedule (timetable) of a selected contact at a given time slot. 
 It consists of 3 classes:```LogicManager``` ```Commandhandler``` ```Contact```.
@@ -364,10 +368,10 @@ which there is a dedicated feature implemented. This causes unnecessary overhead
 whereas Alternative 2 requires the removal of ```Meeting``` from ```MeetingList```.<br><br>
 
 ![EditContact](images/EditContact_checkvalid.png)<br>
-######Fig 10. Sequence diagram of checking if an edit is valid in the `Edit a contact's timetable` feature
+*Fig 15. Sequence diagram of checking if an edit is valid in the `Edit a contact's timetable` feature*
 
-Fig 10. above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
-edit is done before editSchedule() of `Contact` is called, as shown in Fig 9. 
+Fig 15. above shows the sequence diagram illustrating the implementation of Alternative 1. Checking validity of 
+edit is done before editSchedule() of `Contact` is called, as shown in Fig 14. 
 1. This path is optional, and is only implemented if `Contact` the main user.
 2. `CommandHandler` calls isValidEdit(time slot) of the `Contact` class.
 
@@ -383,7 +387,7 @@ edit is done before editSchedule() of `Contact` is called, as shown in Fig 9.
     
 ### 3.6 Delete a scheduled meeting
 ![DeleteMeeting](images/DeleteMeeting_seq.png)
-######Fig 11. Sequence diagram of the implementation of the `Delete a scheduled meeting` feature
+*Fig 16. Sequence diagram of the implementation of the `Delete a scheduled meeting` feature*
 
 The figure above shows the sequence diagram of the ```DeleteMeeting``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList``` `Contact`.
@@ -397,7 +401,7 @@ Given below is an example usage scenario and how the ```DeleteMeeting``` command
 
 ### 3.7 Delete a contact
 ![DeleteContact](images/DeleteContact_seq.png)
-######Fig 11. Sequence diagram of the implementation of the `Delete a contact` feature
+*Fig 17. Sequence diagram of the implementation of the `Delete a contact` feature*
 
 The figure above shows the sequence diagram of the ```DeleteContact``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```ContactList```.
@@ -412,7 +416,7 @@ Given below is an example usage scenario and how the ```DeleteContact``` command
 
 ### 3.8 List all scheduled meetings
 ![ListMeetings](images/ListMeetings_seq.png)
-######Fig 12. Sequence diagram of the implementation of the `List all scheduled meetings` feature
+*Fig 18. Sequence diagram of the implementation of the `List all scheduled meetings` feature*
 
 The figure above shows the sequence diagram of the ```ListMeetings``` command.
 It consists of 3 classes:```LogicManager``` ```CommandHandler``` ```MeetingList```.
