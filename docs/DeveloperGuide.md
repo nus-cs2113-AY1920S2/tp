@@ -104,6 +104,8 @@ The architecture of HappyPills is broken down into seven main classes:
 
 ### 3.2. Ui Component
 
+![Ui Diagram](images/DG/architecture/UiClassDiagram.png)
+
 The `Ui` component: 
 * Executes user commands using the command component.
 * Listens for changes and outputs messages accordingly from the Command component.
@@ -111,7 +113,7 @@ The `Ui` component:
 * Consist of 6 classes:
     - PatientTextUi
     - AppointmentTextUi
-    - PatientRecordTextUi
+    - PatientRecordTextUi 
     - StorageTextUi
     - HelpTextUi
     - Messages
@@ -127,7 +129,7 @@ the usage of the commands.
 
 ### 3.3. Logic Component
 
-![Logic Diagram](images/DG/Logic.png)
+![Logic Diagram](images/DG/architecture/LogicClassDiagram.png)
 
 The diagram above shows the logic flow of HappyPills.
 
@@ -138,7 +140,7 @@ The diagram above shows the logic flow of HappyPills.
 
 ### 3.4. Model Component
 
-![Model Diagram](images/DG/ModelDiagram.jpg)
+![Model Diagram](images/DG/architecture/ModelClassDiagram.png)
 
 ### 3.5. Storage Component
 
@@ -939,7 +941,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `edit patient S1234567F /ic S9876543F`  
     Expected: An error message will be shown, telling the user to read more about the edit patient command.  
     
-    1. **Test case:** `edit patient S123F /a Peanuts` -- does not exists in the list. ??  
+    1. **Test case:** `edit patient S123F /a Peanuts`  
     Expected: An error message will be shown indicating that the NRIC is invalid.  
     
     1. **Test case:** `edit patient S1234567F`  
@@ -1014,8 +1016,8 @@ Given below are instructions to test the application manually.
     1. **Test case:** `get patient S9876543G`  
   Expected: An error message will be shown indicating that the patient does not exists in the list.  
   
-    1. **Test case:** `get patient S987G`  --need nric  
-  Expected: An error message will be shown indicating that the patient does not exists in the list.  
+    1. **Test case:** `get patient S987G`  
+  Expected: An error message will be shown indicating that the NRIC is invalid.  
   
 #### E.3. Patient Medical Records Commands
 
@@ -1023,24 +1025,24 @@ Given below are instructions to test the application manually.
 
     ###### *Prerequisite: There is no patient in the list.*
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `y`  
     Expected: An error message will be shown indicating that the patient does not exists in the list.   
     
     ###### *Prerequisite: There is a patient with NRIC number S9876543F in the list.*
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Fever /d 22/02/1992 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `y`  
     Expected: A new patient record for the patient with `S9876543F` will be added.  
     
-    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    1. **Test case:** `add pr /ic S9876543F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`   
     Expected: The program will prompt the user for confirmation before saving the inputs.  
     Continuation: `n`  
     Expected: The patient record will not be added.
 
-    1. **Test case:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`.   
+    1. **Test case:** `add pr /ic S983F /sym Cough /diag Cough Syrup /d 22/4/2020 /t 22:22`   
     Expected: The program will prompt the user for valid NRIC.  
     Continuation: `S9876543F` (valid NRIC of a patient existing in the patient list)
     Expected: A new patient record for the patient with `S9876543F` will be added.  
@@ -1063,7 +1065,7 @@ Given below are instructions to test the application manually.
     ###### *Prerequisite: There is no patient in the list.*
     
     1. **Test case:** `list pr S1234567F`  
-    Expected: An error message will be shown indicating that the patient does not exist.  
+    Expected: An error message will be shown indicating that the patient record is not found.  
     
     1. **Test case:** `list pr`  
     Expected: An error message will be shown indicating that the command is incomplete.      
@@ -1079,16 +1081,16 @@ Given below are instructions to test the application manually.
     1. **Test case:** `list pr S98G`  
     Expected: An error message will be shown indicating that format of the NRIC is invalid.  
         
-    ###### Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.  
+    ###### *Prerequisite: There is a patient with NRIC S9876543F in the list and the patient have NO existing patient records.*  
     
     1. **Test case:** `list pr S9876543F`  
     Expected: An error message will be shown indicating that the patient record is not found.  
 
 1. Find patient record
 
-    ###### Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.  
+    ###### *Prerequisite: There is no patient in the list. There is a patient with NRIC S9876543F but the patient has no existing records.*  
     
-    1. **Test case:** `find pr S9876543F 2`  --patient not in list?  
+    1. **Test case:** `find pr S9876543F 2`  
     Expected: An error message will be shown indicating that the patient record is not found.  
     
     ###### *Prerequisite: There is a patient in the list with NRIC S9876543F and the patient have 3 existing patient records.*  
@@ -1222,7 +1224,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `edit appt S7654321A 1 /d 15/12/2020`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `edit appt S1234567G 100 /d 15/12/2020`  
     Expected: An error message will be shown indicating that the appointment does not exist.
@@ -1280,7 +1282,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `delete appt S7654321A 1`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `delete appt S1234567G 100`  
     Expected: An error message will be shown indicating that the appointment does not exist.
@@ -1321,7 +1323,7 @@ Given below are instructions to test the application manually.
     1. **Test case:** `done appt S7654321A 1`  
     Expected: An error message will be shown indicating that the patient does not exists.  
     
-    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.
+    ###### *Prerequisite: There is no appointment with the stated appointment ID in the list.*
     
     2. **Test case:** `done appt S1234567G 100`  
     Expected: An error message will be shown indicating that the appointment does not exist.
@@ -1355,12 +1357,12 @@ Given below are instructions to test the application manually.
     1. **Test case:** `find appt`  
     Expected: An error message will be shown indicating that the command is incomplete.  
     
-  ###### *Prerequisite: There is a patient with stated NRIC number and there is no appointment for the patient*
+  ###### *Prerequisite: There is a patient with stated NRIC number and there is no appointment for the patient.*
 
   1. **Test case:** `find patient S1234567F`  
   Expected: TA message will appear indicating that patient has no appointment in the list.  
 
-  ###### *Prerequisite: There is a patient with stated NRIC number and there is an appointment for the patient*
+  ###### *Prerequisite: There is a patient with stated NRIC number and there is an appointment for the patient.*
   1. **Test case:** `find patient S9876543G`  
   Expected: Appointment for the patient will be displayed  
   
