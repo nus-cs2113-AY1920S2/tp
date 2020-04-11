@@ -455,7 +455,7 @@ Deleting an ingredient in the stock.
 * Test case: `delete stock; i/tomato; q/1`
     - Expected: The quantity of tomato will be reduced by 1. Assuming that you have followed the add commands in E.2.2, the count of `tomato`
     should be `19` now.
-* Test case:  `delete stock; i/tOMaTO;
+* Test case:  `delete stock; i/tOMaTO`;
     - Expected: The ingredient `tOMaTO` is completely removed in the stock.
 * Test case: `delete stock; q/10`
     - Expected: No ingredient is deleted. An error message will be displayed to remind the user to input an ingredient name.
