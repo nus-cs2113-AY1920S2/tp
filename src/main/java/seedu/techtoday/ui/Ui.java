@@ -2,7 +2,6 @@ package seedu.techtoday.ui;
 
 import seedu.techtoday.common.Messages;
 import seedu.techtoday.objects.Article;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,8 +9,6 @@ import java.util.Scanner;
  * Class for User Interface objects and interacting with user commands.
  */
 public class Ui {
-
-
     /**
      * Returns the trimmed command of the user input.
      * @return String representation of user input trimmed.
@@ -22,6 +19,8 @@ public class Ui {
         System.out.println(Messages.SPLIT_LINE);
         System.out.println("\n");
         return userResponse.trim();
+        assert false; 
     }
+
 
 }
