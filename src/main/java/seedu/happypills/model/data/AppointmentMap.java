@@ -5,6 +5,7 @@ import seedu.happypills.model.exception.HappyPillsException;
 import java.util.HashMap;
 import java.util.Map;
 
+//@@author sitinadiah25
 public class AppointmentMap {
 
     private final Map<String, Appointment> argMultimap = new HashMap<String, Appointment>();

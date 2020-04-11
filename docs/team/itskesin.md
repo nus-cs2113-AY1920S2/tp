@@ -52,17 +52,21 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 **Other contributions:**
 - Project management:
-    + Handled `v1.0` release on GitHub
+    + Handled `v1.0` and `v2.1` release on GitHub
     + Handled the creation of JAR file
     + Created tags on GitHub Issues
     + Maintaining the issue tracker on GitHub
 - Enhancements to existing features:
     + Refactor messages used to a common Messages class in `Ui`
-    + Wrote more JUnit tests to test new and old components of the UI ??? 
+    + Wrote more JUnit tests to test the parser
 - Community:
     + Reported bugs and suggestions for other teams in the class:  
     [#170](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/170),
+    [#171](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/171),
+    [#172](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/172),
     [#173](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/173), 
+    [#175](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/175),
+    [#178](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/178),
     [#179](https://github.com/AY1920S2-CS2113T-M16-2/tp/issues/179)
   
     + DG reviewed (with non-trivial review comments)  
@@ -72,13 +76,18 @@ This section shows a summary of my coding, documentation, and other helpful cont
 > Given below are sections I contributed to the User Guide. 
 > They showcase my ability to write documentation targeting end-users.
 
-[Main](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide.md)  
-[Patient Commands](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/UserGuide-Patient.md)
+[Main](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#3-features)  
+[Patient Commands](https://ay1920s2-cs2113t-t12-2.github.io/tp/UserGuide.html#32-general-patient-information)
 
 ### Contributions to the Developer Guide
 > Given below are sections I contributed to the Developer Guide. 
 > They showcase my ability to write technical documentation and the technical depth of my contributions to the project.
 
 [Architecture](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#31-architecture)  
-[Section 4.1 to 4.1.1](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#41-patient-details-feature)  
-[Appendices](https://github.com/AY1920S2-CS2113T-T12-2/tp/blob/master/docs/DeveloperGuide.md#43-user-prompting)  
+[Section 1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#1-introduction)  
+[Section 2](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#2-setting-up)  
+[Section 4.1](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#41-data-structure)  
+[Section 4.4](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 4.5](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#44-findget-feature)  
+[Section 6](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#6-useful-links)  
+[Appendices](https://ay1920s2-cs2113t-t12-2.github.io/tp/DeveloperGuide.html#appendices)   
