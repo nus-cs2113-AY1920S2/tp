@@ -36,7 +36,7 @@ public class DeletePerformanceList extends Command {
     @Override
     public void execute() throws PacException {
         if (performanceList.isEmpty()) {
-            throw new PacException("No performance under this event.");
+            throw new PacException("No performance list under this event.");
         }
         deleteFromList();
     }
