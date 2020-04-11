@@ -60,19 +60,19 @@ Say **HELLO** to neater desks and time-saving electronic notes with HappyPills! 
 
 ## 3. Features
 
-HappyPills have three main features: `Patient Details`, `Patient Records` and `Appointment Scheduling`. 
+HappyPills have three main features: `General Patient Information`, `Patient Medical Records` and `Appointment`. 
 
-`Patient Details` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
+`General Patient Information` notes down the general details of the patient. (e.g. NRIC, name, phone number, date of birth, 
 blood type and allergies).
 
-`Patient Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
+`Patient Medical Records` documents the patient's previous visits to the doctor and includes detailed information of those visits
 (e.g. patient's symptoms, diagnosis and date/time of the medical treatment).
 
-`Appointment Scheduling` helps the you schedule future appointments with your patients (e.g. appointment date, time and 
+`Appointment` helps the you schedule appointments with your patients (e.g. appointment date, time and 
 reason for appointment). 
 
-These features come together to help you easily manage their patients' information. You can now provide their patients 
-with better service by being able to retrieve their patients' information quickly and easily.  
+These features come together to help you easily manage your patients' information. You can now provide your patients 
+with better service by being able to retrieve your patients' information quickly and easily.  
 
 This section will elaborate more on how to use these features in HappyPills. 
 
