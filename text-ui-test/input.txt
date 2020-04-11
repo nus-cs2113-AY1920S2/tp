@@ -16,7 +16,8 @@ view /dm
 view /cc
 find cS
 add id/ACC1004 s/5 mc/4
-done id/acc1004 g/CS
+view /mp
+done id/acc1004 g/CU
 add id/CS000T s/5 mc/4
 view /mp
 view /cc
