@@ -95,9 +95,9 @@ Example of usage:
  The following sequence diagram below shows how the add feature works. The details of the adding item's values
  are shown in a separate sequence diagram below:
  
- ![alt text](../images/AddFinal.png)
+ ![alt text](../images/Add_v1.png)
  
- ![alt text](../images/AddFeature_SDFinal.png)
+ ![alt text](../images/Add_SD_v1.png)
  
 #### 3.1.2 Design considerations
 

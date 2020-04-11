@@ -32,7 +32,7 @@ public class UnmarkCommand extends Command {
     public void execute() {
         try {
             Item unmarkItem = items.unmarkAsBought(indexOfItem);
-            assert unmarkItem.getStatusIcon().equals("0") : "Item should be marked as unbought";
+            assert unmarkItem.getStatusIcon().equals("X") : "Item should be marked as unbought";
             LOGGER.log(Level.INFO, "(Unmark command)  Item has been marked: " + unmarkItem.toString());
             feedbackToUser = String.format(SUCCESS_MESSAGE, unmarkItem);
         } catch (IndexOutOfBoundsException e) {

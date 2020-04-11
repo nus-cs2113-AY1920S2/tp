@@ -23,10 +23,10 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private static final String regex = "^(?<index>[ \\d]+[^a-zA-Z\\/])"
-                + "|i\\/(?<description>[a-zA-Z  \\d]+[^ipq\\/\\n]+)"
-                + "|p\\/(?<price>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/\\n])+"
-                + "|q\\/(?<quantity>[\\d .a-hj-or-zA-HJ-OR-Z-]+|[^ipqIPQ\\/])|$;";
+    private static final String regex = "^(?<index>[\\d ]*[^a-zA-Z\\/])"
+            + "|i\\/(?<description>(?=)(?:(?!p\\/)(?!q\\/).)+)"
+            + "|p\\/(?<price>(?=)(?:(?!i\\/)(?!q\\/).)+)+"
+            + "|q\\/(?<quantity>(?=)(?:(?!p\\/)(?!i\\/).)+)|$;";
 
     private static final Pattern EDIT_ITEM_ARGS_FORMAT = Pattern.compile(regex, Pattern.MULTILINE);
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -102,16 +102,20 @@ public class Parser {
             break;
         //@@author
 
+        //JLoh579
         case ExitCommand.COMMAND_WORD:
-            createExitCommand();
+            createExitCommand(arguments);
             break;
+        //@@author
 
         //@@author trishaangelica
-        case HelpCommand.COMMAND_WORD: //fall through
+        case HelpCommand.COMMAND_WORD:
+            createHelpCommand(arguments);
+            break;
             // @@author
 
         default:
-            createHelpCommand();
+            newCommand = new HelpCommand();
         }
         assert newCommand != null : "newCommand should have been initialised";
         return newCommand;
@@ -149,7 +153,7 @@ public class Parser {
                             + System.lineSeparator()
                             + " - Price of an item should be in positive numerical form."
                             + System.lineSeparator()
-                            + " - Quantity of an item should be in positive numerical form."
+                            + " - Quantity of an item should be in positive numerical form (no decimals)."
                             + System.lineSeparator()
                             + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                             + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -164,7 +168,7 @@ public class Parser {
                                     + System.lineSeparator()
                                     + " - Price of an item should be in positive numerical form."
                                     + System.lineSeparator()
-                                    + " - Quantity of an item should be in positive numerical form."
+                                    + " - Quantity of an item should be in positive numerical form (no decimals)."
                                     + System.lineSeparator()
                                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                                     + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -181,7 +185,7 @@ public class Parser {
                                     + System.lineSeparator()
                                     + " - Price of an item should be in positive numerical form."
                                     + System.lineSeparator()
-                                    + " - Quantity of an item should be in positive numerical form."
+                                    + " - Quantity of an item should be in positive numerical form (no decimals)."
                                     + System.lineSeparator()
                                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                                     + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -201,7 +205,7 @@ public class Parser {
                                     + System.lineSeparator()
                                     + " - Price of an item should be in positive numerical form."
                                     + System.lineSeparator()
-                                    + " - Quantity of an item should be in positive numerical form."
+                                    + " - Quantity of an item should be in positive numerical form (no decimals)."
                                     + System.lineSeparator()
                                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                                     + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -218,7 +222,7 @@ public class Parser {
                         + System.lineSeparator()
                         + " - Price of an item should be in positive numerical form."
                         + System.lineSeparator()
-                        + " - Quantity of an item should be in positive numerical form."
+                        + " - Quantity of an item should be in positive numerical form (no decimals)."
                         + System.lineSeparator()
                         + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                         + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -232,7 +236,7 @@ public class Parser {
                     + System.lineSeparator()
                     + " - Price of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - Quantity of an item should be in positive numerical form."
+                    + " - Quantity of an item should be in positive numerical form (no decimals)."
                     + System.lineSeparator()
                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                     + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -335,9 +339,7 @@ public class Parser {
                     + System.lineSeparator()
                     + " - Price of an item should be in positive numerical form."
                     + System.lineSeparator()
-                    + " - Quantity of an item should be in positive numerical form."
-                    + System.lineSeparator()
-                    + " - 'i/', 'p/' and 'q/' must be in alphabetical order."
+                    + " - Quantity of an item should be in positive numerical form (no decimals)."
                     + System.lineSeparator()
                     + " - If 'i/', 'p/' or 'q/' is present, i/[DESCRIPTION], "
                     + "p/[PRICE] or q/[QUANTITY] must be present."
@@ -533,6 +535,7 @@ public class Parser {
 
         if (pricePresent) {
             if (arrToCheck[2] != null) {
+
                 if (Double.parseDouble(arrToCheck[2]) > 0) {
                     validPrice = true;
                 }
@@ -659,15 +662,33 @@ public class Parser {
     /**
      * Initialises the HelpCommand.
      */
-    private void createHelpCommand() {
-        newCommand = new HelpCommand();
+    private void createHelpCommand(String arguments) {
+        if (arguments != null) {
+            LOGGER.log(Level.WARNING,
+                    "(Help command) Rejecting user command, should not have arguments.");
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "For the help command, just input \"HELP\".");
+        } else {
+            newCommand = new HelpCommand();
+        }
     }
 
     /**
      * Initialises the ExitCommand.
      */
-    private void createExitCommand() {
-        newCommand = new ExitCommand();
+    private void createExitCommand(String arguments) {
+        if (arguments != null) {
+            LOGGER.log(Level.WARNING,
+                    "(Exit command) Rejecting user command, should not have arguments.");
+            newCommand = new IncorrectCommand(System.lineSeparator()
+                    + "Invalid command."
+                    + System.lineSeparator()
+                    + "To exit SHOCO, just input \"BYE\".");
+        } else {
+            newCommand = new ExitCommand();
+        }
     }
 
     //@@author kokjoon97
