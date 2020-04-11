@@ -66,11 +66,11 @@ By: `AY1920S2-CS2113T-T12-1`
 
 The architecture diagram above shows the high-level design of WhenFree. WhenFree
 adopts an n-tier style architecture where higher layers make use of the services provided by the lower layers.
-Here is a quick overview of each layer and the components residing in it.
+Here is a quick overview of each layer/component and the sub-components residing in it.
 * UI: The Command Line user interface of the application.
-* Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that can't be formatted, etc.
+* Commons: A collection of classes containing constants such as messages for ```common.exception```, modules that cannot be formatted, etc.
 * Logic: The main control unit of the application which handles the business logic of the application.
-* Model: Holds the data of the application in memory which is easily accessible by any methods that requires it.
+* Model: Holds the data of the application in memory to be easily accessed by methods that requires it.
 * Storage: Writes data from Model layer to hard disk, as well as reading previously saved data from hard disk and storing it into Model layer.
 
 ### 2.2. UI component
