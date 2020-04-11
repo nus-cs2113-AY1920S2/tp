@@ -166,7 +166,7 @@ public class UI {
             months.add(4, "MAY");
             months.add(5, "JUN");
         }
-        DisplayTable.printBodyOfSix(months);
+        DisplayTable.printMonths(months);
     }
 
     /**

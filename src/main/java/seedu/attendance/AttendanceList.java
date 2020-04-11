@@ -62,7 +62,7 @@ public class AttendanceList {
         attendanceList.add(attendance);
     }
 
-    public void displayList(ArrayList<Attendance> attendanceList) {
+    public void displayAttendanceList(ArrayList<Attendance> attendanceList) {
         int index = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
         for (Attendance attendance : attendanceList) {
@@ -78,7 +78,7 @@ public class AttendanceList {
         if (attendanceList.isEmpty()) {
             UI.display("Attendance List is empty");
         } else {
-            displayList(attendanceList);
+            displayAttendanceList(attendanceList);
         }
     }
 
@@ -120,7 +120,7 @@ public class AttendanceList {
         if (isMatch(keyword).isEmpty()) {
             ui.display("There is no student named: " + keyword);
         } else {
-            displayList(isMatch(keyword));
+            displayAttendanceList(isMatch(keyword));
         }
     }
 

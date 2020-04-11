@@ -124,18 +124,34 @@ public class Event {
         this.venue = venue;
     }
 
+    /**
+     * Returns the attendanceList of the event.
+     * @return the attendanceList of the event
+     */
     public AttendanceList getAttendanceList() {
         return attendanceList;
     }
 
+    /**
+     * Sets the attendanceList of the event.
+     * @param attendanceList the new attendanceList for the event
+     */
     public void setAttendanceList(AttendanceList attendanceList) {
         this.attendanceList = attendanceList;
     }
 
+    /**
+     * Returns the performanceList of the event.
+     * @return the performanceList of the event
+     */
     public PerformanceList getPerformanceList() {
         return performanceList;
     }
 
+    /**
+     * Sets the performanceList of the event.
+     * @param performanceList the new performanceList for the event
+     */
     public void setPerformanceList(PerformanceList performanceList) {
         this.performanceList = performanceList;
     }
