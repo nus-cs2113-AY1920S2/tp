@@ -54,6 +54,8 @@ public class MarkAsDoneCommand extends Command {
                     if (isNotGradeF && isNotGradeCU && isModuleNotDone) {
                         Person.addTotalModuleCreditCompleted(module.getModuleCredit());
                     }
+                    /*Reduce completed credit if the module has already been completed,
+                    but is being changed from passing grade to a failing grade */
                     if (!isModuleNotDone && (!isNotGradeCU || !isNotGradeF)) {
                         Person.minusTotalModuleCreditCompleted(module.getModuleCredit());
                     }
