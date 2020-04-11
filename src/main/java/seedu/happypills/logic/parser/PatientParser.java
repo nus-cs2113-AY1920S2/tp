@@ -53,7 +53,8 @@ public class PatientParser extends Parser {
         }
     }
 
-    private static PatientCommand checkDeleteCommand(String[] userCommand, boolean isCommandLengthOne) throws HappyPillsException {
+    private static PatientCommand checkDeleteCommand(String[] userCommand, boolean isCommandLengthOne)
+            throws HappyPillsException {
         if (userCommand.length != 3 || isCommandLengthOne) {
             throw new HappyPillsException(Messages.MESSAGE_INCORRECT_INPUT_FORMAT);
         }
