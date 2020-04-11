@@ -219,7 +219,7 @@ The rest of the application consists of four components.
 
 - **`Model`**: Holds different data types in the application.
 
-- **`Storage`**: Loads data from, and writes data to, the file in the hard disk.
+- **`Storage`**: Loads data from, and writes data to, the file in the hard disk. It will only be used when launing and terminating the application
 
 Each of the four components
 - defines its API in several classes
@@ -229,6 +229,13 @@ Each of the four components
 For example, the **`Storage`** component defines it's API in several classes including _Encoder.java_, _Decoder.java_ and etc and exposes its functionaility by invoking differnt method in these classes by _StorageManager.java_ class.
 
 #### How the architecture components interact with each other
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command **`addm CS2113T`**. (As the **`Storage`** component will only be used when launching and exiting the applicatio, here the storage component is omitted.)
+
+<span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
+
+### UI componenet
+Classes 
+
 
 [Back To Top](#table-of-contents)    
 <br>  <br>  
