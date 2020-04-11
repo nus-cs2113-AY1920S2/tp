@@ -27,6 +27,8 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     - Furthermore, due to implementation limitation of `AssignmentCommand` and `EventCommand` feature, I could not use the existing
     implementations to have instances of `assignment` or `event` class. 
     - Hence, within the `EditCommand` class, I have to implement methods that return `assignment` and `event` task types.
+    - This was quite hard to implement as I had to understand what attributes the `asssignment` and `event` task types were to
+    ensure that the user is able to edit the tasks' attributes smoothly. 
     - We discovered later that there is a bug when editing `repeat event` task types. When `repeat event` task types are edited,
     the event no longer stays as a `repeat event` and reverts back to just being an `event` task type. This was fixed by adding checks to
     indicate whether task to be edited is a `repeat event` and another method to preserve all the `repeat event` attributes. 
@@ -34,7 +36,7 @@ ATAS is catered for students who want to maximise their productivity and cultiva
     - Another bug was also found when we tried to enter in a different task type when editing a task. i.e. Tried to edit 
     an Assignment task to an event task and vice versa. The program shows a success message but it did not show up in the 
     task list.
-    - I subsequently fixed the bug by disallow users to edit a task type to a different type. [#213](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/213)  
+    - I subsequently fixed the bug by disallowing users to edit a task type to a different type. [#213](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/213)  
  
  - Credits: 
     - Credit to the team for helping me to catch the bugs related to edit command.
@@ -48,12 +50,14 @@ ATAS is catered for students who want to maximise their productivity and cultiva
 **Code Contributed**: [View on Reposense](https://nus-cs2113-ay1920s2.github.io/tp-dashboard/#breakdown=true&search=jichngan&sort=groupTitle&sortWithin=title&since=2020-03-01&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&tabOpen=true&tabType=authorship&tabAuthor=jichngan&tabRepo=AY1920S2-CS2113T-M16-1%2Ftp%5Bmaster%5D)
 
 **Contributions to the User Guide**:
-- Add Commands Summary Section for User Guide [#99](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/99)
-- Add instructions for `EditCommand`
+- Wrote *Section 1: Introduction* of User Guide
+- Wrote *Section 2: Setting Up* of User Guide
+- Wrote *Section 3.5 -3.7* of User Guide
+- Wrote *Section 4: Commands Summary* of User Guide [#99](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/99)
 
 **Contributions to the Developer Guide**:
-- Add `EditCommand` section for Developer Guide [#137](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/137)
-- Add Instructions for Manual Testing for Developer Guide [#208](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/208)
+- Wrote *Secion 3.5. Edit Task Feature* of Developer Guide [#137](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/137)
+- Wrote *Appendix F: Instructions for Manual Testing* of Developer Guide [#208](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/208)
 
 **Contributions to Team-Based Tasks**:
 - Add template for User Guide [#99](https://github.com/AY1920S2-CS2113T-M16-1/tp/pull/99)
