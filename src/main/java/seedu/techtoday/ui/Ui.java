@@ -19,7 +19,6 @@ public class Ui {
         System.out.println(Messages.SPLIT_LINE);
         System.out.println("\n");
         return userResponse.trim();
-        assert false; 
     }
 
 
