@@ -224,9 +224,9 @@ public class ListCreator {
 
             tagListTable.append(String.format("%s%s%s%s%s%s%s%s%s\n",
                     centraliseText(fitText(Integer.toString(id++), 4), 4), SEPARATOR,
-                    centraliseText(fitText(moduleCode, 10), 10), SEPARATOR,
-                    centraliseText(fitText(categoryName, 16), 16), SEPARATOR,
-                    centraliseText(fitText(taskDescription, 25), 25), SEPARATOR,
+                    centraliseText(fitText(moduleCode, 15), 15), SEPARATOR,
+                    centraliseText(fitText(categoryName, 25), 25), SEPARATOR,
+                    centraliseText(fitText(taskDescription, 32), 32), SEPARATOR,
                     centraliseText(fitText(tagInfo, 20), 20)
             ));
         }
@@ -244,9 +244,9 @@ public class ListCreator {
         header.append(LIST_DIVIDER);
         header.append(String.format("%s%s%s%s%s%s%s%s%s\n",
                 centraliseText("NO", 4), SEPARATOR,
-                centraliseText("MODULE", 10), SEPARATOR,
-                centraliseText("CATEGORY", 16), SEPARATOR,
-                centraliseText("TASK", 25), SEPARATOR,
+                centraliseText("MODULE", 15), SEPARATOR,
+                centraliseText("CATEGORY", 25), SEPARATOR,
+                centraliseText("TASK", 32), SEPARATOR,
                 centraliseText("TAG", 20)
         ));
         header.append(LIST_DIVIDER);

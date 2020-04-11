@@ -1,5 +1,3 @@
-
-
 <head>  
     <meta charset="UTF-8">  
     <title>Nuke User Guide v2.1</title>  
@@ -80,9 +78,9 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 <big style="color: green">  **Design** [&#10149;](#design)  </big>  
 <br>    
 <big style="color: green">  **Structure Implementation** [&#10149;](#structure-implementation)  </big>   
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory** [&#10149;](#1-directory)    
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Manager** [&#10149;](#2-directory-manager)    
-&nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Directory Traverser** [&#10149;](#3-directory-traversal)    
+&nbsp; &nbsp; &nbsp; &nbsp; **1. Directory** [&#10149;](#1-directory)    
+&nbsp; &nbsp; &nbsp; &nbsp; **2. Directory Manager** [&#10149;](#2-directory-manager)    
+&nbsp; &nbsp; &nbsp; &nbsp; **3. Directory Traverser** [&#10149;](#3-directory-traverser)    
 <br>   
 <big style="color: green"> **Command Implementation** [&#10149;](#command-implementation)  </big>  
 &nbsp; &nbsp; &nbsp; &nbsp; **1. Add Command** [&#10149;](#1-add-command)    
@@ -102,7 +100,8 @@ By: `CS2113T-T13-2`      Since: `Feb 2020`
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Non-Functional Requirements** [&#10149;](#non-functional-requirements)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Glossary** [&#10149;](#glossary)   
 &nbsp; &nbsp; &nbsp; &nbsp; &#8226; **Manual Testing** [&#10149;](#manual-testing)    
-
+<br>
+<big style="color: green"> **Contact Us** [&#10149;](#contact-us)  </big>   
 <br>   
 
 ## **Introduction**  
@@ -119,9 +118,10 @@ This document will cover the structure and software design decisions for the imp
 </span>  
 
 ### **Design Goals**  
-<span style="text-align: justify; display: block">
-<b>Nuke</b> is designed aiming to facilitate task organisation, classfication, management and navigation of <b>NUS students</b>. <b>NUS students</b> can organise their <b>modules</b>, <b>tasks</b> and <b>files</b> with <b>NUKE</b> efficiently and orderly so that they can save time and efforting on managing their school works.
-</span>
+
+```
+	// To be done.
+```
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -368,7 +368,7 @@ As described in the <a href="#overview-2">Overview</a>, the <code>DirectoryTrave
 <br><br>
 <b><u>Traversal</u></b>
 <br>
-The <code>DirectoryTraverser</code> class contains <b>three</b> main methods to facilitate traversing up and down <b>Directories</b>.  They are:<br>  
+The <code>DirectoryTraverser</code> class contains <b>three</b> main methods to facilitate traversing up and down <b>Directories</b>.  They are:<br><br>  
 <ol>
 <li><code>findNextDirectory(nextDirectoryName: String)</code> &ndash; Finds a present <code>Directory</code> in the next <b>Directory</b> level with the matching <code>nextDirectoryName</code></li>
 <li><code>traverseDown(nextDirectory: Directory)</code> &ndash; Traverses down to the <code>nextDirectory</code> by pushing the <code>nextDirectory</code> into the <code>directoryStack</code></li>
@@ -482,11 +482,13 @@ Total modules: 3
 +--------------------------------------------------------------------------------------------------+
 ```
 
-1. James will simply enter the command `addm cs3235`
+<big><big><big><big><big style="color: green">&#10102;</big></big></big></big></big>
+James will simply enter the command `addm cs3235`
 
-   After the input is parsed as an **add module task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", then add the object into the `moduleList`.
+ After the input is parsed as an **add module task** and executed, the `AddModuleCommand#execute()` will call `ModuleManager#add()` to add the module cs3235. In the `ModuleManager#add()` method, it will call `ModuleManager#contains()` to check if the module cs3235 exists in the `ArrayList` named `moduleList` , then it will check if the module code "cs3235" is a key in the `HashMap` named `modulesMap`, after all, it will instantiate an `Module` object with the module code "CS3235" and respective title "Computer Security", then add the object into the `moduleList`.
 
-2. James receive the following feedback:
+<big><big><big><big><big style="color: green">&#10103;</big></big></big></big></big>
+James receive the following feedback:
 ```
    root :
    addm cs3235
@@ -552,10 +554,6 @@ The addition process for *category* and *task* are similar. In this example, the
 James is a user and wants to add a *category* named  "misc" under the *module* cs3235. Assume that he has the current Module List and current Category List in the module cs3235:
 
 ```
-root :
-lsm
-Here are what you are looking for...
-
 +--------------------------------------------------------------------------------------------------+
  NO |  MODULE CODE   |                                 MODULE TITLE                       
 +--------------------------------------------------------------------------------------------------+
@@ -566,11 +564,8 @@ Here are what you are looking for...
 +--------------------------------------------------------------------------------------------------+
 Total modules: 4
 +--------------------------------------------------------------------------------------------------+
-
-root :
-lsc -m cs3235
-Here are what you are looking for...
-
+```
+```
 +--------------------------------------------------------------------------------------------------+
  NO |     MODULE     |                                CATEGORY                                | PTY
 +--------------------------------------------------------------------------------------------------+
@@ -600,10 +595,9 @@ Total categories: 5
 
 
 
-Below is a *sequence diagram* to illustrate the above example scenario.  
+Below is a *sequence diagram* to illustrate the above example scenario.  <br>
 
 ![image-20200326014336120](images/Add_Category_Command_Sequence_Diagram.png)
-
 <span style="color: green"><small><i>Figure <b>Add Module Command Sequence Diagram</b></i></small></span>
 
 <br><br>
@@ -702,7 +696,7 @@ Since the <b>delete</b> commands are quite similar to the <b>list</b> commands, 
 <br><br>
 Each of the <b>delete</b> commands extends from the <i>abstract</i> <code>DeleteCommand</code> class. The <code>DeleteCommand</code> class has an <i>abstract</i> method, <code>executeInitialDelete()</code>, and each of the <b>delete</b> commands must implement this method. The role of <code>executeInitialDelete()</code> is to prepare the necessary prompt to show the user, depending on the number of filtered matches <i>(See <a href="#overview-2">above</a>)</i>.
 <br><br>
-
+     
 ![prompt command class diagram](images/dg_prompt_class.png)      
 <span style="color: green"><small><i>Figure <b>Prompt Command Class Diagram</b></i></small></span>   
 
@@ -879,7 +873,7 @@ If the attribute String <b>exceeds</b> the length limit, an <b>exception</b> wil
 In addition, for <code>EditCategoryCommand</code> and <code>EditTaskCommand</code>, it will fill in any missing attributes not specified by the user in their input. This is done through the command's <code>fillAttributes()</code> method.  
 <br><br>
 Finally, the <b>edit</b> command will perform the <code>edit()</code> method to edit the <code>Directory</code>. 
-</div>    
+</div><br>    
 
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
@@ -930,11 +924,11 @@ The <b>change directory</b> command traverses the user up and down the <b>Direct
 The <b>change directory</b> command uses various methods from the <code>DirectoryTraverser</code> class in its execution. <br><br>
 If the user wants to traverse down to a <i>directory</i>, the <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#findNextDirectory(nextDirectoryName)</code> to get the <code>Directory</code> to traverse to. Then, <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#ftraverseDown(nextDirectory)</code> to move the user to that <i>directory</i>.<br><br>
 If the user want to traverse up from the current <i>directory</i> instead, <code>ChangeDirectoryCommand</code> will call <code>DirectoryTraverser#traverseUp()</code> to bring the user back to the <i>parent directory</i>.   
-</div>  
+</div><br>  
 <div class="alert alert-info">  
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 The <b>Root Directory</b> and the <b>File Directory</b> are the first and last <i>directories</i> in the <b>Directory Tree</b> respectively. If the user attempts to traverse down up the <b>Root Directory</b>, or traverse down a <b>File Directory</b>, an error message will be shown to the user instead. &#128550;
-</div> <br>   
+</div>    
 
 Shown below is the <i>sequence diagram</i> when a user executes the <b>change directory</b> command to traverse down to another <i>directory</i>.<br>      
 ![change directory command sequence diagram](images/dg_cd_seq.png)    
@@ -1067,8 +1061,9 @@ The process continues.
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
 An error message will be shown to the user when the user tries to undo when no recent change was made, such as at the start of the application, and when the user tries to redo when nothing was recently undone. 
 <br><br>
-This is done in the <code>ScreenShotManager</code> class by checking if the <b>undo</b> stack contains more than 1 element (first element is the start-up state), and if the <b>redo</b> stack is not empty respectively. If checking fails, an <b>exception</b> will be thrown. &#128529;
+This is done in the <code>ScreenShotManager</code> class by checking if the <b>undo</b> stack contains more than one element (first element is the start-up state), and if the <b>redo</b> stack is not empty respectively. If checking fails, an <b>exception</b> will be thrown. &#128529;
 </div>    
+
 Below is a <i>sequence diagram</i> of the undo command in action: <br>   
 ![undo command sequence diagram](images/dg_undo_seq.png)  
 <span style="color: green"><small><i>Figure <b>Undo Command Sequence Diagram</b></i></small></span>    
@@ -1101,20 +1096,134 @@ Below is a <i>sequence diagram</i> of the undo command in action: <br>
 [Back To Top](#table-of-contents)    
 <br><br>
 
+## **Storage Implementation**   
+
+#### **Overview**  
+<div>
+The storage operations, such as saving and loading of data, are implemented through the <code>StorageManager</code> class. The saving of the <b>Directory Tree</b> data is performed by the <code>saveList()</code> method, and the loading of the <b>Directory Tree</b> data is performed by the <code>loadList()</code> method.
+<br><br>
+In our current implementation, the data is saved into a <code>save.txt</code> file in the user's device. 
+</div>  
+  
+#### **Implementation**  
+##### **Encoding and Decoding**  
+![storage manager class diagram](images/dg_storage_class.png)
+<span style="color: green"><small><i>Figure <b>Storage Manager Class Diagram</b></i></small></span>
+<br>
+<div>
+The <code>StorageManager</code> class is supported by <b>two</b> other vital classes &ndash; <code>Encoder</code> and <code>Decoder</code>.
+<br><br>
+<big><big><big><big>&#10102;</big></big></big></big> <b><u>Encoder</u></b>
+<br>
+The <code>Encoder</code> class contains methods to facilitate file <b>saving</b>. It converts the various <code>Directory</code> objects in the <b>Directory Tree</b> into a String format. This conversion is performed by the <code>encode()</code> method through a <a href="#depth-first">depth-first</a> method. 
+<br><br>
+The encoded String is then saved into a <code>save.txt</code> file in the user's device by the <code>StorageManager</code> class. 
+<br><br>
+<big><big><big><big>&#10103;</big></big></big></big> <b><u>Decoder</u></b><br>
+The <code>Decoder</code> class, conversely, contains methods to facilitate file <b>loading</b>. It converts the encoded String in the <code>save.txt</code> file back into the <b>Directory Tree</b>. This conversion is performed by the <code>decode()</code> method, and also via a <a href="#depth-first">depth-first</a> method. 
+<br><br>
+The decoded <b>Directory Tree</b> is then loaded into the application by the <code>StorageManager</code> class. 
+<br><br>
+The <code>StorageManager</code>, <code>Encoder</code> and <code>Decoder</code> classes make up the <b>Storage Component</b> of <b>Nuke</b>.
+</div>   
+  
+##### **Saving**  
+<div>
+In our current implementation of <b>Nuke</b>, the <b>Directory Tree</b> is saved every time a <i>change</i> is made. Change here refers to operations that changes the contents in the <b>Directory Tree</b> , such as successful adding, deleting and editing of the <i>directories</i>. 
+<br><br>
+The <code>StorageManager</code> has a static boolean variable <code>isToSave</code>, which is set to <code>false</code> by default. It also has a static method <code>setIsSave()</code>, which sets the <code>isToSave</code> variable to <code>true</code>.  
+<br><br>
+When a <i>change</i> is made through a command, <code>StorageManager#setIsSave()</code> is called. This will notify the <code>StorageManager</code> to call <code>saveList()</code> to save the <b>Directory Tree</b>. 
+<br><br>
+Below is a code snippet of the <code>AddModuleCommand</code> when the <code>StorageManager#setIsSave()</code> is called:
+</div>
+
+```java
+@Override  
+public CommandResult execute() {
+	... ...
+	
+	ModuleManager.add(toAdd);
+	StorageManager.setIsSave();  
+	return new CommandResult(... ...);
+	... ...
+}
+```
+<div>
+Below is a code snippet in the <code>Main</code> class when the <code>StorageManager#saveList()</code> is called:
+</div>
+
+```java
+private void runCommandLoopUntilExitCommand() {
+	... ...
+
+	if (StorageManager.isToSave()) {  
+	    ... ... 
+        storageManager.saveList();  
+		... ...
+	    ScreenShotManager.saveScreenShot();  
+	}
+	... ...
+}
+```
+</div>   
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+Notice that the <code>ScreenShotManager#saveScreenShot()</code> is also called after the <code>StorageManager</code> saves the <b>Directory Tree</b>. The <code>ScreenShotManager</code> class is responsible for performing <b>undo</b> and <b>redo</b> operations in the application. 
+<br><br>
+For more information about the <code>ScreenShotManager</code> class or the <b>undo</b> and <b>redo</b> commands, click <a href="#implementation-11">here</a>.
+</div>
+
+Here is a <i>sequence diagram</i> of what happens during saving after a successful <b>add</b> command: <br>   
+![storage manager sequence diagram](images/dg_save_seq.png)  
+<span style="color: green"><small><i>Figure <b>Storage Manager Sequence Diagram</b></i></small></span>    
+<br>
+
+[Back To Top](#table-of-contents)    
+
+#### **Design Considerations**     
+<b>When to Save</b>  
+- <b>Alternative 1</b>: Save after every command execution   
+	- <b>Pros</b>: Easy to implement since no checking for changes in the <b>Directory Tree</b> involved.   
+	- <b>Cons</b>: Wasted performance to save when there is no <i>change</i>. Also, it will affect <b>undo</b> and <b>redo</b> operations. For instance, undoing a <b>list</b> command does not do anything to the <b>Directory Tree</b>, and this may confuse the user.
+- <b>Alternative 2</b>: Save after every change <b>(current implementation)</b>     
+	- <b>Pros</b>: This should be the preferred case since the application should save only when a <i>change</i> is made.
+	- <b>Cons</b>: We have to think of a way that can allow the application to know what is defined as a <i>change</i> and when it occurs.   
+<br>   
+
+<b>Storage Security</b>  
+- <b>Alternative 1</b>: Saves the <b>Directory Tree</b> as a String and directly into a <code>.txt</code> file <b>(current implementation)</b>           
+	- <b>Pros</b>: Easier to implement. Encoding and decoding the data is simpler. 
+	- <b>Cons</b>: Security may be an issue since the saved file is readable, <i>i.e. not encrypted</i>, and can be accesses by anyone. Also, there is little way to notice if the saved file has been tampered externally.       
+- <b>Alternative 2</b>: Encrypt the data and saved file
+	- <b>Pros</b>: Security is enhanced, and warning can be shown to the user if the file has been tampered.
+	- <b>Cons</b>: We have to devise a way to encrypt and decrypt the data. We could possibly look into current encryption schemes like <b>SHA</b> and <b>RSA</b> for this, but it would require some work.
+
+<br>
+<div class="alert alert-info">  
+<i class="fa fa-info"></i> <b>Info</b> <br>   
+As of now, the current implementation of saving does <b>not</b> use any encryption schemes. This is generally because the <b>Nuke</b> application is intended for personal use, and the data involved is not intended to contain any personal information,
+<br><br>
+However, for future implementations of the application, we are looking towards extending the application into the <b>cloud</b> and provide other services as well. At that point, personal data could be involved, and we will definitely implement measures to ensure the security of the user's data &#128516;. 
+</div>
+
+[Back To Top](#table-of-contents)    
+<br><br>
 
 ## **Appendix**  
 
 ### **Product Scope**  
 
-#### Target user profile:
+#### **Target User Profile**
 
-- is a NUS student
+- is an NUS student
 - has a need to manage a significant number of academic tasks efficiently and tidily
 - willing to keep track of their academic tasks by recording them using an application program
-- prefer desktop apps over other types, and reasonably comfortable with the command line interface
+- prefer Desktop apps over other types, and reasonably comfortable with the command line interface
 - able to type fast and prefers typing over mouse input
 
-**Value proposition:** manage tasks faster and with greater efficiency than a typical GUI based task manager application which designed specifically for NUS students to manage academic tasks.
+#### **Value proposition** 
+Manage tasks faster and with greater efficiency due to greater organisation of tasks. The application is specifically designed for NUS students to manage academic tasks. Files can be attached to tasks, and opened directly through the application.
 
 [Back To Top](#table-of-contents)    
 <br>  
@@ -1161,21 +1270,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>  
 
 ### **Glossary**  
-##### mainstream OS
+#### Mainstream OS
 ​    Windows, Linux, Unix, OS-X
-##### average typing speed
+#### Average typing speed
 ​    40 words per minute
 
+#### Depth First
 
+<br>  
 
 [Back To Top](#table-of-contents)    
 <br>  
 
 ### **Instructions for Manual Testing**  
-Given below are instructions to test the app manually.
+Given below are instructions to test the application manually.
 <div class="alert alert-warning">  
 <i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing. We also recommand testers to have a stable Internet connection when carrying out the testing so that the application can successfully retrieve the module information from <a href = "https://api.nusmods.com/v2/">NUSMods API</a>
+These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing. We also recommend testers to have a stable Internet connection when carrying out the testing so that the application can successfully retrieve the module information from <a href = "https://api.nusmods.com/v2/">NUSMods API</a>
 </div>
 
 #### 1. Launch and Shutdown
@@ -1195,7 +1306,7 @@ These instructions only provide a starting point for testers to work on; testers
 All the Add Commands below are assumed to be executed at the root directory.
 </div>
 
-1. Add modules
+1. Add module
    1. Correct usage:
       1. Test case: `addm cs2113t`
       2. Expected: the program will prompt the user with message: `SUCCESS!! Module CS2113T Software Engineering & Object-Oriented Programming is added.`
@@ -1271,11 +1382,11 @@ All the Delete Commands below are assumed to be executed at the root directory.<
    2. Wrong usage:
       1. Test case: `delt non-exist-task` 
       2. Expected: the program will prompt the use with message: `Sorry. No tasks found.`
-   
+
 4. Delete file
    1. Correct usage:
       1. Test case: `delf test.pdf -m cs2113t -c Assignment -t assignment2`
-      2. Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
+      2. Expected: Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
    2. Wrong usage:
       1. Test case: `delf non-exist.pdf -m cs2113t -c Assignment -t assignment2` 
       2. Expected: the program will prompt the user with message: `Sorry. No files found.`
@@ -1302,29 +1413,9 @@ All the List Commands below are assumed to be executed at the root directory.<br
 
    2. Expected: the program display a table containing all the *modules* added by the user as shown below:
 
-      ![](images/dg_lsm.png)
 
-2. List categories
-
-   1. Test case: `lsc -m cs2113t`
-
-   2. Expected: the program display a table containing all the *categories* under *module* `cs2113t` as shown below:
-
-      ![](images/dg_lsc.png)
-
-3. List tasks
-
-   1. Test case: `lst -m cs2113t -c Assignment`
-
-   2. Expected: the program display a table containing all the *tasks* under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
-
-      ![](images/dg_lst.png)
-
-4. List files
-
-   1. Test case: `lsf -m cs2113t -c Assignment -t assignment2`
-
-   2. Expected: the program display a table containing all the files of the *task* `assignment2` under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
+[Back To Top](#table-of-contents)    
+<br>  
 
       ![](images/dg_lsf.png)
    
@@ -1335,46 +1426,6 @@ All the List Commands below are assumed to be executed at the root directory.<br
    2. Expected: the program display a table containing all the tags of the *task* `assignment2` under *module* `cs2113t` and *category* `Assignment` added by the user as shown below:
 
       ![](images/dg_lsg.png)
-
-#### 5. Edit Command
-<div class="alert alert-warning">  
-<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
-</div>
-1. Edit module
-   1. Test case: `edm cs2113t -m cs2113t`
-   2. Expected: the program will prompt the user with message: `SUCCESS!! The module has been updated.`
-2. Edit category
-   1. Test case: `edc Lab -m cs2113t -c Project`
-   2. Expected: the program will prompt the user with message: `SUCCESS!! The category has been updated.`
-3. Edit task
-   1. Test case: `edt assignment2 -m cs2113t -c Assignment -t assignment3 -d tmr 12:00 -p 18`
-   2. Expected: the program will prompt the user with message: `SUCCESS!! The task has been updated.`
-4. Edit file
-   1. Test case: `edf test.pdf -m cs2113t -c Assignment -t assignment2 -f test1.pdf`
-   2. Expected: the program will prompt the user with message: `SUCCESS!! The file has been updated.`
-
-#### 6. Undo and Redo Command
-<div class="alert alert-warning">  
-<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-All the Undo and Redo Commands below are assumed to be executed at the root directory.<br> And user has <b>not</b> added any data beforehand.
-</div>
-1. Correct Usage:
-   1. Test case: enter `addm cs2113t` followed by `undo`
-   2. Expected: the program will prompt the user with message: `SUCCESS!! Data has been reverted to the previous state.`
-   3. Test case: enter `addm cs2113t` followed by `undo` and then followed by `redo`
-   4. Expected: the program will prompt the user with message: `SUCCESS!! Data has been reverted back to the next state.`
-2. Wrong Usage:
-   1. Test case: enter `addm cs2113t` followed by `undo` and another `undo`
-   2. Expected: the program will prompt the user with message: `You are already at the initial state!`
-   3. Test case: enter `redo` **without** executing any `undo` command
-   4. Expected: the program will prompt the user with message: `You are already at the newest state!`
-
-#### 7. Change Directory Command
-<div class="alert alert-warning">  
-<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
-All the Undo and Redo Commands below are assumed to be executed at the root directory.<br> And user has added a <i>module</i> <code>cs2113t</code>
-</div>
 
 1. Correct Usage:
    1. Test case: enter `cd cs2113t`
@@ -1403,5 +1454,22 @@ All the List Commands below are assumed to be executed at the root directory.<br
 1. Test case: enter `open test.pdf -m cs2113t -c Assignment -t assignment2`
 2. Expected: `test.pdf` will be opened automatically using the default pdf application.
 
-[Back To Top](#table-of-contents)    
-<br>  
+[Back To Top](#table-of-contents)
+
+
+## **Contact Us**   
+<div>
+If you have any further inquiries, or if you found any <b>bugs</b> <i class="fa fa-bug" style="color: green"></i> while running or testing the <B>Nuke</b> application, feel free to contact us at: <br><br>
+
+<div style="text-align: center">
+<i class="fa fa-facebook-square fa-lg" style="color:blue"></i> <a href="https://www.facebook.com/nukeproject/"><b>Facebook</b></a> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<i class="fa fa-google fa-lg" style="color: red"></i> <a href="mailto:nukeproject@gmail.com"><b>Gmail</b></a>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<i class="fa fa-yahoo fa-lg" style="color: purple"></i> <a href="mailto:nukeproject@yahoo.com"><b>Yahoo! Mail</b></a> 
+</div>
+
+<br> <br>
+
+We are currently still at the development stage of the <b>Nuke</b> application. Any feedback you give is welcomed as they can help us to improve <b>Nuke</b> even further! &#128516;
+</div>
