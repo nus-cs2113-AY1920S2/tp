@@ -38,7 +38,7 @@ remember your tasks.
 
 1. Copy the file to the folder you want to use as the home folder.
 
-1. Run the jar file using `java - jar caf.jar` from your terminal window.
+1. Run the jar file using `java - jar cafs.jar` from your terminal window.
 
 <br/>
 
@@ -130,8 +130,8 @@ Edit the location of task 2 to be NUSCOM2
 * `edit 2 c/todo`  <br/>
 Edit the category of task 2 to be TODO
 
-  ​      
 ### 3.4. Listing tasks: `list`
+
 #### 3.4.1. List
 Displays all the current tasks in the list. <br/> 
 **Usage**: `list`

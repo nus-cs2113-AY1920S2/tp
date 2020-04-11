@@ -154,7 +154,7 @@ For future development, any code that requires the parsing of LocalDate can use 
 
 ## 3. Implementation
 
-#### 3.1 List By Category
+#### 3.1 List By Category (Previous implementation)
 ##### 3.1.1 Implementations
 The list by category mechanism is facilitated by ListCommand which extends Command.
 
@@ -396,7 +396,7 @@ It solves:
 * Ensure you have Java 11 or above installed in your Computer
 * Download the latest cafs.jar [here](https://github.com/AY1920S2-CS2113-T14-3/tp/releases)
 * Copy the file to the folder you want to use as the home folder.
-* Run the jar file using `java - jar caf.jar`
+* Run the jar file using `java - jar cafs.jar`
 
 > Expected: Shows a welcome message from CAFS
 
