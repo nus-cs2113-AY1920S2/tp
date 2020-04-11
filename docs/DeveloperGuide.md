@@ -42,15 +42,17 @@ Prerequisites<br>
 
 Setting up the project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
-2. Open Intellij and import the ```build.gradle``` from project directory of the cloned repository.
-> :information_source: If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
-3. Set up the correct JDK version for Gradle:
-    * Click the ```File``` tab > ```Project Structure``` > ```Platform Settings``` > ```SDK```.
-    * Select the path where your JDK(>11) is installed. Click this link if you do not have at least JDK11.
+2. Open Intellij (if you are not in the welcome screen, click File > Close Project to close the existing project dialog first)
+3. Set up the correct JDK version
+    1. Click Configure > Structure for New Projects and then Project Settings > Project > Project SDK
+    2. If JDK 11 is listed in the drop down, select it. If it is not, click New... and select the directory where you installed JDK 11
+    3. Click OK
+    4. Click Import Project
+> :information-source: IMPORTANT: Locate the build.gradle file in the project directory, select it, and click OK
 
 Verifying Setup
 1. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.
-2. Try out a few commands as shown on the CLI menu. Click here to know more about each commands.
+2. Try out a few commands as shown on the CLI menu.
 
 ## 2. Design
 
@@ -150,10 +152,6 @@ The `Storage` component,
 - can save scheduled meetings in .txt format and read it back.
 
 ### 2.6. Common component
-#### 2.6.1 Exception classes
-### 2.6. Exception classes
-
-### 2.7. Common classes
 Classes used by multiple components are in the ```commons``` package. These includes exception classes, information of 
 blacklisted modules as well as output messages to be shown to users when exception occurs.
 
@@ -178,27 +176,27 @@ Given below is an example usage scenario and how the ```add contact``` command b
 
 ### 3.1.1 Design Considerations
 **Aspect 1: Optimizing fetching of module information**
-* Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information.
-Pros: The classes are intuitively separated and data structures returned is understandable.
-Cons: Program runs slower for every extra timetable or extra modules taken since its a new instantiation of a ```ModuleHandler```.
-* Alternative 2: Instantiate ```ModuleHandler``` once for every user. 
-Pros: Takes up less memory and setup time for every timetable provided compared to alternative 1.
-Cons: The data structure returned by ```ModuleHandler``` would be complicated and confusing for new developers.
+* Alternative 1(current choice): Instantiate a ```ModuleHandler``` every time there's a request for a module information. <br>
+Pros: The classes are intuitively separated and data structures returned is understandable. <br>
+Cons: Program runs slower for every extra timetable or extra modules taken since its a new instantiation of a ```ModuleHandler```. <br>
+* Alternative 2: Instantiate ```ModuleHandler``` once for every user.  <br>
+Pros: Takes up less memory and setup time for every timetable provided compared to alternative 1. <br>
+Cons: The data structure returned by ```ModuleHandler``` would be complicated and confusing for new developers. <br>
 
 **Aspect 2: Ways of storing blacklisted module**
 * Alternative 1(current choice): Create a ```common.BlacklistedModule``` and hash every hard-coded blacklisted module as a constant ```HashSet```.
-Pros: There is no need for user to download the blacklisted module, and only the JAR file is required to run this entire application.
-Also, user do not need to have a one time set-up where they would wait several minutes for the application to dynamically pull the blacklisted modules from Nusmods API server.
-Cons: If the blacklisted modules from Nusmods API gets updated to the conventional 13 weeks programme, developers would have to manually delete the information of those modules from
-the blacklist, resulting in time wasted everytime there's an update to module information.
+    1. **Pros**: There is no need for user to download the blacklisted module, and only the JAR file is required to run this entire application. <br>
+Also, user do not need to have a one time set-up where they would wait several minutes for the application to dynamically pull the blacklisted modules from Nusmods API server. <br>
+    2. **Cons**: If the blacklisted modules from Nusmods API gets updated to the conventional 13 weeks programme, developers would have to manually delete the information of those modules from
+        the blacklist, resulting in time wasted everytime there's an update to module information. <br>
 * Alternative 2: Dynamically pull the data from Nusmods API server once when user starts the application to retrieve the blacklisted modules, and then periodically update the 
-blacklisted modules every semester.
-Pros: The blacklisted modules would be up to date and there is no need for developers to manually edit the ```common.BlacklistedModule``` class.
-Cons: The one-time set up of pulling the data is very time consuming(~2 minutes waiting time), resulting is bad user experience.
-* Alternative 3: Requires user to download the list of blacklisted modules in addition to the JAR file. 
-Pros: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
-Cons: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
-Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
+blacklisted modules every semester. <br>
+    1. **Pros**: The blacklisted modules would be up to date and there is no need for developers to manually edit the ```common.BlacklistedModule``` class. <br>
+    2. **Cons**: The one-time set up of pulling the data is very time consuming(~2 minutes waiting time), resulting is bad user experience. <br>
+* Alternative 3: Requires user to download the list of blacklisted modules in addition to the JAR file. <br>
+    1. **Pros**: User do not have to wait for the one-time set up and the file would be up to date as long as the application is not deprecated.
+    2. **Cons**: Developers would still have to run the method to dynamically pull the blacklisted modules, although it would be less prone to mistake caused by editing the hard-coded blacklist as mentioned in
+       Alternative 1. Furthermore, users are required to download the blacklisted file published by the developers every semester in order for the list to be up-to-date.
 
 ### 3.2 List all contacts
 ![Add Contact](images/ListContact.png)<br>
@@ -224,13 +222,13 @@ Given below is an example usage and how the ```DisplayTimetable``` command behav
 
 1. The user invokes the LogicManager by entering ```timetable <contact index A> <contact index B>```.
 
-    NOTE: ```<contact index A>``` and ```<contact index B>``` represent the ```Contact```s whose combined timetable is 
+    >:information_source: ```<contact index A>``` and ```<contact index B>``` represent the ```Contact```s whose combined timetable is 
     to be displayed.
 2. The ```LogicManager``` requests to display the combined timetable via ```CommandHandler```.
 3. The ```CommandHandler``` retrieves ```Contact```s from ```ContactList``` using the contacts' index passed into the 
 command, to generate ```ArrayList<Contact>```.
 
-    NOTE: This step is omitted in the sequence diagram to keep it concise.
+    >:information_source: This step is omitted in the sequence diagram to keep it concise.
 3. The ```CommandHandler``` calls the ScheduleHandler constructor ```ScheduleHandler(ArrayList<Contacts>)```.
 4. For each ```Contact```, ```ScheduleHandler``` retrieves its schedule by calling ```getSchedule()```. ```ScheduleHandler``` 
 then uses the retrieved schedule to fill a combined schedule, adding all "busy" time blocks of the retrieved schedule into the
@@ -268,7 +266,7 @@ Given below is an example usage and how the ```EditContact``` command behaves.
 
 1. The user invokes the LogicManager by entering ```edit <contact index> <time slot>```.
 
-    NOTE: The original user input formats for ```EditCommand``` are: 
+    >:information_source: The original user input formats for ```EditCommand``` are: 
     <br>```edit busy <contact index> <start day> <start time> <end day> <end time>``` and 
     <br>```edit free <contact index> <start day> <start time> <end day> <end time>```, 
     <br>for editing the ```Contact```'s schedule to "busy" and "free" at the given time slot respectively. 
@@ -280,7 +278,7 @@ Given below is an example usage and how the ```EditContact``` command behaves.
 3. The ```CommandHandler``` retrieves ```Contact``` from ```ContactList``` using the contact's index passed into the 
 command.
 
-    NOTE: This step is omitted in the sequence diagram to keep it concise.
+    >:information_source: This step is omitted in the sequence diagram to keep it concise.
 4. The ```CommandHandler``` calls ```editSchedule(time slot)``` of ```Contact```.
 If ```edit busy```, the schedule of `Contact` will be marked as "busy" for the given time slot. If ```edit free```, the 
 schedule of `Contact` will be marked as "free" for the given time slot.
@@ -322,7 +320,7 @@ edit is done before editSchedule() of `Contact` is called. (Fig. 1)
 5. If a "meeting" time block is detected within the time slot, the edit is invalid. An invalid exception is thrown by 
     `Contact`, and the user will be informed that the edit is invalid.
     
-    NOTE: `TextUI` and `Exception` classes which are involved in generating the exception, and displaying the exception message
+    >:information_source: `TextUI` and `Exception` classes which are involved in generating the exception, and displaying the exception message
     to the user are omitted to keep the sequence diagram concise.
     
 ### 3.6 Delete a scheduled meeting
@@ -420,38 +418,44 @@ meetings into account when scheduling a common timeslot timetable.
 
 Given below are instructions to test the app manually.
 
-> :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing. 
+> :information_source: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.  <br>
+
 > :information_source: We also recommend testers to have a stable internet connection throughout the tests to successfully pull the data from nusmods API.
 
 ### F.1. Launch and Shutdown
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
     2. Double click the jar file
-    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
    
     **Expected: The CLI application would be running with our logo: WhenFree.**
     
+    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
+    
 2. Shutting down
     1. Type ```exit``` followed by kbd:[enter] key to exit.
+    
     **Expected: Application should shut down with an exit message, intermediate contacts and meetings would be saved.**
-   
 
 > :information_source: The test cases below are provided such that it should be executable without showing any errors if followed sequentially from F.2 onwards.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
     1.Test case: ```Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6``` <br>
+    
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
     > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
      
     2. Test case: ```Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1``` <br>
-                  ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
-                  ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
+       Test case: ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
+       Test case: ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
+       
     **Expected: 3 new contacts will be added, with their respective modules.**
     
     3. Test case: ```Timmy https://nusmods.com/timetable/sem-2/brokenlink``` <br>
+    
     **Expected: Contact is not updated into contact list as nusmods URL is invalid** <br>
+    
     > :loudspeaker: Names must not contain purely integers. It should either be entirely alphabetical or alphanumerical.
     
 ### F.3. Scheduling a meeting
@@ -460,35 +464,50 @@ Given below are instructions to test the app manually.
     2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
     3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
     4. Test case: ```schedule test_meeting startDate startTime endDate endTime``` <br>
+    
     > :information_source: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     > :information_source: startTime and endTime should strictly be in 30minutes blocks, startDay and endDay should strictly follow the date given in ```timetable```  command.
+                       
     > :loudspeaker: TIP: Type ```schedule``` to see the required format.
              
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
     1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
     2. Test case: ```delete 1```. <br>
+    
     **Expected: The meeting scheduled previously in F.3 is deleted. If no meeting is scheduled at all, an error would be shown to user.** <br>
+    
     3. Test case: ```delete 0``` <br>
+    
     **Expected: No meeting would be deleted since the index starts from 1** <br>
+    
     > :loudspeaker: TIP: Type ```delete``` to see the required format.
                                                                                                                                                                                                                                                                                                                                                                                 
 ### F.4. Deleting a contact
 1. Deleting a contact.
     1. Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
     2. Test case: ```delete name```. <br>
+    
     **Expected: The desired contact would be deleted** <br>
+    
     > :information_source: You cannot delete main user contact.
+                                                                                                                                                                                                                                    
     > :loudspeaker: TIP: Type ```delete``` to see the required format.
 
 ### F.6. Editing a contact's timetable
 1. Editing main user's timetable
-    1. Prequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
+    1. Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
     2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
+    
     **Expected: The date and time given would be free up** <br>
+    
     3. Test case: ```edit busy 0 startDate startTime endDate endTime``` <br>
+    
     **Expected: The date and time given would be blocked out** <br>
+    
     4. Other incorrect edit commands to try: not stating whether it is ```free``` or ```busy```, ```startTime endTime``` doesn't follow 30minutes blocks.
+    
     > :loudspeaker: TIP: Type ```edit``` to see the required format.
   
 
@@ -498,10 +517,12 @@ Given below are instructions to test the app manually.
     1. Prerequisites: ```/data/meeting_list.txt``` is not empty.
     2. The text file stores every meeting in each line, and it contains information of the meeting name, start/end date, start/end time.
     3. Expected: The stored meetings would be shown in the application via ```meetings``` command and is also reflected in the ```timetable``` command.
+    
     > :information_source: Note that you can't manually add meeting simply by editing ```/data/meeting_list.txt``` since the meetings generated would also be reflected in the main user's timetable. Editing it manually would corrupt the timetable schedule.
     
 3. Loading previously stored contacts.
     1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
     2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
     3. Expected: The stored contacts would be shown in application via ```contacts``.
+    
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
