@@ -22,10 +22,7 @@ I adjusted the programme to accept commands from user irrespective of upper or l
 * What it does: This command allows users to mark modules that have been added to their module plan as done. In doing so,
 it stores the grade of the module. This is essential for the calculation of the user's CAP and amount of completed credits.
 * Justification: In a Module Management application, it is important for users to keep track of which modules they have
-completed, its respective grades, and which modules in their module plan they have yet to finish. If the user fails
-the module, the fail grade is added to cap, but the credit of that module is not added to the completed credit of the 
-user. Furthermore, if the user incorrectly enters the grade of the module when using this feature, the user can simply
-re-enter this feature with the updated grade to change the grade of the completed module. 
+completed, its respective grades, and which modules in their module plan they have yet to finish.
 * Highlights: Implementation was challenging because there are multiple different scenarios to consider for when a 
 user wants to use this feature, and when implementing this feature, we must be clear of what to change and add into the
 user's data. Some scenarios considered include:
@@ -38,8 +35,7 @@ user's data. Some scenarios considered include:
 ([#62](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/62), [#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121))
 
 ### Contributions to the Developer Guide: 
-* Added table of contents for the Developer Guide ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files))
-* Added Introduction Section and Setting up section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
+* Added table of contents, Introduction Section and Setting up section ([#133](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/133/files), [#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
 * Added Architecture, UI component, Logic component and Model component under Design section. ([#118](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/118))
 * Wrote implementation document for Delete from Available, Add to Available, Marking as Done and Viewing modules
 ([#121](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/121),[#156](https://github.com/AY1920S2-CS2113-T15-3/tp/pull/156))
