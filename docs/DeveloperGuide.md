@@ -22,6 +22,7 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [3.6. Delete a scheduled meeting](#36-delete-a-scheduled-meeting)
 	* [3.7. Delete a contact](#37-delete-a-contact)
 	* [3.8. List all scheduled meetings](#38-list-all-scheduled-meetings)
+	* [3.9. [Proposed Undo/Redo feature]](#39-proposed-undoredo-feature)
 * [Appendix A: Product Scope](#appendix-a-product-scope)
 	* [A.1. Target user profile](#a1-target-user-profile)
 	* [A.2. Value proposition](#a2-value-proposition)
