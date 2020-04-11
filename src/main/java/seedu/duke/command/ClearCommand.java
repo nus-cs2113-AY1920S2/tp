@@ -12,6 +12,7 @@ public class ClearCommand extends Command {
     @Override
     public void execute(SemesterList semesterList, AvailableModulesList availableModulesList) {
         semesterList.clear();
+        Person.clearTotalModuleCreditCompleted();
         Ui.showClearMessage();
     }
 
