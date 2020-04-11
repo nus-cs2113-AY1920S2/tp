@@ -98,11 +98,11 @@ base `Command` abstract class and utilize its abstract `execute()` method.
 They are created and executed when the user inputs a corresponding command.
  
 ### 2.4 Parser component
-*Class diagram of the Parser component*  
+
 There are total of four Parser classes as shown below. Each Parser class correspond to a feature 
 of Pac. 
 
-| Parser                    | Created in                                                    |
+| Parser                    | Created by                                                    |
 |---------------------------|---------------------------------------------------------------|
 | EventParser               | EventCommandInterpreter                                       | 
 | CalenderParser            | CalendarCommandInterpreter                                       | 
@@ -187,41 +187,41 @@ and getMonthEvents() to sieve the events that fall under a specific time-frame m
 1. displayCalendar() method in separateEvents(), displays all the components of the calendar by interacting with 
 the UI and DisplayTable classes.  
 The diagram below illustrates the program flow stated above:  
- ![CalendarProgramFlow](images/EventsSeparator.png "program flow")  
- *Program flow of calendar execution*
- 
- Below is an example usage of how the user can interact with the calendar manager:  
- Step 1: The user wants to `add` an event to their calendar. They do so by inputting `event add n/football d/2020-05-04 t/1700`.
- Assuming that it is currently semester 2 of the academic year 19-20, this event falls in that timeline and is added to the calendar.
+![CalendarProgramFlow](images/EventsSeparator.png "program flow")  
+*Program flow of calendar execution*
+
+Below is an example usage of how the user can interact with the calendar manager:  
+Step 1: The user wants to `add` an event to their calendar. They do so by inputting `event add n/football d/2020-05-04 t/1700`.
+Assuming that it is currently semester 2 of the academic year 19-20, this event falls in that timeline and is added to the calendar.
     
- Step 2: The user realises that the name of the event is wrong and decides to `edit` the name of the event. First, they input
- `event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
- to edit the name of the event.  
+Step 2: The user realises that the name of the event is wrong and decides to `edit` the name of the event. First, they input
+`event list` to find the index of the event. Assuming the index of the event is 4, the user then inputs `event editname i/4 n/frisbee`
+to edit the name of the event.  
  
- Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
- `calendar s/2 ay/19-20`.
+Step 3: The user wants to display the events that fall under semester 2 of academic year 19-20. To do this, the user inputs
+`calendar s/2 ay/19-20`.
  
- #### Design considerations
- Aspect: Data Structure used to implement calendar
- - Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
-   - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
-   the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
-   - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
-   ArrayLists.
+#### Design considerations
+Aspect: Data Structure used to implement calendar
+- Alternative 1: Save the events using both 1D ArrayList and 2D ArrayList.
+  - Pros: Allows flexibility as to what information a calendar can store. For example, the 1D ArrayList is used to store 
+  the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
+  - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
+  ArrayLists.
    
- - Alternative 2: Save the events as a sorted tree map 
-   - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
-   - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
-   every new addition, deletion or editing.  
+- Alternative 2: Save the events as a sorted tree map 
+  - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
+  - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
+  every new addition, deletion or editing.  
  
- Aspect: How addition, deletion and editing of events affects calendar execution  
- - Alternative 1(current choice): Implement a class specifically to interact with the calendar
-   - Pros: Calendar class can support different interactions to modify calendar content
-   - Cons: Many new methods to be implemented, which affects code readability.
+Aspect: How addition, deletion and editing of events affects calendar execution  
+- Alternative 1(current choice): Implement a class specifically to interact with the calendar
+  - Pros: Calendar class can support different interactions to modify calendar content
+  - Cons: Many new methods to be implemented, which affects code readability.
    
- - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
-   - Pros: Does not require instantiation of new object to modify the calendar contents.
-   - Cons: Many new methods to be implemented, which affects code readability.
+- Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
+  - Pros: Does not require instantiation of new object to modify the calendar contents.
+  - Cons: Many new methods to be implemented, which affects code readability.
 
 **Note that**:
 * Input of the both academic years should be double digit, e.g ay/07-08, ay/19-20. 
