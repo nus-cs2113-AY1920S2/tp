@@ -8,11 +8,14 @@ import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 import java.util.ArrayList;
 
-public class CalendarList {
+public class Calendar {
     private static final int NO_OF_MONTHS = 6;
+    private static final String EMPTY_EVENT_LIST_ERROR_MESSAGE = "Could not find any events";
+    private static final String EMPTY_YEAR_LIST_ERROR_MESSAGE = "Unable to find any events for this time period.";
+    private static final String MONTH_NOT_FOUND_ERROR_MESSAGE = "Month not found.";
     private UI ui;
 
-    public CalendarList() {
+    public Calendar() {
         this.ui = new UI();
     }
 
@@ -25,7 +28,7 @@ public class CalendarList {
      * @param semester Semester which the user input.
      * @throws PacException If list is empty.
      */
-    public void showEvents(EventList eventList, int year, int semester) throws PacException {
+    public void separateEvents(EventList eventList, int year, int semester) throws PacException {
         ArrayList<Event> semesterList = getSemesterEvents(eventList, semester);
         ArrayList<Event> yearList = getAcademicYearEvents(semesterList, year);
         ArrayList<ArrayList<String>> monthList = getMonthEvents(yearList);
@@ -50,7 +53,7 @@ public class CalendarList {
             list = getSemesterTwoEvents(eventList);
             break;
         default:
-            throw new PacException("Could not find any events");
+            throw new PacException(EMPTY_EVENT_LIST_ERROR_MESSAGE);
         }
         return list;
     }
@@ -66,8 +69,10 @@ public class CalendarList {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 6) {
-                list.add(event);
+            if (event.dateTimeIsParsed()) {
+                if (event.getMonth() > 6) {
+                    list.add(event);
+                }
             }
         }
         return list;
@@ -84,8 +89,10 @@ public class CalendarList {
         ArrayList<Event> list = new ArrayList<>();
         for (int i = 0; i < eventList.list.size(); i++) {
             Event event = eventList.find(i);
-            if (event.getMonth() > 0 && event.getMonth() < 7) {
-                list.add(event);
+            if (event.dateTimeIsParsed()) {
+                if (event.getMonth() > 0 && event.getMonth() < 7) {
+                    list.add(event);
+                }
             }
         }
         return list;
@@ -107,7 +114,7 @@ public class CalendarList {
             }
         }
         if (yearList.isEmpty()) {
-            throw new PacException("Unable to find any events for this time period.");
+            throw new PacException(EMPTY_YEAR_LIST_ERROR_MESSAGE);
         }
         return yearList;
     }
@@ -153,7 +160,7 @@ public class CalendarList {
                 monthList.get(5).add(description);
                 break;
             default:
-                throw new PacException("Month not found");
+                throw new PacException(MONTH_NOT_FOUND_ERROR_MESSAGE);
             }
         }
         return monthList;
@@ -185,6 +192,8 @@ public class CalendarList {
     private String getDayDescription(Event event) {
         int day = event.getDay();
         String dayDescription = Integer.toString(event.getDay());
+        assert day < 32;
+        assert day > 0;
         switch (day) {
         case 1:
         case 21:
@@ -287,7 +296,7 @@ public class CalendarList {
     }
 
     private ArrayList<String> initializeDescriptionList() {
-        ArrayList<String> list = new ArrayList<>(6);
+        ArrayList<String> list = new ArrayList<>(NO_OF_MONTHS);
         for (int h = 0; h < NO_OF_MONTHS; h++) {
             list.add("");
         }

@@ -3,6 +3,7 @@ package seedu.command.event;
 import seedu.command.Command;
 import seedu.event.Event;
 import seedu.event.EventList;
+import seedu.exception.PacException;
 
 public class AddEvent extends Command {
     private Event newEvent;
@@ -14,7 +15,7 @@ public class AddEvent extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws PacException {
         eventList.add(newEvent);
     }
 

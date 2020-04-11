@@ -10,22 +10,19 @@ import seedu.ui.UI;
  */
 public class ViewAttendanceList extends Command {
 
-    protected AttendanceList attendances;
+    protected AttendanceList attendanceList;
+    protected UI ui;
 
     public ViewAttendanceList(AttendanceList attendances) {
-        this.attendances = attendances;
+        this.attendanceList = attendances;
+        this.ui = new UI();
     }
 
-    private void view() throws PacException {
-        try {
-            if (attendances.isEmpty()) {
-                UI.display("Attendance List is empty");
-            } else {
-                attendances.printList();
-            }
-        } catch (Exception e) {
-            throw new PacException("Attendance List fail to view.");
-        }
+    /**
+     * Method To view the existing attendanceList.
+     */
+    private void view() {
+        attendanceList.displayList();
     }
 
     @Override

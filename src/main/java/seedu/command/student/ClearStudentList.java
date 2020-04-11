@@ -15,8 +15,12 @@ public class ClearStudentList extends Command {
      * Method to clear the entire studentListCollection.
      */
     private void clear() {
-        studentListCollection.clear();
-        UI.display("The Student List Collection is cleared");
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            studentListCollection.clear();
+            UI.display("The Student List Collection is cleared");
+        }
     }
 
     @Override

@@ -17,6 +17,11 @@ public class EventCommandInterpreter extends CommandInterpreter {
     protected EventParser eventParser;
     private static final String[] COMMANDS_THAT_NEED_ARGUMENT = {"add",
         "editname", "editdatetime", "editvenue", "editevent", "delete"};
+    private static final String INDEX_FLAG_EDIT_ERROR_MESSAGE = "Please use i/ flag to indicate which event to edit.";
+    private static final String INDEX_FLAG_DELETE_ERROR_MESSAGE = "Please use i/ flag to indicate which event to "
+            + "delete.";
+    private static final String INVALID_COMMAND_TYPE_MESSAGE = "Please provide a valid command type. "
+            + "Type 'help' for more info.";
 
     public EventCommandInterpreter(EventList eventList) {
         super(eventList);
@@ -63,7 +68,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editname":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("Please use i/ flag to indicate which event to edit.");
+                throw new PacException(INDEX_FLAG_EDIT_ERROR_MESSAGE);
             }
             index = eventParser.getIndex();
             name = eventParser.getName();
@@ -71,7 +76,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editdatetime":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("Please use i/ flag to indicate which event to edit.");
+                throw new PacException(INDEX_FLAG_EDIT_ERROR_MESSAGE);
             }
             index = eventParser.getIndex();
             datetime = eventParser.getDateTime();
@@ -79,7 +84,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editvenue":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("Please use i/ flag to indicate which event to edit.");
+                throw new PacException(INDEX_FLAG_EDIT_ERROR_MESSAGE);
             }
             index = eventParser.getIndex();
             venue = eventParser.getVenue();
@@ -87,7 +92,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "editevent":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("Please use i/ flag to indicate which event to edit.");
+                throw new PacException(INDEX_FLAG_EDIT_ERROR_MESSAGE);
             }
             event = eventParser.getEvent();
             index = eventParser.getIndex();
@@ -95,7 +100,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             break;
         case "delete":
             if (flagDoesNotExist(commandParameters, "i/")) {
-                throw new PacException("Please use i/ flag to indicate which event to delete.");
+                throw new PacException(INDEX_FLAG_DELETE_ERROR_MESSAGE);
             }
             index = eventParser.getIndex();
             command = new DeleteEvent(index, this.eventList);
@@ -104,7 +109,7 @@ public class EventCommandInterpreter extends CommandInterpreter {
             command = new ListEvent(this.eventList);
             break;
         default:
-            throw new PacException("Please provide a valid command type. Refer to 'help' for more info.");
+            throw new PacException(INVALID_COMMAND_TYPE_MESSAGE);
         }
 
         return command;

@@ -1,6 +1,5 @@
 package seedu.attendance;
 
-import seedu.exception.PacException;
 import seedu.ui.DisplayTable;
 import seedu.ui.UI;
 
@@ -15,34 +14,71 @@ import static seedu.attendance.Attendance.attendanceStatusComparator;
  */
 public class AttendanceList {
 
-    protected ArrayList<Attendance> attendanceList;
-    protected UI ui;
-    private DisplayTable displayTable;
+    protected ArrayList<Attendance> attendanceList = new ArrayList<>();
+    protected UI ui = new UI();
+    private DisplayTable displayTable = new DisplayTable();
 
-    public AttendanceList() {
-        this.ui = new UI();
-        this.displayTable = new DisplayTable();
-        attendanceList = new ArrayList<>();
-    }
-
+    /**
+    * To fetch the existing attendanceList.
+    * @return attendanceList.
+    */
     public ArrayList<Attendance> getAttendanceList() {
         return attendanceList;
     }
 
-    public void addToList(Attendance attendance, String eventName) {
-        attendanceList.add(attendance);
-        ui.addAttendanceMessage(attendance.studentName, attendance.getAttendanceStatus(), eventName);
+    /**
+     * To check if there is an existing name in the attendanceList.
+     * @param name the name of the student to be added into the attendanceList.
+     * @return  If there is an existing name in the attendanceList, return true.
+     *          ELse, return false.
+     */
+    public boolean isDuplicate(String name) {
+        String existingStudentName;
+        String newStudentName = name.toLowerCase();
+        for (int i = 0; i < attendanceList.size(); i++) {
+            existingStudentName = attendanceList.get(i).getStudentName().toLowerCase();
+            if (existingStudentName.equals(newStudentName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void printList() throws PacException {
-        if (isEmpty()) {
-            throw new PacException("No attendance list under this event");
-        }
-        int i = 1;
+    /**
+     * To add to the existing attendanceList in the selected event.
+     * @param attendance the existing attendanceList in the event.
+     * @param eventName the name of the event.
+     */
+    public void addToList(Attendance attendance, String eventName) {
+        attendanceList.add(attendance);
+        ui.addAttendanceMessage(attendance.studentName, attendance.getStatus(), eventName);
+    }
+
+    /**
+     * Add attendance to attendanceList.
+     * @param attendance the attendance to be added
+     */
+    public void add(Attendance attendance) {
+        attendanceList.add(attendance);
+    }
+
+    public void displayList(ArrayList<Attendance> attendanceList) {
+        int index = 1;
         displayTable.printHeaderOfThree("index", "Name of Student", "Status");
         for (Attendance attendance : attendanceList) {
-            displayTable.printBodyOfThree(i, attendance.getStudentName(), attendance.getAttendanceStatus());
-            i++;
+            displayTable.printBodyOfThree(index, attendance.getStudentName(), attendance.getStatus());
+            index++;
+        }
+    }
+
+    /**
+     * To display the attendanceList in table form.
+     */
+    public void displayList() {
+        if (attendanceList.isEmpty()) {
+            UI.display("Attendance List is empty");
+        } else {
+            displayList(attendanceList);
         }
     }
 
@@ -54,7 +90,6 @@ public class AttendanceList {
         return attendanceList.isEmpty();
     }
 
-
     /**
      * Clear the attendanceList.
      */
@@ -62,20 +97,41 @@ public class AttendanceList {
         attendanceList.clear();
     }
 
-    public void sort() {
+    /**
+     * To sort the attendanceList by the name of the student alphabetically.
+     */
+    public void sortByName() {
         Collections.sort(attendanceList,attendanceListNameComparator);
     }
 
+
+    /**
+     * To sort the attendanceList by the status of the student.
+     */
     public void sortByStatus() {
         Collections.sort(attendanceList,attendanceStatusComparator);
     }
 
-    public boolean isDuplicate(String name) {
-        for (int i = 0; i < attendanceList.size(); i++) {
-            if (attendanceList.get(i).getStudentName().toLowerCase().equals(name.toLowerCase())) {
-                return true;
+
+    public void findAttendance() {
+        UI.display("Please type the name of the student you are looking for.");
+        ui.readUserInput();
+        String keyword = ui.getUserInput().trim().toLowerCase();
+        if (isMatch(keyword).isEmpty()) {
+            ui.display("There is no student named: " + keyword);
+        } else {
+            displayList(isMatch(keyword));
+        }
+    }
+
+    public ArrayList<Attendance> isMatch(String keyword) {
+        UI.display("Search Results");
+        ArrayList<Attendance> searchResults = new ArrayList<>();
+        for (Attendance attendance: this.attendanceList) {
+            if (attendance.getStudentName().toLowerCase().contains(keyword.toLowerCase())) {
+                searchResults.add(attendance);
             }
         }
-        return false;
+        return searchResults;
     }
 }

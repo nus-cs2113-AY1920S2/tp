@@ -70,16 +70,6 @@ public class FileIO {
         UI.display(output);
     }
 
-    // /**
-    //  * Read in information that is required to reconstruct one Event
-    //  * (which is three lines).
-    //  * @return a String that consists of three lines
-    //  * @throws PacException if EOF is encountered
-    //  */
-    // public String readOneEvent() throws PacException {
-    //     return this.read() + this.read() + this.read();
-    // }
-
     /**
      * Read a line from current file.
      * @return the next line

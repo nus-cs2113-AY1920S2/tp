@@ -12,8 +12,6 @@ import static seedu.pac.Pac.studentListCollection;
  */
 public class DeleteStudentList extends Command {
 
-    protected int index;
-    protected String line;
     protected DisplayList displayList = new DisplayList();
     protected UI ui = new UI();
 
@@ -24,9 +22,9 @@ public class DeleteStudentList extends Command {
     private void deleteFromExisting() throws PacException {
         UI.display("Please state the index of the student list you wish to delete.");
         ui.readUserInput();
-        line = ui.getUserInput();
+        String line = ui.getUserInput();
         try {
-            index = Integer.parseInt(line);
+            int index = Integer.parseInt(line);
             studentListCollection.remove(index - 1);
         } catch (NullPointerException e1) {
             throw new PacException("Out of bound.");
@@ -38,6 +36,10 @@ public class DeleteStudentList extends Command {
 
     @Override
     public void execute() throws PacException {
-        deleteFromExisting();
+        if (studentListCollection.isEmpty()) {
+            UI.displayStudentListCollectionEmpty();
+        } else {
+            deleteFromExisting();
+        }
     }
 }

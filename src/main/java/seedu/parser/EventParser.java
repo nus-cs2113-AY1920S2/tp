@@ -5,11 +5,21 @@ import seedu.event.Seminar;
 import seedu.exception.PacException;
 
 public class EventParser {
+    private static final String SHORT_FLAG_ERROR_MESSAGE = "Flag is too short.";
+    private static final String INVALID_FLAG_ERROR_MESSAGE = "Please provide a valid flag.";
+    private static final String INVALID_INDEX_ERROR_MESSAGE = "Please provide a valid index.";
+    private static final String NO_FLAG_ERROR_MESSAGE = "Please provide a flag for your parameter.";
+    private static final String NO_NAME_VENUE_FOR_EVENT_ERROR_MESSAGE = "Please at least provide a name or venue "
+            + "for event.";
+    private static final String NO_NAME_VENUE_FOR_SEMINAR_ERROR_MESSAGE = "Please at least provide a name or venue "
+            + "for seminar.";
+
     private String name;
     private String date;
     private String time;
     private String venue;
     private int index;
+
 
     public EventParser() {
         this.name = "";
@@ -34,7 +44,7 @@ public class EventParser {
         for (String token : tokens) {
             if (token.length() < 2) {
                 if (mostRecent == null) {
-                    throw new PacException("Flag is too short.");
+                    throw new PacException(SHORT_FLAG_ERROR_MESSAGE);
                 } else if (validFlagToAppend(mostRecent)) {
                     append(mostRecent, token);
                 }
@@ -65,17 +75,17 @@ public class EventParser {
                     try {
                         index = Integer.parseInt(token.substring(2));
                     } catch (NumberFormatException m) {
-                        throw new PacException("Please provide a valid index.");
+                        throw new PacException(INVALID_INDEX_ERROR_MESSAGE);
                     }
                     mostRecent = "index";
                     break;
                 default:
                     // assumes that all valid flags have been processed before this line
                     if (isUnknownFlag(token)) {
-                        throw new PacException("Please provide a valid flag.");
+                        throw new PacException(INVALID_FLAG_ERROR_MESSAGE);
                     }
                     if (mostRecent == null) {
-                        throw new PacException("Please provide a flag for your parameter.");
+                        throw new PacException(NO_FLAG_ERROR_MESSAGE);
                     }
                     if (validFlagToAppend(mostRecent)) {
                         append(mostRecent, token);
@@ -174,7 +184,7 @@ public class EventParser {
     public Event getEvent() throws PacException {
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PacException("Please at least provide a name or venue for event.");
+            throw new PacException(NO_NAME_VENUE_FOR_EVENT_ERROR_MESSAGE);
         }
         return new Event(name, datetime, venue);
     }
@@ -187,7 +197,7 @@ public class EventParser {
     public Seminar getSeminar() throws PacException {
         String datetime = date + " " + time;
         if (name.equals("") && venue.equals("")) {
-            throw new PacException("Please at least provide a name or venue for seminar.");
+            throw new PacException(NO_NAME_VENUE_FOR_SEMINAR_ERROR_MESSAGE);
         }
         return new Seminar(name, datetime, venue);
     }
