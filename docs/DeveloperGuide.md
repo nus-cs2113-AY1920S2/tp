@@ -208,14 +208,14 @@ There are altogether <b>5</b> levels in the current implementation of <b>Nuke</b
 </div>
 <br>
 <div style="text-align: center"><span style="color: green"><small>Table <b>Directory Levels</b></small></span></div>  
-  
-| Directory Level | Description                                                                      |  
-|:---------------:|----------------------------------------------------------------------------------|  
-| **Root** | The **base** of the <b>Directory Tree</b>. Only **one** root exists in the entire <b>Tree</b>. |  
-| **Module** | The **second** level of the Directory Tree.                                           |  
-| **Category** | The **third** level of the Directory Tree.                                          |  
-| **Task** | The **fourth** level of the Directory Tree.                                             |  
-| **File** | The **last** level of the Directory Tree.                                               |  
+
+| Directory Level | Description                                                                      |
+|:---------------:|----------------------------------------------------------------------------------|
+| **Root** | The **base** of the <b>Directory Tree</b>. Only **one** root exists in the entire <b>Tree</b>. |
+| **Module** | The **second** level of the Directory Tree.                                           |
+| **Category** | The **third** level of the Directory Tree.                                          |
+| **Task** | The **fourth** level of the Directory Tree.                                             |
+| **File** | The **last** level of the Directory Tree.                                               |
 
 <br>
 <div>
@@ -253,7 +253,7 @@ We will show a more detailed <i>class diagram</i>, as well as describe each of t
 <div>
 The <b>Root Directory</b> is the <b>base</b> of the entire <b>Directory Tree</b>. Only <b>one</b> <i>root</i> exists in the entire <b>Tree</b>. The <i>root</i> does not have any attributes, and its parent is <code>NULL</code>.
 </div>
-  
+
 #### **Module**    
 <div>
 The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree</b>. It corresponds to a <i>module</i>. A <i>module</i> has a <i>module code</i> and <i>title</i>. It also has a <b>Category Manager</b> which stores <i>categories</i> to categorise the user's <i>tasks</i>, such as "Lecture", "Tutorial" and "Assignment". 
@@ -262,17 +262,17 @@ The <b>Module Directory</b> is the <b>second</b> level of the <b>Directory Tree<
 <i class="fa fa-info"></i> <b>Info</b> <br>   
 In our current implementation, when a user adds a <i>module</i>, the application automatically adds four <i>categories</i> into the <i>module</i>. They are Lecture, Tutorial, Assignment and Lab. These are common <i>categories</i> and are added automatically to improve usability for users, since they do not need to add them on their own.
 </div>     
-  
+
 #### **Category**   
 <div>
 The <b>Category Directory</b> is the <b>third</b> level of the <b>Directory Tree</b>. It corresponds to a <i>category</i>. A <i>category</i> consists of a <i>name</i> and a <i>priority</i> to indicate the importance of the <i>tasks</i> in that <i>category</i>. Each <i>category</i> has a <b>Task Manager</b> that stores the user's <i>tasks</i>.  
 </div>
-  
+
 #### **Task**  
 <div>
 The <b>Task Directory</b> is the <b>fourth</b> level of the <b>Directory Tree</b>. It corresponds to a <i>task</i>. A <i>task</i> has several attributes, namely the <i>description</i>, <i>deadline</i> of the <i>task</i> if any, <i>priority</i> and the <i>done status</i> of the <i>task</i>.  Each <i>task</i> contains a <b>File Manager</b> that stores the <i>task</i>'s <i>files</i>.
 </div>  
-  
+
 #### **File**  
 <div>
 The <b>File Directory</b> is the <b>last</b> level of the <b>Directory Tree</b>. It corresponds to a <i>file</i>. The <i>file</i> must have a <i>file name</i>, <i>file path</i>, and its <i>original file path</i> It does no have a corresponding <b>Directory Manager</b>.     
@@ -661,7 +661,7 @@ The <b>Nuke</b> <code>Parser</code> will parse the input as a <b>delete module</
 <br>
 
 The <i>sequence diagram</i> for <b>stage</b> <big><big><big style="color: green">&#10102;</big></big></big>:<br>   
- 
+
 ![delete command sequence diagram](images/dg_delete_seq.png)  
  <span style="color: green"><small><i>Figure <b>Delete Command Sequence Diagram 1</b></i></small></span>   
 
@@ -732,11 +732,12 @@ Peter receives the final message:<br><br>
 ```
 SUCCESS!! Module(s) have been deleted.
 ```
-
-<div>
+   
+<div>    
 and the delete process ends.  
 </div>
     
+
 [Back To Top](#table-of-contents)    
 
 #### **Design Considerations**     
@@ -756,7 +757,8 @@ and the delete process ends.
 - <b>Alternative 2</b>: Prompts are enabled <b>(current implementation)</b>    
 	- <b>Pros</b>: User has another chance to choose to confirm the deletion. &#128517; This reduce the chance of accidental deletions happening.
 	- <b>Cons</b>: Deletion process is now longer. The user has to go through another layer of confirmation despite being sure that he he deleting the correct <i>directories</i> <small>(but who knows?)</small>. Moreover, we will have a harder time to implement the <b>delete</b> command, since it has now become multi-staged. Considerations have to be made to counter scenarios with <b>zero</b>, <b>one</b> or <b>more</b> matches after filtering. We will also have to consider how the <code>Parser</code> will be able to recognise if the user's input is a regular command, or an input corresponding to a prompt for list number, or a prompt for delete confirmation.  
-   
+  
+
 [Back To Top](#table-of-contents)    
 
 <br><br>
@@ -820,7 +822,8 @@ An example <i>sequence diagram</i> is shown below when a user requests to edit a
 - <b>Alternative 2</b>: User can edit any number for attributes of a <i>directory</i> at a time <b>(current implementation)</b>        
 	- <b>Pros</b>: The user does not need to keep executing the <b>edit</b> command when editing more than one attribute.    
 	- <b>Cons</b>: Possibly slightly harder to implement. We now have to check if the user has provided at least one attribute to be edited. Also, we need to be able to efficiently extract the individual attributes from the user's input. However, this could be made easier by grouping and matching the attributes using <b>Java</b>'s <b>RegEx</b> patterns.           
-   
+  
+
 [Back To Top](#table-of-contents)    
 <br>  
 <br>  
@@ -1078,10 +1081,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Back To Top](#table-of-contents)    
 <br>  
 
-### **Manual Testing**  
-```
-	// To be done.
-```
+### **Instructions for Manual Testing**  
+Given below are instructions to test the app manually.
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing. We also recommand testers to have a stable Internet connection when carrying out the testing so that the application can successfully retrieve the module information from <a href = "https://api.nusmods.com/v2/">NUSMods API</a>
+</div>
+
+#### 1. Launch and Shutdown
+
+1. Initial launch
+   1. Download the jar file from the [release page](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases) and copy into an empty folder.
+   2. Launch a terminal and navigate the to folder containing the jar file
+   3. Run the jar file by entering command `java -jar Nuke.jar`  and hit enter(replace `Nuke.jar` by the actual file name you downloaded from the [release page](https://github.com/AY1920S2-CS2113T-T13-2/tp/releases))
+   4. Expected output: **Nuke** startup screen and welcome message is displayed
+2. Shut down of application
+   1. Enter command `bye` and hit enter
+   2. Expected output: **Nuke** program terminates with farewell message displayed.
+
+#### 2. Add Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the Add Commands below are assumed to be executed at the root directory.
+</div>
+
+1. Add modules
+   1. Correct usage:
+      1. Test case: `addm cs2113t`
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Module CS2113T Software Engineering & Object-Oriented Programming is added.`
+   2. Wrong usage:
+      1. Test case: `addm cs1111`
+      2. Expected: the program will prompt the user with message: `Sorry, the module is not provided by NUS currently.`
+      3. Test case: `addm cs2113t` **after** executing `addm cs2113t` 
+      4. Expected: the program will prompt the user with message: `Sorry, the module already exists.`
+2. Add category
+   1. Correct usage:
+      1. Test case: `addc Project -m cs2113t` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Category Project is created.`
+   2. Wrong usage:
+      1. Test case: `addc Tutorial -m cs2113t` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `Sorry, the category already exists.`
+      3. Test case: `addc Project -m cs3235` **without** adding `cs3235` as *module*
+      4. Expected: the program will prompt the user with message `Sorry, the module is not found.`
+3. Add task
+   1. Correct usage:
+      1. Test case: `addt assignment2 -m cs2113t -c Assignment -d tmr 23:59 -p 15` **after** adding `cs2113t` as *module*
+      2. Expected: the program will prompt the user with message: `SUCCESS!! Task assignment2 is created.`
+   2. Wrong usage:
+      1. Test case: `addt assignment2` 
+      2. Expected: the program will prompt the use with message: `Sorry, unable to execute the command at the current directory level. Either move to the appropriate directory level, or enter the full directory path.`
+      3. Test case: `addt testingaveryveryveryveryverylongstring -m cs2113t -c Assignment -d tmr 23:59 -p 15` **after** adding `cs2113t` as *module*
+      4. Expected: the program will prompt the user with message: `Sorry, the task description cannot exceed 25 characters.`
+4. Add file
+   1. Correct usage:
+      1. Test case: `addf test.pdf -m cs2113t -c Assignment -t assignment2 -f c:\users\null\downloads\assignment2.pdf` **after** adding an `assignment2` *task* under `Assignment` *category* and `cs2113t` *module*, assuming `c:\users\null\downloads\assignment2.pdf` exists.
+      2. Expected: the program will prompt the user with message: `SUCCESS!! File test.pdf is added.`
+   2. Wrong usage:
+      1. Test case: `addf test.pdf -m cs2113t -c Assignment -t non-exist-task -f c:\users\null\downloads\assignment2.pdf` **without** adding the respective *task*
+      2. Expected: the program will prompt the user with message: `Sorry, the task is not found.`
+
+#### 3. Delete Command
+
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the Delete Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</div>
+
+1. Delete modules
+   1. Correct usage:
+      1. Test case: `delm cs2113t`
+      2. Expected: the program will prompt the user with message: `Confirm delete CS2113T Software Engineering & Object-Oriented Programming?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Module(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delm cs1111`
+      2. Expected: the program will prompt the user with message: `Sorry. No modules found.`
+2. Delete category
+   1. Correct usage:
+      1. Test case: `delc Assignment -m cs2113t` 
+      2. Expected: the program will prompt the user with message: `Confirm delete Assignment?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Category(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delc Project -m cs2113t` 
+      2. Expected: the program will prompt the user with message: `Sorry. No categories found.`
+3. Delete task
+   1. Correct usage:
+      1. Test case: `delt assignment2 -m cs2113t -c Assignment` 
+      2. Expected: the program will prompt the user with message: `Confirm delete assignment2?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Task(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delt non-exist-task` 
+      2. Expected: the program will prompt the use with message: `Sorry. No tasks found.`
+4. Add file
+   1. Correct usage:
+      1. Test case: `delf test.pdf -m cs2113t -c Assignment -t assignment2`
+      2. Expected: Expected: the program will prompt the user with message: `Confirm delete test.pdf?` and user enter `y` and hit enter, the program will prompt the user with message: `SUCCESS!! Files(s) have been deleted.`
+   2. Wrong usage:
+      1. Test case: `delf non-exist.pdf -m cs2113t -c Assignment -t assignment2` 
+      2. Expected: the program will prompt the user with message: `Sorry. No files found.`
+
+#### 4. List Command
+<div class="alert alert-warning">  
+<i class="fa fa-exclamation"></i> <b>Note</b> <br>   
+All the List Commands below are assumed to be executed at the root directory.<br> And user has <b>only</b> added a <i>module</i> <code>cs2113t</code>, a <i>task</i> called <code>assignment2</code> under the <i>category</i> <code>Assignment</code>, with a <i>file</i> called <code>test.pdf</code>
+</div>
+
 
 [Back To Top](#table-of-contents)    
 <br>  
