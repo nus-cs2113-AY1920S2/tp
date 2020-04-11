@@ -150,6 +150,7 @@ feature to obtain a combined schedule of selected ```Contact```s.
 The ```schedulelogic``` component consists of the class ```ScheduleHandler```. The key interactions of `ScheduleHandler ` 
 with 2 classes, ```CommandHandler``` and ```Contact```, are explained in the class 
 diagram and description below.
+
 <img src="images/schedulelogic.png" width="80%">
 
 *Fig 5. Class diagram of the logic.schedulelogic component*
@@ -199,7 +200,8 @@ The ```contacts``` component of our application consists of 2 classes: ```Contac
 
 ### 2.5. Storage component
 
-![storage component class structure](images/storage_class_diagram.png)
+<img src="images/storage_class_diagram.png" width="50%">
+
 *Fig 9. Class diagram of the storage component*
 
 Fig 9. shows the structure of Storage. It is created by WhenFree class to handle the loading and saving of scheduled meetings and member schedules.
