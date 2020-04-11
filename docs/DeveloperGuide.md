@@ -414,7 +414,25 @@ module.
 The sequence diagram below shows the mechanics of `MarkAsDoneCommand`:
 ![Mark As Done Sequence Diagram](https://github.com/DeetoMok/tp/raw/master/docs/images/Mark_As_Done_Sequence_Diagram.png)
 
- 
+#### Design Consider:
+- Alternative 1 (current choice): Marked the module with a failing grade without `appendFailString` method. 
+
+|||
+---|---
+|**Pros**|Shows the failed module details clearly|
+|**Cons**|User has to manually add a module using another Id or Name when adding the same module as the failed module.|
+|   |A module will also be added into AvailableModuleList when user manually adds a module|
+
+- Alternative 2 (current choice): Delete the original module marked being assigned a failing grade and add a placeholder
+ `SelectedModule` assigned with same failing grade.
+
+|||
+---|---
+|**Pros**|Allows user to add using the original name/id as the module that has been failed|
+|**Cons**|User may not know the name of the placeholder module and do not know how to delete it|
+
+
+
 ### 4.3.3 Searching modules with keywords
 The `FindCommand` allows users to look up commands using keywords. It then displays a list of related modules in
 the module plan and the list of available modules.
