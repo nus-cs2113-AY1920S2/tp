@@ -686,7 +686,61 @@ than using the mouse.
 1. Download the jar file and copy it into an empty folder.
 1. Run the jar file by typing java -jar Pac-2.1.jar after going into the file's home directory 
 folder in command terminal.  
- 
+
+#### Adding an event
+
+- Prerequisite: None
+- Test case: `event add n/1 v/2 d/2000-01-01 t/0000`    
+  Expected: An event is added with name, venue and datetime.
+- Test case: `event add n/1 v/2`    
+  Expected: An event is added without datetime. A warning message about unknown 
+  datetime is shown.
+- Test case: `event add n/1 d/2000-01-01 t/0000`    
+  Expected: An event is added without venue.
+- Test case: `event add n/1`    
+  Expected: An event is added with only name. A warning message about unknown 
+  datetime is shown.
+- Test case: `event add v/2`    
+  Expected: An event is added with default name and no datetime. A warning message 
+  about unknown datetime is shown.
+- Test case: `event add d/2000-01-01 t/0000` (no name and venue)    
+  Expected: No event is added. Error details shown.
+- Test case: `event add n/` (only flag, no parameter)     
+  Expected: No event is added. Error details shown.
+- Other incorrect commands to try:  
+    - either date or time, but not both, is given
+    - adding something before flag
+
+#### Deleting an event
+
+- Prerequisites: At least one event must be added beforehand.
+- Test case: `event delete i/1`     
+  Expected: First event is deleted from the list. The name of the deleted 
+  event is shown.
+- Test case: `event delete i/0` (or other index that is less than 1)   
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete i/10` (out of bound)     
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete i/apple` (not an integer)    
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete 1` (too short to look for flag)  
+  Expected: No event is deleted. Error details shown.
+- Test case: `event delete apple` (no flag)  
+    Expected: No event is deleted. Error details shown.
+
+#### Saving and loading corrupted data
+1. Make sure you have some events and/or student lists to load.  
+    - You can use `event add`, and `studentlist add` to add some.
+1. Close the application using `bye` command.   
+    - `All events are saved.` is shown if there are events to save.
+    - `All student lists are saved.` is shown if there are student lists to save.
+    - They are saved under `data/`.
+1. Delete all commas and pipes under `eventlist.txt` to simulate data corruption.   
+1. Run the application again.
+1. You will see `...Corrupted event found. Only previous events are loaded.`
+1. If you have unmodifed events before the corrupted event, they will be loaded 
+and saved.
+
 #### Follow **all-in-one** command for following commands:  
 **Event**
 1. Add an event by typing  
