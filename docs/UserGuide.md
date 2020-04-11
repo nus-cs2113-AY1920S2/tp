@@ -13,7 +13,7 @@ ESC is meant to help students be able to study more effectively using the medium
 ## Quick Start
 1. Ensure that you have Java 11 or above installed on your computer.
 2. Download the latest version of `ESC` from [here](https://github.com/AY1920S2-CS2113-T15-2/tp/releases/tag/v2.1).
-3. Run ESC on your command terminal using this command: `java -jar <directory>/duke-v2.1.jar`
+3. Run ESC on your command terminal using this command: `java -jar <directory>/esc-v2.1.jar`
 
 The program is best viewed in a maximised window.
 
