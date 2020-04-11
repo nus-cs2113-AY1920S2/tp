@@ -82,7 +82,7 @@ Afterwards, LogicManager instantiates```schedulelogic``` and ```modulelogic``` s
 LogicManager forms a whole-part relationship with the classes in the Model component, mainly ```ContactList``` and ```MeetingList``` where all the data generated from user commands would be stored. Besides, ```LogicManager``` also stores a ```mainUser:Contact``` containing the user's timetable
 which is used to store scheduled meetings.
 
-### 2.3.1. Logic.modulelogic component
+### 2.3.1. logic.modulelogic component
 
 The modulelogic component retrives modules and module information from NUSMODS links.
 The modulelogic component consists of 4 classes: ```TimetableParser```, ```ModuleApiParser```, ```ModuleHandler```, ```LessonsGenerator```.
@@ -93,11 +93,11 @@ The modulelogic component consists of 4 classes: ```TimetableParser```, ```Modul
 4. ```Arraylist<String[]> ``` contains the start/end time, days and weeks of all modules the user is taking.
 <br>
 
-**Design of Logic.modulelogic component**
+**Design of logic.modulelogic component**
  
 ![logic.modulelogic Component](images/modulelogic.png)<br>
 
-The above figure shows the interaction between the 4 classes in ```Logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
+The above figure shows the interaction between the 4 classes in ```logic.modulelogic``` sub-component whenever a new user keys in his/her NUSMODS link.
 1. ```ModuleApiParser``` controls the API fetching logic and instantiates a HTTP GET request object to fetch a Json object from the open-sourced NUSMOD API server via ```parse()```
 2. ```ModuleApiParser ``` is called by ```ModuleHandler``` every time a new module is requested.
 4. Subsequently, ```ModuleHandler``` would clean the data and filter out any blacklisted modules provided by ```ModuleApiParser```, and stores the information into an ```ArrayList<ArrayList<String>>``` data structure to be used by ```LessonsGenerator```.
@@ -114,18 +114,30 @@ The above figure shows a full overview of the UML sequence of the entire Logic.m
  
 The information returned from ```LessonsGenerator``` would then be used in ```Command``` component.
  
-### 2.3.2. Logic.schedulelogic component
+### 2.3.2. logic.schedulelogic component
 
-The ```schedulelogic``` component finds common time slots from team members' schedules.
-The ```schedulelogic``` consists of the class ```ScheduleHandler```. 
+The purpose of the ```schedulelogic``` component is to put together several ```Contact```s' schedules into a combined schedule. 
+The ```schedulelogic``` component is used by the [`Display timetable of selected contacts`](#Display-timetable-of-selected-contacts) 
+feature to obtain a combined schedule of selected ```Contact```s.
 
-1. ```ScheduleHandler``` retrieves the schedule of ```Contact```s to generate a combined schedule.
+The ```schedulelogic``` component consists of the class ```ScheduleHandler```. The key interactions of `ScheduleHandler ` 
+with 2 classes, ```CommandHandler``` and ```Contact```, are explained in the class 
+diagram and description below.
 
-**Design of Logic.schedulelogic component**
- 
-![logic.schedulelogic Component](images/schedulelogic.png)<br>
+**Design of logic.schedulelogic component**
+![logic.schedulelogic Component](images/schedulelogic.png)
 
-### 2.3.4. Logic.commands component
+A `ScheduleHandler` object created by the `CommandHandler` class is passed an ArrayList of `Contact`s.
+
+The `ScheduleHandler` object retrieves the schedule of each `Contact` using `Contact#getSchedule`, and uses the retrieved 
+schedule to fill up its private class variable, combinedSchedule. `CommandHandler` can retrieve the combined schedule generated 
+by the `ScheduleHandler` object by calling `ScheduleHandler#getCombinedSchedule`.
+
+[Section 3.3](#Display-timetable-of-selected-contacts) below explains in detail how the ```schedulelogic``` component is used in the 
+implementation of the [`Display timetable of selected contacts`](#Display-timetable-of-selected-contacts) feature.
+<br>
+
+### 2.3.4. logic.commands component
 The ```commands``` component interprets the user command and call the ```modulelogic``` and ```schedulelogic``` components.
 The ```commands``` consists of the class ```CommandHandler```.
 
