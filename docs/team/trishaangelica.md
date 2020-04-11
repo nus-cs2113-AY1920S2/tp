@@ -39,7 +39,7 @@ SHOCO is a desktop application used for managing and planning of shopping lists 
         * Added the Manual Testing Section of the DG <ins>[#204](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/204/files)</ins>
            
     * Community:
-        * PRs reviewed (with non-trivial review comments): <ins>[#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38/files)</ins> , <ins>[#169](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/169/files)</ins>
+        * PRs reviewed (with non-trivial review comments): <ins>[#38](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/38)</ins> , <ins>[#169](https://github.com/AY1920S2-CS2113T-T13-1/tp/pull/169)</ins>
     
     * Beyond the project team:
         * Reported feature flaws, documentation bugs and functionality bugs of varying severity for other project teams. (Pull requests <ins>[#1 - #6](https://github.com/trishaangelica/ped/issues)</ins>)
