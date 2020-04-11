@@ -4,8 +4,8 @@ By: `AY1920S2-CS2113T-T12-1`
 ## Table of Contents
 * [1. Setting up](#1-setting-up)
     * [1.1. Prerequites](#11-Prerequisites)
-    * [1.2. Setting up project](#12-Setting-up-project)
-    * [1.3. Verifying setup](#13-Verifying-setup)
+    * [1.1. Setting up project](#12-Setting-up-project)
+    * [1.1. Verifying setup](#13-Verifying-setup)
 * [2. Design](#2-design)
 	* [2.1. Architecture](#21-architecture)
 	* [2.2. UI component](#22-ui-component)
@@ -488,6 +488,21 @@ meetings into account when scheduling a common timeslot timetable.
 ## Appendix C: Use Cases
 (For all use cases below, the **System** is WhenFree and the **Actor** is the ```user```, unless otherwise stated.)
 ```$xslt
+Use case: Show(more) timetable/s
+MSS:
+1) User wants to see the common timeslots together with 3 of his/her contacts to schedule a common meeting timeslot.
+2) User keys in the command together with the index of the contacts.
+3) System generates a dynamic timetable for this week.
+4) User wants to see next weeks timetable with all the common timeslots among his contacts as well.
+5) User types in the command "more".
+6) System generates two timetable side by side, each representing this week and next week's timetable.
+Use case ends.
+
+Extension:
+* System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
+* System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
+```
+```$xslt
 Use case: Add contacts
 MSS:
 1) User has a group of team mates for a certain project.
@@ -566,21 +581,6 @@ Use case ends.
 Extensions:
 * System detects an invalid index - System catches it and use case resumes from step 2.
 ```
-```$xslt
-Use case: Show(more) timetable/s
-MSS:
-1) User wants to see the common timeslots together with 3 of his/her contacts to schedule a common meeting timeslot.
-2) User keys in the command together with the index of the contacts.
-3) System generates a dynamic timetable for this week.
-4) User wants to see next weeks timetable with all the common timeslots among his contacts as well.
-5) User types in the command "more".
-6) System generates two timetable side by side, each representing this week and next week's timetable.
-Use case ends.
-
-Extension:
-* System detects that "more" is keyed in without "timetable" command preceding it- System catches it and use case resumes from step 2.
-* System detects that index of the contacts is invalid - System catches it and use case resumes from step 2.
-```
 
 [&#8593; Return to Table of Contents](#table-of-contents)
 
@@ -595,18 +595,10 @@ Extension:
 5. Should work on both 32-bit and 64-bit environments.
 6. Should not exceed 100MB in size given normal usage.
 
-[&#8593; Return to Table of Contents](#table-of-contents)
-
-<br/>
-
 ## Appendix E: Glossary
 
 * **Blacklisted modules** - Blacklisted modules are modules that doesn't follow the conventional 13 weeks programme and as such, the JSON pulled from NUSMODS api is unable to be processed by ```Logic.modulelogic``` component.
 * **Mainstream OS** -Windows, LinuxOS, OS-X(MacOS)
-
-[&#8593; Return to Table of Contents](#table-of-contents)
-
-<br/>
 
 ## Appendix F: Instructions for Manual Testing
 
@@ -690,7 +682,7 @@ Given below are instructions to test the app manually.
                                                                                                                                                                                                                                     
     > :bulb: Type ```delete``` to see the required format.
 
-### F.6. Editing a schedule 
+### F.6. Editing a contact's timetable
 1. Editing main user's timetable
     1. Prerequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
     2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
@@ -724,7 +716,3 @@ Given below are instructions to test the app manually.
     
     
     > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
-
-[&#8593; Return to Table of Contents](#table-of-contents)
-
-<br/>

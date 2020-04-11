@@ -18,18 +18,23 @@ set up and use this application easily by following along this User Guide.
 
 Get ready the NUSMODS links of you and your friends, and let's get started!
 
+
+> :bulb: This symbol denotes a tip which you might find useful when using the application.
+
+> :information_source: This symbol denotes some information or caveats that you will need to take note of when using the application.
+
 <br/><br/>
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
-    - To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). 
-    - To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html).
+    > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). 
+    > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Download the .jar file of our latest release of WhenFree, V2.1 [here](https://github.com/AY1920S2-CS2113T-T12-1/tp/releases).
 3. Copy the downloaded .jar file to an empty folder.
 4. Open Command Prompt or Terminal and navigate to the folder using ```cd <folder_path>```.
 5. Run the .jar file using ```java -jar <file_name.jar>```.
-[NOTE] Please resize the terminal to full screen mode to make full use of our CLI ASCII art.
+> :information_source: Please resize the terminal to full screen mode to make full use of our CLI ASCII art.
 You will see this welcome message if you have done the above steps correctly.
 
 ![welcome Message](images/welcome_msg.png)
@@ -58,8 +63,8 @@ contact.
 * You must add in your (main user's) contact before you can use the application. 
 If you try to enter a command before adding in your contact, WhenFree will remind
 you to key in your contact first. You can add as many contacts as you want thereafter.
-* `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces.
-* Detalied instructions to obtain the NUSMODS links to the NUSMODS timetable can be found in the [FAQ](#faq) section.
+> :information_source: `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces.
+> :information_source: Detailed instructions to obtain the NUSMODS links to the NUSMODS timetable can be found in the [FAQ](#faq) section.
 
 Format: 
     
@@ -84,7 +89,7 @@ Example output:
 
 ### List all contacts: `contacts`
 Displays index and name of all contacts stored in the program.
-* This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
+> :bulb: This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
 Format:
     
@@ -107,7 +112,7 @@ Example output:
 There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
 and to display a combined timetable of multiple selected contacts.
 * For all 3 uses cases, the `timetable` command shows only the current week's timetable. **To see up to two weeks of timetable, enter `more` command after the `timetable` command.** 
-- You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
+> :bulb: You can check `<Contact Index>` of the contact(s) whose timetable you wish to display, by listing all contacts using 
 [`contacts`](#list-all-contacts-contacts).
 
 **Use case 1:** Displays your (main user's) timetable.
@@ -147,7 +152,7 @@ Example output:
 <br/>
 
 **Use case 3:** Displays the combined timetable of multiple selected contacts. You will need to key in `<Contact Index>` of each of the selected contacts.
-* You can enter as many contacts as you wish
+> :bulb: You can enter as many contacts as you wish
    
 Format: 
    
@@ -164,7 +169,7 @@ Example output:
 <br/>
 
 **Extended view:** Displays up to 2 weeks of timetable.
-* Extended view is applied to the most recent timetable command
+> :information_source: Extended view is applied to the most recent timetable command
 
 Format:
 
@@ -198,7 +203,7 @@ as `15:00`.
 * `<Meeting Name>` should be a single word with no whitespace character.
 * Scheduling a meeting will modify only your (main user's) timetable, to be busy at the specified time slot. 
 Timetables of other contacts will not be modified.
-* You cannot schedule a meeting if your timetable is busy at the specified time slot. When Free will remind you to check
+> :information_source: You cannot schedule a meeting if your timetable is busy at the specified time slot. WhenFree will remind you to check
 your timetable if you try to schedule a meeting during a time slot which you are busy for.
 
 
@@ -222,7 +227,7 @@ Example output:
 
 ### List all meetings: `meetings`
 List all scheduled meetings stored in program.
-* This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
+> :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Indec>` a meeting.
 
 Format: 
     
@@ -253,7 +258,7 @@ week and the next week, from the current date onwards. For example, if the date 
     this week, the date has passed. The future date 26 May is also not within the current week and the next week.
 * `<Start Time>` and `<End Time>` should be in the 24-hour HH:MM format. For example, the time 3pm should be represented
 as `15:00`.
-* You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
+> :bulb: You can check `<Contact Index>` of the contact whose timetable you wish to edit, by listing all contacts using 
 [`contacts`](#list-all-contacts-contacts).
 
 
@@ -295,8 +300,8 @@ Example output:
 
 ### Delete an item: `delete`
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
-- You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
-- You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
+> :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings).
+> :bulb: You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
 
 **Use case 1:** Deletes a **meeting** from the meeting list. You will need to key in **Meeting Index** of the meeting you wish to delete.
 
