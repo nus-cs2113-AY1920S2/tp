@@ -54,7 +54,7 @@ improved format standardisation.
 * Reported bugs in other team's product in PE dry run.
     * [PED](https://github.com/ananda-lye/ped/issues)
 
-### Contributions to the User Guide (Extracts)
+## Contributions to the User Guide (Extracts)
 
 ### Finding Activities by Name: `find`
 **Usage:** Users can request for a sub-list of activities that has names which contain any of the given keywords. If there are more than one keyword, each keyword should be separated with ` / `.
