@@ -128,7 +128,7 @@ The ```commands``` consists of the class ```CommandHandler```.
 
 ### 2.4. Model component
 The ```model``` component holds data generated in the application in memory. The data can be accessed by methods that require
-it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contact```
+it when the application is running. The model component contains 2 sub-components: ```meeting```, ```contacts```
 
 ### 2.4.1. Model.meetings component
 The ```meetings``` component of our application consists of 2 classes: ```Meeting```, ```MeetingList```
@@ -427,7 +427,7 @@ Given below are instructions to test the app manually.
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
     2. Double click the jar file
-    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar jarname.jar``` to access the application.
+    > :information_source: You can also open the cmd terminal from windows or bash terminal from linux/mac os and key in ```java -jar WhenFree-2.1.jar``` to access the application.
    
     **Expected: The CLI application would be running with our logo: WhenFree.**
     
@@ -444,30 +444,64 @@ Given below are instructions to test the app manually.
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
     > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
-    
+     
     2. Test case: ```Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1``` <br>
                   ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
                   ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
     **Expected: 3 new contacts will be added, with their respective modules.**
     
-        
+    3. Test case: ```Timmy https://nusmods.com/timetable/sem-2/brokenlink``` <br>
+    **Expected: Contact is not updated into contact list as nusmods URL is invalid** <br>
+    > :loudspeaker: Names must not contain purely integers. It should either be entirely alphabetical or alphanumerical.
+    
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
     1. Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
     2. Check to see if there are any empty slots. Slots marked with ```X``` means the slot is taken up.
     3. Scheduling of meeting is allowed as long as ```X``` is not marked in the main user's timetable.
-    4. Test case: ```schedule test_meeting startDate startTime endDate endTime```
-    
-    > :information_source: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```.
- 
+    4. Test case: ```schedule test_meeting startDate startTime endDate endTime``` <br>
+    > :information_source: startDate/endDate is found in the ```timetable``` command. For eg, scheduling 16th April 11:30am to 16th April 3pm would be ```schedule testMeeting 16 11:30 16 15:00```. 
+    > :information_source: startTime and endTime should strictly be in 30minutes blocks, startDay and endDay should strictly follow the date given in ```timetable```  command.
+    > :loudspeaker: TIP: Type ```schedule``` to see the required format.
+             
 ### F.4. Deleting a meeting 
 1. Deleting a scheduled meeting.
     1. Prerequisites: Type ```meetings``` to list down all meetings in the main user's timetable.
     2. Test case: ```delete 1```. <br>
-    **Expected: The meeting scheduled previously in F.3 is deleted.**
+    **Expected: The meeting scheduled previously in F.3 is deleted. If no meeting is scheduled at all, an error would be shown to user.** <br>
+    3. Test case: ```delete 0``` <br>
+    **Expected: No meeting would be deleted since the index starts from 1** <br>
+    > :loudspeaker: TIP: Type ```delete``` to see the required format.
+                                                                                                                                                                                                                                                                                                                                                                                
+### F.4. Deleting a contact
+1. Deleting a contact.
+    1. Prerequisites: Type ```contacts``` to list down all the contacts currently stored.
+    2. Test case: ```delete name```. <br>
+    **Expected: The desired contact would be deleted** <br>
+    > :information_source: You cannot delete main user contact.
+    > :loudspeaker: TIP: Type ```delete``` to see the required format.
 
-### F.5. Editing a particular timetable
+### F.6. Editing a contact's timetable
 1. Editing main user's timetable
-    1. You 
+    1. Prequisites: Type ```timetable``` to check which slots from the main user timetable to free up or block out.
+    2. Test case: ```edit free 0 startDate startTime endDate endTime``` <br>
+    **Expected: The date and time given would be free up** <br>
+    3. Test case: ```edit busy 0 startDate startTime endDate endTime``` <br>
+    **Expected: The date and time given would be blocked out** <br>
+    4. Other incorrect edit commands to try: not stating whether it is ```free``` or ```busy```, ```startTime endTime``` doesn't follow 30minutes blocks.
+    > :loudspeaker: TIP: Type ```edit``` to see the required format.
   
+
 ### F.2. Saving data
+1. Data is saved automatically in the ```/data``` directory where the jar file is located in.
+2. Loading previously scheduled meetings.
+    1. Prerequisites: ```/data/meeting_list.txt``` is not empty.
+    2. The text file stores every meeting in each line, and it contains information of the meeting name, start/end date, start/end time.
+    3. Expected: The stored meetings would be shown in the application via ```meetings``` command and is also reflected in the ```timetable``` command.
+    > :information_source: Note that you can't manually add meeting simply by editing ```/data/meeting_list.txt``` since the meetings generated would also be reflected in the main user's timetable. Editing it manually would corrupt the timetable schedule.
+    
+3. Loading previously stored contacts.
+    1. Prequisites: ```/data``` directory contains at least one contact file in the form of ```name_schedule.txt```.
+    2. The text file stores all 13 weeks schedule of a particular contact. The weeks are line separated and each word represents a block of 30minutes time.
+    3. Expected: The stored contacts would be shown in application via ```contacts``.
+    > :information_source: It is suggested not to manually edit the contacts file directly since it could potentially corrupt your data. We highly recommend scheduling meetings directly via the application instead.
