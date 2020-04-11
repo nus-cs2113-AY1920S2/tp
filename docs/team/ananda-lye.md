@@ -83,8 +83,6 @@ command) by providing the `-s` flag after each `find` or `filter` command.
 **Example:**  
 If we want to find all CS2106 tutorials, we can first use `filter 2106` to filter out all activities tagged `2106`, then use the find command with the flag, `find -s Tutorial` to get a list of all 2106 Tutorials.
 
-![chain graph activities](./pictures/filter-find_chain.PNG)
-
 #### Single Input Chaining: `;`
 **Usage:** Users can achieve the same outcome as multiple `-s` chaining with a single input. This is done by separating
 `find` and `filter` commands with ` ; `.
