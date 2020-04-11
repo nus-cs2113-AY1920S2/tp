@@ -35,8 +35,8 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "restaurant"
-    archiveVersion = "2.0"
+    archiveBaseName = "[CS2113T-T14-4][RestaurantDailyReport]"
+    archiveVersion = "2.1"
     archiveClassifier = null
     archiveAppendix = null
 }

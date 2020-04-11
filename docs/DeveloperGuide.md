@@ -413,9 +413,9 @@ Adding an ingredient into stock.
 * Test case: `add stock; i/tomato; q/10; p/0.50;`
     - Expected: Ingredient `tomato` added into the stock.
 * Test case: `add stock; i/tomato; q/10; p/0.50;`
-    - Expected: The quantity of `tomato` increased to 20 due to the addition from the previous entry.
+    - Expected: The quantity of `tomato` increased to `20` due to the addition from the previous entry.
 * Test case: `add stock; i/rice; q/10; p/randomNumber;`
-    - Expected: Rice will not be added into the stock. An error message will be displayed to request the user to type in the price
+    - Expected: `rice` will not be added into the stock. An error message will be displayed to request the user to type in the price
     as a double.
 * Test case: `add stock; i/tOMaTO; q/10; p/0.50`
     - Expected: tOMaTO will be added into the stock. However, because of case-sensitivity, the quantity will not add on to the previous `tomato` 
@@ -423,7 +423,9 @@ Adding an ingredient into stock.
 * Other incorrect add commands to try: `add stock; i/tomato; q/LOL; p/10` or `add stock; i/tomato;`
     - Expected: The ingredient will not be added. An error message will be displayed accordingly.
 * Extra Notes: 
-    - Adding `add stock; i/tomato; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
+    - The price of the ingredient can be overwritten. 
+    For example:
+    - Adding `add stock; i/apple; q/10; p/0.50` and then `add stock; i/apple; q/10; p/10.00` will overwrite the current price of `$0.50` to `$10.00`. 
     **This is intentional.**
 
 #### E.2.3. Adding a reservation
@@ -453,7 +455,7 @@ Deleting an ingredient in the stock.
 * Test case: `delete stock; i/tomato; q/1`
     - Expected: The quantity of tomato will be reduced by 1. Assuming that you have followed the add commands in E.2.2, the count of `tomato`
     should be `19` now.
-* Test case:  `delete stock; i/tOMaTO;
+* Test case:  `delete stock; i/tOMaTO;`
     - Expected: The ingredient `tOMaTO` is completely removed in the stock.
 * Test case: `delete stock; q/10`
     - Expected: No ingredient is deleted. An error message will be displayed to remind the user to input an ingredient name.
@@ -491,8 +493,8 @@ Searching a dish in the menu.
 #### E.4.2 Search an ingredient
 Searching an ingredient in the menu.
 * Test case: `search stock; k/tomato;`
-    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2., the only ingredient that will      
-    be displayed is `tomato`.
+    - Expected: All possible ingredients' names that contain `tomato` will be displayed. Assuming you have followed E.3.2 strictly, the only ingredient
+    that will be displayed is `tomato`. Note that we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `search stock; k/banana`
     - Expected: A message will be displayed to show that there is currently no existing ingredient that matches the keyword you have just given.
 * Test case: `search stock; k/TOMATO;`
@@ -526,7 +528,8 @@ Listing all dishes in the menu.
 Listing all ingredients in the stock.
 * Test case: `list stock;`
     - Expected: All ingredients in the stock will be listed. Assuming that you have followed up to E.4.2 strictly, the only ingredient listed would be
-    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently.
+    `tomato`. Note that there will be a different message displayed to inform the user if the stock does not have any ingredient currently. 
+    Also, we did not take into account the ingredient `apple` used in the `Extra Notes` in E.2.2.
 * Test case: `list stock`
     - Expected: An error message shows to remind the user that it is a incorrect input format and the user can type `help` for the list of command.
 
