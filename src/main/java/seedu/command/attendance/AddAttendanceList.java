@@ -74,7 +74,7 @@ public class AddAttendanceList extends Command {
             UI.display("There is no existing student list to import");
         } else {
             ui.printStudentListCollection();
-            appendWithExistingList(fetchAttendanceList());
+            appendWithExistingList(fetchStudentList());
         }
     }
 
@@ -83,7 +83,7 @@ public class AddAttendanceList extends Command {
      * User can select base on the index given.
      * @return A studentList selected from the studentListCollection.
      */
-    private ArrayList<String> fetchAttendanceList() {
+    private ArrayList<String> fetchStudentList() {
         UI.display("Please state the index of the studentList that you wish to import");
         ui.readUserInput();
         int index = Integer.parseInt(ui.getUserInput());

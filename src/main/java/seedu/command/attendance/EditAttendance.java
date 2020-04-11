@@ -84,8 +84,7 @@ public class EditAttendance extends Command {
      */
     private void decideEdit() {
         UI.display("Do you wish to change the `name` or change the `status`");
-        ui.readUserInput();
-        String input = ui.getUserInput();
+        String input = ui.getStringInput();
         switch (input.toLowerCase().trim()) {
         case "name":
             editName();

@@ -150,7 +150,6 @@ The following shows a successful case of adding a new student list.
     |___________|____________________________________________________________________________________|
     
 The following will occur if there is already an existing student list with the same name. 
-The following will occur if there is already an existing student list with the same name. 
 
     >>> studentlist add
     What is the name of your list?
