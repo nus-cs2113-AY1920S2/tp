@@ -25,27 +25,6 @@ As each item _(module, category, task and file)_ appears to be of different hier
 ##### **Highlights**
 Implementation of this directory structure was done about midway in the project. As such, it resulted in various changes to the way we manage the module and task entities previously. Each directory has to be attached to a parent directory, so an additional attribute needs to be considered before adding an item to its list. Considerations also need to be made to be able to obtain the current directory's information to fill up missing attributes in the user's commands, which was rather challenging indeed. A sudden change in the structure of the project may also implicate other features made previously, so checking needs to be done to identify any potential errors and bugs, and thereafter remedy accordingly.
 
-#### **Implemented Category Features**
-##### **What it does**
-Enables users to add, delete, list and edit their categories.
-
-##### **Justification**
-Categories were not implemented initially. However, on further deliberation, a Category directory was inserted between the Module's and the Task's directory. A category serves to further subdivide the user's tasks into various categories depending on the type of tasks. For instance, Tutorial types of tasks can be put into the Tutorial Category. This addition enhances the organisation of the user's tasks, which ultimately makes finding of specific tasks easier. Furthermore, this also allows users to have the same _task description_ for tasks in separate categories.
-
-##### **Highlights**
-As the Category directory had not been implemented initially, there was a change the code significantly to redirect the parent directory to the correct directory. This may also have further implications to other command features such as _list_, which now has an additional layer to filter from.
-
-
-#### **Implemented File Features**
-##### **What it does**
-Enables users to add, delete, list, edit and open their files.
-
-##### **Justification**
-These features will enable users to be able to access their files through the **Nuke** application, without going through the hassle of finding their files normally. The commands to execute each file feature are short and simple, which further improves the efficiency of file access. This was also one of the team's [user stories](https://ay1920s2-cs2113t-t13-2.github.io/tp/DeveloperGuide.html#user-stories) that we hope to implement.
-
-##### **Highlights**
-The implementation of the file features was initially rather tricky. Research had to be done to learn how to utilise Java's _Files_ and _Paths_ API to copy, delete and open files based on their file name and path. How the application will be able to manage deleted or renamed files are also issues to consider when implementing the file features.
-
 #### **Implemented Prompts on Deletion**
 ##### **What it does**
 Prompts the user to confirm the deletion of item(s), instead of deleting the items straightaway.
