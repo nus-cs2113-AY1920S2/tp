@@ -4,7 +4,6 @@ import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.commons.exceptions.NegativeNumberException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.Profile;
 import seedu.dietmanager.model.RecipeManager;
@@ -84,13 +83,10 @@ public class BuildNewRecipeCommand extends Command {
         } else if (noProfileFound) {
             this.resultString = MessageBank.INVALID_PROFILE_MESSAGE;
         } else if (isInvalidFormat) {
-            this.resultString = "You have given wrong format for parameters!!!\n"
-                    + "First parameter is maximum food types, need to provide an integer.\n"
-                    + "Second parameter is activity level, choose from -- low/moderate/high.";
+            this.resultString = MessageBank.INCORRECT_PARAMS_TO_BUILD_RECIPE_MESSAGE;
         } else {
             if (maxNumOverflow) {
-                this.resultString = "We support at most 3 kinds of food in a meal, "
-                        + "otherwise it's easy to overtake calories and not good for your health!\n\n";
+                this.resultString = MessageBank.EXCEEDS_MAX_FOOD_TYPES_MESSAGE;
             }
             this.resultString += RecipeManager.getInstance().getRecipe();
         }

@@ -4,7 +4,6 @@ import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
@@ -34,7 +33,7 @@ public class CheckRequiredCaloriesCommand extends Command {
         try {
             String[] descriptionArray = DescriptionParser.parseDescription(description, ARGUMENTS_REQUIRED);
             this.date = descriptionArray[0].trim().toUpperCase();
-            this.activityLevel = descriptionArray[1];
+            this.activityLevel = descriptionArray[1].toLowerCase();
             Weekday.valueOf(this.date);
         } catch (NullPointerException e) {
             noDescription = true;

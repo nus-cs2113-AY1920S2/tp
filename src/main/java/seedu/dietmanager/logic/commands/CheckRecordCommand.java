@@ -4,7 +4,6 @@ import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
 import seedu.dietmanager.logic.Result;
-import seedu.dietmanager.logic.commands.Command;
 import seedu.dietmanager.logic.parser.DescriptionParser;
 import seedu.dietmanager.model.DailyFoodRecord;
 import seedu.dietmanager.model.Profile;
@@ -61,15 +60,15 @@ public class CheckRecordCommand extends Command {
 
         switch (mealType) {
         case "morning":
-            this.resultString = date + " Morning: " + System.lineSeparator() + record.showBreakfast()
+            this.resultString = date + " Morning:" + System.lineSeparator() + record.showBreakfast()
                     + record.showDailyCalories(mealType);
             break;
         case "afternoon":
-            this.resultString = date + " Afternoon: " + System.lineSeparator() + record.showLunch()
+            this.resultString = date + " Afternoon:" + System.lineSeparator() + record.showLunch()
                     + record.showDailyCalories(mealType);
             break;
         case "night":
-            this.resultString = date + " Night: " + System.lineSeparator() + record.showDinner()
+            this.resultString = date + " Night:" + System.lineSeparator() + record.showDinner()
                     + record.showDailyCalories(mealType);
             break;
         default:

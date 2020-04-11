@@ -1,5 +1,6 @@
 package seedu.dietmanager.model;
 
+import seedu.dietmanager.commons.core.MessageBank;
 import seedu.dietmanager.commons.core.Weekday;
 import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 
@@ -76,8 +77,8 @@ public class RecipeManager {
 
     public String getRecipeHead() {
         String recipeHead = String.format("%1$-10s", " ") + "morning";
-        recipeHead = String.format("%1$-90s", recipeHead) + "afternoon";
-        recipeHead = String.format("%1$-170s", recipeHead) + "night\n";
+        recipeHead = String.format("%1$-80s", recipeHead) + "afternoon";
+        recipeHead = String.format("%1$-150s", recipeHead) + "night\n";
         return recipeHead;
     }
 
@@ -103,7 +104,8 @@ public class RecipeManager {
      */
 
     public boolean buildRecipe(Profile profile, int num, String activityLevel) {
-        CheckRequiredCaloriesCommand command = new CheckRequiredCaloriesCommand("check-required-cal");
+        CheckRequiredCaloriesCommand command =
+                new CheckRequiredCaloriesCommand(MessageBank.CHECK_REQUIRED_CAL_COMMAND_PROMPT);
         double cap = command.getRecommendedCaloriesIntake(profile, activityLevel) / 3;
 
         FoodNutritionRecord foodInfo = FoodNutritionRecord.getInstance();

@@ -2,18 +2,22 @@ package seedu.dietmanager.logic.parser;
 
 import seedu.dietmanager.commons.exceptions.InvalidCommandException;
 import seedu.dietmanager.commons.exceptions.InvalidFormatException;
-import seedu.dietmanager.logic.commands.CheckBmiCommand;
-import seedu.dietmanager.logic.commands.Command;
-import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
-import seedu.dietmanager.logic.commands.CheckRecordCommand;
-import seedu.dietmanager.logic.commands.RecordMealCommand;
 import seedu.dietmanager.logic.commands.AddFoodCommand;
-import seedu.dietmanager.logic.commands.DeleteFoodCommand;
-import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
+import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
+import seedu.dietmanager.logic.commands.CalculateCaloriesCommand;
+import seedu.dietmanager.logic.commands.CheckBmiCommand;
+import seedu.dietmanager.logic.commands.CheckRecordCommand;
 import seedu.dietmanager.logic.commands.CheckRequiredCaloriesCommand;
 import seedu.dietmanager.logic.commands.CheckWeightRecordCommand;
+import seedu.dietmanager.logic.commands.ClearFoodRecordCommand;
+import seedu.dietmanager.logic.commands.Command;
+import seedu.dietmanager.logic.commands.DeleteFoodCommand;
 import seedu.dietmanager.logic.commands.DeleteWeightCommand;
+import seedu.dietmanager.logic.commands.ExitCommand;
+import seedu.dietmanager.logic.commands.HelpCommand;
+import seedu.dietmanager.logic.commands.ListFoodDatabaseCommand;
 import seedu.dietmanager.logic.commands.ProfileCommand;
+import seedu.dietmanager.logic.commands.RecordMealCommand;
 import seedu.dietmanager.logic.commands.SetAgeCommand;
 import seedu.dietmanager.logic.commands.SetGenderCommand;
 import seedu.dietmanager.logic.commands.SetHeightCommand;
@@ -21,10 +25,7 @@ import seedu.dietmanager.logic.commands.SetNameCommand;
 import seedu.dietmanager.logic.commands.SetProfileCommand;
 import seedu.dietmanager.logic.commands.SetWeightCommand;
 import seedu.dietmanager.logic.commands.SetWeightGoalCommand;
-import seedu.dietmanager.logic.commands.BuildNewRecipeCommand;
 import seedu.dietmanager.logic.commands.ShowRecipeCommand;
-import seedu.dietmanager.logic.commands.ExitCommand;
-import seedu.dietmanager.logic.commands.HelpCommand;
 
 import java.util.Optional;
 
@@ -97,11 +98,20 @@ public class CommandParser {
             case "profile":
                 command = Optional.of(new ProfileCommand(commandPrompt.get()));
                 break;
+            case "check-weight-progress":
+                command = Optional.of(new CheckWeightRecordCommand(commandPrompt.get()));
+                break;
+            case "check-bmi":
+                command = Optional.of(new CheckBmiCommand(commandPrompt.get()));
+                break;
             case "list-food":
                 command = Optional.of(new ListFoodDatabaseCommand(commandPrompt.get()));
                 break;
             case "show-recipe":
                 command = Optional.of(new ShowRecipeCommand(commandPrompt.get()));
+                break;
+            case "clear-records":
+                command = Optional.of(new ClearFoodRecordCommand(commandPrompt.get()));
                 break;
             case "help":
                 command = Optional.of(new HelpCommand(commandPrompt.get()));
@@ -141,9 +151,6 @@ public class CommandParser {
             case "check-meal":
                 command = Optional.of(new CheckRecordCommand(commandPrompt.get(), description.get()));
                 break;
-            case "check-weight-progress":
-                command = Optional.of(new CheckWeightRecordCommand(commandPrompt.get(), description.get()));
-                break;
             case "check-required-cal":
                 command = Optional.of(new CheckRequiredCaloriesCommand(commandPrompt.get(), description.get()));
                 break;
@@ -161,9 +168,6 @@ public class CommandParser {
                 break;
             case "new-recipe":
                 command = Optional.of(new BuildNewRecipeCommand(commandPrompt.get(), description.get()));
-                break;
-            case "check-bmi":
-                command = Optional.of(new CheckBmiCommand(commandPrompt.get(), description.get()));
                 break;
             default:
                 throw new InvalidCommandException();

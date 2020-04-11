@@ -78,6 +78,10 @@ public class Profile {
         return record;
     }
 
+    public void clearAllFoodRecords() {
+        personalFoodRecord.clear();
+    }
+
     public List<Double> getWeightRecord() {
         return this.weightRecord;
     }

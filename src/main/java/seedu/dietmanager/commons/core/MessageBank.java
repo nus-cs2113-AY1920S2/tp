@@ -23,7 +23,7 @@ public class MessageBank {
 
     public static String FILE_ERROR_MESSAGE = "An error has occurred with the data files.";
 
-    public static String EXIT_COMMAND_MESSAGE = "Thank you and see you again soon!";
+    public static String EXIT_COMMAND_MESSAGE = "You are now exiting the application.";
 
     public static String EXIT_APP_MESSAGE = "Thanks for using Diet Manager! See you again soon. :)";
 
@@ -39,12 +39,14 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_CHANGE_MESSAGE = "Your weight goal has been changed to ";
 
+    public static String SHOW_PROFILE_MESSAGE = "Your profile information are as follows:";
+
     public static String PROFILE_UPDATE_MESSAGE = "Your profile has been successfully updated.";
 
     public static String INVALID_PROFILE_MESSAGE = "No valid profile found. To create a new profile, enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
-    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter: \n"
+    public static String CREATE_PROFILE_MESSAGE = "Please create a profile before using this command. Enter:\n"
             + "set-profile {name} {age} {gender} {height} {weight} {weight goal}";
 
     public static String BREAKFAST_RECORD_MESSAGE = "You just record the meal in the morning of: ";
@@ -97,7 +99,9 @@ public class MessageBank {
     public static String INVALID_DATE_MESSAGE = "You should choose a date from {Monday} to {Sunday}!\n"
             + "Either uppercase or lowercase is supported!";
 
-    public static String SPLIT_LINE = "----------------------------------------------------------------";
+    public static String RECORDS_CLEARED_MESSAGE = "You have just cleared all food records in the week!";
+
+    public static String LINE_SEPARATOR = "----------------------------------------------------------------";
 
     public static String WEIGHT_GOAL_ACHIEVED_MESSAGE = "YOU DID IT! You have achieved your weight goal!\n"
             + "All girls/boys will now fall for your determination and physique! :)\n"
@@ -105,6 +109,28 @@ public class MessageBank {
 
     public static String WEIGHT_GOAL_NOT_ACHIEVED_MESSAGE = "%.2f kg more to go to meet your dream girl/boy!";
 
+    public static String INCORRECT_CALORIES_INFO_MESSAGE =
+            "Sorry, to add new food to database you must input correct calories info."
+                    + System.lineSeparator() + "It has to be positive Integer or Float";
+
+    public static String ADDED_FOOD_ALREADY_EXIST_MESSAGE =
+            "No need to add! We already have this food in our database!";
+
+    public static String NEW_FOOD_ADDED_MESSAGE = "You have added a new food into the database:\n";
+
+    public static String FOOD_TO_DELETE_NOT_EXIST_MESSAGE =
+            "No need to delete! Referred Food doesn't exist in database";
+
+    public static String FOOD_DELETED_MESSAGE = "You have just deleted this food from the database: ";
+
+    public static String INCORRECT_PARAMS_TO_BUILD_RECIPE_MESSAGE = "You have given wrong format for parameters!!!\n"
+            + "First parameter is maximum food types, need to provide an integer.\n"
+            + "Second parameter is activity level, choose from -- low/moderate/high.";
+
+    public static String EXCEEDS_MAX_FOOD_TYPES_MESSAGE = "We support at most 3 kinds of food in a meal, "
+            + "otherwise it's easy to overtake calories and not good for your health!\n\n";
+
+    public static String CHECK_REQUIRED_CAL_COMMAND_PROMPT = "check-required-cal";
 
     public static final String FUNCTION_LIST =
             " _______________________________________________________________________"
@@ -117,6 +143,22 @@ public class MessageBank {
                     + "  set user's profile data                       |\n"
                     + "|   profile                                                  |"
                     + "  View user profile details                     |\n"
+                    + "|   set-name USER_NAME                                       |"
+                    + "  Set the user's name                           |\n"
+                    + "|   set-age USER_AGE                                         |"
+                    + "  Set the user's age                            |\n"
+                    + "|   set-height USER_HEIGHT                                   |"
+                    + "  Set the user's height                         |\n"
+                    + "|   set-weight USER_WEIGHT                                   |"
+                    + "  Set/Update weight in user profile             |\n"
+                    + "|   check-weight-progress                                    |"
+                    + "  List index of weight progress                 |\n"
+                    + "|   delete-weight INDEX                                      |"
+                    + "  Delete weight from the weight progress list   |\n"
+                    + "|   set-weight-goal WEIGHT_GOAL                              |"
+                    + "  Set the user's new weight goal                |\n"
+                    + "|   check-bmi                                                |"
+                    + "  Show user's BMI and BMI table                 |\n"
                     + "|   record-meal DATE TIME_PERIOD /FOOD_NAME -- CALORIE       |"
                     + "  Record meal info                              |\n"
                     + "|   check-meal DATE TIME_PERIOD                              |"
@@ -131,23 +173,24 @@ public class MessageBank {
                     + "  Add new food info into database               |\n"
                     + "|   delf FOOD_NAME                                           |"
                     + "  Delete food info from database                |\n"
-                    + "|   set-weight                                               |"
-                    + "  Set/Update weight in user profile             |\n"
-                    + "|   check-weight-progress NAME                               |"
-                    + "  List index of weight progress                 |\n"
-                    + "|   delete-weight INDEX                                      |"
-                    + "  Delete weight from the weight progress list   |\n"
                     + "|   new-recipe MAXIMUM_FOOD_TYPES ACTIVITY_LEVEL             |"
                     + "  Randomly recommend recipe from database       |\n"
                     + "|   show-recipe                                              |"
                     + "  Show recommended recipe to user               |\n"
+                    + "|   check-required-cal DATE ACTIVITY_LEVEL                   |"
+                    + "  Check amount of calories required/day         |\n"
+                    + "|   clear-records                                            |"
+                    + "  Clear the records in the database             |\n"
                     + "|   help                                                     |"
                     + "  Show this function help table                 |\n"
                     + "|   exit                                                     |"
                     + "  Exit the application                          |\n"
                     + "|____________________________________________________________|"
                     + "________________________________________________|\n"
-                    + "Please key in your command: ";
+                    + "Syntax Guidelines:\n"
+                    + "DATE: (eg: MONDAY, monday)   TIME_PERIOD: (eg: morning, afternoon, night)\n"
+                    + "Commands are case in-sensitive. You can refer to the UserGuide for more in-depth tutorial\n"
+                    + "\nPlease key in your command:\n";
 
     public static final String BMI_TABLE_MESSAGE = "You can check your height and weight against this table"
             + " to see which category you fall into.\n"

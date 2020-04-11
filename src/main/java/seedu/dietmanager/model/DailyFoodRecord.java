@@ -85,16 +85,6 @@ public class DailyFoodRecord {
     }
 
     /**
-     * Displays the Daily Food Record.
-     */
-
-    public void showDailyRecord() {
-        System.out.println(this.showBreakfast());
-        System.out.println(this.showLunch());
-        System.out.println(this.showDinner());
-    }
-
-    /**
      * Displays the Daily Breakfast Record.
      */
 
@@ -264,13 +254,13 @@ public class DailyFoodRecord {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-90s", message);
+        message = String.format("%1$-80s", message);
 
         for (Food food : afternoon) {
             message = message + food.getPair();
         }
         message = message.substring(0, message.length() - 1);
-        message = String.format("%1$-170s", message);
+        message = String.format("%1$-150s", message);
 
         for (Food food : night) {
             message = message + food.getPair();

@@ -19,6 +19,8 @@ import static seedu.dietmanager.commons.core.MessageBank.WELCOME_MESSAGE;
 
 public class UI {
 
+    private Scanner sc;
+
     /**
      * The exit status determining whether to close the application.
      */
@@ -31,6 +33,7 @@ public class UI {
 
     public UI() {
         this.exitStatus = false;
+        this.sc = new Scanner(System.in);
     }
 
     /**
@@ -100,8 +103,11 @@ public class UI {
      */
 
     public String readInput() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        return this.sc.nextLine();
+    }
+
+    public boolean hasInput() {
+        return this.sc.hasNextLine();
     }
 
     /**
