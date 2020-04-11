@@ -87,14 +87,14 @@ public class AddToSemCommand extends AddCommand {
      */
     private boolean checkModuleExist(SemesterList semesterList) {
         for (SemModulesList sem: semesterList) {
-            for (SelectedModule module: sem) {
+            for (SelectedModule module : sem) {
                 boolean hasSameModuleId = module.getId().equals(selectedModule.getId()) && module.isIdValid();
                 boolean hasSameModuleName = module.getName().equals(selectedModule.getName()) && module.isNameValid();
                 if (hasSameModuleId || hasSameModuleName) {
                     return true;
-                    }
                 }
             }
+        }
         return false;
     }
 }
