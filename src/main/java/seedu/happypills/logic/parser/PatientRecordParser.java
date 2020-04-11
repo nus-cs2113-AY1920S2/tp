@@ -10,6 +10,7 @@ import seedu.happypills.logic.commands.patientrecordcommands.PatientRecordComman
 import seedu.happypills.model.exception.HappyPillsException;
 import seedu.happypills.ui.Messages;
 import seedu.happypills.ui.PatientRecordTextUi;
+import seedu.happypills.ui.TextUi;
 
 import java.util.logging.Logger;
 
@@ -234,6 +235,7 @@ public class PatientRecordParser extends Parser {
         while (hasMissingFields(parseInput)) {
             printMissingFields(parseInput);
             String input = promptUser().trim();
+            System.out.println(TextUi.DIVIDER);
             if (input.equalsIgnoreCase("clear")) {
                 throw new HappyPillsException(Messages.MESSAGE_COMMAND_ABORTED);
             }

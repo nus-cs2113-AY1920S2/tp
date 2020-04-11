@@ -91,8 +91,7 @@ public class PatientRecordTextUi extends TextUi {
      * @return text The string to be displayed to user for confirmation.
      */
     public static String promptConfirmation(String[] parseInput) {
-        String text = DIVIDER
-                + "\n        Are you sure all the listed details are correct?\n"
+        String text = "        Are you sure all the listed details are correct?\n"
                 + "        NRIC : " + parseInput[0].trim().toUpperCase() + "\n"
                 + "        Symptom : " + parseInput[1].trim() + "\n"
                 + "        Diagnosis : " + parseInput[2].trim() + "\n"
