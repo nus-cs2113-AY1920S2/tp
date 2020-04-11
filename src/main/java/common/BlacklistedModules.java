@@ -261,7 +261,7 @@ public class BlacklistedModules {
         "TIE4259",
         "TSC3222"
     };
-    public static final Set<String> blacklistModule = Set.of(arr);
+    public static final HashSet<String> blacklistModule = new HashSet<>(Arrays.asList(arr));
 
     /**
      * Run this to retrieve all the modules that doesn't follow the conventional format and

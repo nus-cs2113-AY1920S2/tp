@@ -22,9 +22,6 @@ By: `AY1920S2-CS2113T-T12-1`
 	* [3.6. Delete a scheduled meeting](#36-delete-a-scheduled-meeting)
 	* [3.7. Delete a contact](#37-delete-a-contact)
 	* [3.8. List all scheduled meetings](#38-list-all-scheduled-meetings)
-* [4. Documentation](#4-documentation)
-* [5. Testing](#5-testing)
-* [6. Dev Ops](#6-dev-ops)
 * [Appendix A: Product Scope](#appendix-a-product-scope)
 	* [A.1. Target user profile](#a1-target-user-profile)
 	* [A.2. Value proposition](#a2-value-proposition)
@@ -46,7 +43,7 @@ Prerequisites<br>
 Setting up the project<br>
 1. Fork this repository and ```git clone``` it onto your computer.
 2. Open Intellij and import the ```build.gradle``` from project directory of the cloned repository.
-> :information_source If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
+> :information_source: If this your first time opening Intellij, you will be greeted with a welcome screen. Open ```Gradle``` from the vertical right tabs and type ```gradle run``` to build the project.th a welcome screen. Click ```import project``` > ```build.gradle``` to open up the project.
 3. Set up the correct JDK version for Gradle:
     * Click the ```File``` tab > ```Project Structure``` > ```Platform Settings``` > ```SDK```.
     * Select the path where your JDK(>11) is installed. Click this link if you do not have at least JDK11.
@@ -443,16 +440,17 @@ Given below are instructions to test the app manually.
 
 ### F.2. Setting up profile
 1. Set up your contacts profile
-    1. Test case: Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6 <br>
+    1.Test case: ```Tommy https://nusmods.com/timetable/sem-2/share?CFG1002=LEC:06&CG2023=PLEC:02,LAB:03,PTUT:02&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&GES1020=TUT:2,LEC:1&SPH2101=LEC:1,TUT:6``` <br>
     **Expected: A new main contact will be added. Name: Tommy, with his respective modules.**
     
     > :information_source: Note that the first user added to the contact will be the main user of the application. Meeting schedule will be stored into main user's timetable.
     
-    2. Test case: Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1 <br>
-                  Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01 <br>
-                  Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1 <br>
+    2. Test case: ```Patricia https://nusmods.com/timetable/sem-2/share?CG2023=PLEC:03,PTUT:03,LAB:06&CG2027=LEC:01,TUT:01&CG2028=LAB:01,TUT:01,LEC:01&CS2101=&CS2113T=LEC:C01&LAT1201=LEC:1``` <br>
+                  ```Agnus https://nusmods.com/timetable/sem-2/share?CG2023=LAB:03,PLEC:03,PTUT:03&CG2027=LEC:01,TUT:01&CG2028=LAB:02,TUT:01,LEC:01&CS2101=&CS2107=TUT:09,LEC:1&CS2113T=LEC:C01``` <br>
+                  ```Jerry https://nusmods.com/timetable/sem-2/share?CG2023=LAB:04,PLEC:02,PTUT:01&CS3235=TUT:3,LEC:1``` <br>
     **Expected: 3 new contacts will be added, with their respective modules.**
     
+        
 ### F.3. Scheduling a meeting
 1. Setting up a meeting among all contacts.
     1. Prerequisites: Type ```timetable 0 1 2 3``` to show the combined timetable of all members.
