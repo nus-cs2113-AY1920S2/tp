@@ -17,7 +17,7 @@ Pac. The following groups are in particular the intended audience of the documen
     2.3 [Command component](#23-command-component)  
     2.4 [Parse component](#24-parser-component)  
     2.5 [Storage component](#25-storage-component)  
-3. [Implementation of features](#3-implementation-of-features)  
+3. [Implementation of Features](#3-implementation-of-features)  
     3.1 [Event](#31-event)  
     3.2 [Calendar](#32-calendar)    
     3.3 [Attendance](#33-attendance)   
@@ -220,7 +220,7 @@ Step 3: The user wants to display the events that fall under semester 2 of acade
   the event descriptions as Strings whereas the 2D ArrayList stores events which corresponds to each month.
   - Cons: Poor performance when retrieving events which fall within a certain time-frame as program needs to iterate through multiple
   ArrayLists.
-  
+
 - Alternative 2: Save the events as a sorted tree map 
   - Pros: Able to utilise existing java interface to implement calendar instead of creating new object. 
   - Cons: Poor performance when user makes changes to event list to calendar as tree map needs to perform sorting for 
@@ -230,7 +230,7 @@ Step 3: The user wants to display the events that fall under semester 2 of acade
 - Alternative 1(current choice): Implement a class specifically to interact with the calendar
   - Pros: Calendar class can support different interactions to modify calendar content
   - Cons: Many new methods to be implemented, which affects code readability.
-  
+
 - Alternative 2: Modify calendar directly using methods belonging to a class where it can be stored in 
   - Pros: Does not require instantiation of new object to modify the calendar contents.
   - Cons: Many new methods to be implemented, which affects code readability.
@@ -354,6 +354,31 @@ editStatus() base on the user input.
 The method find() accesses the desired `attendanceList` of given event, and checks whether the list is empty.
 If empty, it calls display() in UI and inform the user list is empty. Else, it will call findAttendance() from 
 `attendanceList`. findAttendance() will search for attendance with the same name entered and display for the user.
+
+#### Design consideration for Attendance  
+
+##### AddAttendance
+* Alternative 1 : Use single line for adding of attendance to an event
+    * **Pros:** Prompts the user what to type
+    * **Cons:** Slow for experience users
+* Alternative 2 : Use multi-line for adding of attendance to an event
+Using single line or multi-line for adding of attendance to an event
+    * **Pros:** Fast for experience users
+    * **Cons:** New users will have difficulty in adding new attendance
+    
+* Final Decision : Using both single line and multi-line by giving the user the option    
+
+##### ClearAttendance VS DeleteAttendance
+* Alternative 1 : Allow the deletion of a single attendance in an attendance list in an event
+    * **Pros** User can specifically remove a single student
+    * **Cons** Complicated feature to use as user will need to search for the attendance in the list before deletion
+    
+* Alternative 2 : Only allow the attendance list to be cleared
+    * **Pros** User can easily remove the attendance list and add a new attendance list
+    * **Cons** A single mistake in the attendance list will mean that user has to clear and add again.
+    
+* Final Decision: Introduce a feature to `editAttendance` to amend mistake and have `clearAttendance` instead of 
+`deleteAttendance`. `deleteAttendance` can be inserted in future releases.
 
 ### 3.4 Performance
 ![Performance](images/Performance.png)

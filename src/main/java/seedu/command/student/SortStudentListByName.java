@@ -2,13 +2,10 @@ package seedu.command.student;
 
 import seedu.student.StudentList;
 import seedu.command.Command;
-import seedu.pac.Pac;
 import seedu.exception.PacException;
 import seedu.ui.UI;
 
-import java.util.Collections;
 import static seedu.pac.Pac.studentListCollection;
-import static seedu.student.StudentList.listNameComparator;
 
 /**
  * Class representing a student related command to sort all studentLists
