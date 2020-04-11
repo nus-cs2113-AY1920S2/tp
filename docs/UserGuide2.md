@@ -128,7 +128,7 @@ Format: `help`
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td>The help command is split into four different sections <code>(highlighted by the boxes)</code>.</td>
+   <td>The help command is split into four different sections as highlighted by the boxes.</td>
  </tr>
 </table>
 
@@ -225,8 +225,8 @@ Edit information of the patient with the specified NRIC.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
-   There should <code>no spaces</code> between the tag and the edited information.</td>
+   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <b>no spaces</b> between the tag and the edited information.</td>
  </tr>
 </table>
 
@@ -270,7 +270,7 @@ Delete a patient as specified by the NRIC.
   <col width="200">
  <tr>
    <td><span> &#8505; </span></td>
-   <td> HappyPills will <code>prompt for confirmation</code> before deleting patient in the patient list. </td>
+   <td> HappyPills will prompt for confirmation before deleting patient in the patient list. </td>
  </tr>
 </table>
 
@@ -285,7 +285,7 @@ Enter `y` to confirm.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> Upon <code>successful deletion</code>, patient's information will not be able to be retrieved again. </td>
+   <td> Upon successful deletion, patient's information will not be able to be retrieved again. </td>
  </tr>
 </table>
 
@@ -385,8 +385,8 @@ Enter `y` to confirm.
    <col width="200">
   <tr>
     <td><span> &#9888; </span></td>
-    <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
-    There should <code>no spaces</code> between the tag and the edited information.</td>
+    <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
+    There should <b>no spaces</b> between the tag and the edited information.</td>
   </tr>
  </table>
      
@@ -403,7 +403,7 @@ Enter `y` to confirm.
    <col width="200">
   <tr>
     <td><span> &#8505; </span></td>
-    <td>If the record is not found with the given input. The message below will be printed instead.</td>
+    <td>If the record is not found with the given input, the message below will be printed instead.</td>
   </tr>
  </table>
  
@@ -435,7 +435,7 @@ Enter `y` to confirm.
    <col width="200">
   <tr>
     <td><span> &#8505; </span></td>
-    <td>If the record is not found with the given input. The message below will be printed instead.</td>
+    <td>If the record is not found with the given input, the message below will be printed instead.</td>
   </tr>
  </table>
  
@@ -572,8 +572,8 @@ Enter `y` to confirm.
   <col width="200">
  <tr>
    <td><span> &#9888; </span></td>
-   <td> You can only edit <code>one</code> field at a time. Those fields that can be edited are in <code><></code>. 
-   There should <code>no spaces</code> between the tag and the edited information.</td>
+   <td> You can only edit <b>one</b> field at a time. Those fields that can be edited are in <code><></code>. 
+   There should <b>no spaces</b> between the tag and the edited information.</td>
  </tr>
 </table>
           
@@ -584,6 +584,19 @@ Enter `y` to confirm.
 > ***Expected output:***
 >
 > <img src="images/UG/APPT/EditAppt.png" alt="Edit Appt Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the appointment is not found with the given input, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/ApptNotFound.png" alt="Appt Not Found" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -603,6 +616,19 @@ Enter `y` to confirm.
 >
 > <img src="images/UG/APPT/DeleteAppt.png" alt="Delete Appt Output" width="600">
  
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the appointment is not found with the given input, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/ApptNotFound.png" alt="Appt Not Found" width="600">
+ 
   [&#8593; Return to Top](#table-of-content)
  
 #### 3.4.4. List All Appointments: `list appt` 
@@ -619,6 +645,19 @@ This can be used as a method to check for appointmentID.
 > ***Expected output:***
 >
 > <img src="images/UG/APPT/ListAppt.png" alt="List Appt Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If there is no appointments found, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/NoApptList.png" alt="No Appt in List" width="600">
  
   [&#8593; Return to Top](#table-of-content)
  
@@ -638,6 +677,19 @@ This can be used as a method to check for appointmentID.
 > ***Expected output:***
 >
 > <img src="images/UG/APPT/FindAppt.png" alt="Find Appt Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the patient does not have any appointments, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/NoAppt.png" alt="Patient have no appt" width="600">
  
   [&#8593; Return to Top](#table-of-content)
 
@@ -657,6 +709,19 @@ This can be used as a method to check for appointmentID.
 > ***Expected output:***
 >
 > <img src="images/UG/APPT/DoneAppt.png" alt="Done Appt Output" width="600">
+
+ <table>
+   <col width="20">
+   <col width="200">
+  <tr>
+    <td><span> &#8505; </span></td>
+    <td>If the record is not found with the given input, the message below will be printed instead.</td>
+  </tr>
+ </table>
+ 
+> ***Expected output:***
+>
+> <img src="images/UG/APPT/ApptNotFound.png" alt="Appt Not Found" width="600">
  
   [&#8593; Return to Top](#table-of-content) 
 
