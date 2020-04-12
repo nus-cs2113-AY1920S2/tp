@@ -1,4 +1,4 @@
-@echo off
+
 setlocal enableextensions
 pushd %~dp0
 

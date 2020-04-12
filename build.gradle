@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'seedu.cafs'
 version '0.1.0'
 
 repositories {
@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 test {
@@ -31,11 +32,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.cafs.Main"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Main"
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
@@ -47,4 +48,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
