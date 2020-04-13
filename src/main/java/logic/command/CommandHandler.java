@@ -92,7 +92,6 @@ public class CommandHandler {
 
             Integer startDay;
             Integer endDay;
-            Integer today;
             int startDate = Integer.parseInt(userInputWords[3]);
             int endDate = Integer.parseInt(userInputWords[5]);
             int startOfWeekDate = getStartOfWeekDate();
@@ -101,6 +100,7 @@ public class CommandHandler {
             //hardcoded for PE testing purposes
             todayDate = 6;
 
+            Integer today;
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
             today = getDay(endOfMonthDate, startOfWeekDate, todayDate);
