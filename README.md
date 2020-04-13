@@ -14,13 +14,13 @@ Prerequisites: JDK 11, update Intellij to the most recent version
 1. Click `Import Project`
 1. **IMPORTANT: Locate the `build.gradle` file** in the project directory, select it, and click `OK`
 1. If there are any further prompts, accept the defaults.
-1. After the set up is complete, you can locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. After the set up is complete, you can locate the `src/main/java/seedu/pac/Pac.java` file, right-click it, and choose `Run Pac.main()`. If the setup is correct, you should see something like the below:
    ```
    > Task :compileJava
    > Task :processResources NO-SOURCE
    > Task :classes
    
-   > Task :Duke.main()
+   > Task :Pac.main()
    Hello from
     ____        _        
    |  _ \ _   _| | _____ 

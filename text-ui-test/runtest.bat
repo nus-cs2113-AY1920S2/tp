@@ -17,3 +17,6 @@ java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TX
 cd ..\..\text-ui-test
 
 FC ACTUAL.TXT EXPECTED.TXT >NUL && ECHO Test passed! || Echo Test failed!
+
+del ACTUAL.TXT Pac.log
+del ..\build\libs\data\eventlist.txt ..\build\libs\data\studentlist.txt

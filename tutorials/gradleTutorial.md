@@ -94,7 +94,7 @@ JUnit is a testing framework for Java. By convention, java tests belong in `src/
 
 If you have imported your Gradle project into IntelliJ IDEA, you will notice that IDEA is able to mark the `src/test/java` folder as the _Test root_ (colored in green by default) automatically.
 
-You can run a test (e.g., `test/java/seedu/duke/DukeTest.java`) by right-clicking on it and choosing `Run`.
+You can run a test (e.g., `test/java/seedu/pac/PacTest.java`) by right-clicking on it and choosing `Run`.
 
 **Resources**:
 * [Gradle documentation for JUnit](https://docs.gradle.org/current/userguide/java_testing.html#using_junit5)

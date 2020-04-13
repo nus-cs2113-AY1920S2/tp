@@ -13,4 +13,17 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.txt
+#log files
+*.1
+*.2
+*.3
+*.log
+*.lck
+
+# storage data
+data/
+# output file from text-ui-test
+text-ui-test/ACTUAL.txt
+.classpath
+.project
+.settings/org.eclipse.buildship.core.prefs
