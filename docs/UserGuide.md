@@ -1,4 +1,7 @@
 # WhenFree - User Guide
+
+> :information_source: **Please note that the datetime of this application has been hard-coded to "06 April 2020, NUS Semester 1 week 12" to faciliate our project's practical assessment. The reason is so that PE testers assigned to our project would be able to test every features of our application, ie the "more" command in our [timetable](#display-timetable-of-selected-contacts-timetable) feature. The hard-coded date-time would be removed as soon as the practical exam is done. The developer team apologize for any inconvenience caused.**
+
  * [1. Introduction](#introduction)  
  * [2. Quick Start](#quick-start)  
  * [3. Features](#features)
@@ -171,7 +174,7 @@ Example output:
 **Extended view:** Displays up to 2 weeks of timetable.
 > :information_source: Extended view is applied to the most recent timetable command
 
->:information_source: **NOTE: Testers/Users currently in week 13 would be unable to use this command since week 13 is the last week. <br> Testers/Users currently in week 13 and wish to try out this command can set the date&time in their local computer to a date before week 13 and try it out** 
+>:information_source: **NOTE: Testers/Users currently in week 13 would be unable to use this command since week 13 is the last week.**
 
 Format:
 
