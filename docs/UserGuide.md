@@ -49,9 +49,10 @@ This user guide will show you how to use the program effectively.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-2. Download the jar file of the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
+2. Download the jar and tag.csv file of the latest version of `Jikan` from [here](https://github.com/AY1920S2-CS2113-T15-1/tp/releases).
 3. Create an empty folder and put the Jikan.jar file inside.
-4. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`
+4. Within the folder, create a separate folder named `tag` and place the `tag.csv` file inside the tag folder.
+5. Open command prompt and navigate to the folder. Run the jar file using `java -jar jikan.jar`.
 
 Features 
 =======
