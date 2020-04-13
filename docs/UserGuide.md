@@ -1,6 +1,6 @@
 # WhenFree - User Guide
 
-> :information_source: **[IMPORTANT] Please note that the current date of this application has been hard-coded to "06 April 2020, NUS Semester 1 week 12" to facilitate the CS2113T Practical Exam. This will allow PE testers to test all features of our application, including the "more" command in our [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable) feature, as well as the ability to [Schedule a new meeting](#schedule-a-new-meeting-schedule) and [Edit a contact's timetable](#edit-a-contacts-timetable-edit) one school week ahead. The hard-coded current date will be removed after the practical exam. The developer team apologizes for any inconvenience caused.**
+> :information_source: **[IMPORTANT] Please note that the current date of this application has been hard-coded to "06 April 2020, NUS Semester 2 week 12" to facilitate the CS2113T Practical Exam. This will allow PE testers to test all features of our application, including the "more" command in our [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable) feature, as well as the ability to [Schedule a new meeting](#schedule-a-new-meeting-schedule) and [Edit a contact's timetable](#edit-a-contacts-timetable-edit) one school week ahead. The hard-coded current date will be removed after the practical exam. The developer team apologizes for any inconvenience caused.**
 
 
  * [1. Introduction](#introduction)  
