@@ -98,6 +98,9 @@ public class CommandHandler {
             int startOfWeekDate = getStartOfWeekDate();
             int todayDate = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]);
 
+            //hardcoded for PE testing purposes
+            todayDate = 6;
+
             startDay = getDay(endOfMonthDate, startOfWeekDate, startDate);
             endDay = getDay(endOfMonthDate, startOfWeekDate, endDate);
             today = getDay(endOfMonthDate, startOfWeekDate, todayDate);
@@ -219,6 +222,9 @@ public class CommandHandler {
             int dayDiff = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2])
                     - Integer.parseInt(userInputWords[2]);
 
+            //hardcoded for PE testing purposes
+            dayDiff = 6 - Integer.parseInt(userInputWords[2]);
+
             if (dayDiff > 0 && dayDiff < 14) {
                 throw new WfException(MESSAGE_WRONG_DATE);
             }
@@ -238,6 +244,9 @@ public class CommandHandler {
             int startDate = Integer.parseInt(userInputWords[2]);
             int endDate = Integer.parseInt(userInputWords[4]);
             int todayDate = Integer.parseInt(java.util.Calendar.getInstance().getTime().toString().split(" ")[2]);
+
+            //hardcoded for PE testing purposes
+            todayDate = 6;
 
             Integer startDay;
             Integer endDay;
@@ -294,6 +303,11 @@ public class CommandHandler {
         Calendar cal = Calendar.getInstance();
         String day = (cal.getTime().toString().split(" "))[0];
         String month = (cal.getTime().toString().split(" "))[1];
+
+        //hardcoded for PE testing purposes
+        day = "Mon";
+        month = "Apr";
+
         int distFromPreviousSunday = 0;
         for (int i = 0; i < 6 && !day.equals("Sun"); distFromPreviousSunday++, i++) {
             cal.add(Calendar.DATE, -1);
@@ -303,6 +317,11 @@ public class CommandHandler {
             day = (cal.getTime().toString().split(" "))[0];
         }
         Calendar cal2 = Calendar.getInstance();
+
+        //hardcoded for PE testing purposes
+        cal2.set(Calendar.MONTH, 4);
+        cal2.set(Calendar.DATE, 6);
+
         for (int i = 0; i < (14 - distFromPreviousSunday); i++) {
             if (!(cal2.getTime().toString().split(" "))[1].equals(month)) {
                 break;
@@ -343,13 +362,23 @@ public class CommandHandler {
         }
         String[] temp = cal.getTime().toString().split(" ");
         date = Integer.parseInt(temp[2]);
+
+        //hardcoded for PE testing purposes
+        date = 6;
+
         return date;
     }
 
     private static int getStartOfWeekDate() {
         String[] data = java.util.Calendar.getInstance().getTime().toString().split(" ");
         String day = data[0];
+
         int date = Integer.parseInt(data[2]);
+
+        //hardcoded for PE testing purposes
+        date = 6;
+        day = "Mon";
+
         switch (day) {
         case "Mon":
             date -= 1;
@@ -385,6 +414,10 @@ public class CommandHandler {
         Contact member;
         try {
             String todayDate = java.util.Calendar.getInstance().getTime().toString().substring(0, 10).trim();
+
+            //hardcoded for PE testing purposes
+            todayDate = "Mon Apr 6th";
+
             if (userInputWords.length > 1) {
                 ArrayList<Contact> myScheduleList = new ArrayList<Contact>();
                 for (int i = 1; i < userInputWords.length; i++) {

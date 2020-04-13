@@ -196,6 +196,8 @@ public class WhenFree {
             currentWeekNumber = FREE_WEEK;
             break;
         }
+        //hardcoded for PE testing purposes
+        currentWeekNumber = 12;
     }
 
 }

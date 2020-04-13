@@ -64,7 +64,16 @@ public class TextUI {
         out.print("Date:  ");
         String[] tempDate = java.util.Calendar.getInstance().getTime().toString().split(" ");
         String dayString = tempDate[0];
+
+        //hardcoded for PE testing purposes
+        dayString = "Mon";
+
         Calendar cal = Calendar.getInstance();
+
+        //hardcoded for PE testing purposes
+        cal.set(Calendar.DATE, 6);
+        cal.set(Calendar.MONTH, 4);
+
         switch (dayString) {
         case "Sun":
             cal.add(Calendar.DATE, -1);
@@ -102,6 +111,9 @@ public class TextUI {
             cal.add(Calendar.DATE, 1);
             String[] dateArray = cal.getTime().toString().split(" ");
             int datePrint = Integer.parseInt(dateArray[2]);
+
+
+
             String lastChar = dateArray[2].substring(dateArray[2].length() - 1);
             String datePostFix;
             if (lastChar.equals("1") && !dateArray[2].substring(dateArray[2].length() - 2, dateArray[2].length() - 1).equals("1")) {
