@@ -1,6 +1,7 @@
 # WhenFree - User Guide
 
-> :information_source: **[IMPORTANT] Please note that the datetime of this application has been hard-coded to "06 April 2020, NUS Semester 1 week 12" to faciliate our project's practical assessment. The reason is so that PE testers assigned to our project would be able to test every features of our application, ie the "more" command in our [timetable](#display-timetable-of-selected-contacts-timetable) feature. The hard-coded date-time would be removed as soon as the practical exam is done. The developer team apologize for any inconvenience caused.**
+> :information_source: **[IMPORTANT] Please note that the datetime of this application has been hard-coded to "06 April 2020, NUS Semester 1 week 12" to faciliate our project's practical exam. The reason is so that PE testers assigned to our project would be able to test every features of our application, such as the "more" command in our [timetable](#display-timetable-of-selected-contacts-timetable) feature, as well as the ability to [schedule](#schedule-a-new-meeting-schedule) and [edit](#edit-a-contacts-timetable-edit) one school week ahead. The hard-coded date-time would be removed as soon as the practical exam is done. The developer team apologize for any inconvenience caused.**
+
 
  * [1. Introduction](#introduction)  
  * [2. Quick Start](#quick-start)  
