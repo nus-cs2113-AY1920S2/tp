@@ -104,7 +104,7 @@ Refer to [“Features”](#4-features) for details of each command.
 
 ### 4.1. Student List @Benjamin
 This section for student related commands is done in chronological order. Please follow the numbering to get
-a clearer understanding on how you can use the commands. Do note that the student list created are stored under
+a clearer understanding on how you can use the commands. Do note that the student lists created are stored under
 a student list collection. Student list collection is a collection of student list created.
 
 #### 4.1.1. Add New Student List
@@ -162,7 +162,7 @@ The following will occur if there is already an existing student list with the s
     There is already an existing list name!
     
 The following will occur if there is already an existing student list with the same name. The student list will not be
-created and if you wish to create the student list, you will need to retype the command `studentlist add`. 
+created and if you wish to create another student list, you will need to retype the command `studentlist add`. 
 
     >>> studentlist add
     What is the name of your list?
@@ -220,7 +220,7 @@ The following occurs when there is at least one existing student list in the stu
     | 4         |  Fiona                                                                             |
     |___________|____________________________________________________________________________________|
                 
-The following occurs when there are no existing student list in the student list collection.
+The following occurs when there are no existing student lists in the student list collection.
 
     >>> studentlist view
     There is no existing student list.              
@@ -240,7 +240,7 @@ The following occurs when there is at least one existing student list in the stu
     >>> studentlist clear
     The Student List Collection is cleared
     
-The following occurs when there are no existing student list in the student list collection.
+The following occurs when there are no existing student lists in the student list collection.
 
     >>> studentlist clear
     There is no existing student list.
@@ -283,7 +283,7 @@ The following occurs when there is at least one existing student list in the stu
     |___________|____________________________________________________________________________________|
                 
                 
-The following occurs when there are no existing student list in the student list collection.
+The following occurs when there are no existing student lists in the student list collection.
 
     >>> studentlist delete
     There is no existing student list.               
@@ -385,7 +385,7 @@ The following occurs when there are existing student list in the student list co
     >>> EG
     Nothing match your description : EG
     
-The following occurs when there are no existing student list in the student list collection.
+The following occurs when there are no existing student lists in the student list collection.
 
     >>> studentlist find
     There is no existing student list.        
