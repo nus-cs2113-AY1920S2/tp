@@ -52,7 +52,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Your timetable this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -106,7 +106,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Your timetable this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
@@ -159,7 +159,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -221,7 +221,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
@@ -282,7 +282,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th  
@@ -344,7 +344,7 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
+Today is Mon Apr 6th, week 12.
 Timetable of the selected team member/s this week:
 
 Date:  5th   6th   7th   8th   9th   10th  11th    12th  13th  14th  15th  16th  17th  18th  
@@ -497,11 +497,6 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Slot entered is not of valid range.
-
-To edit a contact:
-edit busy <Contact Index> <Start Date> <Start Time> <End Date> <End Time>
-edit free <Contact Index> <Start Day> <Start Time> <End Day> <End Time>
 ________________________________________________________________________________________________________________________________
 [contacts] List all contacts.
 [timetable] Display combined timetable of selected contacts.
@@ -513,58 +508,3 @@ ________________________________________________________________________________
 
 Insert your member's timetable by following: <name of new member> <nusmods link>
 ________________________________________________________________________________________________________________________________
-Today is Sat Apr 11, week 12.
-Your timetable this week:
-
-Date:  5th   6th   7th   8th   9th   10th  11th  
-       SUN   MON   TUE   WED   THU   FRI   SAT  
-0900 +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |     |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |     |     |     |
-1000 +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |  X  |     |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |  X  |     |     |     |
-1100 +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |     |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |     |     |     |
-1200 +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |  X  |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |  X  |  X  |     |     |
-1300 +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |     |  X  |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |     |  X  |  X  |     |     |
-1400 +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |  X  |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |  X  |  X  |     |     |
-1500 +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |     |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |     |  X  |     |     |
-1600 +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |     |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |  X  |  X  |     |  X  |     |     |
-1700 +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |  X  |     |     |
-     +-----+-----+-----+-----+-----+-----+-----+
-     |     |     |  X  |     |  X  |     |     |
-1800 +-----+-----+-----+-----+-----+-----+-----+
-[NOTE] You can type "more" for next week's timetable as well!
-________________________________________________________________________________________________________________________________
-[contacts] List all contacts.
-[timetable] Display combined timetable of selected contacts.
-[schedule] Schedule a new meeting.
-[edit] Edit a contact's timetable.
-[delete] Delete a scheduled meeting.
-[meetings] List all scheduled meetings.
-[exit] Exit application.
-
-Insert your member's timetable by following: <name of new member> <nusmods link>
-________________________________________________________________________________________________________________________________
-Thank you for using WhenFree, goodbye!
