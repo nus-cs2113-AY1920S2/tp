@@ -171,6 +171,8 @@ Example output:
 **Extended view:** Displays up to 2 weeks of timetable.
 > :information_source: Extended view is applied to the most recent timetable command
 
+>:information_source: **NOTE: Testers/Users currently in week 13 would be unable to use this command since week 13 is the last week. <br> Testers/Users currently in week 13 and wish to try out this command can set the date&time in their local computer to a date before week 13 and try it out** 
+
 Format:
 
     more
