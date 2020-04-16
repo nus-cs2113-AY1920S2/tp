@@ -46,7 +46,7 @@ University students often have piles of assignments and events that are difficul
 ### 1.4. What is this guide for?
 This guide aims to show you how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2. "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
-## 2. Quick Start
+## 2. Quick Start [Qi Ren]
 ### 2.1. Setting up
 1.  Ensure you have Java 11 or above installed on your computer.
 
@@ -99,7 +99,7 @@ A summary of all the features available in **ATAS** can be found in [Section 4. 
 Refer to [Section 3. "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
 
 ## 3. Features
-**Command Format**
+**Command Format** []
 
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
     Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used such as `assignment n/user guide draft`.
