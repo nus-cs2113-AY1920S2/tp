@@ -46,7 +46,7 @@ University students often have piles of assignments and events that are difficul
 ### 1.4. What is this guide for?
 This guide aims to show you how to use **ATAS** by providing examples and step-by-step instructions on all its features. The features can be found in [Section 3. "Features"](#3-features) section.
 Interested in cultivating a habit of time management and plan your time more effectively? Head on to [Section 2. "Quick Start"](#2-quick-start) to get started! Become a more **ATAS** version of yourself today!
-## 2. Quick Start
+## 2. Quick Start [Qi Ren]
 ### 2.1. Setting up
 1.  Ensure you have Java 11 or above installed on your computer.
 
@@ -99,7 +99,7 @@ A summary of all the features available in **ATAS** can be found in [Section 4. 
 Refer to [Section 3. "Features"](#3-features) for the detailed instruction of the various commands of **ATAS**.
 
 ## 3. Features
-**Command Format**
+**Command Format** [Jeremy/Qi Ren]
 
 -   Words in UPPER\_CASE and wrapped in \[square brackets\] are parameters to be supplied by the user.  
     Example: In `assignment n/[NAME]`, `NAME` is an input given by user that can be used such as `assignment n/user guide draft`.
@@ -126,7 +126,7 @@ Refer to [Section 3. "Features"](#3-features) for the detailed instruction of th
 > Don’t worry if all of these seems overwhelming. <br/> 
 > There are plenty of examples provided to aid your understanding and learning of **ATAS** commands.
 
-### 3.1. Add Assignments: **`assignment`**
+### 3.1. Add Assignments: **`assignment`** [Jeremy]
 
 An assignment is a task that you have to complete by a certain deadline, for a particular module.  
 You can add an assignment to **ATAS**, containing various details.
@@ -154,7 +154,7 @@ Added task:
 Now you have 1 task in the list!
 ```
 
-### 3.2. Add Events: **`event`**
+### 3.2. Add Events: **`event`** [Jeremy]
 
 An event is a task that you plan to do at a particular date and time with an end time in mind. Its end time is not supposed to go past
  midnight.  
@@ -184,7 +184,7 @@ Added task:
 Now you have 2 tasks in the list!
 ```
 
-### 3.3. Repeating Events: **`repeat`**
+### 3.3. Repeating Events: **`repeat`** [Qi Ren]
 
 #### 3.3.1. Set an event to repeat
 
@@ -249,12 +249,12 @@ Expected outcome:
 > **Note**: It is perfectly acceptable to place a `[PERIOD TYPE]` value beside 0. For example `repeat id/6 p/0d`. The command will still
 > be accepted. However, placing other valid characters (like English alphabet) will result in an invalid command.
 
-### 3.4. List Tasks: **`list`**
+### 3.4. List Tasks: **`list`** 
 
 You can view the tasks that you have stored in **ATAS**.  
 Various keywords can be used to only show the tasks you are interested in.
 
-#### 3.4.1 List All Tasks: **`list`**
+#### 3.4.1 List All Tasks: **`list`** [Jeremy]
 
 You can view all tasks stored in **ATAS** at once.
 
@@ -283,7 +283,7 @@ Here are the relevant tasks:
 > The first symbol in the square bracket stands for: `[A]` assignment, `[E]` event or `[R]` repeating event. <br/>
 > The second symbol in the square bracket stands for: `[X]` task is not done, `[/]` task is done.
 
-#### 3.4.2. List Today’s Tasks: **`list today`**
+#### 3.4.2. List Today’s Tasks: **`list today`** [Jeremy]
 
 You can view only the tasks you have today.
 
@@ -298,7 +298,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-#### 3.4.3. List Weekly Tasks: **`list week`**
+#### 3.4.3. List Weekly Tasks: **`list week`** [Joel]
 
 You can view all the tasks for the next 7 days.
 
@@ -319,7 +319,7 @@ Here are the relevant tasks:
             notes: false
 ```
 
-#### 3.4.4. List Upcoming Events: **`list upcoming events`**
+#### 3.4.4. List Upcoming Events: **`list upcoming events`** [Joel]
 
 You can view **all** your **upcoming events** from the list of tasks regardless of how far it is from today.
 The command will only show **events** that have not occurred and is time-sensitive.
@@ -339,7 +339,7 @@ Here are the relevant tasks:
 > **Note**: 
 > If today is 27 March 2020 and it is after 10:00 am, event with index 4 shown above will not appear.
 
-#### 3.4.5. List Incomplete Assignments: **`list incomplete assignments`**
+#### 3.4.5. List Incomplete Assignments: **`list incomplete assignments`** [Joel]
 
 You can view all your **incomplete assignments** from the list of tasks.
 
@@ -356,7 +356,7 @@ Here are the relevant tasks:
 > **Note**: 
 > It will show all `assignments` that are not done, even if the deadline has passed.
 
-### 3.5. Edit Tasks: **`edit`**
+### 3.5. Edit Tasks: **`edit`** [Ji Cheng]
 
 You can edit tasks in your existing list if there are any changes.
 
@@ -382,7 +382,7 @@ edit your specified task.
 If you wish to change the repeating period of an event, refer to [Section 3.3. Repeating Events: `repeat`](#33-repeating-events-repeat)
 
 
-### 3.6. Delete Tasks: **`delete`**
+### 3.6. Delete Tasks: **`delete`** [Ji Cheng]
 
 You can delete unwanted tasks in your existing list.
 
@@ -394,7 +394,7 @@ Format: `delete [INDEX]`
 
 Example: `delete 1`
 
-### 3.7. Mark Done: **`done`**
+### 3.7. Mark Done: **`done`** [Joel]
 
 You can mark a completed task as done in your existing list.
 
@@ -415,7 +415,7 @@ Expected outcome:
 > If a repeating event is marked done, it will automatically be marked undone if the date of the repeating event passes today and 
 > is updated to the next one. This also applies when you call `repeat` on an event that is marked done. 
 
-### 3.8. Clear Tasks: **`clear`**
+### 3.8. Clear Tasks: **`clear`** [Ji Cheng]
 
 #### 3.8.1. Clear All Tasks
 
@@ -431,7 +431,7 @@ Format: `clear done`
 > **Note**:
 > `clear done` command only deletes completed events that is not set to repeat<br/>
 
-### 3.9. Search tasks: **`search`**
+### 3.9. Search tasks: **`search`** [Keith]
 
 #### 3.9.1. Search by Name 
 You can search for tasks in the list by specifying the type and name of task you might be searching for.
@@ -477,7 +477,7 @@ Here are the search results:
         notes: Test3
 ```
 
-### 3.10. Calendar View: **`calendar`**
+### 3.10. Calendar View: **`calendar`** [Keith]
 
 You can obtain an calendar overview of all tasks you might have in the specified date. This feature also takes into consideration repeating events that you might have set. This allows for an intuitive way to plan your free time as you can see your free slots at a glance.
 
@@ -500,7 +500,7 @@ When you run **ATAS** again the next time, you will be able to see the tasks fro
 > Do not manually edit the contents of the storage file, as an incorrect storage format may 
 > result in your data being lost.
 
-## 4. Command Summary
+## 4. Command Summary [Ji Cheng]
 
 ### 4.1. List of available **ATAS** commands
 This table serves as a summary of all the commands available to **ATAS**. To view more information of the commands,
