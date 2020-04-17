@@ -16,8 +16,8 @@
  
 <br/><br/>
 
-## 1. Introduction
-
+## 1. Introduction 
+(Xi Zhi, Chen Kun)
 WhenFree is a scheduler chatbot that helps you find common free time among your and your friends, 
 using just the NUSMODS links to your school timetable.
 
@@ -34,8 +34,8 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 
 <br/><br/>
 
-## 2. Quick Start
-
+## 2. Quick Start 
+(Xi Zhi)
 1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
     > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
     > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html).
@@ -66,6 +66,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 <br/>
 
 ### Add a new contact
+(Wei Yang)
 Adds you or your friend into the list of contacts. 
 You will need to key in `<Contact Name>` and `<NUSMODS link>` of the 
 contact.
@@ -97,6 +98,7 @@ Example output:
 <br/>
 
 ### List all contacts: `contacts`
+(Wei Yang)
 Displays index and name of all contacts stored in the program.
 > :bulb: This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
@@ -117,7 +119,7 @@ Example output:
 <br/>
 
 ### Display timetable of selected contacts: `timetable`
-
+(Xi Zhi)
 There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
 and to display a combined timetable of multiple selected contacts.
 * For all 3 uses cases, the `timetable` command shows only the current week's timetable. **To see up to two weeks of timetable, enter `more` command after the `timetable` command.** 
@@ -199,6 +201,7 @@ Example output:
 <br/>
 
 ### Schedule a new meeting: `schedule`
+(Matthew)
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
 `<Meeting Name>`, and specify the meeting time slot with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
 * You can schedule a meeting on only the current week and the next week, for which your timetable can be displayed with the 
@@ -237,6 +240,7 @@ Example output:
 <br/>
 
 ### List all meetings: `meetings`
+(Matthew)
 List all scheduled meetings stored in program.
 > :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Index>` a meeting.
 
@@ -257,6 +261,7 @@ Example output:
 <br/>
 
 ### Edit a contact's timetable: `edit`
+(Xi Zhi)
 There are 2 use cases illustrated below: to edit a contact's timetable to **"busy"** for a specified time slot, and
 to edit a contact's timetable to **"free"** for a specified time slot.
 * You can edit the contact's timetable for only the current week and the next week, for which your timetable can be displayed 
@@ -310,6 +315,7 @@ Example output:
 <br/>
 
 ### Delete an item: `delete`
+(Chen Kun)
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
 > :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings). <br>
 > :bulb: You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
@@ -349,6 +355,7 @@ Example output:
 <br/>
 
 ### Exit the application: `exit`
+(Chen Kun)
 Exits the application and ends the current session.
 
 Format: 
@@ -368,6 +375,7 @@ Example output:
 <br/><br/>
 
 ## 4. FAQ
+(Wei Yang, Xi Zhi)
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Copy the `data` folder in the program directory and paste into the selected directory 
@@ -403,6 +411,7 @@ while application is still running, or outside of the application.
 <br/><br/>
 
 ## 5. Command Summary
+(Xi Zhi, Wei Yang, Chen Kun, Matthew)
 
 Feature | Format | Example usage
 ------- | ------ | -------------
