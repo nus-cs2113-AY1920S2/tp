@@ -219,7 +219,7 @@ Example |  Outcome
 ### 3.4. Recipe
 
 #### 3.4.1. Adding a recipe: `addrecipe` (Hui Zhen)
-Adds a new unique recipe into the List in Kitchen Helper. A recipe is a list of ingredients that are used to cook a dish.
+You can add a new unique recipe into the List in Kitchen Helper. A recipe is a list of ingredients that are used to cook a dish.
 
 __Format:__ `addrecipe /n <RECIPE_NAME> /i <INGREDIENT_NAME>:<QUANTITY>:<CATEGORY>[,..]`
 
@@ -300,14 +300,14 @@ Example |  Outcome
 [&#8593; Return to Top](#kitchen-helper---user-guide)
 
 #### 3.4.5. Cooking a recipe: `cookrecipe` (Hui Zhen and Yan Ting)
-Cooks a recipe specified by the user by the recipe’s name.
+You can cook a specified recipe by the recipe’s name.
 
 __Format:__ `cookrecipe /n <RECIPE_NAME> /p <NUMBER_OF_PAX>`
 
 * `RECIPE_NAME` is the name of your recipe.
 * `NUMBER_OF_PAX` is the pax count for the specified recipe.
 
-> Please note that expired ingredients cannot be cooked and will be prompted to clear them.
+> Please note that you cannot cook expired ingredients and will be prompted to clear them.
 
 > Please note that the ingredients used in the recipe will be matched strictly by their `INGREDIENT_NAME` and `CATEGORY` when cooking a recipe. You may refer to the [addrecipe](#341-adding-a-recipe-addrecipe-hui-zhen)  command section
 
