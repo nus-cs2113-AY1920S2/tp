@@ -50,7 +50,7 @@ You will see this welcome message if you have done the above steps correctly.
 
 ![welcome Message](images/welcome_msg.png)
 
-The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#command-summary) to see the commands of all features.
+The following part of the User Guide will explain the features of WhenFree in detail. You can follow along as we go through each of the features if you are starting out, or skip ahead to the [Command Summary](#5-command-summary) to see the commands of all features.
 
 <br/><br/>
 
@@ -77,7 +77,7 @@ contact.
 If you try to enter a command before adding in your contact, WhenFree will remind
 you to key in your contact first. You can add as many contacts as you want thereafter.
 > :information_source: `<Contact Name>`  should be a single word containing only alpha characters. It should not contain any whitespaces. <br>
-> :information_source: Detailed instructions to obtain the NUSMODS links to the NUSMODS timetable can be found in the [FAQ](#faq) section.
+> :information_source: Detailed instructions to obtain the NUSMODS links to the NUSMODS timetable can be found in the [FAQ](#4-faq) section.
 
 Format: 
     
