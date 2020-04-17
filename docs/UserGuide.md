@@ -28,7 +28,7 @@ By: `Team CS2113T-M16-2` Since: `March 2020` License: `MIT`
       - [3.4.5. Cooking a recipe: `cookrecipe`](#345-cooking-a-recipe-cookrecipe-hui-zhen-and-yan-ting)
 
     + [3.5. Chore](#35-chore)  
-      - [3.5.1. Adding a chore: `addchore`](#351-adding-a-chore-addchore-isabella)  
+      - [3.5.1. Add a chore: `addchore`](#351-add-a-chore-addchore-isabella)  
       - [3.5.2. List chore: `listchore`](#352-list-chore-listchore-isabella)  
       - [3.5.3. Delete a chore: `deletechore`](#353-delete-a-chore-deletechore-isabella)  
       - [3.5.4. Search for chore: `searchchore`](#354-search-for-chore-searchchore-jin-fa) 
@@ -188,7 +188,7 @@ __Format__: `deleteingredient /i <INGREDIENT_INDEX> [/q <QUANTITY>]`
 
 > One thing to note: If the final quantity of your ingredient will be zero after deduction, the ingredient will be deleted from the ingredient list subsequently. 
 
-> The user expenditure might change depending on your response to the prompts. You can view the changes with `displayexpenditure` command. Please refer to [3.6.1. Display User Expenditure](#361-display-user-expenditure-displayexpenditure-isabella).
+> Your user expenditure might change depending on your response to the prompts. You can view the changes with the `displayexpenditure` command. Please refer to [3.6.1. Display User Expenditure](#361-display-user-expenditure-displayexpenditure-isabella). (Isabella)
 
 Example |  Outcome
 --------|------------------
@@ -325,13 +325,13 @@ Insufficient non-expired ingredients available. | **Command**: <br>`cookrecipe /
 
 ### 3.5. Chore
 
-#### 3.5.1. Adding a chore: `addchore` (Isabella)
-Adds a chore to the chore list in Kitchen Helper.
+#### 3.5.1. Add a chore: `addchore` (Isabella)
+You can add a chore to the chore list in Kitchen Helper.
 
 __Format:__ `addchore <TASK_DESCRIPTION> /by <DEADLINE>`  OR `addchore <TASK_DESCRIPTION> /by <dd/MM/yyyy HH:mm>`
 
 * `TASK_DESCRIPTION` : This refers to the description of the chore to complete. <br>
-* `DEADLINE`: This refers to the deadline specified by the user in String. <br>
+* `DEADLINE`: This refers to the deadline you specified in String. <br>
 * `dd/MM/yyyy HH:mm`: This refers to the deadline as a date object that has to be specified in this exact format.
 
 > Please note that the deadline has to be specified exactly like the given format for it to be considered a Date object, otherwise it would be considered as a String. The deadline specified as a String has no content or format restrictions. <br>
@@ -345,7 +345,7 @@ Example |  Outcome
 [&#8593; Return to Top](#kitchen-helper---user-guide)
 
 #### 3.5.2. List chore: `listchore` (Isabella)
-Displays all the items currently in the chore list in Kitchen Helper.
+You can display all the items currently in the chore list in Kitchen Helper.
 
 __Format:__ `listchore`  
 
@@ -356,7 +356,7 @@ Example |  Outcome
 [&#8593; Return to Top](#kitchen-helper---user-guide)
 
 #### 3.5.3. Delete a chore: `deletechore` (Isabella)
-Deletes the chore specified by the index in the chore list in Kitchen Helper. The index of the chore can be found by displaying the list of chores.
+You can delete the chore specified by the index in the chore list in Kitchen Helper. You can display the list of chores to find the index of the chore.
 
 __Format:__ `deletechore <INDEX_TO_DELETE>`
 
@@ -386,7 +386,7 @@ Example |  Outcome
 [&#8593; Return to Top](#kitchen-helper---user-guide)
 
 #### 3.5.5. Mark chore as done: `done` (Isabella)
-Marks the chore specified by the index in the chore list in Kitchen Helper as done. The index of the chore can be found by displaying the list of chores.
+You can mark the chore specified by the index in the chore list in Kitchen Helper as done. You can display the list of chores to find the index of the chore.
 
 __Format:__ `done <INDEX_TO_CHECK>`  
 
@@ -401,10 +401,10 @@ Example |  Outcome
 ### 3.6. Expenditure
 
 #### 3.6.1. Display User Expenditure: `displayexpenditure` (Isabella)
-Displays the total expenditure and amount used in cooking for the week to help the user gauge future expenditure on ingredients.
-* Total expenditure increases whenever the user executes `addingredient` command to simulate purchase of groceries. You may refer to [3.3.1. Adding an ingredient](#331-adding-an-ingredient-addingredient-jin-fa).
-* Amount used in cooking is the cost of all the ingredients the user manages to use for cooking and represents the amount of expenditure the user benefited from.
-<br>Amount used in cooking increases when user executes `cookrecipe` command or when user responds with `yes` to the corresponding prompt when executing `deleteingredient`. You may refer to [3.4.5. Cooking a recipe](#345-cooking-a-recipe-cookrecipe-hui-zhen-and-yan-ting) and [Section 3.3.3. Delete an ingredient](#333-delete-an-ingredient-deleteingredient-isabella-and-yan-ting). 
+You can display the total expenditure and amount used in cooking for the week to help you gauge future expenditure on ingredients.
+* Total expenditure increases whenever you execute the `addingredient` command to simulate purchase of groceries. You may refer to [3.3.1. Adding an ingredient](#331-adding-an-ingredient-addingredient-jin-fa).
+* Amount used in cooking is the cost of all the ingredients you managed to use for cooking and represents the amount of expenditure you benefited from.
+<br>Amount used in cooking increases when you execute the `cookrecipe` command or when you respond with `yes` to the corresponding prompt when executing `deleteingredient`. You may refer to [3.4.5. Cooking a recipe](#345-cooking-a-recipe-cookrecipe-hui-zhen-and-yan-ting) and [Section 3.3.3. Delete an ingredient](#333-delete-an-ingredient-deleteingredient-isabella-and-yan-ting). 
 
 __Format:__ `displayexpenditure`  
 
