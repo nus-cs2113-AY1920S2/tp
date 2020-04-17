@@ -96,7 +96,7 @@ Example output:
 ![](images/add_contact_op.png)
 
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -118,7 +118,7 @@ Example output:
 
 ![](images/contacts_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -201,7 +201,7 @@ Example output:
 
 ![more](images/more_command_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -241,7 +241,7 @@ Example output:
 
 ![schedule meeting 11 17:00 11 19:00](images/schedule_meeting_11_1700_11_1900_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -263,7 +263,7 @@ Example output:
 
 ![meetings](images/meetings_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -318,7 +318,7 @@ Example output:
 
 ![edit free 0 11 09:00 11 10:00](images/edit_free_0_11_0900_11_1000_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
     
 <br/>
 
@@ -359,7 +359,7 @@ Example output:
 
 ![delete Tommy](images/delete_Tommy_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/>
 
@@ -380,7 +380,7 @@ Example output:
 
 ![exit](images/exit_op.png)
 
-[&#8593; Return to list of Features](#features)
+[&#8593; Return to list of Features](#3-features)
 
 <br/><br/>
 
