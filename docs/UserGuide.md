@@ -1,17 +1,22 @@
 # WhenFree - User Guide
 
-> :information_source: **[IMPORTANT] Please note that the current date of this application has been hard-coded to "06 April 2020, NUS Semester 2 week 12" to facilitate the CS2113T Practical Exam. This will allow PE testers to test all features of our application, including the "more" command in our [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable) feature, as well as the ability to [Schedule a new meeting](#schedule-a-new-meeting-schedule) and [Edit a contact's timetable](#edit-a-contacts-timetable-edit) one school week ahead. The hard-coded current date will be removed after the practical exam. The developer team apologizes for any inconvenience caused.**
-
-
- * [1. Introduction](#introduction)  
- * [2. Quick Start](#quick-start)  
- * [3. Features](#features)
- * [4. FAQ](#faq)
- * [5. Command Summary](#command-summary)
+ * [1. Introduction](#1-introduction)  
+ * [2. Quick Start](#2-quick-start)  
+ * [3. Features](#3-features)
+   - [3.1 Add a new contact](#31-add-a-new-contact)
+   - [3.2 List all contacts](#32-list-all-contacts-contacts)
+   - [3.3 Display timetable of selected contacts](#33-display-timetable-of-selected-contacts-timetable)
+   - [3.4 Schedule a new meeting](#34-schedule-a-new-meeting-schedule)
+   - [3.5 List all meetings](#35-list-all-meetings-meetings)
+   - [3.6 Edit a contact's timetable](#36-edit-a-contacts-timetable-edit)
+   - [3.7 Delete an item](#37-delete-an-item-delete)
+   - [3.8 Exit application](#38-exit-the-application-exit)
+ * [4. FAQ](#4-faq)
+ * [5. Command Summary](#5-command-summary)
  
 <br/><br/>
 
-## Introduction
+## 1. Introduction
 
 WhenFree is a scheduler chatbot that helps you find common free time among your and your friends, 
 using just the NUSMODS links to your school timetable.
@@ -29,7 +34,7 @@ Get ready the NUSMODS links of you and your friends, and let's get started!
 
 <br/><br/>
 
-## Quick Start
+## 2. Quick Start
 
 1. Ensure that you have Java 11 or later versions of Java installed on your computer. 
     > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
@@ -47,20 +52,20 @@ The following part of the User Guide will explain the features of WhenFree in de
 
 <br/><br/>
 
-## Features 
+## 3. Features 
 
-- [Add a new contact](#add-a-new-contact)
-- [List all contacts](#list-all-contacts-contacts)
-- [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
-- [Schedule a new meeting](#schedule-a-new-meeting-schedule)
-- [List all meetings](#list-all-meetings-meetings)
-- [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
-- [Delete an item](#delete-an-item-delete)
-- [Exit application](#exit-the-application-exit)
+  - [3.1 Add a new contact](#31-add-a-new-contact)
+  - [3.2 List all contacts](#32-list-all-contacts-contacts)
+  - [3.3 Display timetable of selected contacts](#33-display-timetable-of-selected-contacts-timetable)
+  - [3.4 Schedule a new meeting](#34-schedule-a-new-meeting-schedule)
+  - [3.5 List all meetings](#35-list-all-meetings-meetings)
+  - [3.6 Edit a contact's timetable](#36-edit-a-contacts-timetable-edit)
+  - [3.7 Delete an item](#37-delete-an-item-delete)
+  - [3.8 Exit application](#38-exit-the-application-exit)
 
 <br/>
 
-### Add a new contact
+### 3.1 Add a new contact
 Adds you or your friend into the list of contacts. 
 You will need to key in `<Contact Name>` and `<NUSMODS link>` of the 
 contact.
@@ -91,7 +96,7 @@ Example output:
 
 <br/>
 
-### List all contacts: `contacts`
+### 3.2 List all contacts: `contacts`
 Displays index and name of all contacts stored in the program.
 > :bulb: This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
@@ -111,7 +116,7 @@ Example output:
 
 <br/>
 
-### Display timetable of selected contacts: `timetable`
+### 3.3 Display timetable of selected contacts: `timetable`
 
 There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
 and to display a combined timetable of multiple selected contacts.
@@ -193,7 +198,7 @@ Example output:
 
 <br/>
 
-### Schedule a new meeting: `schedule`
+### 3.4 Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
 `<Meeting Name>`, and specify the meeting time slot with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
 * You can schedule a meeting on only the current week and the next week, for which your timetable can be displayed with the 
@@ -231,7 +236,7 @@ Example output:
 
 <br/>
 
-### List all meetings: `meetings`
+### 3.5 List all meetings: `meetings`
 List all scheduled meetings stored in program.
 > :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Index>` a meeting.
 
@@ -251,7 +256,7 @@ Example output:
 
 <br/>
 
-### Edit a contact's timetable: `edit`
+### 3.6 Edit a contact's timetable: `edit`
 There are 2 use cases illustrated below: to edit a contact's timetable to **"busy"** for a specified time slot, and
 to edit a contact's timetable to **"free"** for a specified time slot.
 * You can edit the contact's timetable for only the current week and the next week, for which your timetable can be displayed 
@@ -304,7 +309,7 @@ Example output:
     
 <br/>
 
-### Delete an item: `delete`
+### 3.7 Delete an item: `delete`
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
 > :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings). <br>
 > :bulb: You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
@@ -343,7 +348,7 @@ Example output:
 
 <br/>
 
-### Exit the application: `exit`
+### 3.8 Exit the application: `exit`
 Exits the application and ends the current session.
 
 Format: 
@@ -362,7 +367,7 @@ Example output:
 
 <br/><br/>
 
-## FAQ
+## 4. FAQ
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Copy the `data` folder in the program directory and paste into the selected directory 
@@ -397,7 +402,7 @@ while application is still running, or outside of the application.
 
 <br/><br/>
 
-## Command Summary
+## 5. Command Summary
 
 Feature | Format | Example usage
 ------- | ------ | -------------
