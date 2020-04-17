@@ -5,7 +5,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'seedu.duke'
+group 'seedu.kitchenhelper'
 version '0.1.0'
 
 repositories {
@@ -31,11 +31,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "seedu.kitchenhelper.KitchenHelper"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "kitchenhelper"
     archiveVersion = "0.0.1"
     archiveClassifier = null
     archiveAppendix = null
@@ -47,4 +47,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

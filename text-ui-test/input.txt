@@ -1,1 +1,80 @@
-James Gosling
+1
+addrecipe /n Chicken Salad /i Chicken Breast:2:meat, Lettuce:4:vegetable
+addrecipe /n Chicken Salad /i Chicken Breast:2:meat, Lettuce:4:vegetable
+addrecipe /n Chicken Stew /i Chicken Breast:2:meat, Lettuce:4:vegetable
+addrecipe /n warm milk /i HL Milk:1:Dairy
+displayexpenditure
+addingredient /n HL Milk /c Dairy /q 3 /p 12.2 /e 01/03/2022
+displayexpenditure
+cookrecipe /n warm milk /p 2
+displayexpenditure
+listrecipe all
+addingredient /n Beef /c meat /q 3 /p 20 /e 18/03/2022
+addingredient /n Beef cubes /c meat /q 3 /p 20 /e 18/03/2022
+addingredient /n Beef cubes /c meat /q 5 /p 20 /e 18/03/2022
+addingredient /n Chicken Breast /c meat /q 4 /p 20 /e 20/12/2022
+addingredient /n Chicken Breast /c meat /q 3 /p 20 /e 18/12/2022
+addingredient /n kailan /c Vegetable /q 30 /p 30.45 /e 12/03/2022
+addingredient /n HL Milk /c Dairy /q 3 /p 12 /e 14/03/2022
+addingredient /n Milo /c Drink /q 30 /p 10 /e 20/012/2022
+addingredient /n Pear /c fruit /q 1 /p 1 /e 02/02/2022
+addingredient /n Lettuce /c Vegetable /q 10 /p 20 /e 20/12/2022
+addingredient /n Lettuce /c Vegetable /q 2 /p 20 /e 09/03/2022
+listingredient all
+addingredient /n Apple /c fruit /q 1 /p 1 /e 02/02/2022
+listingredient all
+addingredient /n Apple /c fruit /q 1 /p 1 /e 01/02/2022
+listingredient all
+addingredient /n Apple /c fruit /q 2 /p 1 /e 03/02/2022
+listingredient all
+listingredient all
+addchore buy groceries /by Tuesday 12pm
+addchore buy groceries
+addchore buy groceries /by 05/04/2021 08:30
+listchore
+done 1
+searchchore groceries
+searchingredient beef
+searchrecipe chicken
+cookrecipe /n Chicken Salad /p 2
+cookrecipe /n Chicken Salad /p 3
+deleterecipe /n Chicken Salad
+deleterecipe /n Chicken Salad
+deleterecipe /n Chicken Stew
+displayexpenditure
+deleteingredient /n HL milk
+deleteingredient /i 1 /q 2
+deleteingredient /i 1 /q 1
+no
+no
+displayexpenditure
+deleteingredient /i 2 /q 40
+deleteingredient /i 2 /q 1
+no
+yes
+displayexpenditure
+deleteingredient /i /q
+deleteingredient /i -1
+deleteingredient /i 1 /1 -1
+deleteingredient /i 4
+yes
+displayexpenditure
+deleteingredient /i 3
+n
+no
+no
+deleteingredient /i 2
+no
+no
+deleteingredient /i 1
+no
+no
+deleteingredient /i 1
+no
+no
+deletechore 1
+addingredient /n Beef /c meat /q 3 /p 20 /e 18/03/2022
+listingredient all
+reset
+listingredient all
+exit

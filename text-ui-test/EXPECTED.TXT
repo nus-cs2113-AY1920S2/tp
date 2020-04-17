@@ -1,9 +1,386 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+===================================================
+Please enter '1' to load data from normal mode or '2' to load data from restore mode:
+===================================================
+Okay data have been loaded from the main storage files.
+===================================================
+Hello! I'm KitchenHelper here
+What can I do for you?
+===================================================
+You have no deadlines upcoming in the next 3 days.
+===================================================
+You have no ingredients that are expiring for the next 3 days.
+===================================================
+You have no ingredients that are low in stock [< 5].
+===================================================
+You have no ingredients that are expired.
+===================================================
 
-What is your name?
-Hello James Gosling
+Chicken Salad Recipe has been created with 2 ingredients inside.
+===================================================
+There is an existing recipe with the same name!
+===================================================
+Chicken Stew Recipe has been created with 2 ingredients inside.
+===================================================
+warm milk Recipe has been created with 1 ingredients inside.
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $0.00
+This is the amount you actually spent for Ingredients used in your cooking this week: $0.00
+===================================================
+KitchenHelper has added: Ingredient:HL Milk Category:Dairy Quantity:3 Price:$12.20 Expiry:01/03/2022
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $36.60
+This is the amount you actually spent for Ingredients used in your cooking this week: $0.00
+===================================================
+Kitchen Helper is trying to cook!
+warm milk was cooked with a pax of 2
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $36.60
+This is the amount you actually spent for Ingredients used in your cooking this week: $24.40
+===================================================
+
+Here is the list of Recipe:
+
+Format:[Recipe Number] Recipe Name
+[1] Chicken Salad
+[2] Chicken Stew
+[3] warm milk
+
+===================================================
+KitchenHelper has added: Ingredient:Beef Category:meat Quantity:3 Price:$20.00 Expiry:18/03/2022
+===================================================
+KitchenHelper has added: Ingredient:Beef cubes Category:meat Quantity:3 Price:$20.00 Expiry:18/03/2022
+===================================================
+Kitchen Helper has updated the quantity of Beef cubes to 8 from 3
+===================================================
+KitchenHelper has added: Ingredient:Chicken Breast Category:meat Quantity:4 Price:$20.00 Expiry:20/12/2022
+===================================================
+KitchenHelper has added: Ingredient:Chicken Breast Category:meat Quantity:3 Price:$20.00 Expiry:18/12/2022
+===================================================
+KitchenHelper has added: Ingredient:kailan Category:Vegetable Quantity:30 Price:$30.45 Expiry:12/03/2022
+===================================================
+KitchenHelper has added: Ingredient:HL Milk Category:Dairy Quantity:3 Price:$12.00 Expiry:14/03/2022
+===================================================
+Invalid Command Format!
+Adds a ingredient to the ingredient list. /n <INGREDIENT> /c <CATEGORY> /q <QUANTITY> /p <PRICE> /e <EXPIRY>
+Example: addingredient /n Beef /c Meat /q 1 /p 13.5 /e 13/02/2022
+===================================================
+KitchenHelper has added: Ingredient:Pear Category:fruit Quantity:1 Price:$1.00 Expiry:02/02/2022
+===================================================
+KitchenHelper has added: Ingredient:Lettuce Category:Vegetable Quantity:10 Price:$20.00 Expiry:20/12/2022
+===================================================
+KitchenHelper has added: Ingredient:Lettuce Category:Vegetable Quantity:2 Price:$20.00 Expiry:09/03/2022
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[5] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[6] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[9] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[1] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[2] Beef cubes | 8 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[3] Chicken Breast | 3 portion(s) | $20.0 | Expiry Date : 18/12/2022
+[4] Chicken Breast | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+miscellaneous:
+staple:
+vegetable:
+[7] Lettuce | 2 portion(s) | $20.0 | Expiry Date : 09/03/2022
+[8] Lettuce | 10 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[10] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+KitchenHelper has added: Ingredient:Apple Category:fruit Quantity:1 Price:$1.00 Expiry:02/02/2022
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[6] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[7] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[1] Apple | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+[10] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[2] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[3] Beef cubes | 8 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[4] Chicken Breast | 3 portion(s) | $20.0 | Expiry Date : 18/12/2022
+[5] Chicken Breast | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+miscellaneous:
+staple:
+vegetable:
+[8] Lettuce | 2 portion(s) | $20.0 | Expiry Date : 09/03/2022
+[9] Lettuce | 10 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[11] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+KitchenHelper has added: Ingredient:Apple Category:fruit Quantity:1 Price:$1.00 Expiry:01/02/2022
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[7] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[8] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[1] Apple | 1 portion(s) | $1.0 | Expiry Date : 01/02/2022
+[2] Apple | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+[11] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[3] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[4] Beef cubes | 8 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[5] Chicken Breast | 3 portion(s) | $20.0 | Expiry Date : 18/12/2022
+[6] Chicken Breast | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+miscellaneous:
+staple:
+vegetable:
+[9] Lettuce | 2 portion(s) | $20.0 | Expiry Date : 09/03/2022
+[10] Lettuce | 10 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[12] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+KitchenHelper has added: Ingredient:Apple Category:fruit Quantity:2 Price:$1.00 Expiry:03/02/2022
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[8] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[9] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[1] Apple | 1 portion(s) | $1.0 | Expiry Date : 01/02/2022
+[2] Apple | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+[3] Apple | 2 portion(s) | $1.0 | Expiry Date : 03/02/2022
+[12] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[4] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[5] Beef cubes | 8 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[6] Chicken Breast | 3 portion(s) | $20.0 | Expiry Date : 18/12/2022
+[7] Chicken Breast | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+miscellaneous:
+staple:
+vegetable:
+[10] Lettuce | 2 portion(s) | $20.0 | Expiry Date : 09/03/2022
+[11] Lettuce | 10 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[13] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[8] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[9] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[1] Apple | 1 portion(s) | $1.0 | Expiry Date : 01/02/2022
+[2] Apple | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+[3] Apple | 2 portion(s) | $1.0 | Expiry Date : 03/02/2022
+[12] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[4] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[5] Beef cubes | 8 portion(s) | $20.0 | Expiry Date : 18/03/2022
+[6] Chicken Breast | 3 portion(s) | $20.0 | Expiry Date : 18/12/2022
+[7] Chicken Breast | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+miscellaneous:
+staple:
+vegetable:
+[10] Lettuce | 2 portion(s) | $20.0 | Expiry Date : 09/03/2022
+[11] Lettuce | 10 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[13] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+You have added this chore:
+[x] buy groceries (by: Tuesday 12pm)
+Now you have 1 chore in the list.
+===================================================
+Invalid Command Format!
+Adds a chore to the chore list. TASK /by DEADLINE OR TASK /by <dd/MM/yyyy HH:mm>
+Example: addchore buy groceries /by Tuesday 12pm OR addchore buy groceries /by 14/04/2020 12:00
+===================================================
+You have added this chore:
+[x] buy groceries (by: 05/04/2021 08:30)
+Now you have 2 chores in the list.
+===================================================
+Here are the chores in your list:
+1. [x] buy groceries (by: Tuesday 12pm)
+2. [x] buy groceries (by: 05/04/2021 08:30)
+===================================================
+You have completed this chore:
+[/] buy groceries (by: Tuesday 12pm)
+
+===================================================
+Here are your matching chores in your list
+1.[/] buy groceries (by: Tuesday 12pm) [Location: Index 1]
+2.[x] buy groceries (by: 05/04/2021 08:30) [Location: Index 2]
+===================================================
+Here are your matching ingredients in your list
+1.[Meat] Beef Qty:3 $20.00 Exp:18/03/2022 [Location: Index 4]
+2.[Meat] Beef cubes Qty:8 $20.00 Exp:18/03/2022 [Location: Index 5]
+===================================================
+Here are your matching recipes in your list
+1.Chicken Salad [Location: Index 1]
+2.Chicken Stew [Location: Index 2]
+===================================================
+Kitchen Helper is trying to cook!
+Chicken Salad was cooked with a pax of 2
+===================================================
+Kitchen Helper is trying to cook!
+There are insufficient/missing ingredients!
+===================================================
+Chicken Salad has been deleted
+===================================================
+This recipe does not exist! Please type in a correct recipe name/index.
+===================================================
+Chicken Stew has been deleted
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $1591.10
+This is the amount you actually spent for Ingredients used in your cooking this week: $264.40
+===================================================
+Invalid Command, please check your format!
+Deletes an ingredient.
+Usage: deleteingredient /i INGREDIENTINDEX [/q QUANTITY]
+Example: deleteingredient /i 1 /q 2
+===================================================
+Please enter a valid quantity to delete!
+Currently:
+Apple : 1
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+The quantity of Apple has been changed!
+This ingredient has a quantity of 0 after deduction, so it has been deleted.
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $1591.10
+This is the amount you actually spent for Ingredients used in your cooking this week: $264.40
+===================================================
+Please enter a valid quantity to delete!
+Currently:
+Apple : 2
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! $1.00 is added to amount used in cooking or consumption.
+===================================================
+The quantity of Apple has been changed!
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $1591.10
+This is the amount you actually spent for Ingredients used in your cooking this week: $265.40
+===================================================
+Invalid Command, please check your format!
+Deletes an ingredient.
+Usage: deleteingredient /i INGREDIENTINDEX [/q QUANTITY]
+Example: deleteingredient /i 1 /q 2
+===================================================
+This ingredient does not exist! Please type in a correct ingredient index.
+===================================================
+Invalid Command, please check your format!
+Deletes an ingredient.
+Usage: deleteingredient /i INGREDIENTINDEX [/q QUANTITY]
+Example: deleteingredient /i 1 /q 2
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! $160.00 is deducted from total expenditure.
+===================================================
+Beef cubes has been deleted.
+===================================================
+This is the total amount you spent on buying Ingredients so far this week: $1431.10
+This is the amount you actually spent for Ingredients used in your cooking this week: $265.40
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Please enter either "Yes"/"No"
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Beef has been deleted.
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Apple has been deleted.
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Apple has been deleted.
+===================================================
+The amount of money spent on this ingredient has already been recorded.
+Would you like to remove the amount spent on this item from the total expenditure?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Would you like to add the amount spent on this item to the amount used for cooking or consumption?
+===================================================
+Ok! There are no changes to expenditure.
+===================================================
+Chicken Breast has been deleted.
+===================================================
+You have deleted this chore:
+[/] buy groceries (by: Tuesday 12pm)
+Now you have 1 chore in the list.
+===================================================
+KitchenHelper has added: Ingredient:Beef Category:meat Quantity:3 Price:$20.00 Expiry:18/03/2022
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+all:
+dairy:
+[2] HL Milk | 1 portion(s) | $12.2 | Expiry Date : 01/03/2022
+[3] HL Milk | 3 portion(s) | $12.0 | Expiry Date : 14/03/2022
+drink:
+fruit:
+[5] Pear | 1 portion(s) | $1.0 | Expiry Date : 02/02/2022
+meat:
+[1] Beef | 3 portion(s) | $20.0 | Expiry Date : 18/03/2022
+miscellaneous:
+staple:
+vegetable:
+[4] Lettuce | 4 portion(s) | $20.0 | Expiry Date : 20/12/2022
+[6] kailan | 30 portion(s) | $30.45 | Expiry Date : 12/03/2022
+
+===================================================
+All data has been wiped
+===================================================
+Here is the list of Ingredients in Inventory:
+Format : [Ingredient Index] Ingredient Name | Quantity | Price | Expiry
+The Ingredient List is currently empty.
+===================================================
+Exiting KitchenHelper as requested ...
+===================================================
