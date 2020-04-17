@@ -70,7 +70,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 ### Add a new contact
 (Written by: Wei Yang)
 
-Adds you or your friend into the list of contacts. 
+Adds a contact into the application. 
 You will need to key in `<Contact Name>` and `<NUSMODS link>` of the 
 contact.
 * You must add in your (main user's) contact before you can use the application. 
@@ -104,7 +104,7 @@ Example output:
 (Written by: Wei Yang)
 
 Displays index and name of all contacts stored in the program.
-> :bulb: This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
+> :bulb: This feature is usually used preceding [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable),  [Edit a contact's timetable](#edit-a-contacts-timetable-edit) or [Delete a contact](#delete-an-item-delete) features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
 Format:
     
