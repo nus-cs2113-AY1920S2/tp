@@ -56,14 +56,14 @@ The following part of the User Guide will explain the features of WhenFree in de
 
 ## 3. Features 
 
-  - [3.1 Add a new contact](#31-add-a-new-contact)
-  - [3.2 List all contacts](#32-list-all-contacts-contacts)
-  - [3.3 Display timetable of selected contacts](#33-display-timetable-of-selected-contacts-timetable)
-  - [3.4 Schedule a new meeting](#34-schedule-a-new-meeting-schedule)
-  - [3.5 List all meetings](#35-list-all-meetings-meetings)
-  - [3.6 Edit a contact's timetable](#36-edit-a-contacts-timetable-edit)
-  - [3.7 Delete an item](#37-delete-an-item-delete)
-  - [3.8 Exit application](#38-exit-the-application-exit)
+   - [Add a new contact](#add-a-new-contact)
+   - [List all contacts](#list-all-contacts-contacts)
+   - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
+   - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
+   - [List all meetings](#list-all-meetings-meetings)
+   - [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
+   - [Delete an item](#delete-an-item-delete)
+   - [Exit application](#exit-the-application-exit)
 
 <br/>
 
