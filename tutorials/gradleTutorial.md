@@ -46,7 +46,7 @@ If the Gradle tasks don't appear in the Gradle window, click the 'refresh' butto
 
 To run a task, locate the task in the Gradle toolbar, right-click on a task, and choose `run`.
 
-Alternatively, you can type the command in the terminal.
+Alternatively, you can type the logic.command in the terminal.
 
 * On Windows: `gradlew <task1> <task2> …`​ e.g. `gradlew clean test`
 * On Mac/Linux: `./gradlew <task1> <task2> …`​ e.g. `./gradlew clean test`
@@ -81,7 +81,7 @@ Shadow is a plugin that packages an application into an executable jar file.
 The plugin can be configured by setting some properties. 
 By default, it produces a jar file with the name in the format of `{archiveBaseName}-{archiveVersion}.jar` (the two properties can be set in the `build.gradle` file).
 
-You can generate an executable jar by running the command `gradlew shadowJar` which publishes an executable jar to `./build/libs/`.
+You can generate an executable jar by running the logic.command `gradlew shadowJar` which publishes an executable jar to `./build/libs/`.
 
 **Resources**:
 * [Gradle documentation for Shadow plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)

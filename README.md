@@ -40,7 +40,7 @@ This project is already configured to use Gradle. Read the following tutorial to
 
 ## Testing
 
-To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
+To run _I/O redirection_ tests (aka _Text ui tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
 
 To run JUnit tests (after you have added JUnit tests), you can run the `test` Gradle task.
 

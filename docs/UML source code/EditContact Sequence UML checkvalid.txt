@@ -1,0 +1,20 @@
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant "Contact" as Contact #lightyellow
+
+opt mainUser
+alt valid edit
+CommandHandler->Contact:isValidEdit(time slot)
+
+
+
+else invalid edit
+CommandHandler->Contact:isValidEdit(time slot)
+activate Contact
+User<--Contact:show exception message "invalid edit"
+deactivate Contact
+
+
+end
+end

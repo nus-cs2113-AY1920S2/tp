@@ -1,0 +1,21 @@
+title EditContact
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant "Contact" as Contact #lightyellow
+
+User->LogicManager:edit contact
+activate LogicManager
+LogicManager->CommandHandler:editContact(time slot)
+activate CommandHandler
+ref over User,Contact:check if edit is valid
+CommandHandler->Contact:editSchedule(time slot)
+activate Contact
+CommandHandler<--Contact:
+deactivate Contact
+LogicManager<--CommandHandler:
+deactivate CommandHandler
+User<--LogicManager:
+deactivate LogicManager
+

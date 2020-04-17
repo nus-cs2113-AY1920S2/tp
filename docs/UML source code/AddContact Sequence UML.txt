@@ -1,0 +1,35 @@
+title AddContact
+actor User
+participant ":LogicManager" as myLogicManager #pink
+participant ":CommandHandler" as myCommandHandler #lightgreen
+participant ":LessonsGenerator" as myLessonsGenerator #lightblue
+participant ":Contact" as myContact #lightyellow
+participant ":ContactList" as myContactList #lightgrey
+
+User->myLogicManager:add new contact
+activate User
+activate myLogicManager
+myLogicManager->myCommandHandler:request new user
+deactivate myLogicManager
+activate myCommandHandler
+myCommandHandler->myLessonsGenerator:generate lessonDetails
+activate myLessonsGenerator
+myLessonsGenerator-->myCommandHandler:lesson start/end time, start/end day, weeks
+deactivate myLessonsGenerator
+myCommandHandler->*myContact: new user constructor
+myCommandHandler->myContact:append busy slots
+activate myContact
+myContact-->myCommandHandler:
+deactivate myContact
+myCommandHandler->myContactList: append to ContactList
+activate myContactList
+space
+deactivate myContactList
+myCommandHandler-->myLogicManager: new user
+deactivate myCommandHandler
+activate myLogicManager
+alt if mainUser
+myLogicManager->myLogicManager: setMainUser()
+end
+myLogicManager--> User:
+deactivate myLogicManager

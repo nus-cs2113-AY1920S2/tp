@@ -1,0 +1,26 @@
+title DeleteContact
+
+actor User
+participant ":LogicManager" as LogicManager #pink
+participant ":CommandHandler" as CommandHandler #lightgreen
+participant ":ContactList" as ContactList #lightyellow
+
+User->LogicManager:delete contact
+activate LogicManager
+LogicManager->CommandHandler:deleteContact(name)
+activate CommandHandler
+
+
+
+alt isMainUser
+LogicManager<--CommandHandler:show exception message "cannot delete main user"
+else else
+CommandHandler->ContactList:remove(name)
+activate ContactList
+ContactList-->CommandHandler:
+deactivate ContactList
+LogicManager<--CommandHandler:
+deactivate CommandHandler
+end
+User<--LogicManager:
+deactivate LogicManager

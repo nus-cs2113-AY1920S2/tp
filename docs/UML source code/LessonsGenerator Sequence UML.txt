@@ -1,0 +1,35 @@
+title LessonsGenerator
+actor User
+participant ":LessonsGenerator" as myLessonGenerator
+participant ":TimetableParser" as myTimetableParser
+
+participant ":ModuleHandler" as myModuleHandler
+participant ":ModuleApiParser" as myModuleApiParser
+
+User ->myLessonGenerator:new LessonsGenerator(User link);
+activate myLessonGenerator
+Untitled (3)myLessonGenerator->*myTimetableParser: new myTimetableParser(User link)
+
+myLessonGenerator->myTimetableParser:getModulesMap()
+activate myTimetableParser
+myLessonGenerator<--myTimetableParser:userLessons data structure
+deactivate myTimetableParser
+
+myLessonGenerator->*myModuleHandler: new ModuleHandler(module code)
+
+loop for each module in User link
+myLessonGenerator->myModuleHandler:generate(Module)
+activate myModuleHandler
+
+myModuleHandler->*myModuleApiParser: new ModuleApiParser()
+myModuleHandler->myModuleApiParser:parse(Module API link)
+activate myModuleApiParser
+
+myModuleHandler<--myModuleApiParser:moduleInfo in Json
+deactivate myModuleApiParser
+myLessonGenerator<--myModuleHandler:moduleInfo data structure
+deactivate myModuleHandler
+myLessonGenerator->myLessonGenerator: lessonsChecker()
+end
+User<--myLessonGenerator:userLessons start/end time, days, weeks held
+deactivate myLessonGenerator
