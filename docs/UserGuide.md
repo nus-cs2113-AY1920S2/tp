@@ -3,14 +3,14 @@
  * [1. Introduction](#1-introduction)  
  * [2. Quick Start](#2-quick-start)  
  * [3. Features](#3-features)
-   - [3.1 Add a new contact](#31-add-a-new-contact)
-   - [3.2 List all contacts](#32-list-all-contacts-contacts)
-   - [3.3 Display timetable of selected contacts](#33-display-timetable-of-selected-contacts-timetable)
-   - [3.4 Schedule a new meeting](#34-schedule-a-new-meeting-schedule)
-   - [3.5 List all meetings](#35-list-all-meetings-meetings)
-   - [3.6 Edit a contact's timetable](#36-edit-a-contacts-timetable-edit)
-   - [3.7 Delete an item](#37-delete-an-item-delete)
-   - [3.8 Exit application](#38-exit-the-application-exit)
+   - [Add a new contact](#add-a-new-contact)
+   - [List all contacts](#list-all-contacts-contacts)
+   - [Display timetable of selected contacts](#display-timetable-of-selected-contacts-timetable)
+   - [Schedule a new meeting](#schedule-a-new-meeting-schedule)
+   - [List all meetings](#list-all-meetings-meetings)
+   - [Edit a contact's timetable](#edit-a-contacts-timetable-edit)
+   - [Delete an item](#delete-an-item-delete)
+   - [Exit application](#exit-the-application-exit)
  * [4. FAQ](#4-faq)
  * [5. Command Summary](#5-command-summary)
  
@@ -65,7 +65,7 @@ The following part of the User Guide will explain the features of WhenFree in de
 
 <br/>
 
-### 3.1 Add a new contact
+### Add a new contact
 Adds you or your friend into the list of contacts. 
 You will need to key in `<Contact Name>` and `<NUSMODS link>` of the 
 contact.
@@ -96,7 +96,7 @@ Example output:
 
 <br/>
 
-### 3.2 List all contacts: `contacts`
+### List all contacts: `contacts`
 Displays index and name of all contacts stored in the program.
 > :bulb: This feature is usually used preceding [`Display timetable of selected contacts`](#display-timetable-of-selected-contacts-timetable),  [`Edit a contact's timetable`](#edit-a-contacts-timetable-edit) or `Delete a contact` features, to check for `<Contact Index>` and `<Contact Name>` of a contact.
 
@@ -116,7 +116,7 @@ Example output:
 
 <br/>
 
-### 3.3 Display timetable of selected contacts: `timetable`
+### Display timetable of selected contacts: `timetable`
 
 There are 3 use cases illustrated below: to display the main user's timetable, to display the timetable of a selected contact, 
 and to display a combined timetable of multiple selected contacts.
@@ -198,7 +198,7 @@ Example output:
 
 <br/>
 
-### 3.4 Schedule a new meeting: `schedule`
+### Schedule a new meeting: `schedule`
 Schedules a new meeting at a specified time slot and adds it into the meeting list. You will need to key in 
 `<Meeting Name>`, and specify the meeting time slot with `<Start Date>` `<Start Time>` `<End Date>` `<End Time>`.
 * You can schedule a meeting on only the current week and the next week, for which your timetable can be displayed with the 
@@ -236,7 +236,7 @@ Example output:
 
 <br/>
 
-### 3.5 List all meetings: `meetings`
+### List all meetings: `meetings`
 List all scheduled meetings stored in program.
 > :bulb: This feature is usually used preceding `Delete a meeting` feature, to check for `<Meeting Index>` a meeting.
 
@@ -256,7 +256,7 @@ Example output:
 
 <br/>
 
-### 3.6 Edit a contact's timetable: `edit`
+### Edit a contact's timetable: `edit`
 There are 2 use cases illustrated below: to edit a contact's timetable to **"busy"** for a specified time slot, and
 to edit a contact's timetable to **"free"** for a specified time slot.
 * You can edit the contact's timetable for only the current week and the next week, for which your timetable can be displayed 
@@ -309,7 +309,7 @@ Example output:
     
 <br/>
 
-### 3.7 Delete an item: `delete`
+### Delete an item: `delete`
 There are 2 use cases illustrated below: to delete a scheduled meeting and to delete a contact from the list.
 > :bulb: You can check `<Meeting Index>` of the meeting you wish to delete, by first listing all meetings using [`meetings`](#list-all-meetings-meetings). <br>
 > :bulb: You can check `<Contact Name>` of the contact you wish to delete, by first listing all added contacts using [`contacts`](#list-all-contacts-contacts).
@@ -348,7 +348,7 @@ Example output:
 
 <br/>
 
-### 3.8 Exit the application: `exit`
+### Exit the application: `exit`
 Exits the application and ends the current session.
 
 Format: 
