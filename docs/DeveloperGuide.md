@@ -2,13 +2,15 @@
 
 - [1. Setting Up](#1-setting-up)
 - [2. Design](#2-design)
+  - [2.1 High-Level Architecture](#21-high-level-architecture)
+  - [2.2 Class Diagram](#22-class-diagram)
 - [3. Implementation](#3-implementation)
   - [3.1 Start Feature](#31-start-feature)
     - [3.1.1 Current Implementation](#311-current-implementation)
     - [3.1.2 Additional Implementation](#312-additional-implementation)
     - [3.1.3 Design Considerations](#313-design-considerations)
   - [3.2 Clean Feature](#32-clean-feature)
-    - [3.2.1 Current Implementation](#311-current-implementation)
+    - [3.2.1 Current Implementation](#321-current-implementation)
     - [3.2.2 Additional Implementation](#322-additional-implementation)
     - [3.2.3 Design Considerations](#323-design-considerations)
   - [3.3 Storage feature](#33-storage-feature)
@@ -17,32 +19,38 @@
     - [3.5.1 Current Implementation](#351-current-implementation)
     - [3.5.2 Additional Implementations](#352-additional-implementations)
     - [3.5.3 Design Considerations](#353-design-considerations)
+      - [Current Design](#current-design)
+      - [Possible Design](#possible-design)
   - [3.6 Continue Feature](#36-continue-feature)
     - [3.6.1 Current Implementation](#361-current-implementation)
-    - [3.6.3 Additional Implementations](#362-additional-implementations)
-    - [3.6.2 Design Considerations](#363-design-considerations)
+    - [3.6.2 Additional Implementations](#362-additional-implementations)
+    - [3.6.3 Design Considerations](#363-design-considerations)
   - [3.7 List feature](#37-list-feature)
     - [3.7.1 Current implementation](#371-current-implementation)
-  - [3.8 Find and Filter Features](#38-find--filter-features)
+  - [3.8 Find & Filter Features](#38-find--filter-features)
+    - [Find Feature](#find-feature)
+    - [Filter Feature](#filter-feature)
     - [3.8.1 Design Considerations](#381-design-considerations)
     - [3.8.2a Current Implementation for Find](#382a-current-implementation-for-find)
     - [3.8.2b Current Implementation for Filter](#382b-current-implementation-for-filter)
+    - [3.8.3 Sequence Diagram](#383-sequence-diagram)
+    - [3.8.4 Additional features](#384-additional-features)
   - [3.9 Graph Feature](#39-graph-feature)
     - [3.9.1 Current Implementation](#391-current-implementation)
     - [3.9.2 Additional features](#392-additional-features)
 - [4. Appendix](#4-appendix)
-  - [Product Scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for Manual Testing](#instructions-for-manual-testing)
-    - [Launch and Shutdown](#launch-and-shutdown)
-    - [Listing activities](#listing-activities)
-    - [Continuing activities](#continuing-activities)
-    - [Graphing activities](#graphing-activities)
-    - [Setting tag goals](#setting-tag-goals)
+  - [4.1 Product Scope](#41-product-scope)
+    - [4.1.1 Target user profile](#411-target-user-profile)
+    - [4.1.2 Value proposition](#412-value-proposition)
+  - [4.2 User Stories](#42-user-stories)
+  - [4.3 Non-Functional Requirements](#43-non-functional-requirements)
+  - [4.4 Glossary](#44-glossary)
+  - [4.5 Instructions for Manual Testing](#45-instructions-for-manual-testing)
+    - [4.5.1 Launch and Shutdown](#451-launch-and-shutdown)
+    - [4.5.2 Listing activities](#452-listing-activities)
+    - [4.5.3 Continuing activities](#453-continuing-activities)
+    - [4.5.4 Graphing activities](#454-graphing-activities)
+    - [4.5.5 Setting tag goals](#455-setting-tag-goals)
 
 ## 1. Setting Up
    * Prerequisites
@@ -534,18 +542,18 @@ As graph gets it's data based on the `lastShownList`, users can pair the `graph`
 
 
 ## 4. Appendix
-### Product Scope
-#### Target user profile
+### 4.1 Product Scope
+#### 4.1.1 Target user profile
 
 * University students with poor time management skills who are struggling to allocate time efficiently for
   the numerous deadlines/tasks.
 * Users who are reasonably comfortable using CLI apps.
 
-#### Value proposition
+#### 4.1.2 Value proposition
 
 Allow users to record their daily activities and track their time usage in a user-friendly manner. 
 
-### User Stories
+### 4.2 User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -562,18 +570,18 @@ Allow users to record their daily activities and track their time usage in a use
 |v2.0|user|automate the deletion of old activities|keep a more concise log of activities|
 
 
-### Non-Functional Requirements
+### 4.3 Non-Functional Requirements
 * The program should be usable by a novice who has never used a time management application.
 * The program should work on most mainstream OSes. 
 * The program should be portable to other systems. 
 
-### Glossary
+### 4.4 Glossary
 
 * *Mainstream OSes:* Windows, MacOS, Linux 
 
-### Instructions for Manual Testing  
+### 4.5 Instructions for Manual Testing  
   
-#### Launch and Shutdown
+#### 4.5.1 Launch and Shutdown
   1. Download the jar file, tag.csv file and data.csv file.
   2. Copy the files into an empty folder.
   3. Create a folder named `data` and put the data.csv file into this folder.
@@ -583,7 +591,7 @@ Allow users to record their daily activities and track their time usage in a use
   
   It is important to include the data.csv file to have data for testing!  
   
-#### Listing activities
+#### 4.5.2 Listing activities
   Test case: `list month april`
   
   Expected: A list of activities completed in the month of April should be shown.
@@ -592,7 +600,7 @@ Allow users to record their daily activities and track their time usage in a use
   
   Expected: A list of activities completed on 25th March 2020 should be shown.  
   
-#### Continuing activities
+#### 4.5.3 Continuing activities
   Test case: `continue lab 4 ex2`
   
   Expected: Message "lab 4 ex2 was continued" will be displayed.
@@ -602,7 +610,7 @@ Allow users to record their daily activities and track their time usage in a use
   Expected: Option to continue will be given. If 'yes' is typed, activity will be continued.  
   
 
-#### Graphing activities
+#### 4.5.4 Graphing activities
 Test case: (to be done in succession)
 
 `find tutorial` then `graph 10`
@@ -617,7 +625,7 @@ Test case: (to be done in succession)
 Expected: List of activities completed this week will be shown. 
 Then a chart of the duration of the tags of these activities will be shown.  
 
-#### Setting tag goals
+#### 4.5.5 Setting tag goals
 Test case: `goal core /g 24:00:00`
 
 Expected: Message "The goal for core has been added!" will be displayed.
