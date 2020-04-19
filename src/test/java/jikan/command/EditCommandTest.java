@@ -58,7 +58,7 @@ class EditCommandTest {
         Command command = new EditCommand(parameters);
         try {
             command.executeCommand(activities);
-        } catch (EmptyNameException | ExtraParametersException e) {
+        } catch (EmptyNameException | ExtraParametersException | NullPointerException e) {
             System.out.println("Field error.");
         }
 
@@ -66,7 +66,7 @@ class EditCommandTest {
     }
 
     @Test
-    void executeEditAllocatedTime() throws NullPointerException {
+    void executeEditAllocatedTime() {
         try {
             populateActivityList();
         } catch (InvalidTimeFrameException e) {
@@ -79,7 +79,7 @@ class EditCommandTest {
         Command command = new EditCommand(parameters);
         try {
             command.executeCommand(activities);
-        } catch (EmptyNameException | ExtraParametersException e) {
+        } catch (EmptyNameException | ExtraParametersException | NullPointerException e) {
             System.out.println("Field error.");
         }
 
