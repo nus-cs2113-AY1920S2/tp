@@ -66,7 +66,7 @@ class EditCommandTest {
     }
 
     @Test
-    void executeEditAllocatedTime() {
+    void executeEditAllocatedTime() throws NullPointerException {
         try {
             populateActivityList();
         } catch (InvalidTimeFrameException e) {
