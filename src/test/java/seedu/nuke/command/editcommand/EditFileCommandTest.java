@@ -28,8 +28,8 @@ class EditFileCommandTest {
         result = Executor.executeCommand("cd CS2113");
         result = Executor.executeCommand("cd Lab");
         result = Executor.executeCommand("cd read");
-        result = Executor.executeCommand("addf save.txt -f save.txt");
-        result = Executor.executeCommand("addf asdf.txt -f save.txt");
+        result = Executor.executeCommand("addf save.txt -f data/save.txt");
+        result = Executor.executeCommand("addf asdf.txt -f data/save.txt");
 
         // base case
         result = Executor.executeCommand("edf save.txt -f test.txt");
